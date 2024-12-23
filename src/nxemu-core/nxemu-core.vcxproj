@@ -11,28 +11,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{c8659f5a-3afa-4bf0-9409-3b9819e17714}</ProjectGuid>
-    <RootNamespace>nxemu</RootNamespace>
+    <ProjectGuid>{cf365edd-c903-47b1-aaae-a483d3c0d274}</ProjectGuid>
+    <RootNamespace>nxemucore</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <ImportGroup Label="PropertySheets">
     <Import Project="$(SolutionDir)property_sheets\Platform.$(Configuration).props" />
   </ImportGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ItemDefinitionGroup>
+    <PreBuildEvent>
+      <Command>"$(SolutionDir)src\script\update_version.cmd" "$(Configuration)" "$(Platform)" "$(SolutionDir)src\nxemu-core\version.h.in" "$(SolutionDir)src\nxemu-core\version.h"</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="user_interface\main_window.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="user_interface\main_window.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\common\common.vcxproj">
-      <Project>{ec81be93-8316-4db6-8a26-b13fb5b13848}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>

@@ -11,8 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{c8659f5a-3afa-4bf0-9409-3b9819e17714}</ProjectGuid>
-    <RootNamespace>nxemu</RootNamespace>
+    <ProjectGuid>{d442fbfe-1018-4056-a0ae-cbcb6bf9dd90}</ProjectGuid>
+    <RootNamespace>updateversion</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -22,17 +22,13 @@
     <Import Project="$(SolutionDir)property_sheets\Platform.$(Configuration).props" />
   </ImportGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="user_interface\main_window.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="user_interface\main_window.h" />
+    <ClCompile Include="update_version.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\common\common.vcxproj">
       <Project>{ec81be93-8316-4db6-8a26-b13fb5b13848}</Project>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>
