@@ -24,15 +24,27 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="user_interface\main_menu.cpp" />
     <ClCompile Include="user_interface\main_window.cpp" />
+    <ClCompile Include="user_interface\menu_item.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="user_interface\main_menu.h" />
     <ClInclude Include="user_interface\main_window.h" />
+    <ClInclude Include="user_interface\menu_item.h" />
+    <ClInclude Include="user_interface\resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\common\common.vcxproj">
       <Project>{ec81be93-8316-4db6-8a26-b13fb5b13848}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="user_interface\nxemu.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icons\nxemu.ico" />
+    <Image Include="user_interface\icons\nxemu.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>

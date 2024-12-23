@@ -3,6 +3,7 @@
 MainWindow::MainWindow(const wchar_t * windowTitle) :
     m_hWnd(nullptr),
     m_className(L"NxEmu"),
+    m_menu(this),
     m_windowTitle(windowTitle)
 {
     RegisterWinClass();
@@ -24,7 +25,7 @@ bool MainWindow::RegisterWinClass(void)
     wcl.style = CS_OWNDC | CS_HREDRAW | CS_VREDRAW;
     wcl.cbClsExtra = 0;
     wcl.cbWndExtra = 0;
-    wcl.hIcon = nullptr;
+    wcl.hIcon = LoadIcon(GetModuleHandle(nullptr), MAKEINTRESOURCE(IDI_NXEMU_ICO));
     wcl.hCursor = LoadCursor(nullptr, IDC_ARROW);
     wcl.hInstance = GetModuleHandle(nullptr);
 
@@ -63,6 +64,8 @@ void MainWindow::ShowWindow(bool show)
 
 LRESULT MainWindow::OnCreate(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
 {
+    ResetMenu();
+
     int x = (GetSystemMetrics(SM_CXSCREEN) - Width) / 2;
     int	y = (GetSystemMetrics(SM_CYSCREEN) - Height) / 2;
 
@@ -73,6 +76,12 @@ LRESULT MainWindow::OnCreate(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/
 LRESULT MainWindow::OnDestroy(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
 {
     PostQuitMessage(0);
+    return 0;
+}
+
+LRESULT MainWindow::OnFileExit(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
+{
+    DestroyWindow(m_hWnd);
     return 0;
 }
 
@@ -97,3 +106,7 @@ LRESULT MainWindow::GuiProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     return DefWindowProcW(hWnd, uMsg, wParam, lParam);
 }
 
+void MainWindow::ResetMenu()
+{
+    SetMenu(m_hWnd, m_menu.GetHandle());
+}

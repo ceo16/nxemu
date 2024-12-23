@@ -27,10 +27,38 @@
     <ClCompile Include="user_interface\main_window.cpp">
       <Filter>Source Files\user_interface</Filter>
     </ClCompile>
+    <ClCompile Include="user_interface\main_menu.cpp">
+      <Filter>Source Files\user_interface</Filter>
+    </ClCompile>
+    <ClCompile Include="user_interface\menu_item.cpp">
+      <Filter>Source Files\user_interface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user_interface\main_window.h">
       <Filter>Header Files\user_interface</Filter>
     </ClInclude>
+    <ClInclude Include="user_interface\resource.h">
+      <Filter>Header Files\user_interface</Filter>
+    </ClInclude>
+    <ClInclude Include="user_interface\main_menu.h">
+      <Filter>Header Files\user_interface</Filter>
+    </ClInclude>
+    <ClInclude Include="user_interface\menu_item.h">
+      <Filter>Header Files\user_interface</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="user_interface\nxemu.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icons\nxemu.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="user_interface\icons\nxemu.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

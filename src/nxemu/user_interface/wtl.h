@@ -24,6 +24,7 @@
 #include <wtl/atlcrack.h>
 
 #pragma warning(pop)
+#include "resource.h"
 
 class WTLModule :
     public CAppModule
