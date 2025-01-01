@@ -19,16 +19,16 @@ public:
         modeNoTruncate = 0x2000,
     };
 
-    enum class SeekPosition 
-	{ 
-		begin = 0x0, 
-		current = 0x1, 
-		end = 0x2 
-	};
+    enum class SeekPosition
+    {
+        begin = 0x0,
+        current = 0x1,
+        end = 0x2
+    };
 
     virtual bool Open(const char * fileName, uint32_t openFlags) = 0;
 
-    virtual uint64_t Seek(int64_t Offset, SeekPosition from) = 0;
+    virtual uint64_t Seek(int64_t offset, SeekPosition from) = 0;
     virtual bool SetLength(uint64_t newLen) = 0;
     virtual uint64_t GetLength() const = 0;
 
@@ -49,9 +49,10 @@ public:
     File(const char * fileName, uint32_t openFlags);
     ~File();
 
-    bool Open(const char* fileName, uint32_t openFlags);
+    bool Open(const char * fileName, uint32_t openFlags);
+    bool Close();
 
-	uint64_t SeekToEnd(void);
+    uint64_t SeekToEnd(void);
     void SeekToBegin(void);
 
     uint64_t Seek(int64_t offset, SeekPosition from);
@@ -61,13 +62,12 @@ public:
     uint32_t Read(void * buffer, uint32_t bufferSize);
     bool Write(const void * buffer, uint32_t bufferSize);
 
-    bool Close();
     bool IsOpen() const;
     bool SetEndOfFile();
 
 private:
-    File(const File&) = delete;
-    File& operator=(const File&) = delete;
+    File(const File &) = delete;
+    File & operator=(const File &) = delete;
 
     bool m_closeOnDestroy;
     void * m_file;

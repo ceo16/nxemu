@@ -1,10 +1,10 @@
-#include <common/path.h>
 #include <common/file.h>
+#include <common/path.h>
 #include <common/sha256.h>
 #include <common/std_string.h>
 #include <cstdlib>
-#include <string>
 #include <memory>
+#include <string>
 #include <time.h>
 
 bool GitCommand(const Path & sourceDirectory, const char * command, std::string & output)
@@ -195,11 +195,11 @@ int main()
         i -= 1;
         n -= 1;
     }
-    
+
     std::string OutData;
     for (size_t i = 0, n = versionData.size(); i < n; i++)
     {
-        stdstr &line = versionData[i];
+        stdstr & line = versionData[i];
         line += "\n";
         if (_strnicmp(line.c_str(), "#define GIT_VERSION ", 20) == 0)
         {

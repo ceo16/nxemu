@@ -59,9 +59,18 @@ bool File::Open(const char * fileName, uint32_t openFlags)
     }
 
     ULONG shareMode = FILE_SHARE_READ | FILE_SHARE_WRITE;
-    if ((openFlags & shareDenyWrite) == shareDenyWrite) { shareMode &= ~FILE_SHARE_WRITE; }
-    if ((openFlags & shareDenyRead) == shareDenyRead) { shareMode &= ~FILE_SHARE_READ; }
-    if ((openFlags & shareExclusive) == shareExclusive) { shareMode = 0; }
+    if ((openFlags & shareDenyWrite) == shareDenyWrite)
+    {
+        shareMode &= ~FILE_SHARE_WRITE;
+    }
+    if ((openFlags & shareDenyRead) == shareDenyRead)
+    {
+        shareMode &= ~FILE_SHARE_READ;
+    }
+    if ((openFlags & shareExclusive) == shareExclusive)
+    {
+        shareMode = 0;
+    }
 
     // map modeNoInherit flag
     SECURITY_ATTRIBUTES sa;
@@ -84,6 +93,18 @@ bool File::Open(const char * fileName, uint32_t openFlags)
     m_file = hFile;
     m_closeOnDestroy = true;
     return true;
+}
+
+bool File::Close()
+{
+    bool bError = true;
+    if (m_file != INVALID_HANDLE_VALUE)
+    {
+        bError = !::CloseHandle(m_file);
+    }
+    m_file = INVALID_HANDLE_VALUE;
+    m_closeOnDestroy = false;
+    return bError;
 }
 
 void File::SeekToBegin(void)
@@ -116,7 +137,7 @@ uint64_t File::GetLength() const
     return ((uint64_t)hiWord << 32) | (uint64_t)loWord;
 }
 
-uint32_t File::Read(void* lpBuf, uint32_t nCount)
+uint32_t File::Read(void * lpBuf, uint32_t nCount)
 {
     if (nCount == 0)
     {
@@ -149,18 +170,6 @@ bool File::Write(const void * buffer, uint32_t bufferSize)
         return false;
     }
     return true;
-}
-
-bool File::Close()
-{
-    bool bError = true;
-    if (m_file != INVALID_HANDLE_VALUE)
-    {
-        bError = !::CloseHandle(m_file);
-    }
-    m_file = INVALID_HANDLE_VALUE;
-    m_closeOnDestroy = false;
-    return bError;
 }
 
 bool File::IsOpen(void) const

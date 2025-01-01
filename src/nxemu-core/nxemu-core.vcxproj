@@ -28,6 +28,15 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="app_init.h" />
+    <ClInclude Include="notification.h" />
+    <ClInclude Include="settings\settings.h" />
+    <ClInclude Include="switch_rom.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="app_init.cpp" />
+    <ClCompile Include="settings\settings.cpp" />
+    <ClCompile Include="switch_rom.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>

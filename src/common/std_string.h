@@ -2,8 +2,8 @@
 
 class stdstr;
 
-#include <vector>
 #include <string>
+#include <vector>
 
 typedef std::vector<stdstr> strvector;
 
@@ -34,7 +34,7 @@ public:
     stdstr & TrimRight(const char * chars2remove = "\t ");
 
 #ifdef _WIN32
-	stdstr & FromUTF16(const wchar_t * utf16Source, bool * success = nullptr);
+    stdstr & FromUTF16(const wchar_t * utf16Source, bool * success = nullptr);
     std::wstring ToUTF16(unsigned int codePage = CODEPAGE_UTF8, bool * success = nullptr) const;
 #endif
 
@@ -44,5 +44,5 @@ public:
 class stdstr_f : public stdstr
 {
 public:
-	stdstr_f(const char * strFormat, ...);
+    stdstr_f(const char * strFormat, ...);
 };

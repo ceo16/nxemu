@@ -16,16 +16,16 @@ public:
         NO_ID = -3
     };
 
-    MenuItem(int32_t id, wchar_t * title = L"", MenuItemList* subMenu = nullptr);
-    void Reset(int32_t id, wchar_t * title = L"", MenuItemList * subMenu = nullptr);
+    MenuItem(int32_t id, const wchar_t * title = L"", MenuItemList * subMenu = nullptr);
+    void Reset(int32_t id, const wchar_t * title = L"", MenuItemList * subMenu = nullptr);
 
     int ID() const;
-    const wchar_t* Title() const;
-    const MenuItemList* SubMenu() const;
+    const wchar_t * Title() const;
+    const MenuItemList * SubMenu() const;
 
 private:
     MenuItem(void) = delete;
-    MenuItem& operator=(const MenuItem&) = delete;
+    MenuItem & operator=(const MenuItem &) = delete;
 
     int32_t m_id;
     std::wstring m_title;

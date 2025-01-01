@@ -1,6 +1,6 @@
 #pragma once
-#include <Windows.h>
 #include "menu_item.h"
+#include <Windows.h>
 
 class MainWindow;
 
@@ -10,7 +10,12 @@ public:
     enum MainMenuID
     {
         //File Menu
+        ID_FILE_OPEN_GAME,
         ID_FILE_EXIT,
+
+        // Recent files
+        ID_RECENT_FILE_START,
+        ID_RECENT_FILE_END = ID_RECENT_FILE_START + 20,
     };
 
     MainMenu(MainWindow * Window);
@@ -21,8 +26,8 @@ public:
 
 private:
     MainMenu(void) = delete;
-    MainMenu(const MainMenu&) = delete;
-    MainMenu& operator=(const MainMenu&) = delete;
+    MainMenu(const MainMenu &) = delete;
+    MainMenu & operator=(const MainMenu &) = delete;
 
     void FillOutMenu(HMENU menu);
     static bool AddMenu(HMENU menu, const MenuItemList & items);

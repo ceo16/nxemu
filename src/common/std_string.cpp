@@ -20,7 +20,7 @@ stdstr::stdstr(const char * str) :
 {
 }
 
-strvector stdstr::Tokenize(const char* delimiter) const
+strvector stdstr::Tokenize(const char * delimiter) const
 {
     strvector tokens;
 
@@ -119,7 +119,7 @@ stdstr & stdstr::TrimLeft(const char * chars2remove)
     return *this;
 }
 
-stdstr & stdstr::TrimRight(const char* chars2remove)
+stdstr & stdstr::TrimRight(const char * chars2remove)
 {
     if (!empty())
     {
@@ -136,7 +136,7 @@ stdstr & stdstr::TrimRight(const char* chars2remove)
     return *this;
 }
 
-stdstr& stdstr::Trim(const char* chars2remove)
+stdstr & stdstr::Trim(const char * chars2remove)
 {
     if (!empty())
     {
@@ -228,12 +228,13 @@ std::wstring stdstr::ToUTF16(unsigned int codePage, bool * success) const
 }
 #endif
 
-void stdstr::ArgFormat(const char* strFormat, va_list& args)
+void stdstr::ArgFormat(const char * strFormat, va_list & args)
 {
 #pragma warning(push)
-#pragma warning(disable:4996)
+#pragma warning(disable : 4996)
+
     size_t nlen = _vscprintf(strFormat, args) + 1;
-    char* buffer = (char*)alloca(nlen * sizeof(char));
+    char * buffer = (char *)alloca(nlen * sizeof(char));
     buffer[nlen - 1] = 0;
     if (buffer != nullptr)
     {

@@ -13,6 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{c8659f5a-3afa-4bf0-9409-3b9819e17714}</ProjectGuid>
     <RootNamespace>nxemu</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -22,21 +23,33 @@
     <Import Project="$(SolutionDir)property_sheets\Platform.$(Configuration).props" />
   </ImportGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="settings\ui_settings.cpp" />
     <ClCompile Include="user_interface\main_menu.cpp" />
     <ClCompile Include="user_interface\main_window.cpp" />
     <ClCompile Include="user_interface\menu_item.cpp" />
+    <ClCompile Include="user_interface\notification.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="settings\ui_settings.h" />
     <ClInclude Include="user_interface\main_menu.h" />
     <ClInclude Include="user_interface\main_window.h" />
     <ClInclude Include="user_interface\menu_item.h" />
+    <ClInclude Include="user_interface\notification.h" />
     <ClInclude Include="user_interface\resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\common\common.vcxproj">
       <Project>{ec81be93-8316-4db6-8a26-b13fb5b13848}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\nxemu-core\nxemu-core.vcxproj">
+      <Project>{cf365edd-c903-47b1-aaae-a483d3c0d274}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
