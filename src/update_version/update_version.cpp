@@ -151,12 +151,12 @@ int main()
     }
     inFile.SeekToBegin();
     uint32_t fileLen = (uint32_t)inFile.GetLength();
-    std::unique_ptr<uint8_t[]> InputData = std::make_unique<uint8_t[]>(fileLen);
-    inFile.Read(InputData.get(), fileLen);
-    strvector versionData = stdstr(std::string((char *)InputData.get(), fileLen)).Tokenize("\n");
+    std::unique_ptr<uint8_t[]> inputData = std::make_unique<uint8_t[]>(fileLen);
+    inFile.Read(inputData.get(), fileLen);
+    strvector versionData = stdstr(std::string((char *)inputData.get(), fileLen)).Replace("\r","").Tokenize("\n");
 
     uint32_t versionMajor = 0, versionMinor = 0, versionRevison = 0;
-    std::string versionPrefix;
+    std::string versionPrefix, lineFeed = "\r\n";
     for (size_t i = 0, n = versionData.size(); i < n; i++)
     {
         stdstr line = versionData[i];
@@ -200,37 +200,37 @@ int main()
     for (size_t i = 0, n = versionData.size(); i < n; i++)
     {
         stdstr & line = versionData[i];
-        line += "\n";
+        line += lineFeed;
         if (_strnicmp(line.c_str(), "#define GIT_VERSION ", 20) == 0)
         {
-            line.Format("#define GIT_VERSION                 \"%s%s%s\"\n", RevisionShort.c_str(), BuildDirty ? "-" : "", BuildDirty ? "Dirty" : "");
+            line.Format("#define GIT_VERSION                 \"%s%s%s\"%s", RevisionShort.c_str(), BuildDirty ? "-" : "", BuildDirty ? "Dirty" : "", lineFeed.c_str());
         }
         else if (_strnicmp(line.c_str(), "#define VERSION_BUILD ", 22) == 0)
         {
-            line.Format("#define VERSION_BUILD               %d\n", versionBuild);
+            line.Format("#define VERSION_BUILD               %d%s", versionBuild, lineFeed.c_str());
         }
         else if (_strnicmp(line.c_str(), "#define VERSION_BUILD_YEAR ", 27) == 0)
         {
             time_t now = time(NULL);
             struct tm * tnow = gmtime(&now);
 
-            line.Format("#define VERSION_BUILD_YEAR          %d\n", tnow->tm_year + 1900);
+            line.Format("#define VERSION_BUILD_YEAR          %d%s", tnow->tm_year + 1900, lineFeed.c_str());
         }
         else if (_strnicmp(line.c_str(), "#define GIT_REVISION ", 21) == 0)
         {
-            line.Format("#define GIT_REVISION                \"%s\"\n", Revision.c_str());
+            line.Format("#define GIT_REVISION                \"%s\"%s", Revision.c_str(), lineFeed.c_str());
         }
         else if (_strnicmp(line.c_str(), "#define GIT_REVISION_SHORT ", 26) == 0)
         {
-            line.Format("#define GIT_REVISION_SHORT          \"%s\"\n", RevisionShort.c_str());
+            line.Format("#define GIT_REVISION_SHORT          \"%s\"%s", RevisionShort.c_str(), lineFeed.c_str());
         }
         else if (_strnicmp(line.c_str(), "#define GIT_DIRTY ", 11) == 0)
         {
-            line.Format("#define GIT_DIRTY                   \"%s\"\n", BuildDirty ? "Dirty" : "");
+            line.Format("#define GIT_DIRTY                   \"%s\"%s", BuildDirty ? "Dirty" : "", lineFeed.c_str());
         }
         else if (_strnicmp(line.c_str(), "        versionCode = ", 22) == 0)
         {
-            line.Format("        versionCode = %d\n", versionBuild);
+            line.Format("        versionCode = %d%s", versionBuild, lineFeed.c_str());
         }
         else if (_strnicmp(line.c_str(), "        versionName = ", 22) == 0)
         {
@@ -239,7 +239,7 @@ int main()
             {
                 line += stdstr_f(" (%s)", versionPrefix.c_str());
             }
-            line += "\"\n";
+            line += "\"" + lineFeed;
         }
         OutData += line.c_str();
     }

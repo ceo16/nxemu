@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="UpdateVersion.cpp">
+    <ClCompile Include="update_version.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

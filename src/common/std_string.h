@@ -25,9 +25,9 @@ public:
     strvector Tokenize(const char * delimiter) const;
     void Format(const char * strFormat, ...);
 
-    void Replace(const char search, const char replace);
-    void Replace(const char * search, const char replace);
-    void Replace(const std::string & search, const std::string & replace);
+    stdstr & Replace(const char search, const char replace);
+    stdstr & Replace(const char * search, const char replace);
+    stdstr & Replace(const std::string & search, const std::string & replace);
 
     stdstr & Trim(const char * chars2remove = "\t ");
     stdstr & TrimLeft(const char * chars2remove = "\t ");

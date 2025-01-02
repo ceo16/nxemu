@@ -67,7 +67,7 @@ void stdstr::Format(const char * strFormat, ...)
     va_end(args);
 }
 
-void stdstr::Replace(const char search, const char replace)
+stdstr & stdstr::Replace(const char search, const char replace)
 {
     std::string & str = *this;
     std::string::size_type pos = str.find(search);
@@ -76,9 +76,10 @@ void stdstr::Replace(const char search, const char replace)
         str.replace(pos, 1, &replace);
         pos = str.find(search, pos + 1);
     }
+    return *this;
 }
 
-void stdstr::Replace(const char * search, const char replace)
+stdstr & stdstr::Replace(const char * search, const char replace)
 {
     std::string & str = *this;
     std::string::size_type pos = str.find(search);
@@ -88,9 +89,10 @@ void stdstr::Replace(const char * search, const char replace)
         str.replace(pos, SearchSize, &replace);
         pos = str.find(search, pos + 1);
     }
+    return *this;
 }
 
-void stdstr::Replace(const std::string & search, const std::string & replace)
+stdstr & stdstr::Replace(const std::string & search, const std::string & replace)
 {
     std::string & str = *this;
     std::string::size_type pos = str.find(search);
@@ -100,6 +102,7 @@ void stdstr::Replace(const std::string & search, const std::string & replace)
         str.replace(pos, SearchSize, replace);
         pos = str.find(search, pos + replace.length());
     }
+    return *this;
 }
 
 stdstr & stdstr::TrimLeft(const char * chars2remove)
