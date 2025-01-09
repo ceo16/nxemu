@@ -35,7 +35,6 @@ void MainMenu::FillOutMenu(HMENU menu)
 {
     MenuItemList fileMenu;
     fileMenu.push_back(MenuItem(ID_FILE_OPEN_GAME, L"&Open Game..."));
-    fileMenu.push_back(MenuItem(MenuItem::SPLITER));
 
     Stringlist & recentFiles = uiSettings.recentFiles;
     MenuItemList RecentGameMenu;
@@ -49,13 +48,19 @@ void MainMenu::FillOutMenu(HMENU menu)
             recentFileIndex += 1;
         }
         fileMenu.emplace_back(MenuItem::SUB_MENU, L"Recent Games", &RecentGameMenu);
-        fileMenu.push_back(MenuItem(MenuItem::SPLITER));
     }
-    fileMenu.emplace_back(MenuItem(ID_FILE_EXIT, L"E&xit"));
+    fileMenu.push_back(MenuItem(MenuItem::SPLITER));
+    fileMenu.push_back(MenuItem(ID_FILE_EXIT, L"E&xit"));
+
+    MenuItemList OptionsMenu;
+    OptionsMenu.push_back(MenuItem(ID_OPTIONS_SETTINGS, L"&Settings..."));
 
     MenuItemList mainTitleMenu;
     mainTitleMenu.push_back(MenuItem(MenuItem::SUB_MENU, L"&File", &fileMenu));
-
+    if (uiSettings.enableModuleConfiguration)
+    {
+        mainTitleMenu.push_back(MenuItem(MenuItem::SUB_MENU, L"&Options", &OptionsMenu));
+    }
     AddMenu(menu, mainTitleMenu);
 }
 

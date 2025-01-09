@@ -2,13 +2,28 @@
 #include <common/json.h>
 #include <nxemu-core/settings/settings.h>
 
+namespace
+{
+struct UISettingsDefaults
+{
+    static constexpr bool enableModuleConfiguration = false;
+};
+} // namespace
+
 UISettings uiSettings = {};
 
 void LoadUISetting(void)
 {
-    uiSettings.recentFiles.clear();
+    uiSettings = {};
+    uiSettings.enableModuleConfiguration = UISettingsDefaults::enableModuleConfiguration;
 
     JsonValue settings = Settings::GetInstance().GetSettings("UI");
+
+    const JsonValue * modConfig = settings.Find("EnableModuleConfiguration");
+    if (modConfig != nullptr && modConfig->isBool())
+    {
+        uiSettings.enableModuleConfiguration = modConfig->asBool();
+    }
 
     const JsonValue * recentFiles = settings.Find("RecentFiles");
     if (recentFiles != nullptr && recentFiles->isArray())
@@ -27,12 +42,20 @@ void LoadUISetting(void)
 void SaveUISetting(void)
 {
     JsonValue json;
-    JsonValue recentFiles(JsonValueType::Array);
-    for (const std::string & file : uiSettings.recentFiles)
+    if (!uiSettings.recentFiles.empty())
     {
-        recentFiles.Append(JsonValue(file));
+        JsonValue recentFiles(JsonValueType::Array);
+        for (const std::string & file : uiSettings.recentFiles)
+        {
+            recentFiles.Append(JsonValue(file));
+        }
+        json["RecentFiles"] = std::move(recentFiles);
     }
-    json["RecentFiles"] = std::move(recentFiles);
+
+    if (uiSettings.enableModuleConfiguration != UISettingsDefaults::enableModuleConfiguration)
+    {
+        json["EnableModuleConfiguration"] = JsonValue(uiSettings.enableModuleConfiguration);
+    }
 
     Settings & settings = Settings::GetInstance();
     settings.SetSettings("UI", json);

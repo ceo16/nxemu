@@ -27,6 +27,9 @@
     <ClCompile>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
+    <PreBuildEvent>
+      <Command>IF NOT EXIST "$(SolutionDir)config\NxEmu.config" (copy  "$(SolutionDir)config\NxEmu.config.development" "$(SolutionDir)config\NxEmu.config")</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -35,6 +38,11 @@
     <ClCompile Include="user_interface\main_window.cpp" />
     <ClCompile Include="user_interface\menu_item.cpp" />
     <ClCompile Include="user_interface\notification.cpp" />
+    <ClCompile Include="user_interface\settings\config_setting_section.cpp" />
+    <ClCompile Include="user_interface\settings\settings_config.cpp" />
+    <ClCompile Include="user_interface\settings\settings_page.cpp" />
+    <ClCompile Include="user_interface\settings\settings_page_modules.cpp" />
+    <ClCompile Include="user_interface\wtl_controls\modified_combo_box.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="settings\ui_settings.h" />
@@ -43,6 +51,11 @@
     <ClInclude Include="user_interface\menu_item.h" />
     <ClInclude Include="user_interface\notification.h" />
     <ClInclude Include="user_interface\resource.h" />
+    <ClInclude Include="user_interface\settings\config_setting_section.h" />
+    <ClInclude Include="user_interface\settings\settings_config.h" />
+    <ClInclude Include="user_interface\settings\settings_page.h" />
+    <ClInclude Include="user_interface\settings\settings_page_modules.h" />
+    <ClInclude Include="user_interface\wtl_controls\modified_combo_box.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\common\common.vcxproj">

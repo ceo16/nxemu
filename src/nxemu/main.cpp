@@ -1,6 +1,6 @@
 #include "settings/ui_settings.h"
-#include "user_interface/notification.h"
 #include "user_interface/main_window.h"
+#include "user_interface/notification.h"
 #include <common/std_string.h>
 #include <memory>
 #include <nxemu-core/app_init.h>

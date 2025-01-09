@@ -24,3 +24,9 @@ Thumbs.db
 /bin
 /build
 /ipch
+/modules
+/src/nxemu-core/Version.h
+/src/nxemu-video/Version.h
+/src/nxemu-cpu/Version.h
+/src/nxemu-os/Version.h
+/config/NxEmu.config

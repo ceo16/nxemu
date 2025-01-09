@@ -3,16 +3,23 @@
 #include <Windows.h>
 
 #include <CommDlg.h>
+#include <io.h>
 
 const char DRIVE_DELIMITER = ':';
 const char * const DIR_DOUBLEDELIM = "\\\\";
 const char DIRECTORY_DELIMITER = '\\';
 const char DIRECTORY_DELIMITER2 = '/';
 
+const char EXTENSION_DELIMITER = '.';
 void * Path::m_hInst = nullptr;
 
 Path::Path()
 {
+}
+
+Path::Path(const Path & path)
+{
+    m_path = path.m_path;
 }
 
 Path::Path(const char * path)
@@ -60,6 +67,19 @@ Path::Path(DIR_MODULE_DIRECTORY /*sdt*/, const char * nameExten)
     SetNameExtension(nameExten ? nameExten : "");
 }
 
+Path::~Path()
+{
+    CloseFindHandle();
+}
+
+Path & Path::operator=(const Path & path)
+{
+    if (this != &path)
+    {
+        m_path = path.m_path;
+    }
+    return *this;
+}
 
 Path::operator const char *() const
 {
@@ -102,6 +122,24 @@ std::string Path::GetDirectory(void) const
     return directory;
 }
 
+void Path::GetNameExtension(std::string & nameExtension) const
+{
+    std::string name, extension;
+    GetComponents(nullptr, nullptr, &name, &extension);
+    nameExtension = name;
+    if (!extension.empty())
+    {
+        nameExtension += EXTENSION_DELIMITER;
+        nameExtension += extension;
+    }
+}
+
+std::string Path::GetNameExtension(void) const
+{
+    std::string nameExtension;
+    GetNameExtension(nameExtension);
+    return nameExtension;
+}
 
 void Path::GetComponents(std::string * drive, std::string * directory, std::string * name, std::string * extension) const
 {
@@ -315,6 +353,13 @@ bool Path::FileSelect(void * hwndOwner, const char * initialDir, const char * fi
     return true;
 }
 
+bool Path::IsDirectory() const
+{
+    std::string fileName;
+    GetNameExtension(fileName);
+    return fileName.empty();
+}
+
 bool Path::DirectoryCreate(bool createIntermediates)
 {
     if (DirectoryExists())
@@ -366,7 +411,7 @@ bool Path::DirectoryExists() const
     return res;
 }
 
-void Path::DirectoryNormalize(Path BaseDir)
+Path& Path::DirectoryNormalize(Path BaseDir)
 {
     stdstr directory = BaseDir.GetDriveDirectory();
     bool changed = false;
@@ -403,6 +448,7 @@ void Path::DirectoryNormalize(Path BaseDir)
         }
         SetDriveDirectory(directory.c_str());
     }
+    return *this;
 }
 
 void Path::DirectoryUp(std::string * lastDir)
@@ -426,6 +472,85 @@ void Path::DirectoryUp(std::string * lastDir)
         directory = directory.substr(0, delimiter);
     }
     SetDirectory(directory.c_str());
+}
+
+bool Path::FindFirst(uint32_t attributes)
+{
+    CloseFindHandle();
+
+    m_findAttributes = attributes;
+    bool bWantSubdirectory = (FIND_ATTRIBUTE_SUBDIR & attributes) != 0;
+
+    WIN32_FIND_DATA findData;
+    m_findHandle = FindFirstFile(stdstr(m_path).ToUTF16().c_str(), &findData);
+    bool foundFile = (m_findHandle != INVALID_HANDLE_VALUE);
+
+    if (m_findHandle == INVALID_HANDLE_VALUE)
+    {
+        m_findHandle = nullptr;
+    }
+
+    while (foundFile)
+    {
+        if (AttributesMatch(m_findAttributes, findData.dwFileAttributes) &&
+            (!bWantSubdirectory || (findData.cFileName[0] != '.')))
+        {
+            if ((FIND_ATTRIBUTE_SUBDIR & findData.dwFileAttributes) != 0)
+            {
+                StripTrailingBackslash(m_path);
+            }
+            SetNameExtension(stdstr().FromUTF16(findData.cFileName).c_str());
+            if ((FIND_ATTRIBUTE_SUBDIR & findData.dwFileAttributes) != 0)
+            {
+                EnsureTrailingBackslash(m_path);
+            }
+            return true;
+        }
+        foundFile = FindNextFile(m_findHandle, &findData);
+    }
+    return false;
+}
+
+bool Path::FindNext()
+{
+    if (m_findHandle == nullptr)
+    {
+        return false;
+    }
+
+    WIN32_FIND_DATA FindData;
+    while (FindNextFile(m_findHandle, &FindData) != false)
+    {
+        if (AttributesMatch(m_findAttributes, FindData.dwFileAttributes))
+        {
+            if ((_A_SUBDIR & FindData.dwFileAttributes) == _A_SUBDIR)
+            {
+                if (IsDirectory())
+                {
+                    DirectoryUp();
+                }
+                else
+                {
+                    SetNameExtension("");
+                }
+                AppendDirectory(stdstr().FromUTF16(FindData.cFileName).c_str());
+            }
+            else
+            {
+                if (IsDirectory())
+                {
+                    DirectoryUp();
+                }
+                SetNameExtension(stdstr().FromUTF16(FindData.cFileName).c_str());
+            }
+            if ((_A_SUBDIR & FindData.dwFileAttributes) == _A_SUBDIR)
+            {
+                EnsureTrailingBackslash(m_path);
+            }
+            return true;
+        }
+    }
+    return false;
 }
 
 void Path::SetToCurrentDirectory()
@@ -470,6 +595,28 @@ void Path::SetToModuleDirectory()
 
         bufferSize *= 2;
         buffPath.resize(bufferSize);
+    }
+}
+
+bool Path::AttributesMatch(uint32_t targetAttributes, uint32_t fileAttributes)
+{
+    if (targetAttributes == FIND_ATTRIBUTE_ALLFILES)
+    {
+        return true;
+    }
+    if (targetAttributes == FIND_ATTRIBUTE_FILES)
+    {
+        return ((FIND_ATTRIBUTE_SUBDIR & fileAttributes) == 0);
+    }
+    return (((targetAttributes & fileAttributes) != 0) && ((FIND_ATTRIBUTE_SUBDIR & targetAttributes) == (FIND_ATTRIBUTE_SUBDIR & fileAttributes)));
+}
+
+void Path::CloseFindHandle()
+{
+    if (m_findHandle != nullptr)
+    {
+        FindClose(m_findHandle);
+        m_findHandle = nullptr;
     }
 }
 

@@ -1,0 +1,8 @@
+{
+   "Core" : {
+      "ModuleDirectory-x64" : "..\\..\\..\\modules\\x64"
+   },
+   "UI" : {
+      "EnableModuleConfiguration" : true
+   }
+}

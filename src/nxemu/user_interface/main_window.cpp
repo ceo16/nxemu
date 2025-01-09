@@ -1,9 +1,10 @@
 #include "main_window.h"
+#include "settings/settings_config.h"
 #include "settings/ui_settings.h"
-#include <Common\path.h>
+#include <common/path.h>
+#include <nxemu-core/settings/core_settings.h>
 #include <nxemu-core/settings/settings.h>
 #include <nxemu-core/switch_rom.h>
-#include <common/path.h>
 
 MainWindow::MainWindow(const wchar_t * windowTitle) :
     m_hWnd(nullptr),
@@ -11,7 +12,7 @@ MainWindow::MainWindow(const wchar_t * windowTitle) :
     m_menu(this),
     m_windowTitle(windowTitle)
 {
-    Settings::GetInstance().RegisterCallback("nxcore:gamefile", std::bind(&MainWindow::GameFileChanged, this));
+    Settings::GetInstance().RegisterCallback(NXCoreSetting::GameFile, std::bind(&MainWindow::GameFileChanged, this));
 
     RegisterWinClass();
     Create();
@@ -62,7 +63,7 @@ void MainWindow::GameFileChanged(void)
     };
 
     Stringlist & recentFiles = uiSettings.recentFiles;
-    std::string gameFile = Settings::GetInstance().GetString("nxcore:gamefile");
+    std::string gameFile = Settings::GetInstance().GetString(NXCoreSetting::GameFile);
     for (Stringlist::const_iterator itr = recentFiles.begin(); itr != recentFiles.end(); itr++)
     {
         if (_stricmp(gameFile.c_str(), itr->c_str()) != 0)
@@ -137,6 +138,12 @@ LRESULT MainWindow::OnOpenGame(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCt
 LRESULT MainWindow::OnFileExit(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL & /*bHandled*/)
 {
     DestroyWindow(m_hWnd);
+    return 0;
+}
+
+LRESULT MainWindow::OnSettings(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL & /*bHandled*/)
+{
+    SettingConfig().Display(m_hWnd);
     return 0;
 }
 

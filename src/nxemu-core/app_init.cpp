@@ -1,6 +1,7 @@
 #include "app_init.h"
-#include "settings/settings.h"
 #include "notification.h"
+#include "settings/core_settings.h"
+#include "settings/settings.h"
 
 bool AppInit(INotification * notification)
 {
@@ -8,6 +9,7 @@ bool AppInit(INotification * notification)
     {
         return false;
     }
+    LoadCoreSetting();
     if (notification)
     {
         notification->AppInitDone();

@@ -9,19 +9,19 @@
 #pragma warning(disable : 4838) // warning C4838: conversion from 'int' to 'UINT' requires a narrowing conversion
 #pragma warning(disable : 4996) // warning C4996: 'GetVersionExA': was declared deprecated
 #define _ATL_DISABLE_NOTHROW_NEW
-#include <shellapi.h>
 #include <atlbase.h>
+#include <shellapi.h>
 
 #include <wtl/atlapp.h>
+#include <wtl/atlctrls.h>
 #include <wtl/atldlgs.h>
 #include <wtl/atlframe.h>
-#include <wtl/atlctrls.h>
 
 #define _WTL_NO_CSTRING
 
 #include <atlwin.h>
-#include <wtl/atlmisc.h>
 #include <wtl/atlcrack.h>
+#include <wtl/atlmisc.h>
 
 #pragma warning(pop)
 #include "resource.h"

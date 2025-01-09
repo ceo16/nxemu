@@ -1,7 +1,7 @@
 #include "settings.h"
-#include <common/path.h>
 #include <common/file.h>
 #include <common/json.h>
+#include <common/path.h>
 
 std::unique_ptr<Settings> Settings::s_instance;
 
@@ -56,6 +56,20 @@ bool Settings::Initialize()
     return true;
 }
 
+const char * Settings::GetConfigFile(void) const
+{
+    return m_configPath.c_str();
+}
+
+void Settings::SetChanged(const char * setting, bool changed)
+{
+    if (setting == nullptr)
+    {
+        return;
+    }
+    m_settingsChanged[setting] = changed;
+}
+
 JsonValue Settings::GetSettings(const char * section) const
 {
     const JsonValue * value = m_details.Find(section);
@@ -71,6 +85,16 @@ void Settings::SetSettings(const char * section, JsonValue & json)
     m_details[section] = json;
 }
 
+std::string Settings::GetDefaultString(const char * setting) const
+{
+    SettingsMapString::const_iterator itr = m_settingsDefaultString.find(setting);
+    if (itr == m_settingsDefaultString.end())
+    {
+        return "";
+    }
+    return itr->second;
+}
+
 std::string Settings::GetString(const char * setting) const
 {
     SettingsMapString::const_iterator itr = m_settingsString.find(setting);
@@ -79,6 +103,25 @@ std::string Settings::GetString(const char * setting) const
         return "";
     }
     return itr->second;
+}
+
+bool Settings::GetChanged(const char * setting) const
+{
+    SettingsMapBool::const_iterator itr = m_settingsChanged.find(setting);
+    if (itr == m_settingsChanged.end())
+    {
+        return false;
+    }
+    return itr->second;
+}
+
+void Settings::SetDefaultString(const char * setting, const char * value)
+{
+    if (setting == nullptr || value == nullptr)
+    {
+        return;
+    }
+    m_settingsDefaultString[setting] = value;
 }
 
 void Settings::SetString(const char * setting, const char * value)

@@ -19,6 +19,15 @@
     <Filter Include="Source Files\settings">
       <UniqueIdentifier>{b50c2113-9d55-4d41-a509-563536ea58f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\modules">
+      <UniqueIdentifier>{fb473b7e-19ce-4b9e-9ad6-1531f273770a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\modules">
+      <UniqueIdentifier>{c6e43ffa-3021-4a67-9048-ef1f2bd97331}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Module Spec">
+      <UniqueIdentifier>{6d196b5d-acca-4a87-8558-e71395ac5fb1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="switch_rom.h">
@@ -33,6 +42,21 @@
     <ClInclude Include="notification.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="modules\module_list.h">
+      <Filter>Header Files\modules</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\module_base.h">
+      <Filter>Header Files\modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\nxemu-module-spec\base.h">
+      <Filter>Module Spec</Filter>
+    </ClInclude>
+    <ClInclude Include="settings\core_settings.h">
+      <Filter>Header Files\settings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\nxemu-module-spec\operating_system.h">
+      <Filter>Module Spec</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="switch_rom.cpp">
@@ -43,6 +67,15 @@
     </ClCompile>
     <ClCompile Include="app_init.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\module_list.cpp">
+      <Filter>Source Files\modules</Filter>
+    </ClCompile>
+    <ClCompile Include="settings\core_settings.cpp">
+      <Filter>Source Files\settings</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\module_base.cpp">
+      <Filter>Source Files\modules</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

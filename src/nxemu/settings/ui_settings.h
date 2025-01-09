@@ -7,6 +7,7 @@ typedef std::vector<std::string> Stringlist;
 struct UISettings
 {
     Stringlist recentFiles;
+    bool enableModuleConfiguration;
 };
 
 extern UISettings uiSettings;

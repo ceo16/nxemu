@@ -153,7 +153,7 @@ int main()
     uint32_t fileLen = (uint32_t)inFile.GetLength();
     std::unique_ptr<uint8_t[]> inputData = std::make_unique<uint8_t[]>(fileLen);
     inFile.Read(inputData.get(), fileLen);
-    strvector versionData = stdstr(std::string((char *)inputData.get(), fileLen)).Replace("\r","").Tokenize("\n");
+    strvector versionData = stdstr(std::string((char *)inputData.get(), fileLen)).Replace("\r", "").Tokenize("\n");
 
     uint32_t versionMajor = 0, versionMinor = 0, versionRevison = 0;
     std::string versionPrefix, lineFeed = "\r\n";

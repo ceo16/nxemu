@@ -13,6 +13,9 @@ public:
         ID_FILE_OPEN_GAME,
         ID_FILE_EXIT,
 
+        //Options Menu
+        ID_OPTIONS_SETTINGS,
+
         // Recent files
         ID_RECENT_FILE_START,
         ID_RECENT_FILE_END = ID_RECENT_FILE_START + 20,

@@ -1,6 +1,7 @@
 #pragma once
-#include <nxemu-core/notification.h>
 #include <memory>
+#include <nxemu-core/notification.h>
+
 
 class Notification :
     public INotification
@@ -14,8 +15,8 @@ public:
     static void CleanUp();
 
 private:
-    Notification(const Notification&) = delete;
-    Notification& operator=(const Notification&) = delete;
+    Notification(const Notification &) = delete;
+    Notification & operator=(const Notification &) = delete;
 
     static std::unique_ptr<Notification> s_instance;
 };

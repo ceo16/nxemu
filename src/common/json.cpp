@@ -1042,7 +1042,7 @@ bool JsonReader::ReadObject(JsonToken & token)
     return AddErrorAndRecover("Missing '}' or object member name", TokenName, JsonToken_ObjectEnd);
 }
 
-bool JsonReader::ReadArray(JsonToken & token) 
+bool JsonReader::ReadArray(JsonToken & token)
 {
     JsonValue init(JsonValueType::Array);
     CurrentValue().SwapPayload(init);
@@ -1055,7 +1055,7 @@ bool JsonReader::ReadArray(JsonToken & token)
         return true;
     }
     int index = 0;
-    for (;;) 
+    for (;;)
     {
         JsonValue & value = CurrentValue()[index++];
         m_nodes.push(&value);
@@ -1069,7 +1069,7 @@ bool JsonReader::ReadArray(JsonToken & token)
         // Accept Comment after last item in the array.
         ok = ReadToken(currentToken);
         bool badTokenType = (currentToken.type != JsonToken_ArraySeparator && currentToken.type != JsonToken_ArrayEnd);
-        if (!ok || badTokenType) 
+        if (!ok || badTokenType)
         {
             return AddErrorAndRecover("Missing ',' or ']' in array declaration", currentToken, JsonToken_ArrayEnd);
         }
