@@ -2,6 +2,7 @@
 #include "settings/settings_config.h"
 #include "settings/ui_settings.h"
 #include <common/path.h>
+#include <common/std_string.h>
 #include <nxemu-core/settings/core_settings.h>
 #include <nxemu-core/settings/settings.h>
 #include <nxemu-core/switch_rom.h>
@@ -13,6 +14,7 @@ MainWindow::MainWindow(const wchar_t * windowTitle) :
     m_windowTitle(windowTitle)
 {
     Settings::GetInstance().RegisterCallback(NXCoreSetting::GameFile, std::bind(&MainWindow::GameFileChanged, this));
+    Settings::GetInstance().RegisterCallback(NXCoreSetting::GameName, std::bind(&MainWindow::GameNameChanged, this));
 
     RegisterWinClass();
     Create();
@@ -182,4 +184,17 @@ LRESULT MainWindow::GuiProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 void MainWindow::ResetMenu()
 {
     SetMenu(m_hWnd, m_menu.GetHandle());
+}
+
+void MainWindow::GameNameChanged(void)
+{
+    std::string gameName = Settings::GetInstance().GetString("nxcore:GameName");
+    if (gameName.length() > 0)
+    {
+        std::wstring Caption;
+        Caption += stdstr(gameName).ToUTF16();
+        Caption += L" | ";
+        Caption += m_windowTitle;
+        SetWindowTextW(m_hWnd, Caption.c_str());
+    }
 }

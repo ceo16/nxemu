@@ -1,9 +1,17 @@
 #include "switch_rom.h"
-#include "settings/settings.h"
-#include <nxemu-core/settings/core_settings.h>
+#include "machine/switch_system.h"
 
-bool LaunchSwitchRom(const char * switchRomFile)
+bool LaunchSwitchRom(const char * romFile)
 {
-    Settings::GetInstance().SetString(NXCoreSetting::GameFile, switchRomFile);
+    if (!SwitchSystem::Create())
+    {
+        return false;
+    }
+    SwitchSystem * system = SwitchSystem::GetInstance();
+    if (!system->LoadRom(romFile))
+    {
+        return false;
+    }
+    system->StartEmulation();
     return true;
 }

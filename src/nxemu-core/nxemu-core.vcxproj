@@ -31,6 +31,9 @@
     <ClInclude Include="..\nxemu-module-spec\base.h" />
     <ClInclude Include="..\nxemu-module-spec\operating_system.h" />
     <ClInclude Include="app_init.h" />
+    <ClInclude Include="file_format\nacp.h" />
+    <ClInclude Include="file_format\nro.h" />
+    <ClInclude Include="machine\switch_system.h" />
     <ClInclude Include="modules\module_base.h" />
     <ClInclude Include="modules\module_list.h" />
     <ClInclude Include="notification.h" />
@@ -40,6 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="app_init.cpp" />
+    <ClCompile Include="file_format\nacp.cpp" />
+    <ClCompile Include="file_format\nro.cpp" />
+    <ClCompile Include="machine\switch_system.cpp" />
     <ClCompile Include="modules\module_base.cpp" />
     <ClCompile Include="modules\module_list.cpp" />
     <ClCompile Include="settings\core_settings.cpp" />

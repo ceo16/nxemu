@@ -141,6 +141,18 @@ std::string Path::GetNameExtension(void) const
     return nameExtension;
 }
 
+void Path::GetExtension(std::string & extension) const
+{
+    GetComponents(nullptr, nullptr, nullptr, &extension);
+}
+
+std::string Path::GetExtension(void) const
+{
+    std::string extension;
+    GetExtension(extension);
+    return extension;
+}
+
 void Path::GetComponents(std::string * drive, std::string * directory, std::string * name, std::string * extension) const
 {
     char driveBuff[_MAX_DRIVE + 1] = {0}, dirBuff[_MAX_DIR + 1] = {0}, nameBuff[_MAX_FNAME + 1] = {0}, extBuff[_MAX_EXT + 1] = {0};
@@ -411,7 +423,7 @@ bool Path::DirectoryExists() const
     return res;
 }
 
-Path& Path::DirectoryNormalize(Path BaseDir)
+Path & Path::DirectoryNormalize(Path BaseDir)
 {
     stdstr directory = BaseDir.GetDriveDirectory();
     bool changed = false;

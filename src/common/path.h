@@ -43,6 +43,8 @@ public:
     std::string GetDirectory(void) const;
     void GetNameExtension(std::string & nameExtension) const;
     std::string GetNameExtension(void) const;
+    void GetExtension(std::string & rExtension) const;
+    std::string GetExtension(void) const;
     void GetComponents(std::string * drive = nullptr, std::string * directory = nullptr, std::string * name = nullptr, std::string * extension = nullptr) const;
     bool IsRelative() const;
 

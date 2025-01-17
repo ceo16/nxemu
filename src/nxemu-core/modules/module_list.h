@@ -1,5 +1,5 @@
 #pragma once
-#include <Common/path.h>
+#include <common/path.h>
 #include <memory>
 #include <nxemu-core/modules/module_base.h>
 #include <string>

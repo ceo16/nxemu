@@ -39,6 +39,7 @@ private:
     bool RegisterWinClass(void);
     std::string ChooseFileToOpen(HWND parent);
     void GameFileChanged(void);
+    void GameNameChanged(void);
 
     LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL & bHandled);
     LRESULT OnDestroy(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL & bHandled);
