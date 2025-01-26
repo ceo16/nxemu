@@ -44,10 +44,12 @@ class CModifiedComboBoxT :
 
 public:
     // Constructors
-    CModifiedComboBoxT(TParam selectedValue, HWND hWnd, bool allwaysSelected = true) :
+    CModifiedComboBoxT(TParam selectedValue, TParam defaultValue, HWND hWnd, bool allwaysSelected = true) :
         CModifiedComboBoxBase(hWnd, allwaysSelected),
-        m_selectedValue(selectedValue)
+        m_selectedValue(selectedValue),
+        m_defaultValue(defaultValue)
     {
+        SetChanged(selectedValue != defaultValue);
     }
 
     int AddItem(LPCTSTR strItem, const TParam & lParam)
@@ -76,12 +78,18 @@ public:
         }
     }
 
+    const TParam & DefaultValue() const
+    {
+        return m_defaultValue;
+    }
+
 private:
-    CModifiedComboBoxT(void);
-    CModifiedComboBoxT(const CModifiedComboBoxT &);
-    CModifiedComboBoxT & operator=(const CModifiedComboBoxT &);
+    CModifiedComboBoxT(void) = delete;
+    CModifiedComboBoxT(const CModifiedComboBoxT &) = delete;
+    CModifiedComboBoxT & operator=(const CModifiedComboBoxT &) = delete;
 
     TParam m_selectedValue;
+    TParam m_defaultValue;
     TParamList m_paramList;
 };
 

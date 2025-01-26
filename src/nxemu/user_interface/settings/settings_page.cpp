@@ -58,8 +58,7 @@ void SettingsPage::ApplySettings(bool UpdateScreen)
         }
         if (comboBox.IsReset())
         {
-            __debugbreak();
-            //g_Settings->DeleteSetting(Type);
+            settings.SetString(type.c_str(), comboBox.DefaultValue().c_str());
             comboBox.SetReset(false);
         }
     }
@@ -137,13 +136,13 @@ CModifiedComboBoxTxt * SettingsPage::AddModComboBoxTxt(HWND hWnd, const char * s
     }
 
     Settings & settings = Settings::GetInstance();
-    std::string SelectedValue = settings.GetString(setting);
+    std::string defaultValue = settings.GetDefaultString(setting);
+    std::string selectedValue = settings.GetString(setting);
 
-    std::unique_ptr<CModifiedComboBoxTxt> comboBox = std::make_unique<CModifiedComboBoxTxt>(SelectedValue, hWnd, false);
+    std::unique_ptr<CModifiedComboBoxTxt> comboBox = std::make_unique<CModifiedComboBoxTxt>(selectedValue, defaultValue, hWnd, false);
     if (comboBox.get() != nullptr)
     {
         CModifiedComboBoxTxt * comboBoxPtr = comboBox.get();
-        comboBox->SetChanged(settings.GetChanged(setting));
         m_comboBoxTxtList[setting] = std::move(comboBox);
         return comboBoxPtr;
     }
