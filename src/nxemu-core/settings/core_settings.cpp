@@ -1,4 +1,5 @@
 #include "core_settings.h"
+#include "identifiers.h"
 #include "settings.h"
 #include <common/json.h>
 #include <common/path.h>

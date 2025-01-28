@@ -4,6 +4,7 @@
 #include <common/path.h>
 #include <common/std_string.h>
 #include <nxemu-core/settings/core_settings.h>
+#include <nxemu-core/settings/identifiers.h>
 #include <nxemu-core/settings/settings.h>
 #include <nxemu-core/switch_rom.h>
 

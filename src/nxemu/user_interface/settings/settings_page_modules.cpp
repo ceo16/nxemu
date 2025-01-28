@@ -1,6 +1,7 @@
 #include "settings_page_modules.h"
 #include <common/std_string.h>
 #include <nxemu-core/settings/core_settings.h>
+#include <nxemu-core/settings/identifiers.h>
 
 OptionModulesPage::OptionModulesPage(HWND parent, const RECT & dispayRect)
 {

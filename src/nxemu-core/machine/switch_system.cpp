@@ -2,6 +2,7 @@
 #include "file_format/nacp.h"
 #include "file_format/nro.h"
 #include "settings/core_settings.h"
+#include "settings/identifiers.h"
 #include "settings/settings.h"
 
 std::unique_ptr<SwitchSystem> SwitchSystem::m_instance;
@@ -30,17 +31,39 @@ SwitchSystem * SwitchSystem::GetInstance()
     return m_instance.get();
 }
 
-SwitchSystem::SwitchSystem()
+SwitchSystem::SwitchSystem() :
+    m_emulationRunning(false)
 {
+}
+
+SwitchSystem::~SwitchSystem()
+{
+    StopEmulation();
 }
 
 bool SwitchSystem::Initialize()
 {
+    if (!m_modules.Initialize())
+    {
+        return false;
+    }
     return true;
 }
 
 void SwitchSystem::StartEmulation(void)
 {
+    m_emulationRunning = true;
+    m_modules.StartEmulation();
+}
+
+void SwitchSystem::StopEmulation(void)
+{
+    if (!m_emulationRunning)
+    {
+        return;
+    }
+    m_emulationRunning = false;
+    m_modules.StopEmulation();
 }
 
 bool SwitchSystem::LoadRom(const char * romFile)

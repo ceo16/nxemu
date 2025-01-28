@@ -95,12 +95,32 @@ std::string Settings::GetDefaultString(const char * setting) const
     return itr->second;
 }
 
+bool Settings::GetDefaultBool(const char * setting) const
+{
+    SettingsMapBool::const_iterator itr = m_settingsDefaultBool.find(setting);
+    if (itr == m_settingsDefaultBool.end())
+    {
+        return false;
+    }
+    return itr->second;
+}
+
 std::string Settings::GetString(const char * setting) const
 {
     SettingsMapString::const_iterator itr = m_settingsString.find(setting);
     if (itr == m_settingsString.end())
     {
-        return "";
+        return GetDefaultString(setting);
+    }
+    return itr->second;
+}
+
+bool Settings::GetBool(const char * setting) const
+{
+    SettingsMapBool::const_iterator itr = m_settingsBool.find(setting);
+    if (itr == m_settingsBool.end())
+    {
+        return GetDefaultBool(setting);
     }
     return itr->second;
 }
@@ -124,6 +144,11 @@ void Settings::SetDefaultString(const char * setting, const char * value)
     m_settingsDefaultString[setting] = value;
 }
 
+void Settings::SetDefaultBool(const char * setting, bool value)
+{
+    m_settingsDefaultBool[setting] = value;
+}
+
 void Settings::SetString(const char * setting, const char * value)
 {
     if (setting == nullptr || value == nullptr)
@@ -137,6 +162,22 @@ void Settings::SetString(const char * setting, const char * value)
         return;
     }
     m_settingsString[setting] = value;
+    NotifyChange(setting);
+}
+
+void Settings::SetBool(const char * setting, bool value)
+{
+    if (setting == nullptr)
+    {
+        return;
+    }
+
+    SettingsMapBool::const_iterator it = m_settingsBool.find(setting);
+    if (it != m_settingsBool.end() && it->second == value)
+    {
+        return;
+    }
+    m_settingsBool[setting] = value;
     NotifyChange(setting);
 }
 

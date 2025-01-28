@@ -1,6 +1,10 @@
 #include <nxemu-module-spec/operating_system.h>
 #include <stdio.h>
 
+IModuleNotification * g_notify = nullptr;
+IModuleSettings * g_settings = nullptr;
+
+
 /*
 Function: GetModuleInfo
 Purpose: Fills the MODULE_INFO structure with information about the DLL.
@@ -16,6 +20,54 @@ void CALL GetModuleInfo(MODULE_INFO * info)
 #else
     sprintf(info->name, "NxEmu Operating System Plugin");
 #endif
+}
+
+/*
+Function: ModuleInitialize
+Purpose: Initializes the module for global use.
+Input: None
+Output: Returns 0 on success
+*/
+int CALL ModuleInitialize(ModuleInterfaces & interfaces)
+{
+    g_notify = interfaces.notification;
+    g_settings = interfaces.settings;
+
+    if (g_notify == nullptr || g_settings == nullptr)
+    {
+        return -1;
+    }
+    return 0;
+}
+
+/*
+Function: ModuleCleanup
+Purpose: Cleans up global resources used by the module.
+Input: None
+Output: None
+*/
+void CALL ModuleCleanup()
+{
+}
+
+/*
+Function: EmulationStarting
+Purpose: Called when emulation is starting
+Input: None.
+Output: None.
+*/
+void CALL EmulationStarting()
+{
+}
+
+/*
+Function: EmulationStopping
+Purpose: Called when emulation is stopping
+Input: None
+Output: None
+*/
+void CALL EmulationStopping()
+{
 }
 
 extern "C" int __stdcall DllMain(void * /*hinst*/, unsigned long /*fdwReason*/, void * /*lpReserved*/)

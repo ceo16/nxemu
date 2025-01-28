@@ -2,13 +2,14 @@
 #include <memory>
 #include <nxemu-core/notification.h>
 
-
 class Notification :
     public INotification
 {
 public:
     Notification();
 
+    void DisplayError(const char * message) const;
+    void BreakPoint(const char * fileName, uint32_t lineNumber);
     void AppInitDone(void);
 
     static Notification & GetInstance();

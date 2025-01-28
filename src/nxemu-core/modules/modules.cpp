@@ -1,0 +1,83 @@
+#include "modules.h"
+#include "settings/core_settings.h"
+
+Modules::Modules() :
+    m_cpuModule(nullptr),
+    m_videoModule(nullptr),
+    m_operatingsystemModule(nullptr)
+{
+    CreateModules();
+}
+
+Modules::~Modules()
+{
+    for (BaseModules::iterator itr = m_baseModules.begin(); itr != m_baseModules.end(); itr++)
+    {
+        (*itr)->ModuleCleanup();
+    }
+    m_baseModules.clear();
+}
+
+bool Modules::Initialize()
+{
+    if (m_cpuModule.get() == nullptr || m_videoModule.get() == nullptr || m_operatingsystemModule.get() == nullptr)
+    {
+        return false;
+    }
+    return true;
+}
+
+void Modules::StartEmulation(void)
+{
+    for (BaseModules::iterator itr = m_baseModules.begin(); itr != m_baseModules.end(); itr++)
+    {
+        (*itr)->EmulationStarting();
+    }
+}
+
+void Modules::StopEmulation(void)
+{
+    for (BaseModules::iterator itr = m_baseModules.begin(); itr != m_baseModules.end(); itr++)
+    {
+        (*itr)->EmulationStopping();
+    }
+}
+
+void Modules::CreateModules(void)
+{
+    m_cpuFile = coreSettings.moduleCpuSelected;
+    m_videoFile = coreSettings.moduleVideoSelected;
+    m_operatingsystemFile = coreSettings.moduleOsSelected;
+
+    LoadModule(m_cpuFile, m_cpuModule);
+    LoadModule(m_videoFile, m_videoModule);
+    LoadModule(m_operatingsystemFile, m_operatingsystemModule);
+
+    if (m_cpuModule.get() != nullptr)
+    {
+        m_baseModules.push_back(m_cpuModule.get());
+    }
+    if (m_videoModule.get() != nullptr)
+    {
+        m_baseModules.push_back(m_videoModule.get());
+    }
+    if (m_operatingsystemModule.get() != nullptr)
+    {
+        m_baseModules.push_back(m_operatingsystemModule.get());
+    }
+}
+
+template <typename plugin_type>
+void Modules::LoadModule(const std::string & fileName, std::unique_ptr<plugin_type> & plugin)
+{
+    Path fullPath((const char *)coreSettings.moduleDir, fileName.c_str());
+    plugin = std::make_unique<plugin_type>();
+    if (plugin.get() == nullptr || !fullPath.FileExists() || !plugin->Load(fullPath, &m_moduleNotification, &m_moduleSettings))
+    {
+        plugin = nullptr;
+    }
+}
+
+template void Modules::LoadModule(const std::string & fileName, std::unique_ptr<CpuModule> & plugin);
+template void Modules::LoadModule(const std::string & fileName, std::unique_ptr<VideoModule> & plugin);
+template void Modules::LoadModule(const std::string & fileName, std::unique_ptr<OperatingSystemModule> & plugin);

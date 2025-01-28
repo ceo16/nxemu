@@ -78,6 +78,33 @@
     <ClInclude Include="file_format\nacp.h">
       <Filter>Header Files\file_format</Filter>
     </ClInclude>
+    <ClInclude Include="modules\modules.h">
+      <Filter>Header Files\modules</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\cpu_module.h">
+      <Filter>Header Files\modules</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\operating_system_module.h">
+      <Filter>Header Files\modules</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\video_module.h">
+      <Filter>Header Files\modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\nxemu-module-spec\cpu.h">
+      <Filter>Module Spec</Filter>
+    </ClInclude>
+    <ClInclude Include="..\nxemu-module-spec\video.h">
+      <Filter>Module Spec</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\module_notification.h">
+      <Filter>Header Files\modules</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\module_settings.h">
+      <Filter>Header Files\modules</Filter>
+    </ClInclude>
+    <ClInclude Include="settings\identifiers.h">
+      <Filter>Header Files\settings</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="switch_rom.cpp">
@@ -106,6 +133,27 @@
     </ClCompile>
     <ClCompile Include="file_format\nacp.cpp">
       <Filter>Source Files\file_format</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\modules.cpp">
+      <Filter>Source Files\modules</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\cpu_module.cpp">
+      <Filter>Source Files\modules</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\operating_system_module.cpp">
+      <Filter>Source Files\modules</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\video_module.cpp">
+      <Filter>Source Files\modules</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\module_notification.cpp">
+      <Filter>Source Files\modules</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\module_settings.cpp">
+      <Filter>Source Files\modules</Filter>
+    </ClCompile>
+    <ClCompile Include="notification.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

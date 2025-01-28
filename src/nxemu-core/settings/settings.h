@@ -22,10 +22,14 @@ public:
     void SetSettings(const char * section, JsonValue & json);
 
     std::string GetDefaultString(const char * setting) const;
+    bool GetDefaultBool(const char * setting) const;
     std::string GetString(const char * setting) const;
+    bool GetBool(const char * setting) const;
     bool GetChanged(const char * setting) const;
     void SetDefaultString(const char * setting, const char * value);
+    void SetDefaultBool(const char * setting, bool value);
     void SetString(const char * setting, const char * value);
+    void SetBool(const char * setting, bool value);
     void SetChanged(const char * setting, bool changed);
 
     void Save(void);
@@ -39,7 +43,9 @@ private:
     void NotifyChange(const char * setting);
 
     SettingsMapString m_settingsString;
+    SettingsMapBool m_settingsBool;
     SettingsMapString m_settingsDefaultString;
+    SettingsMapBool m_settingsDefaultBool;
     SettingsMapBool m_settingsChanged;
     NotificationMap m_notification;
 
