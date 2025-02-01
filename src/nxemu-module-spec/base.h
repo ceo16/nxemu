@@ -31,7 +31,7 @@ enum MODULE_TYPE : uint16_t
 __interface IModuleNotification
 {
     void DisplayError(const char * message) = 0;
-    void BreakPoint(const char * fileName, uint32_t lLineNumber) = 0;
+    void BreakPoint(const char * fileName, uint32_t lineNumber) = 0;
 };
 
 __interface IModuleSettings
