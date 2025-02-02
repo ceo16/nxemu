@@ -43,7 +43,7 @@ SwitchSystem::~SwitchSystem()
 
 bool SwitchSystem::Initialize()
 {
-    if (!m_modules.Initialize())
+    if (!m_modules.Initialize(*this))
     {
         return false;
     }
@@ -64,6 +64,11 @@ void SwitchSystem::StopEmulation(void)
     }
     m_emulationRunning = false;
     m_modules.StopEmulation();
+}
+
+IOperatingSystem & SwitchSystem::OperatingSystem()
+{
+    return *m_modules.OperatingSystem();
 }
 
 bool SwitchSystem::LoadRom(const char * romFile)
@@ -90,12 +95,25 @@ bool SwitchSystem::LoadNRO(const char * nroFile)
         return false;
     }
 
+    IOperatingSystem * operatingSystem = m_modules.OperatingSystem();
+    const IProgramMetadata & metaData = m_nro->MetaData();
+    uint64_t baseAddress = 0;
+    if (!operatingSystem->CreateApplicationProcess(m_nro->CodeSize(), metaData, baseAddress))
+    {
+        return false;
+    }
+
+    if (!operatingSystem->LoadModule(*m_nro, baseAddress))
+    {
+        return false;
+    }
     const NACP * Nacp = m_nro->Nacp();
     if (Nacp == nullptr)
     {
         return false;
     }
     Settings::GetInstance().SetString(NXCoreSetting::GameName, Nacp->GetApplicationName().c_str());
+    operatingSystem->StartApplicationProcess(baseAddress, metaData.GetMainThreadPriority(), metaData.GetMainThreadStackSize());
     return true;
 }
 

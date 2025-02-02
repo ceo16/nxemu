@@ -54,6 +54,12 @@ typedef struct
     uint16_t type;    // Set to the module type, eg MODULE_TYPE_VIDEO
     char name[200];   // Name of the DLL
 } MODULE_INFO;
+__interface IOperatingSystem;
+
+__interface ISwitchSystem
+{
+    IOperatingSystem & OperatingSystem();
+};
 
 /*
 Function: GetModuleInfo

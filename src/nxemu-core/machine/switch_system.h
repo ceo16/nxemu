@@ -4,7 +4,8 @@
 
 class Nro;
 
-class SwitchSystem
+class SwitchSystem :
+    public ISwitchSystem
 {
 public:
     ~SwitchSystem();
@@ -16,6 +17,9 @@ public:
     bool LoadRom(const char * romFile);
     void StartEmulation(void);
     void StopEmulation(void);
+
+    //ISwitchSystem
+    IOperatingSystem & OperatingSystem();
 
 private:
     SwitchSystem(const SwitchSystem &) = delete;

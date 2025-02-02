@@ -16,11 +16,25 @@ Modules::~Modules()
         (*itr)->ModuleCleanup();
     }
     m_baseModules.clear();
+    if (m_operatingsystem != nullptr && m_operatingsystemModule.get() != nullptr)
+    {
+        m_operatingsystemModule->DestroyOS(m_operatingsystem);
+        m_operatingsystem = nullptr;
+    }
 }
 
-bool Modules::Initialize()
+bool Modules::Initialize(ISwitchSystem & System)
 {
-    if (m_cpuModule.get() == nullptr || m_videoModule.get() == nullptr || m_operatingsystemModule.get() == nullptr)
+    if (m_operatingsystemModule.get() == nullptr)
+    {
+        return false;
+    }
+    m_operatingsystem = m_operatingsystemModule->CreateOS(System);
+    if (m_operatingsystem == nullptr)
+    {
+        return false;
+    }
+    if (!m_operatingsystem->Initialize())
     {
         return false;
     }
@@ -65,6 +79,11 @@ void Modules::CreateModules(void)
     {
         m_baseModules.push_back(m_operatingsystemModule.get());
     }
+}
+
+IOperatingSystem * Modules::OperatingSystem(void)
+{
+    return m_operatingsystem;
 }
 
 template <typename plugin_type>

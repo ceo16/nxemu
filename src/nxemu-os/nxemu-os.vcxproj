@@ -34,9 +34,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="nxemu-os.cpp" />
+    <ClCompile Include="os_manager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="version.h.in" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="os_manager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,12 +1,16 @@
 #pragma once
 #include <common/padding.h>
 #include <memory>
+#include <nxemu-module-spec/operating_system.h>
 #include <stdint.h>
 #include <vector>
 
 class NACP;
 
-class Nro
+__interface IProgramMetadata;
+
+class Nro :
+    public IModuleInfo
 {
     typedef struct
     {
@@ -53,7 +57,22 @@ public:
     Nro(const char * filePath);
     ~Nro() = default;
 
+    //IModuleInfo
+    const uint8_t * Data(void) const;
+    uint32_t DataSize(void) const;
+    uint64_t CodeSegmentAddr(void) const;
+    uint64_t CodeSegmentOffset(void) const;
+    uint64_t CodeSegmentSize(void) const;
+    uint64_t RODataSegmentAddr(void) const;
+    uint64_t RODataSegmentOffset(void) const;
+    uint64_t RODataSegmentSize(void) const;
+    uint64_t DataSegmentAddr(void) const;
+    uint64_t DataSegmentOffset(void) const;
+    uint64_t DataSegmentSize(void) const;
+
     NACP * Nacp() const;
+    uint32_t CodeSize();
+    const IProgramMetadata & MetaData() const;
     bool Valid() const;
 
     static bool IsNroFile(const char * filePath);

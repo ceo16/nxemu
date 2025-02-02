@@ -1,9 +1,10 @@
-#include <nxemu-module-spec/operating_system.h>
+#include "os_manager.h"
+#include <memory>
 #include <stdio.h>
 
+std::unique_ptr<OSManager> g_osManager;
 IModuleNotification * g_notify = nullptr;
 IModuleSettings * g_settings = nullptr;
-
 
 /*
 Function: GetModuleInfo
@@ -58,6 +59,7 @@ Output: None.
 */
 void CALL EmulationStarting()
 {
+    g_osManager->EmulationStarting();
 }
 
 /*
@@ -68,6 +70,27 @@ Output: None
 */
 void CALL EmulationStopping()
 {
+}
+
+IOperatingSystem * CALL CreateOperatingSystem(ISwitchSystem & System)
+{
+    if (g_osManager.get() != nullptr)
+    {
+        g_notify->BreakPoint(__FILE__, __LINE__);
+        return nullptr;
+    }
+    g_osManager = std::make_unique<OSManager>(System);
+    return g_osManager.get();
+}
+
+void CALL DestroyOperatingSystem(IOperatingSystem * operatingSystem)
+{
+    if (operatingSystem == nullptr || g_osManager.get() != operatingSystem)
+    {
+        g_notify->BreakPoint(__FILE__, __LINE__);
+        return;
+    }
+    g_osManager = nullptr;
 }
 
 extern "C" int __stdcall DllMain(void * /*hinst*/, unsigned long /*fdwReason*/, void * /*lpReserved*/)

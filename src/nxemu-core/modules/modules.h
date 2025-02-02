@@ -16,9 +16,10 @@ public:
     Modules();
     ~Modules();
 
-    bool Initialize();
+    bool Initialize(ISwitchSystem & System);
     void StartEmulation(void);
     void StopEmulation(void);
+    IOperatingSystem * OperatingSystem(void);
 
 private:
     Modules(const Modules &) = delete;
@@ -35,6 +36,7 @@ private:
     std::unique_ptr<CpuModule> m_cpuModule;
     std::unique_ptr<VideoModule> m_videoModule;
     std::unique_ptr<OperatingSystemModule> m_operatingsystemModule;
+    IOperatingSystem * m_operatingsystem;
     std::string m_cpuFile;
     std::string m_videoFile;
     std::string m_operatingsystemFile;
