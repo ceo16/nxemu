@@ -64,7 +64,6 @@ Result IWindowController::RejectToChangeIntoBackground() {
 
 Result IWindowController::SetAppletWindowVisibility(bool visible) {
     m_applet->display_layer_manager.SetWindowVisibility(visible);
-    m_applet->hid_registration.EnableAppletToGetInput(visible);
 
     if (visible) {
         m_applet->message_queue.PushMessage(AppletMessage::ChangeIntoForeground);

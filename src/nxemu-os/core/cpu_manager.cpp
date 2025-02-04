@@ -4,7 +4,7 @@
 #include "common/fiber.h"
 #include "common/microprofile.h"
 #include "common/scope_exit.h"
-#include "common/thread.h"
+#include "common/yuzu_thread.h"
 #include "core/core.h"
 #include "core/core_timing.h"
 #include "core/cpu_manager.h"
@@ -13,7 +13,6 @@
 #include "core/hle/kernel/k_thread.h"
 #include "core/hle/kernel/kernel.h"
 #include "core/hle/kernel/physical_core.h"
-#include "video_core/gpu.h"
 
 namespace Core {
 
@@ -210,7 +209,7 @@ void CpuManager::RunThread(std::stop_token token, std::size_t core) {
     }
 
     if (!is_async_gpu && !is_multicore) {
-        system.GPU().ObtainContext();
+        UNIMPLEMENTED();
     }
 
     auto& kernel = system.Kernel();

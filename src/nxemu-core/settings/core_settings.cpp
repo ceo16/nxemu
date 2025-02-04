@@ -18,6 +18,8 @@ struct CoreSettingsDefaults
     static constexpr const char * defaultModuleVideo = "video\\nxemu-video.dll";
     static constexpr const char * defaultModuleOperatingSystem = "operating_system\\nxemu-os.dll";
 #endif
+    static constexpr bool defaultShowConsole = false;
+
     static Path GetDefaultModuleDir();
 };
 
@@ -59,10 +61,14 @@ void LoadCoreSetting(void)
     settings.SetDefaultString(NXCoreSetting::ModuleCpuSelected, CoreSettingsDefaults::defaultModuleCpu);
     settings.SetDefaultString(NXCoreSetting::ModuleVideoSelected, CoreSettingsDefaults::defaultModuleVideo);
     settings.SetDefaultString(NXCoreSetting::ModuleOsSelected, CoreSettingsDefaults::defaultModuleOperatingSystem);
+    settings.SetDefaultBool(NXCoreSetting::ShowConsole, CoreSettingsDefaults::defaultShowConsole);
 
     coreSettings.moduleCpuSelected = CoreSettingsDefaults::defaultModuleCpu;
     coreSettings.moduleVideoSelected = CoreSettingsDefaults::defaultModuleVideo;
     coreSettings.moduleOsSelected = CoreSettingsDefaults::defaultModuleOperatingSystem;
+
+    JsonValue settingValue = jsonSettings["ShowConsole"];
+    coreSettings.showConsole = settingValue.isBool() ? settingValue.asBool() : false;
 
     const JsonValue * modules = jsonSettings.Find("modules");
     if (modules != nullptr && modules->isObject())
@@ -87,9 +93,11 @@ void LoadCoreSetting(void)
     settings.SetString(NXCoreSetting::ModuleVideoSelected, coreSettings.moduleVideoSelected.c_str());
     settings.SetString(NXCoreSetting::ModuleCpuSelected, coreSettings.moduleCpuSelected.c_str());
     settings.SetString(NXCoreSetting::ModuleOsSelected, coreSettings.moduleOsSelected.c_str());
+    settings.SetBool(NXCoreSetting::ShowConsole, coreSettings.showConsole);
     settings.SetChanged(NXCoreSetting::ModuleVideoSelected, strcmp(coreSettings.moduleVideoSelected.c_str(), CoreSettingsDefaults::defaultModuleVideo) != 0);
     settings.SetChanged(NXCoreSetting::ModuleCpuSelected, strcmp(coreSettings.moduleCpuSelected.c_str(), CoreSettingsDefaults::defaultModuleCpu) != 0);
     settings.SetChanged(NXCoreSetting::ModuleOsSelected, strcmp(coreSettings.moduleOsSelected.c_str(), CoreSettingsDefaults::defaultModuleOperatingSystem) != 0);
+    settings.SetChanged(NXCoreSetting::ShowConsole, coreSettings.showConsole != CoreSettingsDefaults::defaultShowConsole);
 
     Settings::GetInstance().RegisterCallback(NXCoreSetting::ModuleCpuSelected, std::bind(&ModuleCpuSelectedChanged));
     Settings::GetInstance().RegisterCallback(NXCoreSetting::ModuleVideoSelected, std::bind(&ModuleVideoSelectedChanged));

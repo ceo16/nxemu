@@ -6,9 +6,7 @@
 #include "common/common_types.h"
 #include "common/logging/log.h"
 #include "core/file_sys/common_funcs.h"
-#include "core/file_sys/content_archive.h"
 #include "core/file_sys/nca_metadata.h"
-#include "core/file_sys/patch_manager.h"
 #include "core/file_sys/registered_cache.h"
 #include "core/file_sys/romfs_factory.h"
 #include "core/hle/kernel/k_process.h"
@@ -32,30 +30,6 @@ RomFSFactory::~RomFSFactory() = default;
 
 void RomFSFactory::SetPackedUpdate(VirtualFile update_raw_file) {
     packed_update_raw = std::move(update_raw_file);
-}
-
-VirtualFile RomFSFactory::OpenCurrentProcess(u64 current_process_title_id) const {
-    if (!updatable) {
-        return file;
-    }
-
-    const auto type = ContentRecordType::Program;
-    const auto nca = content_provider.GetEntry(current_process_title_id, type);
-    const PatchManager patch_manager{current_process_title_id, filesystem_controller,
-                                     content_provider};
-    return patch_manager.PatchRomFS(nca.get(), file, ContentRecordType::Program, packed_update_raw);
-}
-
-VirtualFile RomFSFactory::OpenPatchedRomFS(u64 title_id, ContentRecordType type) const {
-    auto nca = content_provider.GetEntry(title_id, type);
-
-    if (nca == nullptr) {
-        return nullptr;
-    }
-
-    const PatchManager patch_manager{title_id, filesystem_controller, content_provider};
-
-    return patch_manager.PatchRomFS(nca.get(), nca->GetRomFS(), type);
 }
 
 VirtualFile RomFSFactory::OpenPatchedRomFSWithProgramIndex(u64 title_id, u8 program_index,

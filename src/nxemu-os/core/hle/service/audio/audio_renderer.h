@@ -3,7 +3,6 @@
 
 #pragma once
 
-#include "audio_core/renderer/audio_renderer.h"
 #include "core/hle/service/cmif_types.h"
 #include "core/hle/service/kernel_helpers.h"
 #include "core/hle/service/service.h"

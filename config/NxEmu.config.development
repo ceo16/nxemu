@@ -1,5 +1,6 @@
 {
    "Core" : {
+      "ShowConsole" : true,
       "ModuleDirectory-x64" : "..\\..\\..\\modules\\x64"
    },
    "UI" : {

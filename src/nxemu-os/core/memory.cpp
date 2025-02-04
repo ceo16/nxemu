@@ -23,10 +23,6 @@
 #include "core/hle/kernel/k_page_table.h"
 #include "core/hle/kernel/k_process.h"
 #include "core/memory.h"
-#include "video_core/gpu.h"
-#include "video_core/host1x/gpu_device_memory_manager.h"
-#include "video_core/host1x/host1x.h"
-#include "video_core/rasterizer_download_area.h"
 
 namespace Core::Memory {
 
@@ -801,54 +797,11 @@ struct Memory::Impl {
     }
 
     void HandleRasterizerDownload(VAddr v_address, size_t size) {
-        const auto* p = GetPointerImpl(
-            v_address, []() {}, []() {});
-        if (!gpu_device_memory) [[unlikely]] {
-            gpu_device_memory = &system.Host1x().MemoryManager();
-        }
-        const size_t core = system.GetCurrentHostThreadID();
-        auto& current_area = rasterizer_read_areas[core];
-        gpu_device_memory->ApplyOpOnPointer(p, scratch_buffers[core], [&](DAddr address) {
-            const DAddr end_address = address + size;
-            if (current_area.start_address <= address && end_address <= current_area.end_address)
-                [[likely]] {
-                return;
-            }
-            current_area = system.GPU().OnCPURead(address, size);
-        });
+        UNIMPLEMENTED();
     }
 
     void HandleRasterizerWrite(VAddr v_address, size_t size) {
-        const auto* p = GetPointerImpl(
-            v_address, []() {}, []() {});
-        constexpr size_t sys_core = Core::Hardware::NUM_CPU_CORES - 1;
-        const size_t core = std::min(system.GetCurrentHostThreadID(),
-                                     sys_core); // any other calls threads go to syscore.
-        if (!gpu_device_memory) [[unlikely]] {
-            gpu_device_memory = &system.Host1x().MemoryManager();
-        }
-        // Guard on sys_core;
-        if (core == sys_core) [[unlikely]] {
-            sys_core_guard.lock();
-        }
-        SCOPE_EXIT {
-            if (core == sys_core) [[unlikely]] {
-                sys_core_guard.unlock();
-            }
-        };
-        gpu_device_memory->ApplyOpOnPointer(p, scratch_buffers[core], [&](DAddr address) {
-            auto& current_area = rasterizer_write_areas[core];
-            PAddr subaddress = address >> YUZU_PAGEBITS;
-            bool do_collection = current_area.last_address == subaddress;
-            if (!do_collection) [[unlikely]] {
-                do_collection = system.GPU().OnCPUWrite(address, size);
-                if (!do_collection) {
-                    return;
-                }
-                current_area.last_address = subaddress;
-            }
-            gpu_dirty_managers[core].Collect(address, size);
-        });
+        UNIMPLEMENTED();
     }
 
     struct GPUDirtyState {
@@ -856,31 +809,11 @@ struct Memory::Impl {
     };
 
     void InvalidateGPUMemory(u8* p, size_t size) {
-        constexpr size_t sys_core = Core::Hardware::NUM_CPU_CORES - 1;
-        const size_t core = std::min(system.GetCurrentHostThreadID(),
-                                     sys_core); // any other calls threads go to syscore.
-        if (!gpu_device_memory) [[unlikely]] {
-            gpu_device_memory = &system.Host1x().MemoryManager();
-        }
-        // Guard on sys_core;
-        if (core == sys_core) [[unlikely]] {
-            sys_core_guard.lock();
-        }
-        SCOPE_EXIT {
-            if (core == sys_core) [[unlikely]] {
-                sys_core_guard.unlock();
-            }
-        };
-        auto& gpu = system.GPU();
-        gpu_device_memory->ApplyOpOnPointer(
-            p, scratch_buffers[core], [&](DAddr address) { gpu.InvalidateRegion(address, size); });
+        UNIMPLEMENTED();
     }
 
     Core::System& system;
-    Tegra::MaxwellDeviceMemoryManager* gpu_device_memory{};
     Common::PageTable* current_page_table = nullptr;
-    std::array<VideoCore::RasterizerDownloadArea, Core::Hardware::NUM_CPU_CORES>
-        rasterizer_read_areas{};
     std::array<GPUDirtyState, Core::Hardware::NUM_CPU_CORES> rasterizer_write_areas{};
     std::array<Common::ScratchBuffer<u32>, Core::Hardware::NUM_CPU_CORES> scratch_buffers{};
     std::span<Core::GPUDirtyMemoryManager> gpu_dirty_managers;

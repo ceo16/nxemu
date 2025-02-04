@@ -1,6 +1,8 @@
-#include <nxemu-module-spec/cpu.h>
+#include "cpu_manager.h"
+#include <memory>
 #include <stdio.h>
 
+std::unique_ptr<CpuManager> g_cpuManager;
 IModuleNotification * g_notify = nullptr;
 IModuleSettings * g_settings = nullptr;
 
@@ -67,6 +69,26 @@ Output: None
 */
 void CALL EmulationStopping()
 {
+}
+
+ICpu * CALL CreateCpu(ISwitchSystem & System)
+{
+    if (g_cpuManager.get() != nullptr)
+    {
+        g_notify->BreakPoint(__FILE__, __LINE__);
+        return nullptr;
+    }
+    g_cpuManager = std::make_unique<CpuManager>(System);
+    return g_cpuManager.get();
+}
+
+void CALL DestroyCpu(ICpu * Cpu)
+{
+    if (Cpu == nullptr || g_cpuManager.get() != Cpu)
+    {
+        g_notify->BreakPoint(__FILE__, __LINE__);
+        return;
+    }
 }
 
 extern "C" int __stdcall DllMain(void * /*hinst*/, unsigned long /*fdwReason*/, void * /*lpReserved*/)

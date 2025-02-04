@@ -25,7 +25,7 @@ namespace Service::AM::Frontend {
 class WebBrowser final : public FrontendApplet {
 public:
     WebBrowser(Core::System& system_, std::shared_ptr<Applet> applet_,
-               LibraryAppletMode applet_mode_, const Core::Frontend::WebBrowserApplet& frontend_);
+               LibraryAppletMode applet_mode_);
 
     ~WebBrowser() override;
 
@@ -62,8 +62,6 @@ private:
     void ExecuteWeb();
     void ExecuteWifi();
     void ExecuteLobby();
-
-    const Core::Frontend::WebBrowserApplet& frontend;
 
     bool complete{false};
     Result status{ResultSuccess};

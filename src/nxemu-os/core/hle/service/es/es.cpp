@@ -1,7 +1,6 @@
 // SPDX-FileCopyrightText: Copyright 2018 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "core/crypto/key_manager.h"
 #include "core/hle/service/es/es.h"
 #include "core/hle/service/ipc_helpers.h"
 #include "core/hle/service/server_manager.h"
@@ -104,9 +103,6 @@ public:
         };
         // clang-format on
         RegisterHandlers(functions);
-
-        keys.PopulateTickets();
-        keys.SynthesizeTickets();
     }
 
 private:
@@ -122,188 +118,44 @@ private:
     }
 
     void ImportTicket(HLERequestContext& ctx) {
-        const auto raw_ticket = ctx.ReadBuffer();
-        [[maybe_unused]] const auto cert = ctx.ReadBuffer(1);
-
-        if (raw_ticket.size() < sizeof(Core::Crypto::Ticket)) {
-            LOG_ERROR(Service_ETicket, "The input buffer is not large enough!");
-            IPC::ResponseBuilder rb{ctx, 2};
-            rb.Push(ERROR_INVALID_ARGUMENT);
-            return;
-        }
-
-        Core::Crypto::Ticket ticket = Core::Crypto::Ticket::Read(raw_ticket);
-        if (!keys.AddTicket(ticket)) {
-            LOG_ERROR(Service_ETicket, "The ticket could not be imported!");
-            IPC::ResponseBuilder rb{ctx, 2};
-            rb.Push(ERROR_INVALID_ARGUMENT);
-            return;
-        }
-
-        IPC::ResponseBuilder rb{ctx, 2};
-        rb.Push(ResultSuccess);
+        UNIMPLEMENTED();
     }
 
     void GetTitleKey(HLERequestContext& ctx) {
-        IPC::RequestParser rp{ctx};
-        const auto rights_id = rp.PopRaw<u128>();
-
-        LOG_DEBUG(Service_ETicket, "called, rights_id={:016X}{:016X}", rights_id[1], rights_id[0]);
-
-        if (!CheckRightsId(ctx, rights_id))
-            return;
-
-        const auto key =
-            keys.GetKey(Core::Crypto::S128KeyType::Titlekey, rights_id[1], rights_id[0]);
-
-        if (key == Core::Crypto::Key128{}) {
-            LOG_ERROR(Service_ETicket,
-                      "The titlekey doesn't exist in the KeyManager or the rights ID was invalid!");
-            IPC::ResponseBuilder rb{ctx, 2};
-            rb.Push(ERROR_INVALID_RIGHTS_ID);
-            return;
-        }
-
-        ctx.WriteBuffer(key);
-
-        IPC::ResponseBuilder rb{ctx, 2};
-        rb.Push(ResultSuccess);
+        UNIMPLEMENTED();
     }
 
     void CountCommonTicket(HLERequestContext& ctx) {
-        LOG_DEBUG(Service_ETicket, "called");
-
-        const u32 count = static_cast<u32>(keys.GetCommonTickets().size());
-
-        IPC::ResponseBuilder rb{ctx, 3};
-        rb.Push(ResultSuccess);
-        rb.Push<u32>(count);
+        UNIMPLEMENTED();
     }
 
     void CountPersonalizedTicket(HLERequestContext& ctx) {
-        LOG_DEBUG(Service_ETicket, "called");
-
-        const u32 count = static_cast<u32>(keys.GetPersonalizedTickets().size());
-
-        IPC::ResponseBuilder rb{ctx, 3};
-        rb.Push(ResultSuccess);
-        rb.Push<u32>(count);
+        UNIMPLEMENTED();
     }
 
     void ListCommonTicketRightsIds(HLERequestContext& ctx) {
-        size_t out_entries = 0;
-        if (!keys.GetCommonTickets().empty()) {
-            out_entries = ctx.GetWriteBufferNumElements<u128>();
-        }
-        LOG_DEBUG(Service_ETicket, "called, entries={:016X}", out_entries);
-
-        keys.PopulateTickets();
-        const auto tickets = keys.GetCommonTickets();
-        std::vector<u128> ids;
-        std::transform(tickets.begin(), tickets.end(), std::back_inserter(ids),
-                       [](const auto& pair) { return pair.first; });
-
-        out_entries = std::min(ids.size(), out_entries);
-        ctx.WriteBuffer(ids.data(), out_entries * sizeof(u128));
-
-        IPC::ResponseBuilder rb{ctx, 3};
-        rb.Push(ResultSuccess);
-        rb.Push<u32>(static_cast<u32>(out_entries));
+        UNIMPLEMENTED();
     }
 
     void ListPersonalizedTicketRightsIds(HLERequestContext& ctx) {
-        size_t out_entries = 0;
-        if (!keys.GetPersonalizedTickets().empty()) {
-            out_entries = ctx.GetWriteBufferNumElements<u128>();
-        }
-
-        LOG_DEBUG(Service_ETicket, "called, entries={:016X}", out_entries);
-
-        keys.PopulateTickets();
-        const auto tickets = keys.GetPersonalizedTickets();
-        std::vector<u128> ids;
-        std::transform(tickets.begin(), tickets.end(), std::back_inserter(ids),
-                       [](const auto& pair) { return pair.first; });
-
-        out_entries = std::min(ids.size(), out_entries);
-        ctx.WriteBuffer(ids.data(), out_entries * sizeof(u128));
-
-        IPC::ResponseBuilder rb{ctx, 3};
-        rb.Push(ResultSuccess);
-        rb.Push<u32>(static_cast<u32>(out_entries));
+        UNIMPLEMENTED();
     }
 
     void GetCommonTicketSize(HLERequestContext& ctx) {
-        IPC::RequestParser rp{ctx};
-        const auto rights_id = rp.PopRaw<u128>();
-
-        LOG_DEBUG(Service_ETicket, "called, rights_id={:016X}{:016X}", rights_id[1], rights_id[0]);
-
-        if (!CheckRightsId(ctx, rights_id))
-            return;
-
-        const auto ticket = keys.GetCommonTickets().at(rights_id);
-
-        IPC::ResponseBuilder rb{ctx, 4};
-        rb.Push(ResultSuccess);
-        rb.Push<u64>(ticket.GetSize());
+        UNIMPLEMENTED();
     }
 
     void GetPersonalizedTicketSize(HLERequestContext& ctx) {
-        IPC::RequestParser rp{ctx};
-        const auto rights_id = rp.PopRaw<u128>();
-
-        LOG_DEBUG(Service_ETicket, "called, rights_id={:016X}{:016X}", rights_id[1], rights_id[0]);
-
-        if (!CheckRightsId(ctx, rights_id))
-            return;
-
-        const auto ticket = keys.GetPersonalizedTickets().at(rights_id);
-
-        IPC::ResponseBuilder rb{ctx, 4};
-        rb.Push(ResultSuccess);
-        rb.Push<u64>(ticket.GetSize());
+        UNIMPLEMENTED();
     }
 
     void GetCommonTicketData(HLERequestContext& ctx) {
-        IPC::RequestParser rp{ctx};
-        const auto rights_id = rp.PopRaw<u128>();
-
-        LOG_DEBUG(Service_ETicket, "called, rights_id={:016X}{:016X}", rights_id[1], rights_id[0]);
-
-        if (!CheckRightsId(ctx, rights_id))
-            return;
-
-        const auto ticket = keys.GetCommonTickets().at(rights_id);
-
-        const auto write_size = std::min<u64>(ticket.GetSize(), ctx.GetWriteBufferSize());
-        ctx.WriteBuffer(&ticket, write_size);
-
-        IPC::ResponseBuilder rb{ctx, 4};
-        rb.Push(ResultSuccess);
-        rb.Push<u64>(write_size);
+        UNIMPLEMENTED();
     }
 
     void GetPersonalizedTicketData(HLERequestContext& ctx) {
-        IPC::RequestParser rp{ctx};
-        const auto rights_id = rp.PopRaw<u128>();
-
-        LOG_DEBUG(Service_ETicket, "called, rights_id={:016X}{:016X}", rights_id[1], rights_id[0]);
-
-        if (!CheckRightsId(ctx, rights_id))
-            return;
-
-        const auto ticket = keys.GetPersonalizedTickets().at(rights_id);
-
-        const auto write_size = std::min<u64>(ticket.GetSize(), ctx.GetWriteBufferSize());
-        ctx.WriteBuffer(&ticket, write_size);
-
-        IPC::ResponseBuilder rb{ctx, 4};
-        rb.Push(ResultSuccess);
-        rb.Push<u64>(write_size);
+        UNIMPLEMENTED();
     }
-
-    Core::Crypto::KeyManager& keys = Core::Crypto::KeyManager::Instance();
 };
 
 void LoopProcess(Core::System& system) {

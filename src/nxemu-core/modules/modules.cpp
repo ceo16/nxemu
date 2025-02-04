@@ -16,6 +16,11 @@ Modules::~Modules()
         (*itr)->ModuleCleanup();
     }
     m_baseModules.clear();
+    if (m_cpu != nullptr && m_cpuModule.get() != nullptr)
+    {
+        m_cpuModule->DestroyCpu(m_cpu);
+        m_cpu = nullptr;
+    }
     if (m_operatingsystem != nullptr && m_operatingsystemModule.get() != nullptr)
     {
         m_operatingsystemModule->DestroyOS(m_operatingsystem);
@@ -25,12 +30,22 @@ Modules::~Modules()
 
 bool Modules::Initialize(ISwitchSystem & System)
 {
-    if (m_operatingsystemModule.get() == nullptr)
+    if (m_cpuModule.get() == nullptr || m_operatingsystemModule.get() == nullptr)
+    {
+        return false;
+    }
+    m_cpu = m_cpuModule->CreateCpu(System);
+    if (m_cpu == nullptr)
     {
         return false;
     }
     m_operatingsystem = m_operatingsystemModule->CreateOS(System);
     if (m_operatingsystem == nullptr)
+    {
+        return false;
+    }
+
+    if (!m_cpu->Initialize())
     {
         return false;
     }
@@ -79,6 +94,11 @@ void Modules::CreateModules(void)
     {
         m_baseModules.push_back(m_operatingsystemModule.get());
     }
+}
+
+ICpu * Modules::Cpu(void)
+{
+    return m_cpu;
 }
 
 IOperatingSystem * Modules::OperatingSystem(void)

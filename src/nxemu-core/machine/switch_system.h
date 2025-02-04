@@ -20,6 +20,7 @@ public:
 
     //ISwitchSystem
     IOperatingSystem & OperatingSystem();
+    ICpu & Cpu(void);
 
 private:
     SwitchSystem(const SwitchSystem &) = delete;

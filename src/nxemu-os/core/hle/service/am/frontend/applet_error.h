@@ -25,7 +25,7 @@ enum class ErrorAppletMode : u8 {
 class Error final : public FrontendApplet {
 public:
     explicit Error(Core::System& system_, std::shared_ptr<Applet> applet_,
-                   LibraryAppletMode applet_mode_, const Core::Frontend::ErrorApplet& frontend_);
+                   LibraryAppletMode applet_mode_);
     ~Error() override;
 
     void Initialize() override;
@@ -40,7 +40,7 @@ public:
 private:
     union ErrorArguments;
 
-    const Core::Frontend::ErrorApplet& frontend;
+
     Result error_code = ResultSuccess;
     ErrorAppletMode mode = ErrorAppletMode::ShowError;
     std::unique_ptr<ErrorArguments> args;

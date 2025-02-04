@@ -6,7 +6,7 @@
 
 #include <fmt/format.h>
 
-#include "common/dynamic_library.h"
+#include "common/yuzu_dynamic_library.h"
 
 #ifdef _WIN32
 #include <windows.h>

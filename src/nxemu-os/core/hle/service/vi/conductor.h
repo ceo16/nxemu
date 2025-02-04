@@ -8,7 +8,7 @@
 
 #include "common/common_types.h"
 #include "common/polyfill_thread.h"
-#include "common/thread.h"
+#include "common/yuzu_thread.h"
 
 #include "core/hle/service/vi/vsync_manager.h"
 

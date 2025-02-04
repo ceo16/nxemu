@@ -3,7 +3,6 @@
 
 #include <memory>
 
-#include "core/file_sys/romfs_factory.h"
 #include "core/hle/service/ipc_helpers.h"
 #include "core/hle/service/ncm/ncm.h"
 #include "core/hle/service/server_manager.h"
@@ -13,8 +12,8 @@ namespace Service::NCM {
 
 class ILocationResolver final : public ServiceFramework<ILocationResolver> {
 public:
-    explicit ILocationResolver(Core::System& system_, FileSys::StorageId id)
-        : ServiceFramework{system_, "ILocationResolver"}, storage{id} {
+    explicit ILocationResolver(Core::System& system_)
+        : ServiceFramework{system_, "ILocationResolver"} {
         // clang-format off
         static const FunctionInfo functions[] = {
             {0, nullptr, "ResolveProgramPath"},
@@ -42,9 +41,6 @@ public:
 
         RegisterHandlers(functions);
     }
-
-private:
-    [[maybe_unused]] FileSys::StorageId storage;
 };
 
 class IRegisteredLocationResolver final : public ServiceFramework<IRegisteredLocationResolver> {

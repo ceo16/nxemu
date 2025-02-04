@@ -4,7 +4,6 @@
 #include "common/assert.h"
 #include "common/logging/log.h"
 #include "core/core.h"
-#include "core/frontend/applets/mii_edit.h"
 #include "core/hle/service/am/am.h"
 #include "core/hle/service/am/frontend/applet_mii_edit.h"
 #include "core/hle/service/am/service/storage.h"

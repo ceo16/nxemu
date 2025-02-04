@@ -6,7 +6,7 @@
 
 #include "common/error.h"
 #include "common/logging/log.h"
-#include "common/thread.h"
+#include "common/yuzu_thread.h"
 #ifdef __APPLE__
 #include <mach/mach.h>
 #elif defined(_WIN32)

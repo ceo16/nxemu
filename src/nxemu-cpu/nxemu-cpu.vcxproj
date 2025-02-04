@@ -33,7 +33,11 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cpu_manager.cpp" />
     <ClCompile Include="nxemu-cpu.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cpu_manager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -71,7 +71,10 @@ void PhysicalCore::RunThread(Kernel::KThread* thread) {
         // Notify the debugger and go to sleep if a step was performed
         // and this thread has been scheduled again.
         if (thread->GetStepState() == StepState::StepPerformed) {
-            system.GetDebugger().NotifyThreadStopped(thread);
+            if (system.DebuggerEnabled())
+            {
+                UNIMPLEMENTED();
+            }
             thread->RequestSuspend(SuspendType::Debug);
             return;
         }
@@ -114,9 +117,9 @@ void PhysicalCore::RunThread(Kernel::KThread* thread) {
                 interface->RewindBreakpointInstruction();
             }
             if (system.DebuggerEnabled()) {
-                system.GetDebugger().NotifyThreadStopped(thread);
+                UNIMPLEMENTED();
             } else {
-                interface->LogBacktrace(process);
+                UNIMPLEMENTED();
             }
             thread->RequestSuspend(SuspendType::Debug);
             return;
@@ -125,7 +128,7 @@ void PhysicalCore::RunThread(Kernel::KThread* thread) {
         // Notify the debugger and go to sleep on data abort.
         if (data_abort) {
             if (system.DebuggerEnabled()) {
-                system.GetDebugger().NotifyThreadWatchpoint(thread, *interface->HaltedWatchpoint());
+                UNIMPLEMENTED();
             }
             thread->RequestSuspend(SuspendType::Debug);
             return;
@@ -199,7 +202,7 @@ void PhysicalCore::LogBacktrace() {
 
     auto* interface = process->GetArmInterface(m_core_index);
     if (interface) {
-        interface->LogBacktrace(process);
+        UNIMPLEMENTED();
     }
 }
 

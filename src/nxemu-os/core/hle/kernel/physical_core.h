@@ -15,7 +15,6 @@ class KernelCore;
 } // namespace Kernel
 
 namespace Core {
-class ExclusiveMonitor;
 class System;
 } // namespace Core
 

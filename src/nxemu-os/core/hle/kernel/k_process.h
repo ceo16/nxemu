@@ -4,7 +4,8 @@
 #pragma once
 
 #include <map>
-
+#include <nxemu-module-spec/operating_system.h>
+#include <nxemu-module-spec/cpu.h>
 #include "core/arm/arm_interface.h"
 #include "core/file_sys/program_metadata.h"
 #include "core/hle/kernel/code_set.h"
@@ -127,7 +128,7 @@ private:
 #ifdef HAS_NCE
     std::unordered_map<u64, u64> m_post_handlers{};
 #endif
-    std::unique_ptr<Core::ExclusiveMonitor> m_exclusive_monitor;
+    IExclusiveMonitor * m_exclusive_monitor;
     Core::Memory::Memory m_memory;
 
 private:
@@ -498,10 +499,10 @@ public:
     }
 
 public:
-    Result LoadFromMetadata(const FileSys::ProgramMetadata& metadata, std::size_t code_size,
+    Result LoadFromMetadata(const IProgramMetadata & metadata, std::size_t code_size,
                             KProcessAddress aslr_space_start, bool is_hbl);
 
-    void LoadModule(CodeSet code_set, KProcessAddress base_addr);
+    void LoadModule(const IModuleInfo & module, KProcessAddress base_addr);
 
     void InitializeInterfaces();
 
@@ -509,8 +510,8 @@ public:
         return m_memory;
     }
 
-    Core::ExclusiveMonitor& GetExclusiveMonitor() const {
-        return *m_exclusive_monitor;
+    IExclusiveMonitor * GetExclusiveMonitor() const {
+        return m_exclusive_monitor;
     }
 
 public:

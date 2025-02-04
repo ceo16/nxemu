@@ -3,7 +3,6 @@
 
 #include "core/core.h"
 #include "core/file_sys/control_metadata.h"
-#include "core/file_sys/patch_manager.h"
 #include "core/hle/service/cmif_serialization.h"
 #include "core/hle/service/pctl/parental_control_service.h"
 #include "core/hle/service/pctl/pctl_results.h"
@@ -179,26 +178,7 @@ Result IParentalControlService::Initialize() {
 
     const auto program_id = system.GetApplicationProcessProgramID();
     if (program_id != 0) {
-        const FileSys::PatchManager pm{program_id, system.GetFileSystemController(),
-                                       system.GetContentProvider()};
-        const auto control = pm.GetControlMetadata();
-        if (control.first) {
-            states.tid_from_event = 0;
-            states.launch_time_valid = false;
-            states.is_suspended = false;
-            states.free_communication = false;
-            states.stereo_vision = false;
-            states.application_info = ApplicationInfo{
-                .application_id = program_id,
-                .age_rating = control.first->GetRatingAge(),
-                .parental_control_flag = control.first->GetParentalControlFlag(),
-                .capability = capability,
-            };
-
-            if (False(capability & (Capability::System | Capability::Recovery))) {
-                // TODO(ogniK): Signal application launch event
-            }
-        }
+        UNIMPLEMENTED();
     }
 
     R_SUCCEED();

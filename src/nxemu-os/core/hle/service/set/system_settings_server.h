@@ -12,7 +12,6 @@
 #include "common/uuid.h"
 #include "core/hle/result.h"
 #include "core/hle/service/cmif_types.h"
-#include "core/hle/service/psc/time/common.h"
 #include "core/hle/service/service.h"
 #include "core/hle/service/set/setting_formats/appln_settings.h"
 #include "core/hle/service/set/setting_formats/device_settings.h"
@@ -57,13 +56,8 @@ public:
     Result SetLockScreenFlag(bool lock_screen_flag);
     Result GetExternalSteadyClockSourceId(Out<Common::UUID> out_clock_source_id);
     Result SetExternalSteadyClockSourceId(const Common::UUID& clock_source_id);
-    Result GetUserSystemClockContext(Out<Service::PSC::Time::SystemClockContext> out_clock_context);
-    Result SetUserSystemClockContext(const Service::PSC::Time::SystemClockContext& clock_context);
     Result GetAccountSettings(Out<AccountSettings> out_account_settings);
     Result SetAccountSettings(AccountSettings account_settings);
-    Result GetEulaVersions(Out<s32> out_count,
-                           OutArray<EulaVersion, BufferAttr_HipcMapAlias> out_eula_versions);
-    Result SetEulaVersions(InArray<EulaVersion, BufferAttr_HipcMapAlias> eula_versions);
     Result GetColorSetId(Out<ColorSet> out_color_set_id);
     Result SetColorSetId(ColorSet color_set_id);
     Result GetNotificationSettings(Out<NotificationSettings> out_notification_settings);
@@ -92,11 +86,7 @@ public:
     Result SetSpeakerAutoMuteFlag(bool force_mute_on_headphone_removed);
     Result GetQuestFlag(Out<QuestFlag> out_quest_flag);
     Result SetQuestFlag(QuestFlag quest_flag);
-    Result GetDeviceTimeZoneLocationName(Out<Service::PSC::Time::LocationName> out_name);
-    Result SetDeviceTimeZoneLocationName(const Service::PSC::Time::LocationName& name);
     Result SetRegionCode(SystemRegionCode region_code);
-    Result GetNetworkSystemClockContext(Out<Service::PSC::Time::SystemClockContext> out_context);
-    Result SetNetworkSystemClockContext(const Service::PSC::Time::SystemClockContext& context);
     Result IsUserSystemClockAutomaticCorrectionEnabled(Out<bool> out_automatic_correction_enabled);
     Result SetUserSystemClockAutomaticCorrectionEnabled(bool automatic_correction_enabled);
     Result GetDebugModeFlag(Out<bool> is_debug_mode_enabled);
@@ -110,8 +100,6 @@ public:
     Result SetSleepSettings(SleepSettings sleep_settings);
     Result GetWirelessLanEnableFlag(Out<bool> out_wireless_lan_enable_flag);
     Result SetWirelessLanEnableFlag(bool wireless_lan_enable_flag);
-    Result GetInitialLaunchSettings(Out<InitialLaunchSettings> out_initial_launch_settings);
-    Result SetInitialLaunchSettings(InitialLaunchSettings initial_launch_settings);
     Result GetDeviceNickName(
         OutLargeData<std::array<u8, 0x80>, BufferAttr_HipcMapAlias> out_device_name);
     Result SetDeviceNickName(
@@ -136,14 +124,6 @@ public:
     Result SetAppletLaunchFlags(u32 applet_launch_flag);
     Result GetKeyboardLayout(Out<KeyboardLayout> out_keyboard_layout);
     Result SetKeyboardLayout(KeyboardLayout keyboard_layout);
-    Result GetDeviceTimeZoneLocationUpdatedTime(
-        Out<Service::PSC::Time::SteadyClockTimePoint> out_time_point);
-    Result SetDeviceTimeZoneLocationUpdatedTime(
-        const Service::PSC::Time::SteadyClockTimePoint& time_point);
-    Result GetUserSystemClockAutomaticCorrectionUpdatedTime(
-        Out<Service::PSC::Time::SteadyClockTimePoint> out_time_point);
-    Result SetUserSystemClockAutomaticCorrectionUpdatedTime(
-        const Service::PSC::Time::SteadyClockTimePoint& out_time_point);
     Result GetChineseTraditionalInputMethod(
         Out<ChineseTraditionalInputMethod> out_chinese_traditional_input_method);
     Result GetHomeMenuScheme(Out<HomeMenuScheme> out_home_menu_scheme);
@@ -166,7 +146,6 @@ private:
 
     Core::System& m_system;
     SystemSettings m_system_settings{};
-    PrivateSettings m_private_settings{};
     DeviceSettings m_device_settings{};
     ApplnSettings m_appln_settings{};
     std::mutex m_save_needed_mutex;

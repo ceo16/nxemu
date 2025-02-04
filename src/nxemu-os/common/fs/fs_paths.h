@@ -3,9 +3,9 @@
 
 #pragma once
 
-// yuzu data directories
+// nemu data directories
 
-#define YUZU_DIR "yuzu"
+#define NXEMU_DIR "nxemu"
 #define PORTABLE_DIR "user"
 
 // Sub-directories contained within a yuzu data directory
@@ -26,6 +26,6 @@
 #define TAS_DIR "tas"
 #define ICONS_DIR "icons"
 
-// yuzu-specific files
+// nxemu-specific files
 
-#define LOG_FILE "yuzu_log.txt"
+#define LOG_FILE "nxemu_log.txt"

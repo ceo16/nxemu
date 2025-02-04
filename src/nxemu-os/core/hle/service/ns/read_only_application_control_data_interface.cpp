@@ -3,7 +3,6 @@
 
 #include "common/settings.h"
 #include "core/file_sys/control_metadata.h"
-#include "core/file_sys/patch_manager.h"
 #include "core/file_sys/vfs/vfs.h"
 #include "core/hle/service/cmif_serialization.h"
 #include "core/hle/service/ns/language.h"
@@ -37,36 +36,7 @@ Result IReadOnlyApplicationControlDataInterface::GetApplicationControlData(
     LOG_INFO(Service_NS, "called with control_source={}, application_id={:016X}",
              application_control_source, application_id);
 
-    const FileSys::PatchManager pm{application_id, system.GetFileSystemController(),
-                                   system.GetContentProvider()};
-    const auto control = pm.GetControlMetadata();
-    const auto size = out_buffer.size();
-
-    const auto icon_size = control.second ? control.second->GetSize() : 0;
-    const auto total_size = sizeof(FileSys::RawNACP) + icon_size;
-
-    if (size < total_size) {
-        LOG_ERROR(Service_NS, "output buffer is too small! (actual={:016X}, expected_min=0x4000)",
-                  size);
-        R_THROW(ResultUnknown);
-    }
-
-    if (control.first != nullptr) {
-        const auto bytes = control.first->GetRawBytes();
-        std::memcpy(out_buffer.data(), bytes.data(), bytes.size());
-    } else {
-        LOG_WARNING(Service_NS, "missing NACP data for application_id={:016X}, defaulting to zero",
-                    application_id);
-        std::memset(out_buffer.data(), 0, sizeof(FileSys::RawNACP));
-    }
-
-    if (control.second != nullptr) {
-        control.second->Read(out_buffer.data() + sizeof(FileSys::RawNACP), icon_size);
-    } else {
-        LOG_WARNING(Service_NS, "missing icon data for application_id={:016X}", application_id);
-    }
-
-    *out_actual_size = static_cast<u32>(total_size);
+    UNIMPLEMENTED();
     R_SUCCEED();
 }
 

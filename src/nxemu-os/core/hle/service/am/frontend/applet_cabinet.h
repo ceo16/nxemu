@@ -8,7 +8,7 @@
 #include "core/hle/result.h"
 #include "core/hle/service/am/frontend/applets.h"
 #include "core/hle/service/kernel_helpers.h"
-#include "core/hle/service/nfp/nfp_types.h"
+
 
 namespace Kernel {
 class KEvent;
@@ -55,40 +55,11 @@ struct AmiiboSettingsStartParam {
 static_assert(sizeof(AmiiboSettingsStartParam) == 0x30,
               "AmiiboSettingsStartParam is an invalid size");
 
-#pragma pack(push, 1)
-// This is nn::nfp::StartParamForAmiiboSettings
-struct StartParamForAmiiboSettings {
-    u8 param_1;
-    Service::NFP::CabinetMode applet_mode;
-    CabinetFlags flags;
-    u8 amiibo_settings_1;
-    u64 device_handle;
-    Service::NFP::TagInfo tag_info;
-    Service::NFP::RegisterInfo register_info;
-    std::array<u8, 0x20> amiibo_settings_3;
-    INSERT_PADDING_BYTES(0x24);
-};
-static_assert(sizeof(StartParamForAmiiboSettings) == 0x1A8,
-              "StartParamForAmiiboSettings is an invalid size");
-
-// This is nn::nfp::ReturnValueForAmiiboSettings
-struct ReturnValueForAmiiboSettings {
-    CabinetResult result;
-    INSERT_PADDING_BYTES(0x3);
-    u64 device_handle;
-    Service::NFP::TagInfo tag_info;
-    Service::NFP::RegisterInfo register_info;
-    INSERT_PADDING_BYTES(0x24);
-};
-static_assert(sizeof(ReturnValueForAmiiboSettings) == 0x188,
-              "ReturnValueForAmiiboSettings is an invalid size");
-#pragma pack(pop)
 
 class Cabinet final : public FrontendApplet {
 public:
     explicit Cabinet(Core::System& system_, std::shared_ptr<Applet> applet_,
-                     LibraryAppletMode applet_mode_,
-                     const Core::Frontend::CabinetApplet& frontend_);
+                     LibraryAppletMode applet_mode_);
     ~Cabinet() override;
 
     void Initialize() override;
@@ -101,13 +72,10 @@ public:
     Result RequestExit() override;
 
 private:
-    const Core::Frontend::CabinetApplet& frontend;
-
     bool is_complete{false};
     std::shared_ptr<Service::NFC::NfcDevice> nfp_device;
     Kernel::KEvent* availability_change_event;
     KernelHelpers::ServiceContext service_context;
-    StartParamForAmiiboSettings applet_input_common{};
 };
 
 } // namespace Service::AM::Frontend

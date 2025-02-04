@@ -10,10 +10,8 @@
 #include "core/hle/service/am/applet_manager.h"
 #include "core/hle/service/am/frontend/applet_cabinet.h"
 #include "core/hle/service/am/frontend/applet_controller.h"
-#include "core/hle/service/am/frontend/applet_mii_edit_types.h"
 #include "core/hle/service/am/frontend/applet_software_keyboard_types.h"
 #include "core/hle/service/am/service/storage.h"
-#include "hid_core/hid_types.h"
 
 namespace Service::AM {
 
@@ -68,103 +66,15 @@ void PushInShowAlbum(Core::System& system, AppletStorageChannel& channel) {
 }
 
 void PushInShowController(Core::System& system, AppletStorageChannel& channel) {
-    const CommonArguments common_args = {
-        .arguments_version = CommonArgumentVersion::Version3,
-        .size = CommonArgumentSize::Version3,
-        .library_version = static_cast<u32>(Frontend::ControllerAppletVersion::Version8),
-        .theme_color = ThemeColor::BasicBlack,
-        .play_startup_sound = true,
-        .system_tick = system.CoreTiming().GetClockTicks(),
-    };
-
-    Frontend::ControllerSupportArgNew user_args = {
-        .header = {.player_count_min = 1,
-                   .player_count_max = 4,
-                   .enable_take_over_connection = true,
-                   .enable_left_justify = false,
-                   .enable_permit_joy_dual = true,
-                   .enable_single_mode = false,
-                   .enable_identification_color = false},
-        .identification_colors = {},
-        .enable_explain_text = false,
-        .explain_text = {},
-    };
-
-    Frontend::ControllerSupportArgPrivate private_args = {
-        .arg_private_size = sizeof(Frontend::ControllerSupportArgPrivate),
-        .arg_size = sizeof(Frontend::ControllerSupportArgNew),
-        .is_home_menu = true,
-        .flag_1 = true,
-        .mode = Frontend::ControllerSupportMode::ShowControllerSupport,
-        .caller = Frontend::ControllerSupportCaller::
-            Application, // switchbrew: Always zero except with
-                         // ShowControllerFirmwareUpdateForSystem/ShowControllerKeyRemappingForSystem,
-                         // which sets this to the input param
-        .style_set = Core::HID::NpadStyleSet::None,
-        .joy_hold_type = 0,
-    };
-    std::vector<u8> common_args_data(sizeof(common_args));
-    std::vector<u8> private_args_data(sizeof(private_args));
-    std::vector<u8> user_args_data(sizeof(user_args));
-
-    std::memcpy(common_args_data.data(), &common_args, sizeof(common_args));
-    std::memcpy(private_args_data.data(), &private_args, sizeof(private_args));
-    std::memcpy(user_args_data.data(), &user_args, sizeof(user_args));
-
-    channel.Push(std::make_shared<IStorage>(system, std::move(common_args_data)));
-    channel.Push(std::make_shared<IStorage>(system, std::move(private_args_data)));
-    channel.Push(std::make_shared<IStorage>(system, std::move(user_args_data)));
+    UNIMPLEMENTED();
 }
 
 void PushInShowCabinetData(Core::System& system, AppletStorageChannel& channel) {
-    const CommonArguments arguments{
-        .arguments_version = CommonArgumentVersion::Version3,
-        .size = CommonArgumentSize::Version3,
-        .library_version = static_cast<u32>(Frontend::CabinetAppletVersion::Version1),
-        .theme_color = ThemeColor::BasicBlack,
-        .play_startup_sound = true,
-        .system_tick = system.CoreTiming().GetClockTicks(),
-    };
-
-    const Frontend::StartParamForAmiiboSettings amiibo_settings{
-        .param_1 = 0,
-        .applet_mode = system.GetFrontendAppletHolder().GetCabinetMode(),
-        .flags = Frontend::CabinetFlags::None,
-        .amiibo_settings_1 = 0,
-        .device_handle = 0,
-        .tag_info{},
-        .register_info{},
-        .amiibo_settings_3{},
-    };
-
-    std::vector<u8> argument_data(sizeof(arguments));
-    std::vector<u8> settings_data(sizeof(amiibo_settings));
-    std::memcpy(argument_data.data(), &arguments, sizeof(arguments));
-    std::memcpy(settings_data.data(), &amiibo_settings, sizeof(amiibo_settings));
-    channel.Push(std::make_shared<IStorage>(system, std::move(argument_data)));
-    channel.Push(std::make_shared<IStorage>(system, std::move(settings_data)));
+    UNIMPLEMENTED();
 }
 
 void PushInShowMiiEditData(Core::System& system, AppletStorageChannel& channel) {
-    struct MiiEditV3 {
-        Frontend::MiiEditAppletInputCommon common;
-        Frontend::MiiEditAppletInputV3 input;
-    };
-    static_assert(sizeof(MiiEditV3) == 0x100, "MiiEditV3 has incorrect size.");
-
-    MiiEditV3 mii_arguments{
-        .common =
-            {
-                .version = Frontend::MiiEditAppletVersion::Version3,
-                .applet_mode = Frontend::MiiEditAppletMode::ShowMiiEdit,
-            },
-        .input{},
-    };
-
-    std::vector<u8> argument_data(sizeof(mii_arguments));
-    std::memcpy(argument_data.data(), &mii_arguments, sizeof(mii_arguments));
-
-    channel.Push(std::make_shared<IStorage>(system, std::move(argument_data)));
+    UNIMPLEMENTED();
 }
 
 void PushInShowSoftwareKeyboard(Core::System& system, AppletStorageChannel& channel) {

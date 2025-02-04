@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include "core/hle/service/cmif_serialization.h"
-#include "core/hle/service/nvnflinger/hos_binder_driver.h"
 #include "core/hle/service/vi/application_display_service.h"
 #include "core/hle/service/vi/container.h"
 #include "core/hle/service/vi/manager_root_service.h"

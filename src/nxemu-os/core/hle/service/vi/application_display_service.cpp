@@ -173,14 +173,7 @@ Result IApplicationDisplayService::OpenLayer(Out<u64> out_size,
         m_open_layer_ids.insert(layer_id);
     }
 
-    android::OutputParcel parcel;
-    parcel.WriteInterface(NativeWindow{producer_binder_id});
-
-    const auto buffer = parcel.Serialize();
-    std::memcpy(out_native_window.data(), buffer.data(),
-                std::min(out_native_window.size(), buffer.size()));
-    *out_size = buffer.size();
-
+    UNIMPLEMENTED();
     R_SUCCEED();
 }
 
@@ -207,15 +200,7 @@ Result IApplicationDisplayService::CreateStrayLayer(
     std::scoped_lock lk{m_lock};
     m_stray_layer_ids.insert(*out_layer_id);
 
-    android::OutputParcel parcel;
-    parcel.WriteInterface(NativeWindow{producer_binder_id});
-
-    const auto buffer = parcel.Serialize();
-    std::memcpy(out_native_window.data(), buffer.data(),
-                std::min(out_native_window.size(), buffer.size()));
-
-    *out_size = buffer.size();
-
+    UNIMPLEMENTED();
     R_SUCCEED();
 }
 

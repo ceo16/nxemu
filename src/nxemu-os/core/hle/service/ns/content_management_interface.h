@@ -15,11 +15,7 @@ public:
     ~IContentManagementInterface() override;
 
 public:
-    Result CalculateApplicationOccupiedSize(Out<ApplicationOccupiedSize> out_size,
-                                            u64 application_id);
     Result CheckSdCardMountStatus();
-    Result GetTotalSpaceSize(Out<s64> out_total_space_size, FileSys::StorageId storage_id);
-    Result GetFreeSpaceSize(Out<s64> out_free_space_size, FileSys::StorageId storage_id);
 };
 
 } // namespace Service::NS

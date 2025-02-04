@@ -5,7 +5,7 @@
 #include "common/scope_exit.h"
 #include "common/settings.h"
 #include "core/arm/dynarmic/arm_dynarmic.h"
-#include "core/arm/dynarmic/dynarmic_exclusive_monitor.h"
+#include "core/arm/cpu_module.h"
 #include "core/core.h"
 #include "core/hle/kernel/k_process.h"
 #include "core/hle/kernel/k_scoped_resource_reservation.h"
@@ -14,12 +14,6 @@
 #include "core/hle/kernel/k_thread_local_page.h"
 #include "core/hle/kernel/k_thread_queue.h"
 #include "core/hle/kernel/k_worker_task_manager.h"
-
-#include "core/arm/dynarmic/arm_dynarmic_32.h"
-#include "core/arm/dynarmic/arm_dynarmic_64.h"
-#ifdef HAS_NCE
-#include "core/arm/nce/arm_nce.h"
-#endif
 
 namespace Kernel {
 
@@ -179,7 +173,11 @@ void KProcess::Finalize() {
     for (auto& interface : m_arm_interfaces) {
         interface.reset();
     }
-    m_exclusive_monitor.reset();
+    if (m_exclusive_monitor != nullptr)
+    {
+        m_kernel.System().GetSwitchSystem().Cpu().DestroyExclusiveMonitor(m_exclusive_monitor);
+        m_exclusive_monitor = nullptr;
+    }
 
     // Perform inherited finalization.
     KSynchronizationObject::Finalize();
@@ -1150,7 +1148,7 @@ KProcess::KProcess(KernelCore& kernel)
       m_handle_table{kernel}, m_exclusive_monitor{}, m_memory{kernel.System()} {}
 KProcess::~KProcess() = default;
 
-Result KProcess::LoadFromMetadata(const FileSys::ProgramMetadata& metadata, std::size_t code_size,
+Result KProcess::LoadFromMetadata(const IProgramMetadata & metadata, std::size_t code_size,
                                   KProcessAddress aslr_space_start, bool is_hbl) {
     // Create a resource limit for the process.
     const auto pool = static_cast<KMemoryManager::Pool>(metadata.GetPoolPartition());
@@ -1179,7 +1177,7 @@ Result KProcess::LoadFromMetadata(const FileSys::ProgramMetadata& metadata, std:
 
     // Set the address space type and code address.
     switch (metadata.GetAddressSpaceType()) {
-    case FileSys::ProgramAddressSpaceType::Is39Bit:
+    case ProgramAddressSpaceType::Is39Bit:
         flag |= Svc::CreateProcessFlag::AddressSpace64Bit;
 
         // For 39-bit processes, the ASLR region starts at 0x800'0000 and is ~512GiB large.
@@ -1188,15 +1186,15 @@ Result KProcess::LoadFromMetadata(const FileSys::ProgramMetadata& metadata, std:
         // to point to about 2GiB into the ASLR region.
         code_address = 0x8000'0000;
         break;
-    case FileSys::ProgramAddressSpaceType::Is36Bit:
+    case ProgramAddressSpaceType::Is36Bit:
         flag |= Svc::CreateProcessFlag::AddressSpace64BitDeprecated;
         code_address = 0x800'0000;
         break;
-    case FileSys::ProgramAddressSpaceType::Is32Bit:
+    case ProgramAddressSpaceType::Is32Bit:
         flag |= Svc::CreateProcessFlag::AddressSpace32Bit;
         code_address = 0x20'0000;
         break;
-    case FileSys::ProgramAddressSpaceType::Is32BitNoMap:
+    case ProgramAddressSpaceType::Is32BitNoMap:
         flag |= Svc::CreateProcessFlag::AddressSpace32BitWithoutAlias;
         code_address = 0x20'0000;
         break;
@@ -1215,11 +1213,11 @@ Result KProcess::LoadFromMetadata(const FileSys::ProgramMetadata& metadata, std:
 
     // Set the process name.
     const auto& name = metadata.GetName();
-    static_assert(sizeof(params.name) <= sizeof(name));
-    std::memcpy(params.name.data(), name.data(), sizeof(params.name));
+    size_t name_len = strlen(name) + 1;
+    std::memcpy(params.name.data(), name, std::min(name_len, sizeof(params.name)));
 
     // Initialize for application process.
-    R_TRY(this->Initialize(params, metadata.GetKernelCapabilities(), res_limit, pool,
+    R_TRY(this->Initialize(params, std::span<const u32>(metadata.GetKernelCapabilities(), metadata.GetKernelCapabilitiesSize()), res_limit, pool,
                            aslr_space_start));
 
     // Assign remaining properties.
@@ -1233,17 +1231,18 @@ Result KProcess::LoadFromMetadata(const FileSys::ProgramMetadata& metadata, std:
     R_SUCCEED();
 }
 
-void KProcess::LoadModule(CodeSet code_set, KProcessAddress base_addr) {
+void KProcess::LoadModule(const IModuleInfo & module, KProcessAddress base_addr)
+{
     const auto ReprotectSegment = [&](const CodeSet::Segment& segment,
                                       Svc::MemoryPermission permission) {
         m_page_table.SetProcessMemoryPermission(segment.addr + base_addr, segment.size, permission);
     };
 
-    this->GetMemory().WriteBlock(base_addr, code_set.memory.data(), code_set.memory.size());
+    this->GetMemory().WriteBlock(base_addr, module.Data(), module.DataSize());
 
-    ReprotectSegment(code_set.CodeSegment(), Svc::MemoryPermission::ReadExecute);
-    ReprotectSegment(code_set.RODataSegment(), Svc::MemoryPermission::Read);
-    ReprotectSegment(code_set.DataSegment(), Svc::MemoryPermission::ReadWrite);
+    m_page_table.SetProcessMemoryPermission((KProcessAddress)(module.CodeSegmentAddr()) + base_addr, module.CodeSegmentSize(), Svc::MemoryPermission::ReadExecute);
+    m_page_table.SetProcessMemoryPermission((KProcessAddress)(module.RODataSegmentAddr()) + base_addr, module.RODataSegmentSize(), Svc::MemoryPermission::Read);
+    m_page_table.SetProcessMemoryPermission((KProcessAddress)(module.DataSegmentAddr()) + base_addr, module.DataSegmentSize(), Svc::MemoryPermission::ReadWrite);
 
 #ifdef HAS_NCE
     const auto& patch = code_set.PatchSegment();
@@ -1260,33 +1259,13 @@ void KProcess::LoadModule(CodeSet code_set, KProcessAddress base_addr) {
 }
 
 void KProcess::InitializeInterfaces() {
-    m_exclusive_monitor =
-        Core::MakeExclusiveMonitor(this->GetMemory(), Core::Hardware::NUM_CPU_CORES);
+    m_exclusive_monitor = m_kernel.System().GetSwitchSystem().Cpu().CreateExclusiveMonitor(this->GetMemory(), Core::Hardware::NUM_CPU_CORES);    
 
-#ifdef HAS_NCE
-    if (this->IsApplication() && Settings::IsNceEnabled()) {
-        // Register the scoped JIT handler before creating any NCE instances
-        // so that its signal handler will appear first in the signal chain.
-        Core::ScopedJitExecution::RegisterHandler();
-
-        for (size_t i = 0; i < Core::Hardware::NUM_CPU_CORES; i++) {
-            m_arm_interfaces[i] = std::make_unique<Core::ArmNce>(m_kernel.System(), true, i);
-        }
-    } else
-#endif
-        if (this->Is64Bit()) {
-        for (size_t i = 0; i < Core::Hardware::NUM_CPU_CORES; i++) {
-            m_arm_interfaces[i] = std::make_unique<Core::ArmDynarmic64>(
-                m_kernel.System(), m_kernel.IsMulticore(), this,
-                static_cast<Core::DynarmicExclusiveMonitor&>(*m_exclusive_monitor), i);
-        }
-    } else {
-        for (size_t i = 0; i < Core::Hardware::NUM_CPU_CORES; i++) {
-            m_arm_interfaces[i] = std::make_unique<Core::ArmDynarmic32>(
-                m_kernel.System(), m_kernel.IsMulticore(), this,
-                static_cast<Core::DynarmicExclusiveMonitor&>(*m_exclusive_monitor), i);
-        }
+    for (uint32_t i = 0; i < Core::Hardware::NUM_CPU_CORES; i++)
+    {
+        m_arm_interfaces[i] = std::make_unique<Core::ArmCpuModule>(m_kernel.System(), Is64Bit(), m_kernel.IsMulticore(), this, i);
     }
+
 }
 
 bool KProcess::InsertWatchpoint(KProcessAddress addr, u64 size, DebugWatchpointType type) {

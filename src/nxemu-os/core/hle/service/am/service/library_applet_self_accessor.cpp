@@ -3,7 +3,6 @@
 
 #include "core/core_timing.h"
 #include "core/file_sys/control_metadata.h"
-#include "core/file_sys/patch_manager.h"
 #include "core/file_sys/registered_cache.h"
 #include "core/hle/service/acc/profile_manager.h"
 #include "core/hle/service/am/applet_data_broker.h"
@@ -12,7 +11,7 @@
 #include "core/hle/service/am/service/library_applet_self_accessor.h"
 #include "core/hle/service/am/service/storage.h"
 #include "core/hle/service/cmif_serialization.h"
-#include "core/hle/service/filesystem/filesystem.h"
+
 #include "core/hle/service/glue/glue_manager.h"
 #include "core/hle/service/ns/application_manager_interface.h"
 #include "core/hle/service/ns/service_getter_interface.h"
@@ -154,23 +153,13 @@ Result ILibraryAppletSelfAccessor::CanUseApplicationCore(Out<bool> out_can_use_a
 Result ILibraryAppletSelfAccessor::GetMainAppletApplicationControlProperty(
     OutLargeData<std::array<u8, 0x4000>, BufferAttr_HipcMapAlias> out_nacp) {
     LOG_WARNING(Service_AM, "(STUBBED) called");
-
-    // TODO: this should be the main applet, not the caller applet
-    const auto application = GetCallerIdentity(*m_applet);
-    std::vector<u8> nacp;
-    const auto result =
-        system.GetARPManager().GetControlProperty(&nacp, application.application_id);
-
-    if (R_SUCCEEDED(result)) {
-        std::memcpy(out_nacp->data(), nacp.data(), std::min(nacp.size(), out_nacp->size()));
-    }
-
-    R_RETURN(result);
+    UNIMPLEMENTED();
+    R_SUCCEED();
 }
 
 Result ILibraryAppletSelfAccessor::GetMainAppletStorageId(Out<FileSys::StorageId> out_storage_id) {
     LOG_INFO(Service_AM, "(STUBBED) called");
-    *out_storage_id = FileSys::StorageId::NandUser;
+    UNIMPLEMENTED();
     R_SUCCEED();
 }
 
@@ -226,53 +215,7 @@ Result ILibraryAppletSelfAccessor::ReportVisibleErrorWithErrorContext(
 
 Result ILibraryAppletSelfAccessor::GetMainAppletApplicationDesiredLanguage(
     Out<u64> out_desired_language) {
-    // FIXME: this is copied from IApplicationFunctions::GetDesiredLanguage
-    // FIXME: all of this stuff belongs to ns
-    auto identity = GetCallerIdentity(*m_applet);
-
-    // TODO(bunnei): This should be configurable
-    LOG_DEBUG(Service_AM, "called");
-
-    // Get supported languages from NACP, if possible
-    // Default to 0 (all languages supported)
-    u32 supported_languages = 0;
-
-    const auto res = [this, identity] {
-        const FileSys::PatchManager pm{identity.application_id, system.GetFileSystemController(),
-                                       system.GetContentProvider()};
-        auto metadata = pm.GetControlMetadata();
-        if (metadata.first != nullptr) {
-            return metadata;
-        }
-
-        const FileSys::PatchManager pm_update{FileSys::GetUpdateTitleID(identity.application_id),
-                                              system.GetFileSystemController(),
-                                              system.GetContentProvider()};
-        return pm_update.GetControlMetadata();
-    }();
-
-    if (res.first != nullptr) {
-        supported_languages = res.first->GetSupportedLanguages();
-    }
-
-    // Call IApplicationManagerInterface implementation.
-    auto& service_manager = system.ServiceManager();
-    auto ns_am2 = service_manager.GetService<NS::IServiceGetterInterface>("ns:am2");
-
-    std::shared_ptr<NS::IApplicationManagerInterface> app_man;
-    R_TRY(ns_am2->GetApplicationManagerInterface(&app_man));
-
-    // Get desired application language
-    NS::ApplicationLanguage desired_language{};
-    R_TRY(app_man->GetApplicationDesiredLanguage(&desired_language, supported_languages));
-
-    // Convert to settings language code.
-    u64 language_code{};
-    R_TRY(app_man->ConvertApplicationLanguageToLanguageCode(&language_code, desired_language));
-
-    LOG_DEBUG(Service_AM, "got desired_language={:016X}", language_code);
-
-    *out_desired_language = language_code;
+    UNIMPLEMENTED();
     R_SUCCEED();
 }
 

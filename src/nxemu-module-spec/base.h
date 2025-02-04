@@ -55,10 +55,12 @@ typedef struct
     char name[200];   // Name of the DLL
 } MODULE_INFO;
 __interface IOperatingSystem;
+__interface ICpu;
 
 __interface ISwitchSystem
 {
     IOperatingSystem & OperatingSystem();
+    ICpu & Cpu();
 };
 
 /*

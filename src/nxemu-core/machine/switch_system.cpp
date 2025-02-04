@@ -71,6 +71,11 @@ IOperatingSystem & SwitchSystem::OperatingSystem()
     return *m_modules.OperatingSystem();
 }
 
+ICpu & SwitchSystem::Cpu(void)
+{
+    return *m_modules.Cpu();
+}
+
 bool SwitchSystem::LoadRom(const char * romFile)
 {
     bool res = false;

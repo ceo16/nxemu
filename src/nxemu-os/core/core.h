@@ -15,6 +15,8 @@
 #include "common/common_types.h"
 #include "core/file_sys/vfs/vfs_types.h"
 
+__interface ISwitchSystem;
+
 namespace Core::Frontend {
 class EmuWindow;
 } // namespace Core::Frontend
@@ -117,10 +119,8 @@ namespace Core {
 class CpuManager;
 class Debugger;
 class DeviceMemory;
-class ExclusiveMonitor;
 class GPUDirtyMemoryManager;
 class PerfStats;
-class Reporter;
 class SpeedLimiter;
 class TelemetrySession;
 
@@ -145,7 +145,7 @@ class System {
 public:
     using CurrentBuildProcessID = std::array<u8, 0x20>;
 
-    explicit System();
+    explicit System(ISwitchSystem & switchSystem);
 
     ~System();
 
@@ -154,6 +154,8 @@ public:
 
     System(System&&) = delete;
     System& operator=(System&&) = delete;
+
+    void InitializeKernel(void);
 
     /**
      * Initializes the system
@@ -230,6 +232,8 @@ public:
     std::span<GPUDirtyMemoryManager> GetGPUDirtyMemoryManager();
 
     void GatherGPUDirtyMemory(std::function<void(PAddr, size_t)>& callback);
+
+    ISwitchSystem & GetSwitchSystem();
 
     [[nodiscard]] size_t GetCurrentHostThreadID() const;
 
@@ -372,8 +376,6 @@ public:
                                  FileSys::ContentProvider* provider);
 
     void ClearContentProvider(FileSys::ContentProviderUnionSlot slot);
-
-    [[nodiscard]] const Reporter& GetReporter() const;
 
     [[nodiscard]] Service::Glue::ARPManager& GetARPManager();
     [[nodiscard]] const Service::Glue::ARPManager& GetARPManager() const;

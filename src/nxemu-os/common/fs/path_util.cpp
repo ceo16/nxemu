@@ -92,7 +92,7 @@ public:
         yuzu_path = GetExeDirectory() / PORTABLE_DIR;
 #endif
         if (!IsDir(yuzu_path)) {
-            yuzu_path = GetAppDataRoamingDirectory() / YUZU_DIR;
+            yuzu_path = GetAppDataRoamingDirectory() / NXEMU_DIR;
         }
 
         yuzu_path_cache = yuzu_path / CACHE_DIR;
@@ -109,9 +109,9 @@ public:
             yuzu_path_cache = yuzu_path / CACHE_DIR;
             yuzu_path_config = yuzu_path / CONFIG_DIR;
         } else {
-            yuzu_path = GetDataDirectory("XDG_DATA_HOME") / YUZU_DIR;
-            yuzu_path_cache = GetDataDirectory("XDG_CACHE_HOME") / YUZU_DIR;
-            yuzu_path_config = GetDataDirectory("XDG_CONFIG_HOME") / YUZU_DIR;
+            yuzu_path = GetDataDirectory("XDG_DATA_HOME") / NXEMU_DIR;
+            yuzu_path_cache = GetDataDirectory("XDG_CACHE_HOME") / NXEMU_DIR;
+            yuzu_path_config = GetDataDirectory("XDG_CONFIG_HOME") / NXEMU_DIR;
         }
 #endif
 

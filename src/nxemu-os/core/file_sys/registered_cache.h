@@ -10,7 +10,6 @@
 #include <vector>
 #include <boost/container/flat_map.hpp>
 #include "common/common_types.h"
-#include "core/crypto/key_manager.h"
 #include "core/file_sys/vfs/vfs.h"
 
 namespace FileSys {
@@ -87,10 +86,6 @@ public:
     virtual std::vector<ContentProviderEntry> ListEntriesFilter(
         std::optional<TitleType> title_type = {}, std::optional<ContentRecordType> record_type = {},
         std::optional<u64> title_id = {}) const = 0;
-
-protected:
-    // A single instance of KeyManager to be used by GetEntry()
-    Core::Crypto::KeyManager& keys = Core::Crypto::KeyManager::Instance();
 };
 
 class PlaceholderCache {

@@ -6,7 +6,6 @@
 #include "common/assert.h"
 #include "common/string_util.h"
 #include "core/core.h"
-#include "core/frontend/applets/profile_select.h"
 #include "core/hle/service/acc/errors.h"
 #include "core/hle/service/am/am.h"
 #include "core/hle/service/am/frontend/applet_profile_select.h"
@@ -15,9 +14,8 @@
 namespace Service::AM::Frontend {
 
 ProfileSelect::ProfileSelect(Core::System& system_, std::shared_ptr<Applet> applet_,
-                             LibraryAppletMode applet_mode_,
-                             const Core::Frontend::ProfileSelectApplet& frontend_)
-    : FrontendApplet{system_, applet_, applet_mode_}, frontend{frontend_} {}
+                             LibraryAppletMode applet_mode_)
+    : FrontendApplet{system_, applet_, applet_mode_} {}
 
 ProfileSelect::~ProfileSelect() = default;
 
@@ -61,39 +59,7 @@ void ProfileSelect::ExecuteInteractive() {
 }
 
 void ProfileSelect::Execute() {
-    if (complete) {
-        PushOutData(std::make_shared<IStorage>(system, std::move(final_data)));
-        Exit();
-        return;
-    }
-
-    Core::Frontend::ProfileSelectParameters parameters{};
-
-    switch (profile_select_version) {
-    case ProfileSelectAppletVersion::Version1:
-        parameters = {
-            .mode = config_old.mode,
-            .invalid_uid_list = config_old.invalid_uid_list,
-            .display_options = config_old.display_options,
-            .purpose = UserSelectionPurpose::General,
-        };
-        break;
-    case ProfileSelectAppletVersion::Version2:
-    case ProfileSelectAppletVersion::Version3:
-        parameters = {
-            .mode = config.mode,
-            .invalid_uid_list = config.invalid_uid_list,
-            .display_options = config.display_options,
-            .purpose = config.purpose,
-        };
-        break;
-    default:
-        UNIMPLEMENTED_MSG("Unknown profile_select_version = {}", profile_select_version);
-        break;
-    }
-
-    frontend.SelectProfile([this](std::optional<Common::UUID> uuid) { SelectionComplete(uuid); },
-                           parameters);
+    UNIMPLEMENTED();
 }
 
 void ProfileSelect::SelectionComplete(std::optional<Common::UUID> uuid) {
@@ -116,7 +82,7 @@ void ProfileSelect::SelectionComplete(std::optional<Common::UUID> uuid) {
 }
 
 Result ProfileSelect::RequestExit() {
-    frontend.Close();
+    UNIMPLEMENTED();
     R_SUCCEED();
 }
 

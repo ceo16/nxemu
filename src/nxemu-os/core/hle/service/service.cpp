@@ -11,7 +11,6 @@
 #include "core/hle/service/ipc_helpers.h"
 #include "core/hle/service/service.h"
 #include "core/hle/service/sm/sm.h"
-#include "core/reporter.h"
 
 namespace Service {
 
@@ -73,8 +72,6 @@ void ServiceFrameworkBase::ReportUnimplementedFunction(HLERequestContext& ctx,
     }
     buf.push_back('}');
 
-    system.GetReporter().SaveUnimplementedFunctionReport(ctx, ctx.GetCommand(), function_name,
-                                                         service_name);
     UNIMPLEMENTED_MSG("Unknown / unimplemented {}", fmt::to_string(buf));
     if (Settings::values.use_auto_stub) {
         LOG_WARNING(Service, "Using auto stub fallback!");

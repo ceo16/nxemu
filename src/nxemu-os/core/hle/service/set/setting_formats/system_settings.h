@@ -12,7 +12,6 @@
 #include "common/vector_math.h"
 #include "core/hle/service/set/setting_formats/private_settings.h"
 #include "core/hle/service/set/settings_types.h"
-#include "hid_core/resources/touch_screen/touch_types.h"
 
 namespace Service::Set {
 
@@ -173,8 +172,7 @@ struct SystemSettings {
 
     SystemRegionCode region_code;
 
-    // Different to nn::settings::system::InitialLaunchSettings?
-    InitialLaunchSettingsPacked initial_launch_settings_packed;
+    INSERT_PADDING_BYTES(0x1C);
 
     bool battery_percentage_flag;
     INSERT_PADDING_BYTES(0x3);
@@ -198,14 +196,13 @@ struct SystemSettings {
     INSERT_PADDING_BYTES(0x64); // Reserved
 
     // nn::time::SystemClockContext
-    Service::PSC::Time::SystemClockContext user_system_clock_context;
-    Service::PSC::Time::SystemClockContext network_system_clock_context;
+    INSERT_PADDING_BYTES(0x20); // Service::PSC::Time::SystemClockContext user_system_clock_context;
+    INSERT_PADDING_BYTES(0x20); // Service::PSC::Time::SystemClockContext network_system_clock_context;
     bool user_system_clock_automatic_correction_enabled;
     INSERT_PADDING_BYTES(0x3);
     INSERT_PADDING_BYTES(0x4); // Reserved
     // nn::time::SteadyClockTimePoint
-    Service::PSC::Time::SteadyClockTimePoint
-        user_system_clock_automatic_correction_updated_time_point;
+    INSERT_PADDING_BYTES(0x18); // Service::PSC::Time::SteadyClockTimePoint user_system_clock_automatic_correction_updated_time_point;
     INSERT_PADDING_BYTES(0x10); // Reserved
 
     AccountSettings account_settings;
@@ -280,10 +277,10 @@ struct SystemSettings {
     INSERT_PADDING_BYTES(0x6B); // Reserved
 
     // nn::time::LocationName
-    Service::PSC::Time::LocationName device_time_zone_location_name;
+    INSERT_PADDING_BYTES(0x24); //Service::PSC::Time::LocationName device_time_zone_location_name;
     INSERT_PADDING_BYTES(0x4); // Reserved
     // nn::time::SteadyClockTimePoint
-    Service::PSC::Time::SteadyClockTimePoint device_time_zone_location_updated_time;
+    INSERT_PADDING_BYTES(0x18); //Service::PSC::Time::SteadyClockTimePoint device_time_zone_location_updated_time;
 
     INSERT_PADDING_BYTES(0xC0); // Reserved
 
@@ -310,7 +307,7 @@ struct SystemSettings {
     // nn::settings::system::EulaVersion
     s32 eula_version_count;
     INSERT_PADDING_BYTES(0xC); // Reserved
-    std::array<EulaVersion, 32> eula_versions;
+    INSERT_PADDING_BYTES(0x600); // std::array<EulaVersion, 32> eula_versions;
     INSERT_PADDING_BYTES(0x200); // Reserved
 
     // nn::settings::system::DeviceNickName
@@ -360,11 +357,7 @@ static_assert(offsetof(SystemSettings, lock_screen_flag) == 0x29470);
 static_assert(offsetof(SystemSettings, battery_percentage_flag) == 0x294A0);
 static_assert(offsetof(SystemSettings, field_testing_flag) == 0x294C0);
 static_assert(offsetof(SystemSettings, backlight_settings_mixed_up) == 0x294F0);
-static_assert(offsetof(SystemSettings, user_system_clock_context) == 0x29580);
-static_assert(offsetof(SystemSettings, network_system_clock_context) == 0x295A0);
 static_assert(offsetof(SystemSettings, user_system_clock_automatic_correction_enabled) == 0x295C0);
-static_assert(offsetof(SystemSettings, user_system_clock_automatic_correction_updated_time_point) ==
-              0x295C8);
 static_assert(offsetof(SystemSettings, account_settings) == 0x295F0);
 static_assert(offsetof(SystemSettings, audio_volume_type0) == 0x296F0);
 static_assert(offsetof(SystemSettings, hearing_protection_safeguard_remaining_time) == 0x29730);
@@ -377,7 +370,6 @@ static_assert(offsetof(SystemSettings, touch_screen_mode) == 0x29A68);
 static_assert(offsetof(SystemSettings, edid) == 0x29AA0);
 static_assert(offsetof(SystemSettings, data_deletion_settings) == 0x29E80);
 static_assert(offsetof(SystemSettings, requires_run_repair_time_reviser) == 0x29ED4);
-static_assert(offsetof(SystemSettings, device_time_zone_location_name) == 0x29F40);
 static_assert(offsetof(SystemSettings, nfc_enable_flag) == 0x2A0C0);
 static_assert(offsetof(SystemSettings, eula_version_count) == 0x2A140);
 static_assert(offsetof(SystemSettings, device_nick_name) == 0x2A950);

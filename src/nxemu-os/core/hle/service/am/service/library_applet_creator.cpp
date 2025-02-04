@@ -96,57 +96,8 @@ std::shared_ptr<ILibraryAppletAccessor> CreateGuestApplet(Core::System& system,
                                                           std::shared_ptr<Applet> caller_applet,
                                                           AppletId applet_id,
                                                           LibraryAppletMode mode) {
-    const auto program_id = static_cast<u64>(AppletIdToProgramId(applet_id));
-    if (program_id == 0) {
-        // Unknown applet
-        return {};
-    }
-
-    // TODO: enable other versions of applets
-    enum : u8 {
-        Firmware1400 = 14,
-        Firmware1500 = 15,
-        Firmware1600 = 16,
-        Firmware1700 = 17,
-    };
-
-    auto process = std::make_unique<Process>(system);
-    if (!process->Initialize(program_id, Firmware1400, Firmware1700)) {
-        // Couldn't initialize the guest process
-        return {};
-    }
-
-    const auto applet = std::make_shared<Applet>(system, std::move(process));
-    applet->program_id = program_id;
-    applet->applet_id = applet_id;
-    applet->type = AppletType::LibraryApplet;
-    applet->library_applet_mode = mode;
-
-    // Set focus state
-    switch (mode) {
-    case LibraryAppletMode::AllForeground:
-    case LibraryAppletMode::NoUi:
-    case LibraryAppletMode::PartialForeground:
-    case LibraryAppletMode::PartialForegroundIndirectDisplay:
-        applet->hid_registration.EnableAppletToGetInput(true);
-        applet->focus_state = FocusState::InFocus;
-        applet->message_queue.PushMessage(AppletMessage::ChangeIntoForeground);
-        break;
-    case LibraryAppletMode::AllForegroundInitiallyHidden:
-        applet->hid_registration.EnableAppletToGetInput(false);
-        applet->focus_state = FocusState::NotInFocus;
-        applet->display_layer_manager.SetWindowVisibility(false);
-        applet->message_queue.PushMessage(AppletMessage::ChangeIntoBackground);
-        break;
-    }
-
-    auto broker = std::make_shared<AppletDataBroker>(system);
-    applet->caller_applet = caller_applet;
-    applet->caller_applet_broker = broker;
-
-    system.GetAppletManager().InsertApplet(applet);
-
-    return std::make_shared<ILibraryAppletAccessor>(system, broker, applet);
+    UNIMPLEMENTED();
+    return nullptr;
 }
 
 std::shared_ptr<ILibraryAppletAccessor> CreateFrontendApplet(Core::System& system,

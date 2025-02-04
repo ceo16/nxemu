@@ -20,8 +20,7 @@ enum class AuthAppletType : u32 {
 class Auth final : public FrontendApplet {
 public:
     explicit Auth(Core::System& system_, std::shared_ptr<Applet> applet_,
-                  LibraryAppletMode applet_mode_,
-                  Core::Frontend::ParentalControlsApplet& frontend_);
+                  LibraryAppletMode applet_mode_);
     ~Auth() override;
 
     void Initialize() override;
@@ -33,7 +32,6 @@ public:
     void AuthFinished(bool is_successful = true);
 
 private:
-    Core::Frontend::ParentalControlsApplet& frontend;
     bool complete = false;
     bool successful = false;
 
@@ -51,8 +49,7 @@ enum class PhotoViewerAppletMode : u8 {
 class PhotoViewer final : public FrontendApplet {
 public:
     explicit PhotoViewer(Core::System& system_, std::shared_ptr<Applet> applet_,
-                         LibraryAppletMode applet_mode_,
-                         const Core::Frontend::PhotoViewerApplet& frontend_);
+                         LibraryAppletMode applet_mode_);
     ~PhotoViewer() override;
 
     void Initialize() override;
@@ -64,7 +61,6 @@ public:
     void ViewFinished();
 
 private:
-    const Core::Frontend::PhotoViewerApplet& frontend;
     bool complete = false;
     PhotoViewerAppletMode mode = PhotoViewerAppletMode::CurrentApp;
 };

@@ -28,7 +28,7 @@ bool ReadFromUser(KernelCore& kernel, s32* out, KProcessAddress address) {
 }
 
 bool DecrementIfLessThan(KernelCore& kernel, s32* out, KProcessAddress address, s32 value) {
-    auto& monitor = GetCurrentProcess(kernel).GetExclusiveMonitor();
+    auto* monitor = GetCurrentProcess(kernel).GetExclusiveMonitor();
     const auto current_core = kernel.CurrentPhysicalCoreIndex();
 
     // NOTE: If scheduler lock is not held here, interrupt disable is required.
@@ -41,7 +41,7 @@ bool DecrementIfLessThan(KernelCore& kernel, s32* out, KProcessAddress address, 
     while (true) {
         // Load the value from the address.
         current_value =
-            static_cast<s32>(monitor.ExclusiveRead32(current_core, GetInteger(address)));
+            static_cast<s32>(monitor->ExclusiveRead32((uint32_t)current_core, GetInteger(address)));
 
         // Compare it to the desired one.
         if (current_value < value) {
@@ -49,7 +49,7 @@ bool DecrementIfLessThan(KernelCore& kernel, s32* out, KProcessAddress address, 
             const s32 decrement_value = current_value - 1;
 
             // Decrement and try to store.
-            if (monitor.ExclusiveWrite32(current_core, GetInteger(address),
+            if (monitor->ExclusiveWrite32((uint32_t)current_core, GetInteger(address),
                                          static_cast<u32>(decrement_value))) {
                 break;
             }
@@ -57,7 +57,7 @@ bool DecrementIfLessThan(KernelCore& kernel, s32* out, KProcessAddress address, 
             // If we failed to store, try again.
         } else {
             // Otherwise, clear our exclusive hold and finish
-            monitor.ClearExclusive(current_core);
+            monitor->ClearExclusive((uint32_t)current_core);
             break;
         }
     }
@@ -69,7 +69,7 @@ bool DecrementIfLessThan(KernelCore& kernel, s32* out, KProcessAddress address, 
 
 bool UpdateIfEqual(KernelCore& kernel, s32* out, KProcessAddress address, s32 value,
                    s32 new_value) {
-    auto& monitor = GetCurrentProcess(kernel).GetExclusiveMonitor();
+    auto* monitor = GetCurrentProcess(kernel).GetExclusiveMonitor();
     const auto current_core = kernel.CurrentPhysicalCoreIndex();
 
     // NOTE: If scheduler lock is not held here, interrupt disable is required.
@@ -82,14 +82,14 @@ bool UpdateIfEqual(KernelCore& kernel, s32* out, KProcessAddress address, s32 va
     // Load the value from the address.
     while (true) {
         current_value =
-            static_cast<s32>(monitor.ExclusiveRead32(current_core, GetInteger(address)));
+            static_cast<s32>(monitor->ExclusiveRead32((uint32_t)current_core, GetInteger(address)));
 
         // Compare it to the desired one.
         if (current_value == value) {
             // If equal, we want to try to write the new value.
 
             // Try to store.
-            if (monitor.ExclusiveWrite32(current_core, GetInteger(address),
+            if (monitor->ExclusiveWrite32((uint32_t)current_core, GetInteger(address),
                                          static_cast<u32>(new_value))) {
                 break;
             }
@@ -97,7 +97,7 @@ bool UpdateIfEqual(KernelCore& kernel, s32* out, KProcessAddress address, s32 va
             // If we failed to store, try again.
         } else {
             // Otherwise, clear our exclusive hold and finish.
-            monitor.ClearExclusive(current_core);
+            monitor->ClearExclusive((uint32_t)current_core);
             break;
         }
     }

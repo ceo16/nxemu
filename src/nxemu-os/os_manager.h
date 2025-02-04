@@ -1,5 +1,6 @@
 #pragma once
 #include <nxemu-module-spec/operating_system.h>
+#include <nxemu-os/core/core.h>
 
 class OSManager :
     public IOperatingSystem
@@ -21,5 +22,7 @@ private:
     OSManager(const OSManager &) = delete;
     OSManager & operator=(const OSManager &) = delete;
 
+    Core::System m_coreSystem;
     ISwitchSystem & m_switchSystem;
+    Kernel::KProcess * m_process;
 };

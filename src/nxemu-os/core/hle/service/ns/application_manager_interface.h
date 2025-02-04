@@ -40,23 +40,12 @@ public:
         u32 flags, u64 application_id, Uid account_id);
     Result CheckSdCardMountStatus();
     Result GetSdCardMountStatusChangedEvent(OutCopyHandle<Kernel::KReadableEvent> out_event);
-    Result GetFreeSpaceSize(Out<s64> out_free_space_size, FileSys::StorageId storage_id);
     Result GetGameCardUpdateDetectionEvent(OutCopyHandle<Kernel::KReadableEvent> out_event);
     Result ResumeAll();
-    Result GetStorageSize(Out<s64> out_total_space_size, Out<s64> out_free_space_size,
-                          FileSys::StorageId storage_id);
     Result IsApplicationUpdateRequested(Out<bool> out_update_required, Out<u32> out_update_version,
                                         u64 application_id);
     Result CheckApplicationLaunchVersion(u64 application_id);
     Result GetApplicationTerminateResult(Out<Result> out_result, u64 application_id);
-
-private:
-    KernelHelpers::ServiceContext service_context;
-    Event record_update_system_event;
-    Event sd_card_mount_status_event;
-    Event gamecard_update_detection_event;
-    Event gamecard_mount_status_event;
-    Event gamecard_mount_failure_event;
 };
 
 } // namespace Service::NS

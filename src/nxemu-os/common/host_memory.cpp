@@ -7,7 +7,7 @@
 #include <unordered_map>
 #include <boost/icl/separate_interval_set.hpp>
 #include <windows.h>
-#include "common/dynamic_library.h"
+#include "common/yuzu_dynamic_library.h"
 
 #elif defined(__linux__) || defined(__FreeBSD__) // ^^^ Windows ^^^ vvv Linux vvv
 

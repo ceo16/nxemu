@@ -4,17 +4,13 @@
 #include "common/settings.h"
 #include "common/uuid.h"
 #include "core/file_sys/control_metadata.h"
-#include "core/file_sys/patch_manager.h"
 #include "core/file_sys/registered_cache.h"
-#include "core/file_sys/savedata_factory.h"
 #include "core/hle/kernel/k_transfer_memory.h"
 #include "core/hle/service/am/am_results.h"
 #include "core/hle/service/am/applet.h"
 #include "core/hle/service/am/service/application_functions.h"
 #include "core/hle/service/am/service/storage.h"
 #include "core/hle/service/cmif_serialization.h"
-#include "core/hle/service/filesystem/filesystem.h"
-#include "core/hle/service/filesystem/save_data_controller.h"
 #include "core/hle/service/glue/glue_manager.h"
 #include "core/hle/service/ns/application_manager_interface.h"
 #include "core/hle/service/ns/service_getter_interface.h"
@@ -122,15 +118,7 @@ Result IApplicationFunctions::PopLaunchParameter(Out<SharedPointer<IStorage>> ou
 Result IApplicationFunctions::EnsureSaveData(Out<u64> out_size, Common::UUID user_id) {
     LOG_INFO(Service_AM, "called, uid={}", user_id.FormattedString());
 
-    FileSys::SaveDataAttribute attribute{};
-    attribute.program_id = m_applet->program_id;
-    attribute.user_id = user_id.AsU128();
-    attribute.type = FileSys::SaveDataType::Account;
-
-    FileSys::VirtualDir save_data{};
-    R_TRY(system.GetFileSystemController().OpenSaveDataController()->CreateSaveData(
-        &save_data, FileSys::SaveDataSpaceId::User, attribute));
-
+    UNIMPLEMENTED();
     *out_size = 0;
     R_SUCCEED();
 }
@@ -140,41 +128,7 @@ Result IApplicationFunctions::GetDesiredLanguage(Out<u64> out_language_code) {
     // TODO(bunnei): This should be configurable
     LOG_DEBUG(Service_AM, "called");
 
-    // Get supported languages from NACP, if possible
-    // Default to 0 (all languages supported)
-    u32 supported_languages = 0;
-
-    const auto res = [this] {
-        const FileSys::PatchManager pm{m_applet->program_id, system.GetFileSystemController(),
-                                       system.GetContentProvider()};
-        auto metadata = pm.GetControlMetadata();
-        if (metadata.first != nullptr) {
-            return metadata;
-        }
-
-        const FileSys::PatchManager pm_update{FileSys::GetUpdateTitleID(m_applet->program_id),
-                                              system.GetFileSystemController(),
-                                              system.GetContentProvider()};
-        return pm_update.GetControlMetadata();
-    }();
-
-    if (res.first != nullptr) {
-        supported_languages = res.first->GetSupportedLanguages();
-    }
-
-    // Call IApplicationManagerInterface implementation.
-    auto& service_manager = system.ServiceManager();
-    auto ns_am2 = service_manager.GetService<NS::IServiceGetterInterface>("ns:am2");
-
-    std::shared_ptr<NS::IApplicationManagerInterface> app_man;
-    R_TRY(ns_am2->GetApplicationManagerInterface(&app_man));
-
-    // Get desired application language
-    NS::ApplicationLanguage desired_language{};
-    R_TRY(app_man->GetApplicationDesiredLanguage(&desired_language, supported_languages));
-
-    // Convert to settings language code.
-    R_TRY(app_man->ConvertApplicationLanguageToLanguageCode(out_language_code, desired_language));
+    UNIMPLEMENTED();
 
     LOG_DEBUG(Service_AM, "got desired_language={:016X}", *out_language_code);
     R_SUCCEED();
@@ -193,31 +147,7 @@ Result IApplicationFunctions::SetTerminateResult(Result terminate_result) {
 
 Result IApplicationFunctions::GetDisplayVersion(Out<DisplayVersion> out_display_version) {
     LOG_DEBUG(Service_AM, "called");
-
-    const auto res = [this] {
-        const FileSys::PatchManager pm{m_applet->program_id, system.GetFileSystemController(),
-                                       system.GetContentProvider()};
-        auto metadata = pm.GetControlMetadata();
-        if (metadata.first != nullptr) {
-            return metadata;
-        }
-
-        const FileSys::PatchManager pm_update{FileSys::GetUpdateTitleID(m_applet->program_id),
-                                              system.GetFileSystemController(),
-                                              system.GetContentProvider()};
-        return pm_update.GetControlMetadata();
-    }();
-
-    if (res.first != nullptr) {
-        const auto& version = res.first->GetVersionString();
-        std::memcpy(out_display_version->string.data(), version.data(),
-                    std::min(version.size(), out_display_version->string.size()));
-    } else {
-        static constexpr char default_version[]{"1.0.0"};
-        std::memcpy(out_display_version->string.data(), default_version, sizeof(default_version));
-    }
-
-    out_display_version->string[out_display_version->string.size() - 1] = '\0';
+    UNIMPLEMENTED();
     R_SUCCEED();
 }
 
@@ -227,9 +157,7 @@ Result IApplicationFunctions::ExtendSaveData(Out<u64> out_required_size, FileSys
     LOG_DEBUG(Service_AM, "called with type={} user_id={} normal={:#x} journal={:#x}",
               static_cast<u8>(type), user_id.FormattedString(), normal_size, journal_size);
 
-    system.GetFileSystemController().OpenSaveDataController()->WriteSaveDataSize(
-        type, m_applet->program_id, user_id.AsU128(), {normal_size, journal_size});
-
+    UNIMPLEMENTED();
     // The following value is used to indicate the amount of space remaining on failure
     // due to running out of space. Since we always succeed, this should be 0.
     *out_required_size = 0;
@@ -241,11 +169,7 @@ Result IApplicationFunctions::GetSaveDataSize(Out<u64> out_normal_size, Out<u64>
                                               FileSys::SaveDataType type, Common::UUID user_id) {
     LOG_DEBUG(Service_AM, "called with type={} user_id={}", type, user_id.FormattedString());
 
-    const auto size = system.GetFileSystemController().OpenSaveDataController()->ReadSaveDataSize(
-        type, m_applet->program_id, user_id.AsU128());
-
-    *out_normal_size = size.normal;
-    *out_journal_size = size.journal;
+    UNIMPLEMENTED();
     R_SUCCEED();
 }
 
@@ -274,15 +198,7 @@ Result IApplicationFunctions::GetSaveDataSizeMax(Out<u64> out_max_normal_size,
 Result IApplicationFunctions::GetCacheStorageMax(Out<u32> out_cache_storage_index_max,
                                                  Out<u64> out_max_journal_size) {
     LOG_DEBUG(Service_AM, "called");
-
-    std::vector<u8> nacp;
-    R_TRY(system.GetARPManager().GetControlProperty(&nacp, m_applet->program_id));
-
-    auto raw_nacp = std::make_unique<FileSys::RawNACP>();
-    std::memcpy(raw_nacp.get(), nacp.data(), std::min(sizeof(*raw_nacp), nacp.size()));
-
-    *out_cache_storage_index_max = static_cast<u32>(raw_nacp->cache_storage_max_index);
-    *out_max_journal_size = static_cast<u64>(raw_nacp->cache_storage_data_and_journal_max_size);
+    UNIMPLEMENTED();
 
     R_SUCCEED();
 }

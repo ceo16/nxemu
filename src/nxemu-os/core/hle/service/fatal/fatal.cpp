@@ -6,7 +6,6 @@
 #include <ctime>
 #include <fmt/chrono.h>
 #include "common/logging/log.h"
-#include "common/scm_rev.h"
 #include "common/swap.h"
 #include "core/core.h"
 #include "core/hle/service/fatal/fatal.h"
@@ -14,7 +13,6 @@
 #include "core/hle/service/fatal/fatal_u.h"
 #include "core/hle/service/ipc_helpers.h"
 #include "core/hle/service/server_manager.h"
-#include "core/reporter.h"
 
 namespace Service::Fatal {
 
@@ -64,46 +62,7 @@ enum class FatalType : u32 {
 };
 
 static void GenerateErrorReport(Core::System& system, Result error_code, const FatalInfo& info) {
-    const auto title_id = system.GetApplicationProcessProgramID();
-    std::string crash_report = fmt::format(
-        "Yuzu {}-{} crash report\n"
-        "Title ID:                        {:016x}\n"
-        "Result:                          0x{:X} ({:04}-{:04d})\n"
-        "Set flags:                       0x{:16X}\n"
-        "Program entry point:             0x{:16X}\n"
-        "\n",
-        Common::g_scm_branch, Common::g_scm_desc, title_id, error_code.raw,
-        2000 + static_cast<u32>(error_code.GetModule()),
-        static_cast<u32>(error_code.GetDescription()), info.set_flags, info.program_entry_point);
-    if (info.backtrace_size != 0x0) {
-        crash_report += "Registers:\n";
-        for (size_t i = 0; i < info.registers.size(); i++) {
-            crash_report +=
-                fmt::format("    X[{:02d}]:                       {:016x}\n", i, info.registers[i]);
-        }
-        crash_report += fmt::format("    SP:                          {:016x}\n", info.sp);
-        crash_report += fmt::format("    PC:                          {:016x}\n", info.pc);
-        crash_report += fmt::format("    PSTATE:                      {:016x}\n", info.pstate);
-        crash_report += fmt::format("    AFSR0:                       {:016x}\n", info.afsr0);
-        crash_report += fmt::format("    AFSR1:                       {:016x}\n", info.afsr1);
-        crash_report += fmt::format("    ESR:                         {:016x}\n", info.esr);
-        crash_report += fmt::format("    FAR:                         {:016x}\n", info.far);
-        crash_report += "\nBacktrace:\n";
-        for (u32 i = 0; i < std::min<u32>(info.backtrace_size, 32); i++) {
-            crash_report +=
-                fmt::format("    Backtrace[{:02d}]:               {:016x}\n", i, info.backtrace[i]);
-        }
-
-        crash_report += fmt::format("Architecture:                    {}\n", info.ArchAsString());
-        crash_report += fmt::format("Unknown 10:                      0x{:016x}\n", info.unk10);
-    }
-
-    LOG_ERROR(Service_Fatal, "{}", crash_report);
-
-    system.GetReporter().SaveCrashReport(
-        title_id, error_code, info.set_flags, info.program_entry_point, info.sp, info.pc,
-        info.pstate, info.afsr0, info.afsr1, info.esr, info.far, info.registers, info.backtrace,
-        info.backtrace_size, info.ArchAsString(), info.unk10);
+    UNIMPLEMENTED();
 }
 
 static void ThrowFatalError(Core::System& system, Result error_code, FatalType fatal_type,

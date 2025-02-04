@@ -13,16 +13,1607 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\core">
+      <UniqueIdentifier>{8b8bcede-f35b-9bfb-3880-0f691a054a6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core">
+      <UniqueIdentifier>{a7ef1511-f810-33b3-0f5d-063dbd0081b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\common">
+      <UniqueIdentifier>{b859fed3-c540-0bec-dbe5-01a70a0ffc03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle">
+      <UniqueIdentifier>{d932bd7a-4b45-52a3-b751-05ddbb018f3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\arm">
+      <UniqueIdentifier>{30c901f0-88be-a1e4-0e80-047d0b05a5ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\file_sys">
+      <UniqueIdentifier>{e5692c51-e4fe-94c7-0005-04da86054896}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\kernel">
+      <UniqueIdentifier>{2c6e3276-2119-3f6f-8a89-0ade38033635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service">
+      <UniqueIdentifier>{47ae100f-2de3-6df4-95d7-025cba02894d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\kernel\board">
+      <UniqueIdentifier>{20d57c36-05d0-1d23-18c8-03292c0133cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\kernel\arch">
+      <UniqueIdentifier>{01d881dc-fd1a-0d7e-c7d0-062639063088}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\kernel\board\nintendo">
+      <UniqueIdentifier>{bcd96322-8b7e-d0c5-e4ea-0095900eec77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\kernel\board\nintendo\nx">
+      <UniqueIdentifier>{e82ee3ab-9edd-d2b0-b7c8-02fc5603d219}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\kernel\arch\arm64">
+      <UniqueIdentifier>{980c24ff-0a18-d538-ef32-05c0710301bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\acc">
+      <UniqueIdentifier>{1aae1402-d84d-8024-c75d-0e54f90112bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\am">
+      <UniqueIdentifier>{eea6a3bc-e3b7-387d-c454-0c951407a6d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\aoc">
+      <UniqueIdentifier>{23b33611-4a87-5c57-6c8a-0d259608e87f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\apm">
+      <UniqueIdentifier>{2d26c1a0-b7a1-ee29-d8c1-06ddb203462e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\bpc">
+      <UniqueIdentifier>{c685867a-4ae7-0b9d-2e7b-019124027515}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\btdrv">
+      <UniqueIdentifier>{d089321c-7171-48e7-485c-076af10a8c0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\btm">
+      <UniqueIdentifier>{d2949346-b389-95b6-3c50-07d5ac06ea09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\caps">
+      <UniqueIdentifier>{013645e9-794e-bcae-e121-0ffe8f062667}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\erpt">
+      <UniqueIdentifier>{2422428f-7809-cf1f-265b-0542b605f3d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\es">
+      <UniqueIdentifier>{94046334-bff6-012f-ff97-0a6b1a0fd362}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\eupld">
+      <UniqueIdentifier>{0dffb300-0394-5b8e-d15f-06bf6b0a0f58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\fatal">
+      <UniqueIdentifier>{d844445e-577e-d6c3-d3e2-0947c30d5e0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\fgm">
+      <UniqueIdentifier>{232a3445-588e-7859-548a-002ab60e3071}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\friend">
+      <UniqueIdentifier>{47e4d471-50ad-e8d7-280e-0b553d04789d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\glue">
+      <UniqueIdentifier>{3634b0be-487e-3312-f932-0aad6c0911aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\grc">
+      <UniqueIdentifier>{4eae1777-31d7-eccf-4688-04c2810fa7fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\lbl">
+      <UniqueIdentifier>{dfeeeb45-0ce5-fc80-4bb6-04f6a8049d01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\ldr">
+      <UniqueIdentifier>{ed47efef-de81-b087-0954-03a8df029cdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\lm">
+      <UniqueIdentifier>{811b5134-ccb0-c030-c1a6-0c53390d1165}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\mig">
+      <UniqueIdentifier>{84035abf-b70c-6634-dbe6-0617a70b39fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\mii">
+      <UniqueIdentifier>{aad869c9-488d-138a-c6fe-096579085b00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\mm">
+      <UniqueIdentifier>{d5d7e0ab-35a3-f81a-7c82-090c41022e83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\mnpp">
+      <UniqueIdentifier>{b693a912-4c7d-1340-f1c0-015bbc0c517c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\ncm">
+      <UniqueIdentifier>{22ee03a2-37a1-c709-966c-067eca03bf6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\ngc">
+      <UniqueIdentifier>{91d3aefd-3ecf-15d5-a101-093d320fa52f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\nim">
+      <UniqueIdentifier>{f9713c2a-1f88-2f2a-be93-00042a00b3dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\npns">
+      <UniqueIdentifier>{3e1ff4d7-7427-1c98-7f8f-074487036b18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\ns">
+      <UniqueIdentifier>{fda1dbbc-9863-0ffa-3242-05698902102c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\olsc">
+      <UniqueIdentifier>{3a8ad993-6fc9-efc7-9ab6-09a9ca0d7d7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\omm">
+      <UniqueIdentifier>{36ba7187-3708-a475-15ba-02597c03ce8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\os">
+      <UniqueIdentifier>{44214225-6eda-1982-070a-0312fe04d9b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\pcie">
+      <UniqueIdentifier>{c3756d06-df11-af25-b0a5-09431c0fd1d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\pctl">
+      <UniqueIdentifier>{6a8c94b6-e935-d822-ac50-0a0abc0670cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\pcv">
+      <UniqueIdentifier>{fef5919e-970f-7363-2b8f-0b5573061d2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\pm">
+      <UniqueIdentifier>{ac97ca1e-8070-4df2-a39b-0114bc0ec9ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\prepo">
+      <UniqueIdentifier>{ac266286-11c9-1c32-db39-050574085f58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\ptm">
+      <UniqueIdentifier>{cb191343-ae05-8b71-4ee1-0d83ce04f322}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\ro">
+      <UniqueIdentifier>{213d64d4-b2fb-b571-62a4-0b81420a10b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\set">
+      <UniqueIdentifier>{3e165a3f-ae6b-cfc2-64e6-0cd5ef03fcea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\sm">
+      <UniqueIdentifier>{4a2f2c0b-372b-fb51-7015-06513e009271}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\spl">
+      <UniqueIdentifier>{a09ff16f-3c4f-9e77-3122-0be64c012473}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\usb">
+      <UniqueIdentifier>{14e2f7bb-233a-91bf-7b64-0db1fb0e8c50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\vi">
+      <UniqueIdentifier>{a767f1a7-8acd-1d03-40aa-07346203daea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\am\frontend">
+      <UniqueIdentifier>{877d6504-a5b1-9277-69e7-0455220d4b28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\am\service">
+      <UniqueIdentifier>{1c78e3a0-4d79-25a0-673d-0749c30e9bb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\mii\types">
+      <UniqueIdentifier>{c2288f62-9cc5-a7f7-b552-0bb2e6013864}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\set\setting_formats">
+      <UniqueIdentifier>{f0c80d14-7ea2-eafe-4817-06989d0323d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\file_sys\vfs">
+      <UniqueIdentifier>{5bd58cb0-4dcd-115d-b699-0b39fc0b5687}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\common\logging">
+      <UniqueIdentifier>{9a57763f-2f29-eb9d-d5dd-0731700e11cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\common\fs">
+      <UniqueIdentifier>{9164de0e-d052-7b4d-3b99-034e7505c92c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\common\windows">
+      <UniqueIdentifier>{fb7474de-ad26-534c-df39-08312e02bceb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core">
+      <UniqueIdentifier>{fc3c68a7-ed35-c489-e7a8-019fd900cf98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\common">
+      <UniqueIdentifier>{7d75ec54-a67f-a159-bb18-0247500a13f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle">
+      <UniqueIdentifier>{a239b0f2-8548-34dd-b62c-0cb5ae0e007c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\arm">
+      <UniqueIdentifier>{61ca43d5-f439-fd65-43ca-0da3ca0d6fc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\file_sys">
+      <UniqueIdentifier>{b6f81d5b-cf0e-cd9d-88e3-0ff9bd0d9e70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\debugger">
+      <UniqueIdentifier>{c89201f1-5ddc-1c31-d7c6-0cac2e0e8470}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\loader">
+      <UniqueIdentifier>{7bfa6695-cd9e-d71d-2da3-0cf67b0033a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\kernel">
+      <UniqueIdentifier>{917ccfe9-0335-c670-6fa6-0f86840a8de4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service">
+      <UniqueIdentifier>{49d92aed-ae29-a28f-a960-0cfe0004c320}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\kernel\board">
+      <UniqueIdentifier>{e33a8c7a-b74f-d160-d774-0843e101a1d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\kernel\arch">
+      <UniqueIdentifier>{0133405c-7e86-ffad-c579-051b4e085fcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\kernel\board\nintendo">
+      <UniqueIdentifier>{ec61f93a-ffb3-70a3-016a-089f6002d0c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\kernel\board\nintendo\nx">
+      <UniqueIdentifier>{b77f8e38-fb82-315d-f314-0f17510368ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\kernel\arch\arm64">
+      <UniqueIdentifier>{62acc3f4-5365-fb6b-4fae-037c4205c2e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\acc">
+      <UniqueIdentifier>{60df72c5-ad48-2434-2756-02803906b53c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\am">
+      <UniqueIdentifier>{fb3df74a-bd1d-cb60-2345-01fcd308f6ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\aoc">
+      <UniqueIdentifier>{cd73d67f-8a67-dc22-582c-0b8a1c02455a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\apm">
+      <UniqueIdentifier>{e1e2fc59-9398-dcd2-9435-0c73cc03ef9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\bpc">
+      <UniqueIdentifier>{f61a7006-5d48-f955-586e-056833022ba2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\btdrv">
+      <UniqueIdentifier>{3d07a747-d276-1378-1544-08cae109f0c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\btm">
+      <UniqueIdentifier>{f2d40e5d-9289-b7d7-130b-056b0801a92b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\caps">
+      <UniqueIdentifier>{547663ea-9e08-4257-95aa-02eb03066338}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\erpt">
+      <UniqueIdentifier>{90d55c3d-b0c1-8179-45d7-03e19405ac64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\es">
+      <UniqueIdentifier>{35ce45af-13b7-c4cb-9cc8-066d470e4ade}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\eupld">
+      <UniqueIdentifier>{b1db8baf-2fc9-3092-286a-0776be015419}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\fatal">
+      <UniqueIdentifier>{32c289e3-d9fa-b00e-5ac0-08142006e558}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\fgm">
+      <UniqueIdentifier>{1591769f-4327-80c6-55f9-097c0108a8f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\friend">
+      <UniqueIdentifier>{2def2971-9929-03dc-3282-03ec9b0636de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\glue">
+      <UniqueIdentifier>{f6c50283-7683-d178-7ba9-0971110eb90c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\grc">
+      <UniqueIdentifier>{0a798f0d-7905-d81d-c08f-0ea56f052557}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\lbl">
+      <UniqueIdentifier>{4539e6ff-5a2f-f2c8-56d4-091ef8002c38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\ldr">
+      <UniqueIdentifier>{01e3c4dd-29ef-2753-3376-0e87d3057f84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\lm">
+      <UniqueIdentifier>{1b150845-3f33-d1a4-975b-04061e0ac15e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\mig">
+      <UniqueIdentifier>{0c7c5003-8e8f-df19-17e4-01ab990aa059}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\mii">
+      <UniqueIdentifier>{6ea7d489-e2a2-cba6-7cf7-03c6b20f8d60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\mm">
+      <UniqueIdentifier>{04d38f2a-5341-312b-3bfb-01ddd509257e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\mnpp">
+      <UniqueIdentifier>{d585a933-6877-aadf-df62-0631ec08db3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\ncm">
+      <UniqueIdentifier>{125885af-0433-41b6-a868-0a58820a7e96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\ngc">
+      <UniqueIdentifier>{a3ec6a50-0fe6-3066-946e-0a05d6029cb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\nim">
+      <UniqueIdentifier>{0ac512ef-6258-4be1-4682-004c3d06892e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\npns">
+      <UniqueIdentifier>{a9776fa2-2529-e1d2-dfcd-0d53290827d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\ns">
+      <UniqueIdentifier>{53c27647-4858-4a86-2dad-0f460d0612c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\olsc">
+      <UniqueIdentifier>{29e66eb2-c5d8-759b-2605-0d9ceb09edc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\omm">
+      <UniqueIdentifier>{e255eebe-8b29-7e55-1961-0e0d5b0a7ab2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\os">
+      <UniqueIdentifier>{1f9a8d4f-218b-47b8-1f5c-0633f40154ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\pcie">
+      <UniqueIdentifier>{c846664f-e273-8644-7321-0104f90697ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\pctl">
+      <UniqueIdentifier>{ac2772dc-cfd1-e408-38eb-01379c0bb1c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\pcv">
+      <UniqueIdentifier>{b2c77d94-fb05-4e70-6390-08ead60f37fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\pm">
+      <UniqueIdentifier>{0a822aac-f142-425b-b290-0d3750061e85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\prepo">
+      <UniqueIdentifier>{26a7cce9-9056-6ffd-ea3a-01408f00a2f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\ptm">
+      <UniqueIdentifier>{c65f19c2-78c6-1c2e-2955-046d860d51db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\ro">
+      <UniqueIdentifier>{d8b53ace-a698-bebd-9032-03bdd3095b9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\set">
+      <UniqueIdentifier>{e0f0f3b5-69b5-b865-63f4-0f768800acf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\sm">
+      <UniqueIdentifier>{3a8a7768-bda1-d3f3-95bc-0320c90fe644}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\spl">
+      <UniqueIdentifier>{b12bb526-3585-13e7-ad4b-02aa65006eb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\usb">
+      <UniqueIdentifier>{a5d3c196-215d-b4e1-7001-073f7a0d44ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\vi">
+      <UniqueIdentifier>{958cad81-2061-f85f-e3c9-06cf2d0317da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\am\frontend">
+      <UniqueIdentifier>{40020d36-9fc1-abbe-d556-00402d06bc67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\am\service">
+      <UniqueIdentifier>{6a593b12-9997-e873-6d6c-0a7b510ea93f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\mii\types">
+      <UniqueIdentifier>{8b4f4ec0-efed-0d69-a793-098ccd04f73f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\set\setting_formats">
+      <UniqueIdentifier>{aa5871f7-e6fa-fbc1-7d9c-0e226b0c71ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\arm\dynarmic">
+      <UniqueIdentifier>{d8b68be0-50e6-1ad9-54f2-0a55d3018e61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\file_sys\vfs">
+      <UniqueIdentifier>{12557e41-077b-efa7-aea8-07d1db093580}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\common\logging">
+      <UniqueIdentifier>{9bee9491-d123-9b21-3a0d-0724e70fc0ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\common\fs">
+      <UniqueIdentifier>{6ef2cf2c-47b3-0c3d-380f-0f4332014bc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\common\windows">
+      <UniqueIdentifier>{ae285997-ebd9-728b-7c99-01b5d305cf28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\kernel\init">
+      <UniqueIdentifier>{0ac23067-9b76-422d-8cde-8e5f283fcb19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\kernel\init">
+      <UniqueIdentifier>{87a2cdfa-5a35-4d48-ae49-d45bf2274abf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\kernel\svc">
+      <UniqueIdentifier>{99305bc7-12d7-4b68-881b-ba0f29144a0d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="nxemu-os.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="os_manager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="nxemu-os.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hardware_properties.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\memory.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_timing.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\device_memory.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\cpu_manager.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\guest_memory.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\gpu_dirty_memory_manager.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\device_memory_manager.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\result.h">
+      <Filter>Header Files\core\hle</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\ipc.h">
+      <Filter>Header Files\core\hle</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\kernel.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_auto_object.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_class_token.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_slab_heap.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_client_port.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_synchronization_object.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_scheduler.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_scoped_scheduler_lock_and_sleep.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_thread.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_thread_queue.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\svc_results.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_interrupt_manager.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_process.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\physical_core.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_condition_variable.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_handle_table.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_memory_layout.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_resource_limit.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_system_control.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_worker_task_manager.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\svc.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_typed_address.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\svc_common.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_hardware_timer.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_client_session.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_code_memory.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_event.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_readable_event.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_server_port.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_server_session.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_session.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_shared_memory.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_system_resource.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_transfer_memory.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\global_scheduler_context.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_priority_queue.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_scheduler_lock.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_scoped_lock.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_spin_lock.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\svc_types.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_scoped_resource_reservation.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_hardware_timer_base.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_page_table.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\slab_helpers.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_port.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_page_table_base.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_light_session.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_auto_object_container.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_affinity_mask.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_light_lock.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_light_server_session.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_dynamic_resource_manager.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_memory_block.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_memory_block_manager.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_memory_manager.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_timer_task.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_worker_task.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\code_set.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_dynamic_slab_heap.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_page_group.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\physical_memory.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\memory_types.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_light_client_session.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_session_request.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\initial_process.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_address_arbiter.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_dynamic_page_manager.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_memory_region.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_capabilities.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_page_table_manager.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_process_page_table.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_thread_local_page.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_memory_region_type.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_page_bitmap.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_address_space_info.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_page_table_slab_heap.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_page_heap.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_light_condition_variable.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_page_buffer.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_trace.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\svc_version.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\message_buffer.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_shared_memory_info.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\board\nintendo\nx\k_memory_layout.h">
+      <Filter>Header Files\core\hle\kernel\board\nintendo\nx</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\board\nintendo\nx\k_system_control.h">
+      <Filter>Header Files\core\hle\kernel\board\nintendo\nx</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\hle_ipc.h">
+      <Filter>Header Files\core\hle\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ipc_helpers.h">
+      <Filter>Header Files\core\hle\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\server_manager.h">
+      <Filter>Header Files\core\hle\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\cmif_serialization.h">
+      <Filter>Header Files\core\hle\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\cmif_types.h">
+      <Filter>Header Files\core\hle\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\kernel_helpers.h">
+      <Filter>Header Files\core\hle\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\service.h">
+      <Filter>Header Files\core\hle\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\services.h">
+      <Filter>Header Files\core\hle\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\acc\acc.h">
+      <Filter>Header Files\core\hle\service\acc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\acc\acc_aa.h">
+      <Filter>Header Files\core\hle\service\acc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\acc\acc_su.h">
+      <Filter>Header Files\core\hle\service\acc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\acc\acc_u0.h">
+      <Filter>Header Files\core\hle\service\acc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\acc\acc_u1.h">
+      <Filter>Header Files\core\hle\service\acc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\acc\async_context.h">
+      <Filter>Header Files\core\hle\service\acc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\acc\errors.h">
+      <Filter>Header Files\core\hle\service\acc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\acc\profile_manager.h">
+      <Filter>Header Files\core\hle\service\acc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\am.h">
+      <Filter>Header Files\core\hle\service\am</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\am_results.h">
+      <Filter>Header Files\core\hle\service\am</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\am_types.h">
+      <Filter>Header Files\core\hle\service\am</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\applet.h">
+      <Filter>Header Files\core\hle\service\am</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\applet_data_broker.h">
+      <Filter>Header Files\core\hle\service\am</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\applet_manager.h">
+      <Filter>Header Files\core\hle\service\am</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\applet_message_queue.h">
+      <Filter>Header Files\core\hle\service\am</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\display_layer_manager.h">
+      <Filter>Header Files\core\hle\service\am</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\library_applet_storage.h">
+      <Filter>Header Files\core\hle\service\am</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\process.h">
+      <Filter>Header Files\core\hle\service\am</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\frontend\applets.h">
+      <Filter>Header Files\core\hle\service\am\frontend</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\frontend\applet_cabinet.h">
+      <Filter>Header Files\core\hle\service\am\frontend</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\frontend\applet_controller.h">
+      <Filter>Header Files\core\hle\service\am\frontend</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\frontend\applet_error.h">
+      <Filter>Header Files\core\hle\service\am\frontend</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\frontend\applet_general.h">
+      <Filter>Header Files\core\hle\service\am\frontend</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\frontend\applet_profile_select.h">
+      <Filter>Header Files\core\hle\service\am\frontend</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\frontend\applet_software_keyboard_types.h">
+      <Filter>Header Files\core\hle\service\am\frontend</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\frontend\applet_web_browser_types.h">
+      <Filter>Header Files\core\hle\service\am\frontend</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\all_system_applet_proxies_service.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\applet_common_functions.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\application_accessor.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\application_creator.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\application_functions.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\application_proxy.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\application_proxy_service.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\audio_controller.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\common_state_getter.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\cradle_firmware_updater.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\debug_functions.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\display_controller.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\global_state_controller.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\home_menu_functions.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\library_applet_accessor.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\library_applet_creator.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\library_applet_proxy.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\library_applet_self_accessor.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\lock_accessor.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\process_winding_controller.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\self_controller.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\storage.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\storage_accessor.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\system_applet_proxy.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\am\service\window_controller.h">
+      <Filter>Header Files\core\hle\service\am\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\aoc\addon_content_manager.h">
+      <Filter>Header Files\core\hle\service\aoc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\aoc\purchase_event_manager.h">
+      <Filter>Header Files\core\hle\service\aoc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\apm\apm.h">
+      <Filter>Header Files\core\hle\service\apm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\apm\apm_controller.h">
+      <Filter>Header Files\core\hle\service\apm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\apm\apm_interface.h">
+      <Filter>Header Files\core\hle\service\apm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\bpc\bpc.h">
+      <Filter>Header Files\core\hle\service\bpc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\btdrv\btdrv.h">
+      <Filter>Header Files\core\hle\service\btdrv</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\btm\btm.h">
+      <Filter>Header Files\core\hle\service\btm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\btm\btm_debug.h">
+      <Filter>Header Files\core\hle\service\btm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\btm\btm_system.h">
+      <Filter>Header Files\core\hle\service\btm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\btm\btm_system_core.h">
+      <Filter>Header Files\core\hle\service\btm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\btm\btm_user.h">
+      <Filter>Header Files\core\hle\service\btm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\btm\btm_user_core.h">
+      <Filter>Header Files\core\hle\service\btm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\caps\caps.h">
+      <Filter>Header Files\core\hle\service\caps</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\caps\caps_a.h">
+      <Filter>Header Files\core\hle\service\caps</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\caps\caps_c.h">
+      <Filter>Header Files\core\hle\service\caps</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\caps\caps_manager.h">
+      <Filter>Header Files\core\hle\service\caps</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\caps\caps_result.h">
+      <Filter>Header Files\core\hle\service\caps</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\caps\caps_sc.h">
+      <Filter>Header Files\core\hle\service\caps</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\caps\caps_ss.h">
+      <Filter>Header Files\core\hle\service\caps</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\caps\caps_su.h">
+      <Filter>Header Files\core\hle\service\caps</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\caps\caps_types.h">
+      <Filter>Header Files\core\hle\service\caps</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\caps\caps_u.h">
+      <Filter>Header Files\core\hle\service\caps</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\erpt\erpt.h">
+      <Filter>Header Files\core\hle\service\erpt</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\es\es.h">
+      <Filter>Header Files\core\hle\service\es</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\eupld\eupld.h">
+      <Filter>Header Files\core\hle\service\eupld</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\fatal\fatal.h">
+      <Filter>Header Files\core\hle\service\fatal</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\fatal\fatal_p.h">
+      <Filter>Header Files\core\hle\service\fatal</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\fatal\fatal_u.h">
+      <Filter>Header Files\core\hle\service\fatal</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\fgm\fgm.h">
+      <Filter>Header Files\core\hle\service\fgm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\friend\friend.h">
+      <Filter>Header Files\core\hle\service\friend</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\friend\friend_interface.h">
+      <Filter>Header Files\core\hle\service\friend</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\glue\bgtc.h">
+      <Filter>Header Files\core\hle\service\glue</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\glue\ectx.h">
+      <Filter>Header Files\core\hle\service\glue</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\glue\errors.h">
+      <Filter>Header Files\core\hle\service\glue</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\glue\glue.h">
+      <Filter>Header Files\core\hle\service\glue</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\glue\glue_manager.h">
+      <Filter>Header Files\core\hle\service\glue</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\glue\notif.h">
+      <Filter>Header Files\core\hle\service\glue</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\grc\grc.h">
+      <Filter>Header Files\core\hle\service\grc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\lbl\lbl.h">
+      <Filter>Header Files\core\hle\service\lbl</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ldr\ldr.h">
+      <Filter>Header Files\core\hle\service\ldr</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\lm\lm.h">
+      <Filter>Header Files\core\hle\service\lm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\mig\mig.h">
+      <Filter>Header Files\core\hle\service\mig</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\mii\mii.h">
+      <Filter>Header Files\core\hle\service\mii</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\mii\mii_database.h">
+      <Filter>Header Files\core\hle\service\mii</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\mii\mii_database_manager.h">
+      <Filter>Header Files\core\hle\service\mii</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\mii\mii_manager.h">
+      <Filter>Header Files\core\hle\service\mii</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\mii\mii_result.h">
+      <Filter>Header Files\core\hle\service\mii</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\mii\mii_types.h">
+      <Filter>Header Files\core\hle\service\mii</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\mii\mii_util.h">
+      <Filter>Header Files\core\hle\service\mii</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\mii\types\char_info.h">
+      <Filter>Header Files\core\hle\service\mii\types</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\mii\types\core_data.h">
+      <Filter>Header Files\core\hle\service\mii\types</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\mii\types\raw_data.h">
+      <Filter>Header Files\core\hle\service\mii\types</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\mii\types\store_data.h">
+      <Filter>Header Files\core\hle\service\mii\types</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\mii\types\ver3_store_data.h">
+      <Filter>Header Files\core\hle\service\mii\types</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\mm\mm_u.h">
+      <Filter>Header Files\core\hle\service\mm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\mnpp\mnpp_app.h">
+      <Filter>Header Files\core\hle\service\mnpp</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ncm\ncm.h">
+      <Filter>Header Files\core\hle\service\ncm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ngc\ngc.h">
+      <Filter>Header Files\core\hle\service\ngc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nim\nim.h">
+      <Filter>Header Files\core\hle\service\nim</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\npns\npns.h">
+      <Filter>Header Files\core\hle\service\npns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ns\account_proxy_interface.h">
+      <Filter>Header Files\core\hle\service\ns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ns\application_manager_interface.h">
+      <Filter>Header Files\core\hle\service\ns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ns\application_version_interface.h">
+      <Filter>Header Files\core\hle\service\ns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ns\content_management_interface.h">
+      <Filter>Header Files\core\hle\service\ns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ns\develop_interface.h">
+      <Filter>Header Files\core\hle\service\ns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ns\document_interface.h">
+      <Filter>Header Files\core\hle\service\ns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ns\download_task_interface.h">
+      <Filter>Header Files\core\hle\service\ns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ns\dynamic_rights_interface.h">
+      <Filter>Header Files\core\hle\service\ns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ns\ecommerce_interface.h">
+      <Filter>Header Files\core\hle\service\ns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ns\factory_reset_interface.h">
+      <Filter>Header Files\core\hle\service\ns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ns\language.h">
+      <Filter>Header Files\core\hle\service\ns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ns\ns.h">
+      <Filter>Header Files\core\hle\service\ns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ns\ns_results.h">
+      <Filter>Header Files\core\hle\service\ns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ns\ns_types.h">
+      <Filter>Header Files\core\hle\service\ns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ns\platform_service_manager.h">
+      <Filter>Header Files\core\hle\service\ns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ns\query_service.h">
+      <Filter>Header Files\core\hle\service\ns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ns\read_only_application_control_data_interface.h">
+      <Filter>Header Files\core\hle\service\ns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ns\read_only_application_record_interface.h">
+      <Filter>Header Files\core\hle\service\ns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ns\service_getter_interface.h">
+      <Filter>Header Files\core\hle\service\ns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ns\system_update_control.h">
+      <Filter>Header Files\core\hle\service\ns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ns\system_update_interface.h">
+      <Filter>Header Files\core\hle\service\ns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ns\vulnerability_manager_interface.h">
+      <Filter>Header Files\core\hle\service\ns</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\olsc\daemon_controller.h">
+      <Filter>Header Files\core\hle\service\olsc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\olsc\native_handle_holder.h">
+      <Filter>Header Files\core\hle\service\olsc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\olsc\olsc.h">
+      <Filter>Header Files\core\hle\service\olsc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\olsc\olsc_service_for_application.h">
+      <Filter>Header Files\core\hle\service\olsc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\olsc\olsc_service_for_system_service.h">
+      <Filter>Header Files\core\hle\service\olsc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\olsc\remote_storage_controller.h">
+      <Filter>Header Files\core\hle\service\olsc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\olsc\transfer_task_list_controller.h">
+      <Filter>Header Files\core\hle\service\olsc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\omm\omm.h">
+      <Filter>Header Files\core\hle\service\omm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\omm\operation_mode_manager.h">
+      <Filter>Header Files\core\hle\service\omm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\omm\policy_manager_system.h">
+      <Filter>Header Files\core\hle\service\omm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\omm\power_state_interface.h">
+      <Filter>Header Files\core\hle\service\omm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\os\event.h">
+      <Filter>Header Files\core\hle\service\os</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\os\multi_wait.h">
+      <Filter>Header Files\core\hle\service\os</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\os\multi_wait_holder.h">
+      <Filter>Header Files\core\hle\service\os</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\os\multi_wait_utils.h">
+      <Filter>Header Files\core\hle\service\os</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\os\mutex.h">
+      <Filter>Header Files\core\hle\service\os</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\pcie\pcie.h">
+      <Filter>Header Files\core\hle\service\pcie</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\pctl\parental_control_service.h">
+      <Filter>Header Files\core\hle\service\pctl</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\pctl\parental_control_service_factory.h">
+      <Filter>Header Files\core\hle\service\pctl</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\pctl\pctl.h">
+      <Filter>Header Files\core\hle\service\pctl</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\pctl\pctl_results.h">
+      <Filter>Header Files\core\hle\service\pctl</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\pctl\pctl_types.h">
+      <Filter>Header Files\core\hle\service\pctl</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\pcv\pcv.h">
+      <Filter>Header Files\core\hle\service\pcv</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\pm\pm.h">
+      <Filter>Header Files\core\hle\service\pm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\prepo\prepo.h">
+      <Filter>Header Files\core\hle\service\prepo</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ptm\psm.h">
+      <Filter>Header Files\core\hle\service\ptm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ptm\ptm.h">
+      <Filter>Header Files\core\hle\service\ptm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ptm\ts.h">
+      <Filter>Header Files\core\hle\service\ptm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ro\ro.h">
+      <Filter>Header Files\core\hle\service\ro</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ro\ro_nro_utils.h">
+      <Filter>Header Files\core\hle\service\ro</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ro\ro_results.h">
+      <Filter>Header Files\core\hle\service\ro</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ro\ro_types.h">
+      <Filter>Header Files\core\hle\service\ro</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\set\factory_settings_server.h">
+      <Filter>Header Files\core\hle\service\set</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\set\firmware_debug_settings_server.h">
+      <Filter>Header Files\core\hle\service\set</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\set\key_code_map.h">
+      <Filter>Header Files\core\hle\service\set</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\set\settings.h">
+      <Filter>Header Files\core\hle\service\set</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\set\settings_server.h">
+      <Filter>Header Files\core\hle\service\set</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\set\settings_types.h">
+      <Filter>Header Files\core\hle\service\set</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\set\system_settings_server.h">
+      <Filter>Header Files\core\hle\service\set</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\set\setting_formats\appln_settings.h">
+      <Filter>Header Files\core\hle\service\set\setting_formats</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\set\setting_formats\device_settings.h">
+      <Filter>Header Files\core\hle\service\set\setting_formats</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\set\setting_formats\private_settings.h">
+      <Filter>Header Files\core\hle\service\set\setting_formats</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\set\setting_formats\system_settings.h">
+      <Filter>Header Files\core\hle\service\set\setting_formats</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\sm\sm.h">
+      <Filter>Header Files\core\hle\service\sm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\sm\sm_controller.h">
+      <Filter>Header Files\core\hle\service\sm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\spl\csrng.h">
+      <Filter>Header Files\core\hle\service\spl</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\spl\spl.h">
+      <Filter>Header Files\core\hle\service\spl</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\spl\spl_module.h">
+      <Filter>Header Files\core\hle\service\spl</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\spl\spl_results.h">
+      <Filter>Header Files\core\hle\service\spl</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\spl\spl_types.h">
+      <Filter>Header Files\core\hle\service\spl</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\usb\usb.h">
+      <Filter>Header Files\core\hle\service\usb</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\vi\application_display_service.h">
+      <Filter>Header Files\core\hle\service\vi</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\vi\application_root_service.h">
+      <Filter>Header Files\core\hle\service\vi</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\vi\conductor.h">
+      <Filter>Header Files\core\hle\service\vi</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\vi\container.h">
+      <Filter>Header Files\core\hle\service\vi</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\vi\display.h">
+      <Filter>Header Files\core\hle\service\vi</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\vi\display_list.h">
+      <Filter>Header Files\core\hle\service\vi</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\vi\layer.h">
+      <Filter>Header Files\core\hle\service\vi</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\vi\layer_list.h">
+      <Filter>Header Files\core\hle\service\vi</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\vi\manager_display_service.h">
+      <Filter>Header Files\core\hle\service\vi</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\vi\manager_root_service.h">
+      <Filter>Header Files\core\hle\service\vi</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\vi\service_creator.h">
+      <Filter>Header Files\core\hle\service\vi</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\vi\shared_buffer_manager.h">
+      <Filter>Header Files\core\hle\service\vi</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\vi\system_display_service.h">
+      <Filter>Header Files\core\hle\service\vi</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\vi\system_root_service.h">
+      <Filter>Header Files\core\hle\service\vi</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\vi\vi.h">
+      <Filter>Header Files\core\hle\service\vi</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\vi\vi_results.h">
+      <Filter>Header Files\core\hle\service\vi</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\vi\vi_types.h">
+      <Filter>Header Files\core\hle\service\vi</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\vi\vsync_manager.h">
+      <Filter>Header Files\core\hle\service\vi</Filter>
+    </ClInclude>
+    <ClInclude Include="core\arm\arm_interface.h">
+      <Filter>Header Files\core\arm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\arm\exclusive_monitor.h">
+      <Filter>Header Files\core\arm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\program_metadata.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\vfs\vfs_types.h">
+      <Filter>Header Files\core\file_sys\vfs</Filter>
+    </ClInclude>
+    <ClInclude Include="core\debugger\debugger.h">
+      <Filter>Header Files\core\debugger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\loader\loader.h">
+      <Filter>Header Files\core\loader</Filter>
+    </ClInclude>
+    <ClInclude Include="common\polyfill_thread.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\bit_util.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\common_types.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\assert.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\common_funcs.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\atomic_ops.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\scope_exit.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\spin_lock.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\settings.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\settings_common.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\settings_enums.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\settings_input.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\settings_setting.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\string_util.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\scratch_buffer.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\literals.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\bounded_threadsafe_queue.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\bit_field.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\expected.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\fiber.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\virtual_buffer.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\concepts.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\polyfill_ranges.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\time_zone.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\microprofile.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yuzu_thread.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\wall_clock.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\swap.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\error.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\steady_clock.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\bit_set.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\typed_address.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\alignment.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\intrusive_list.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\intrusive_red_black_tree.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\overflow.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\make_unique_for_overwrite.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\heap_tracker.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\page_table.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\host_memory.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\parent_of_member.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\tree.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\free_region_manager.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yuzu_dynamic_library.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\tiny_mt.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\bit_cast.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\unique_function.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\thread_worker.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\range_mutex.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\logging\log.h">
+      <Filter>Header Files\common\logging</Filter>
+    </ClInclude>
+    <ClInclude Include="common\logging\formatter.h">
+      <Filter>Header Files\common\logging</Filter>
+    </ClInclude>
+    <ClInclude Include="common\logging\types.h">
+      <Filter>Header Files\common\logging</Filter>
+    </ClInclude>
+    <ClInclude Include="common\logging\backend.h">
+      <Filter>Header Files\common\logging</Filter>
+    </ClInclude>
+    <ClInclude Include="common\logging\filter.h">
+      <Filter>Header Files\common\logging</Filter>
+    </ClInclude>
+    <ClInclude Include="common\logging\log_entry.h">
+      <Filter>Header Files\common\logging</Filter>
+    </ClInclude>
+    <ClInclude Include="common\logging\text_formatter.h">
+      <Filter>Header Files\common\logging</Filter>
+    </ClInclude>
+    <ClInclude Include="common\fs\file.h">
+      <Filter>Header Files\common\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="common\fs\fs.h">
+      <Filter>Header Files\common\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="common\fs\fs_paths.h">
+      <Filter>Header Files\common\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="common\fs\path_util.h">
+      <Filter>Header Files\common\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="common\fs\fs_util.h">
+      <Filter>Header Files\common\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="common\fs\fs_types.h">
+      <Filter>Header Files\common\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="common\windows\timer_resolution.h">
+      <Filter>Header Files\common\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="common\div_ceil.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\hex_util.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\math_util.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\uuid.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_object_name.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\control_metadata.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fs_filesystem.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\common_funcs.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\content_archive.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\nca_metadata.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\registered_cache.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="common\vector_math.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="core\constants.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="common\address_space.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\api_version.h">
+      <Filter>Header Files\core\hle</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\init\init_slab_setup.h">
+      <Filter>Header Files\core\hle\kernel\init</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_debug.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_device_address_space.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\k_event_info.h">
+      <Filter>Header Files\core\hle\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\kernel\board\nintendo\nx\secure_monitor.h">
+      <Filter>Header Files\core\hle\kernel\board\nintendo\nx</Filter>
+    </ClInclude>
+    <ClInclude Include="core\arm\dynarmic\arm_dynarmic.h">
+      <Filter>Header Files\core\arm\dynarmic</Filter>
+    </ClInclude>
+    <ClInclude Include="core\arm\dynarmic\dynarmic_exclusive_monitor.h">
+      <Filter>Header Files\core\arm\dynarmic</Filter>
+    </ClInclude>
+    <ClInclude Include="core\arm\cpu_module.h">
+      <Filter>Header Files\core\arm</Filter>
+    </ClInclude>
     <ClInclude Include="os_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -31,5 +1622,1114 @@
     <None Include="version.h.in">
       <Filter>Resource Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="nxemu-os.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_timing.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\device_memory.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\cpu_manager.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\memory.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\constants.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_auto_object.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_class_token.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_client_port.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_synchronization_object.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_scheduler.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_thread.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_thread_queue.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_interrupt_manager.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_condition_variable.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_handle_table.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_memory_layout.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_resource_limit.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_worker_task_manager.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_hardware_timer.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_client_session.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_code_memory.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_event.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_readable_event.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_server_port.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_server_session.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_session.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_shared_memory.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_system_resource.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_transfer_memory.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\global_scheduler_context.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_spin_lock.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_port.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_page_table_base.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_light_session.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_auto_object_container.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_light_lock.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_light_server_session.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_memory_block_manager.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_memory_manager.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\code_set.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_page_group.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_light_client_session.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_session_request.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_address_arbiter.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_capabilities.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_thread_local_page.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_address_space_info.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_page_heap.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_light_condition_variable.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_page_buffer.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_object_name.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\kernel.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_device_address_space.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\physical_core.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\k_process.cpp">
+      <Filter>Source Files\core\hle\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\board\nintendo\nx\k_memory_layout_nx.cpp">
+      <Filter>Source Files\core\hle\kernel\board\nintendo\nx</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\board\nintendo\nx\k_system_control.cpp">
+      <Filter>Source Files\core\hle\kernel\board\nintendo\nx</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\init\init_slab_setup.cpp">
+      <Filter>Source Files\core\hle\kernel\init</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_thread.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_activity.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_address_arbiter.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_address_translation.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_cache.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_code_memory.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_condition_variable.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_debug.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_debug_string.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_device_address_space.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_event.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_info.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_insecure_memory.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_interrupt_event.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_io_pool.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_ipc.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_kernel_debug.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_light_ipc.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_lock.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_memory.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_physical_memory.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_port.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_power_management.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_process.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_processor.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_process_memory.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_query_memory.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_register.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_resource_limit.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_secure_monitor_call.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_session.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_shared_memory.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_synchronization.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_thread_profiler.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_tick.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_transfer_memory.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\kernel\svc\svc_exception.cpp">
+      <Filter>Source Files\core\hle\kernel\svc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\hle_ipc.cpp">
+      <Filter>Source Files\core\hle\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\kernel_helpers.cpp">
+      <Filter>Source Files\core\hle\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\server_manager.cpp">
+      <Filter>Source Files\core\hle\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\service.cpp">
+      <Filter>Source Files\core\hle\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\services.cpp">
+      <Filter>Source Files\core\hle\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\acc\acc_aa.cpp">
+      <Filter>Source Files\core\hle\service\acc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\acc\acc_su.cpp">
+      <Filter>Source Files\core\hle\service\acc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\acc\acc_u1.cpp">
+      <Filter>Source Files\core\hle\service\acc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\acc\async_context.cpp">
+      <Filter>Source Files\core\hle\service\acc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\acc\profile_manager.cpp">
+      <Filter>Source Files\core\hle\service\acc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\acc\acc_u0.cpp">
+      <Filter>Source Files\core\hle\service\acc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\acc\acc.cpp">
+      <Filter>Source Files\core\hle\service\acc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\am.cpp">
+      <Filter>Source Files\core\hle\service\am</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\applet_data_broker.cpp">
+      <Filter>Source Files\core\hle\service\am</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\applet_message_queue.cpp">
+      <Filter>Source Files\core\hle\service\am</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\display_layer_manager.cpp">
+      <Filter>Source Files\core\hle\service\am</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\library_applet_storage.cpp">
+      <Filter>Source Files\core\hle\service\am</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\applet_manager.cpp">
+      <Filter>Source Files\core\hle\service\am</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\process.cpp">
+      <Filter>Source Files\core\hle\service\am</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\applet.cpp">
+      <Filter>Source Files\core\hle\service\am</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\frontend\applet_profile_select.cpp">
+      <Filter>Source Files\core\hle\service\am\frontend</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\frontend\applet_general.cpp">
+      <Filter>Source Files\core\hle\service\am\frontend</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\frontend\applet_cabinet.cpp">
+      <Filter>Source Files\core\hle\service\am\frontend</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\frontend\applets.cpp">
+      <Filter>Source Files\core\hle\service\am\frontend</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\frontend\applet_controller.cpp">
+      <Filter>Source Files\core\hle\service\am\frontend</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\frontend\applet_error.cpp">
+      <Filter>Source Files\core\hle\service\am\frontend</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\all_system_applet_proxies_service.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\applet_common_functions.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\application_accessor.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\application_creator.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\application_proxy.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\application_proxy_service.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\audio_controller_am.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\common_state_getter.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\cradle_firmware_updater.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\debug_functions.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\display_controller.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\global_state_controller.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\home_menu_functions.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\library_applet_accessor.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\library_applet_proxy.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\lock_accessor.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\process_winding_controller.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\storage.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\storage_accessor.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\system_applet_proxy.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\library_applet_creator.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\window_controller.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\self_controller.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\application_functions.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\service\library_applet_self_accessor.cpp">
+      <Filter>Source Files\core\hle\service\am\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\aoc\purchase_event_manager.cpp">
+      <Filter>Source Files\core\hle\service\aoc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\aoc\addon_content_manager.cpp">
+      <Filter>Source Files\core\hle\service\aoc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\apm\apm.cpp">
+      <Filter>Source Files\core\hle\service\apm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\apm\apm_controller.cpp">
+      <Filter>Source Files\core\hle\service\apm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\apm\apm_interface.cpp">
+      <Filter>Source Files\core\hle\service\apm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\bpc\bpc.cpp">
+      <Filter>Source Files\core\hle\service\bpc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\btdrv\btdrv.cpp">
+      <Filter>Source Files\core\hle\service\btdrv</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\btm\btm.cpp">
+      <Filter>Source Files\core\hle\service\btm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\btm\btm_debug.cpp">
+      <Filter>Source Files\core\hle\service\btm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\btm\btm_system.cpp">
+      <Filter>Source Files\core\hle\service\btm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\btm\btm_system_core.cpp">
+      <Filter>Source Files\core\hle\service\btm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\btm\btm_user.cpp">
+      <Filter>Source Files\core\hle\service\btm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\btm\btm_user_core.cpp">
+      <Filter>Source Files\core\hle\service\btm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\caps\caps.cpp">
+      <Filter>Source Files\core\hle\service\caps</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\caps\caps_a.cpp">
+      <Filter>Source Files\core\hle\service\caps</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\caps\caps_c.cpp">
+      <Filter>Source Files\core\hle\service\caps</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\caps\caps_sc.cpp">
+      <Filter>Source Files\core\hle\service\caps</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\caps\caps_ss.cpp">
+      <Filter>Source Files\core\hle\service\caps</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\caps\caps_u.cpp">
+      <Filter>Source Files\core\hle\service\caps</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\caps\caps_su.cpp">
+      <Filter>Source Files\core\hle\service\caps</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\caps\caps_manager.cpp">
+      <Filter>Source Files\core\hle\service\caps</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\erpt\erpt.cpp">
+      <Filter>Source Files\core\hle\service\erpt</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\es\es.cpp">
+      <Filter>Source Files\core\hle\service\es</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\eupld\eupld.cpp">
+      <Filter>Source Files\core\hle\service\eupld</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\fatal\fatal_p.cpp">
+      <Filter>Source Files\core\hle\service\fatal</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\fatal\fatal_u.cpp">
+      <Filter>Source Files\core\hle\service\fatal</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\fatal\fatal.cpp">
+      <Filter>Source Files\core\hle\service\fatal</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\fgm\fgm.cpp">
+      <Filter>Source Files\core\hle\service\fgm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\friend\friend.cpp">
+      <Filter>Source Files\core\hle\service\friend</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\friend\friend_interface.cpp">
+      <Filter>Source Files\core\hle\service\friend</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\glue\bgtc.cpp">
+      <Filter>Source Files\core\hle\service\glue</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\glue\ectx.cpp">
+      <Filter>Source Files\core\hle\service\glue</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\glue\notif.cpp">
+      <Filter>Source Files\core\hle\service\glue</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\glue\glue_manager.cpp">
+      <Filter>Source Files\core\hle\service\glue</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\glue\glue.cpp">
+      <Filter>Source Files\core\hle\service\glue</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\grc\grc.cpp">
+      <Filter>Source Files\core\hle\service\grc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\lbl\lbl.cpp">
+      <Filter>Source Files\core\hle\service\lbl</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ldr\ldr.cpp">
+      <Filter>Source Files\core\hle\service\ldr</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\lm\lm.cpp">
+      <Filter>Source Files\core\hle\service\lm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\mig\mig.cpp">
+      <Filter>Source Files\core\hle\service\mig</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\mii\mii.cpp">
+      <Filter>Source Files\core\hle\service\mii</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\mii\mii_database.cpp">
+      <Filter>Source Files\core\hle\service\mii</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\mii\mii_database_manager.cpp">
+      <Filter>Source Files\core\hle\service\mii</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\mii\mii_manager.cpp">
+      <Filter>Source Files\core\hle\service\mii</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\mii\types\char_info.cpp">
+      <Filter>Source Files\core\hle\service\mii\types</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\mii\types\core_data.cpp">
+      <Filter>Source Files\core\hle\service\mii\types</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\mii\types\raw_data.cpp">
+      <Filter>Source Files\core\hle\service\mii\types</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\mii\types\store_data.cpp">
+      <Filter>Source Files\core\hle\service\mii\types</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\mii\types\ver3_store_data.cpp">
+      <Filter>Source Files\core\hle\service\mii\types</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\mm\mm_u.cpp">
+      <Filter>Source Files\core\hle\service\mm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\mnpp\mnpp_app.cpp">
+      <Filter>Source Files\core\hle\service\mnpp</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ncm\ncm.cpp">
+      <Filter>Source Files\core\hle\service\ncm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ngc\ngc.cpp">
+      <Filter>Source Files\core\hle\service\ngc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nim\nim.cpp">
+      <Filter>Source Files\core\hle\service\nim</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\npns\npns.cpp">
+      <Filter>Source Files\core\hle\service\npns</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ns\account_proxy_interface.cpp">
+      <Filter>Source Files\core\hle\service\ns</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ns\application_version_interface.cpp">
+      <Filter>Source Files\core\hle\service\ns</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ns\develop_interface.cpp">
+      <Filter>Source Files\core\hle\service\ns</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ns\document_interface.cpp">
+      <Filter>Source Files\core\hle\service\ns</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ns\download_task_interface.cpp">
+      <Filter>Source Files\core\hle\service\ns</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ns\dynamic_rights_interface.cpp">
+      <Filter>Source Files\core\hle\service\ns</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ns\ecommerce_interface.cpp">
+      <Filter>Source Files\core\hle\service\ns</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ns\factory_reset_interface.cpp">
+      <Filter>Source Files\core\hle\service\ns</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ns\language.cpp">
+      <Filter>Source Files\core\hle\service\ns</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ns\ns.cpp">
+      <Filter>Source Files\core\hle\service\ns</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ns\query_service.cpp">
+      <Filter>Source Files\core\hle\service\ns</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ns\read_only_application_record_interface.cpp">
+      <Filter>Source Files\core\hle\service\ns</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ns\service_getter_interface.cpp">
+      <Filter>Source Files\core\hle\service\ns</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ns\system_update_control.cpp">
+      <Filter>Source Files\core\hle\service\ns</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ns\system_update_interface.cpp">
+      <Filter>Source Files\core\hle\service\ns</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ns\vulnerability_manager_interface.cpp">
+      <Filter>Source Files\core\hle\service\ns</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ns\content_management_interface.cpp">
+      <Filter>Source Files\core\hle\service\ns</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ns\read_only_application_control_data_interface.cpp">
+      <Filter>Source Files\core\hle\service\ns</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ns\application_manager_interface.cpp">
+      <Filter>Source Files\core\hle\service\ns</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ns\platform_service_manager.cpp">
+      <Filter>Source Files\core\hle\service\ns</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\olsc\daemon_controller.cpp">
+      <Filter>Source Files\core\hle\service\olsc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\olsc\native_handle_holder.cpp">
+      <Filter>Source Files\core\hle\service\olsc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\olsc\olsc.cpp">
+      <Filter>Source Files\core\hle\service\olsc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\olsc\olsc_service_for_application.cpp">
+      <Filter>Source Files\core\hle\service\olsc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\olsc\olsc_service_for_system_service.cpp">
+      <Filter>Source Files\core\hle\service\olsc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\olsc\remote_storage_controller.cpp">
+      <Filter>Source Files\core\hle\service\olsc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\olsc\transfer_task_list_controller.cpp">
+      <Filter>Source Files\core\hle\service\olsc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\omm\omm.cpp">
+      <Filter>Source Files\core\hle\service\omm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\omm\operation_mode_manager.cpp">
+      <Filter>Source Files\core\hle\service\omm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\omm\policy_manager_system.cpp">
+      <Filter>Source Files\core\hle\service\omm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\omm\power_state_interface.cpp">
+      <Filter>Source Files\core\hle\service\omm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\os\event.cpp">
+      <Filter>Source Files\core\hle\service\os</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\os\multi_wait.cpp">
+      <Filter>Source Files\core\hle\service\os</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\os\multi_wait_holder.cpp">
+      <Filter>Source Files\core\hle\service\os</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\os\mutex.cpp">
+      <Filter>Source Files\core\hle\service\os</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\pcie\pcie.cpp">
+      <Filter>Source Files\core\hle\service\pcie</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\pctl\parental_control_service_factory.cpp">
+      <Filter>Source Files\core\hle\service\pctl</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\pctl\pctl.cpp">
+      <Filter>Source Files\core\hle\service\pctl</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\pctl\parental_control_service.cpp">
+      <Filter>Source Files\core\hle\service\pctl</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\pcv\pcv.cpp">
+      <Filter>Source Files\core\hle\service\pcv</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\pm\pm.cpp">
+      <Filter>Source Files\core\hle\service\pm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\prepo\prepo.cpp">
+      <Filter>Source Files\core\hle\service\prepo</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ptm\psm.cpp">
+      <Filter>Source Files\core\hle\service\ptm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ptm\ptm.cpp">
+      <Filter>Source Files\core\hle\service\ptm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ptm\ts.cpp">
+      <Filter>Source Files\core\hle\service\ptm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ro\ro_nro_utils.cpp">
+      <Filter>Source Files\core\hle\service\ro</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ro\ro.cpp">
+      <Filter>Source Files\core\hle\service\ro</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\set\factory_settings_server.cpp">
+      <Filter>Source Files\core\hle\service\set</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\set\firmware_debug_settings_server.cpp">
+      <Filter>Source Files\core\hle\service\set</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\set\settings_server.cpp">
+      <Filter>Source Files\core\hle\service\set</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\set\settings_set.cpp">
+      <Filter>Source Files\core\hle\service\set</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\set\system_settings_server.cpp">
+      <Filter>Source Files\core\hle\service\set</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\set\setting_formats\appln_settings.cpp">
+      <Filter>Source Files\core\hle\service\set\setting_formats</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\set\setting_formats\device_settings.cpp">
+      <Filter>Source Files\core\hle\service\set\setting_formats</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\set\setting_formats\private_settings.cpp">
+      <Filter>Source Files\core\hle\service\set\setting_formats</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\set\setting_formats\system_settings.cpp">
+      <Filter>Source Files\core\hle\service\set\setting_formats</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\sm\sm.cpp">
+      <Filter>Source Files\core\hle\service\sm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\sm\sm_controller.cpp">
+      <Filter>Source Files\core\hle\service\sm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\spl\csrng.cpp">
+      <Filter>Source Files\core\hle\service\spl</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\spl\spl.cpp">
+      <Filter>Source Files\core\hle\service\spl</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\spl\spl_module.cpp">
+      <Filter>Source Files\core\hle\service\spl</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\usb\usb.cpp">
+      <Filter>Source Files\core\hle\service\usb</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\application_root_service.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\manager_display_service.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\service_creator.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\system_root_service.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\vi.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\vsync_manager.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\manager_root_service.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\container.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\shared_buffer_manager.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\application_display_service.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\system_display_service.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\conductor.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\program_metadata.cpp">
+      <Filter>Source Files\core\file_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\nca_metadata.cpp">
+      <Filter>Source Files\core\file_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="common\assert.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\spin_lock.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\settings.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\settings_common.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\settings_input.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\string_util.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\fiber.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\virtual_buffer.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\time_zone.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\microprofile.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\wall_clock.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\error.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\steady_clock.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\heap_tracker.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\page_table.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\yuzu_dynamic_library.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\host_memory.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\yuzu_thread.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\uuid.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\hex_util.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\address_space.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\logging\filter.cpp">
+      <Filter>Source Files\common\logging</Filter>
+    </ClCompile>
+    <ClCompile Include="common\logging\text_formatter.cpp">
+      <Filter>Source Files\common\logging</Filter>
+    </ClCompile>
+    <ClCompile Include="common\logging\backend.cpp">
+      <Filter>Source Files\common\logging</Filter>
+    </ClCompile>
+    <ClCompile Include="common\fs\file.cpp">
+      <Filter>Source Files\common\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="common\fs\fs.cpp">
+      <Filter>Source Files\common\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="common\fs\path_util.cpp">
+      <Filter>Source Files\common\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="common\fs\fs_util.cpp">
+      <Filter>Source Files\common\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="common\windows\timer_resolution.cpp">
+      <Filter>Source Files\common\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ptm\psm.cpp">
+      <Filter>Source Files\core\hle\service\ptm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ptm\ptm.cpp">
+      <Filter>Source Files\core\hle\service\ptm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ptm\ts.cpp">
+      <Filter>Source Files\core\hle\service\ptm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ro\ro.cpp">
+      <Filter>Source Files\core\hle\service\ro</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ro\ro_nro_utils.cpp">
+      <Filter>Source Files\core\hle\service\ro</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\set\factory_settings_server.cpp">
+      <Filter>Source Files\core\hle\service\set</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\set\firmware_debug_settings_server.cpp">
+      <Filter>Source Files\core\hle\service\set</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\set\settings_server.cpp">
+      <Filter>Source Files\core\hle\service\set</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\set\system_settings_server.cpp">
+      <Filter>Source Files\core\hle\service\set</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\set\setting_formats\appln_settings.cpp">
+      <Filter>Source Files\core\hle\service\set\setting_formats</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\set\setting_formats\device_settings.cpp">
+      <Filter>Source Files\core\hle\service\set\setting_formats</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\set\setting_formats\private_settings.cpp">
+      <Filter>Source Files\core\hle\service\set\setting_formats</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\set\setting_formats\system_settings.cpp">
+      <Filter>Source Files\core\hle\service\set\setting_formats</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\sm\sm.cpp">
+      <Filter>Source Files\core\hle\service\sm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\sm\sm_controller.cpp">
+      <Filter>Source Files\core\hle\service\sm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\spl\csrng.cpp">
+      <Filter>Source Files\core\hle\service\spl</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\spl\spl.cpp">
+      <Filter>Source Files\core\hle\service\spl</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\spl\spl_module.cpp">
+      <Filter>Source Files\core\hle\service\spl</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\usb\usb.cpp">
+      <Filter>Source Files\core\hle\service\usb</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\application_display_service.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\application_root_service.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\conductor.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\container.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\manager_display_service.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\manager_root_service.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\service_creator.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\shared_buffer_manager.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\system_display_service.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\system_root_service.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\vi.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\vi\vsync_manager.cpp">
+      <Filter>Source Files\core\hle\service\vi</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\program_metadata.cpp">
+      <Filter>Source Files\core\file_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="common\assert.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\spin_lock.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\settings.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\settings_common.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\settings_input.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\string_util.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\fiber.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\virtual_buffer.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\time_zone.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\microprofile.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\wall_clock.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\error.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\steady_clock.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\heap_tracker.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\page_table.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\yuzu_dynamic_library.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\host_memory.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\yuzu_thread.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\logging\filter.cpp">
+      <Filter>Source Files\common\logging</Filter>
+    </ClCompile>
+    <ClCompile Include="common\logging\text_formatter.cpp">
+      <Filter>Source Files\common\logging</Filter>
+    </ClCompile>
+    <ClCompile Include="common\logging\backend.cpp">
+      <Filter>Source Files\common\logging</Filter>
+    </ClCompile>
+    <ClCompile Include="common\fs\file.cpp">
+      <Filter>Source Files\common\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="common\fs\fs.cpp">
+      <Filter>Source Files\common\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="common\fs\path_util.cpp">
+      <Filter>Source Files\common\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="common\fs\fs_util.cpp">
+      <Filter>Source Files\common\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="common\windows\timer_resolution.cpp">
+      <Filter>Source Files\common\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="core\arm\cpu_module.cpp">
+      <Filter>Source Files\core\arm</Filter>
+    </ClCompile>
+    <ClCompile Include="os_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

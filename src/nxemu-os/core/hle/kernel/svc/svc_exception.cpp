@@ -8,7 +8,6 @@
 #include "core/hle/kernel/svc.h"
 #include "core/hle/kernel/svc_types.h"
 #include "core/memory.h"
-#include "core/reporter.h"
 
 namespace Kernel::Svc {
 
@@ -90,10 +89,7 @@ void Break(Core::System& system, BreakReason reason, u64 info1, u64 info2) {
         handle_debug_buffer(info1, info2);
         break;
     }
-
-    system.GetReporter().SaveSvcBreakReport(
-        static_cast<u32>(reason), notification_only, info1, info2,
-        has_dumped_buffer ? std::make_optional(debug_buffer) : std::nullopt);
+    UNIMPLEMENTED();
 
     if (!notification_only) {
         LOG_CRITICAL(
@@ -111,7 +107,7 @@ void Break(Core::System& system, BreakReason reason, u64 info1, u64 info2) {
 
     if (system.DebuggerEnabled() && should_break) {
         auto* thread = system.Kernel().GetCurrentEmuThread();
-        system.GetDebugger().NotifyThreadStopped(thread);
+        UNIMPLEMENTED();
         thread->RequestSuspend(Kernel::SuspendType::Debug);
     }
 }

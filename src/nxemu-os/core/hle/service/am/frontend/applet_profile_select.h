@@ -114,8 +114,7 @@ static_assert(sizeof(UiReturnArg) == 0x18, "UiReturnArg has incorrect size.");
 class ProfileSelect final : public FrontendApplet {
 public:
     explicit ProfileSelect(Core::System& system_, std::shared_ptr<Applet> applet_,
-                           LibraryAppletMode applet_mode_,
-                           const Core::Frontend::ProfileSelectApplet& frontend_);
+                           LibraryAppletMode applet_mode_);
     ~ProfileSelect() override;
 
     void Initialize() override;
@@ -128,7 +127,6 @@ public:
     void SelectionComplete(std::optional<Common::UUID> uuid);
 
 private:
-    const Core::Frontend::ProfileSelectApplet& frontend;
 
     UiSettings config;
     UiSettingsV1 config_old;

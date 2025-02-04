@@ -5,13 +5,11 @@
 #include "common/hex_util.h"
 #include "common/logging/log.h"
 #include "core/core.h"
-#include "core/frontend/applets/general.h"
 #include "core/hle/result.h"
 #include "core/hle/service/am/am.h"
 #include "core/hle/service/am/applet_data_broker.h"
 #include "core/hle/service/am/frontend/applet_general.h"
 #include "core/hle/service/am/service/storage.h"
-#include "core/reporter.h"
 
 namespace Service::AM::Frontend {
 
@@ -34,9 +32,8 @@ static void LogCurrentStorage(std::shared_ptr<Applet> applet, std::string_view p
     }
 }
 
-Auth::Auth(Core::System& system_, std::shared_ptr<Applet> applet_, LibraryAppletMode applet_mode_,
-           Core::Frontend::ParentalControlsApplet& frontend_)
-    : FrontendApplet{system_, applet_, applet_mode_}, frontend{frontend_} {}
+Auth::Auth(Core::System& system_, std::shared_ptr<Applet> applet_, LibraryAppletMode applet_mode_)
+    : FrontendApplet{system_, applet_, applet_mode_} {}
 
 Auth::~Auth() = default;
 
@@ -80,54 +77,7 @@ void Auth::Execute() {
     if (complete) {
         return;
     }
-
-    const auto unimplemented_log = [this] {
-        UNIMPLEMENTED_MSG("Unimplemented Auth applet type for type={:08X}, arg0={:02X}, "
-                          "arg1={:02X}, arg2={:02X}",
-                          type, arg0, arg1, arg2);
-    };
-
-    switch (type) {
-    case AuthAppletType::ShowParentalAuthentication: {
-        const auto callback = [this](bool is_successful) { AuthFinished(is_successful); };
-
-        if (arg0 == 1 && arg1 == 0 && arg2 == 1) {
-            // ShowAuthenticatorForConfiguration
-            frontend.VerifyPINForSettings(callback);
-        } else if (arg1 == 0 && arg2 == 0) {
-            // ShowParentalAuthentication(bool)
-            frontend.VerifyPIN(callback, static_cast<bool>(arg0));
-        } else {
-            unimplemented_log();
-        }
-        break;
-    }
-    case AuthAppletType::RegisterParentalPasscode: {
-        const auto callback = [this] { AuthFinished(true); };
-
-        if (arg0 == 0 && arg1 == 0 && arg2 == 0) {
-            // RegisterParentalPasscode
-            frontend.RegisterPIN(callback);
-        } else {
-            unimplemented_log();
-        }
-        break;
-    }
-    case AuthAppletType::ChangeParentalPasscode: {
-        const auto callback = [this] { AuthFinished(true); };
-
-        if (arg0 == 0 && arg1 == 0 && arg2 == 0) {
-            // ChangeParentalPasscode
-            frontend.ChangePIN(callback);
-        } else {
-            unimplemented_log();
-        }
-        break;
-    }
-    default:
-        unimplemented_log();
-        break;
-    }
+    UNIMPLEMENTED();
 }
 
 void Auth::AuthFinished(bool is_successful) {
@@ -148,14 +98,13 @@ void Auth::AuthFinished(bool is_successful) {
 }
 
 Result Auth::RequestExit() {
-    frontend.Close();
+    UNIMPLEMENTED();
     R_SUCCEED();
 }
 
 PhotoViewer::PhotoViewer(Core::System& system_, std::shared_ptr<Applet> applet_,
-                         LibraryAppletMode applet_mode_,
-                         const Core::Frontend::PhotoViewerApplet& frontend_)
-    : FrontendApplet{system_, applet_, applet_mode_}, frontend{frontend_} {}
+                         LibraryAppletMode applet_mode_)
+    : FrontendApplet{system_, applet_, applet_mode_} {}
 
 PhotoViewer::~PhotoViewer() = default;
 
@@ -179,21 +128,7 @@ void PhotoViewer::ExecuteInteractive() {
 }
 
 void PhotoViewer::Execute() {
-    if (complete)
-        return;
-
-    const auto callback = [this] { ViewFinished(); };
-    switch (mode) {
-    case PhotoViewerAppletMode::CurrentApp:
-        frontend.ShowPhotosForApplication(system.GetApplicationProcessProgramID(), callback);
-        break;
-    case PhotoViewerAppletMode::AllApps:
-        frontend.ShowAllPhotos(callback);
-        break;
-    default:
-        UNIMPLEMENTED_MSG("Unimplemented PhotoViewer applet mode={:02X}!", mode);
-        break;
-    }
+    UNIMPLEMENTED();
 }
 
 void PhotoViewer::ViewFinished() {
@@ -202,7 +137,7 @@ void PhotoViewer::ViewFinished() {
 }
 
 Result PhotoViewer::RequestExit() {
-    frontend.Close();
+    UNIMPLEMENTED();
     R_SUCCEED();
 }
 

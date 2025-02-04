@@ -30,14 +30,14 @@ bool WriteToUser(KernelCore& kernel, KProcessAddress address, const u32* p) {
 
 bool UpdateLockAtomic(KernelCore& kernel, u32* out, KProcessAddress address, u32 if_zero,
                       u32 new_orr_mask) {
-    auto& monitor = GetCurrentProcess(kernel).GetExclusiveMonitor();
+    auto* monitor = GetCurrentProcess(kernel).GetExclusiveMonitor();
     const auto current_core = kernel.CurrentPhysicalCoreIndex();
 
     u32 expected{};
 
     while (true) {
         // Load the value from the address.
-        expected = monitor.ExclusiveRead32(current_core, GetInteger(address));
+        expected = monitor->ExclusiveRead32((uint32_t)current_core, GetInteger(address));
 
         // Orr in the new mask.
         u32 value = expected | new_orr_mask;
@@ -48,7 +48,8 @@ bool UpdateLockAtomic(KernelCore& kernel, u32* out, KProcessAddress address, u32
         }
 
         // Try to store.
-        if (monitor.ExclusiveWrite32(current_core, GetInteger(address), value)) {
+        if (monitor->ExclusiveWrite32((uint32_t)current_core, GetInteger(address), value))
+        {
             break;
         }
 

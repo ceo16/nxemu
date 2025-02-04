@@ -4,6 +4,7 @@
 
 struct CoreSettings
 {
+    bool showConsole;
     Path configDir;
     Path moduleDir;
     std::string moduleDirValue;

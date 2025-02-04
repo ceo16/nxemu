@@ -11,7 +11,7 @@
 
 #include "common/fiber.h"
 #include "common/polyfill_thread.h"
-#include "common/thread.h"
+#include "common/yuzu_thread.h"
 #include "core/hardware_properties.h"
 
 namespace Common {

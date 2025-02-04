@@ -8,7 +8,6 @@
 #include "core/hle/service/caps/caps_types.h"
 #include "core/hle/service/cmif_serialization.h"
 #include "core/hle/service/ipc_helpers.h"
-#include "video_core/renderer_base.h"
 
 namespace Service::Capture {
 
@@ -67,33 +66,7 @@ Result IScreenShotApplicationService::SaveScreenShotEx1(
 }
 
 void IScreenShotApplicationService::CaptureAndSaveScreenshot(AlbumReportOption report_option) {
-    auto& renderer = system.Renderer();
-    Layout::FramebufferLayout layout =
-        Layout::DefaultFrameLayout(screenshot_width, screenshot_height);
-
-    const Capture::ScreenShotAttribute attribute{
-        .unknown_0{},
-        .orientation = Capture::AlbumImageOrientation::None,
-        .unknown_1{},
-        .unknown_2{},
-        .pad163{},
-    };
-
-    renderer.RequestScreenshot(
-        image_data.data(),
-        [attribute, report_option, this](bool invert_y) {
-            // Convert from BGRA to RGBA
-            for (std::size_t i = 0; i < image_data.size(); i += bytes_per_pixel) {
-                const u8 temp = image_data[i];
-                image_data[i] = image_data[i + 2];
-                image_data[i + 2] = temp;
-            }
-
-            Capture::ApplicationAlbumEntry entry{};
-            manager->FlipVerticallyOnWrite(invert_y);
-            manager->SaveScreenShot(entry, attribute, report_option, image_data, {});
-        },
-        layout);
+    UNIMPLEMENTED();
 }
 
 } // namespace Service::Capture

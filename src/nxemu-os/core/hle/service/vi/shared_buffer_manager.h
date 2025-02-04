@@ -6,10 +6,6 @@
 #include <map>
 
 #include "common/math_util.h"
-#include "core/hle/service/nvdrv/core/container.h"
-#include "core/hle/service/nvdrv/nvdata.h"
-#include "core/hle/service/nvnflinger/nvnflinger.h"
-#include "core/hle/service/nvnflinger/ui/fence.h"
 
 namespace Kernel {
 class KPageGroup;
@@ -59,10 +55,6 @@ public:
     Result GetSharedBufferMemoryHandleId(u64* out_buffer_size, s32* out_nvmap_handle,
                                          SharedMemoryPoolLayout* out_pool_layout, u64 buffer_id,
                                          u64 applet_resource_user_id);
-    Result AcquireSharedFrameBuffer(android::Fence* out_fence, std::array<s32, 4>& out_slots,
-                                    s64* out_target_slot, u64 layer_id);
-    Result PresentSharedFrameBuffer(android::Fence fence, Common::Rectangle<s32> crop_region,
-                                    u32 transform, s32 swap_interval, u64 layer_id, s64 slot);
     Result CancelSharedFrameBuffer(u64 layer_id, s64 slot);
     Result GetSharedFrameBufferAcquirableEvent(Kernel::KReadableEvent** out_event, u64 layer_id);
 
@@ -83,8 +75,6 @@ private:
 };
 
 struct SharedBufferSession {
-    Nvidia::DeviceFD nvmap_fd = {};
-    Nvidia::NvCore::SessionId session_id = {};
     u64 layer_id = {};
     u32 buffer_nvmap_handle = 0;
 };

@@ -4,7 +4,6 @@
 #include "core/file_sys/nca_metadata.h"
 #include "core/file_sys/registered_cache.h"
 #include "core/hle/service/cmif_serialization.h"
-#include "core/hle/service/filesystem/filesystem.h"
 #include "core/hle/service/ns/application_manager_interface.h"
 #include "core/hle/service/ns/content_management_interface.h"
 #include "core/hle/service/ns/read_only_application_control_data_interface.h"
@@ -12,11 +11,8 @@
 namespace Service::NS {
 
 IApplicationManagerInterface::IApplicationManagerInterface(Core::System& system_)
-    : ServiceFramework{system_, "IApplicationManagerInterface"},
-      service_context{system, "IApplicationManagerInterface"},
-      record_update_system_event{service_context}, sd_card_mount_status_event{service_context},
-      gamecard_update_detection_event{service_context},
-      gamecard_mount_status_event{service_context}, gamecard_mount_failure_event{service_context} {
+    : ServiceFramework{system_, "IApplicationManagerInterface"}
+{
     // clang-format off
     static const FunctionInfo functions[] = {
         {0, D<&IApplicationManagerInterface::ListApplicationRecord>, "ListApplicationRecord"},
@@ -55,7 +51,6 @@ IApplicationManagerInterface::IApplicationManagerInterface(Core::System& system_
         {45, nullptr, "GetGameCardAttachmentEvent"},
         {46, nullptr, "GetGameCardAttachmentInfo"},
         {47, nullptr, "GetTotalSpaceSize"},
-        {48, D<&IApplicationManagerInterface::GetFreeSpaceSize>, "GetFreeSpaceSize"},
         {49, nullptr, "GetSdCardRemovedEvent"},
         {52, D<&IApplicationManagerInterface::GetGameCardUpdateDetectionEvent>, "GetGameCardUpdateDetectionEvent"},
         {53, nullptr, "DisableApplicationAutoDelete"},
@@ -76,7 +71,6 @@ IApplicationManagerInterface::IApplicationManagerInterface(Core::System& system_
         {68, nullptr, "ResumeApplicationApplyDelta"},
         {69, nullptr, "CalculateApplicationApplyDeltaRequiredSize"},
         {70, D<&IApplicationManagerInterface::ResumeAll>, "ResumeAll"},
-        {71, D<&IApplicationManagerInterface::GetStorageSize>, "GetStorageSize"},
         {80, nullptr, "RequestDownloadApplication"},
         {81, nullptr, "RequestDownloadAddOnContent"},
         {82, nullptr, "DownloadApplication"},
@@ -338,38 +332,7 @@ Result IApplicationManagerInterface::ConvertApplicationLanguageToLanguageCode(
 Result IApplicationManagerInterface::ListApplicationRecord(
     OutArray<ApplicationRecord, BufferAttr_HipcMapAlias> out_records, Out<s32> out_count,
     s32 offset) {
-    const auto limit = out_records.size();
-
-    LOG_WARNING(Service_NS, "(STUBBED) called");
-    const auto& cache = system.GetContentProviderUnion();
-    const auto installed_games = cache.ListEntriesFilterOrigin(
-        std::nullopt, FileSys::TitleType::Application, FileSys::ContentRecordType::Program);
-
-    size_t i = 0;
-    u8 ii = 24;
-
-    for (const auto& [slot, game] : installed_games) {
-        if (i >= limit) {
-            break;
-        }
-        if (game.title_id == 0 || game.title_id < 0x0100000000001FFFull) {
-            continue;
-        }
-        if (offset > 0) {
-            offset--;
-            continue;
-        }
-
-        ApplicationRecord record{};
-        record.application_id = game.title_id;
-        record.type = ApplicationRecordType::Installed;
-        record.unknown = 0; // 2 = needs update
-        record.unknown2 = ii++;
-
-        out_records[i++] = record;
-    }
-
-    *out_count = static_cast<s32>(i);
+    UNIMPLEMENTED();
     R_SUCCEED();
 }
 
@@ -377,16 +340,14 @@ Result IApplicationManagerInterface::GetApplicationRecordUpdateSystemEvent(
     OutCopyHandle<Kernel::KReadableEvent> out_event) {
     LOG_WARNING(Service_NS, "(STUBBED) called");
 
-    record_update_system_event.Signal();
-    *out_event = record_update_system_event.GetHandle();
-
+    UNIMPLEMENTED();
     R_SUCCEED();
 }
 
 Result IApplicationManagerInterface::GetGameCardMountFailureEvent(
     OutCopyHandle<Kernel::KReadableEvent> out_event) {
     LOG_WARNING(Service_NS, "(STUBBED) called");
-    *out_event = gamecard_mount_failure_event.GetHandle();
+    UNIMPLEMENTED();
     R_SUCCEED();
 }
 
@@ -464,34 +425,19 @@ Result IApplicationManagerInterface::CheckSdCardMountStatus() {
 Result IApplicationManagerInterface::GetSdCardMountStatusChangedEvent(
     OutCopyHandle<Kernel::KReadableEvent> out_event) {
     LOG_WARNING(Service_NS, "(STUBBED) called");
-    *out_event = sd_card_mount_status_event.GetHandle();
+    UNIMPLEMENTED();
     R_SUCCEED();
-}
-
-Result IApplicationManagerInterface::GetFreeSpaceSize(Out<s64> out_free_space_size,
-                                                      FileSys::StorageId storage_id) {
-    LOG_DEBUG(Service_NS, "called");
-    R_RETURN(IContentManagementInterface(system).GetFreeSpaceSize(out_free_space_size, storage_id));
 }
 
 Result IApplicationManagerInterface::GetGameCardUpdateDetectionEvent(
     OutCopyHandle<Kernel::KReadableEvent> out_event) {
     LOG_WARNING(Service_NS, "(STUBBED) called");
-    *out_event = gamecard_update_detection_event.GetHandle();
+    UNIMPLEMENTED();
     R_SUCCEED();
 }
 
 Result IApplicationManagerInterface::ResumeAll() {
     LOG_WARNING(Service_NS, "(STUBBED) called");
-    R_SUCCEED();
-}
-
-Result IApplicationManagerInterface::GetStorageSize(Out<s64> out_total_space_size,
-                                                    Out<s64> out_free_space_size,
-                                                    FileSys::StorageId storage_id) {
-    LOG_INFO(Service_NS, "called, storage_id={}", storage_id);
-    *out_total_space_size = system.GetFileSystemController().GetTotalSpaceSize(storage_id);
-    *out_free_space_size = system.GetFileSystemController().GetFreeSpaceSize(storage_id);
     R_SUCCEED();
 }
 

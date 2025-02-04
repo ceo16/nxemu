@@ -19,7 +19,6 @@
 #include "core/hle/kernel/svc_common.h"
 
 namespace Core {
-class ExclusiveMonitor;
 class System;
 } // namespace Core
 

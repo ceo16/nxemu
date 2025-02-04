@@ -7,11 +7,9 @@
 #include "common/logging/log.h"
 #include "common/string_util.h"
 #include "core/core.h"
-#include "core/frontend/applets/error.h"
 #include "core/hle/service/am/am.h"
 #include "core/hle/service/am/frontend/applet_error.h"
 #include "core/hle/service/am/service/storage.h"
-#include "core/reporter.h"
 
 namespace Service::AM::Frontend {
 
@@ -104,9 +102,8 @@ Result Decode64BitError(u64 error) {
 
 } // Anonymous namespace
 
-Error::Error(Core::System& system_, std::shared_ptr<Applet> applet_, LibraryAppletMode applet_mode_,
-             const Core::Frontend::ErrorApplet& frontend_)
-    : FrontendApplet{system_, applet_, applet_mode_}, frontend{frontend_} {}
+Error::Error(Core::System& system_, std::shared_ptr<Applet> applet_, LibraryAppletMode applet_mode_)
+    : FrontendApplet{system_, applet_, applet_mode_} {}
 
 Error::~Error() = default;
 
@@ -168,12 +165,10 @@ void Error::Execute() {
 
     const auto callback = [this] { DisplayCompleted(); };
     const auto title_id = system.GetApplicationProcessProgramID();
-    const auto& reporter{system.GetReporter()};
 
     switch (mode) {
     case ErrorAppletMode::ShowError:
-        reporter.SaveErrorReport(title_id, error_code);
-        frontend.ShowError(error_code, callback);
+        UNIMPLEMENTED();
         break;
     case ErrorAppletMode::ShowSystemError:
     case ErrorAppletMode::ShowApplicationError: {
@@ -188,16 +183,12 @@ void Error::Execute() {
         const auto detail_text_string =
             Common::StringFromFixedZeroTerminatedBuffer(detail_text.data(), detail_text.size());
 
-        reporter.SaveErrorReport(title_id, error_code, main_text_string, detail_text_string);
-        frontend.ShowCustomErrorText(error_code, main_text_string, detail_text_string, callback);
+        UNIMPLEMENTED();
         break;
     }
     case ErrorAppletMode::ShowErrorPctl:
     case ErrorAppletMode::ShowErrorRecord:
-        reporter.SaveErrorReport(title_id, error_code,
-                                 fmt::format("{:016X}", args->error_record.posix_time));
-        frontend.ShowErrorWithTimestamp(
-            error_code, std::chrono::seconds{args->error_record.posix_time}, callback);
+        UNIMPLEMENTED();
         break;
     default:
         UNIMPLEMENTED_MSG("Unimplemented LibAppletError mode={:02X}!", mode);
@@ -212,7 +203,7 @@ void Error::DisplayCompleted() {
 }
 
 Result Error::RequestExit() {
-    frontend.Close();
+    UNIMPLEMENTED();
     R_SUCCEED();
 }
 

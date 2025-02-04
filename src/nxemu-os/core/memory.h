@@ -10,6 +10,8 @@
 #include <string>
 #include <vector>
 
+#include <nxemu-module-spec/cpu.h>
+
 #include "common/scratch_buffer.h"
 #include "common/typed_address.h"
 #include "core/guest_memory.h"
@@ -53,7 +55,9 @@ enum : u64 {
 };
 
 /// Central class that handles all memory operations and state.
-class Memory {
+class Memory :
+    public IMemory
+{
 public:
     explicit Memory(Core::System& system);
     ~Memory();
