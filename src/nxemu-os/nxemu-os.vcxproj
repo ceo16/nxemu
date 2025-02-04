@@ -35,7 +35,7 @@
       <PreprocessorDefinitions>NOMINMAX;BOOST_CONTEXT_STATIC_LINK;BOOST_ALL_NO_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <PreBuildEvent>
-      <Command>"$(SolutionDir)src\script\update_version.cmd" "$(Configuration)" "$(Platform)" "$(SolutionDir)src\nxemu-os\Version.h.in" "$(SolutionDir)src\nxemu-os\Version.h"</Command>
+      <Command>"$(SolutionDir)src\script\update_version.cmd" "$(Configuration)" "$(Platform)" "$(SolutionDir)src\nxemu-os\version.h.in" "$(SolutionDir)src\nxemu-os\version.h"</Command>
     </PreBuildEvent>
     <Link>
       <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)\external\boost\stage\lib\libboost_context-vc143-mt-s-x64-1_87.lib;%(AdditionalDependencies)</AdditionalDependencies>

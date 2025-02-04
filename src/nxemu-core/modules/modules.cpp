@@ -60,7 +60,7 @@ void Modules::StartEmulation(void)
 {
     for (BaseModules::iterator itr = m_baseModules.begin(); itr != m_baseModules.end(); itr++)
     {
-        (*itr)->EmulationStarting();
+        (*itr)->EmulationStarting();    
     }
 }
 

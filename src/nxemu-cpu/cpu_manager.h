@@ -15,6 +15,8 @@ public:
     bool Initialize(void);
     IExclusiveMonitor * CreateExclusiveMonitor(IMemory & memory, uint32_t processorCount);
     void DestroyExclusiveMonitor(IExclusiveMonitor * monitor);
+    IArm64Executor * CreateArm64Executor(IExclusiveMonitor * monitor, ICpuInfo & info, uint32_t coreIndex);
+    void DestroyArm64Executor(IArm64Executor * executor);
 
 private:
     CpuManager() = delete;

@@ -1,7 +1,22 @@
 #pragma once
 #include "base.h"
 
+__interface IArm64Executor
+{
+    enum class HaltReason
+    {
+        Stopped,
+        SupervisorCall,
+    };
+
+    HaltReason Execute(void) = 0;
+};
+
 __interface IMemory
+{
+};
+
+__interface ICpuInfo
 {
 };
 
@@ -25,6 +40,9 @@ __interface ICpu
 
     IExclusiveMonitor * CreateExclusiveMonitor(IMemory & memory, uint32_t processorCount) = 0;
     void DestroyExclusiveMonitor(IExclusiveMonitor * monitor) = 0;
+
+    IArm64Executor * CreateArm64Executor(IExclusiveMonitor * monitor, ICpuInfo & info, uint32_t coreIndex) = 0;
+    void DestroyArm64Executor(IArm64Executor * executor) = 0;
 };
 
 EXPORT ICpu * CALL CreateCpu(ISwitchSystem & System);

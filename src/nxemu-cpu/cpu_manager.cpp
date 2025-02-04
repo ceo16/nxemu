@@ -22,3 +22,12 @@ IExclusiveMonitor * CpuManager::CreateExclusiveMonitor(IMemory & /*memory*/, uin
 void CpuManager::DestroyExclusiveMonitor(IExclusiveMonitor * /*monitor*/)
 {
 }
+
+IArm64Executor * CpuManager::CreateArm64Executor(IExclusiveMonitor * monitor, ICpuInfo & info, uint32_t coreIndex)
+{
+    return nullptr;
+}
+
+void CpuManager::DestroyArm64Executor(IArm64Executor * executor)
+{
+}
