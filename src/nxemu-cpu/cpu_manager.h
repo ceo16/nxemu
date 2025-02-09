@@ -23,5 +23,6 @@ private:
     CpuManager(const CpuManager &) = delete;
     CpuManager & operator=(const CpuManager &) = delete;
 
+    std::unique_ptr<ExclusiveMonitor> m_exclusiveMonitor;
     ISwitchSystem & m_system;
 };

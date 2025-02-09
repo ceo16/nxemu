@@ -99,7 +99,6 @@ void FrontendAppletHolder::SetCurrentAppletId(AppletId applet_id) {
 }
 
 void FrontendAppletHolder::SetDefaultAppletsIfMissing() {
-    UNIMPLEMENTED();
 }
 
 void FrontendAppletHolder::ClearAll() {

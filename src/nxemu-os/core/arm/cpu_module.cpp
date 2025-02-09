@@ -16,6 +16,33 @@ public:
     {
     }
 
+    uint32_t svn()
+    {
+        return m_svn;
+    }
+
+    uint64_t & CpuTicks()
+    {
+        UNIMPLEMENTED();
+        static uint64_t ticks = 0;
+        return ticks;
+    }
+
+    void ServiceCall(uint32_t index)
+    {
+        m_svn = index;
+        m_arm64Executor->HaltExecution(IArm64Executor::HaltReason::SupervisorCall);
+    }
+
+    bool ReadMemory(uint64_t addr, uint8_t * Buffer, uint32_t Len)
+    {
+        return m_memory.ReadBlock(addr, Buffer, Len);
+    }
+
+    bool WriteMemory(uint64_t addr, const uint8_t * buffer, uint32_t len)
+    {
+        return m_memory.WriteBlock(addr, buffer, len);
+    }
 
     IArm64Executor *& m_arm64Executor;
     Kernel::KProcess * m_process{};
@@ -73,36 +100,98 @@ HaltReason ArmCpuModule::StepThread(Kernel::KThread * thread)
 
 void ArmCpuModule::GetContext(Kernel::Svc::ThreadContext & ctx) const
 {
-    UNIMPLEMENTED();
+    if (m_arm64Executor != nullptr)
+    {
+        IArm64Reg & reg = m_arm64Executor->Reg();
+        for (size_t i = 0; i < 29; i++)
+        {
+            ctx.r[i] = reg.Get64((IArm64Reg::Reg)(((uint32_t)IArm64Reg::Reg::X0) + i));
+        }
+        ctx.fp = reg.Get64(IArm64Reg::Reg::FP);
+        ctx.lr = reg.Get64(IArm64Reg::Reg::LR);
+
+        ctx.sp = reg.Get64(IArm64Reg::Reg::SP);
+        ctx.pc = reg.Get64(IArm64Reg::Reg::PC);
+        ctx.pstate = reg.Get32(IArm64Reg::Reg::PSTATE);
+        for (size_t i = 0; i < 32; i++)
+        {
+            reg.Get128((IArm64Reg::Reg)(((uint32_t)IArm64Reg::Reg::Q0) + i), ctx.v[i][1], ctx.v[i][0]);
+        }
+        ctx.fpcr = reg.GetFPCR();
+        ctx.fpsr = reg.GetFPSR();
+        ctx.tpidr = reg.Get64(IArm64Reg::Reg::TPIDR_EL0);
+    }
+    else
+    {
+        UNIMPLEMENTED();
+    }
 }
 
 void ArmCpuModule::SetContext(const Kernel::Svc::ThreadContext & ctx)
 {
-    UNIMPLEMENTED();
+    if (m_arm64Executor != nullptr)
+    {
+        IArm64Reg & reg = m_arm64Executor->Reg();
+        for (size_t i = 0; i < 29; i++)
+        {
+            reg.Set64((IArm64Reg::Reg)(((uint32_t)IArm64Reg::Reg::X0) + i), ctx.r[i]);
+        }
+        reg.Set64(IArm64Reg::Reg::FP, ctx.fp);
+        reg.Set64(IArm64Reg::Reg::LR, ctx.lr);
+        reg.Set64(IArm64Reg::Reg::SP, ctx.sp);
+        reg.Set64(IArm64Reg::Reg::PC, ctx.pc);
+        reg.Set32(IArm64Reg::Reg::PSTATE, ctx.pstate);
+        for (size_t i = 0; i < 32; i++)
+        {
+            reg.Set128((IArm64Reg::Reg)(((uint32_t)IArm64Reg::Reg::Q0) + i), ctx.v[i][1], ctx.v[i][0]);
+        }
+        reg.SetFPCR(ctx.fpcr);
+        reg.SetFPSR(ctx.fpsr);
+        reg.Set64(IArm64Reg::Reg::TPIDR_EL0, ctx.tpidr);
+    }
+    else
+    {
+        UNIMPLEMENTED();
+    }
 }
 
 void ArmCpuModule::SetTpidrroEl0(u64 value)
 {
-    UNIMPLEMENTED();
+    if (m_arm64Executor != nullptr)
+    {
+        IArm64Reg & reg = m_arm64Executor->Reg();
+        reg.Set64(IArm64Reg::Reg::TPIDRRO_EL0, value);
+    }
+    else
+    {    
+        UNIMPLEMENTED();
+    }
 }
 
 void ArmCpuModule::GetSvcArguments(std::span<uint64_t, 8> args) const
 {
-    UNIMPLEMENTED();
+    IArm64Reg & reg = m_arm64Executor->Reg();
+    for (size_t i = 0; i < 8; i++)
+    {
+        args[i] = reg.Get64((IArm64Reg::Reg)(((uint32_t)IArm64Reg::Reg::X0) + i));
+    }
 }
 
 void ArmCpuModule::SetSvcArguments(std::span<const uint64_t, 8> args)
 {
-    UNIMPLEMENTED();
+    IArm64Reg & reg = m_arm64Executor->Reg();
+    for (size_t i = 0; i < 8; i++)
+    {
+        reg.Set64((IArm64Reg::Reg)(((uint32_t)IArm64Reg::Reg::X0) + i), args[i]);
+    }
 }
 
 u32 ArmCpuModule::GetSvcNumber() const
 {
-    UNIMPLEMENTED();
-    return 0;
+    return m_cb->svn();
 }
 
-void ArmCpuModule::SignalInterrupt(Kernel::KThread* thread)
+void ArmCpuModule::SignalInterrupt(Kernel::KThread * thread)
 {
     UNIMPLEMENTED();
 }
@@ -114,7 +203,14 @@ void ArmCpuModule::ClearInstructionCache()
 
 void ArmCpuModule::InvalidateCacheRange(u64 addr, std::size_t size)
 {
-    UNIMPLEMENTED();
+    if (m_arm64Executor != nullptr)
+    {
+        m_arm64Executor->InvalidateCacheRange(addr, size);
+    }
+    else
+    {
+        UNIMPLEMENTED();
+    }
 }
 
 const Kernel::DebugWatchpoint * ArmCpuModule::HaltedWatchpoint() const

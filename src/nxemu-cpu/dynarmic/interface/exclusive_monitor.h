@@ -12,7 +12,7 @@
 #include <cstring>
 #include <vector>
 
-#include <dynarmic/common/spin_lock.h>
+#include "dynarmic/common/spin_lock.h"
 
 namespace Dynarmic {
 

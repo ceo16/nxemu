@@ -260,7 +260,7 @@ constexpr uint32_t Nro::PageAlignSize(uint32_t size)
     {
         pageBits = 12,
         pageSize = 1ULL << pageBits,
-        pageMask = pageSize,
+        pageMask = pageSize - 1,
     };
     return ((size + pageMask) & ~pageMask);
 }
