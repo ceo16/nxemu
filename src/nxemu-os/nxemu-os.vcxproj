@@ -766,6 +766,9 @@
     <ProjectReference Include="..\..\external\fmt.vcxproj">
       <Project>{d58bdfc6-1f1e-4c55-9296-1c2411b0fda7}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\external\sdl.vcxproj">
+      <Project>{c44840a5-59bc-4ca0-85c2-b51f0ba6e3bd}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

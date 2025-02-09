@@ -22,3 +22,6 @@
 [submodule "external/zycore"]
 	path = external/zycore
 	url = https://github.com/zyantific/zycore-c.git
+[submodule "external/sdl"]
+	path = external/sdl
+	url = https://github.com/libsdl-org/SDL.git

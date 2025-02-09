@@ -46,6 +46,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fmt", "..\nxemu-private\ext
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zydis", "..\nxemu-private\external\zydis.vcxproj", "{9DEC236B-F924-4166-A1B1-002F3BF8F0EC}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sdl", "external\sdl.vcxproj", "{C44840A5-59BC-4CA0-85C2-B51F0BA6E3BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -142,6 +144,14 @@ Global
 		{9DEC236B-F924-4166-A1B1-002F3BF8F0EC}.Release|x64.Build.0 = Release|x64
 		{9DEC236B-F924-4166-A1B1-002F3BF8F0EC}.Release|x86.ActiveCfg = Release|Win32
 		{9DEC236B-F924-4166-A1B1-002F3BF8F0EC}.Release|x86.Build.0 = Release|Win32
+		{C44840A5-59BC-4CA0-85C2-B51F0BA6E3BD}.Debug|x64.ActiveCfg = Debug|x64
+		{C44840A5-59BC-4CA0-85C2-B51F0BA6E3BD}.Debug|x64.Build.0 = Debug|x64
+		{C44840A5-59BC-4CA0-85C2-B51F0BA6E3BD}.Debug|x86.ActiveCfg = Debug|x64
+		{C44840A5-59BC-4CA0-85C2-B51F0BA6E3BD}.Debug|x86.Build.0 = Debug|x64
+		{C44840A5-59BC-4CA0-85C2-B51F0BA6E3BD}.Release|x64.ActiveCfg = Release|x64
+		{C44840A5-59BC-4CA0-85C2-B51F0BA6E3BD}.Release|x64.Build.0 = Release|x64
+		{C44840A5-59BC-4CA0-85C2-B51F0BA6E3BD}.Release|x86.ActiveCfg = Release|x64
+		{C44840A5-59BC-4CA0-85C2-B51F0BA6E3BD}.Release|x86.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -151,6 +161,7 @@ Global
 		{A059B52A-FB13-4060-AC89-128570938D5D} = {29EE6611-75A5-4A1D-A994-33A5EBB4F765}
 		{D58BDFC6-1F1E-4C55-9296-1C2411B0FDA7} = {29EE6611-75A5-4A1D-A994-33A5EBB4F765}
 		{9DEC236B-F924-4166-A1B1-002F3BF8F0EC} = {29EE6611-75A5-4A1D-A994-33A5EBB4F765}
+		{C44840A5-59BC-4CA0-85C2-B51F0BA6E3BD} = {29EE6611-75A5-4A1D-A994-33A5EBB4F765}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AF860836-279D-4187-9FAF-4E2D4B9C59CF}
