@@ -7,7 +7,7 @@
 
 #include "common/param_package.h"
 #include "common/settings.h"
-#include "common/thread.h"
+#include "common/yuzu_thread.h"
 #include "input_common/drivers/mouse.h"
 
 namespace InputCommon {

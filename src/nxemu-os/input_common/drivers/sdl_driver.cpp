@@ -5,7 +5,7 @@
 #include "common/math_util.h"
 #include "common/param_package.h"
 #include "common/settings.h"
-#include "common/thread.h"
+#include "common/yuzu_thread.h"
 #include "common/vector_math.h"
 #include "input_common/drivers/sdl_driver.h"
 

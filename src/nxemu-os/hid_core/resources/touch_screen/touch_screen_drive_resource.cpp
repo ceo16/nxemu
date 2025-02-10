@@ -3,9 +3,8 @@
 
 #include <algorithm>
 #include "common/settings.h"
-#include "core/frontend/emu_window.h"
 #include "hid_core/hid_core.h"
-#include "hid_core/resources/touch_screen/touch_screen_driver.h"
+#include "hid_core/resources/touch_screen/touch_screen_driver_resource.h"
 
 namespace Service::HID {
 

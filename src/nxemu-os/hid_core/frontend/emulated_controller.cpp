@@ -6,7 +6,7 @@
 #include <common/scope_exit.h>
 
 #include "common/polyfill_ranges.h"
-#include "common/thread.h"
+#include "common/yuzu_thread.h"
 #include "hid_core/frontend/emulated_controller.h"
 #include "hid_core/frontend/input_converter.h"
 #include "hid_core/hid_util.h"

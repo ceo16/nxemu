@@ -29,7 +29,7 @@
 #include "hid_core/resources/system_buttons/sleep_button.h"
 #include "hid_core/resources/touch_screen/gesture.h"
 #include "hid_core/resources/touch_screen/touch_screen.h"
-#include "hid_core/resources/touch_screen/touch_screen_driver.h"
+#include "hid_core/resources/touch_screen/touch_screen_driver_resource.h"
 #include "hid_core/resources/touch_screen/touch_screen_resource.h"
 #include "hid_core/resources/unique_pad/unique_pad.h"
 #include "hid_core/resources/vibration/gc_vibration_device.h"

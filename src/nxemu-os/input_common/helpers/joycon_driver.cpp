@@ -5,7 +5,7 @@
 #include "common/logging/log.h"
 #include "common/scope_exit.h"
 #include "common/swap.h"
-#include "common/thread.h"
+#include "common/yuzu_thread.h"
 #include "input_common/helpers/joycon_driver.h"
 #include "input_common/helpers/joycon_protocol/calibration.h"
 #include "input_common/helpers/joycon_protocol/generic_functions.h"

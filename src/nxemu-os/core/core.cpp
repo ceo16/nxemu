@@ -20,6 +20,8 @@
 #include "core/hle/service/am/frontend/applets.h"
 #include "core/hle/service/apm/apm_controller.h"
 #include "core/hle/service/services.h"
+#include "hid_core/hid_core.h"
+#include "input_common/main.h"
 
 MICROPROFILE_DEFINE(ARM_CPU0, "ARM", "CPU 0", MP_RGB(255, 64, 64));
 MICROPROFILE_DEFINE(ARM_CPU1, "ARM", "CPU 1", MP_RGB(255, 64, 64));
@@ -28,10 +30,13 @@ MICROPROFILE_DEFINE(ARM_CPU3, "ARM", "CPU 3", MP_RGB(255, 64, 64));
 
 namespace Core {
 
-
 struct System::Impl {
     explicit Impl(System & system, ISwitchSystem & switchSystem) 
-        : kernel{system}, cpu_manager{system}, applet_manager{system}, frontend_applets{system}, switchSystem(switchSystem) {}
+        : kernel{system}, hid_core{}, cpu_manager{system}, 
+        applet_manager{system}, frontend_applets{system}, switchSystem(switchSystem),
+        input_subsystem{std::make_shared<InputCommon::InputSubsystem>()}
+    {
+    }
 
     void Initialize(System& system) {
         device_memory = std::make_unique<Core::DeviceMemory>();
@@ -49,6 +54,7 @@ struct System::Impl {
         kernel.SetMulticore(is_multicore);
         cpu_manager.SetMulticore(is_multicore);
         cpu_manager.SetAsyncGpu(is_async_gpu);
+        input_subsystem->Initialize();
     }
 
     void ReinitializeIfNecessary(System& system) {
@@ -116,6 +122,8 @@ struct System::Impl {
     Timing::CoreTiming core_timing;
     Kernel::KernelCore kernel;
     std::unique_ptr<Core::DeviceMemory> device_memory;
+    Core::HID::HIDCore hid_core;
+    std::shared_ptr<InputCommon::InputSubsystem> input_subsystem;
 
     CpuManager cpu_manager;
     std::atomic_bool is_powered_on{};
@@ -229,12 +237,28 @@ const Core::DeviceMemory& System::DeviceMemory() const {
     return *impl->device_memory;
 }
 
+Memory::Memory& System::ApplicationMemory() {
+    return impl->kernel.ApplicationProcess()->GetMemory();
+}
+
+const Core::Memory::Memory& System::ApplicationMemory() const {
+    return impl->kernel.ApplicationProcess()->GetMemory();
+}
+
 Kernel::KernelCore& System::Kernel() {
     return impl->kernel;
 }
 
 const Kernel::KernelCore& System::Kernel() const {
     return impl->kernel;
+}
+
+HID::HIDCore& System::HIDCore() {
+    return impl->hid_core;
+}
+
+const HID::HIDCore& System::HIDCore() const {
+    return impl->hid_core;
 }
 
 Timing::CoreTiming& System::CoreTiming() {

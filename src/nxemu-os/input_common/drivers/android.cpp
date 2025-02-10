@@ -3,7 +3,7 @@
 
 #include <set>
 #include <common/settings_input.h>
-#include <common/thread.h>
+#include "common/yuzu_thread.h"
 #include <jni.h>
 #include "common/android/android_common.h"
 #include "common/android/id_cache.h"

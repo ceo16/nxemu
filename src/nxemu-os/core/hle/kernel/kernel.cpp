@@ -14,7 +14,7 @@
 #include "common/logging/log.h"
 #include "common/microprofile.h"
 #include "common/scope_exit.h"
-#include "common/thread.h"
+#include "common/yuzu_thread.h"
 #include "common/thread_worker.h"
 #include "core/arm/arm_interface.h"
 #include "core/arm/exclusive_monitor.h"

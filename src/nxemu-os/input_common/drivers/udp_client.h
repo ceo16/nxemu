@@ -6,7 +6,7 @@
 #include <optional>
 
 #include "common/common_types.h"
-#include "common/thread.h"
+#include "common/yuzu_thread.h"
 #include "input_common/input_engine.h"
 
 namespace InputCommon::CemuhookUDP {

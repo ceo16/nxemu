@@ -7,7 +7,7 @@
 #include "common/polyfill_ranges.h"
 #include "common/polyfill_thread.h"
 #include "common/settings.h"
-#include "common/thread.h"
+#include "common/yuzu_thread.h"
 #include "input_common/drivers/joycon.h"
 #include "input_common/helpers/joycon_driver.h"
 #include "input_common/helpers/joycon_protocol/joycon_types.h"
