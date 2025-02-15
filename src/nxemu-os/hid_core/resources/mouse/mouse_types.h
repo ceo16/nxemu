@@ -3,6 +3,6 @@
 
 #pragma once
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 
 namespace Service::HID {} // namespace Service::HID

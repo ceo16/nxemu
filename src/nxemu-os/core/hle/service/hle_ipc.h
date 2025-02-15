@@ -12,10 +12,10 @@
 #include <type_traits>
 #include <vector>
 
-#include "common/assert.h"
-#include "common/common_types.h"
-#include "common/concepts.h"
-#include "common/swap.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/concepts.h"
+#include "yuzu_common/swap.h"
 #include "core/hle/ipc.h"
 #include "core/hle/kernel/k_handle_table.h"
 #include "core/hle/kernel/svc_common.h"

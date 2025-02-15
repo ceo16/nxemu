@@ -5,7 +5,7 @@
 
 #include <array>
 
-#include "common/intrusive_list.h"
+#include "yuzu_common/intrusive_list.h"
 
 #include "core/hle/kernel/k_auto_object.h"
 #include "core/hle/kernel/k_event.h"

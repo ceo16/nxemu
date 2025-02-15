@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "hid_core/hid_types.h"
 #include "hid_core/resources/controller_base.h"
 #include "hid_core/resources/ring_lifo.h"

@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <memory>
-#include "common/input.h"
-#include "common/param_package.h"
+#include "yuzu_common/input.h"
+#include "yuzu_common/param_package.h"
 #include "input_common/drivers/camera.h"
 #include "input_common/drivers/keyboard.h"
 #include "input_common/drivers/mouse.h"

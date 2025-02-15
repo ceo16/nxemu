@@ -10,11 +10,11 @@
 #include <unordered_map>
 #include <vector>
 
-#include "common/common_types.h"
-#include "common/input.h"
-#include "common/param_package.h"
-#include "common/settings.h"
-#include "common/vector_math.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/input.h"
+#include "yuzu_common/param_package.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_common/vector_math.h"
 #include "hid_core/frontend/motion_input.h"
 #include "hid_core/hid_types.h"
 #include "hid_core/irsensor/irs_types.h"

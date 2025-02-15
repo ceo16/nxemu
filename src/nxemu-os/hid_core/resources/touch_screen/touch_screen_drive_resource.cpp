@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include <algorithm>
-#include "common/settings.h"
+#include "yuzu_common/settings.h"
 #include "hid_core/hid_core.h"
 #include "hid_core/resources/touch_screen/touch_screen_driver_resource.h"
 

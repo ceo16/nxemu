@@ -9,9 +9,9 @@
 
 #include <boost/container/small_vector.hpp>
 
-#include "common/alignment.h"
-#include "common/assert.h"
-#include "common/common_types.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/common_types.h"
 
 namespace Service::android {
 

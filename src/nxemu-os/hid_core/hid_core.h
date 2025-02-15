@@ -5,7 +5,7 @@
 
 #include <memory>
 
-#include "common/common_funcs.h"
+#include "yuzu_common/common_funcs.h"
 #include "hid_core/hid_types.h"
 
 namespace Core::HID {

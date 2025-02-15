@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "common/param_package.h"
-#include "common/threadsafe_queue.h"
+#include "yuzu_common/param_package.h"
+#include "yuzu_common/threadsafe_queue.h"
 
 namespace InputCommon::Polling {
 enum class InputType;

@@ -10,8 +10,8 @@
 
 #include <SDL.h>
 
-#include "common/common_types.h"
-#include "common/threadsafe_queue.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/threadsafe_queue.h"
 #include "input_common/input_engine.h"
 
 union SDL_Event;

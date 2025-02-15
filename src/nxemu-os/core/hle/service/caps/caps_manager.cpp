@@ -3,9 +3,9 @@
 
 #include <sstream>
 
-#include "common/fs/file.h"
-#include "common/fs/path_util.h"
-#include "common/logging/log.h"
+#include "yuzu_common/fs/file.h"
+#include "yuzu_common/fs/path_util.h"
+#include "yuzu_common/logging/log.h"
 #include "core/core.h"
 #include "core/hle/service/caps/caps_manager.h"
 #include "core/hle/service/caps/caps_result.h"

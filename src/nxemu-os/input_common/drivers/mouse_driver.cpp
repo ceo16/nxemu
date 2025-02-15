@@ -5,9 +5,9 @@
 #include <fmt/format.h>
 #include <math.h>
 
-#include "common/param_package.h"
-#include "common/settings.h"
-#include "common/yuzu_thread.h"
+#include "yuzu_common/param_package.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_common/thread.h"
 #include "input_common/drivers/mouse.h"
 
 namespace InputCommon {

@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "common/common_types.h"
-#include "common/thread_worker.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/thread_worker.h"
 
 namespace Kernel {
 

@@ -5,7 +5,7 @@
 
 #include <atomic>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/kernel/global_scheduler_context.h"
 #include "core/hle/kernel/k_priority_queue.h"
 #include "core/hle/kernel/k_scheduler_lock.h"

@@ -5,8 +5,8 @@
 
 #include <vector>
 
-#include "common/common_funcs.h"
-#include "common/uuid.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/uuid.h"
 #include "core/hle/result.h"
 #include "core/hle/service/am/frontend/applets.h"
 

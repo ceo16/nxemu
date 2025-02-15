@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "common/input.h"
+#include "yuzu_common/input.h"
 
 namespace InputCommon {
 

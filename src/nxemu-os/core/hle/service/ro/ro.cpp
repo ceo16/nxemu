@@ -3,7 +3,7 @@
 
 #include <common/sha256.h>
 
-#include "common/scope_exit.h"
+#include "yuzu_common/scope_exit.h"
 #include "core/hle/kernel/k_process.h"
 
 #include "core/hle/service/cmif_serialization.h"

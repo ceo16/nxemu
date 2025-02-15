@@ -3,7 +3,7 @@
 
 #include <fmt/format.h>
 
-#include "common/param_package.h"
+#include "yuzu_common/param_package.h"
 #include "input_common/drivers/camera.h"
 
 namespace InputCommon {

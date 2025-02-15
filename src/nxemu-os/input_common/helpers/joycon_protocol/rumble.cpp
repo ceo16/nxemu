@@ -4,8 +4,8 @@
 #include <algorithm>
 #include <cmath>
 
-#include "common/input.h"
-#include "common/logging/log.h"
+#include "yuzu_common/input.h"
+#include "yuzu_common/logging/log.h"
 #include "input_common/helpers/joycon_protocol/rumble.h"
 
 namespace InputCommon::Joycon {

@@ -4,8 +4,8 @@
 #include <algorithm>
 #include <array>
 #include <chrono>
-#include "common/logging/log.h"
-#include "common/settings.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/settings.h"
 #include "core/hle/service/cmif_serialization.h"
 #include "core/hle/service/ipc_helpers.h"
 #include "core/hle/service/set/key_code_map.h"

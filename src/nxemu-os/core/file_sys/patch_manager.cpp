@@ -6,11 +6,11 @@
 #include <cstddef>
 #include <cstring>
 
-#include "common/hex_util.h"
-#include "common/logging/log.h"
-#include "common/settings.h"
+#include "yuzu_common/hex_util.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/settings.h"
 #ifndef _WIN32
-#include "common/string_util.h"
+#include "yuzu_common/string_util.h"
 #endif
 
 #include "core/core.h"

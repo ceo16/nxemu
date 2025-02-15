@@ -5,9 +5,9 @@
 
 #include <list>
 
-#include "common/alignment.h"
-#include "common/assert.h"
-#include "common/common_types.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/kernel/memory_types.h"
 #include "core/hle/result.h"
 

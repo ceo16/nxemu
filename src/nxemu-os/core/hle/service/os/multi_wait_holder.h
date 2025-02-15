@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "common/intrusive_list.h"
+#include "yuzu_common/intrusive_list.h"
 
 namespace Kernel {
 class KSynchronizationObject;

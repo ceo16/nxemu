@@ -6,8 +6,8 @@
 #include <array>
 #include <mutex>
 
-#include "common/common_types.h"
-#include "common/point.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/point.h"
 #include "core/hle/result.h"
 #include "hid_core/hid_types.h"
 #include "hid_core/resources/touch_screen/gesture_handler.h"

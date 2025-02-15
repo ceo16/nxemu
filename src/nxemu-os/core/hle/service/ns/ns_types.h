@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "common/common_funcs.h"
-#include "common/uuid.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/uuid.h"
 
 namespace Service::NS {
 

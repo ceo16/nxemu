@@ -5,7 +5,7 @@
 
 #include <unordered_map>
 
-#include "common/fs/fs.h"
+#include "yuzu_common/fs/fs.h"
 #include "core/hle/result.h"
 #include "core/hle/service/caps/caps_types.h"
 

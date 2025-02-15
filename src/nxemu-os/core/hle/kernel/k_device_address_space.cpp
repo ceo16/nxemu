@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright 2023 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/assert.h"
+#include "yuzu_common/yuzu_assert.h"
 #include "core/core.h"
 #include "core/hle/kernel/k_device_address_space.h"
 #include "core/hle/kernel/kernel.h"

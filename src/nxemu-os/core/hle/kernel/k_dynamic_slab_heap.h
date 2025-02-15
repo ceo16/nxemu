@@ -5,7 +5,7 @@
 
 #include <atomic>
 
-#include "common/common_funcs.h"
+#include "yuzu_common/common_funcs.h"
 #include "core/hle/kernel/k_dynamic_page_manager.h"
 #include "core/hle/kernel/k_slab_heap.h"
 

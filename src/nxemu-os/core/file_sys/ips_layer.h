@@ -7,7 +7,7 @@
 #include <memory>
 #include <vector>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "core/file_sys/vfs/vfs.h"
 
 namespace FileSys {

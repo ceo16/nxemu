@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "common/intrusive_red_black_tree.h"
+#include "yuzu_common/intrusive_red_black_tree.h"
 
 namespace Kernel {
 

@@ -7,8 +7,8 @@
 #include <bitset>
 #include <span>
 
-#include "common/bit_field.h"
-#include "common/common_types.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_common/common_types.h"
 
 #include "core/hle/kernel/svc_types.h"
 #include "core/hle/result.h"

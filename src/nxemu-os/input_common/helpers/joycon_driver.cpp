@@ -1,11 +1,11 @@
 // SPDX-FileCopyrightText: Copyright 2022 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/input.h"
-#include "common/logging/log.h"
-#include "common/scope_exit.h"
-#include "common/swap.h"
-#include "common/yuzu_thread.h"
+#include "yuzu_common/input.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/scope_exit.h"
+#include "yuzu_common/swap.h"
+#include "yuzu_common/thread.h"
 #include "input_common/helpers/joycon_driver.h"
 #include "input_common/helpers/joycon_protocol/calibration.h"
 #include "input_common/helpers/joycon_protocol/generic_functions.h"

@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright 2024 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "common/logging/log.h"
+#include "yuzu_common/logging/log.h"
 #include "core/hle/kernel/k_shared_memory.h"
 #include "core/hle/service/cmif_serialization.h"
 #include "core/hle/service/hid/applet_resource.h"

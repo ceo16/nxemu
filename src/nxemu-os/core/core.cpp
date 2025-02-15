@@ -4,7 +4,7 @@
 #include <array>
 #include <atomic>
 
-#include "common/microprofile.h"
+#include "yuzu_common/microprofile.h"
 #include "core/core.h"
 #include "core/core_timing.h"
 #include "core/cpu_manager.h"

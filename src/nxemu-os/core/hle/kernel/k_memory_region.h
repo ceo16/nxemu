@@ -3,9 +3,9 @@
 
 #pragma once
 
-#include "common/assert.h"
-#include "common/common_funcs.h"
-#include "common/intrusive_red_black_tree.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/intrusive_red_black_tree.h"
 #include "core/hle/kernel/k_memory_region_type.h"
 #include "core/hle/kernel/k_typed_address.h"
 

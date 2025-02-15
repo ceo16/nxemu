@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "common/alignment.h"
-#include "common/bit_field.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_common/bit_field.h"
 #include "core/hle/kernel/k_thread.h"
 
 namespace Kernel {

@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 #include <boost/container/flat_map.hpp>
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "core/file_sys/vfs/vfs.h"
 
 namespace FileSys {

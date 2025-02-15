@@ -5,7 +5,7 @@
 
 #include <string>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/kernel/k_client_port.h"
 #include "core/hle/kernel/k_server_port.h"
 #include "core/hle/kernel/slab_helpers.h"

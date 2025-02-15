@@ -5,7 +5,7 @@
 
 #include <vector>
 
-#include "common/alignment.h"
+#include "yuzu_common/alignment.h"
 
 namespace Kernel {
 

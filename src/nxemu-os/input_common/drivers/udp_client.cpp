@@ -5,9 +5,9 @@
 #include <boost/asio.hpp>
 #include <fmt/format.h>
 
-#include "common/logging/log.h"
-#include "common/param_package.h"
-#include "common/settings.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/param_package.h"
+#include "yuzu_common/settings.h"
 #include "input_common/drivers/udp_client.h"
 #include "input_common/helpers/udp_protocol.h"
 

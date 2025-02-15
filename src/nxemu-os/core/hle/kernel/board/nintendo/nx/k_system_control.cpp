@@ -3,8 +3,8 @@
 
 #include <random>
 
-#include "common/literals.h"
-#include "common/settings.h"
+#include "yuzu_common/literals.h"
+#include "yuzu_common/settings.h"
 
 #include "core/hle/kernel/board/nintendo/nx/k_system_control.h"
 #include "core/hle/kernel/board/nintendo/nx/secure_monitor.h"

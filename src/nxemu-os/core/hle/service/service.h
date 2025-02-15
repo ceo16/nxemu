@@ -7,7 +7,7 @@
 #include <mutex>
 #include <string>
 #include <boost/container/flat_map.hpp>
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/service/hle_ipc.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

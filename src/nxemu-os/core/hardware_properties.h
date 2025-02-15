@@ -6,8 +6,8 @@
 #include <array>
 #include <tuple>
 
-#include "common/bit_util.h"
-#include "common/common_types.h"
+#include "yuzu_common/bit_util.h"
+#include "yuzu_common/common_types.h"
 
 namespace Core {
 

@@ -4,7 +4,7 @@
 #pragma once
 
 #include <map>
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 
 namespace Core::Timing {
 class CoreTiming;

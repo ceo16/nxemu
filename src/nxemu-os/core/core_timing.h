@@ -14,9 +14,9 @@
 
 #include <boost/heap/fibonacci_heap.hpp>
 
-#include "common/common_types.h"
-#include "common/yuzu_thread.h"
-#include "common/wall_clock.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/thread.h"
+#include "yuzu_common/wall_clock.h"
 
 namespace Core::Timing {
 

@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright 2023 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/assert.h"
+#include "yuzu_common/yuzu_assert.h"
 #include "core/hle/service/mii/mii_util.h"
 #include "core/hle/service/mii/types/char_info.h"
 #include "core/hle/service/mii/types/core_data.h"

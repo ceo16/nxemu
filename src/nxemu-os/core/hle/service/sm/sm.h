@@ -9,7 +9,7 @@
 #include <string>
 #include <unordered_map>
 
-#include "common/concepts.h"
+#include "yuzu_common/concepts.h"
 #include "core/hle/kernel/k_port.h"
 #include "core/hle/kernel/svc.h"
 #include "core/hle/result.h"

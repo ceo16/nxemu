@@ -5,7 +5,7 @@
 
 #include <boost/intrusive/rbtree.hpp>
 
-#include "common/common_funcs.h"
+#include "yuzu_common/common_funcs.h"
 #include "core/hle/kernel/k_auto_object.h"
 #include "core/hle/kernel/k_spin_lock.h"
 

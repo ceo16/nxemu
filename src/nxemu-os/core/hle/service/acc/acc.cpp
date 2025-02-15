@@ -4,13 +4,13 @@
 #include <algorithm>
 #include <array>
 
-#include "common/common_types.h"
-#include "common/fs/file.h"
-#include "common/fs/path_util.h"
-#include "common/logging/log.h"
-#include "common/polyfill_ranges.h"
-#include "common/string_util.h"
-#include "common/swap.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/fs/file.h"
+#include "yuzu_common/fs/path_util.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/polyfill_ranges.h"
+#include "yuzu_common/string_util.h"
+#include "yuzu_common/swap.h"
 #include "core/constants.h"
 #include "core/core.h"
 #include "core/core_timing.h"

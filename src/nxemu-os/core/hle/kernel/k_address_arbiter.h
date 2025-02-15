@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "common/assert.h"
-#include "common/common_types.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/kernel/k_condition_variable.h"
 #include "core/hle/kernel/svc_types.h"
 

@@ -6,7 +6,7 @@
 #include <array>
 #include <mutex>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/result.h"
 #include "hid_core/hid_types.h"
 #include "hid_core/resources/npad/npad_types.h"

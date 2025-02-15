@@ -9,9 +9,9 @@
 #include <memory>
 #include <thread>
 
-#include "common/fiber.h"
-#include "common/polyfill_thread.h"
-#include "common/yuzu_thread.h"
+#include "yuzu_common/fiber.h"
+#include "yuzu_common/polyfill_thread.h"
+#include "yuzu_common/thread.h"
 #include "core/hardware_properties.h"
 
 namespace Common {

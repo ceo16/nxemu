@@ -7,11 +7,11 @@
 
 #include <boost/range/algorithm_ext/erase.hpp>
 
-#include "common/assert.h"
-#include "common/common_funcs.h"
-#include "common/common_types.h"
-#include "common/logging/log.h"
-#include "common/scratch_buffer.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/scratch_buffer.h"
 #include "core/guest_memory.h"
 #include "core/hle/kernel/k_auto_object.h"
 #include "core/hle/kernel/k_handle_table.h"

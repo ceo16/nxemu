@@ -8,7 +8,7 @@
 #include <string>
 #include <utility>
 
-#include "common/intrusive_list.h"
+#include "yuzu_common/intrusive_list.h"
 
 #include "core/hle/kernel/k_light_lock.h"
 #include "core/hle/kernel/k_session_request.h"

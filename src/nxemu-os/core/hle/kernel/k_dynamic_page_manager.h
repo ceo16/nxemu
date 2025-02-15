@@ -5,7 +5,7 @@
 
 #include <vector>
 
-#include "common/alignment.h"
+#include "yuzu_common/alignment.h"
 #include "core/hle/kernel/k_page_bitmap.h"
 #include "core/hle/kernel/k_spin_lock.h"
 #include "core/hle/kernel/k_typed_address.h"

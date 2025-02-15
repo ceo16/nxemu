@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright 2021 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/settings.h"
+#include "yuzu_common/settings.h"
 #include "input_common/input_engine.h"
 #include "input_common/input_mapping.h"
 

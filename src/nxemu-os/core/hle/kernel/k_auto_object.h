@@ -8,9 +8,9 @@
 
 #include <boost/intrusive/rbtree.hpp>
 
-#include "common/assert.h"
-#include "common/common_funcs.h"
-#include "common/common_types.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/kernel/k_class_token.h"
 
 namespace Kernel {

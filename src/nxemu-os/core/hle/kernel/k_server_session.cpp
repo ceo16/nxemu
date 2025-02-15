@@ -4,11 +4,11 @@
 #include <tuple>
 #include <utility>
 
-#include "common/assert.h"
-#include "common/common_types.h"
-#include "common/logging/log.h"
-#include "common/scope_exit.h"
-#include "common/scratch_buffer.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/scope_exit.h"
+#include "yuzu_common/scratch_buffer.h"
 #include "core/core.h"
 #include "core/core_timing.h"
 #include "core/hle/kernel/k_client_port.h"

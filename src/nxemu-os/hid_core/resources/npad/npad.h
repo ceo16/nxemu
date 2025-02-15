@@ -8,7 +8,7 @@
 #include <mutex>
 #include <span>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "hid_core/hid_types.h"
 #include "hid_core/resources/abstracted_pad/abstract_pad.h"
 #include "hid_core/resources/controller_base.h"

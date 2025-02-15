@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "hid_core/hid_types.h"
 
 namespace Service::HID {

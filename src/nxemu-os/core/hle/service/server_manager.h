@@ -8,8 +8,8 @@
 #include <optional>
 #include <vector>
 
-#include "common/polyfill_thread.h"
-#include "common/yuzu_thread.h"
+#include "yuzu_common/polyfill_thread.h"
+#include "yuzu_common/thread.h"
 #include "core/hle/result.h"
 #include "core/hle/service/hle_ipc.h"
 #include "core/hle/service/os/multi_wait.h"

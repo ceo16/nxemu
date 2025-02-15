@@ -6,7 +6,7 @@
 #include <array>
 #include <vector>
 
-#include "common/uuid.h"
+#include "yuzu_common/uuid.h"
 #include "core/hle/service/cmif_types.h"
 #include "core/hle/service/service.h"
 

@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/kernel/k_process.h"
 #include "core/hle/kernel/k_resource_limit.h"
 

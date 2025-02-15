@@ -1,10 +1,10 @@
 // SPDX-FileCopyrightText: Copyright 2018 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/fiber.h"
-#include "common/microprofile.h"
-#include "common/scope_exit.h"
-#include "common/yuzu_thread.h"
+#include "yuzu_common/fiber.h"
+#include "yuzu_common/microprofile.h"
+#include "yuzu_common/scope_exit.h"
+#include "yuzu_common/thread.h"
 #include "core/core.h"
 #include "core/core_timing.h"
 #include "core/cpu_manager.h"

@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "common/polyfill_thread.h"
+#include "yuzu_common/polyfill_thread.h"
 #include "core/hle/service/sm/sm.h"
 
 namespace Service {

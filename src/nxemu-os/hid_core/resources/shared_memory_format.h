@@ -3,9 +3,9 @@
 
 #pragma once
 
-#include "common/common_funcs.h"
-#include "common/common_types.h"
-#include "common/vector_math.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/vector_math.h"
 #include "hid_core/hid_types.h"
 #include "hid_core/resources/debug_pad/debug_pad_types.h"
 #include "hid_core/resources/keyboard/keyboard_types.h"

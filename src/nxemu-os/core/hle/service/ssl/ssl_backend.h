@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 
 #include "core/hle/result.h"
 

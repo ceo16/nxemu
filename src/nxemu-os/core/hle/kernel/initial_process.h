@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "common/common_types.h"
-#include "common/literals.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/literals.h"
 #include "core/hle/kernel/board/nintendo/nx/k_memory_layout.h"
 #include "core/hle/kernel/board/nintendo/nx/k_system_control.h"
 

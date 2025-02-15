@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "common/assert.h"
-#include "common/common_types.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/kernel/k_auto_object.h"
 #include "core/hle/kernel/k_dynamic_resource_manager.h"
 #include "core/hle/kernel/k_memory_manager.h"

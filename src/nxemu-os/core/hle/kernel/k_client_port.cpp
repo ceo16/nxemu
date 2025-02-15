@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2021 Citra Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/scope_exit.h"
+#include "yuzu_common/scope_exit.h"
 #include "core/hle/kernel/k_client_port.h"
 #include "core/hle/kernel/k_light_session.h"
 #include "core/hle/kernel/k_port.h"

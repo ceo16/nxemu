@@ -3,12 +3,12 @@
 
 #pragma once
 
-#include "common/bit_field.h"
-#include "common/common_funcs.h"
-#include "common/common_types.h"
-#include "common/point.h"
-#include "common/uuid.h"
-#include "common/vector_math.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/point.h"
+#include "yuzu_common/uuid.h"
+#include "yuzu_common/vector_math.h"
 
 namespace Core::HID {
 

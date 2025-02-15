@@ -1,12 +1,12 @@
 // SPDX-FileCopyrightText: 2018 Citra Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/logging/log.h"
-#include "common/math_util.h"
-#include "common/param_package.h"
-#include "common/settings.h"
-#include "common/yuzu_thread.h"
-#include "common/vector_math.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/math_util.h"
+#include "yuzu_common/param_package.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_common/thread.h"
+#include "yuzu_common/vector_math.h"
 #include "input_common/drivers/sdl_driver.h"
 
 namespace InputCommon {

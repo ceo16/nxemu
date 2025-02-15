@@ -5,7 +5,7 @@
 
 #include <mutex>
 
-#include "common/math_util.h"
+#include "yuzu_common/math_util.h"
 #include "core/hle/service/apm/apm_controller.h"
 #include "core/hle/service/caps/caps_types.h"
 #include "core/hle/service/kernel_helpers.h"

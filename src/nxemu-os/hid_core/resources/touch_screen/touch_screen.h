@@ -5,7 +5,7 @@
 
 #include <mutex>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/result.h"
 
 namespace Core::HID {

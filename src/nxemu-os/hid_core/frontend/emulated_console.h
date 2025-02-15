@@ -10,13 +10,13 @@
 #include <optional>
 #include <unordered_map>
 
-#include "common/common_funcs.h"
-#include "common/common_types.h"
-#include "common/input.h"
-#include "common/param_package.h"
-#include "common/point.h"
-#include "common/quaternion.h"
-#include "common/vector_math.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/input.h"
+#include "yuzu_common/param_package.h"
+#include "yuzu_common/point.h"
+#include "yuzu_common/quaternion.h"
+#include "yuzu_common/vector_math.h"
 #include "hid_core/frontend/motion_input.h"
 #include "hid_core/hid_types.h"
 

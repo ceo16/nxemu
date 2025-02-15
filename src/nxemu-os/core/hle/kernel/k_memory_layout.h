@@ -5,8 +5,8 @@
 
 #include <utility>
 
-#include "common/alignment.h"
-#include "common/literals.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_common/literals.h"
 #include "core/device_memory.h"
 #include "core/hle/kernel/k_memory_region.h"
 #include "core/hle/kernel/k_memory_region_type.h"

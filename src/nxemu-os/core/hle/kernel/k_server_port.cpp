@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <tuple>
-#include "common/assert.h"
+#include "yuzu_common/yuzu_assert.h"
 #include "core/hle/kernel/k_client_port.h"
 #include "core/hle/kernel/k_port.h"
 #include "core/hle/kernel/k_scheduler.h"

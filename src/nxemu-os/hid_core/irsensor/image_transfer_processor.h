@@ -5,7 +5,7 @@
 
 #include <span>
 
-#include "common/typed_address.h"
+#include "yuzu_common/typed_address.h"
 #include "hid_core/irsensor/irs_types.h"
 #include "hid_core/irsensor/processor_base.h"
 

@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright 2023 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/typed_address.h"
+#include "yuzu_common/typed_address.h"
 
 namespace Kernel {
 

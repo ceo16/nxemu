@@ -9,7 +9,7 @@
 #include <span>
 #include <thread>
 
-#include "common/threadsafe_queue.h"
+#include "yuzu_common/threadsafe_queue.h"
 #include "input_common/helpers/joycon_protocol/joycon_types.h"
 
 namespace Common::Input {

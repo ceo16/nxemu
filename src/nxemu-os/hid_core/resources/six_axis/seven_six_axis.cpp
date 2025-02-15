@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include <cstring>
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "core/core.h"
 #include "core/core_timing.h"
 #include "core/memory.h"

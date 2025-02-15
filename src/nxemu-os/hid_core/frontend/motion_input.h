@@ -3,9 +3,9 @@
 
 #pragma once
 
-#include "common/common_types.h"
-#include "common/quaternion.h"
-#include "common/vector_math.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/quaternion.h"
+#include "yuzu_common/vector_math.h"
 
 namespace Core::HID {
 

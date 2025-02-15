@@ -3,7 +3,7 @@
 
 #include <mutex>
 
-#include "common/assert.h"
+#include "yuzu_common/yuzu_assert.h"
 #include "core/core.h"
 #include "core/hle/kernel/global_scheduler_context.h"
 #include "core/hle/kernel/k_scheduler.h"

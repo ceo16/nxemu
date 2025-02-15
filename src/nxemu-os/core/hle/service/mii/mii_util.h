@@ -6,9 +6,9 @@
 #include <random>
 #include <span>
 
-#include "common/common_types.h"
-#include "common/swap.h"
-#include "common/uuid.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/swap.h"
+#include "yuzu_common/uuid.h"
 #include "core/hle/service/mii/mii_types.h"
 
 namespace Service::Mii {

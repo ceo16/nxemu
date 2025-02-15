@@ -2,7 +2,7 @@
 #include "core/cpu_manager.h"
 #include "core/hle/kernel/k_process.h"
 #include "core/hle/service/am/applet_manager.h"
-#include "common/logging/backend.h"
+#include "yuzu_common/logging/backend.h"
 #include "os_manager.h"
 
 extern IModuleSettings * g_settings;

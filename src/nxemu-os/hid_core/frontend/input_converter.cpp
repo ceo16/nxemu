@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <random>
 
-#include "common/input.h"
+#include "yuzu_common/input.h"
 #include "hid_core/frontend/input_converter.h"
 
 namespace Core::HID {

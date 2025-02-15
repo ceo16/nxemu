@@ -5,10 +5,10 @@
 
 #include <array>
 
-#include "common/bit_field.h"
-#include "common/common_funcs.h"
-#include "common/common_types.h"
-#include "common/uuid.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/uuid.h"
 
 namespace Service::Set {
 using SettingItemName = std::array<u8, 0x48>;

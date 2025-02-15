@@ -10,10 +10,10 @@
 #include <unordered_map>
 #include <vector>
 
-#include "common/common_types.h"
-#include "common/input.h"
-#include "common/param_package.h"
-#include "common/settings.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/input.h"
+#include "yuzu_common/param_package.h"
+#include "yuzu_common/settings.h"
 #include "hid_core/hid_types.h"
 
 namespace Core::HID {

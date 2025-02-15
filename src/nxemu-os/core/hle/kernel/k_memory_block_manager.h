@@ -6,7 +6,7 @@
 #include <array>
 #include <functional>
 
-#include "common/common_funcs.h"
+#include "yuzu_common/common_funcs.h"
 #include "core/hle/kernel/k_dynamic_resource_manager.h"
 #include "core/hle/kernel/k_memory_block.h"
 #include "core/hle/kernel/k_typed_address.h"

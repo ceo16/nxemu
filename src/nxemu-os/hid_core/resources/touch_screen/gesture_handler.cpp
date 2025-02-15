@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright 2024 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "common/math_util.h"
+#include "yuzu_common/math_util.h"
 #include "hid_core/resources/touch_screen/gesture_handler.h"
 
 namespace Service::HID {

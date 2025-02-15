@@ -3,13 +3,13 @@
 
 #include <fstream>
 
-#include "common/assert.h"
-#include "common/fs/file.h"
-#include "common/fs/fs.h"
-#include "common/fs/path_util.h"
-#include "common/logging/log.h"
-#include "common/settings.h"
-#include "common/string_util.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/fs/file.h"
+#include "yuzu_common/fs/fs.h"
+#include "yuzu_common/fs/path_util.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_common/string_util.h"
 #include "core/core.h"
 #include "core/file_sys/nca_metadata.h"
 #include "core/file_sys/registered_cache.h"

@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "common/fs/fs.h"
+#include "yuzu_common/fs/fs.h"
 #include "core/hle/result.h"
 #include "core/hle/service/mii/mii_database.h"
 

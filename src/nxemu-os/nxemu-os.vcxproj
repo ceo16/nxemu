@@ -44,10 +44,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="common\address_space.cpp" />
-    <ClCompile Include="common\hex_util.cpp" />
-    <ClCompile Include="common\param_package.cpp" />
-    <ClCompile Include="common\uuid.cpp" />
     <ClCompile Include="core\arm\cpu_module.cpp" />
     <ClCompile Include="core\constants.cpp" />
     <ClCompile Include="core\core.cpp" />
@@ -426,112 +422,12 @@
     <ClCompile Include="core\hle\service\vi\vi.cpp" />
     <ClCompile Include="core\hle\service\vi\vsync_manager.cpp" />
     <ClCompile Include="core\file_sys\program_metadata.cpp" />
-    <ClCompile Include="common\assert.cpp" />
-    <ClCompile Include="common\spin_lock.cpp" />
-    <ClCompile Include="common\settings.cpp" />
-    <ClCompile Include="common\settings_common.cpp" />
-    <ClCompile Include="common\settings_input.cpp" />
-    <ClCompile Include="common\string_util.cpp" />
-    <ClCompile Include="common\fiber.cpp" />
-    <ClCompile Include="common\virtual_buffer.cpp" />
-    <ClCompile Include="common\time_zone.cpp" />
-    <ClCompile Include="common\microprofile.cpp" />
-    <ClCompile Include="common\wall_clock.cpp" />
-    <ClCompile Include="common\error.cpp" />
-    <ClCompile Include="common\steady_clock.cpp" />
-    <ClCompile Include="common\heap_tracker.cpp" />
-    <ClCompile Include="common\page_table.cpp" />
-    <ClCompile Include="common\yuzu_dynamic_library.cpp" />
-    <ClCompile Include="common\host_memory.cpp" />
-    <ClCompile Include="common\yuzu_thread.cpp" />
-    <ClCompile Include="common\logging\filter.cpp" />
-    <ClCompile Include="common\logging\text_formatter.cpp" />
-    <ClCompile Include="common\logging\backend.cpp" />
-    <ClCompile Include="common\fs\file.cpp" />
-    <ClCompile Include="common\fs\fs.cpp" />
-    <ClCompile Include="common\fs\path_util.cpp" />
-    <ClCompile Include="common\fs\fs_util.cpp" />
-    <ClCompile Include="common\windows\timer_resolution.cpp" />
     <ClCompile Include="os_manager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="version.h.in" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="common\address_space.h" />
-    <ClInclude Include="common\alignment.h" />
-    <ClInclude Include="common\assert.h" />
-    <ClInclude Include="common\atomic_ops.h" />
-    <ClInclude Include="common\bit_cast.h" />
-    <ClInclude Include="common\bit_field.h" />
-    <ClInclude Include="common\bit_set.h" />
-    <ClInclude Include="common\bit_util.h" />
-    <ClInclude Include="common\bounded_threadsafe_queue.h" />
-    <ClInclude Include="common\common_funcs.h" />
-    <ClInclude Include="common\common_types.h" />
-    <ClInclude Include="common\concepts.h" />
-    <ClInclude Include="common\div_ceil.h" />
-    <ClInclude Include="common\error.h" />
-    <ClInclude Include="common\expected.h" />
-    <ClInclude Include="common\fiber.h" />
-    <ClInclude Include="common\free_region_manager.h" />
-    <ClInclude Include="common\fs\file.h" />
-    <ClInclude Include="common\fs\fs.h" />
-    <ClInclude Include="common\fs\fs_paths.h" />
-    <ClInclude Include="common\fs\fs_types.h" />
-    <ClInclude Include="common\fs\fs_util.h" />
-    <ClInclude Include="common\fs\path_util.h" />
-    <ClInclude Include="common\heap_tracker.h" />
-    <ClInclude Include="common\hex_util.h" />
-    <ClInclude Include="common\host_memory.h" />
-    <ClInclude Include="common\input.h" />
-    <ClInclude Include="common\intrusive_list.h" />
-    <ClInclude Include="common\intrusive_red_black_tree.h" />
-    <ClInclude Include="common\literals.h" />
-    <ClInclude Include="common\logging\backend.h" />
-    <ClInclude Include="common\logging\filter.h" />
-    <ClInclude Include="common\logging\formatter.h" />
-    <ClInclude Include="common\logging\log.h" />
-    <ClInclude Include="common\logging\log_entry.h" />
-    <ClInclude Include="common\logging\text_formatter.h" />
-    <ClInclude Include="common\logging\types.h" />
-    <ClInclude Include="common\make_unique_for_overwrite.h" />
-    <ClInclude Include="common\math_util.h" />
-    <ClInclude Include="common\microprofile.h" />
-    <ClInclude Include="common\overflow.h" />
-    <ClInclude Include="common\page_table.h" />
-    <ClInclude Include="common\param_package.h" />
-    <ClInclude Include="common\parent_of_member.h" />
-    <ClInclude Include="common\point.h" />
-    <ClInclude Include="common\polyfill_ranges.h" />
-    <ClInclude Include="common\polyfill_thread.h" />
-    <ClInclude Include="common\quaternion.h" />
-    <ClInclude Include="common\range_mutex.h" />
-    <ClInclude Include="common\scope_exit.h" />
-    <ClInclude Include="common\scratch_buffer.h" />
-    <ClInclude Include="common\settings.h" />
-    <ClInclude Include="common\settings_common.h" />
-    <ClInclude Include="common\settings_enums.h" />
-    <ClInclude Include="common\settings_input.h" />
-    <ClInclude Include="common\settings_setting.h" />
-    <ClInclude Include="common\spin_lock.h" />
-    <ClInclude Include="common\steady_clock.h" />
-    <ClInclude Include="common\string_util.h" />
-    <ClInclude Include="common\swap.h" />
-    <ClInclude Include="common\threadsafe_queue.h" />
-    <ClInclude Include="common\thread_worker.h" />
-    <ClInclude Include="common\time_zone.h" />
-    <ClInclude Include="common\tiny_mt.h" />
-    <ClInclude Include="common\tree.h" />
-    <ClInclude Include="common\typed_address.h" />
-    <ClInclude Include="common\unique_function.h" />
-    <ClInclude Include="common\uuid.h" />
-    <ClInclude Include="common\vector_math.h" />
-    <ClInclude Include="common\virtual_buffer.h" />
-    <ClInclude Include="common\wall_clock.h" />
-    <ClInclude Include="common\windows\timer_resolution.h" />
-    <ClInclude Include="common\yuzu_dynamic_library.h" />
-    <ClInclude Include="common\yuzu_thread.h" />
     <ClInclude Include="core\arm\arm_interface.h" />
     <ClInclude Include="core\arm\cpu_module.h" />
     <ClInclude Include="core\arm\dynarmic\arm_dynarmic.h" />
@@ -979,6 +875,9 @@
     </ProjectReference>
     <ProjectReference Include="..\..\external\sdl.vcxproj">
       <Project>{c44840a5-59bc-4ca0-85c2-b51f0ba6e3bd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\yuzu_common\yuzu_common.vcxproj">
+      <Project>{250224f2-2e89-410e-8bdb-875959daba2c}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

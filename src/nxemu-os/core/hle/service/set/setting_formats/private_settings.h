@@ -5,7 +5,7 @@
 
 #include <array>
 
-#include "common/common_types.h"
-#include "common/uuid.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/uuid.h"
 #include "core/hle/service/set/settings_types.h"
 

@@ -6,7 +6,7 @@
 #include <memory>
 #include <queue>
 
-#include "common/swap.h"
+#include "yuzu_common/swap.h"
 #include "core/hle/service/am/applet.h"
 
 union Result;

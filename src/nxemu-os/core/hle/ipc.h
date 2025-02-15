@@ -3,10 +3,10 @@
 
 #pragma once
 
-#include "common/bit_field.h"
-#include "common/common_funcs.h"
-#include "common/common_types.h"
-#include "common/swap.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/swap.h"
 
 namespace IPC {
 

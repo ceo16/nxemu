@@ -6,8 +6,8 @@
 #include <array>
 #include <cstddef>
 
-#include "common/common_types.h"
-#include "common/vector_math.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/vector_math.h"
 #include "core/hle/service/set/settings_types.h"
 
 namespace Service::Set {

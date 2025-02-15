@@ -3,8 +3,8 @@
 
 #include <chrono>
 #include <cmath>
-#include "common/math_util.h"
-#include "common/settings.h"
+#include "yuzu_common/math_util.h"
+#include "yuzu_common/settings.h"
 #include "input_common/helpers/stick_from_buttons.h"
 
 namespace InputCommon {

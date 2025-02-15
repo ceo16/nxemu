@@ -5,11 +5,11 @@
 
 #include <atomic>
 
-#include "common/assert.h"
-#include "common/atomic_ops.h"
-#include "common/common_funcs.h"
-#include "common/common_types.h"
-#include "common/spin_lock.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/atomic_ops.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/spin_lock.h"
 
 namespace Kernel {
 

@@ -7,8 +7,8 @@
 #include <memory>
 #include <type_traits>
 #include <utility>
-#include "common/assert.h"
-#include "common/common_types.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/ipc.h"
 #include "core/hle/kernel/k_process.h"
 #include "core/hle/kernel/k_resource_limit.h"

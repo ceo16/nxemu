@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "common/assert.h"
+#include "yuzu_common/yuzu_assert.h"
 
 #include "core/hle/kernel/k_scheduler.h"
 #include "core/hle/kernel/k_thread.h"

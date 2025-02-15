@@ -5,8 +5,8 @@
 #include <numeric>
 #include <vector>
 
-#include "common/logging/log.h"
-#include "common/settings.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/settings.h"
 #include "core/core.h"
 #include "core/file_sys/common_funcs.h"
 #include "core/file_sys/control_metadata.h"

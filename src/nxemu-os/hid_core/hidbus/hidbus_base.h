@@ -5,7 +5,7 @@
 
 #include <array>
 #include <span>
-#include "common/typed_address.h"
+#include "yuzu_common/typed_address.h"
 #include "core/hle/result.h"
 
 namespace Core {

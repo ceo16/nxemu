@@ -2,9 +2,9 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <cstring>
-#include "common/common_types.h"
-#include "common/logging/log.h"
-#include "common/swap.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/swap.h"
 #include "core/file_sys/nca_metadata.h"
 #include "core/file_sys/vfs/vfs.h"
 

@@ -3,7 +3,7 @@
 
 #include <cstring>
 
-#include "common/input.h"
+#include "yuzu_common/input.h"
 #include "input_common/helpers/joycon_protocol/calibration.h"
 #include "input_common/helpers/joycon_protocol/joycon_types.h"
 

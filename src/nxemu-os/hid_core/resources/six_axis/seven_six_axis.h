@@ -3,9 +3,9 @@
 
 #pragma once
 
-#include "common/common_types.h"
-#include "common/quaternion.h"
-#include "common/typed_address.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/quaternion.h"
+#include "yuzu_common/typed_address.h"
 #include "hid_core/resources/controller_base.h"
 #include "hid_core/resources/ring_lifo.h"
 

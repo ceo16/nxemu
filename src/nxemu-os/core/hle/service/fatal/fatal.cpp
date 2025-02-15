@@ -5,8 +5,8 @@
 #include <cstring>
 #include <ctime>
 #include <fmt/chrono.h>
-#include "common/logging/log.h"
-#include "common/swap.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/swap.h"
 #include "core/core.h"
 #include "core/hle/service/fatal/fatal.h"
 #include "core/hle/service/fatal/fatal_p.h"

@@ -3,7 +3,7 @@
 
 #include <cstring>
 
-#include "common/assert.h"
+#include "yuzu_common/yuzu_assert.h"
 #include "core/core.h"
 #include "core/hle/kernel/k_event.h"
 #include "core/hle/service/am/am.h"

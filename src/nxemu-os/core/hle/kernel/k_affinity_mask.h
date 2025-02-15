@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "common/assert.h"
-#include "common/common_types.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/common_types.h"
 #include "core/hardware_properties.h"
 
 namespace Kernel {

@@ -8,8 +8,8 @@
 #include <string>
 #include <vector>
 
-#include "common/common_funcs.h"
-#include "common/common_types.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/common_types.h"
 #include "core/hardware_properties.h"
 
 #include "core/hle/kernel/svc_types.h"

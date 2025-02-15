@@ -1,8 +1,8 @@
 // SPDX-FileCopyrightText: Copyright 2024 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/settings.h"
-#include "common/uuid.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_common/uuid.h"
 #include "core/core.h"
 #include "core/core_timing.h"
 #include "core/hle/service/acc/profile_manager.h"

@@ -3,9 +3,9 @@
 
 #pragma once
 
-#include "common/bit_util.h"
-#include "common/common_funcs.h"
-#include "common/common_types.h"
+#include "yuzu_common/bit_util.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/common_types.h"
 
 #define ARCH_ARM64
 #define BOARD_NINTENDO_NX

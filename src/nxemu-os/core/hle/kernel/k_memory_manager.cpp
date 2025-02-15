@@ -3,9 +3,9 @@
 
 #include <algorithm>
 
-#include "common/alignment.h"
-#include "common/assert.h"
-#include "common/scope_exit.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/scope_exit.h"
 #include "core/core.h"
 #include "core/device_memory.h"
 #include "core/hle/kernel/initial_process.h"

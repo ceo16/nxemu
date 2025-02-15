@@ -4,11 +4,11 @@
 #include <fmt/format.h>
 #include <libusb.h>
 
-#include "common/logging/log.h"
-#include "common/param_package.h"
-#include "common/polyfill_thread.h"
-#include "common/settings_input.h"
-#include "common/yuzu_thread.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/param_package.h"
+#include "yuzu_common/polyfill_thread.h"
+#include "yuzu_common/settings_input.h"
+#include "yuzu_common/thread.h"
 #include "input_common/drivers/gc_adapter.h"
 
 namespace InputCommon {

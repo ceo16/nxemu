@@ -5,10 +5,10 @@
 #include <cstring>
 #include <vector>
 
-#include "common/assert.h"
-#include "common/common_types.h"
-#include "common/logging/log.h"
-#include "common/swap.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/swap.h"
 #include "core/core.h"
 #include "core/file_sys/nca_metadata.h"
 #include "core/file_sys/registered_cache.h"

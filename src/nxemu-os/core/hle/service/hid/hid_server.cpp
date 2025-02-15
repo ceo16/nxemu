@@ -3,9 +3,9 @@
 
 #include <array>
 
-#include "common/common_types.h"
-#include "common/logging/log.h"
-#include "common/settings.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/settings.h"
 #include "core/hle/kernel/k_shared_memory.h"
 #include "core/hle/kernel/k_transfer_memory.h"
 #include "core/hle/kernel/kernel.h"

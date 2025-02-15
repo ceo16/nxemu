@@ -1,8 +1,8 @@
 // SPDX-FileCopyrightText: Copyright 2021 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/common_types.h"
-#include "common/input.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/input.h"
 
 #include "input_common/input_engine.h"
 #include "input_common/input_poller.h"

@@ -6,7 +6,7 @@
 #include <array>
 #include <memory>
 
-#include "common/intrusive_list.h"
+#include "yuzu_common/intrusive_list.h"
 
 #include "core/hle/kernel/k_light_lock.h"
 #include "core/hle/kernel/slab_helpers.h"

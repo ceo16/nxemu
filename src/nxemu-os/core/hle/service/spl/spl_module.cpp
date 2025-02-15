@@ -5,8 +5,8 @@
 #include <cstdlib>
 #include <ctime>
 #include <vector>
-#include "common/logging/log.h"
-#include "common/settings.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/settings.h"
 #include "core/hle/api_version.h"
 #include "core/hle/service/ipc_helpers.h"
 #include "core/hle/service/server_manager.h"

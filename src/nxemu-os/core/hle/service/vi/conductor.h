@@ -6,9 +6,9 @@
 #include <memory>
 #include <unordered_map>
 
-#include "common/common_types.h"
-#include "common/polyfill_thread.h"
-#include "common/yuzu_thread.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/polyfill_thread.h"
+#include "yuzu_common/thread.h"
 
 #include "core/hle/service/vi/vsync_manager.h"
 

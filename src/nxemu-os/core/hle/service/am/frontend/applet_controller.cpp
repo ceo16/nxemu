@@ -4,9 +4,9 @@
 #include <algorithm>
 #include <cstring>
 
-#include "common/assert.h"
-#include "common/logging/log.h"
-#include "common/string_util.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/string_util.h"
 #include "core/core.h"
 #include "core/hle/result.h"
 #include "core/hle/service/am/am.h"

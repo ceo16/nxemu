@@ -6,12 +6,12 @@
 
 #include <fmt/format.h>
 
-#include "common/fs/file.h"
-#include "common/fs/fs.h"
-#include "common/fs/path_util.h"
-#include "common/polyfill_ranges.h"
-#include "common/settings.h"
-#include "common/string_util.h"
+#include "yuzu_common/fs/file.h"
+#include "yuzu_common/fs/fs.h"
+#include "yuzu_common/fs/path_util.h"
+#include "yuzu_common/polyfill_ranges.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_common/string_util.h"
 #include "core/hle/service/acc/profile_manager.h"
 
 namespace Service::Account {

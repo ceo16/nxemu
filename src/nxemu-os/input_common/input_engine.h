@@ -7,10 +7,10 @@
 #include <mutex>
 #include <unordered_map>
 
-#include "common/common_types.h"
-#include "common/input.h"
-#include "common/param_package.h"
-#include "common/uuid.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/input.h"
+#include "yuzu_common/param_package.h"
+#include "yuzu_common/uuid.h"
 #include "input_common/main.h"
 
 // Pad Identifier of data source

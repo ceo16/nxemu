@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <random>
-#include "common/scope_exit.h"
-#include "common/settings.h"
+#include "yuzu_common/scope_exit.h"
+#include "yuzu_common/settings.h"
 #include "core/arm/dynarmic/arm_dynarmic.h"
 #include "core/arm/cpu_module.h"
 #include "core/core.h"

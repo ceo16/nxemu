@@ -6,8 +6,8 @@
 #include <array>
 #include <span>
 
-#include "common/common_funcs.h"
-#include "common/typed_address.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/typed_address.h"
 #include "hid_core/hid_result.h"
 #include "hid_core/hid_types.h"
 #include "hid_core/resources/controller_base.h"

@@ -10,10 +10,10 @@
 #include <memory>
 #include <mutex>
 
-#include "common/common_types.h"
-#include "common/range_mutex.h"
-#include "common/scratch_buffer.h"
-#include "common/virtual_buffer.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/range_mutex.h"
+#include "yuzu_common/scratch_buffer.h"
+#include "yuzu_common/virtual_buffer.h"
 
 namespace Core {
 

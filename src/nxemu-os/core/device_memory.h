@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "common/host_memory.h"
-#include "common/typed_address.h"
+#include "yuzu_common/host_memory.h"
+#include "yuzu_common/typed_address.h"
 
 namespace Core {
 

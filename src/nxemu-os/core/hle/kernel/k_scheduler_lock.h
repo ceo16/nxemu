@@ -4,7 +4,7 @@
 #pragma once
 
 #include <atomic>
-#include "common/assert.h"
+#include "yuzu_common/yuzu_assert.h"
 #include "core/hle/kernel/k_interrupt_manager.h"
 #include "core/hle/kernel/k_spin_lock.h"
 #include "core/hle/kernel/k_thread.h"

@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <queue>
-#include "common/logging/log.h"
-#include "common/uuid.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/uuid.h"
 #include "core/core.h"
 #include "core/hle/kernel/k_event.h"
 #include "core/hle/service/acc/errors.h"

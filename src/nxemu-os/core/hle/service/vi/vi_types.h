@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "common/common_funcs.h"
+#include "yuzu_common/common_funcs.h"
 
 namespace Service::VI {
 

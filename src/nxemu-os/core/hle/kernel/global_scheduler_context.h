@@ -7,7 +7,7 @@
 #include <set>
 #include <vector>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "core/hardware_properties.h"
 #include "core/hle/kernel/k_priority_queue.h"
 #include "core/hle/kernel/k_scheduler_lock.h"

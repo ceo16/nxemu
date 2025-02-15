@@ -6,7 +6,7 @@
 #include <optional>
 #include <unordered_map>
 #include <boost/container_hash/hash.hpp>
-#include "common/logging/log.h"
+#include "yuzu_common/logging/log.h"
 #include "core/core.h"
 #include "core/hle/service/ipc_helpers.h"
 #include "core/hle/service/lm/lm.h"

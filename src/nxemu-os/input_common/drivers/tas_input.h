@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "input_common/input_engine.h"
 
 /*

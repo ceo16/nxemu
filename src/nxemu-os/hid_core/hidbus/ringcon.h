@@ -6,7 +6,7 @@
 #include <array>
 #include <span>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "hid_core/hidbus/hidbus_base.h"
 
 namespace Core::HID {

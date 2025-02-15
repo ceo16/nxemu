@@ -1,9 +1,9 @@
 // SPDX-FileCopyrightText: Copyright 2021 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/assert.h"
-#include "common/common_types.h"
-#include "common/scratch_buffer.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/scratch_buffer.h"
 #include "core/hle/kernel/k_scheduler.h"
 #include "core/hle/kernel/k_scoped_scheduler_lock_and_sleep.h"
 #include "core/hle/kernel/k_synchronization_object.h"

@@ -1,8 +1,8 @@
 // SPDX-FileCopyrightText: Copyright 2021 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/alignment.h"
-#include "common/common_types.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_common/common_types.h"
 #include "core/device_memory.h"
 #include "core/hle/kernel/k_code_memory.h"
 #include "core/hle/kernel/k_light_lock.h"

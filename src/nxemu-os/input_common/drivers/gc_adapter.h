@@ -8,7 +8,7 @@
 #include <string>
 #include <thread>
 
-#include "common/polyfill_thread.h"
+#include "yuzu_common/polyfill_thread.h"
 #include "input_common/input_engine.h"
 
 struct libusb_context;

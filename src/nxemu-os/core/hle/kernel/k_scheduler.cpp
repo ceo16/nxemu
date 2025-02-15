@@ -3,10 +3,10 @@
 
 #include <bit>
 
-#include "common/assert.h"
-#include "common/bit_util.h"
-#include "common/fiber.h"
-#include "common/logging/log.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/bit_util.h"
+#include "yuzu_common/fiber.h"
+#include "yuzu_common/logging/log.h"
 #include "core/arm/arm_interface.h"
 #include "core/core.h"
 #include "core/core_timing.h"

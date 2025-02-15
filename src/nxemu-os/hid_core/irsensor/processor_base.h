@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "hid_core/irsensor/irs_types.h"
 
 namespace Service::IRS {

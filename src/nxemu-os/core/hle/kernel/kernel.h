@@ -11,7 +11,7 @@
 #include <unordered_map>
 #include <vector>
 
-#include "common/polyfill_thread.h"
+#include "yuzu_common/polyfill_thread.h"
 #include "core/hardware_properties.h"
 #include "core/hle/kernel/k_auto_object.h"
 #include "core/hle/kernel/k_slab_heap.h"

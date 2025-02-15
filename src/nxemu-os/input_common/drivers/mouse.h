@@ -5,8 +5,8 @@
 
 #include <thread>
 
-#include "common/polyfill_thread.h"
-#include "common/vector_math.h"
+#include "yuzu_common/polyfill_thread.h"
+#include "yuzu_common/vector_math.h"
 #include "input_common/input_engine.h"
 
 namespace InputCommon {

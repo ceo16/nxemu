@@ -5,7 +5,7 @@
 
 #include <array>
 
-#include "common/intrusive_list.h"
+#include "yuzu_common/intrusive_list.h"
 
 #include "core/hle/kernel/slab_helpers.h"
 #include "core/hle/kernel/svc_types.h"

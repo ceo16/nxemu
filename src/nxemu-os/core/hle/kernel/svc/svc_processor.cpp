@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright 2023 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/logging/log.h"
+#include "yuzu_common/logging/log.h"
 #include "core/core.h"
 #include "core/hle/kernel/physical_core.h"
 #include "core/hle/kernel/svc.h"

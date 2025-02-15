@@ -3,9 +3,9 @@
 
 #pragma once
 
-#include "common/bit_field.h"
-#include "common/common_types.h"
-#include "common/literals.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/literals.h"
 
 namespace Kernel::Svc {
 

@@ -6,8 +6,8 @@
 #include <array>
 #include <vector>
 
-#include "common/common_funcs.h"
-#include "common/common_types.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/result.h"
 #include "core/hle/service/am/frontend/applets.h"
 

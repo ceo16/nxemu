@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <tuple>
-#include "common/assert.h"
-#include "common/scope_exit.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/scope_exit.h"
 #include "core/core.h"
 #include "core/hle/kernel/k_client_port.h"
 #include "core/hle/kernel/k_client_session.h"

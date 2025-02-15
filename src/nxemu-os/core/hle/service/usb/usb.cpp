@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "common/logging/log.h"
+#include "yuzu_common/logging/log.h"
 #include "core/hle/service/ipc_helpers.h"
 #include "core/hle/service/server_manager.h"
 #include "core/hle/service/service.h"

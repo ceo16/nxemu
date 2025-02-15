@@ -6,11 +6,11 @@
 #include <array>
 #include <bit>
 
-#include "common/alignment.h"
-#include "common/assert.h"
-#include "common/bit_util.h"
-#include "common/common_types.h"
-#include "common/tiny_mt.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/bit_util.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/tiny_mt.h"
 #include "core/hle/kernel/k_system_control.h"
 
 namespace Kernel {

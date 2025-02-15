@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright 2021 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/param_package.h"
+#include "yuzu_common/param_package.h"
 #include "input_common/drivers/touch_screen.h"
 
 namespace InputCommon {

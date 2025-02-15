@@ -8,8 +8,8 @@
 #include <string>
 #include <thread>
 
-#include "common/polyfill_thread.h"
-#include "common/uuid.h"
+#include "yuzu_common/polyfill_thread.h"
+#include "yuzu_common/uuid.h"
 #include "core/hle/result.h"
 #include "core/hle/service/cmif_types.h"
 #include "core/hle/service/service.h"

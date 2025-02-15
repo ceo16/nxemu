@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright 2023 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/scope_exit.h"
+#include "yuzu_common/scope_exit.h"
 #include "core/core.h"
 #include "core/hle/kernel/k_code_memory.h"
 #include "core/hle/kernel/k_process.h"

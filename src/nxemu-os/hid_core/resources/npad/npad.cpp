@@ -5,11 +5,11 @@
 #include <array>
 #include <cstring>
 
-#include "common/assert.h"
-#include "common/bit_field.h"
-#include "common/common_types.h"
-#include "common/logging/log.h"
-#include "common/settings.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/settings.h"
 #include "core/core_timing.h"
 #include "core/hle/kernel/k_event.h"
 #include "core/hle/kernel/k_readable_event.h"

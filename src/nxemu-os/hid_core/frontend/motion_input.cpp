@@ -3,7 +3,7 @@
 
 #include <cmath>
 
-#include "common/math_util.h"
+#include "yuzu_common/math_util.h"
 #include "hid_core/frontend/motion_input.h"
 
 namespace Core::HID {

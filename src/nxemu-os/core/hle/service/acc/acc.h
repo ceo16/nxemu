@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "common/uuid.h"
+#include "yuzu_common/uuid.h"
 #include "core/hle/service/glue/glue_manager.h"
 #include "core/hle/service/service.h"
 

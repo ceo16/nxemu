@@ -12,8 +12,8 @@
 
 #include <nxemu-module-spec/cpu.h>
 
-#include "common/scratch_buffer.h"
-#include "common/typed_address.h"
+#include "yuzu_common/scratch_buffer.h"
+#include "yuzu_common/typed_address.h"
 #include "core/guest_memory.h"
 #include "core/hle/result.h"
 

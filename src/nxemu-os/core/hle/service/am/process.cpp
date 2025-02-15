@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright 2024 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/scope_exit.h"
+#include "yuzu_common/scope_exit.h"
 
 #include "core/file_sys/nca_metadata.h"
 #include "core/file_sys/registered_cache.h"

@@ -3,8 +3,8 @@
 
 #include <array>
 
-#include "common/assert.h"
-#include "common/literals.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/literals.h"
 #include "core/hle/kernel/k_address_space_info.h"
 
 namespace Kernel {

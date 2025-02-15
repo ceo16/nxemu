@@ -6,8 +6,8 @@
 #include <array>
 #include <vector>
 
-#include "common/alignment.h"
-#include "common/common_funcs.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_common/common_funcs.h"
 #include "core/hle/kernel/k_page_bitmap.h"
 #include "core/hle/kernel/k_typed_address.h"
 #include "core/hle/kernel/memory_types.h"

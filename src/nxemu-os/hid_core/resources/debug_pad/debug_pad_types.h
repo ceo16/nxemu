@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "common/bit_field.h"
-#include "common/common_types.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_common/common_types.h"
 #include "hid_core/hid_types.h"
 
 namespace Service::HID {

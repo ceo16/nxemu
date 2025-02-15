@@ -5,9 +5,9 @@
 #include <array>
 #include <utility>
 
-#include "common/logging/log.h"
-#include "common/settings.h"
-#include "common/settings_enums.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_common/settings_enums.h"
 #include "core/core_timing.h"
 #include "core/hle/service/apm/apm_controller.h"
 

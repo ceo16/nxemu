@@ -19,9 +19,6 @@
     <Filter Include="Source Files\core">
       <UniqueIdentifier>{a7ef1511-f810-33b3-0f5d-063dbd0081b8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\common">
-      <UniqueIdentifier>{b859fed3-c540-0bec-dbe5-01a70a0ffc03}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\core\hle">
       <UniqueIdentifier>{d932bd7a-4b45-52a3-b751-05ddbb018f3c}</UniqueIdentifier>
     </Filter>
@@ -196,20 +193,8 @@
     <Filter Include="Source Files\core\file_sys\vfs">
       <UniqueIdentifier>{5bd58cb0-4dcd-115d-b699-0b39fc0b5687}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\common\logging">
-      <UniqueIdentifier>{9a57763f-2f29-eb9d-d5dd-0731700e11cc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\common\fs">
-      <UniqueIdentifier>{9164de0e-d052-7b4d-3b99-034e7505c92c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\common\windows">
-      <UniqueIdentifier>{fb7474de-ad26-534c-df39-08312e02bceb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\core">
       <UniqueIdentifier>{fc3c68a7-ed35-c489-e7a8-019fd900cf98}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\common">
-      <UniqueIdentifier>{7d75ec54-a67f-a159-bb18-0247500a13f4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\core\hle">
       <UniqueIdentifier>{a239b0f2-8548-34dd-b62c-0cb5ae0e007c}</UniqueIdentifier>
@@ -393,15 +378,6 @@
     </Filter>
     <Filter Include="Header Files\core\file_sys\vfs">
       <UniqueIdentifier>{12557e41-077b-efa7-aea8-07d1db093580}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\common\logging">
-      <UniqueIdentifier>{9bee9491-d123-9b21-3a0d-0724e70fc0ca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\common\fs">
-      <UniqueIdentifier>{6ef2cf2c-47b3-0c3d-380f-0f4332014bc8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\common\windows">
-      <UniqueIdentifier>{ae285997-ebd9-728b-7c99-01b5d305cf28}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\core\hle\kernel\init">
       <UniqueIdentifier>{0ac23067-9b76-422d-8cde-8e5f283fcb19}</UniqueIdentifier>
@@ -1485,207 +1461,6 @@
     <ClInclude Include="core\loader\loader.h">
       <Filter>Header Files\core\loader</Filter>
     </ClInclude>
-    <ClInclude Include="common\polyfill_thread.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\bit_util.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\common_types.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\assert.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\common_funcs.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\atomic_ops.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\scope_exit.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\spin_lock.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\settings.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\settings_common.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\settings_enums.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\settings_input.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\settings_setting.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\string_util.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\scratch_buffer.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\literals.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\bounded_threadsafe_queue.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\bit_field.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\expected.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\fiber.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\virtual_buffer.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\concepts.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\polyfill_ranges.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\time_zone.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\microprofile.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\yuzu_thread.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\wall_clock.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\swap.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\error.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\steady_clock.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\bit_set.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\typed_address.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\alignment.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\intrusive_list.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\intrusive_red_black_tree.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\overflow.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\make_unique_for_overwrite.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\heap_tracker.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\page_table.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\host_memory.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\parent_of_member.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\tree.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\free_region_manager.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\yuzu_dynamic_library.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\tiny_mt.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\bit_cast.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\unique_function.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\thread_worker.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\range_mutex.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\logging\log.h">
-      <Filter>Header Files\common\logging</Filter>
-    </ClInclude>
-    <ClInclude Include="common\logging\formatter.h">
-      <Filter>Header Files\common\logging</Filter>
-    </ClInclude>
-    <ClInclude Include="common\logging\types.h">
-      <Filter>Header Files\common\logging</Filter>
-    </ClInclude>
-    <ClInclude Include="common\logging\backend.h">
-      <Filter>Header Files\common\logging</Filter>
-    </ClInclude>
-    <ClInclude Include="common\logging\filter.h">
-      <Filter>Header Files\common\logging</Filter>
-    </ClInclude>
-    <ClInclude Include="common\logging\log_entry.h">
-      <Filter>Header Files\common\logging</Filter>
-    </ClInclude>
-    <ClInclude Include="common\logging\text_formatter.h">
-      <Filter>Header Files\common\logging</Filter>
-    </ClInclude>
-    <ClInclude Include="common\fs\file.h">
-      <Filter>Header Files\common\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="common\fs\fs.h">
-      <Filter>Header Files\common\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="common\fs\fs_paths.h">
-      <Filter>Header Files\common\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="common\fs\path_util.h">
-      <Filter>Header Files\common\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="common\fs\fs_util.h">
-      <Filter>Header Files\common\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="common\fs\fs_types.h">
-      <Filter>Header Files\common\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="common\windows\timer_resolution.h">
-      <Filter>Header Files\common\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="common\div_ceil.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\hex_util.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\math_util.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\uuid.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
     <ClInclude Include="core\hle\kernel\k_object_name.h">
       <Filter>Header Files\core\hle\kernel</Filter>
     </ClInclude>
@@ -1707,14 +1482,8 @@
     <ClInclude Include="core\file_sys\registered_cache.h">
       <Filter>Header Files\core\file_sys</Filter>
     </ClInclude>
-    <ClInclude Include="common\vector_math.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
     <ClInclude Include="core\constants.h">
       <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="common\address_space.h">
-      <Filter>Header Files\common</Filter>
     </ClInclude>
     <ClInclude Include="core\hle\api_version.h">
       <Filter>Header Files\core\hle</Filter>
@@ -1835,15 +1604,6 @@
     </ClInclude>
     <ClInclude Include="input_common\helpers\joycon_protocol\rumble.h">
       <Filter>Header Files\input_common\helpers\joycon_protocol</Filter>
-    </ClInclude>
-    <ClInclude Include="common\input.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\param_package.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\threadsafe_queue.h">
-      <Filter>Header Files\common</Filter>
     </ClInclude>
     <ClInclude Include="hid_core\hid_core.h">
       <Filter>Header Files\hid_core</Filter>
@@ -2069,12 +1829,6 @@
     </ClInclude>
     <ClInclude Include="hid_core\resources\npad\npad_vibration.h">
       <Filter>Header Files\hid_core\resources\npad</Filter>
-    </ClInclude>
-    <ClInclude Include="common\point.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\quaternion.h">
-      <Filter>Header Files\common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2923,93 +2677,6 @@
     <ClCompile Include="core\file_sys\nca_metadata.cpp">
       <Filter>Source Files\core\file_sys</Filter>
     </ClCompile>
-    <ClCompile Include="common\assert.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="common\spin_lock.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="common\settings.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="common\settings_common.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="common\settings_input.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="common\string_util.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="common\fiber.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="common\virtual_buffer.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="common\time_zone.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="common\microprofile.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="common\wall_clock.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="common\error.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="common\steady_clock.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="common\heap_tracker.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="common\page_table.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="common\yuzu_dynamic_library.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="common\host_memory.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="common\yuzu_thread.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="common\uuid.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="common\hex_util.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="common\address_space.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="common\logging\filter.cpp">
-      <Filter>Source Files\common\logging</Filter>
-    </ClCompile>
-    <ClCompile Include="common\logging\text_formatter.cpp">
-      <Filter>Source Files\common\logging</Filter>
-    </ClCompile>
-    <ClCompile Include="common\logging\backend.cpp">
-      <Filter>Source Files\common\logging</Filter>
-    </ClCompile>
-    <ClCompile Include="common\fs\file.cpp">
-      <Filter>Source Files\common\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="common\fs\fs.cpp">
-      <Filter>Source Files\common\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="common\fs\path_util.cpp">
-      <Filter>Source Files\common\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="common\fs\fs_util.cpp">
-      <Filter>Source Files\common\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="common\windows\timer_resolution.cpp">
-      <Filter>Source Files\common\windows</Filter>
-    </ClCompile>
     <ClCompile Include="core\hle\service\ptm\psm.cpp">
       <Filter>Source Files\core\hle\service\ptm</Filter>
     </ClCompile>
@@ -3270,9 +2937,6 @@
     </ClCompile>
     <ClCompile Include="input_common\helpers\joycon_protocol\rumble.cpp">
       <Filter>Source Files\input_common\helpers\joycon_protocol</Filter>
-    </ClCompile>
-    <ClCompile Include="common\param_package.cpp">
-      <Filter>Source Files\common</Filter>
     </ClCompile>
     <ClCompile Include="hid_core\hid_core.cpp">
       <Filter>Source Files\hid_core</Filter>

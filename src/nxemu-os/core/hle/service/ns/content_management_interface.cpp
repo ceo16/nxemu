@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright 2024 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/common_funcs.h"
+#include "yuzu_common/common_funcs.h"
 #include "core/core.h"
 #include "core/hle/service/cmif_serialization.h"
 #include "core/hle/service/ns/content_management_interface.h"

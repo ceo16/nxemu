@@ -10,12 +10,12 @@
 #include <unordered_set>
 #include <utility>
 
-#include "common/assert.h"
-#include "common/logging/log.h"
-#include "common/microprofile.h"
-#include "common/scope_exit.h"
-#include "common/yuzu_thread.h"
-#include "common/thread_worker.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/microprofile.h"
+#include "yuzu_common/scope_exit.h"
+#include "yuzu_common/thread.h"
+#include "yuzu_common/thread_worker.h"
 #include "core/arm/arm_interface.h"
 #include "core/arm/exclusive_monitor.h"
 #include "core/core.h"

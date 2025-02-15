@@ -1,8 +1,8 @@
 // SPDX-FileCopyrightText: Copyright 2018 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/hex_util.h"
-#include "common/logging/log.h"
+#include "yuzu_common/hex_util.h"
+#include "yuzu_common/logging/log.h"
 #include "core/core.h"
 #include "core/hle/service/acc/profile_manager.h"
 #include "core/hle/service/ipc_helpers.h"

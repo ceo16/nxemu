@@ -52,6 +52,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libusb", "external\libusb.v
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tz", "src\3rd_party\tz\tz.vcxproj", "{677CA72D-E9B7-4AA5-ADBA-1C02AC84F8B0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yuzu_common", "src\yuzu_common\yuzu_common.vcxproj", "{250224F2-2E89-410E-8BDB-875959DABA2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -114,6 +116,10 @@ Global
 		{677CA72D-E9B7-4AA5-ADBA-1C02AC84F8B0}.Debug|x64.Build.0 = Debug|x64
 		{677CA72D-E9B7-4AA5-ADBA-1C02AC84F8B0}.Release|x64.ActiveCfg = Release|x64
 		{677CA72D-E9B7-4AA5-ADBA-1C02AC84F8B0}.Release|x64.Build.0 = Release|x64
+		{250224F2-2E89-410E-8BDB-875959DABA2C}.Debug|x64.ActiveCfg = Debug|x64
+		{250224F2-2E89-410E-8BDB-875959DABA2C}.Debug|x64.Build.0 = Debug|x64
+		{250224F2-2E89-410E-8BDB-875959DABA2C}.Release|x64.ActiveCfg = Release|x64
+		{250224F2-2E89-410E-8BDB-875959DABA2C}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -18,7 +18,7 @@
 #pragma warning(pop)
 #endif
 
-#include "common/swap.h"
+#include "yuzu_common/swap.h"
 
 namespace InputCommon::CemuhookUDP {
 

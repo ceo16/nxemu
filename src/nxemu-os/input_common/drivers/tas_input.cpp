@@ -5,11 +5,11 @@
 #include <sstream>
 #include <fmt/format.h>
 
-#include "common/fs/file.h"
-#include "common/fs/fs_types.h"
-#include "common/fs/path_util.h"
-#include "common/logging/log.h"
-#include "common/settings.h"
+#include "yuzu_common/fs/file.h"
+#include "yuzu_common/fs/fs_types.h"
+#include "yuzu_common/fs/path_util.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/settings.h"
 #include "input_common/drivers/tas_input.h"
 
 namespace InputCommon::TasInput {

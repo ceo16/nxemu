@@ -7,14 +7,14 @@
 #include <tuple>
 
 #ifdef _WIN32
-#include "common/windows/timer_resolution.h"
+#include "yuzu_common/windows/timer_resolution.h"
 #endif
 
 #ifdef ARCHITECTURE_x86_64
-#include "common/x64/cpu_wait.h"
+#include "yuzu_common/x64/cpu_wait.h"
 #endif
 
-#include "common/microprofile.h"
+#include "yuzu_common/microprofile.h"
 #include "core/core_timing.h"
 #include "core/hardware_properties.h"
 

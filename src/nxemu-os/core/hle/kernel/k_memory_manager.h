@@ -6,7 +6,7 @@
 #include <array>
 #include <tuple>
 
-#include "common/common_funcs.h"
+#include "yuzu_common/common_funcs.h"
 #include "core/hle/kernel/k_light_lock.h"
 #include "core/hle/kernel/k_memory_layout.h"
 #include "core/hle/kernel/k_page_heap.h"

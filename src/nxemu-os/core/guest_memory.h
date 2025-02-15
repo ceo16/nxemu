@@ -9,8 +9,8 @@
 #include <span>
 #include <vector>
 
-#include "common/assert.h"
-#include "common/scratch_buffer.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/scratch_buffer.h"
 
 namespace Core::Memory {
 

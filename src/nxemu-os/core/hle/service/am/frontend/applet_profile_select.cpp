@@ -3,8 +3,8 @@
 
 #include <cstring>
 
-#include "common/assert.h"
-#include "common/string_util.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/string_util.h"
 #include "core/core.h"
 #include "core/hle/service/acc/errors.h"
 #include "core/hle/service/am/am.h"

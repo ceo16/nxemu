@@ -4,7 +4,7 @@
 #pragma once
 
 #include <array>
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/kernel/k_light_condition_variable.h"
 #include "core/hle/kernel/k_light_lock.h"
 

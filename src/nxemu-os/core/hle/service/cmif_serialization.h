@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "common/div_ceil.h"
+#include "yuzu_common/div_ceil.h"
 
 #include "core/hle/service/cmif_types.h"
 #include "core/hle/service/ipc_helpers.h"

@@ -5,8 +5,8 @@
 
 #include <memory>
 
-#include "common/common_funcs.h"
-#include "common/page_table.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/page_table.h"
 #include "core/core.h"
 #include "core/hle/kernel/k_dynamic_resource_manager.h"
 #include "core/hle/kernel/k_light_lock.h"

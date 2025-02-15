@@ -3,7 +3,7 @@
 
 #include <array>
 
-#include "common/alignment.h"
+#include "yuzu_common/alignment.h"
 #include "core/hle/kernel/k_memory_layout.h"
 #include "core/hle/kernel/k_system_control.h"
 

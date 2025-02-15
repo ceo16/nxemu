@@ -4,7 +4,7 @@
 #pragma once
 
 #include <array>
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 
 // This is to consolidate system-wide constants that are used by multiple components of yuzu.
 // This is especially to prevent the case of something in frontend duplicating a constexpr array or

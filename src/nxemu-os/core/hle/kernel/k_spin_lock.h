@@ -5,7 +5,7 @@
 
 #include <mutex>
 
-#include "common/common_funcs.h"
+#include "yuzu_common/common_funcs.h"
 #include "core/hle/kernel/k_scoped_lock.h"
 
 namespace Kernel {

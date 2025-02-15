@@ -4,7 +4,7 @@
 #pragma once
 
 #include <optional>
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/service/set/system_settings_server.h"
 
 namespace Service::NS {
