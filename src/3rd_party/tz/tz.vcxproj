@@ -29,9 +29,9 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="tz\tz.cpp" />
+    <ClCompile Include="tz.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="tz\tz.h" />
+    <ClInclude Include="tz.h" />
   </ItemGroup>
 </Project>	

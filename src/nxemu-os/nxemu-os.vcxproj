@@ -980,9 +980,6 @@
     <ProjectReference Include="..\..\external\sdl.vcxproj">
       <Project>{c44840a5-59bc-4ca0-85c2-b51f0ba6e3bd}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\external\tz.vcxproj">
-      <Project>{677ca72d-e9b7-4aa5-adba-1c02ac84f8b0}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
