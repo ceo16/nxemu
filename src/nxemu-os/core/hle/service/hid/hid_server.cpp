@@ -15,27 +15,27 @@
 #include "core/hle/service/hid/hid_server.h"
 #include "core/hle/service/ipc_helpers.h"
 #include "core/memory.h"
-#include "hid_core/hid_result.h"
-#include "hid_core/hid_util.h"
-#include "hid_core/resource_manager.h"
-#include "hid_core/resources/hid_firmware_settings.h"
+#include <yuzu_hid_core/hid_result.h>
+#include <yuzu_hid_core/hid_util.h>
+#include <yuzu_hid_core/resource_manager.h>
+#include <yuzu_hid_core/resources/hid_firmware_settings.h>
 
-#include "hid_core/resources/controller_base.h"
-#include "hid_core/resources/debug_pad/debug_pad.h"
-#include "hid_core/resources/keyboard/keyboard.h"
-#include "hid_core/resources/mouse/mouse.h"
-#include "hid_core/resources/npad/npad.h"
-#include "hid_core/resources/npad/npad_types.h"
-#include "hid_core/resources/npad/npad_vibration.h"
-#include "hid_core/resources/palma/palma.h"
-#include "hid_core/resources/six_axis/console_six_axis.h"
-#include "hid_core/resources/six_axis/seven_six_axis.h"
-#include "hid_core/resources/six_axis/six_axis.h"
-#include "hid_core/resources/touch_screen/gesture.h"
-#include "hid_core/resources/touch_screen/touch_screen.h"
-#include "hid_core/resources/vibration/gc_vibration_device.h"
-#include "hid_core/resources/vibration/n64_vibration_device.h"
-#include "hid_core/resources/vibration/vibration_device.h"
+#include <yuzu_hid_core/resources/controller_base.h>
+#include <yuzu_hid_core/resources/debug_pad/debug_pad.h>
+#include <yuzu_hid_core/resources/keyboard/keyboard.h>
+#include <yuzu_hid_core/resources/mouse/mouse.h>
+#include <yuzu_hid_core/resources/npad/npad.h>
+#include <yuzu_hid_core/resources/npad/npad_types.h>
+#include <yuzu_hid_core/resources/npad/npad_vibration.h>
+#include <yuzu_hid_core/resources/palma/palma.h>
+#include <yuzu_hid_core/resources/six_axis/console_six_axis.h>
+#include <yuzu_hid_core/resources/six_axis/seven_six_axis.h>
+#include <yuzu_hid_core/resources/six_axis/six_axis.h>
+#include <yuzu_hid_core/resources/touch_screen/gesture.h>
+#include <yuzu_hid_core/resources/touch_screen/touch_screen.h>
+#include <yuzu_hid_core/resources/vibration/gc_vibration_device.h>
+#include <yuzu_hid_core/resources/vibration/n64_vibration_device.h>
+#include <yuzu_hid_core/resources/vibration/vibration_device.h>
 
 namespace Service::HID {
 

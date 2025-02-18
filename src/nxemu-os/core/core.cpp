@@ -20,7 +20,7 @@
 #include "core/hle/service/am/frontend/applets.h"
 #include "core/hle/service/apm/apm_controller.h"
 #include "core/hle/service/services.h"
-#include "hid_core/hid_core.h"
+#include <yuzu_hid_core/hid_core.h>
 #include "input_common/main.h"
 
 MICROPROFILE_DEFINE(ARM_CPU0, "ARM", "CPU 0", MP_RGB(255, 64, 64));

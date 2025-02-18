@@ -9,7 +9,7 @@
 
 #include "core/hle/service/cmif_types.h"
 #include "core/hle/service/service.h"
-#include "hid_core/hid_types.h"
+#include <yuzu_hid_core/hid_types.h>
 
 namespace Core {
 class System;

@@ -13,16 +13,16 @@
 #include "core/hle/service/hid/irs.h"
 #include "core/hle/service/ipc_helpers.h"
 #include "core/memory.h"
-#include "hid_core/frontend/emulated_controller.h"
-#include "hid_core/hid_core.h"
-#include "hid_core/hid_result.h"
-#include "hid_core/hid_util.h"
-#include "hid_core/irsensor/clustering_processor.h"
-#include "hid_core/irsensor/image_transfer_processor.h"
-#include "hid_core/irsensor/ir_led_processor.h"
-#include "hid_core/irsensor/moment_processor.h"
-#include "hid_core/irsensor/pointing_processor.h"
-#include "hid_core/irsensor/tera_plugin_processor.h"
+#include <yuzu_hid_core/frontend/emulated_controller.h>
+#include <yuzu_hid_core/hid_core.h>
+#include <yuzu_hid_core/hid_result.h>
+#include <yuzu_hid_core/hid_util.h>
+#include <yuzu_hid_core/irsensor/clustering_processor.h>
+#include <yuzu_hid_core/irsensor/image_transfer_processor.h>
+#include <yuzu_hid_core/irsensor/ir_led_processor.h>
+#include <yuzu_hid_core/irsensor/moment_processor.h>
+#include <yuzu_hid_core/irsensor/pointing_processor.h>
+#include <yuzu_hid_core/irsensor/tera_plugin_processor.h>
 
 namespace Service::IRS {
 

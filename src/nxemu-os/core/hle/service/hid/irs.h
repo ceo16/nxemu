@@ -6,9 +6,9 @@
 #include "core/core.h"
 #include "core/hle/service/cmif_types.h"
 #include "core/hle/service/service.h"
-#include "hid_core/hid_types.h"
-#include "hid_core/irsensor/irs_types.h"
-#include "hid_core/irsensor/processor_base.h"
+#include <yuzu_hid_core/hid_types.h>
+#include <yuzu_hid_core/irsensor/irs_types.h>
+#include <yuzu_hid_core/irsensor/processor_base.h>
 
 namespace Core::HID {
 class EmulatedController;
