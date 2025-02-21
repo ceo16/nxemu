@@ -21,7 +21,7 @@
 #include "core/hle/service/apm/apm_controller.h"
 #include "core/hle/service/services.h"
 #include <yuzu_hid_core/hid_core.h>
-#include "input_common/main.h"
+#include "yuzu_input_common/main.h"
 
 MICROPROFILE_DEFINE(ARM_CPU0, "ARM", "CPU 0", MP_RGB(255, 64, 64));
 MICROPROFILE_DEFINE(ARM_CPU1, "ARM", "CPU 1", MP_RGB(255, 64, 64));

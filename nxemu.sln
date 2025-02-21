@@ -56,6 +56,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yuzu_common", "src\yuzu_com
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yuzu_hid_core", "src\yuzu_hid_core\yuzu_hid_core.vcxproj", "{58ED6CB7-4A88-455E-87DA-39E34CD7B1CF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yuzu_input_common", "src\yuzu_input_common\yuzu_input_common.vcxproj", "{D45CCCC7-A1E9-47B5-B9FA-0B599DC8B962}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -192,6 +194,14 @@ Global
 		{58ED6CB7-4A88-455E-87DA-39E34CD7B1CF}.Release|x64.Build.0 = Release|x64
 		{58ED6CB7-4A88-455E-87DA-39E34CD7B1CF}.Release|x86.ActiveCfg = Release|x64
 		{58ED6CB7-4A88-455E-87DA-39E34CD7B1CF}.Release|x86.Build.0 = Release|x64
+		{D45CCCC7-A1E9-47B5-B9FA-0B599DC8B962}.Debug|x64.ActiveCfg = Debug|x64
+		{D45CCCC7-A1E9-47B5-B9FA-0B599DC8B962}.Debug|x64.Build.0 = Debug|x64
+		{D45CCCC7-A1E9-47B5-B9FA-0B599DC8B962}.Debug|x86.ActiveCfg = Debug|Win32
+		{D45CCCC7-A1E9-47B5-B9FA-0B599DC8B962}.Debug|x86.Build.0 = Debug|Win32
+		{D45CCCC7-A1E9-47B5-B9FA-0B599DC8B962}.Release|x64.ActiveCfg = Release|x64
+		{D45CCCC7-A1E9-47B5-B9FA-0B599DC8B962}.Release|x64.Build.0 = Release|x64
+		{D45CCCC7-A1E9-47B5-B9FA-0B599DC8B962}.Release|x86.ActiveCfg = Release|Win32
+		{D45CCCC7-A1E9-47B5-B9FA-0B599DC8B962}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
