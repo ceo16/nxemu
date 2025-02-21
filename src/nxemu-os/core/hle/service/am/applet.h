@@ -15,6 +15,7 @@
 #include "core/hle/service/am/am_types.h"
 #include "core/hle/service/am/applet_message_queue.h"
 #include "core/hle/service/am/display_layer_manager.h"
+#include "core/hle/service/am/hid_registration.h"
 #include "core/hle/service/am/process.h"
 
 namespace Service::AM {
@@ -47,6 +48,9 @@ struct Applet {
 
     // TODO: some fields above can be AppletIdentityInfo
     AppletIdentityInfo screen_shot_identity;
+
+    // hid state
+    HidRegistration hid_registration;
 
     // vi state
     DisplayLayerManager display_layer_manager{};

@@ -391,6 +391,48 @@
     <Filter Include="Source Files\core\hle\service\hid">
       <UniqueIdentifier>{0598a80b-07ca-4f8e-893c-b1aef9873766}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\core\hle\service\glue\time">
+      <UniqueIdentifier>{a4da6bde-87a7-4b45-a389-9d3db0020f48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\glue\time">
+      <UniqueIdentifier>{2d9bf04e-5370-4490-902f-b2ddac4a4723}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\psc">
+      <UniqueIdentifier>{98bc0caa-b6ea-4c7a-9c48-87d414fa356d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\psc\time">
+      <UniqueIdentifier>{65bcb7cc-73f6-47f0-b81c-56034f9024ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\psc\time\clocks">
+      <UniqueIdentifier>{ac4bd734-3d48-49da-8d86-59590bd207fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\psc">
+      <UniqueIdentifier>{47a0c2a1-240d-474c-aee1-bda83c00b613}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\psc\time">
+      <UniqueIdentifier>{70c3ed10-7c75-4bca-9764-2995728ae984}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\psc\time\clocks">
+      <UniqueIdentifier>{ce62d35a-c60c-43b4-b5aa-9bbae48cdfe7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\psc\ovln">
+      <UniqueIdentifier>{3b38df32-afb3-4987-a04d-eca7a3a2add3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\psc\ovln">
+      <UniqueIdentifier>{62716f7e-9a32-4ca5-a716-9288bc8095ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\filesystem">
+      <UniqueIdentifier>{12f75827-dab8-4e56-9bd2-45e7ad54857c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\filesystem\fsp">
+      <UniqueIdentifier>{a37f788f-7be6-457c-8d29-c1a869bf79b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\filesystem">
+      <UniqueIdentifier>{5daa7877-fcd1-41af-90a6-933dc79d28af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\filesystem\fsp">
+      <UniqueIdentifier>{711c5e1b-89de-43aa-bdfe-221b9f132506}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="nxemu-os.h">
@@ -1389,6 +1431,204 @@
     <ClInclude Include="os_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="core\hle\service\glue\time\alarm_worker.h">
+      <Filter>Header Files\core\hle\service\glue\time</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\glue\time\file_timestamp_worker.h">
+      <Filter>Header Files\core\hle\service\glue\time</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\glue\time\manager.h">
+      <Filter>Header Files\core\hle\service\glue\time</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\glue\time\pm_state_change_handler.h">
+      <Filter>Header Files\core\hle\service\glue\time</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\glue\time\standard_steady_clock_resource.h">
+      <Filter>Header Files\core\hle\service\glue\time</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\glue\time\static.h">
+      <Filter>Header Files\core\hle\service\glue\time</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\glue\time\time_zone.h">
+      <Filter>Header Files\core\hle\service\glue\time</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\glue\time\time_zone_binary.h">
+      <Filter>Header Files\core\hle\service\glue\time</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\glue\time\worker.h">
+      <Filter>Header Files\core\hle\service\glue\time</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\time\alarms.h">
+      <Filter>Header Files\core\hle\service\psc\time</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\time\common.h">
+      <Filter>Header Files\core\hle\service\psc\time</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\time\errors.h">
+      <Filter>Header Files\core\hle\service\psc\time</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\time\manager.h">
+      <Filter>Header Files\core\hle\service\psc\time</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\time\power_state_request_manager.h">
+      <Filter>Header Files\core\hle\service\psc\time</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\time\power_state_service.h">
+      <Filter>Header Files\core\hle\service\psc\time</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\time\service_manager.h">
+      <Filter>Header Files\core\hle\service\psc\time</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\time\shared_memory.h">
+      <Filter>Header Files\core\hle\service\psc\time</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\time\static.h">
+      <Filter>Header Files\core\hle\service\psc\time</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\time\steady_clock.h">
+      <Filter>Header Files\core\hle\service\psc\time</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\time\system_clock.h">
+      <Filter>Header Files\core\hle\service\psc\time</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\time\time_zone.h">
+      <Filter>Header Files\core\hle\service\psc\time</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\time\time_zone_service.h">
+      <Filter>Header Files\core\hle\service\psc\time</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\time\clocks\context_writers.h">
+      <Filter>Header Files\core\hle\service\psc\time\clocks</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\time\clocks\ephemeral_network_system_clock_core.h">
+      <Filter>Header Files\core\hle\service\psc\time\clocks</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\time\clocks\standard_local_system_clock_core.h">
+      <Filter>Header Files\core\hle\service\psc\time\clocks</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\time\clocks\standard_network_system_clock_core.h">
+      <Filter>Header Files\core\hle\service\psc\time\clocks</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\time\clocks\standard_steady_clock_core.h">
+      <Filter>Header Files\core\hle\service\psc\time\clocks</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\time\clocks\standard_user_system_clock_core.h">
+      <Filter>Header Files\core\hle\service\psc\time\clocks</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\time\clocks\steady_clock_core.h">
+      <Filter>Header Files\core\hle\service\psc\time\clocks</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\time\clocks\system_clock_core.h">
+      <Filter>Header Files\core\hle\service\psc\time\clocks</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\time\clocks\tick_based_steady_clock_core.h">
+      <Filter>Header Files\core\hle\service\psc\time\clocks</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\pm_control.h">
+      <Filter>Header Files\core\hle\service\psc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\pm_module.h">
+      <Filter>Header Files\core\hle\service\psc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\pm_service.h">
+      <Filter>Header Files\core\hle\service\psc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\psc.h">
+      <Filter>Header Files\core\hle\service\psc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\ovln\ovln_types.h">
+      <Filter>Header Files\core\hle\service\psc\ovln</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\ovln\receiver.h">
+      <Filter>Header Files\core\hle\service\psc\ovln</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\ovln\receiver_service.h">
+      <Filter>Header Files\core\hle\service\psc\ovln</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\ovln\sender.h">
+      <Filter>Header Files\core\hle\service\psc\ovln</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\psc\ovln\sender_service.h">
+      <Filter>Header Files\core\hle\service\psc\ovln</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\filesystem\filesystem.h">
+      <Filter>Header Files\core\hle\service\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\filesystem\romfs_controller.h">
+      <Filter>Header Files\core\hle\service\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\filesystem\save_data_controller.h">
+      <Filter>Header Files\core\hle\service\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\filesystem\fsp\fs_i_filesystem.h">
+      <Filter>Header Files\core\hle\service\filesystem\fsp</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\filesystem\fsp\fs_i_multi_commit_manager.h">
+      <Filter>Header Files\core\hle\service\filesystem\fsp</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\filesystem\fsp\fs_i_save_data_info_reader.h">
+      <Filter>Header Files\core\hle\service\filesystem\fsp</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\filesystem\fsp\fs_i_storage.h">
+      <Filter>Header Files\core\hle\service\filesystem\fsp</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\filesystem\fsp\fsp_ldr.h">
+      <Filter>Header Files\core\hle\service\filesystem\fsp</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\filesystem\fsp\fsp_pr.h">
+      <Filter>Header Files\core\hle\service\filesystem\fsp</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\filesystem\fsp\fsp_srv.h">
+      <Filter>Header Files\core\hle\service\filesystem\fsp</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\filesystem\fsp\fsp_types.h">
+      <Filter>Header Files\core\hle\service\filesystem\fsp</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\filesystem\fsp\save_data_transfer_prohibiter.h">
+      <Filter>Header Files\core\hle\service\filesystem\fsp</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fs_directory.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\errors.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\romfs_factory.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\patch_manager.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\card_image.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fs_memory_management.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fs_path.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fs_path_utility.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fs_save_data_types.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fs_string_util.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\ips_layer.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\romfs.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\savedata_factory.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\submission_package.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="version.h.in">
@@ -2364,6 +2604,129 @@
     </ClCompile>
     <ClCompile Include="core\hle\service\hid\hid_system_server.cpp">
       <Filter>Source Files\core\hle\service\hid</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\am\hid_registration.cpp">
+      <Filter>Source Files\core\hle\service\am</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\glue\time\alarm_worker.cpp">
+      <Filter>Source Files\core\hle\service\glue\time</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\glue\time\file_timestamp_worker.cpp">
+      <Filter>Source Files\core\hle\service\glue\time</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\glue\time\manager.cpp">
+      <Filter>Source Files\core\hle\service\glue\time</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\glue\time\pm_state_change_handler.cpp">
+      <Filter>Source Files\core\hle\service\glue\time</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\glue\time\standard_steady_clock_resource.cpp">
+      <Filter>Source Files\core\hle\service\glue\time</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\glue\time\static.cpp">
+      <Filter>Source Files\core\hle\service\glue\time</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\glue\time\time_zone.cpp">
+      <Filter>Source Files\core\hle\service\glue\time</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\glue\time\time_zone_binary.cpp">
+      <Filter>Source Files\core\hle\service\glue\time</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\glue\time\worker.cpp">
+      <Filter>Source Files\core\hle\service\glue\time</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\time\alarms.cpp">
+      <Filter>Source Files\core\hle\service\psc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\time\common.cpp">
+      <Filter>Source Files\core\hle\service\psc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\time\power_state_request_manager.cpp">
+      <Filter>Source Files\core\hle\service\psc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\time\power_state_service.cpp">
+      <Filter>Source Files\core\hle\service\psc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\time\service_manager.cpp">
+      <Filter>Source Files\core\hle\service\psc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\time\shared_memory.cpp">
+      <Filter>Source Files\core\hle\service\psc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\time\static.cpp">
+      <Filter>Source Files\core\hle\service\psc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\time\steady_clock.cpp">
+      <Filter>Source Files\core\hle\service\psc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\time\system_clock.cpp">
+      <Filter>Source Files\core\hle\service\psc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\time\time_zone.cpp">
+      <Filter>Source Files\core\hle\service\psc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\time\time_zone_service.cpp">
+      <Filter>Source Files\core\hle\service\psc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\time\clocks\context_writers.cpp">
+      <Filter>Source Files\core\hle\service\psc\time\clocks</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\time\clocks\standard_local_system_clock_core.cpp">
+      <Filter>Source Files\core\hle\service\psc\time\clocks</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\time\clocks\standard_network_system_clock_core.cpp">
+      <Filter>Source Files\core\hle\service\psc\time\clocks</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\time\clocks\standard_steady_clock_core.cpp">
+      <Filter>Source Files\core\hle\service\psc\time\clocks</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\time\clocks\standard_user_system_clock_core.cpp">
+      <Filter>Source Files\core\hle\service\psc\time\clocks</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\time\clocks\system_clock_core.cpp">
+      <Filter>Source Files\core\hle\service\psc\time\clocks</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\time\clocks\tick_based_steady_clock_core.cpp">
+      <Filter>Source Files\core\hle\service\psc\time\clocks</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\pm_control.cpp">
+      <Filter>Source Files\core\hle\service\psc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\pm_module.cpp">
+      <Filter>Source Files\core\hle\service\psc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\pm_service.cpp">
+      <Filter>Source Files\core\hle\service\psc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\psc.cpp">
+      <Filter>Source Files\core\hle\service\psc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\ovln\receiver.cpp">
+      <Filter>Source Files\core\hle\service\psc\ovln</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\ovln\receiver_service.cpp">
+      <Filter>Source Files\core\hle\service\psc\ovln</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\ovln\sender.cpp">
+      <Filter>Source Files\core\hle\service\psc\ovln</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\ovln\sender_service.cpp">
+      <Filter>Source Files\core\hle\service\psc\ovln</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\filesystem\filesystem.cpp">
+      <Filter>Source Files\core\hle\service\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\filesystem\fsp\fsp_ldr.cpp">
+      <Filter>Source Files\core\hle\service\filesystem\fsp</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\filesystem\fsp\fsp_pr.cpp">
+      <Filter>Source Files\core\hle\service\filesystem\fsp</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\filesystem\fsp\fsp_srv.cpp">
+      <Filter>Source Files\core\hle\service\filesystem\fsp</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\registered_cache.cpp">
+      <Filter>Source Files\core\file_sys</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

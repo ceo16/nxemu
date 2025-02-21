@@ -16,6 +16,7 @@
 #include "core/hle/service/eupld/eupld.h"
 #include "core/hle/service/fatal/fatal.h"
 #include "core/hle/service/fgm/fgm.h"
+#include "core/hle/service/filesystem/filesystem.h"
 #include "core/hle/service/friend/friend.h"
 #include "core/hle/service/glue/glue.h"
 #include "core/hle/service/grc/grc.h"
@@ -40,6 +41,7 @@
 #include "core/hle/service/pcv/pcv.h"
 #include "core/hle/service/pm/pm.h"
 #include "core/hle/service/prepo/prepo.h"
+#include "core/hle/service/psc/psc.h"
 #include "core/hle/service/ptm/ptm.h"
 #include "core/hle/service/ro/ro.h"
 #include "core/hle/service/service.h"
@@ -57,6 +59,7 @@ Services::Services(std::shared_ptr<SM::ServiceManager>& sm, Core::System& system
     auto& kernel = system.Kernel();
 
     // clang-format off
+    kernel.RunOnHostCoreProcess("FS",         [&] { FileSystem::LoopProcess(system); }).detach();
     kernel.RunOnHostCoreProcess("Loader",     [&] { LDR::LoopProcess(system); }).detach();
     kernel.RunOnHostCoreProcess("vi",         [&, token] { VI::LoopProcess(system, token); }).detach();
 
@@ -76,6 +79,7 @@ Services::Services(std::shared_ptr<SM::ServiceManager>& sm, Core::System& system
     kernel.RunOnGuestCoreProcess("fgm",        [&] { FGM::LoopProcess(system); });
     kernel.RunOnGuestCoreProcess("friends",    [&] { Friend::LoopProcess(system); });
     kernel.RunOnGuestCoreProcess("settings",   [&] { Set::LoopProcess(system); });
+    kernel.RunOnGuestCoreProcess("psc",        [&] { PSC::LoopProcess(system); });
     kernel.RunOnGuestCoreProcess("glue",       [&] { Glue::LoopProcess(system); });
     kernel.RunOnGuestCoreProcess("grc",        [&] { GRC::LoopProcess(system); });
     kernel.RunOnGuestCoreProcess("hid",        [&] { HID::LoopProcess(system); });

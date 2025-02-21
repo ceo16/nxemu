@@ -12,6 +12,7 @@
 #include "yuzu_common/uuid.h"
 #include "core/hle/result.h"
 #include "core/hle/service/cmif_types.h"
+#include "core/hle/service/psc/time/common.h"
 #include "core/hle/service/service.h"
 #include "core/hle/service/set/setting_formats/appln_settings.h"
 #include "core/hle/service/set/setting_formats/device_settings.h"
@@ -56,6 +57,8 @@ public:
     Result SetLockScreenFlag(bool lock_screen_flag);
     Result GetExternalSteadyClockSourceId(Out<Common::UUID> out_clock_source_id);
     Result SetExternalSteadyClockSourceId(const Common::UUID& clock_source_id);
+    Result GetUserSystemClockContext(Out<Service::PSC::Time::SystemClockContext> out_clock_context);
+    Result SetUserSystemClockContext(const Service::PSC::Time::SystemClockContext& clock_context);
     Result GetAccountSettings(Out<AccountSettings> out_account_settings);
     Result SetAccountSettings(AccountSettings account_settings);
     Result GetColorSetId(Out<ColorSet> out_color_set_id);
@@ -86,7 +89,11 @@ public:
     Result SetSpeakerAutoMuteFlag(bool force_mute_on_headphone_removed);
     Result GetQuestFlag(Out<QuestFlag> out_quest_flag);
     Result SetQuestFlag(QuestFlag quest_flag);
+    Result GetDeviceTimeZoneLocationName(Out<Service::PSC::Time::LocationName> out_name);
+    Result SetDeviceTimeZoneLocationName(const Service::PSC::Time::LocationName& name);
     Result SetRegionCode(SystemRegionCode region_code);
+    Result GetNetworkSystemClockContext(Out<Service::PSC::Time::SystemClockContext> out_context);
+    Result SetNetworkSystemClockContext(const Service::PSC::Time::SystemClockContext& context);
     Result IsUserSystemClockAutomaticCorrectionEnabled(Out<bool> out_automatic_correction_enabled);
     Result SetUserSystemClockAutomaticCorrectionEnabled(bool automatic_correction_enabled);
     Result GetDebugModeFlag(Out<bool> is_debug_mode_enabled);
@@ -124,6 +131,14 @@ public:
     Result SetAppletLaunchFlags(u32 applet_launch_flag);
     Result GetKeyboardLayout(Out<KeyboardLayout> out_keyboard_layout);
     Result SetKeyboardLayout(KeyboardLayout keyboard_layout);
+    Result GetDeviceTimeZoneLocationUpdatedTime(
+        Out<Service::PSC::Time::SteadyClockTimePoint> out_time_point);
+    Result SetDeviceTimeZoneLocationUpdatedTime(
+        const Service::PSC::Time::SteadyClockTimePoint& time_point);
+    Result GetUserSystemClockAutomaticCorrectionUpdatedTime(
+        Out<Service::PSC::Time::SteadyClockTimePoint> out_time_point);
+    Result SetUserSystemClockAutomaticCorrectionUpdatedTime(
+        const Service::PSC::Time::SteadyClockTimePoint& out_time_point);
     Result GetChineseTraditionalInputMethod(
         Out<ChineseTraditionalInputMethod> out_chinese_traditional_input_method);
     Result GetHomeMenuScheme(Out<HomeMenuScheme> out_home_menu_scheme);

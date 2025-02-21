@@ -4,6 +4,7 @@
 #include "core/core.h"
 #include "core/hle/service/am/hid_registration.h"
 #include "core/hle/service/am/process.h"
+#include "core/hle/service/hid/hid_server.h"
 #include "core/hle/service/sm/sm.h"
 
 namespace Service::AM {

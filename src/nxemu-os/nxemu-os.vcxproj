@@ -48,6 +48,7 @@
     <ClCompile Include="core\constants.cpp" />
     <ClCompile Include="core\core.cpp" />
     <ClCompile Include="core\file_sys\nca_metadata.cpp" />
+    <ClCompile Include="core\file_sys\registered_cache.cpp" />
     <ClCompile Include="core\hle\kernel\board\nintendo\nx\k_system_control.cpp" />
     <ClCompile Include="core\hle\kernel\init\init_slab_setup.cpp" />
     <ClCompile Include="core\hle\kernel\kernel.cpp" />
@@ -90,6 +91,24 @@
     <ClCompile Include="core\hle\kernel\svc\svc_thread_profiler.cpp" />
     <ClCompile Include="core\hle\kernel\svc\svc_tick.cpp" />
     <ClCompile Include="core\hle\kernel\svc\svc_transfer_memory.cpp" />
+    <ClCompile Include="core\hle\service\am\hid_registration.cpp" />
+    <ClCompile Include="core\hle\service\filesystem\filesystem.cpp" />
+    <ClCompile Include="core\hle\service\filesystem\fsp\fsp_ldr.cpp" />
+    <ClCompile Include="core\hle\service\filesystem\fsp\fsp_pr.cpp" />
+    <ClCompile Include="core\hle\service\filesystem\fsp\fsp_srv.cpp" />
+    <ClCompile Include="core\hle\service\glue\time\alarm_worker.cpp" />
+    <ClCompile Include="core\hle\service\glue\time\file_timestamp_worker.cpp" />
+    <ClCompile Include="core\hle\service\glue\time\manager.cpp" />
+    <ClCompile Include="core\hle\service\glue\time\pm_state_change_handler.cpp" />
+    <ClCompile Include="core\hle\service\glue\time\standard_steady_clock_resource.cpp" />
+    <ClCompile Include="core\hle\service\glue\time\static.cpp">
+      <ObjectFileName>$(IntDir)/hle/service/glue/time/static.cpp.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\glue\time\time_zone.cpp">
+      <ObjectFileName>$(IntDir)/hle/service/glue/time/time_zone.cpp.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\glue\time\time_zone_binary.cpp" />
+    <ClCompile Include="core\hle\service\glue\time\worker.cpp" />
     <ClCompile Include="core\hle\service\hid\active_vibration_device_list.cpp" />
     <ClCompile Include="core\hle\service\hid\applet_resource.cpp" />
     <ClCompile Include="core\hle\service\hid\hid.cpp" />
@@ -99,6 +118,36 @@
     <ClCompile Include="core\hle\service\hid\hid_system_server.cpp" />
     <ClCompile Include="core\hle\service\hid\irs.cpp" />
     <ClCompile Include="core\hle\service\hid\xcd.cpp" />
+    <ClCompile Include="core\hle\service\psc\ovln\receiver.cpp" />
+    <ClCompile Include="core\hle\service\psc\ovln\receiver_service.cpp" />
+    <ClCompile Include="core\hle\service\psc\ovln\sender.cpp" />
+    <ClCompile Include="core\hle\service\psc\ovln\sender_service.cpp" />
+    <ClCompile Include="core\hle\service\psc\pm_control.cpp" />
+    <ClCompile Include="core\hle\service\psc\pm_module.cpp" />
+    <ClCompile Include="core\hle\service\psc\pm_service.cpp" />
+    <ClCompile Include="core\hle\service\psc\psc.cpp" />
+    <ClCompile Include="core\hle\service\psc\time\alarms.cpp" />
+    <ClCompile Include="core\hle\service\psc\time\clocks\context_writers.cpp" />
+    <ClCompile Include="core\hle\service\psc\time\clocks\standard_local_system_clock_core.cpp" />
+    <ClCompile Include="core\hle\service\psc\time\clocks\standard_network_system_clock_core.cpp" />
+    <ClCompile Include="core\hle\service\psc\time\clocks\standard_steady_clock_core.cpp" />
+    <ClCompile Include="core\hle\service\psc\time\clocks\standard_user_system_clock_core.cpp" />
+    <ClCompile Include="core\hle\service\psc\time\clocks\system_clock_core.cpp" />
+    <ClCompile Include="core\hle\service\psc\time\clocks\tick_based_steady_clock_core.cpp" />
+    <ClCompile Include="core\hle\service\psc\time\common.cpp" />
+    <ClCompile Include="core\hle\service\psc\time\power_state_request_manager.cpp" />
+    <ClCompile Include="core\hle\service\psc\time\power_state_service.cpp" />
+    <ClCompile Include="core\hle\service\psc\time\service_manager.cpp" />
+    <ClCompile Include="core\hle\service\psc\time\shared_memory.cpp" />
+    <ClCompile Include="core\hle\service\psc\time\static.cpp">
+      <ObjectFileName>$(IntDir)/hle/service/psc/time/static.cpp.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\time\steady_clock.cpp" />
+    <ClCompile Include="core\hle\service\psc\time\system_clock.cpp" />
+    <ClCompile Include="core\hle\service\psc\time\time_zone.cpp">
+      <ObjectFileName>$(IntDir)/hle/service/psc/time/time_zone.cpp.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\psc\time\time_zone_service.cpp" />
     <ClCompile Include="nxemu-os.cpp" />
     <ClCompile Include="core\core_timing.cpp" />
     <ClCompile Include="core\device_memory.cpp" />
@@ -352,13 +401,27 @@
     <ClInclude Include="core\debugger\debugger.h" />
     <ClInclude Include="core\device_memory.h" />
     <ClInclude Include="core\device_memory_manager.h" />
+    <ClInclude Include="core\file_sys\card_image.h" />
     <ClInclude Include="core\file_sys\common_funcs.h" />
     <ClInclude Include="core\file_sys\content_archive.h" />
     <ClInclude Include="core\file_sys\control_metadata.h" />
+    <ClInclude Include="core\file_sys\errors.h" />
+    <ClInclude Include="core\file_sys\fs_directory.h" />
     <ClInclude Include="core\file_sys\fs_filesystem.h" />
+    <ClInclude Include="core\file_sys\fs_memory_management.h" />
+    <ClInclude Include="core\file_sys\fs_path.h" />
+    <ClInclude Include="core\file_sys\fs_path_utility.h" />
+    <ClInclude Include="core\file_sys\fs_save_data_types.h" />
+    <ClInclude Include="core\file_sys\fs_string_util.h" />
+    <ClInclude Include="core\file_sys\ips_layer.h" />
     <ClInclude Include="core\file_sys\nca_metadata.h" />
+    <ClInclude Include="core\file_sys\patch_manager.h" />
     <ClInclude Include="core\file_sys\program_metadata.h" />
     <ClInclude Include="core\file_sys\registered_cache.h" />
+    <ClInclude Include="core\file_sys\romfs.h" />
+    <ClInclude Include="core\file_sys\romfs_factory.h" />
+    <ClInclude Include="core\file_sys\savedata_factory.h" />
+    <ClInclude Include="core\file_sys\submission_package.h" />
     <ClInclude Include="core\file_sys\vfs\vfs_types.h" />
     <ClInclude Include="core\gpu_dirty_memory_manager.h" />
     <ClInclude Include="core\guest_memory.h" />
@@ -457,8 +520,60 @@
     <ClInclude Include="core\hle\kernel\k_shared_memory_info.h" />
     <ClInclude Include="core\hle\kernel\board\nintendo\nx\k_memory_layout.h" />
     <ClInclude Include="core\hle\kernel\board\nintendo\nx\k_system_control.h" />
+    <ClInclude Include="core\hle\service\filesystem\filesystem.h" />
+    <ClInclude Include="core\hle\service\filesystem\fsp\fsp_ldr.h" />
+    <ClInclude Include="core\hle\service\filesystem\fsp\fsp_pr.h" />
+    <ClInclude Include="core\hle\service\filesystem\fsp\fsp_srv.h" />
+    <ClInclude Include="core\hle\service\filesystem\fsp\fsp_types.h" />
+    <ClInclude Include="core\hle\service\filesystem\fsp\fs_i_filesystem.h" />
+    <ClInclude Include="core\hle\service\filesystem\fsp\fs_i_multi_commit_manager.h" />
+    <ClInclude Include="core\hle\service\filesystem\fsp\fs_i_save_data_info_reader.h" />
+    <ClInclude Include="core\hle\service\filesystem\fsp\fs_i_storage.h" />
+    <ClInclude Include="core\hle\service\filesystem\fsp\save_data_transfer_prohibiter.h" />
+    <ClInclude Include="core\hle\service\filesystem\romfs_controller.h" />
+    <ClInclude Include="core\hle\service\filesystem\save_data_controller.h" />
+    <ClInclude Include="core\hle\service\glue\time\alarm_worker.h" />
+    <ClInclude Include="core\hle\service\glue\time\file_timestamp_worker.h" />
+    <ClInclude Include="core\hle\service\glue\time\manager.h" />
+    <ClInclude Include="core\hle\service\glue\time\pm_state_change_handler.h" />
+    <ClInclude Include="core\hle\service\glue\time\standard_steady_clock_resource.h" />
+    <ClInclude Include="core\hle\service\glue\time\static.h" />
+    <ClInclude Include="core\hle\service\glue\time\time_zone.h" />
+    <ClInclude Include="core\hle\service\glue\time\time_zone_binary.h" />
+    <ClInclude Include="core\hle\service\glue\time\worker.h" />
     <ClInclude Include="core\hle\service\hle_ipc.h" />
     <ClInclude Include="core\hle\service\ipc_helpers.h" />
+    <ClInclude Include="core\hle\service\psc\ovln\ovln_types.h" />
+    <ClInclude Include="core\hle\service\psc\ovln\receiver.h" />
+    <ClInclude Include="core\hle\service\psc\ovln\receiver_service.h" />
+    <ClInclude Include="core\hle\service\psc\ovln\sender.h" />
+    <ClInclude Include="core\hle\service\psc\ovln\sender_service.h" />
+    <ClInclude Include="core\hle\service\psc\pm_control.h" />
+    <ClInclude Include="core\hle\service\psc\pm_module.h" />
+    <ClInclude Include="core\hle\service\psc\pm_service.h" />
+    <ClInclude Include="core\hle\service\psc\psc.h" />
+    <ClInclude Include="core\hle\service\psc\time\alarms.h" />
+    <ClInclude Include="core\hle\service\psc\time\clocks\context_writers.h" />
+    <ClInclude Include="core\hle\service\psc\time\clocks\ephemeral_network_system_clock_core.h" />
+    <ClInclude Include="core\hle\service\psc\time\clocks\standard_local_system_clock_core.h" />
+    <ClInclude Include="core\hle\service\psc\time\clocks\standard_network_system_clock_core.h" />
+    <ClInclude Include="core\hle\service\psc\time\clocks\standard_steady_clock_core.h" />
+    <ClInclude Include="core\hle\service\psc\time\clocks\standard_user_system_clock_core.h" />
+    <ClInclude Include="core\hle\service\psc\time\clocks\steady_clock_core.h" />
+    <ClInclude Include="core\hle\service\psc\time\clocks\system_clock_core.h" />
+    <ClInclude Include="core\hle\service\psc\time\clocks\tick_based_steady_clock_core.h" />
+    <ClInclude Include="core\hle\service\psc\time\common.h" />
+    <ClInclude Include="core\hle\service\psc\time\errors.h" />
+    <ClInclude Include="core\hle\service\psc\time\manager.h" />
+    <ClInclude Include="core\hle\service\psc\time\power_state_request_manager.h" />
+    <ClInclude Include="core\hle\service\psc\time\power_state_service.h" />
+    <ClInclude Include="core\hle\service\psc\time\service_manager.h" />
+    <ClInclude Include="core\hle\service\psc\time\shared_memory.h" />
+    <ClInclude Include="core\hle\service\psc\time\static.h" />
+    <ClInclude Include="core\hle\service\psc\time\steady_clock.h" />
+    <ClInclude Include="core\hle\service\psc\time\system_clock.h" />
+    <ClInclude Include="core\hle\service\psc\time\time_zone.h" />
+    <ClInclude Include="core\hle\service\psc\time\time_zone_service.h" />
     <ClInclude Include="core\hle\service\server_manager.h" />
     <ClInclude Include="core\hle\service\cmif_serialization.h" />
     <ClInclude Include="core\hle\service\cmif_types.h" />
@@ -676,6 +791,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\external\fmt.vcxproj">
       <Project>{d58bdfc6-1f1e-4c55-9296-1c2411b0fda7}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\3rd_party\tz\tz.vcxproj">
+      <Project>{677ca72d-e9b7-4aa5-adba-1c02ac84f8b0}</Project>
     </ProjectReference>
     <ProjectReference Include="..\yuzu_common\yuzu_common.vcxproj">
       <Project>{250224f2-2e89-410e-8bdb-875959daba2c}</Project>

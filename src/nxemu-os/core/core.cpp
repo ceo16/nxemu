@@ -9,6 +9,7 @@
 #include "core/core_timing.h"
 #include "core/cpu_manager.h"
 #include "core/debugger/debugger.h"
+#include "core/file_sys/registered_cache.h"
 #include "core/gpu_dirty_memory_manager.h"
 #include "core/hle/kernel/k_memory_manager.h"
 #include "core/hle/kernel/k_process.h"
@@ -19,6 +20,7 @@
 #include "core/hle/service/am/applet_manager.h"
 #include "core/hle/service/am/frontend/applets.h"
 #include "core/hle/service/apm/apm_controller.h"
+#include "core/hle/service/filesystem/filesystem.h"
 #include "core/hle/service/services.h"
 #include <yuzu_hid_core/hid_core.h>
 #include "yuzu_input_common/main.h"
@@ -32,7 +34,7 @@ namespace Core {
 
 struct System::Impl {
     explicit Impl(System & system, ISwitchSystem & switchSystem) 
-        : kernel{system}, hid_core{}, cpu_manager{system}, 
+        : kernel{system}, fs_controller{system}, hid_core{}, cpu_manager{system}, 
         applet_manager{system}, frontend_applets{system}, switchSystem(switchSystem),
         input_subsystem{std::make_shared<InputCommon::InputSubsystem>()}
     {
@@ -45,6 +47,10 @@ struct System::Impl {
 
         core_timing.SetMulticore(is_multicore);
         core_timing.Initialize([&system]() { system.RegisterHostThread(); });
+
+        if (content_provider == nullptr) {
+            content_provider = std::make_unique<FileSys::ContentProviderUnion>();
+        }
 
         // Create default implementations of applets if one is not provided.
         frontend_applets.SetDefaultAppletsIfMissing();
@@ -121,6 +127,8 @@ struct System::Impl {
 
     Timing::CoreTiming core_timing;
     Kernel::KernelCore kernel;
+    std::unique_ptr<FileSys::ContentProviderUnion> content_provider;
+    Service::FileSystem::FileSystemController fs_controller;
     std::unique_ptr<Core::DeviceMemory> device_memory;
     Core::HID::HIDCore hid_core;
     std::shared_ptr<InputCommon::InputSubsystem> input_subsystem;
@@ -287,6 +295,34 @@ const Service::AM::Frontend::FrontendAppletHolder& System::GetFrontendAppletHold
 
 Service::AM::AppletManager& System::GetAppletManager() {
     return impl->applet_manager;
+}
+
+void System::SetContentProvider(std::unique_ptr<FileSys::ContentProviderUnion> provider) {
+    impl->content_provider = std::move(provider);
+}
+
+FileSys::ContentProvider& System::GetContentProvider() {
+    return *impl->content_provider;
+}
+
+const FileSys::ContentProvider& System::GetContentProvider() const {
+    return *impl->content_provider;
+}
+
+FileSys::ContentProviderUnion& System::GetContentProviderUnion() {
+    return *impl->content_provider;
+}
+
+const FileSys::ContentProviderUnion& System::GetContentProviderUnion() const {
+    return *impl->content_provider;
+}
+
+Service::FileSystem::FileSystemController& System::GetFileSystemController() {
+    return impl->fs_controller;
+}
+
+const Service::FileSystem::FileSystemController& System::GetFileSystemController() const {
+    return impl->fs_controller;
 }
 
 Service::APM::Controller& System::GetAPMController() {

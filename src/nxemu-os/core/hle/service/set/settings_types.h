@@ -9,6 +9,7 @@
 #include "yuzu_common/common_funcs.h"
 #include "yuzu_common/common_types.h"
 #include "yuzu_common/uuid.h"
+#include "core/hle/service/psc/time/common.h"
 
 namespace Service::Set {
 using SettingItemName = std::array<u8, 0x48>;

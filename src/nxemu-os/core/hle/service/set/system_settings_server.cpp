@@ -54,6 +54,8 @@ ISystemSettingsServer::ISystemSettingsServer(Core::System& system_)
         {12, nullptr, "GetBluetoothDevicesSettings"},
         {13, C<&ISystemSettingsServer::GetExternalSteadyClockSourceId>, "GetExternalSteadyClockSourceId"},
         {14, C<&ISystemSettingsServer::SetExternalSteadyClockSourceId>, "SetExternalSteadyClockSourceId"},
+        {15, C<&ISystemSettingsServer::GetUserSystemClockContext>, "GetUserSystemClockContext"},
+        {16, C<&ISystemSettingsServer::SetUserSystemClockContext>, "SetUserSystemClockContext"},
         {17, C<&ISystemSettingsServer::GetAccountSettings>, "GetAccountSettings"},
         {18, C<&ISystemSettingsServer::SetAccountSettings>, "SetAccountSettings"},
         {19, nullptr, "GetAudioVolume"},
@@ -86,9 +88,13 @@ ISystemSettingsServer::ISystemSettingsServer(Core::System& system_)
         {50, nullptr, "SetDataDeletionSettings"},
         {51, nullptr, "GetInitialSystemAppletProgramId"},
         {52, nullptr, "GetOverlayDispProgramId"},
+        {53, C<&ISystemSettingsServer::GetDeviceTimeZoneLocationName>, "GetDeviceTimeZoneLocationName"},
+        {54, C<&ISystemSettingsServer::SetDeviceTimeZoneLocationName>, "SetDeviceTimeZoneLocationName"},
         {55, nullptr, "GetWirelessCertificationFileSize"},
         {56, nullptr, "GetWirelessCertificationFile"},
         {57, C<&ISystemSettingsServer::SetRegionCode>, "SetRegionCode"},
+        {58, C<&ISystemSettingsServer::GetNetworkSystemClockContext>, "GetNetworkSystemClockContext"},
+        {59, C<&ISystemSettingsServer::SetNetworkSystemClockContext>, "SetNetworkSystemClockContext"},
         {60, C<&ISystemSettingsServer::IsUserSystemClockAutomaticCorrectionEnabled>, "IsUserSystemClockAutomaticCorrectionEnabled"},
         {61, C<&ISystemSettingsServer::SetUserSystemClockAutomaticCorrectionEnabled>, "SetUserSystemClockAutomaticCorrectionEnabled"},
         {62, C<&ISystemSettingsServer::GetDebugModeFlag>, "GetDebugModeFlag"},
@@ -177,6 +183,10 @@ ISystemSettingsServer::ISystemSettingsServer(Core::System& system_)
         {147, nullptr, "GetConsoleSixAxisSensorAngularAcceleration"},
         {148, nullptr, "SetConsoleSixAxisSensorAngularAcceleration"},
         {149, nullptr, "GetRebootlessSystemUpdateVersion"},
+        {150, C<&ISystemSettingsServer::GetDeviceTimeZoneLocationUpdatedTime>, "GetDeviceTimeZoneLocationUpdatedTime"},
+        {151, C<&ISystemSettingsServer::SetDeviceTimeZoneLocationUpdatedTime>, "SetDeviceTimeZoneLocationUpdatedTime"},
+        {152, C<&ISystemSettingsServer::GetUserSystemClockAutomaticCorrectionUpdatedTime>, "GetUserSystemClockAutomaticCorrectionUpdatedTime"},
+        {153, C<&ISystemSettingsServer::SetUserSystemClockAutomaticCorrectionUpdatedTime>, "SetUserSystemClockAutomaticCorrectionUpdatedTime"},
         {154, nullptr, "GetAccountOnlineStorageSettings"},
         {155, nullptr, "SetAccountOnlineStorageSettings"},
         {156, nullptr, "GetPctlReadyFlag"},
@@ -238,6 +248,8 @@ ISystemSettingsServer::ISystemSettingsServer(Core::System& system_)
     // clang-format on
 
     RegisterHandlers(functions);
+
+    SetupSettings();
 
     m_system_settings.region_code =
         static_cast<SystemRegionCode>(::Settings::values.region_index.GetValue());
@@ -385,6 +397,24 @@ Result ISystemSettingsServer::SetExternalSteadyClockSourceId(const Common::UUID&
     LOG_INFO(Service_SET, "called, clock_source_id={}", clock_source_id.FormattedString());
 
     UNIMPLEMENTED();
+    SetSaveNeeded();
+    R_SUCCEED();
+}
+
+Result ISystemSettingsServer::GetUserSystemClockContext(
+    Out<Service::PSC::Time::SystemClockContext> out_clock_context) {
+    LOG_INFO(Service_SET, "called");
+
+    *out_clock_context = m_system_settings.user_system_clock_context;
+    R_SUCCEED();
+}
+
+Result ISystemSettingsServer::SetUserSystemClockContext(
+    const Service::PSC::Time::SystemClockContext& clock_context) {
+    LOG_INFO(Service_SET, "called");
+
+    m_system_settings.user_system_clock_context = clock_context;
+    SetSaveNeeded();
     R_SUCCEED();
 }
 
@@ -698,10 +728,44 @@ Result ISystemSettingsServer::SetQuestFlag(QuestFlag quest_flag) {
     R_SUCCEED();
 }
 
+Result ISystemSettingsServer::GetDeviceTimeZoneLocationName(
+    Out<Service::PSC::Time::LocationName> out_name) {
+    LOG_INFO(Service_SET, "called");
+
+    *out_name = m_system_settings.device_time_zone_location_name;
+    R_SUCCEED();
+}
+
+Result ISystemSettingsServer::SetDeviceTimeZoneLocationName(
+    const Service::PSC::Time::LocationName& name) {
+    LOG_INFO(Service_SET, "called");
+
+    m_system_settings.device_time_zone_location_name = name;
+    SetSaveNeeded();
+    R_SUCCEED();
+}
+
 Result ISystemSettingsServer::SetRegionCode(SystemRegionCode region_code) {
     LOG_INFO(Service_SET, "called, region_code={}", region_code);
 
     m_system_settings.region_code = region_code;
+    SetSaveNeeded();
+    R_SUCCEED();
+}
+
+Result ISystemSettingsServer::GetNetworkSystemClockContext(
+    Out<Service::PSC::Time::SystemClockContext> out_context) {
+    LOG_INFO(Service_SET, "called");
+
+    *out_context = m_system_settings.network_system_clock_context;
+    R_SUCCEED();
+}
+
+Result ISystemSettingsServer::SetNetworkSystemClockContext(
+    const Service::PSC::Time::SystemClockContext& context) {
+    LOG_INFO(Service_SET, "called");
+
+    m_system_settings.network_system_clock_context = context;
     SetSaveNeeded();
     R_SUCCEED();
 }
@@ -985,6 +1049,40 @@ Result ISystemSettingsServer::SetKeyboardLayout(KeyboardLayout keyboard_layout) 
     LOG_INFO(Service_SET, "called, keyboard_layout={}", keyboard_layout);
 
     m_system_settings.keyboard_layout = keyboard_layout;
+    R_SUCCEED();
+}
+
+Result ISystemSettingsServer::GetDeviceTimeZoneLocationUpdatedTime(
+    Out<Service::PSC::Time::SteadyClockTimePoint> out_time_point) {
+    LOG_INFO(Service_SET, "called");
+
+    *out_time_point = m_system_settings.device_time_zone_location_updated_time;
+    R_SUCCEED();
+}
+
+Result ISystemSettingsServer::SetDeviceTimeZoneLocationUpdatedTime(
+    const Service::PSC::Time::SteadyClockTimePoint& time_point) {
+    LOG_INFO(Service_SET, "called");
+
+    m_system_settings.device_time_zone_location_updated_time = time_point;
+    SetSaveNeeded();
+    R_SUCCEED();
+}
+
+Result ISystemSettingsServer::GetUserSystemClockAutomaticCorrectionUpdatedTime(
+    Out<Service::PSC::Time::SteadyClockTimePoint> out_time_point) {
+    LOG_INFO(Service_SET, "called");
+
+    *out_time_point = m_system_settings.user_system_clock_automatic_correction_updated_time_point;
+    R_SUCCEED();
+}
+
+Result ISystemSettingsServer::SetUserSystemClockAutomaticCorrectionUpdatedTime(
+    const Service::PSC::Time::SteadyClockTimePoint& out_time_point) {
+    LOG_INFO(Service_SET, "called");
+
+    m_system_settings.user_system_clock_automatic_correction_updated_time_point = out_time_point;
+    SetSaveNeeded();
     R_SUCCEED();
 }
 

@@ -22,7 +22,6 @@
     <Import Project="$(SolutionDir)property_sheets\platform.$(Configuration).props" />
   </ImportGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ItemDefinitionGroup>
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -34,4 +33,5 @@
   <ItemGroup>
     <ClInclude Include="tz.h" />
   </ItemGroup>
-</Project>	
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>
