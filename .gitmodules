@@ -28,3 +28,6 @@
 [submodule "external/libusb"]
 	path = external/libusb
 	url = https://github.com/libusb/libusb.git
+[submodule "external/sirit"]
+	path = external/sirit
+	url = https://github.com/N3xoX1/sirit.git
