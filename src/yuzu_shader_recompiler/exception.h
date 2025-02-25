@@ -7,7 +7,7 @@
 #include <string>
 #include <utility>
 
-#include "common/logging/formatter.h"
+#include "yuzu_common/logging/formatter.h"
 
 namespace Shader {
 

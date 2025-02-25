@@ -7,9 +7,9 @@
 
 #include <fmt/format.h>
 
-#include "common/common_types.h"
-#include "shader_recompiler/frontend/ir/flow_test.h"
-#include "shader_recompiler/frontend/ir/pred.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_shader_recompiler/frontend/ir/flow_test.h"
+#include "yuzu_shader_recompiler/frontend/ir/pred.h"
 
 namespace Shader::IR {
 

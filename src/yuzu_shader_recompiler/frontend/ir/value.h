@@ -13,16 +13,16 @@
 #include <boost/container/small_vector.hpp>
 #include <boost/intrusive/list.hpp>
 
-#include "common/assert.h"
-#include "common/bit_cast.h"
-#include "common/common_types.h"
-#include "shader_recompiler/exception.h"
-#include "shader_recompiler/frontend/ir/attribute.h"
-#include "shader_recompiler/frontend/ir/opcodes.h"
-#include "shader_recompiler/frontend/ir/patch.h"
-#include "shader_recompiler/frontend/ir/pred.h"
-#include "shader_recompiler/frontend/ir/reg.h"
-#include "shader_recompiler/frontend/ir/type.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/bit_cast.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_shader_recompiler/exception.h"
+#include "yuzu_shader_recompiler/frontend/ir/attribute.h"
+#include "yuzu_shader_recompiler/frontend/ir/opcodes.h"
+#include "yuzu_shader_recompiler/frontend/ir/patch.h"
+#include "yuzu_shader_recompiler/frontend/ir/pred.h"
+#include "yuzu_shader_recompiler/frontend/ir/reg.h"
+#include "yuzu_shader_recompiler/frontend/ir/type.h"
 
 namespace Shader::IR {
 

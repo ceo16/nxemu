@@ -8,8 +8,8 @@
 
 #include <fmt/format.h>
 
-#include "common/polyfill_ranges.h"
-#include "shader_recompiler/frontend/ir/type.h"
+#include "yuzu_common/polyfill_ranges.h"
+#include "yuzu_shader_recompiler/frontend/ir/type.h"
 
 namespace Shader::IR {
 

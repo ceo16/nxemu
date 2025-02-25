@@ -7,8 +7,8 @@
 
 #include <fmt/format.h>
 
-#include "common/common_funcs.h"
-#include "shader_recompiler/exception.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_shader_recompiler/exception.h"
 
 namespace Shader::IR {
 

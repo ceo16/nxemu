@@ -5,8 +5,8 @@
 
 #include <fmt/format.h>
 
-#include "common/common_types.h"
-#include "shader_recompiler/exception.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_shader_recompiler/exception.h"
 
 namespace Shader::Maxwell {
 

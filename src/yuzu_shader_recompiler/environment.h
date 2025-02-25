@@ -5,10 +5,10 @@
 
 #include <array>
 
-#include "common/common_types.h"
-#include "shader_recompiler/program_header.h"
-#include "shader_recompiler/shader_info.h"
-#include "shader_recompiler/stage.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_shader_recompiler/program_header.h"
+#include "yuzu_shader_recompiler/shader_info.h"
+#include "yuzu_shader_recompiler/stage.h"
 
 namespace Shader {
 

@@ -3,10 +3,10 @@
 
 #include <boost/container/small_vector.hpp>
 
-#include "shader_recompiler/frontend/ir/basic_block.h"
-#include "shader_recompiler/frontend/ir/ir_emitter.h"
-#include "shader_recompiler/frontend/ir/value.h"
-#include "shader_recompiler/ir_opt/passes.h"
+#include "yuzu_shader_recompiler/frontend/ir/basic_block.h"
+#include "yuzu_shader_recompiler/frontend/ir/ir_emitter.h"
+#include "yuzu_shader_recompiler/frontend/ir/value.h"
+#include "yuzu_shader_recompiler/ir_opt/passes.h"
 
 namespace Shader::Optimization {
 

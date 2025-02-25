@@ -3,10 +3,10 @@
 
 #include <limits>
 
-#include "common/common_types.h"
-#include "shader_recompiler/exception.h"
-#include "shader_recompiler/frontend/maxwell/opcodes.h"
-#include "shader_recompiler/frontend/maxwell/translate/impl/impl.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_shader_recompiler/exception.h"
+#include "yuzu_shader_recompiler/frontend/maxwell/opcodes.h"
+#include "yuzu_shader_recompiler/frontend/maxwell/translate/impl/impl.h"
 
 namespace Shader::Maxwell {
 namespace {

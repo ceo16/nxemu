@@ -9,12 +9,12 @@
 
 #include <fmt/format.h>
 
-#include "common/polyfill_ranges.h"
-#include "shader_recompiler/exception.h"
-#include "shader_recompiler/frontend/maxwell/control_flow.h"
-#include "shader_recompiler/frontend/maxwell/decode.h"
-#include "shader_recompiler/frontend/maxwell/indirect_branch_table_track.h"
-#include "shader_recompiler/frontend/maxwell/location.h"
+#include "yuzu_common/polyfill_ranges.h"
+#include "yuzu_shader_recompiler/exception.h"
+#include "yuzu_shader_recompiler/frontend/maxwell/control_flow.h"
+#include "yuzu_shader_recompiler/frontend/maxwell/decode.h"
+#include "yuzu_shader_recompiler/frontend/maxwell/indirect_branch_table_track.h"
+#include "yuzu_shader_recompiler/frontend/maxwell/location.h"
 
 namespace Shader::Maxwell::Flow {
 namespace {

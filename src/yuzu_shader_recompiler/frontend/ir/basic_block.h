@@ -10,11 +10,11 @@
 
 #include <boost/intrusive/list.hpp>
 
-#include "common/bit_cast.h"
-#include "common/common_types.h"
-#include "shader_recompiler/frontend/ir/condition.h"
-#include "shader_recompiler/frontend/ir/value.h"
-#include "shader_recompiler/object_pool.h"
+#include "yuzu_common/bit_cast.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_shader_recompiler/frontend/ir/condition.h"
+#include "yuzu_shader_recompiler/frontend/ir/value.h"
+#include "yuzu_shader_recompiler/object_pool.h"
 
 namespace Shader::IR {
 

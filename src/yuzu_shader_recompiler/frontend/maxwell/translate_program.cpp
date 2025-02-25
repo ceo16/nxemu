@@ -6,16 +6,16 @@
 #include <vector>
 #include <queue>
 
-#include "common/settings.h"
-#include "shader_recompiler/exception.h"
-#include "shader_recompiler/frontend/ir/basic_block.h"
-#include "shader_recompiler/frontend/ir/ir_emitter.h"
-#include "shader_recompiler/frontend/ir/post_order.h"
-#include "shader_recompiler/frontend/maxwell/structured_control_flow.h"
-#include "shader_recompiler/frontend/maxwell/translate/translate.h"
-#include "shader_recompiler/frontend/maxwell/translate_program.h"
-#include "shader_recompiler/host_translate_info.h"
-#include "shader_recompiler/ir_opt/passes.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_shader_recompiler/exception.h"
+#include "yuzu_shader_recompiler/frontend/ir/basic_block.h"
+#include "yuzu_shader_recompiler/frontend/ir/ir_emitter.h"
+#include "yuzu_shader_recompiler/frontend/ir/post_order.h"
+#include "yuzu_shader_recompiler/frontend/maxwell/structured_control_flow.h"
+#include "yuzu_shader_recompiler/frontend/maxwell/translate/translate.h"
+#include "yuzu_shader_recompiler/frontend/maxwell/translate_program.h"
+#include "yuzu_shader_recompiler/host_translate_info.h"
+#include "yuzu_shader_recompiler/ir_opt/passes.h"
 
 namespace Shader::Maxwell {
 namespace {

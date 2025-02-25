@@ -1,12 +1,12 @@
 // SPDX-FileCopyrightText: Copyright 2021 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/div_ceil.h"
-#include "shader_recompiler/backend/bindings.h"
-#include "shader_recompiler/backend/glsl/glsl_emit_context.h"
-#include "shader_recompiler/frontend/ir/program.h"
-#include "shader_recompiler/profile.h"
-#include "shader_recompiler/runtime_info.h"
+#include "yuzu_common/div_ceil.h"
+#include "yuzu_shader_recompiler/backend/bindings.h"
+#include "yuzu_shader_recompiler/backend/glsl/glsl_emit_context.h"
+#include "yuzu_shader_recompiler/frontend/ir/program.h"
+#include "yuzu_shader_recompiler/profile.h"
+#include "yuzu_shader_recompiler/runtime_info.h"
 
 namespace Shader::Backend::GLSL {
 namespace {

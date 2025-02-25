@@ -12,14 +12,14 @@
 
 #include <boost/intrusive/list.hpp>
 
-#include "common/polyfill_ranges.h"
-#include "shader_recompiler/environment.h"
-#include "shader_recompiler/frontend/ir/basic_block.h"
-#include "shader_recompiler/frontend/ir/ir_emitter.h"
-#include "shader_recompiler/frontend/maxwell/structured_control_flow.h"
-#include "shader_recompiler/frontend/maxwell/translate/translate.h"
-#include "shader_recompiler/host_translate_info.h"
-#include "shader_recompiler/object_pool.h"
+#include "yuzu_common/polyfill_ranges.h"
+#include "yuzu_shader_recompiler/environment.h"
+#include "yuzu_shader_recompiler/frontend/ir/basic_block.h"
+#include "yuzu_shader_recompiler/frontend/ir/ir_emitter.h"
+#include "yuzu_shader_recompiler/frontend/maxwell/structured_control_flow.h"
+#include "yuzu_shader_recompiler/frontend/maxwell/translate/translate.h"
+#include "yuzu_shader_recompiler/host_translate_info.h"
+#include "yuzu_shader_recompiler/object_pool.h"
 
 namespace Shader::Maxwell {
 namespace {

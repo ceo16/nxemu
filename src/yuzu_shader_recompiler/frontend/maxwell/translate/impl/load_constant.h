@@ -3,9 +3,9 @@
 
 #pragma once
 
-#include "common/bit_field.h"
-#include "common/common_types.h"
-#include "shader_recompiler/frontend/ir/reg.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_shader_recompiler/frontend/ir/reg.h"
 
 namespace Shader::Maxwell::LDC {
 

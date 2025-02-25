@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "shader_recompiler/environment.h"
-#include "shader_recompiler/frontend/ir/program.h"
+#include "yuzu_shader_recompiler/environment.h"
+#include "yuzu_shader_recompiler/frontend/ir/program.h"
 
 namespace Shader {
 struct HostTranslateInfo;

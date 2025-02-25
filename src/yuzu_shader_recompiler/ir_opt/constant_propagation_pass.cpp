@@ -6,13 +6,13 @@
 #include <tuple>
 #include <type_traits>
 
-#include "common/bit_cast.h"
-#include "shader_recompiler/environment.h"
-#include "shader_recompiler/exception.h"
-#include "shader_recompiler/frontend/ir/ir_emitter.h"
-#include "shader_recompiler/frontend/ir/modifiers.h"
-#include "shader_recompiler/frontend/ir/value.h"
-#include "shader_recompiler/ir_opt/passes.h"
+#include "yuzu_common/bit_cast.h"
+#include "yuzu_shader_recompiler/environment.h"
+#include "yuzu_shader_recompiler/exception.h"
+#include "yuzu_shader_recompiler/frontend/ir/ir_emitter.h"
+#include "yuzu_shader_recompiler/frontend/ir/modifiers.h"
+#include "yuzu_shader_recompiler/frontend/ir/value.h"
+#include "yuzu_shader_recompiler/ir_opt/passes.h"
 
 namespace Shader::Optimization {
 namespace {

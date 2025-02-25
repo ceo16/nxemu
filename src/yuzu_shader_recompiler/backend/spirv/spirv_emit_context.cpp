@@ -10,10 +10,10 @@
 
 #include <fmt/format.h>
 
-#include "common/common_types.h"
-#include "common/div_ceil.h"
-#include "shader_recompiler/backend/spirv/emit_spirv.h"
-#include "shader_recompiler/backend/spirv/spirv_emit_context.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/div_ceil.h"
+#include "yuzu_shader_recompiler/backend/spirv/emit_spirv.h"
+#include "yuzu_shader_recompiler/backend/spirv/spirv_emit_context.h"
 
 namespace Shader::Backend::SPIRV {
 namespace {

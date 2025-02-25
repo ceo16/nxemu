@@ -1,13 +1,13 @@
 // SPDX-FileCopyrightText: Copyright 2021 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/alignment.h"
-#include "shader_recompiler/environment.h"
-#include "shader_recompiler/frontend/ir/modifiers.h"
-#include "shader_recompiler/frontend/ir/program.h"
-#include "shader_recompiler/frontend/ir/value.h"
-#include "shader_recompiler/ir_opt/passes.h"
-#include "shader_recompiler/shader_info.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_shader_recompiler/environment.h"
+#include "yuzu_shader_recompiler/frontend/ir/modifiers.h"
+#include "yuzu_shader_recompiler/frontend/ir/program.h"
+#include "yuzu_shader_recompiler/frontend/ir/value.h"
+#include "yuzu_shader_recompiler/ir_opt/passes.h"
+#include "yuzu_shader_recompiler/shader_info.h"
 
 namespace Shader::Optimization {
 namespace {

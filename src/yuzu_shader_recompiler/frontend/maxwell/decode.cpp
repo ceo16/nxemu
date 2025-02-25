@@ -6,11 +6,11 @@
 #include <bit>
 #include <memory>
 
-#include "common/common_types.h"
-#include "common/polyfill_ranges.h"
-#include "shader_recompiler/exception.h"
-#include "shader_recompiler/frontend/maxwell/decode.h"
-#include "shader_recompiler/frontend/maxwell/opcodes.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/polyfill_ranges.h"
+#include "yuzu_shader_recompiler/exception.h"
+#include "yuzu_shader_recompiler/frontend/maxwell/decode.h"
+#include "yuzu_shader_recompiler/frontend/maxwell/opcodes.h"
 
 namespace Shader::Maxwell {
 namespace {

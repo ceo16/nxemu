@@ -4,10 +4,10 @@
 #include <algorithm>
 #include <memory>
 
-#include "shader_recompiler/exception.h"
-#include "shader_recompiler/frontend/ir/basic_block.h"
-#include "shader_recompiler/frontend/ir/type.h"
-#include "shader_recompiler/frontend/ir/value.h"
+#include "yuzu_shader_recompiler/exception.h"
+#include "yuzu_shader_recompiler/frontend/ir/basic_block.h"
+#include "yuzu_shader_recompiler/frontend/ir/type.h"
+#include "yuzu_shader_recompiler/frontend/ir/value.h"
 
 namespace Shader::IR {
 namespace {

@@ -9,8 +9,8 @@
 
 #include <fmt/format.h>
 
-#include "shader_recompiler/backend/glasm/reg_alloc.h"
-#include "shader_recompiler/stage.h"
+#include "yuzu_shader_recompiler/backend/glasm/reg_alloc.h"
+#include "yuzu_shader_recompiler/stage.h"
 
 namespace Shader {
 struct Info;

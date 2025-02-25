@@ -5,11 +5,11 @@
 
 #include <vector>
 
-#include "common/common_types.h"
-#include "shader_recompiler/backend/bindings.h"
-#include "shader_recompiler/frontend/ir/program.h"
-#include "shader_recompiler/profile.h"
-#include "shader_recompiler/runtime_info.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_shader_recompiler/backend/bindings.h"
+#include "yuzu_shader_recompiler/frontend/ir/program.h"
+#include "yuzu_shader_recompiler/profile.h"
+#include "yuzu_shader_recompiler/runtime_info.h"
 
 namespace Shader::Backend::SPIRV {
 

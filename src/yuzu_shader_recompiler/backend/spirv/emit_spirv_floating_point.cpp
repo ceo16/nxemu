@@ -1,9 +1,9 @@
 // SPDX-FileCopyrightText: Copyright 2021 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "shader_recompiler/backend/spirv/emit_spirv_instructions.h"
-#include "shader_recompiler/backend/spirv/spirv_emit_context.h"
-#include "shader_recompiler/frontend/ir/modifiers.h"
+#include "yuzu_shader_recompiler/backend/spirv/emit_spirv_instructions.h"
+#include "yuzu_shader_recompiler/backend/spirv/spirv_emit_context.h"
+#include "yuzu_shader_recompiler/frontend/ir/modifiers.h"
 
 namespace Shader::Backend::SPIRV {
 namespace {

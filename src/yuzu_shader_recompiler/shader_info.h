@@ -7,9 +7,9 @@
 #include <bitset>
 #include <map>
 
-#include "common/common_types.h"
-#include "shader_recompiler/frontend/ir/type.h"
-#include "shader_recompiler/varying_state.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_shader_recompiler/frontend/ir/type.h"
+#include "yuzu_shader_recompiler/varying_state.h"
 
 #include <boost/container/small_vector.hpp>
 #include <boost/container/static_vector.hpp>

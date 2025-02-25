@@ -5,9 +5,9 @@
 #include <initializer_list>
 #include <map>
 
-#include "common/common_types.h"
-#include "shader_recompiler/frontend/ir/basic_block.h"
-#include "shader_recompiler/frontend/ir/value.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_shader_recompiler/frontend/ir/basic_block.h"
+#include "yuzu_shader_recompiler/frontend/ir/value.h"
 
 namespace Shader::IR {
 

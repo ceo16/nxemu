@@ -8,8 +8,8 @@
 #include <optional>
 #include <vector>
 
-#include "common/common_types.h"
-#include "shader_recompiler/varying_state.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_shader_recompiler/varying_state.h"
 
 namespace Shader {
 

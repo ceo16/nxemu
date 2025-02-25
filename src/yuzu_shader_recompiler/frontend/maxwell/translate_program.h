@@ -3,12 +3,12 @@
 
 #pragma once
 
-#include "shader_recompiler/environment.h"
-#include "shader_recompiler/frontend/ir/basic_block.h"
-#include "shader_recompiler/frontend/ir/program.h"
-#include "shader_recompiler/frontend/maxwell/control_flow.h"
-#include "shader_recompiler/object_pool.h"
-#include "shader_recompiler/runtime_info.h"
+#include "yuzu_shader_recompiler/environment.h"
+#include "yuzu_shader_recompiler/frontend/ir/basic_block.h"
+#include "yuzu_shader_recompiler/frontend/ir/program.h"
+#include "yuzu_shader_recompiler/frontend/maxwell/control_flow.h"
+#include "yuzu_shader_recompiler/object_pool.h"
+#include "yuzu_shader_recompiler/runtime_info.h"
 
 namespace Shader {
 struct HostTranslateInfo;

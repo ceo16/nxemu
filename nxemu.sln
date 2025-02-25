@@ -62,6 +62,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glad", "..\nxemu-private\sr
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sirit", "external\sirit.vcxproj", "{583146AF-EE19-454C-8646-B202C0EB82BA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yuzu_shader_recompiler", "src\yuzu_shader_recompiler\yuzu_shader_recompiler.vcxproj", "{70E74561-B64C-4FF8-9EA5-472BD2D98A4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -222,6 +224,14 @@ Global
 		{583146AF-EE19-454C-8646-B202C0EB82BA}.Release|x64.Build.0 = Release|x64
 		{583146AF-EE19-454C-8646-B202C0EB82BA}.Release|x86.ActiveCfg = Release|x64
 		{583146AF-EE19-454C-8646-B202C0EB82BA}.Release|x86.Build.0 = Release|x64
+		{70E74561-B64C-4FF8-9EA5-472BD2D98A4C}.Debug|x64.ActiveCfg = Debug|x64
+		{70E74561-B64C-4FF8-9EA5-472BD2D98A4C}.Debug|x64.Build.0 = Debug|x64
+		{70E74561-B64C-4FF8-9EA5-472BD2D98A4C}.Debug|x86.ActiveCfg = Debug|x64
+		{70E74561-B64C-4FF8-9EA5-472BD2D98A4C}.Debug|x86.Build.0 = Debug|x64
+		{70E74561-B64C-4FF8-9EA5-472BD2D98A4C}.Release|x64.ActiveCfg = Release|x64
+		{70E74561-B64C-4FF8-9EA5-472BD2D98A4C}.Release|x64.Build.0 = Release|x64
+		{70E74561-B64C-4FF8-9EA5-472BD2D98A4C}.Release|x86.ActiveCfg = Release|x64
+		{70E74561-B64C-4FF8-9EA5-472BD2D98A4C}.Release|x86.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

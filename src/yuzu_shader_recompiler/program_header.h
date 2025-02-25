@@ -6,9 +6,9 @@
 #include <array>
 #include <optional>
 
-#include "common/bit_field.h"
-#include "common/common_funcs.h"
-#include "common/common_types.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/common_types.h"
 
 namespace Shader {
 

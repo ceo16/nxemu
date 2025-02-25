@@ -3,10 +3,10 @@
 
 #include <string_view>
 
-#include "shader_recompiler/backend/glsl/emit_glsl_instructions.h"
-#include "shader_recompiler/backend/glsl/glsl_emit_context.h"
-#include "shader_recompiler/frontend/ir/modifiers.h"
-#include "shader_recompiler/frontend/ir/value.h"
+#include "yuzu_shader_recompiler/backend/glsl/emit_glsl_instructions.h"
+#include "yuzu_shader_recompiler/backend/glsl/glsl_emit_context.h"
+#include "yuzu_shader_recompiler/frontend/ir/modifiers.h"
+#include "yuzu_shader_recompiler/frontend/ir/value.h"
 
 namespace Shader::Backend::GLSL {
 namespace {

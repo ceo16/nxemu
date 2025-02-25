@@ -3,10 +3,10 @@
 
 #pragma once
 
-#include "common/common_types.h"
-#include "shader_recompiler/exception.h"
-#include "shader_recompiler/frontend/ir/modifiers.h"
-#include "shader_recompiler/frontend/maxwell/translate/impl/common_encoding.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_shader_recompiler/exception.h"
+#include "yuzu_shader_recompiler/frontend/ir/modifiers.h"
+#include "yuzu_shader_recompiler/frontend/maxwell/translate/impl/common_encoding.h"
 
 namespace Shader::Maxwell {
 

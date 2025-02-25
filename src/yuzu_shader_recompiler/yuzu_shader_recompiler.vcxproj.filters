@@ -1,0 +1,732 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="backend\glasm\emit_glasm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glasm\emit_glasm_barriers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glasm\emit_glasm_bitwise_conversion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glasm\emit_glasm_composite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glasm\emit_glasm_context_get_set.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glasm\emit_glasm_control_flow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glasm\emit_glasm_convert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glasm\emit_glasm_floating_point.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glasm\emit_glasm_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glasm\emit_glasm_integer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glasm\emit_glasm_logical.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glasm\emit_glasm_memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glasm\emit_glasm_not_implemented.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glasm\emit_glasm_select.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glasm\emit_glasm_shared_memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glasm\emit_glasm_special.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glasm\emit_glasm_undefined.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glasm\emit_glasm_warp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glasm\glasm_emit_context.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glasm\reg_alloc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glsl\emit_glsl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glsl\emit_glsl_atomic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glsl\emit_glsl_barriers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glsl\emit_glsl_bitwise_conversion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glsl\emit_glsl_composite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glsl\emit_glsl_context_get_set.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glsl\emit_glsl_control_flow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glsl\emit_glsl_convert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glsl\emit_glsl_floating_point.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glsl\emit_glsl_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glsl\emit_glsl_integer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glsl\emit_glsl_logical.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glsl\emit_glsl_memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glsl\emit_glsl_not_implemented.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glsl\emit_glsl_select.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glsl\emit_glsl_shared_memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glsl\emit_glsl_special.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glsl\emit_glsl_undefined.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glsl\emit_glsl_warp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glsl\glsl_emit_context.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\glsl\var_alloc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\spirv\emit_spirv.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\spirv\emit_spirv_atomic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\spirv\emit_spirv_barriers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\spirv\emit_spirv_bitwise_conversion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\spirv\emit_spirv_composite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\spirv\emit_spirv_context_get_set.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\spirv\emit_spirv_control_flow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\spirv\emit_spirv_convert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\spirv\emit_spirv_floating_point.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\spirv\emit_spirv_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\spirv\emit_spirv_image_atomic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\spirv\emit_spirv_integer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\spirv\emit_spirv_logical.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\spirv\emit_spirv_memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\spirv\emit_spirv_select.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\spirv\emit_spirv_shared_memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\spirv\emit_spirv_special.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\spirv\emit_spirv_undefined.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\spirv\emit_spirv_warp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\spirv\spirv_emit_context.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\ir\attribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\ir\basic_block.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\ir\condition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\ir\flow_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\ir\ir_emitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\ir\microinstruction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\ir\opcodes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\ir\patch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\ir\post_order.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\ir\program.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\ir\type.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\ir\value.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\control_flow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\decode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\indirect_branch_table_track.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\opcodes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\structured_control_flow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\atomic_operations_global_memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\atomic_operations_shared_memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\attribute_memory_to_physical.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\barrier_operations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\bitfield_extract.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\bitfield_insert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\branch_indirect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\common_funcs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\condition_code_set.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\double_add.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\double_compare_and_set.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\double_fused_multiply_add.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\double_min_max.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\double_multiply.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\double_set_predicate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\exit_program.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\find_leading_one.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\floating_point_add.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\floating_point_compare.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\floating_point_compare_and_set.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\floating_point_conversion_floating_point.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\floating_point_conversion_integer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\floating_point_fused_multiply_add.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\floating_point_min_max.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\floating_point_multiply.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\floating_point_multi_function.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\floating_point_range_reduction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\floating_point_set_predicate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\floating_point_swizzled_add.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\half_floating_point_add.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\half_floating_point_fused_multiply_add.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\half_floating_point_helper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\half_floating_point_multiply.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\half_floating_point_set.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\half_floating_point_set_predicate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\impl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\integer_add.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\integer_add_three_input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\integer_compare.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\integer_compare_and_set.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\integer_floating_point_conversion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\integer_funnel_shift.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\integer_minimum_maximum.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\integer_popcount.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\integer_scaled_add.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\integer_set_predicate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\integer_shift_left.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\integer_shift_right.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\integer_short_multiply_add.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\integer_to_integer_conversion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\internal_stage_buffer_entry_read.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\load_constant.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\load_effective_address.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\load_store_attribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\load_store_local_shared.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\load_store_memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\logic_operation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\logic_operation_three_input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\move_predicate_to_register.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\move_register.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\move_register_to_predicate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\move_special_register.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\not_implemented.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\output_geometry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\pixel_load.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\predicate_set_predicate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\predicate_set_register.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\select_source_with_predicate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\surface_atomic_operations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\surface_load_store.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\texture_fetch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\texture_fetch_swizzled.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\texture_gather.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\texture_gather_swizzled.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\texture_gradient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\texture_load.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\texture_load_swizzled.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\texture_mipmap_level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\texture_query.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\video_helper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\video_minimum_maximum.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\video_multiply_add.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\video_set_predicate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\vote.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\impl\warp_shuffle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate\translate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\maxwell\translate_program.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_opt\collect_shader_info_pass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_opt\conditional_barrier_pass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_opt\constant_propagation_pass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_opt\dead_code_elimination_pass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_opt\dual_vertex_pass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_opt\global_memory_to_storage_buffer_pass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_opt\identity_removal_pass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_opt\layer_pass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_opt\lower_fp16_to_fp32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_opt\lower_fp64_to_fp32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_opt\lower_int64_to_int32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_opt\position_pass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_opt\rescaling_pass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_opt\ssa_rewrite_pass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_opt\texture_pass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_opt\vendor_workaround_pass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ir_opt\verification_pass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="backend\bindings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\glasm\emit_glasm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\glasm\emit_glasm_instructions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\glasm\glasm_emit_context.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\glasm\reg_alloc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\glsl\emit_glsl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\glsl\emit_glsl_instructions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\glsl\glsl_emit_context.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\glsl\var_alloc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\spirv\emit_spirv.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\spirv\emit_spirv_instructions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\spirv\spirv_emit_context.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="environment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exception.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\ir\abstract_syntax_list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\ir\attribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\ir\basic_block.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\ir\breadth_first_search.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\ir\condition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\ir\flow_test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\ir\ir_emitter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\ir\modifiers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\ir\opcodes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\ir\patch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\ir\post_order.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\ir\pred.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\ir\program.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\ir\reg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\ir\type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\ir\value.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\maxwell\control_flow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\maxwell\decode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\maxwell\indirect_branch_table_track.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\maxwell\instruction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\maxwell\location.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\maxwell\opcodes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\maxwell\structured_control_flow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\maxwell\translate\impl\common_encoding.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\maxwell\translate\impl\common_funcs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\maxwell\translate\impl\half_floating_point_helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\maxwell\translate\impl\impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\maxwell\translate\impl\load_constant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\maxwell\translate\impl\video_helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\maxwell\translate\translate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\maxwell\translate_program.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="host_translate_info.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ir_opt\passes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="object_pool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="precompiled_headers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="profile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="program_header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime_info.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shader_info.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="varying_state.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

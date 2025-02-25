@@ -7,8 +7,8 @@
 #include <string>
 #include <vector>
 
-#include "common/bit_field.h"
-#include "common/common_types.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_common/common_types.h"
 
 namespace Shader::IR {
 class Inst;

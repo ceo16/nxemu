@@ -20,12 +20,12 @@
 #include <variant>
 #include <vector>
 
-#include "shader_recompiler/frontend/ir/basic_block.h"
-#include "shader_recompiler/frontend/ir/opcodes.h"
-#include "shader_recompiler/frontend/ir/pred.h"
-#include "shader_recompiler/frontend/ir/reg.h"
-#include "shader_recompiler/frontend/ir/value.h"
-#include "shader_recompiler/ir_opt/passes.h"
+#include "yuzu_shader_recompiler/frontend/ir/basic_block.h"
+#include "yuzu_shader_recompiler/frontend/ir/opcodes.h"
+#include "yuzu_shader_recompiler/frontend/ir/pred.h"
+#include "yuzu_shader_recompiler/frontend/ir/reg.h"
+#include "yuzu_shader_recompiler/frontend/ir/value.h"
+#include "yuzu_shader_recompiler/ir_opt/passes.h"
 
 namespace Shader::Optimization {
 namespace {

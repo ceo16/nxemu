@@ -6,12 +6,12 @@
 #include <tuple>
 #include <type_traits>
 
-#include "common/div_ceil.h"
-#include "common/settings.h"
-#include "shader_recompiler/backend/glsl/emit_glsl.h"
-#include "shader_recompiler/backend/glsl/emit_glsl_instructions.h"
-#include "shader_recompiler/backend/glsl/glsl_emit_context.h"
-#include "shader_recompiler/frontend/ir/ir_emitter.h"
+#include "yuzu_common/div_ceil.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_shader_recompiler/backend/glsl/emit_glsl.h"
+#include "yuzu_shader_recompiler/backend/glsl/emit_glsl_instructions.h"
+#include "yuzu_shader_recompiler/backend/glsl/glsl_emit_context.h"
+#include "yuzu_shader_recompiler/frontend/ir/ir_emitter.h"
 
 namespace Shader::Backend::GLSL {
 namespace {
@@ -90,7 +90,7 @@ void EmitInst(EmitContext& ctx, IR::Inst* inst) {
 #define OPCODE(name, result_type, ...)                                                             \
     case IR::Opcode::name:                                                                         \
         return Invoke<&Emit##name>(ctx, inst);
-#include "shader_recompiler/frontend/ir/opcodes.inc"
+#include "yuzu_shader_recompiler/frontend/ir/opcodes.inc"
 #undef OPCODE
     }
     throw LogicError("Invalid opcode {}", inst->GetOpcode());

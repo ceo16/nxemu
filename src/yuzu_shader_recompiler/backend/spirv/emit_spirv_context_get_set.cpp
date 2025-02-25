@@ -5,8 +5,8 @@
 #include <tuple>
 #include <utility>
 
-#include "shader_recompiler/backend/spirv/emit_spirv_instructions.h"
-#include "shader_recompiler/backend/spirv/spirv_emit_context.h"
+#include "yuzu_shader_recompiler/backend/spirv/emit_spirv_instructions.h"
+#include "yuzu_shader_recompiler/backend/spirv/spirv_emit_context.h"
 
 namespace Shader::Backend::SPIRV {
 namespace {
