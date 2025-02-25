@@ -64,6 +64,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sirit", "external\sirit.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yuzu_shader_recompiler", "src\yuzu_shader_recompiler\yuzu_shader_recompiler.vcxproj", "{70E74561-B64C-4FF8-9EA5-472BD2D98A4C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "host_shaders", "src\host_shaders\host_shaders.vcxproj", "{BB3BA79F-451E-46D8-8CD8-5993AB932D04}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "string_shader_header", "src\string_shader_header\string_shader_header.vcxproj", "{5E491258-51F1-418E-89A6-79A0480E1F34}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -232,6 +236,22 @@ Global
 		{70E74561-B64C-4FF8-9EA5-472BD2D98A4C}.Release|x64.Build.0 = Release|x64
 		{70E74561-B64C-4FF8-9EA5-472BD2D98A4C}.Release|x86.ActiveCfg = Release|x64
 		{70E74561-B64C-4FF8-9EA5-472BD2D98A4C}.Release|x86.Build.0 = Release|x64
+		{BB3BA79F-451E-46D8-8CD8-5993AB932D04}.Debug|x64.ActiveCfg = Debug|x64
+		{BB3BA79F-451E-46D8-8CD8-5993AB932D04}.Debug|x64.Build.0 = Debug|x64
+		{BB3BA79F-451E-46D8-8CD8-5993AB932D04}.Debug|x86.ActiveCfg = Debug|x64
+		{BB3BA79F-451E-46D8-8CD8-5993AB932D04}.Debug|x86.Build.0 = Debug|x64
+		{BB3BA79F-451E-46D8-8CD8-5993AB932D04}.Release|x64.ActiveCfg = Release|x64
+		{BB3BA79F-451E-46D8-8CD8-5993AB932D04}.Release|x64.Build.0 = Release|x64
+		{BB3BA79F-451E-46D8-8CD8-5993AB932D04}.Release|x86.ActiveCfg = Release|x64
+		{BB3BA79F-451E-46D8-8CD8-5993AB932D04}.Release|x86.Build.0 = Release|x64
+		{5E491258-51F1-418E-89A6-79A0480E1F34}.Debug|x64.ActiveCfg = Debug|x64
+		{5E491258-51F1-418E-89A6-79A0480E1F34}.Debug|x64.Build.0 = Debug|x64
+		{5E491258-51F1-418E-89A6-79A0480E1F34}.Debug|x86.ActiveCfg = Debug|x64
+		{5E491258-51F1-418E-89A6-79A0480E1F34}.Debug|x86.Build.0 = Debug|x64
+		{5E491258-51F1-418E-89A6-79A0480E1F34}.Release|x64.ActiveCfg = Release|x64
+		{5E491258-51F1-418E-89A6-79A0480E1F34}.Release|x64.Build.0 = Release|x64
+		{5E491258-51F1-418E-89A6-79A0480E1F34}.Release|x86.ActiveCfg = Release|x64
+		{5E491258-51F1-418E-89A6-79A0480E1F34}.Release|x86.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
