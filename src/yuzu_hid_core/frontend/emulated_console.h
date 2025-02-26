@@ -17,8 +17,8 @@
 #include "yuzu_common/point.h"
 #include "yuzu_common/quaternion.h"
 #include "yuzu_common/vector_math.h"
-#include "frontend/motion_input.h"
-#include "hid_types.h"
+#include "yuzu_hid_core/frontend/motion_input.h"
+#include "yuzu_hid_core/hid_types.h"
 
 namespace Core::HID {
 static constexpr std::size_t MaxTouchDevices = 32;

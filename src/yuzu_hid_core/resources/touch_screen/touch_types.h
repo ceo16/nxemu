@@ -10,7 +10,7 @@
 #include "yuzu_common/common_funcs.h"
 #include "yuzu_common/common_types.h"
 #include "yuzu_common/point.h"
-#include <yuzu_hid_core/hid_types.h>
+#include "yuzu_hid_core/hid_types.h"
 
 namespace Service::HID {
 constexpr std::size_t MaxFingers = 16;

@@ -9,9 +9,9 @@
 #include "yuzu_common/common_types.h"
 #include "yuzu_common/point.h"
 #include "core/hle/result.h"
-#include "hid_types.h"
-#include "resources/touch_screen/gesture_handler.h"
-#include "resources/touch_screen/touch_types.h"
+#include "yuzu_hid_core/hid_types.h"
+#include "yuzu_hid_core/resources/touch_screen/gesture_handler.h"
+#include "yuzu_hid_core/resources/touch_screen/touch_types.h"
 
 namespace Core {
 class System;

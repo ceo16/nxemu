@@ -8,9 +8,9 @@
 
 #include "yuzu_common/common_funcs.h"
 #include "yuzu_common/typed_address.h"
-#include <yuzu_hid_core/hid_result.h>
-#include <yuzu_hid_core/hid_types.h>
-#include <yuzu_hid_core/resources/controller_base.h>
+#include "yuzu_hid_core/hid_result.h"
+#include "yuzu_hid_core/hid_types.h"
+#include "yuzu_hid_core/resources/controller_base.h"
 
 namespace Kernel {
 class KEvent;

@@ -8,24 +8,24 @@
 
 #include "yuzu_common/common_types.h"
 #include "core/hle/result.h"
-#include <yuzu_hid_core/hid_types.h>
-#include <yuzu_hid_core/resources/applet_resource.h>
-#include <yuzu_hid_core/resources/npad/npad_types.h>
+#include "yuzu_hid_core/hid_types.h"
+#include "yuzu_hid_core/resources/applet_resource.h"
+#include "yuzu_hid_core/resources/npad/npad_types.h"
 
-#include <yuzu_hid_core/resources/abstracted_pad/abstract_battery_handler.h>
-#include <yuzu_hid_core/resources/abstracted_pad/abstract_button_handler.h>
-#include <yuzu_hid_core/resources/abstracted_pad/abstract_ir_sensor_handler.h>
-#include <yuzu_hid_core/resources/abstracted_pad/abstract_led_handler.h>
-#include <yuzu_hid_core/resources/abstracted_pad/abstract_mcu_handler.h>
-#include <yuzu_hid_core/resources/abstracted_pad/abstract_nfc_handler.h>
-#include <yuzu_hid_core/resources/abstracted_pad/abstract_pad_holder.h>
-#include <yuzu_hid_core/resources/abstracted_pad/abstract_palma_handler.h>
-#include <yuzu_hid_core/resources/abstracted_pad/abstract_properties_handler.h>
-#include <yuzu_hid_core/resources/abstracted_pad/abstract_sixaxis_handler.h>
-#include <yuzu_hid_core/resources/abstracted_pad/abstract_vibration_handler.h>
-#include <yuzu_hid_core/resources/vibration/gc_vibration_device.h>
-#include <yuzu_hid_core/resources/vibration/n64_vibration_device.h>
-#include <yuzu_hid_core/resources/vibration/vibration_device.h>
+#include "yuzu_hid_core/resources/abstracted_pad/abstract_battery_handler.h"
+#include "yuzu_hid_core/resources/abstracted_pad/abstract_button_handler.h"
+#include "yuzu_hid_core/resources/abstracted_pad/abstract_ir_sensor_handler.h"
+#include "yuzu_hid_core/resources/abstracted_pad/abstract_led_handler.h"
+#include "yuzu_hid_core/resources/abstracted_pad/abstract_mcu_handler.h"
+#include "yuzu_hid_core/resources/abstracted_pad/abstract_nfc_handler.h"
+#include "yuzu_hid_core/resources/abstracted_pad/abstract_pad_holder.h"
+#include "yuzu_hid_core/resources/abstracted_pad/abstract_palma_handler.h"
+#include "yuzu_hid_core/resources/abstracted_pad/abstract_properties_handler.h"
+#include "yuzu_hid_core/resources/abstracted_pad/abstract_sixaxis_handler.h"
+#include "yuzu_hid_core/resources/abstracted_pad/abstract_vibration_handler.h"
+#include "yuzu_hid_core/resources/vibration/gc_vibration_device.h"
+#include "yuzu_hid_core/resources/vibration/n64_vibration_device.h"
+#include "yuzu_hid_core/resources/vibration/vibration_device.h"
 
 namespace Service::HID {
 class AppletResource;

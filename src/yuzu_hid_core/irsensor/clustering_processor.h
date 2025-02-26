@@ -4,9 +4,9 @@
 #pragma once
 
 #include "yuzu_common/common_types.h"
-#include <yuzu_hid_core/irsensor/irs_types.h>
-#include <yuzu_hid_core/irsensor/processor_base.h>
-#include <yuzu_hid_core/resources/irs_ring_lifo.h>
+#include "yuzu_hid_core/irsensor/irs_types.h"
+#include "yuzu_hid_core/irsensor/processor_base.h"
+#include "yuzu_hid_core/resources/irs_ring_lifo.h"
 
 namespace Core {
 class System;

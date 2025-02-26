@@ -9,16 +9,16 @@
 #include <span>
 
 #include "yuzu_common/common_types.h"
-#include <yuzu_hid_core/hid_types.h>
-#include <yuzu_hid_core/resources/abstracted_pad/abstract_pad.h>
-#include <yuzu_hid_core/resources/controller_base.h>
-#include <yuzu_hid_core/resources/npad/npad_resource.h>
-#include <yuzu_hid_core/resources/npad/npad_types.h>
-#include <yuzu_hid_core/resources/npad/npad_vibration.h>
-#include <yuzu_hid_core/resources/vibration/gc_vibration_device.h>
-#include <yuzu_hid_core/resources/vibration/n64_vibration_device.h>
-#include <yuzu_hid_core/resources/vibration/vibration_base.h>
-#include <yuzu_hid_core/resources/vibration/vibration_device.h>
+#include "yuzu_hid_core/hid_types.h"
+#include "yuzu_hid_core/resources/abstracted_pad/abstract_pad.h"
+#include "yuzu_hid_core/resources/controller_base.h"
+#include "yuzu_hid_core/resources/npad/npad_resource.h"
+#include "yuzu_hid_core/resources/npad/npad_types.h"
+#include "yuzu_hid_core/resources/npad/npad_vibration.h"
+#include "yuzu_hid_core/resources/vibration/gc_vibration_device.h"
+#include "yuzu_hid_core/resources/vibration/n64_vibration_device.h"
+#include "yuzu_hid_core/resources/vibration/vibration_base.h"
+#include "yuzu_hid_core/resources/vibration/vibration_device.h"
 
 namespace Core::HID {
 class EmulatedController;

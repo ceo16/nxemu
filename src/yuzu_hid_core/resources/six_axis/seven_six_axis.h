@@ -6,8 +6,8 @@
 #include "yuzu_common/common_types.h"
 #include "yuzu_common/quaternion.h"
 #include "yuzu_common/typed_address.h"
-#include <yuzu_hid_core/resources/controller_base.h>
-#include <yuzu_hid_core/resources/ring_lifo.h>
+#include "yuzu_hid_core/resources/controller_base.h"
+#include "yuzu_hid_core/resources/ring_lifo.h"
 
 namespace Core {
 class System;

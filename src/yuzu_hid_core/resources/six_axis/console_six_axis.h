@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include <yuzu_hid_core/resources/controller_base.h>
+#include "yuzu_hid_core/resources/controller_base.h"
 
 namespace Core::HID {
 class EmulatedConsole;

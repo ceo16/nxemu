@@ -4,7 +4,7 @@
 #include <algorithm>
 #include "yuzu_common/settings.h"
 #include "hid_core.h"
-#include "resources/touch_screen/touch_screen_driver_resource.h"
+#include "resources/touch_screen/touch_screen_driver.h"
 
 namespace Service::HID {
 

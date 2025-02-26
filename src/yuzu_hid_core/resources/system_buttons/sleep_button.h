@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "resources/controller_base.h"
-#include "resources/system_buttons/system_button_types.h"
+#include "yuzu_hid_core/resources/controller_base.h"
+#include "yuzu_hid_core/resources/system_buttons/system_button_types.h"
 
 namespace Service::HID {
 

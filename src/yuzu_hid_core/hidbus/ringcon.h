@@ -7,7 +7,7 @@
 #include <span>
 
 #include "yuzu_common/common_types.h"
-#include <yuzu_hid_core/hidbus/hidbus_base.h>
+#include "yuzu_hid_core/hidbus/hidbus_base.h"
 
 namespace Core::HID {
 class EmulatedController;

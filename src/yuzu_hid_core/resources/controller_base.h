@@ -7,7 +7,7 @@
 
 #include "yuzu_common/common_types.h"
 #include "core/hle/result.h"
-#include <yuzu_hid_core/resources/applet_resource.h>
+#include "yuzu_hid_core/resources/applet_resource.h"
 
 namespace Core::Timing {
 class CoreTiming;

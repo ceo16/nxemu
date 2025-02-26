@@ -8,9 +8,9 @@
 
 #include "yuzu_common/common_types.h"
 #include "core/hle/result.h"
-#include <yuzu_hid_core/hid_types.h>
-#include <yuzu_hid_core/resources/npad/npad_types.h>
-#include <yuzu_hid_core/resources/vibration/vibration_base.h>
+#include "yuzu_hid_core/hid_types.h"
+#include "yuzu_hid_core/resources/npad/npad_types.h"
+#include "yuzu_hid_core/resources/vibration/vibration_base.h"
 
 namespace Service::HID {
 class NpadVibration;

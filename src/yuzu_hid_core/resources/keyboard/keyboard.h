@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include <yuzu_hid_core/resources/controller_base.h>
-#include <yuzu_hid_core/resources/keyboard/keyboard_types.h>
+#include "yuzu_hid_core/resources/controller_base.h"
+#include "yuzu_hid_core/resources/keyboard/keyboard_types.h"
 
 namespace Core::HID {
 class HIDCore;

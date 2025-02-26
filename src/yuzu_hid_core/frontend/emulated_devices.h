@@ -14,7 +14,7 @@
 #include "yuzu_common/input.h"
 #include "yuzu_common/param_package.h"
 #include "yuzu_common/settings.h"
-#include "hid_types.h"
+#include "yuzu_hid_core/hid_types.h"
 
 namespace Core::HID {
 using KeyboardDevices = std::array<std::unique_ptr<Common::Input::InputDevice>,

@@ -5,7 +5,7 @@
 
 #include <span>
 
-#include "resources/touch_screen/touch_types.h"
+#include "yuzu_hid_core/resources/touch_screen/touch_types.h"
 
 namespace Service::HID {
 

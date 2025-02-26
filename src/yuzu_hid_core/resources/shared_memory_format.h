@@ -6,14 +6,14 @@
 #include "yuzu_common/common_funcs.h"
 #include "yuzu_common/common_types.h"
 #include "yuzu_common/vector_math.h"
-#include "hid_types.h"
-#include "resources/debug_pad/debug_pad_types.h"
-#include "resources/keyboard/keyboard_types.h"
-#include "resources/mouse/mouse_types.h"
-#include "resources/npad/npad_types.h"
-#include "resources/ring_lifo.h"
-#include "resources/system_buttons/system_button_types.h"
-#include "resources/touch_screen/touch_types.h"
+#include "yuzu_hid_core/hid_types.h"
+#include "yuzu_hid_core/resources/debug_pad/debug_pad_types.h"
+#include "yuzu_hid_core/resources/keyboard/keyboard_types.h"
+#include "yuzu_hid_core/resources/mouse/mouse_types.h"
+#include "yuzu_hid_core/resources/npad/npad_types.h"
+#include "yuzu_hid_core/resources/ring_lifo.h"
+#include "yuzu_hid_core/resources/system_buttons/system_button_types.h"
+#include "yuzu_hid_core/resources/touch_screen/touch_types.h"
 
 namespace Service::HID {
 static const std::size_t HidEntryCount = 17;

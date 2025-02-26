@@ -5,8 +5,8 @@
 
 #include "yuzu_common/bit_field.h"
 #include "yuzu_common/common_types.h"
-#include <yuzu_hid_core/irsensor/irs_types.h>
-#include <yuzu_hid_core/irsensor/processor_base.h>
+#include "yuzu_hid_core/irsensor/irs_types.h"
+#include "yuzu_hid_core/irsensor/processor_base.h"
 
 namespace Service::IRS {
 class IrLedProcessor final : public ProcessorBase {

@@ -6,7 +6,7 @@
 #include <memory>
 
 #include "yuzu_common/common_funcs.h"
-#include "hid_types.h"
+#include "yuzu_hid_core/hid_types.h"
 
 namespace Core::HID {
 class EmulatedConsole;

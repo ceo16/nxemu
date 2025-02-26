@@ -9,7 +9,7 @@
 #include "yuzu_common/bit_field.h"
 #include "yuzu_common/common_types.h"
 #include "core/hle/result.h"
-#include <yuzu_hid_core/resources/shared_memory_holder.h>
+#include "yuzu_hid_core/resources/shared_memory_holder.h"
 
 namespace Core {
 class System;

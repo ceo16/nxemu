@@ -5,9 +5,9 @@
 
 #include "yuzu_common/common_types.h"
 #include "core/hle/result.h"
-#include "frontend/emulated_console.h"
-#include "hid_types.h"
-#include "resources/touch_screen/touch_types.h"
+#include "yuzu_hid_core/frontend/emulated_console.h"
+#include "yuzu_hid_core/hid_types.h"
+#include "yuzu_hid_core/resources/touch_screen/touch_types.h"
 
 namespace Core::HID {
 class HIDCore;

@@ -6,8 +6,8 @@
 #include <span>
 
 #include "yuzu_common/typed_address.h"
-#include <yuzu_hid_core/irsensor/irs_types.h>
-#include <yuzu_hid_core/irsensor/processor_base.h>
+#include "yuzu_hid_core/irsensor/irs_types.h"
+#include "yuzu_hid_core/irsensor/processor_base.h"
 
 namespace Core {
 class System;

@@ -10,7 +10,7 @@
 #include "hid_result.h"
 #include "resources/applet_resource.h"
 #include "resources/shared_memory_format.h"
-#include "resources/touch_screen/touch_screen_driver_resource.h"
+#include "resources/touch_screen/touch_screen_driver.h"
 #include "resources/touch_screen/touch_screen_resource.h"
 
 namespace Service::HID {

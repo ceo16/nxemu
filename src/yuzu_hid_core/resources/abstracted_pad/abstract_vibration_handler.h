@@ -7,7 +7,7 @@
 
 #include "yuzu_common/common_types.h"
 #include "core/hle/result.h"
-#include <yuzu_hid_core/hid_types.h>
+#include "yuzu_hid_core/hid_types.h"
 
 namespace Core::HID {
 class HIDCore;

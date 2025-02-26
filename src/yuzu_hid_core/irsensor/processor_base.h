@@ -4,7 +4,7 @@
 #pragma once
 
 #include "yuzu_common/common_types.h"
-#include <yuzu_hid_core/irsensor/irs_types.h>
+#include "yuzu_hid_core/irsensor/irs_types.h"
 
 namespace Service::IRS {
 class ProcessorBase {

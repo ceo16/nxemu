@@ -15,9 +15,9 @@
 #include "yuzu_common/param_package.h"
 #include "yuzu_common/settings.h"
 #include "yuzu_common/vector_math.h"
-#include <yuzu_hid_core/frontend/motion_input.h>
-#include <yuzu_hid_core/hid_types.h>
-#include <yuzu_hid_core/irsensor/irs_types.h>
+#include "yuzu_hid_core/frontend/motion_input.h"
+#include "yuzu_hid_core/hid_types.h"
+#include "yuzu_hid_core/irsensor/irs_types.h"
 
 namespace Core::HID {
 const std::size_t max_emulated_controllers = 2;

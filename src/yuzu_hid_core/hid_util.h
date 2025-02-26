@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "hid_result.h"
-#include "hid_types.h"
+#include "yuzu_hid_core/hid_result.h"
+#include "yuzu_hid_core/hid_types.h"
 
 namespace Service::HID {
 

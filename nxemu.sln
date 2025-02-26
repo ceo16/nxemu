@@ -65,6 +65,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yuzu_shader_recompiler", "src\yuzu_shader_recompiler\yuzu_shader_recompiler.vcxproj", "{70E74561-B64C-4FF8-9EA5-472BD2D98A4C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "host_shaders", "src\host_shaders\host_shaders.vcxproj", "{BB3BA79F-451E-46D8-8CD8-5993AB932D04}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5E491258-51F1-418E-89A6-79A0480E1F34} = {5E491258-51F1-418E-89A6-79A0480E1F34}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "string_shader_header", "src\string_shader_header\string_shader_header.vcxproj", "{5E491258-51F1-418E-89A6-79A0480E1F34}"
 EndProject

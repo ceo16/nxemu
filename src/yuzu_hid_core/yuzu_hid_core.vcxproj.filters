@@ -395,9 +395,6 @@
     <ClCompile Include="irsensor\tera_plugin_processor.cpp">
       <Filter>Source Files\irsensor</Filter>
     </ClCompile>
-    <ClCompile Include="resources\applet_resource_hid.cpp">
-      <Filter>Source Files\resources</Filter>
-    </ClCompile>
     <ClCompile Include="resources\controller_base.cpp">
       <Filter>Source Files\resources</Filter>
     </ClCompile>
@@ -482,9 +479,6 @@
     <ClCompile Include="resources\touch_screen\touch_screen.cpp">
       <Filter>Source Files\resources\touch_screen</Filter>
     </ClCompile>
-    <ClCompile Include="resources\touch_screen\touch_screen_drive_resource.cpp">
-      <Filter>Source Files\resources\touch_screen</Filter>
-    </ClCompile>
     <ClCompile Include="resources\touch_screen\touch_screen_resource.cpp">
       <Filter>Source Files\resources\touch_screen</Filter>
     </ClCompile>
@@ -520,6 +514,12 @@
     </ClCompile>
     <ClCompile Include="resources\npad\npad_vibration.cpp">
       <Filter>Source Files\resources\npad</Filter>
+    </ClCompile>
+    <ClCompile Include="resources\touch_screen\touch_screen_driver.cpp">
+      <Filter>Source Files\resources\touch_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="resources\applet_resource.cpp">
+      <Filter>Source Files\resources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "resources/controller_base.h"
+#include "yuzu_hid_core/resources/controller_base.h"
 
 namespace Service::HID {
 

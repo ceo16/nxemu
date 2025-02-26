@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "hid_types.h"
-#include "resources/controller_base.h"
+#include "yuzu_hid_core/hid_types.h"
+#include "yuzu_hid_core/resources/controller_base.h"
 
 namespace Core::HID {
 class HIDCore;
