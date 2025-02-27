@@ -33,6 +33,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="address_space.h" />
+    <ClInclude Include="algorithm.h" />
     <ClInclude Include="alignment.h" />
     <ClInclude Include="atomic_ops.h" />
     <ClInclude Include="bit_cast.h" />
@@ -40,6 +41,7 @@
     <ClInclude Include="bit_set.h" />
     <ClInclude Include="bit_util.h" />
     <ClInclude Include="bounded_threadsafe_queue.h" />
+    <ClInclude Include="cityhash.h" />
     <ClInclude Include="common_funcs.h" />
     <ClInclude Include="common_types.h" />
     <ClInclude Include="concepts.h" />
@@ -69,9 +71,11 @@
     <ClInclude Include="logging\log_entry.h" />
     <ClInclude Include="logging\text_formatter.h" />
     <ClInclude Include="logging\types.h" />
+    <ClInclude Include="lru_cache.h" />
     <ClInclude Include="make_unique_for_overwrite.h" />
     <ClInclude Include="math_util.h" />
     <ClInclude Include="microprofile.h" />
+    <ClInclude Include="multi_level_page_table.h" />
     <ClInclude Include="overflow.h" />
     <ClInclude Include="page_table.h" />
     <ClInclude Include="param_package.h" />
@@ -105,10 +109,12 @@
     <ClInclude Include="virtual_buffer.h" />
     <ClInclude Include="wall_clock.h" />
     <ClInclude Include="windows\timer_resolution.h" />
+    <ClInclude Include="x64\xbyak_abi.h" />
     <ClInclude Include="yuzu_assert.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="address_space.cpp" />
+    <ClCompile Include="cityhash.cpp" />
     <ClCompile Include="dynamic_library.cpp" />
     <ClCompile Include="error.cpp" />
     <ClCompile Include="fiber.cpp" />
@@ -123,6 +129,7 @@
     <ClCompile Include="logging\filter.cpp" />
     <ClCompile Include="logging\text_formatter.cpp" />
     <ClCompile Include="microprofile.cpp" />
+    <ClCompile Include="multi_level_page_table.cpp" />
     <ClCompile Include="page_table.cpp" />
     <ClCompile Include="param_package.cpp" />
     <ClCompile Include="settings.cpp" />

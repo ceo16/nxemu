@@ -31,6 +31,9 @@
     <Filter Include="Header Files\windows">
       <UniqueIdentifier>{4068ed8b-a3c3-442e-b2d7-70f1d415c504}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\x64">
+      <UniqueIdentifier>{69486afa-3abc-49da-9f4b-fa67c478505f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="logging\backend.h">
@@ -255,6 +258,21 @@
     <ClInclude Include="yuzu_assert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="algorithm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cityhash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lru_cache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="multi_level_page_table.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\xbyak_abi.h">
+      <Filter>Header Files\x64</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="logging\backend.cpp">
@@ -345,6 +363,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="yuzu_assert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cityhash.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="multi_level_page_table.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
