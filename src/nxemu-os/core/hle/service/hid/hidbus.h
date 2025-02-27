@@ -8,8 +8,8 @@
 #include "core/hle/service/cmif_types.h"
 #include "core/hle/service/kernel_helpers.h"
 #include "core/hle/service/service.h"
-#include <yuzu_hid_core/hid_types.h>
-#include <yuzu_hid_core/hidbus/hidbus_base.h>
+#include "yuzu_hid_core/hid_types.h"
+#include "yuzu_hid_core/hidbus/hidbus_base.h"
 
 namespace Core::Timing {
 struct EventType;

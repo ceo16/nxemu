@@ -5,9 +5,9 @@
 
 #include "core/hle/service/cmif_types.h"
 #include "core/hle/service/service.h"
-#include <yuzu_hid_core/hid_types.h>
-#include <yuzu_hid_core/resources/npad/npad_types.h>
-#include <yuzu_hid_core/resources/palma/palma.h>
+#include "yuzu_hid_core/hid_types.h"
+#include "yuzu_hid_core/resources/npad/npad_types.h"
+#include "yuzu_hid_core/resources/palma/palma.h"
 
 namespace Core {
 class System;

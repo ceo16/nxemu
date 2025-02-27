@@ -4,10 +4,10 @@
 #include "yuzu_common/logging/log.h"
 #include "core/hle/service/cmif_serialization.h"
 #include "core/hle/service/hid/active_vibration_device_list.h"
-#include <yuzu_hid_core/hid_result.h>
-#include <yuzu_hid_core/hid_util.h>
-#include <yuzu_hid_core/resource_manager.h>
-#include <yuzu_hid_core/resources/vibration/vibration_device.h>
+#include "yuzu_hid_core/hid_result.h"
+#include "yuzu_hid_core/hid_util.h"
+#include "yuzu_hid_core/resource_manager.h"
+#include "yuzu_hid_core/resources/vibration/vibration_device.h"
 
 namespace Service::HID {
 

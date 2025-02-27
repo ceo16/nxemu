@@ -5,7 +5,7 @@
 
 #include "core/hle/service/cmif_types.h"
 #include "core/hle/service/service.h"
-#include <yuzu_hid_core/resources/touch_screen/touch_types.h>
+#include "yuzu_hid_core/resources/touch_screen/touch_types.h"
 
 namespace Core {
 class System;

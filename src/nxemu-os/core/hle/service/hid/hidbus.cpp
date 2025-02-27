@@ -14,10 +14,10 @@
 #include "core/hle/service/ipc_helpers.h"
 #include "core/hle/service/service.h"
 #include "core/memory.h"
-#include <yuzu_hid_core/hid_types.h>
-#include <yuzu_hid_core/hidbus/ringcon.h>
-#include <yuzu_hid_core/hidbus/starlink.h>
-#include <yuzu_hid_core/hidbus/stubbed.h>
+#include "yuzu_hid_core/hid_types.h"
+#include "yuzu_hid_core/hidbus/ringcon.h"
+#include "yuzu_hid_core/hidbus/starlink.h"
+#include "yuzu_hid_core/hidbus/stubbed.h"
 
 namespace Service::HID {
 // (15ms, 66Hz)

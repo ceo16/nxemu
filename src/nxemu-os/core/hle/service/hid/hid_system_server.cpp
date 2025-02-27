@@ -4,14 +4,14 @@
 #include "core/hle/service/hid/hid_system_server.h"
 #include "core/hle/service/ipc_helpers.h"
 #include "core/hle/service/set/settings_types.h"
-#include <yuzu_hid_core/hid_result.h>
-#include <yuzu_hid_core/resource_manager.h>
-#include <yuzu_hid_core/resources/hid_firmware_settings.h>
-#include <yuzu_hid_core/resources/npad/npad.h>
-#include <yuzu_hid_core/resources/npad/npad_types.h>
-#include <yuzu_hid_core/resources/npad/npad_vibration.h>
-#include <yuzu_hid_core/resources/palma/palma.h>
-#include <yuzu_hid_core/resources/touch_screen/touch_screen.h>
+#include "yuzu_hid_core/hid_result.h"
+#include "yuzu_hid_core/resource_manager.h"
+#include "yuzu_hid_core/resources/hid_firmware_settings.h"
+#include "yuzu_hid_core/resources/npad/npad.h"
+#include "yuzu_hid_core/resources/npad/npad_types.h"
+#include "yuzu_hid_core/resources/npad/npad_vibration.h"
+#include "yuzu_hid_core/resources/palma/palma.h"
+#include "yuzu_hid_core/resources/touch_screen/touch_screen.h"
 
 namespace Service::HID {
 
