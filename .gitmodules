@@ -31,3 +31,6 @@
 [submodule "external/sirit"]
 	path = external/sirit
 	url = https://github.com/N3xoX1/sirit.git
+[submodule "external/vulkan-headers"]
+	path = external/vulkan-headers
+	url = https://github.com/KhronosGroup/Vulkan-Headers.git
