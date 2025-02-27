@@ -273,6 +273,21 @@
     <ClInclude Include="x64\xbyak_abi.h">
       <Filter>Header Files\x64</Filter>
     </ClInclude>
+    <ClInclude Include="container_hash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="range_map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="range_sets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\xbyak_util.h">
+      <Filter>Header Files\x64</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="logging\backend.cpp">
@@ -369,6 +384,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="multi_level_page_table.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

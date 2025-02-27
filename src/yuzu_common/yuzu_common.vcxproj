@@ -45,6 +45,7 @@
     <ClInclude Include="common_funcs.h" />
     <ClInclude Include="common_types.h" />
     <ClInclude Include="concepts.h" />
+    <ClInclude Include="container_hash.h" />
     <ClInclude Include="div_ceil.h" />
     <ClInclude Include="dynamic_library.h" />
     <ClInclude Include="error.h" />
@@ -84,7 +85,9 @@
     <ClInclude Include="polyfill_ranges.h" />
     <ClInclude Include="polyfill_thread.h" />
     <ClInclude Include="quaternion.h" />
+    <ClInclude Include="range_map.h" />
     <ClInclude Include="range_mutex.h" />
+    <ClInclude Include="range_sets.h" />
     <ClInclude Include="scope_exit.h" />
     <ClInclude Include="scratch_buffer.h" />
     <ClInclude Include="settings.h" />
@@ -94,6 +97,7 @@
     <ClInclude Include="settings_setting.h" />
     <ClInclude Include="spin_lock.h" />
     <ClInclude Include="steady_clock.h" />
+    <ClInclude Include="stream.h" />
     <ClInclude Include="string_util.h" />
     <ClInclude Include="swap.h" />
     <ClInclude Include="thread.h" />
@@ -110,6 +114,7 @@
     <ClInclude Include="wall_clock.h" />
     <ClInclude Include="windows\timer_resolution.h" />
     <ClInclude Include="x64\xbyak_abi.h" />
+    <ClInclude Include="x64\xbyak_util.h" />
     <ClInclude Include="yuzu_assert.h" />
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +142,7 @@
     <ClCompile Include="settings_input.cpp" />
     <ClCompile Include="spin_lock.cpp" />
     <ClCompile Include="steady_clock.cpp" />
+    <ClCompile Include="stream.cpp" />
     <ClCompile Include="string_util.cpp" />
     <ClCompile Include="thread.cpp" />
     <ClCompile Include="time_zone.cpp" />
