@@ -37,3 +37,6 @@
 [submodule "external/vulkan-memory-allocator"]
 	path = external/vulkan-memory-allocator
 	url = https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator.git
+[submodule "external/vulkan_utility_libraries"]
+	path = external/vulkan_utility_libraries
+	url = https://github.com/KhronosGroup/Vulkan-Utility-Libraries.git
