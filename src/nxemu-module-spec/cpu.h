@@ -57,7 +57,7 @@ __interface IMemory
 
 __interface ICpuInfo
 {
-    uint64_t & CpuTicks() = 0;
+    uint64_t CpuTicks() = 0;
     void ServiceCall(uint32_t index) = 0;
     bool ReadMemory(uint64_t addr, uint8_t * buffer, uint32_t len) = 0;
     bool WriteMemory(uint64_t addr, const uint8_t * buffer, uint32_t len) = 0;

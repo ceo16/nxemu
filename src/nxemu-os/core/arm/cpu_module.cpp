@@ -1,5 +1,7 @@
 #include "cpu_module.h"
 #include "core/hle/kernel/k_process.h"
+#include "core/hle/kernel/svc.h"
+#include "core/core_timing.h"
 #include <nxemu-module-spec/cpu.h>
 
 namespace Core
@@ -21,11 +23,9 @@ public:
         return m_svn;
     }
 
-    uint64_t & CpuTicks()
+    uint64_t CpuTicks()
     {
-        UNIMPLEMENTED();
-        static uint64_t ticks = 0;
-        return ticks;
+        return m_system.CoreTiming().GetClockTicks();
     }
 
     void ServiceCall(uint32_t index)
