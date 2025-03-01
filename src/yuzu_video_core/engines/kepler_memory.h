@@ -36,7 +36,7 @@ namespace Tegra::Engines {
 
 class KeplerMemory final : public EngineInterface {
 public:
-    explicit KeplerMemory(Core::System& system_, MemoryManager& memory_manager);
+    explicit KeplerMemory(MemoryManager& memory_manager);
     ~KeplerMemory() override;
 
     /// Binds a rasterizer to this engine.
@@ -75,7 +75,6 @@ public:
 private:
     void ConsumeSinkImpl() override;
 
-    Core::System& system;
     Upload::State upload_state;
 };
 

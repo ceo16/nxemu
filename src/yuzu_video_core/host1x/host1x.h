@@ -56,7 +56,6 @@ public:
     }
 
 private:
-    Core::System& system;
     SyncpointManager syncpoint_manager;
     Tegra::MaxwellDeviceMemoryManager memory_manager;
     Tegra::MemoryManager gmmu_manager;

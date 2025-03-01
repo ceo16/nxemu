@@ -22,6 +22,6 @@ namespace VideoCore {
 class RendererBase;
 
 /// Creates an emulated GPU instance using the given system context.
-std::unique_ptr<Tegra::GPU> CreateGPU(Core::Frontend::EmuWindow& emu_window, Core::System& system);
+std::unique_ptr<Tegra::GPU> CreateGPU(Core::Frontend::EmuWindow & emu_window, Tegra::Host1x::Host1x & host1x);
 
 } // namespace VideoCore

@@ -7,8 +7,6 @@
 #include "yuzu_common/bit_util.h"
 #include "yuzu_common/scope_exit.h"
 #include "yuzu_common/settings.h"
-#include "core/core.h"
-#include "core/core_timing.h"
 #include "yuzu_video_core/dirty_flags.h"
 #include "yuzu_video_core/engines/draw_manager.h"
 #include "yuzu_video_core/engines/maxwell_3d.h"
@@ -22,8 +20,8 @@ namespace Tegra::Engines {
 /// First register id that is actually a Macro call.
 constexpr u32 MacroRegistersStart = 0xE00;
 
-Maxwell3D::Maxwell3D(Core::System& system_, MemoryManager& memory_manager_)
-    : draw_manager{std::make_unique<DrawManager>(this)}, system{system_},
+Maxwell3D::Maxwell3D(MemoryManager& memory_manager_)
+    : draw_manager{std::make_unique<DrawManager>(this)},
       memory_manager{memory_manager_}, macro_engine{GetMacroEngine(*this)}, upload_state{
                                                                                 memory_manager,
                                                                                 regs.upload} {
@@ -491,7 +489,7 @@ void Maxwell3D::ProcessFirmwareCall4() {
 void Maxwell3D::StampQueryResult(u64 payload, bool long_query) {
     const GPUVAddr sequence_address{regs.report_semaphore.Address()};
     if (long_query) {
-        memory_manager.Write<u64>(sequence_address + sizeof(u64), system.GPU().GetTicks());
+        UNIMPLEMENTED();
         memory_manager.Write<u64>(sequence_address, payload);
     } else {
         memory_manager.Write<u32>(sequence_address, static_cast<u32>(payload));

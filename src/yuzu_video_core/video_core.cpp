@@ -17,9 +17,9 @@
 namespace {
 
 std::unique_ptr<VideoCore::RendererBase> CreateRenderer(
-    Core::System& system, Core::Frontend::EmuWindow& emu_window, Tegra::GPU& gpu,
+    Tegra::Host1x::Host1x & host1x, Core::Frontend::EmuWindow & emu_window, Tegra::GPU & gpu,
     std::unique_ptr<Core::Frontend::GraphicsContext> context) {
-    auto& device_memory = system.Host1x().MemoryManager();
+    auto & device_memory = host1x.MemoryManager();
 
     switch (Settings::values.renderer_backend.GetValue()) {
     case Settings::RendererBackend::OpenGL:
@@ -37,17 +37,17 @@ std::unique_ptr<VideoCore::RendererBase> CreateRenderer(
 
 namespace VideoCore {
 
-std::unique_ptr<Tegra::GPU> CreateGPU(Core::Frontend::EmuWindow& emu_window, Core::System& system) {
+std::unique_ptr<Tegra::GPU> CreateGPU(Core::Frontend::EmuWindow& emu_window, Tegra::Host1x::Host1x & host1x) {
     Settings::UpdateRescalingInfo();
 
     const auto nvdec_value = Settings::values.nvdec_emulation.GetValue();
     const bool use_nvdec = nvdec_value != Settings::NvdecEmulation::Off;
     const bool use_async = Settings::values.use_asynchronous_gpu_emulation.GetValue();
-    auto gpu = std::make_unique<Tegra::GPU>(system, use_async, use_nvdec);
+    auto gpu = std::make_unique<Tegra::GPU>(host1x, use_async, use_nvdec);
     auto context = emu_window.CreateSharedContext();
     auto scope = context->Acquire();
     try {
-        auto renderer = CreateRenderer(system, emu_window, *gpu, std::move(context));
+        auto renderer = CreateRenderer(host1x, emu_window, *gpu, std::move(context));
         gpu->BindRenderer(std::move(renderer));
         return gpu;
     } catch (const std::runtime_error& exception) {

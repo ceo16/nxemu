@@ -17,7 +17,7 @@
 namespace VideoCommon::GPUThread {
 
 /// Runs the GPU thread
-static void RunThread(std::stop_token stop_token, Core::System& system,
+static void RunThread(std::stop_token stop_token, Tegra::GPU & gpu,
                       VideoCore::RendererBase& renderer, Core::Frontend::GraphicsContext& context,
                       Tegra::Control::Scheduler& scheduler, SynchState& state) {
     std::string name = "GPU";
@@ -28,7 +28,6 @@ static void RunThread(std::stop_token stop_token, Core::System& system,
 
     Common::SetCurrentThreadName(name.c_str());
     Common::SetCurrentThreadPriority(Common::ThreadPriority::Critical);
-    system.RegisterHostThread();
 
     auto current_context = context.Acquire();
     VideoCore::RasterizerInterface* const rasterizer = renderer.ReadRasterizer();
@@ -43,7 +42,7 @@ static void RunThread(std::stop_token stop_token, Core::System& system,
         if (auto* submit_list = std::get_if<SubmitListCommand>(&next.data)) {
             scheduler.Push(submit_list->channel, std::move(submit_list->entries));
         } else if (std::holds_alternative<GPUTickCommand>(next.data)) {
-            system.GPU().TickWork();
+            gpu.TickWork();
         } else if (const auto* flush = std::get_if<FlushRegionCommand>(&next.data)) {
             rasterizer->FlushRegion(flush->addr, flush->size);
         } else if (const auto* invalidate = std::get_if<InvalidateRegionCommand>(&next.data)) {
@@ -61,8 +60,10 @@ static void RunThread(std::stop_token stop_token, Core::System& system,
     }
 }
 
-ThreadManager::ThreadManager(Core::System& system_, bool is_async_)
-    : system{system_}, is_async{is_async_} {}
+ThreadManager::ThreadManager(Tegra::GPU & gpu_, bool is_async_) :
+    gpu{gpu_}, is_async{is_async_}
+{
+}
 
 ThreadManager::~ThreadManager() = default;
 
@@ -70,7 +71,7 @@ void ThreadManager::StartThread(VideoCore::RendererBase& renderer,
                                 Core::Frontend::GraphicsContext& context,
                                 Tegra::Control::Scheduler& scheduler) {
     rasterizer = renderer.ReadRasterizer();
-    thread = std::jthread(RunThread, std::ref(system), std::ref(renderer), std::ref(context),
+    thread = std::jthread(RunThread, std::ref(gpu), std::ref(renderer), std::ref(context),
                           std::ref(scheduler), std::ref(state));
 }
 
@@ -87,7 +88,6 @@ void ThreadManager::FlushRegion(DAddr addr, u64 size) {
     if (!Settings::IsGPULevelExtreme()) {
         return;
     }
-    auto& gpu = system.GPU();
     u64 fence = gpu.RequestFlush(addr, size);
     TickGPU();
     gpu.WaitForSyncOperation(fence);

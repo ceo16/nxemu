@@ -100,7 +100,7 @@ struct SynchState final {
 /// Class used to manage the GPU thread
 class ThreadManager final {
 public:
-    explicit ThreadManager(Core::System& system_, bool is_async_);
+    explicit ThreadManager(Tegra::GPU & gpu_, bool is_async_);
     ~ThreadManager();
 
     /// Creates and starts the GPU thread.
@@ -125,7 +125,7 @@ private:
     /// Pushes a command to be executed by the GPU thread
     u64 PushCommand(CommandData&& command_data, bool block = false);
 
-    Core::System& system;
+    Tegra::GPU & gpu;
     const bool is_async;
     VideoCore::RasterizerInterface* rasterizer = nullptr;
 

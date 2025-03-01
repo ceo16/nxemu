@@ -120,8 +120,7 @@ struct CommandList final {
  */
 class DmaPusher final {
 public:
-    explicit DmaPusher(Core::System& system_, GPU& gpu_, MemoryManager& memory_manager_,
-                       Control::ChannelState& channel_state_);
+    explicit DmaPusher(GPU& gpu_, MemoryManager& memory_manager_, Control::ChannelState& channel_state_);
     ~DmaPusher();
 
     void Push(CommandList&& entries) {
@@ -175,7 +174,6 @@ private:
     std::array<Engines::EngineTypes, max_subchannels> subchannel_type;
 
     GPU& gpu;
-    Core::System& system;
     MemoryManager& memory_manager;
     mutable Engines::Puller puller;
 };

@@ -40,7 +40,7 @@ struct ChannelState {
     ChannelState(ChannelState&& other) noexcept = default;
     ChannelState& operator=(ChannelState&& other) noexcept = default;
 
-    void Init(Core::System& system, GPU& gpu, u64 program_id);
+    void Init(GPU& gpu, u64 program_id);
 
     void BindRasterizer(VideoCore::RasterizerInterface* rasterizer);
 

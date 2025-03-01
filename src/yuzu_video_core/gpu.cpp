@@ -36,10 +36,10 @@
 namespace Tegra {
 
 struct GPU::Impl {
-    explicit Impl(GPU& gpu_, Core::System& system_, bool is_async_, bool use_nvdec_)
-        : gpu{gpu_}, system{system_}, host1x{system.Host1x()}, use_nvdec{use_nvdec_},
+    explicit Impl(GPU & gpu_, Tegra::Host1x::Host1x & host1x_, bool is_async_, bool use_nvdec_)
+        : gpu{gpu_}, host1x{host1x_}, use_nvdec{use_nvdec_},
           shader_notify{std::make_unique<VideoCore::ShaderNotify>()}, is_async{is_async_},
-          gpu_thread{system_, is_async_}, scheduler{std::make_unique<Control::Scheduler>(gpu)} {}
+          gpu_thread{gpu_, is_async_}, scheduler{std::make_unique<Control::Scheduler>(gpu)} {}
 
     ~Impl() = default;
 
@@ -67,7 +67,7 @@ struct GPU::Impl {
     }
 
     void InitChannel(Control::ChannelState& to_init, u64 program_id) {
-        to_init.Init(system, gpu, program_id);
+        to_init.Init(gpu, program_id);
         to_init.BindRasterizer(rasterizer);
         rasterizer->InitializeChannel(to_init);
     }
@@ -95,9 +95,7 @@ struct GPU::Impl {
 
     /// Synchronizes CPU writes with Host GPU memory.
     void InvalidateGPUCache() {
-        std::function<void(PAddr, size_t)> callback_writes(
-            [this](PAddr address, size_t size) { rasterizer->OnCacheInvalidation(address, size); });
-        system.GatherGPUDirtyMemory(callback_writes);
+        UNIMPLEMENTED();
     }
 
     /// Signal the ending of command list.
@@ -196,13 +194,8 @@ struct GPU::Impl {
     }
 
     [[nodiscard]] u64 GetTicks() const {
-        u64 gpu_tick = system.CoreTiming().GetGPUTicks();
-
-        if (Settings::values.use_fast_gpu_time.GetValue()) {
-            gpu_tick /= 256;
-        }
-
-        return gpu_tick;
+        UNIMPLEMENTED();
+        return 0;
     }
 
     [[nodiscard]] bool IsAsync() const {
@@ -358,7 +351,6 @@ struct GPU::Impl {
     }
 
     GPU& gpu;
-    Core::System& system;
     Host1x::Host1x& host1x;
 
     std::map<u32, std::unique_ptr<Tegra::CDmaPusher>> cdma_pushers;
@@ -402,8 +394,8 @@ struct GPU::Impl {
     std::mutex request_swap_mutex;
 };
 
-GPU::GPU(Core::System& system, bool is_async, bool use_nvdec)
-    : impl{std::make_unique<Impl>(*this, system, is_async, use_nvdec)} {}
+GPU::GPU(Tegra::Host1x::Host1x & host1x, bool is_async, bool use_nvdec)
+    : impl{std::make_unique<Impl>(*this, host1x, is_async, use_nvdec)} {}
 
 GPU::~GPU() = default;
 

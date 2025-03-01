@@ -4,7 +4,6 @@
 #include <bitset>
 #include "yuzu_common/yuzu_assert.h"
 #include "yuzu_common/logging/log.h"
-#include "core/core.h"
 #include "yuzu_video_core/engines/kepler_compute.h"
 #include "yuzu_video_core/engines/maxwell_3d.h"
 #include "yuzu_video_core/memory_manager.h"
@@ -13,8 +12,8 @@
 
 namespace Tegra::Engines {
 
-KeplerCompute::KeplerCompute(Core::System& system_, MemoryManager& memory_manager_)
-    : system{system_}, memory_manager{memory_manager_}, upload_state{memory_manager, regs.upload} {
+KeplerCompute::KeplerCompute(MemoryManager& memory_manager_)
+    : memory_manager{memory_manager_}, upload_state{memory_manager, regs.upload} {
     execution_mask.reset();
     execution_mask[KEPLER_COMPUTE_REG_INDEX(exec_upload)] = true;
     execution_mask[KEPLER_COMPUTE_REG_INDEX(data_upload)] = true;

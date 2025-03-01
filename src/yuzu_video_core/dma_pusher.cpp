@@ -16,10 +16,8 @@ namespace Tegra {
 constexpr u32 MacroRegistersStart = 0xE00;
 constexpr u32 ComputeInline = 0x6D;
 
-DmaPusher::DmaPusher(Core::System& system_, GPU& gpu_, MemoryManager& memory_manager_,
-                     Control::ChannelState& channel_state_)
-    : gpu{gpu_}, system{system_}, memory_manager{memory_manager_}, puller{gpu_, memory_manager_,
-                                                                          *this, channel_state_} {}
+DmaPusher::DmaPusher(GPU& gpu_, MemoryManager& memory_manager_, Control::ChannelState& channel_state_)
+    : gpu{gpu_}, memory_manager{memory_manager_}, puller{gpu_, memory_manager_, *this, channel_state_} {}
 
 DmaPusher::~DmaPusher() = default;
 
@@ -32,7 +30,7 @@ void DmaPusher::DispatchCalls() {
 
     dma_state.is_last_call = true;
 
-    while (system.IsPoweredOn()) {
+    for (;;) {
         if (!Step()) {
             break;
         }

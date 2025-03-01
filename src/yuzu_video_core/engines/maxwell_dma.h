@@ -238,7 +238,7 @@ public:
 
     void BindRasterizer(VideoCore::RasterizerInterface* rasterizer);
 
-    explicit MaxwellDMA(Core::System& system_, MemoryManager& memory_manager_);
+    explicit MaxwellDMA(MemoryManager& memory_manager_);
     ~MaxwellDMA() override;
 
     /// Write the value to the register identified by method.
@@ -262,8 +262,6 @@ private:
     void ReleaseSemaphore();
 
     void ConsumeSinkImpl() override;
-
-    Core::System& system;
 
     MemoryManager& memory_manager;
     VideoCore::RasterizerInterface* rasterizer = nullptr;

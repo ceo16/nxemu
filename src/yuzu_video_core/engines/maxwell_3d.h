@@ -53,7 +53,7 @@ class DrawManager;
 
 class Maxwell3D final : public EngineInterface {
 public:
-    explicit Maxwell3D(Core::System& system, MemoryManager& memory_manager);
+    explicit Maxwell3D(MemoryManager& memory_manager);
     ~Maxwell3D();
 
     /// Binds a rasterizer to this engine.
@@ -3186,7 +3186,6 @@ private:
 
     bool IsMethodExecutable(u32 method);
 
-    Core::System& system;
     MemoryManager& memory_manager;
 
     VideoCore::RasterizerInterface* rasterizer = nullptr;

@@ -3,7 +3,6 @@
 
 #include "yuzu_common/yuzu_assert.h"
 #include "yuzu_common/logging/log.h"
-#include "core/core.h"
 #include "yuzu_video_core/engines/kepler_memory.h"
 #include "yuzu_video_core/engines/maxwell_3d.h"
 #include "yuzu_video_core/memory_manager.h"
@@ -11,8 +10,8 @@
 
 namespace Tegra::Engines {
 
-KeplerMemory::KeplerMemory(Core::System& system_, MemoryManager& memory_manager)
-    : system{system_}, upload_state{memory_manager, regs.upload} {}
+KeplerMemory::KeplerMemory(MemoryManager& memory_manager)
+    : upload_state{memory_manager, regs.upload} {}
 
 KeplerMemory::~KeplerMemory() = default;
 

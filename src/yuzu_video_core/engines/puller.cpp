@@ -4,7 +4,6 @@
 #include "yuzu_common/yuzu_assert.h"
 #include "yuzu_common/logging/log.h"
 #include "yuzu_common/settings.h"
-#include "core/core.h"
 #include "yuzu_video_core/control/channel_state.h"
 #include "yuzu_video_core/dma_pusher.h"
 #include "yuzu_video_core/engines/fermi_2d.h"
