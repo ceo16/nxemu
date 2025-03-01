@@ -1,12 +1,12 @@
 // SPDX-FileCopyrightText: Copyright 2024 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "video_core/host_shaders/opengl_present_frag.h"
-#include "video_core/host_shaders/opengl_present_scaleforce_frag.h"
-#include "video_core/host_shaders/present_bicubic_frag.h"
-#include "video_core/host_shaders/present_gaussian_frag.h"
-#include "video_core/renderer_opengl/present/filters.h"
-#include "video_core/renderer_opengl/present/util.h"
+#include "yuzu_video_core/host_shaders/opengl_present_frag.h"
+#include "yuzu_video_core/host_shaders/opengl_present_scaleforce_frag.h"
+#include "yuzu_video_core/host_shaders/present_bicubic_frag.h"
+#include "yuzu_video_core/host_shaders/present_gaussian_frag.h"
+#include "yuzu_video_core/renderer_opengl/present/filters.h"
+#include "yuzu_video_core/renderer_opengl/present/util.h"
 
 namespace OpenGL {
 

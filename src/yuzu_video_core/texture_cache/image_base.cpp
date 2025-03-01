@@ -6,13 +6,13 @@
 #include <utility>
 #include <vector>
 
-#include "common/common_types.h"
-#include "common/div_ceil.h"
-#include "video_core/surface.h"
-#include "video_core/texture_cache/formatter.h"
-#include "video_core/texture_cache/image_base.h"
-#include "video_core/texture_cache/image_view_info.h"
-#include "video_core/texture_cache/util.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/div_ceil.h"
+#include "yuzu_video_core/surface.h"
+#include "yuzu_video_core/texture_cache/formatter.h"
+#include "yuzu_video_core/texture_cache/image_base.h"
+#include "yuzu_video_core/texture_cache/image_view_info.h"
+#include "yuzu_video_core/texture_cache/util.h"
 
 namespace VideoCommon {
 

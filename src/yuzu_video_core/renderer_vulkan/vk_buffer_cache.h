@@ -3,16 +3,16 @@
 
 #pragma once
 
-#include "video_core/buffer_cache/buffer_cache_base.h"
-#include "video_core/buffer_cache/memory_tracker_base.h"
-#include "video_core/buffer_cache/usage_tracker.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/renderer_vulkan/vk_compute_pass.h"
-#include "video_core/renderer_vulkan/vk_staging_buffer_pool.h"
-#include "video_core/renderer_vulkan/vk_update_descriptor.h"
-#include "video_core/surface.h"
-#include "video_core/vulkan_common/vulkan_memory_allocator.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_video_core/buffer_cache/buffer_cache_base.h"
+#include "yuzu_video_core/buffer_cache/memory_tracker_base.h"
+#include "yuzu_video_core/buffer_cache/usage_tracker.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/renderer_vulkan/vk_compute_pass.h"
+#include "yuzu_video_core/renderer_vulkan/vk_staging_buffer_pool.h"
+#include "yuzu_video_core/renderer_vulkan/vk_update_descriptor.h"
+#include "yuzu_video_core/surface.h"
+#include "yuzu_video_core/vulkan_common/vulkan_memory_allocator.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace Vulkan {
 

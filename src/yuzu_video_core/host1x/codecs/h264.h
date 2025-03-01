@@ -6,11 +6,11 @@
 #include <span>
 #include <vector>
 
-#include "common/bit_field.h"
-#include "common/common_funcs.h"
-#include "common/common_types.h"
-#include "common/scratch_buffer.h"
-#include "video_core/host1x/nvdec_common.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/scratch_buffer.h"
+#include "yuzu_video_core/host1x/nvdec_common.h"
 
 namespace Tegra {
 

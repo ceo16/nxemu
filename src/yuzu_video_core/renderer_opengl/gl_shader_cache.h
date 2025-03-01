@@ -6,14 +6,14 @@
 #include <filesystem>
 #include <unordered_map>
 
-#include "common/common_types.h"
-#include "common/thread_worker.h"
-#include "shader_recompiler/host_translate_info.h"
-#include "shader_recompiler/profile.h"
-#include "video_core/renderer_opengl/gl_compute_pipeline.h"
-#include "video_core/renderer_opengl/gl_graphics_pipeline.h"
-#include "video_core/renderer_opengl/gl_shader_context.h"
-#include "video_core/shader_cache.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/thread_worker.h"
+#include "yuzu_shader_recompiler/host_translate_info.h"
+#include "yuzu_shader_recompiler/profile.h"
+#include "yuzu_video_core/renderer_opengl/gl_compute_pipeline.h"
+#include "yuzu_video_core/renderer_opengl/gl_graphics_pipeline.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_context.h"
+#include "yuzu_video_core/shader_cache.h"
 
 namespace Tegra {
 class MemoryManager;

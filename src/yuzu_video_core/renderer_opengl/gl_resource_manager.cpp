@@ -3,10 +3,10 @@
 
 #include <string_view>
 #include <glad/glad.h>
-#include "common/assert.h"
-#include "common/microprofile.h"
-#include "video_core/renderer_opengl/gl_resource_manager.h"
-#include "video_core/renderer_opengl/gl_shader_util.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/microprofile.h"
+#include "yuzu_video_core/renderer_opengl/gl_resource_manager.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_util.h"
 
 MICROPROFILE_DEFINE(OpenGL_ResourceCreation, "OpenGL", "Resource Creation", MP_RGB(128, 128, 192));
 MICROPROFILE_DEFINE(OpenGL_ResourceDeletion, "OpenGL", "Resource Deletion", MP_RGB(128, 128, 192));

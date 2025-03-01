@@ -4,11 +4,11 @@
 #include <array>
 #include <bit>
 
-#include "common/scratch_buffer.h"
-#include "common/settings.h"
-#include "video_core/host1x/codecs/h264.h"
-#include "video_core/host1x/host1x.h"
-#include "video_core/memory_manager.h"
+#include "yuzu_common/scratch_buffer.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_video_core/host1x/codecs/h264.h"
+#include "yuzu_video_core/host1x/host1x.h"
+#include "yuzu_video_core/memory_manager.h"
 
 namespace Tegra::Decoder {
 namespace {

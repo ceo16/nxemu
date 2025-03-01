@@ -6,15 +6,15 @@
 #include <string>
 #include <vector>
 
-#include "common/settings.h" // for enum class Settings::ShaderBackend
-#include "common/thread_worker.h"
-#include "shader_recompiler/shader_info.h"
-#include "video_core/renderer_opengl/gl_graphics_pipeline.h"
-#include "video_core/renderer_opengl/gl_shader_manager.h"
-#include "video_core/renderer_opengl/gl_shader_util.h"
-#include "video_core/renderer_opengl/gl_state_tracker.h"
-#include "video_core/shader_notify.h"
-#include "video_core/texture_cache/texture_cache.h"
+#include "yuzu_common/settings.h" // for enum class Settings::ShaderBackend
+#include "yuzu_common/thread_worker.h"
+#include "yuzu_shader_recompiler/shader_info.h"
+#include "yuzu_video_core/renderer_opengl/gl_graphics_pipeline.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_manager.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_util.h"
+#include "yuzu_video_core/renderer_opengl/gl_state_tracker.h"
+#include "yuzu_video_core/shader_notify.h"
+#include "yuzu_video_core/texture_cache/texture_cache.h"
 
 #if defined(_MSC_VER) && defined(NDEBUG)
 #define LAMBDA_FORCEINLINE [[msvc::forceinline]]

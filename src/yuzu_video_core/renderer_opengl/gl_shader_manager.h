@@ -6,8 +6,8 @@
 #include <array>
 #include <span>
 
-#include "video_core/renderer_opengl/gl_device.h"
-#include "video_core/renderer_opengl/gl_resource_manager.h"
+#include "yuzu_video_core/renderer_opengl/gl_device.h"
+#include "yuzu_video_core/renderer_opengl/gl_resource_manager.h"
 
 namespace OpenGL {
 

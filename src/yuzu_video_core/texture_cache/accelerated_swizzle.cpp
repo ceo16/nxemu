@@ -4,13 +4,13 @@
 #include <array>
 #include <bit>
 
-#include "common/alignment.h"
-#include "common/common_types.h"
-#include "common/div_ceil.h"
-#include "video_core/surface.h"
-#include "video_core/texture_cache/accelerated_swizzle.h"
-#include "video_core/texture_cache/util.h"
-#include "video_core/textures/decoders.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/div_ceil.h"
+#include "yuzu_video_core/surface.h"
+#include "yuzu_video_core/texture_cache/accelerated_swizzle.h"
+#include "yuzu_video_core/texture_cache/util.h"
+#include "yuzu_video_core/textures/decoders.h"
 
 namespace VideoCommon::Accelerated {
 

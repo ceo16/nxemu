@@ -3,8 +3,8 @@
 
 #include <algorithm>
 #include "sync_manager.h"
-#include "video_core/host1x/host1x.h"
-#include "video_core/host1x/syncpoint_manager.h"
+#include "yuzu_video_core/host1x/host1x.h"
+#include "yuzu_video_core/host1x/syncpoint_manager.h"
 
 namespace Tegra {
 namespace Host1x {

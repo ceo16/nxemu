@@ -4,11 +4,11 @@
 #include <algorithm>
 #include <span>
 
-#include "shader_recompiler/backend/glasm/emit_glasm.h"
-#include "video_core/buffer_cache/buffer_cache.h"
-#include "video_core/renderer_opengl/gl_buffer_cache.h"
-#include "video_core/renderer_opengl/gl_device.h"
-#include "video_core/renderer_opengl/maxwell_to_gl.h"
+#include "yuzu_shader_recompiler/backend/glasm/emit_glasm.h"
+#include "yuzu_video_core/buffer_cache/buffer_cache.h"
+#include "yuzu_video_core/renderer_opengl/gl_buffer_cache.h"
+#include "yuzu_video_core/renderer_opengl/gl_device.h"
+#include "yuzu_video_core/renderer_opengl/maxwell_to_gl.h"
 
 namespace OpenGL {
 namespace {

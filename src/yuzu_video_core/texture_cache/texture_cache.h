@@ -6,17 +6,17 @@
 #include <unordered_set>
 #include <boost/container/small_vector.hpp>
 
-#include "common/alignment.h"
-#include "common/settings.h"
-#include "video_core/control/channel_state.h"
-#include "video_core/dirty_flags.h"
-#include "video_core/engines/kepler_compute.h"
-#include "video_core/guest_memory.h"
-#include "video_core/host1x/gpu_device_memory_manager.h"
-#include "video_core/texture_cache/image_view_base.h"
-#include "video_core/texture_cache/samples_helper.h"
-#include "video_core/texture_cache/texture_cache_base.h"
-#include "video_core/texture_cache/util.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_video_core/control/channel_state.h"
+#include "yuzu_video_core/dirty_flags.h"
+#include "yuzu_video_core/engines/kepler_compute.h"
+#include "yuzu_video_core/guest_memory.h"
+#include "yuzu_video_core/host1x/gpu_device_memory_manager.h"
+#include "yuzu_video_core/texture_cache/image_view_base.h"
+#include "yuzu_video_core/texture_cache/samples_helper.h"
+#include "yuzu_video_core/texture_cache/texture_cache_base.h"
+#include "yuzu_video_core/texture_cache/util.h"
 
 namespace VideoCommon {
 

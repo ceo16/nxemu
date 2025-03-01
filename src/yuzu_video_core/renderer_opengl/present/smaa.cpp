@@ -1,19 +1,19 @@
 // SPDX-FileCopyrightText: Copyright 2024 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "video_core/host_shaders/opengl_smaa_glsl.h"
-#include "video_core/host_shaders/smaa_blending_weight_calculation_frag.h"
-#include "video_core/host_shaders/smaa_blending_weight_calculation_vert.h"
-#include "video_core/host_shaders/smaa_edge_detection_frag.h"
-#include "video_core/host_shaders/smaa_edge_detection_vert.h"
-#include "video_core/host_shaders/smaa_neighborhood_blending_frag.h"
-#include "video_core/host_shaders/smaa_neighborhood_blending_vert.h"
-#include "video_core/renderer_opengl/gl_shader_manager.h"
-#include "video_core/renderer_opengl/gl_shader_util.h"
-#include "video_core/renderer_opengl/present/smaa.h"
-#include "video_core/renderer_opengl/present/util.h"
-#include "video_core/smaa_area_tex.h"
-#include "video_core/smaa_search_tex.h"
+#include "yuzu_video_core/host_shaders/opengl_smaa_glsl.h"
+#include "yuzu_video_core/host_shaders/smaa_blending_weight_calculation_frag.h"
+#include "yuzu_video_core/host_shaders/smaa_blending_weight_calculation_vert.h"
+#include "yuzu_video_core/host_shaders/smaa_edge_detection_frag.h"
+#include "yuzu_video_core/host_shaders/smaa_edge_detection_vert.h"
+#include "yuzu_video_core/host_shaders/smaa_neighborhood_blending_frag.h"
+#include "yuzu_video_core/host_shaders/smaa_neighborhood_blending_vert.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_manager.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_util.h"
+#include "yuzu_video_core/renderer_opengl/present/smaa.h"
+#include "yuzu_video_core/renderer_opengl/present/util.h"
+#include "yuzu_video_core/smaa_area_tex.h"
+#include "yuzu_video_core/smaa_search_tex.h"
 
 namespace OpenGL {
 

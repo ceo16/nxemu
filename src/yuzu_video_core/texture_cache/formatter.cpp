@@ -4,13 +4,13 @@
 #include <algorithm>
 #include <string>
 
-#include "common/polyfill_ranges.h"
-#include "video_core/texture_cache/formatter.h"
-#include "video_core/texture_cache/image_base.h"
-#include "video_core/texture_cache/image_info.h"
-#include "video_core/texture_cache/image_view_base.h"
-#include "video_core/texture_cache/render_targets.h"
-#include "video_core/texture_cache/samples_helper.h"
+#include "yuzu_common/polyfill_ranges.h"
+#include "yuzu_video_core/texture_cache/formatter.h"
+#include "yuzu_video_core/texture_cache/image_base.h"
+#include "yuzu_video_core/texture_cache/image_info.h"
+#include "yuzu_video_core/texture_cache/image_view_base.h"
+#include "yuzu_video_core/texture_cache/render_targets.h"
+#include "yuzu_video_core/texture_cache/samples_helper.h"
 
 namespace VideoCommon {
 

@@ -9,11 +9,11 @@
 #include <boost/container/small_vector.hpp>
 #include <queue>
 
-#include "common/bit_field.h"
-#include "common/common_types.h"
-#include "common/scratch_buffer.h"
-#include "video_core/engines/engine_interface.h"
-#include "video_core/engines/puller.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/scratch_buffer.h"
+#include "yuzu_video_core/engines/engine_interface.h"
+#include "yuzu_video_core/engines/puller.h"
 
 namespace Core {
 class System;

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "core/core.h"
-#include "video_core/host1x/host1x.h"
+#include "yuzu_video_core/host1x/host1x.h"
 
 namespace Tegra {
 

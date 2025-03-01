@@ -1,12 +1,12 @@
 // SPDX-FileCopyrightText: Copyright 2020 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/assert.h"
+#include "yuzu_common/yuzu_assert.h"
 
 #include <glad/glad.h>
 
-#include "video_core/renderer_opengl/gl_buffer_cache.h"
-#include "video_core/renderer_opengl/gl_fence_manager.h"
+#include "yuzu_video_core/renderer_opengl/gl_buffer_cache.h"
+#include "yuzu_video_core/renderer_opengl/gl_fence_manager.h"
 
 namespace OpenGL {
 

@@ -1,21 +1,21 @@
 // SPDX-FileCopyrightText: Copyright 2021 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/common_types.h"
-#include "common/div_ceil.h"
-#include "common/settings.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/div_ceil.h"
+#include "yuzu_common/settings.h"
 
-#include "video_core/fsr.h"
-#include "video_core/host_shaders/vulkan_fidelityfx_fsr_easu_fp16_frag_spv.h"
-#include "video_core/host_shaders/vulkan_fidelityfx_fsr_easu_fp32_frag_spv.h"
-#include "video_core/host_shaders/vulkan_fidelityfx_fsr_rcas_fp16_frag_spv.h"
-#include "video_core/host_shaders/vulkan_fidelityfx_fsr_rcas_fp32_frag_spv.h"
-#include "video_core/host_shaders/vulkan_fidelityfx_fsr_vert_spv.h"
-#include "video_core/renderer_vulkan/present/fsr.h"
-#include "video_core/renderer_vulkan/present/util.h"
-#include "video_core/renderer_vulkan/vk_scheduler.h"
-#include "video_core/renderer_vulkan/vk_shader_util.h"
-#include "video_core/vulkan_common/vulkan_device.h"
+#include "yuzu_video_core/fsr.h"
+#include "yuzu_video_core/host_shaders/vulkan_fidelityfx_fsr_easu_fp16_frag_spv.h"
+#include "yuzu_video_core/host_shaders/vulkan_fidelityfx_fsr_easu_fp32_frag_spv.h"
+#include "yuzu_video_core/host_shaders/vulkan_fidelityfx_fsr_rcas_fp16_frag_spv.h"
+#include "yuzu_video_core/host_shaders/vulkan_fidelityfx_fsr_rcas_fp32_frag_spv.h"
+#include "yuzu_video_core/host_shaders/vulkan_fidelityfx_fsr_vert_spv.h"
+#include "yuzu_video_core/renderer_vulkan/present/fsr.h"
+#include "yuzu_video_core/renderer_vulkan/present/util.h"
+#include "yuzu_video_core/renderer_vulkan/vk_scheduler.h"
+#include "yuzu_video_core/renderer_vulkan/vk_shader_util.h"
+#include "yuzu_video_core/vulkan_common/vulkan_device.h"
 
 namespace Vulkan {
 using namespace FSR;

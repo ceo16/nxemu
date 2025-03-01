@@ -1,19 +1,19 @@
 // SPDX-FileCopyrightText: Copyright 2024 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "video_core/present.h"
-#include "video_core/renderer_vulkan/vk_rasterizer.h"
+#include "yuzu_video_core/present.h"
+#include "yuzu_video_core/renderer_vulkan/vk_rasterizer.h"
 
-#include "common/settings.h"
-#include "video_core/framebuffer_config.h"
-#include "video_core/renderer_vulkan/present/fsr.h"
-#include "video_core/renderer_vulkan/present/fxaa.h"
-#include "video_core/renderer_vulkan/present/layer.h"
-#include "video_core/renderer_vulkan/present/present_push_constants.h"
-#include "video_core/renderer_vulkan/present/smaa.h"
-#include "video_core/renderer_vulkan/present/util.h"
-#include "video_core/renderer_vulkan/vk_blit_screen.h"
-#include "video_core/textures/decoders.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_video_core/framebuffer_config.h"
+#include "yuzu_video_core/renderer_vulkan/present/fsr.h"
+#include "yuzu_video_core/renderer_vulkan/present/fxaa.h"
+#include "yuzu_video_core/renderer_vulkan/present/layer.h"
+#include "yuzu_video_core/renderer_vulkan/present/present_push_constants.h"
+#include "yuzu_video_core/renderer_vulkan/present/smaa.h"
+#include "yuzu_video_core/renderer_vulkan/present/util.h"
+#include "yuzu_video_core/renderer_vulkan/vk_blit_screen.h"
+#include "yuzu_video_core/textures/decoders.h"
 
 namespace Vulkan {
 

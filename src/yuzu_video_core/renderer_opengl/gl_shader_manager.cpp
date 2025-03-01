@@ -3,9 +3,9 @@
 
 #include <glad/glad.h>
 
-#include "video_core/host_shaders/opengl_lmem_warmup_comp.h"
-#include "video_core/renderer_opengl/gl_shader_manager.h"
-#include "video_core/renderer_opengl/gl_shader_util.h"
+#include "yuzu_video_core/host_shaders/opengl_lmem_warmup_comp.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_manager.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_util.h"
 
 namespace OpenGL {
 

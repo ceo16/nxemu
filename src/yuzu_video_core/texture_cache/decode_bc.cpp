@@ -6,8 +6,8 @@
 #include <span>
 #include <bc_decoder.h>
 
-#include "common/common_types.h"
-#include "video_core/texture_cache/decode_bc.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/texture_cache/decode_bc.h"
 
 namespace VideoCommon {
 

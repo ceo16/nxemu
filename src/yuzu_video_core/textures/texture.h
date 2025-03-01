@@ -4,9 +4,9 @@
 #pragma once
 
 #include <array>
-#include "common/assert.h"
-#include "common/bit_field.h"
-#include "common/common_types.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_common/common_types.h"
 
 namespace Tegra::Texture {
 

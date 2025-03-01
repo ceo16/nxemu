@@ -12,8 +12,8 @@
 #include <utility>
 #include <vector>
 
-#include "common/common_types.h"
-#include "video_core/vulkan_common/vulkan.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/vulkan_common/vulkan.h"
 
 #ifdef _MSC_VER
 #pragma warning(disable : 26812) // Disable prefer enum class over enum

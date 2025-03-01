@@ -7,25 +7,25 @@
 #include <vector>
 #include <boost/container/small_vector.hpp>
 
-#include "common/bit_cast.h"
-#include "common/bit_util.h"
-#include "common/settings.h"
+#include "yuzu_common/bit_cast.h"
+#include "yuzu_common/bit_util.h"
+#include "yuzu_common/settings.h"
 
-#include "video_core/renderer_vulkan/vk_texture_cache.h"
+#include "yuzu_video_core/renderer_vulkan/vk_texture_cache.h"
 
-#include "video_core/engines/fermi_2d.h"
-#include "video_core/renderer_vulkan/blit_image.h"
-#include "video_core/renderer_vulkan/maxwell_to_vk.h"
-#include "video_core/renderer_vulkan/vk_compute_pass.h"
-#include "video_core/renderer_vulkan/vk_render_pass_cache.h"
-#include "video_core/renderer_vulkan/vk_scheduler.h"
-#include "video_core/renderer_vulkan/vk_staging_buffer_pool.h"
-#include "video_core/texture_cache/formatter.h"
-#include "video_core/texture_cache/samples_helper.h"
-#include "video_core/texture_cache/util.h"
-#include "video_core/vulkan_common/vulkan_device.h"
-#include "video_core/vulkan_common/vulkan_memory_allocator.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_video_core/engines/fermi_2d.h"
+#include "yuzu_video_core/renderer_vulkan/blit_image.h"
+#include "yuzu_video_core/renderer_vulkan/maxwell_to_vk.h"
+#include "yuzu_video_core/renderer_vulkan/vk_compute_pass.h"
+#include "yuzu_video_core/renderer_vulkan/vk_render_pass_cache.h"
+#include "yuzu_video_core/renderer_vulkan/vk_scheduler.h"
+#include "yuzu_video_core/renderer_vulkan/vk_staging_buffer_pool.h"
+#include "yuzu_video_core/texture_cache/formatter.h"
+#include "yuzu_video_core/texture_cache/samples_helper.h"
+#include "yuzu_video_core/texture_cache/util.h"
+#include "yuzu_video_core/vulkan_common/vulkan_device.h"
+#include "yuzu_video_core/vulkan_common/vulkan_memory_allocator.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace Vulkan {
 

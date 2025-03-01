@@ -8,15 +8,15 @@
 #include <type_traits>
 #include <utility>
 
-#include "common/bit_field.h"
-#include "common/cityhash.h"
-#include "common/common_types.h"
-#include "shader_recompiler/shader_info.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/renderer_opengl/gl_buffer_cache.h"
-#include "video_core/renderer_opengl/gl_resource_manager.h"
-#include "video_core/renderer_opengl/gl_texture_cache.h"
-#include "video_core/transform_feedback.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_common/cityhash.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_shader_recompiler/shader_info.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/renderer_opengl/gl_buffer_cache.h"
+#include "yuzu_video_core/renderer_opengl/gl_resource_manager.h"
+#include "yuzu_video_core/renderer_opengl/gl_texture_cache.h"
+#include "yuzu_video_core/transform_feedback.h"
 
 namespace OpenGL {
 

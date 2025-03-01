@@ -7,11 +7,11 @@
 #include <functional>
 #include <memory>
 
-#include "common/common_funcs.h"
-#include "common/common_types.h"
-#include "core/frontend/framebuffer_layout.h"
-#include "video_core/gpu.h"
-#include "video_core/rasterizer_interface.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/common_types.h"
+#include "frontend/framebuffer_layout.h"
+#include "yuzu_video_core/gpu.h"
+#include "yuzu_video_core/rasterizer_interface.h"
 
 namespace Core::Frontend {
 class EmuWindow;

@@ -5,20 +5,20 @@
 
 #include <span>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 
 #ifdef HAS_NSIGHT_AFTERMATH
 #include <filesystem>
 #include <mutex>
 
 // Vulkan headers must be included before Aftermath
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 #include <GFSDK_Aftermath_Defines.h>
 #include <GFSDK_Aftermath_GpuCrashDump.h>
 #include <GFSDK_Aftermath_GpuCrashDumpDecoding.h>
 
-#include "common/dynamic_library.h"
+#include "yuzu_common/dynamic_library.h"
 #endif
 
 namespace Vulkan {

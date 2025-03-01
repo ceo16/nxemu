@@ -1,10 +1,10 @@
 // SPDX-FileCopyrightText: Copyright 2022 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/settings.h"
-#include "video_core/dirty_flags.h"
-#include "video_core/engines/draw_manager.h"
-#include "video_core/rasterizer_interface.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_video_core/dirty_flags.h"
+#include "yuzu_video_core/engines/draw_manager.h"
+#include "yuzu_video_core/rasterizer_interface.h"
 
 namespace Tegra::Engines {
 DrawManager::DrawManager(Maxwell3D* maxwell3d_) : maxwell3d(maxwell3d_) {}

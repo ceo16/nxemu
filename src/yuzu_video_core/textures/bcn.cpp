@@ -3,9 +3,9 @@
 
 #include <stb_dxt.h>
 #include <string.h>
-#include "common/alignment.h"
-#include "video_core/textures/bcn.h"
-#include "video_core/textures/workers.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_video_core/textures/bcn.h"
+#include "yuzu_video_core/textures/workers.h"
 
 namespace Tegra::Texture::BCN {
 

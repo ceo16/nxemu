@@ -8,20 +8,20 @@
 #include <optional>
 #include <utility>
 
-#include "common/assert.h"
-#include "common/cityhash.h"
-#include "common/common_types.h"
-#include "common/div_ceil.h"
-#include "common/fs/fs.h"
-#include "common/fs/path_util.h"
-#include "common/logging/log.h"
-#include "common/polyfill_ranges.h"
-#include "shader_recompiler/environment.h"
-#include "video_core/engines/kepler_compute.h"
-#include "video_core/memory_manager.h"
-#include "video_core/shader_environment.h"
-#include "video_core/texture_cache/format_lookup_table.h"
-#include "video_core/textures/texture.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/cityhash.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/div_ceil.h"
+#include "yuzu_common/fs/fs.h"
+#include "yuzu_common/fs/path_util.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/polyfill_ranges.h"
+#include "yuzu_shader_recompiler/environment.h"
+#include "yuzu_video_core/engines/kepler_compute.h"
+#include "yuzu_video_core/memory_manager.h"
+#include "yuzu_video_core/shader_environment.h"
+#include "yuzu_video_core/texture_cache/format_lookup_table.h"
+#include "yuzu_video_core/textures/texture.h"
 
 namespace VideoCommon {
 

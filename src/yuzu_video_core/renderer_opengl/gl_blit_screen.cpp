@@ -1,13 +1,13 @@
 // SPDX-FileCopyrightText: Copyright 2024 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/settings.h"
-#include "video_core/present.h"
-#include "video_core/renderer_opengl/gl_blit_screen.h"
-#include "video_core/renderer_opengl/gl_state_tracker.h"
-#include "video_core/renderer_opengl/present/filters.h"
-#include "video_core/renderer_opengl/present/layer.h"
-#include "video_core/renderer_opengl/present/window_adapt_pass.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_video_core/present.h"
+#include "yuzu_video_core/renderer_opengl/gl_blit_screen.h"
+#include "yuzu_video_core/renderer_opengl/gl_state_tracker.h"
+#include "yuzu_video_core/renderer_opengl/present/filters.h"
+#include "yuzu_video_core/renderer_opengl/present/layer.h"
+#include "yuzu_video_core/renderer_opengl/present/window_adapt_pass.h"
 
 namespace OpenGL {
 

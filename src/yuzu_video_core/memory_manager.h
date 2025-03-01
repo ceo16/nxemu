@@ -10,14 +10,14 @@
 #include <vector>
 #include <boost/container/small_vector.hpp>
 
-#include "common/common_types.h"
-#include "common/multi_level_page_table.h"
-#include "common/range_map.h"
-#include "common/scratch_buffer.h"
-#include "common/virtual_buffer.h"
-#include "video_core/cache_types.h"
-#include "video_core/host1x/gpu_device_memory_manager.h"
-#include "video_core/pte_kind.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/multi_level_page_table.h"
+#include "yuzu_common/range_map.h"
+#include "yuzu_common/scratch_buffer.h"
+#include "yuzu_common/virtual_buffer.h"
+#include "yuzu_video_core/cache_types.h"
+#include "yuzu_video_core/host1x/gpu_device_memory_manager.h"
+#include "yuzu_video_core/pte_kind.h"
 
 namespace VideoCore {
 class RasterizerInterface;

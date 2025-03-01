@@ -1,18 +1,18 @@
 // SPDX-FileCopyrightText: Copyright 2019 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/assert.h"
-#include "common/microprofile.h"
-#include "common/scope_exit.h"
-#include "common/settings.h"
-#include "common/thread.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/microprofile.h"
+#include "yuzu_common/scope_exit.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_common/thread.h"
 #include "core/core.h"
-#include "core/frontend/graphics_context.h"
-#include "video_core/control/scheduler.h"
-#include "video_core/dma_pusher.h"
-#include "video_core/gpu.h"
-#include "video_core/gpu_thread.h"
-#include "video_core/renderer_base.h"
+#include "frontend/graphics_context.h"
+#include "yuzu_video_core/control/scheduler.h"
+#include "yuzu_video_core/dma_pusher.h"
+#include "yuzu_video_core/gpu.h"
+#include "yuzu_video_core/gpu_thread.h"
+#include "yuzu_video_core/renderer_base.h"
 
 namespace VideoCommon::GPUThread {
 

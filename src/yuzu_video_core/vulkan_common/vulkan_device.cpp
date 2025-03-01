@@ -10,14 +10,14 @@
 #include <utility>
 #include <vector>
 
-#include "common/assert.h"
-#include "common/literals.h"
-#include "common/polyfill_ranges.h"
-#include "common/settings.h"
-#include "video_core/vulkan_common/nsight_aftermath_tracker.h"
-#include "video_core/vulkan_common/vma.h"
-#include "video_core/vulkan_common/vulkan_device.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/literals.h"
+#include "yuzu_common/polyfill_ranges.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_video_core/vulkan_common/nsight_aftermath_tracker.h"
+#include "yuzu_video_core/vulkan_common/vma.h"
+#include "yuzu_video_core/vulkan_common/vulkan_device.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 #if defined(ANDROID) && defined(ARCHITECTURE_arm64)
 #include <adrenotools/bcenabler.h>

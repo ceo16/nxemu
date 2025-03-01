@@ -6,7 +6,7 @@
 #include <string_view>
 #include <utility>
 #include <glad/glad.h>
-#include "common/common_funcs.h"
+#include "yuzu_common/common_funcs.h"
 
 namespace OpenGL {
 

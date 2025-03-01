@@ -3,10 +3,10 @@
 
 #include <cstring>
 
-#include "common/common_types.h"
-#include "video_core/renderer_vulkan/vk_shader_util.h"
-#include "video_core/vulkan_common/vulkan_device.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/renderer_vulkan/vk_shader_util.h"
+#include "yuzu_video_core/vulkan_common/vulkan_device.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace Vulkan {
 

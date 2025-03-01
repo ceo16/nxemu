@@ -11,9 +11,9 @@
 
 #include <glad/glad.h>
 
-#include "common/common_types.h"
-#include "common/literals.h"
-#include "video_core/renderer_opengl/gl_resource_manager.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/literals.h"
+#include "yuzu_video_core/renderer_opengl/gl_resource_manager.h"
 
 namespace OpenGL {
 

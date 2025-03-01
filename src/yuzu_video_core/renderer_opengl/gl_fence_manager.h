@@ -5,12 +5,12 @@
 
 #include <memory>
 
-#include "common/common_types.h"
-#include "video_core/fence_manager.h"
-#include "video_core/renderer_opengl/gl_buffer_cache.h"
-#include "video_core/renderer_opengl/gl_query_cache.h"
-#include "video_core/renderer_opengl/gl_resource_manager.h"
-#include "video_core/renderer_opengl/gl_texture_cache.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/fence_manager.h"
+#include "yuzu_video_core/renderer_opengl/gl_buffer_cache.h"
+#include "yuzu_video_core/renderer_opengl/gl_query_cache.h"
+#include "yuzu_video_core/renderer_opengl/gl_resource_manager.h"
+#include "yuzu_video_core/renderer_opengl/gl_texture_cache.h"
 
 namespace OpenGL {
 

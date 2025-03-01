@@ -1,8 +1,8 @@
 // SPDX-FileCopyrightText: 2021 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "common/microprofile.h"
-#include "video_core/host1x/syncpoint_manager.h"
+#include "yuzu_common/microprofile.h"
+#include "yuzu_video_core/host1x/syncpoint_manager.h"
 
 namespace Tegra {
 

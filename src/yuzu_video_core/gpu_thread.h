@@ -10,9 +10,9 @@
 #include <thread>
 #include <variant>
 
-#include "common/bounded_threadsafe_queue.h"
-#include "common/polyfill_thread.h"
-#include "video_core/framebuffer_config.h"
+#include "yuzu_common/bounded_threadsafe_queue.h"
+#include "yuzu_common/polyfill_thread.h"
+#include "yuzu_video_core/framebuffer_config.h"
 
 namespace Tegra {
 struct FramebufferConfig;

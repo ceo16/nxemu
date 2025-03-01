@@ -6,8 +6,8 @@
 #include <memory>
 #include <string>
 
-#include "video_core/renderer_base.h"
-#include "video_core/renderer_null/null_rasterizer.h"
+#include "yuzu_video_core/renderer_base.h"
+#include "yuzu_video_core/renderer_null/null_rasterizer.h"
 
 namespace Null {
 

@@ -3,11 +3,11 @@
 
 #include <thread>
 
-#include "common/polyfill_ranges.h"
-#include "common/settings.h"
-#include "video_core/renderer_vulkan/vk_master_semaphore.h"
-#include "video_core/vulkan_common/vulkan_device.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_common/polyfill_ranges.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_video_core/renderer_vulkan/vk_master_semaphore.h"
+#include "yuzu_video_core/vulkan_common/vulkan_device.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace Vulkan {
 

@@ -11,32 +11,30 @@
 
 #include <fmt/format.h>
 
-#include "common/logging/log.h"
-#include "common/polyfill_ranges.h"
-#include "common/scope_exit.h"
-#include "common/settings.h"
-#include "common/telemetry.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/polyfill_ranges.h"
+#include "yuzu_common/scope_exit.h"
+#include "yuzu_common/settings.h"
 #include "core/core_timing.h"
-#include "core/frontend/graphics_context.h"
-#include "core/telemetry_session.h"
-#include "video_core/capture.h"
-#include "video_core/gpu.h"
-#include "video_core/present.h"
-#include "video_core/renderer_vulkan/present/util.h"
-#include "video_core/renderer_vulkan/renderer_vulkan.h"
-#include "video_core/renderer_vulkan/vk_blit_screen.h"
-#include "video_core/renderer_vulkan/vk_rasterizer.h"
-#include "video_core/renderer_vulkan/vk_scheduler.h"
-#include "video_core/renderer_vulkan/vk_state_tracker.h"
-#include "video_core/renderer_vulkan/vk_swapchain.h"
-#include "video_core/textures/decoders.h"
-#include "video_core/vulkan_common/vulkan_debug_callback.h"
-#include "video_core/vulkan_common/vulkan_device.h"
-#include "video_core/vulkan_common/vulkan_instance.h"
-#include "video_core/vulkan_common/vulkan_library.h"
-#include "video_core/vulkan_common/vulkan_memory_allocator.h"
-#include "video_core/vulkan_common/vulkan_surface.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "frontend/graphics_context.h"
+#include "yuzu_video_core/capture.h"
+#include "yuzu_video_core/gpu.h"
+#include "yuzu_video_core/present.h"
+#include "yuzu_video_core/renderer_vulkan/present/util.h"
+#include "yuzu_video_core/renderer_vulkan/renderer_vulkan.h"
+#include "yuzu_video_core/renderer_vulkan/vk_blit_screen.h"
+#include "yuzu_video_core/renderer_vulkan/vk_rasterizer.h"
+#include "yuzu_video_core/renderer_vulkan/vk_scheduler.h"
+#include "yuzu_video_core/renderer_vulkan/vk_state_tracker.h"
+#include "yuzu_video_core/renderer_vulkan/vk_swapchain.h"
+#include "yuzu_video_core/textures/decoders.h"
+#include "yuzu_video_core/vulkan_common/vulkan_debug_callback.h"
+#include "yuzu_video_core/vulkan_common/vulkan_device.h"
+#include "yuzu_video_core/vulkan_common/vulkan_instance.h"
+#include "yuzu_video_core/vulkan_common/vulkan_library.h"
+#include "yuzu_video_core/vulkan_common/vulkan_memory_allocator.h"
+#include "yuzu_video_core/vulkan_common/vulkan_surface.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace Vulkan {
 namespace {
@@ -98,11 +96,10 @@ Device CreateDevice(const vk::Instance& instance, const vk::InstanceDispatch& dl
     return Device(*instance, physical_device, surface, dld);
 }
 
-RendererVulkan::RendererVulkan(Core::TelemetrySession& telemetry_session_,
-                               Core::Frontend::EmuWindow& emu_window,
+RendererVulkan::RendererVulkan(Core::Frontend::EmuWindow& emu_window,
                                Tegra::MaxwellDeviceMemoryManager& device_memory_, Tegra::GPU& gpu_,
                                std::unique_ptr<Core::Frontend::GraphicsContext> context_) try
-    : RendererBase(emu_window, std::move(context_)), telemetry_session(telemetry_session_),
+    : RendererBase(emu_window, std::move(context_)),
       device_memory(device_memory_), gpu(gpu_), library(OpenLibrary(context.get())),
       instance(CreateInstance(*library, dld, VK_API_VERSION_1_1, render_window.GetWindowInfo().type,
                               Settings::values.renderer_debug.GetValue())),
@@ -183,13 +180,6 @@ void RendererVulkan::Report() const {
     LOG_INFO(Render_Vulkan, "Device: {}", model_name);
     LOG_INFO(Render_Vulkan, "Vulkan: {}", api_version);
     LOG_INFO(Render_Vulkan, "Available VRAM: {:.2f} GiB", available_vram);
-
-    static constexpr auto field = Common::Telemetry::FieldType::UserSystem;
-    telemetry_session.AddField(field, "GPU_Vendor", vendor_name);
-    telemetry_session.AddField(field, "GPU_Model", model_name);
-    telemetry_session.AddField(field, "GPU_Vulkan_Driver", driver_name);
-    telemetry_session.AddField(field, "GPU_Vulkan_Version", api_version);
-    telemetry_session.AddField(field, "GPU_Vulkan_Extensions", extensions);
 }
 
 vk::Buffer RendererVulkan::RenderToBuffer(std::span<const Tegra::FramebufferConfig> framebuffers,

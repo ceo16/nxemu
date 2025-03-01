@@ -3,23 +3,23 @@
 
 #include <list>
 
-#include "common/assert.h"
-#include "common/polyfill_ranges.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/polyfill_ranges.h"
 
-#include "video_core/renderer_vulkan/present/smaa.h"
-#include "video_core/renderer_vulkan/present/util.h"
-#include "video_core/renderer_vulkan/vk_scheduler.h"
-#include "video_core/renderer_vulkan/vk_shader_util.h"
-#include "video_core/smaa_area_tex.h"
-#include "video_core/smaa_search_tex.h"
-#include "video_core/vulkan_common/vulkan_device.h"
+#include "yuzu_video_core/renderer_vulkan/present/smaa.h"
+#include "yuzu_video_core/renderer_vulkan/present/util.h"
+#include "yuzu_video_core/renderer_vulkan/vk_scheduler.h"
+#include "yuzu_video_core/renderer_vulkan/vk_shader_util.h"
+#include "yuzu_video_core/smaa_area_tex.h"
+#include "yuzu_video_core/smaa_search_tex.h"
+#include "yuzu_video_core/vulkan_common/vulkan_device.h"
 
-#include "video_core/host_shaders/smaa_blending_weight_calculation_frag_spv.h"
-#include "video_core/host_shaders/smaa_blending_weight_calculation_vert_spv.h"
-#include "video_core/host_shaders/smaa_edge_detection_frag_spv.h"
-#include "video_core/host_shaders/smaa_edge_detection_vert_spv.h"
-#include "video_core/host_shaders/smaa_neighborhood_blending_frag_spv.h"
-#include "video_core/host_shaders/smaa_neighborhood_blending_vert_spv.h"
+#include "yuzu_video_core/host_shaders/smaa_blending_weight_calculation_frag_spv.h"
+#include "yuzu_video_core/host_shaders/smaa_blending_weight_calculation_vert_spv.h"
+#include "yuzu_video_core/host_shaders/smaa_edge_detection_frag_spv.h"
+#include "yuzu_video_core/host_shaders/smaa_edge_detection_vert_spv.h"
+#include "yuzu_video_core/host_shaders/smaa_neighborhood_blending_frag_spv.h"
+#include "yuzu_video_core/host_shaders/smaa_neighborhood_blending_vert_spv.h"
 
 namespace Vulkan {
 

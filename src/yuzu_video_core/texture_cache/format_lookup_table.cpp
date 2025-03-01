@@ -1,9 +1,9 @@
 // SPDX-FileCopyrightText: Copyright 2019 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/common_types.h"
-#include "common/logging/log.h"
-#include "video_core/texture_cache/format_lookup_table.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_video_core/texture_cache/format_lookup_table.h"
 
 namespace VideoCommon {
 

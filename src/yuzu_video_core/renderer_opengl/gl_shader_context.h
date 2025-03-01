@@ -3,10 +3,10 @@
 
 #pragma once
 
-#include "core/frontend/emu_window.h"
-#include "core/frontend/graphics_context.h"
-#include "shader_recompiler/frontend/ir/basic_block.h"
-#include "shader_recompiler/frontend/maxwell/control_flow.h"
+#include "frontend/emu_window.h"
+#include "frontend/graphics_context.h"
+#include "yuzu_shader_recompiler/frontend/ir/basic_block.h"
+#include "yuzu_shader_recompiler/frontend/maxwell/control_flow.h"
 
 namespace OpenGL::ShaderContext {
 struct ShaderPools {

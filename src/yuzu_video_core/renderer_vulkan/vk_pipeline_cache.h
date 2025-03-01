@@ -11,22 +11,22 @@
 #include <unordered_map>
 #include <vector>
 
-#include "common/common_types.h"
-#include "common/thread_worker.h"
-#include "shader_recompiler/frontend/ir/basic_block.h"
-#include "shader_recompiler/frontend/ir/value.h"
-#include "shader_recompiler/frontend/maxwell/control_flow.h"
-#include "shader_recompiler/host_translate_info.h"
-#include "shader_recompiler/object_pool.h"
-#include "shader_recompiler/profile.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/host1x/gpu_device_memory_manager.h"
-#include "video_core/renderer_vulkan/fixed_pipeline_state.h"
-#include "video_core/renderer_vulkan/vk_buffer_cache.h"
-#include "video_core/renderer_vulkan/vk_compute_pipeline.h"
-#include "video_core/renderer_vulkan/vk_graphics_pipeline.h"
-#include "video_core/renderer_vulkan/vk_texture_cache.h"
-#include "video_core/shader_cache.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/thread_worker.h"
+#include "yuzu_shader_recompiler/frontend/ir/basic_block.h"
+#include "yuzu_shader_recompiler/frontend/ir/value.h"
+#include "yuzu_shader_recompiler/frontend/maxwell/control_flow.h"
+#include "yuzu_shader_recompiler/host_translate_info.h"
+#include "yuzu_shader_recompiler/object_pool.h"
+#include "yuzu_shader_recompiler/profile.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/host1x/gpu_device_memory_manager.h"
+#include "yuzu_video_core/renderer_vulkan/fixed_pipeline_state.h"
+#include "yuzu_video_core/renderer_vulkan/vk_buffer_cache.h"
+#include "yuzu_video_core/renderer_vulkan/vk_compute_pipeline.h"
+#include "yuzu_video_core/renderer_vulkan/vk_graphics_pipeline.h"
+#include "yuzu_video_core/renderer_vulkan/vk_texture_cache.h"
+#include "yuzu_video_core/shader_cache.h"
 
 namespace Core {
 class System;

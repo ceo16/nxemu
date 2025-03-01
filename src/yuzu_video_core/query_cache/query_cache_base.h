@@ -10,13 +10,13 @@
 #include <unordered_map>
 #include <utility>
 
-#include "common/assert.h"
-#include "common/bit_field.h"
-#include "common/common_types.h"
-#include "video_core/control/channel_state_cache.h"
-#include "video_core/host1x/gpu_device_memory_manager.h"
-#include "video_core/query_cache/query_base.h"
-#include "video_core/query_cache/types.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/control/channel_state_cache.h"
+#include "yuzu_video_core/host1x/gpu_device_memory_manager.h"
+#include "yuzu_video_core/query_cache/query_base.h"
+#include "yuzu_video_core/query_cache/types.h"
 
 namespace VideoCore {
 class RasterizerInterface;

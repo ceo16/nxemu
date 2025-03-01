@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <cmath>
-#include "video_core/fsr.h"
+#include "yuzu_video_core/fsr.h"
 
 namespace FSR {
 namespace {

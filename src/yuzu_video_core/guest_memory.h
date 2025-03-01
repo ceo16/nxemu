@@ -9,9 +9,9 @@
 #include <span>
 #include <vector>
 
-#include "common/scratch_buffer.h"
+#include "yuzu_common/scratch_buffer.h"
 #include "core/guest_memory.h"
-#include "video_core/memory_manager.h"
+#include "yuzu_video_core/memory_manager.h"
 
 namespace Tegra::Memory {
 

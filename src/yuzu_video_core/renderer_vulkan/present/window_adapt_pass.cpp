@@ -1,17 +1,17 @@
 // SPDX-FileCopyrightText: Copyright 2024 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "core/frontend/framebuffer_layout.h"
-#include "video_core/framebuffer_config.h"
-#include "video_core/host_shaders/vulkan_present_vert_spv.h"
-#include "video_core/renderer_vulkan/present/layer.h"
-#include "video_core/renderer_vulkan/present/present_push_constants.h"
-#include "video_core/renderer_vulkan/present/util.h"
-#include "video_core/renderer_vulkan/present/window_adapt_pass.h"
-#include "video_core/renderer_vulkan/vk_present_manager.h"
-#include "video_core/renderer_vulkan/vk_shader_util.h"
-#include "video_core/vulkan_common/vulkan_device.h"
-#include "video_core/vulkan_common/vulkan_memory_allocator.h"
+#include "frontend/framebuffer_layout.h"
+#include "yuzu_video_core/framebuffer_config.h"
+#include "yuzu_video_core/host_shaders/vulkan_present_vert_spv.h"
+#include "yuzu_video_core/renderer_vulkan/present/layer.h"
+#include "yuzu_video_core/renderer_vulkan/present/present_push_constants.h"
+#include "yuzu_video_core/renderer_vulkan/present/util.h"
+#include "yuzu_video_core/renderer_vulkan/present/window_adapt_pass.h"
+#include "yuzu_video_core/renderer_vulkan/vk_present_manager.h"
+#include "yuzu_video_core/renderer_vulkan/vk_shader_util.h"
+#include "yuzu_video_core/vulkan_common/vulkan_device.h"
+#include "yuzu_video_core/vulkan_common/vulkan_memory_allocator.h"
 
 namespace Vulkan {
 

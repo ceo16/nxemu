@@ -7,12 +7,12 @@
 #include <span>
 #include <unordered_map>
 
-#include "common/common_types.h"
-#include "video_core/buffer_cache/buffer_cache_base.h"
-#include "video_core/buffer_cache/memory_tracker_base.h"
-#include "video_core/renderer_opengl/gl_device.h"
-#include "video_core/renderer_opengl/gl_resource_manager.h"
-#include "video_core/renderer_opengl/gl_staging_buffer_pool.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/buffer_cache/buffer_cache_base.h"
+#include "yuzu_video_core/buffer_cache/memory_tracker_base.h"
+#include "yuzu_video_core/renderer_opengl/gl_device.h"
+#include "yuzu_video_core/renderer_opengl/gl_resource_manager.h"
+#include "yuzu_video_core/renderer_opengl/gl_staging_buffer_pool.h"
 
 namespace OpenGL {
 

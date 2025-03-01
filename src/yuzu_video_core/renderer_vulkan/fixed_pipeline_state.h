@@ -6,12 +6,12 @@
 #include <array>
 #include <type_traits>
 
-#include "common/bit_field.h"
-#include "common/common_types.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_common/common_types.h"
 
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/surface.h"
-#include "video_core/transform_feedback.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/surface.h"
+#include "yuzu_video_core/transform_feedback.h"
 
 namespace Vulkan {
 

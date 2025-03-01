@@ -3,12 +3,12 @@
 
 #include <limits>
 
-#include "common/assert.h"
-#include "video_core/texture_cache/image_view_info.h"
-#include "video_core/texture_cache/texture_cache_base.h"
-#include "video_core/texture_cache/types.h"
-#include "video_core/texture_cache/util.h"
-#include "video_core/textures/texture.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_video_core/texture_cache/image_view_info.h"
+#include "yuzu_video_core/texture_cache/texture_cache_base.h"
+#include "yuzu_video_core/texture_cache/types.h"
+#include "yuzu_video_core/texture_cache/util.h"
+#include "yuzu_video_core/textures/texture.h"
 
 namespace VideoCommon {
 

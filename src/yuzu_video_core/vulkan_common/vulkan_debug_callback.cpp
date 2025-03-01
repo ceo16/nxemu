@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <string_view>
-#include "common/logging/log.h"
-#include "video_core/vulkan_common/vulkan_debug_callback.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_video_core/vulkan_common/vulkan_debug_callback.h"
 
 namespace Vulkan {
 namespace {

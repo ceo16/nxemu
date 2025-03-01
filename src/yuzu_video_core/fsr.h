@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "common/bit_cast.h"
-#include "common/common_types.h"
+#include "yuzu_common/bit_cast.h"
+#include "yuzu_common/common_types.h"
 
 namespace FSR {
 // Reimplementations of the constant generating functions in ffx_fsr1.h

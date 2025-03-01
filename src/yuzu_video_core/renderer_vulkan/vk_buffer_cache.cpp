@@ -7,15 +7,15 @@
 #include <span>
 #include <vector>
 
-#include "video_core/renderer_vulkan/vk_buffer_cache.h"
+#include "yuzu_video_core/renderer_vulkan/vk_buffer_cache.h"
 
-#include "video_core/renderer_vulkan/maxwell_to_vk.h"
-#include "video_core/renderer_vulkan/vk_scheduler.h"
-#include "video_core/renderer_vulkan/vk_staging_buffer_pool.h"
-#include "video_core/renderer_vulkan/vk_update_descriptor.h"
-#include "video_core/vulkan_common/vulkan_device.h"
-#include "video_core/vulkan_common/vulkan_memory_allocator.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_video_core/renderer_vulkan/maxwell_to_vk.h"
+#include "yuzu_video_core/renderer_vulkan/vk_scheduler.h"
+#include "yuzu_video_core/renderer_vulkan/vk_staging_buffer_pool.h"
+#include "yuzu_video_core/renderer_vulkan/vk_update_descriptor.h"
+#include "yuzu_video_core/vulkan_common/vulkan_device.h"
+#include "yuzu_video_core/vulkan_common/vulkan_memory_allocator.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace Vulkan {
 namespace {

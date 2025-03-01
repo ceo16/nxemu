@@ -3,15 +3,15 @@
 
 #include <iterator>
 
-#include "common/assert.h"
-#include "common/common_types.h"
-#include "common/logging/log.h"
-#include "common/settings.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/renderer_vulkan/maxwell_to_vk.h"
-#include "video_core/surface.h"
-#include "video_core/vulkan_common/vulkan_device.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/renderer_vulkan/maxwell_to_vk.h"
+#include "yuzu_video_core/surface.h"
+#include "yuzu_video_core/vulkan_common/vulkan_device.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace Vulkan::MaxwellToVK {
 

@@ -1,21 +1,21 @@
 // SPDX-FileCopyrightText: 2022 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "common/assert.h"
-#include "common/logging/log.h"
-#include "common/settings.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/settings.h"
 #include "core/core.h"
-#include "video_core/control/channel_state.h"
-#include "video_core/dma_pusher.h"
-#include "video_core/engines/fermi_2d.h"
-#include "video_core/engines/kepler_compute.h"
-#include "video_core/engines/kepler_memory.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/engines/maxwell_dma.h"
-#include "video_core/engines/puller.h"
-#include "video_core/gpu.h"
-#include "video_core/memory_manager.h"
-#include "video_core/rasterizer_interface.h"
+#include "yuzu_video_core/control/channel_state.h"
+#include "yuzu_video_core/dma_pusher.h"
+#include "yuzu_video_core/engines/fermi_2d.h"
+#include "yuzu_video_core/engines/kepler_compute.h"
+#include "yuzu_video_core/engines/kepler_memory.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/engines/maxwell_dma.h"
+#include "yuzu_video_core/engines/puller.h"
+#include "yuzu_video_core/gpu.h"
+#include "yuzu_video_core/memory_manager.h"
+#include "yuzu_video_core/rasterizer_interface.h"
 
 namespace Tegra::Engines {
 

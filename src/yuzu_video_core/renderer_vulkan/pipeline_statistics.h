@@ -6,8 +6,8 @@
 #include <mutex>
 #include <vector>
 
-#include "common/common_types.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace Vulkan {
 

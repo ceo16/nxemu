@@ -13,11 +13,11 @@
 
 #include <boost/container/static_vector.hpp>
 
-#include "common/alignment.h"
-#include "common/common_types.h"
-#include "common/polyfill_ranges.h"
-#include "video_core/textures/astc.h"
-#include "video_core/textures/workers.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/polyfill_ranges.h"
+#include "yuzu_video_core/textures/astc.h"
+#include "yuzu_video_core/textures/workers.h"
 
 class InputBitStream {
 public:

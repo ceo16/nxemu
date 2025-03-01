@@ -288,6 +288,12 @@
     <ClInclude Include="x64\xbyak_util.h">
       <Filter>Header Files\x64</Filter>
     </ClInclude>
+    <ClInclude Include="hash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="slot_vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="logging\backend.cpp">

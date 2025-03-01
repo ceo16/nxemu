@@ -7,7 +7,7 @@
 #include <mutex>
 #include <unordered_map>
 
-#include "video_core/dma_pusher.h"
+#include "yuzu_video_core/dma_pusher.h"
 
 namespace Tegra {
 

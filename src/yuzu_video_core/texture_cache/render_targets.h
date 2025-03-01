@@ -6,8 +6,8 @@
 #include <algorithm>
 #include <span>
 
-#include "common/bit_cast.h"
-#include "video_core/texture_cache/types.h"
+#include "yuzu_common/bit_cast.h"
+#include "yuzu_video_core/texture_cache/types.h"
 
 namespace VideoCommon {
 

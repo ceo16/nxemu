@@ -7,14 +7,14 @@
 #include <condition_variable>
 #include <mutex>
 
-#include "common/common_types.h"
-#include "common/thread_worker.h"
-#include "shader_recompiler/shader_info.h"
-#include "video_core/renderer_vulkan/vk_buffer_cache.h"
-#include "video_core/renderer_vulkan/vk_descriptor_pool.h"
-#include "video_core/renderer_vulkan/vk_texture_cache.h"
-#include "video_core/renderer_vulkan/vk_update_descriptor.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/thread_worker.h"
+#include "yuzu_shader_recompiler/shader_info.h"
+#include "yuzu_video_core/renderer_vulkan/vk_buffer_cache.h"
+#include "yuzu_video_core/renderer_vulkan/vk_descriptor_pool.h"
+#include "yuzu_video_core/renderer_vulkan/vk_texture_cache.h"
+#include "yuzu_video_core/renderer_vulkan/vk_update_descriptor.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace VideoCore {
 class ShaderNotify;

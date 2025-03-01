@@ -14,11 +14,11 @@
 #include <unordered_map>
 #include <vector>
 
-#include "common/common_types.h"
-#include "common/polyfill_thread.h"
-#include "common/unique_function.h"
-#include "shader_recompiler/environment.h"
-#include "video_core/engines/maxwell_3d.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/polyfill_thread.h"
+#include "yuzu_common/unique_function.h"
+#include "yuzu_shader_recompiler/environment.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
 
 namespace Tegra {
 class Memorymanager;

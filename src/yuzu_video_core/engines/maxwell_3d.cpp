@@ -3,19 +3,19 @@
 
 #include <cstring>
 #include <optional>
-#include "common/assert.h"
-#include "common/bit_util.h"
-#include "common/scope_exit.h"
-#include "common/settings.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/bit_util.h"
+#include "yuzu_common/scope_exit.h"
+#include "yuzu_common/settings.h"
 #include "core/core.h"
 #include "core/core_timing.h"
-#include "video_core/dirty_flags.h"
-#include "video_core/engines/draw_manager.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/gpu.h"
-#include "video_core/memory_manager.h"
-#include "video_core/rasterizer_interface.h"
-#include "video_core/textures/texture.h"
+#include "yuzu_video_core/dirty_flags.h"
+#include "yuzu_video_core/engines/draw_manager.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/gpu.h"
+#include "yuzu_video_core/memory_manager.h"
+#include "yuzu_video_core/rasterizer_interface.h"
+#include "yuzu_video_core/textures/texture.h"
 
 namespace Tegra::Engines {
 

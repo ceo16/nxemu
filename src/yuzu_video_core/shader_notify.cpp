@@ -4,7 +4,7 @@
 #include <atomic>
 #include <chrono>
 
-#include "video_core/shader_notify.h"
+#include "yuzu_video_core/shader_notify.h"
 
 using namespace std::chrono_literals;
 

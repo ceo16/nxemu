@@ -5,9 +5,9 @@
 
 #include <span>
 
-#include "common/common_types.h"
-#include "video_core/surface.h"
-#include "video_core/texture_cache/types.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/surface.h"
+#include "yuzu_video_core/texture_cache/types.h"
 
 namespace VideoCommon {
 

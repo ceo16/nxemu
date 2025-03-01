@@ -7,20 +7,20 @@
 #include <boost/container/small_vector.hpp>
 #include <boost/container/static_vector.hpp>
 
-#include "video_core/renderer_vulkan/pipeline_helper.h"
+#include "yuzu_video_core/renderer_vulkan/pipeline_helper.h"
 
-#include "common/bit_field.h"
-#include "video_core/renderer_vulkan/maxwell_to_vk.h"
-#include "video_core/renderer_vulkan/pipeline_statistics.h"
-#include "video_core/renderer_vulkan/vk_buffer_cache.h"
-#include "video_core/renderer_vulkan/vk_graphics_pipeline.h"
-#include "video_core/renderer_vulkan/vk_render_pass_cache.h"
-#include "video_core/renderer_vulkan/vk_scheduler.h"
-#include "video_core/renderer_vulkan/vk_texture_cache.h"
-#include "video_core/renderer_vulkan/vk_update_descriptor.h"
-#include "video_core/shader_notify.h"
-#include "video_core/texture_cache/texture_cache.h"
-#include "video_core/vulkan_common/vulkan_device.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_video_core/renderer_vulkan/maxwell_to_vk.h"
+#include "yuzu_video_core/renderer_vulkan/pipeline_statistics.h"
+#include "yuzu_video_core/renderer_vulkan/vk_buffer_cache.h"
+#include "yuzu_video_core/renderer_vulkan/vk_graphics_pipeline.h"
+#include "yuzu_video_core/renderer_vulkan/vk_render_pass_cache.h"
+#include "yuzu_video_core/renderer_vulkan/vk_scheduler.h"
+#include "yuzu_video_core/renderer_vulkan/vk_texture_cache.h"
+#include "yuzu_video_core/renderer_vulkan/vk_update_descriptor.h"
+#include "yuzu_video_core/shader_notify.h"
+#include "yuzu_video_core/texture_cache/texture_cache.h"
+#include "yuzu_video_core/vulkan_common/vulkan_device.h"
 
 #if defined(_MSC_VER) && defined(NDEBUG)
 #define LAMBDA_FORCEINLINE [[msvc::forceinline]]

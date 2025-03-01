@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "video_core/engines/fermi_2d.h"
+#include "yuzu_video_core/engines/fermi_2d.h"
 
 namespace Tegra {
 class MemoryManager;

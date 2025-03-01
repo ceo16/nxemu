@@ -1,9 +1,9 @@
 // SPDX-FileCopyrightText: Copyright 2024 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/assert.h"
-#include "common/polyfill_ranges.h"
-#include "video_core/renderer_vulkan/present/util.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/polyfill_ranges.h"
+#include "yuzu_video_core/renderer_vulkan/present/util.h"
 
 namespace Vulkan {
 

@@ -7,13 +7,13 @@
 #include <span>
 #include <boost/container/small_vector.hpp>
 
-#include "common/common_types.h"
-#include "common/scratch_buffer.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/scratch_buffer.h"
 
-#include "video_core/surface.h"
-#include "video_core/texture_cache/image_base.h"
-#include "video_core/texture_cache/types.h"
-#include "video_core/textures/texture.h"
+#include "yuzu_video_core/surface.h"
+#include "yuzu_video_core/texture_cache/image_base.h"
+#include "yuzu_video_core/texture_cache/types.h"
+#include "yuzu_video_core/textures/texture.h"
 
 namespace VideoCommon {
 

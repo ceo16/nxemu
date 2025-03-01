@@ -3,10 +3,10 @@
 
 #include <thread>
 
-#include "common/logging/log.h"
-#include "core/frontend/emu_window.h"
-#include "core/frontend/graphics_context.h"
-#include "video_core/renderer_base.h"
+#include "yuzu_common/logging/log.h"
+#include "frontend/emu_window.h"
+#include "frontend/graphics_context.h"
+#include "yuzu_video_core/renderer_base.h"
 
 namespace VideoCore {
 

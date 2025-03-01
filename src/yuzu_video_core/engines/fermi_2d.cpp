@@ -1,15 +1,15 @@
 // SPDX-FileCopyrightText: Copyright 2018 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/assert.h"
-#include "common/logging/log.h"
-#include "common/microprofile.h"
-#include "video_core/engines/fermi_2d.h"
-#include "video_core/engines/sw_blitter/blitter.h"
-#include "video_core/memory_manager.h"
-#include "video_core/rasterizer_interface.h"
-#include "video_core/surface.h"
-#include "video_core/textures/decoders.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/microprofile.h"
+#include "yuzu_video_core/engines/fermi_2d.h"
+#include "yuzu_video_core/engines/sw_blitter/blitter.h"
+#include "yuzu_video_core/memory_manager.h"
+#include "yuzu_video_core/rasterizer_interface.h"
+#include "yuzu_video_core/surface.h"
+#include "yuzu_video_core/textures/decoders.h"
 
 MICROPROFILE_DECLARE(GPU_BlitEngine);
 MICROPROFILE_DEFINE(GPU_BlitEngine, "GPU", "Blit Engine", MP_RGB(224, 224, 128));

@@ -3,9 +3,9 @@
 
 #pragma once
 
-#include "common/common_funcs.h"
-#include "video_core/surface.h"
-#include "video_core/texture_cache/types.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_video_core/surface.h"
+#include "yuzu_video_core/texture_cache/types.h"
 
 namespace VideoCommon {
 

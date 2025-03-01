@@ -7,15 +7,15 @@
 
 #include <xbyak/xbyak.h>
 
-#include "common/assert.h"
-#include "common/bit_field.h"
-#include "common/logging/log.h"
-#include "common/microprofile.h"
-#include "common/x64/xbyak_abi.h"
-#include "common/x64/xbyak_util.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/macro/macro_interpreter.h"
-#include "video_core/macro/macro_jit_x64.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/microprofile.h"
+#include "yuzu_common/x64/xbyak_abi.h"
+#include "yuzu_common/x64/xbyak_util.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/macro/macro_interpreter.h"
+#include "yuzu_video_core/macro/macro_jit_x64.h"
 
 MICROPROFILE_DEFINE(MacroJitCompile, "GPU", "Compile macro JIT", MP_RGB(173, 255, 47));
 MICROPROFILE_DEFINE(MacroJitExecute, "GPU", "Execute macro JIT", MP_RGB(255, 255, 0));

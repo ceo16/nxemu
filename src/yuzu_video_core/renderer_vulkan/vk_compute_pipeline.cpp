@@ -6,17 +6,17 @@
 
 #include <boost/container/small_vector.hpp>
 
-#include "video_core/renderer_vulkan/pipeline_helper.h"
-#include "video_core/renderer_vulkan/pipeline_statistics.h"
-#include "video_core/renderer_vulkan/vk_buffer_cache.h"
-#include "video_core/renderer_vulkan/vk_compute_pipeline.h"
-#include "video_core/renderer_vulkan/vk_descriptor_pool.h"
-#include "video_core/renderer_vulkan/vk_pipeline_cache.h"
-#include "video_core/renderer_vulkan/vk_scheduler.h"
-#include "video_core/renderer_vulkan/vk_update_descriptor.h"
-#include "video_core/shader_notify.h"
-#include "video_core/vulkan_common/vulkan_device.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_video_core/renderer_vulkan/pipeline_helper.h"
+#include "yuzu_video_core/renderer_vulkan/pipeline_statistics.h"
+#include "yuzu_video_core/renderer_vulkan/vk_buffer_cache.h"
+#include "yuzu_video_core/renderer_vulkan/vk_compute_pipeline.h"
+#include "yuzu_video_core/renderer_vulkan/vk_descriptor_pool.h"
+#include "yuzu_video_core/renderer_vulkan/vk_pipeline_cache.h"
+#include "yuzu_video_core/renderer_vulkan/vk_scheduler.h"
+#include "yuzu_video_core/renderer_vulkan/vk_update_descriptor.h"
+#include "yuzu_video_core/shader_notify.h"
+#include "yuzu_video_core/vulkan_common/vulkan_device.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace Vulkan {
 

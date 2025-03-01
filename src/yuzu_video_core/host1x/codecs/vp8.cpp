@@ -3,9 +3,9 @@
 
 #include <vector>
 
-#include "video_core/host1x/codecs/vp8.h"
-#include "video_core/host1x/host1x.h"
-#include "video_core/memory_manager.h"
+#include "yuzu_video_core/host1x/codecs/vp8.h"
+#include "yuzu_video_core/host1x/host1x.h"
+#include "yuzu_video_core/memory_manager.h"
 
 namespace Tegra::Decoder {
 VP8::VP8(Host1x::Host1x& host1x_) : host1x{host1x_} {}

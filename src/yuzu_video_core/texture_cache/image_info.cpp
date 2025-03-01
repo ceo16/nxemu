@@ -3,15 +3,15 @@
 
 #include <fmt/format.h>
 
-#include "common/assert.h"
-#include "common/settings.h"
-#include "video_core/surface.h"
-#include "video_core/texture_cache/format_lookup_table.h"
-#include "video_core/texture_cache/image_info.h"
-#include "video_core/texture_cache/samples_helper.h"
-#include "video_core/texture_cache/types.h"
-#include "video_core/texture_cache/util.h"
-#include "video_core/textures/texture.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_video_core/surface.h"
+#include "yuzu_video_core/texture_cache/format_lookup_table.h"
+#include "yuzu_video_core/texture_cache/image_info.h"
+#include "yuzu_video_core/texture_cache/samples_helper.h"
+#include "yuzu_video_core/texture_cache/types.h"
+#include "yuzu_video_core/texture_cache/util.h"
+#include "yuzu_video_core/textures/texture.h"
 
 namespace VideoCommon {
 

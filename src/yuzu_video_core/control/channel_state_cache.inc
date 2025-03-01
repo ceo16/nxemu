@@ -3,11 +3,11 @@
 
 #include <algorithm>
 
-#include "video_core/control/channel_state.h"
-#include "video_core/control/channel_state_cache.h"
-#include "video_core/engines/kepler_compute.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/memory_manager.h"
+#include "yuzu_video_core/control/channel_state.h"
+#include "yuzu_video_core/control/channel_state_cache.h"
+#include "yuzu_video_core/engines/kepler_compute.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/memory_manager.h"
 
 namespace VideoCommon {
 

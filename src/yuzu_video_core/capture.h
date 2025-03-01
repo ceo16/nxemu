@@ -3,11 +3,11 @@
 
 #pragma once
 
-#include "common/alignment.h"
-#include "common/bit_util.h"
-#include "common/common_types.h"
-#include "core/frontend/framebuffer_layout.h"
-#include "video_core/surface.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_common/bit_util.h"
+#include "yuzu_common/common_types.h"
+#include "frontend/framebuffer_layout.h"
+#include "yuzu_video_core/surface.h"
 
 namespace VideoCore::Capture {
 

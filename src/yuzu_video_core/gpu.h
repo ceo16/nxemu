@@ -5,12 +5,12 @@
 
 #include <memory>
 
-#include "common/bit_field.h"
-#include "common/common_types.h"
-#include "core/hle/service/nvdrv/nvdata.h"
-#include "video_core/cdma_pusher.h"
-#include "video_core/framebuffer_config.h"
-#include "video_core/rasterizer_download_area.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/service/nvdrv/nvdata.h"
+#include "yuzu_video_core/cdma_pusher.h"
+#include "yuzu_video_core/framebuffer_config.h"
+#include "yuzu_video_core/rasterizer_download_area.h"
 
 namespace Core {
 class System;

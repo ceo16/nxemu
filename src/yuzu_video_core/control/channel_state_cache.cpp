@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2022 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "video_core/control/channel_state_cache.inc"
+#include "yuzu_video_core/control/channel_state_cache.inc"
 
 namespace VideoCommon {
 

@@ -1,17 +1,17 @@
 // SPDX-FileCopyrightText: Copyright 2024 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "video_core/framebuffer_config.h"
-#include "video_core/present.h"
-#include "video_core/renderer_opengl/gl_blit_screen.h"
-#include "video_core/renderer_opengl/gl_rasterizer.h"
-#include "video_core/renderer_opengl/present/fsr.h"
-#include "video_core/renderer_opengl/present/fxaa.h"
-#include "video_core/renderer_opengl/present/layer.h"
-#include "video_core/renderer_opengl/present/present_uniforms.h"
-#include "video_core/renderer_opengl/present/smaa.h"
-#include "video_core/surface.h"
-#include "video_core/textures/decoders.h"
+#include "yuzu_video_core/framebuffer_config.h"
+#include "yuzu_video_core/present.h"
+#include "yuzu_video_core/renderer_opengl/gl_blit_screen.h"
+#include "yuzu_video_core/renderer_opengl/gl_rasterizer.h"
+#include "yuzu_video_core/renderer_opengl/present/fsr.h"
+#include "yuzu_video_core/renderer_opengl/present/fxaa.h"
+#include "yuzu_video_core/renderer_opengl/present/layer.h"
+#include "yuzu_video_core/renderer_opengl/present/present_uniforms.h"
+#include "yuzu_video_core/renderer_opengl/present/smaa.h"
+#include "yuzu_video_core/surface.h"
+#include "yuzu_video_core/textures/decoders.h"
 
 namespace OpenGL {
 

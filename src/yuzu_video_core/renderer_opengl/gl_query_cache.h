@@ -7,11 +7,11 @@
 #include <memory>
 #include <vector>
 
-#include "common/common_types.h"
-#include "video_core/host1x/gpu_device_memory_manager.h"
-#include "video_core/query_cache.h"
-#include "video_core/rasterizer_interface.h"
-#include "video_core/renderer_opengl/gl_resource_manager.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/host1x/gpu_device_memory_manager.h"
+#include "yuzu_video_core/query_cache.h"
+#include "yuzu_video_core/rasterizer_interface.h"
+#include "yuzu_video_core/renderer_opengl/gl_resource_manager.h"
 
 namespace Core {
 class System;

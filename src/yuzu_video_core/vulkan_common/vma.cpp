@@ -3,4 +3,4 @@
 
 #define VMA_IMPLEMENTATION
 
-#include "video_core/vulkan_common/vma.h"
+#include "yuzu_video_core/vulkan_common/vma.h"

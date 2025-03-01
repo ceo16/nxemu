@@ -7,23 +7,19 @@
 #include <string>
 #include <variant>
 
-#include "common/dynamic_library.h"
-#include "video_core/host1x/gpu_device_memory_manager.h"
-#include "video_core/renderer_base.h"
-#include "video_core/renderer_vulkan/vk_blit_screen.h"
-#include "video_core/renderer_vulkan/vk_present_manager.h"
-#include "video_core/renderer_vulkan/vk_rasterizer.h"
-#include "video_core/renderer_vulkan/vk_scheduler.h"
-#include "video_core/renderer_vulkan/vk_state_tracker.h"
-#include "video_core/renderer_vulkan/vk_swapchain.h"
-#include "video_core/renderer_vulkan/vk_turbo_mode.h"
-#include "video_core/vulkan_common/vulkan_device.h"
-#include "video_core/vulkan_common/vulkan_memory_allocator.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
-
-namespace Core {
-class TelemetrySession;
-}
+#include "yuzu_common/dynamic_library.h"
+#include "yuzu_video_core/host1x/gpu_device_memory_manager.h"
+#include "yuzu_video_core/renderer_base.h"
+#include "yuzu_video_core/renderer_vulkan/vk_blit_screen.h"
+#include "yuzu_video_core/renderer_vulkan/vk_present_manager.h"
+#include "yuzu_video_core/renderer_vulkan/vk_rasterizer.h"
+#include "yuzu_video_core/renderer_vulkan/vk_scheduler.h"
+#include "yuzu_video_core/renderer_vulkan/vk_state_tracker.h"
+#include "yuzu_video_core/renderer_vulkan/vk_swapchain.h"
+#include "yuzu_video_core/renderer_vulkan/vk_turbo_mode.h"
+#include "yuzu_video_core/vulkan_common/vulkan_device.h"
+#include "yuzu_video_core/vulkan_common/vulkan_memory_allocator.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace Core::Memory {
 class Memory;
@@ -40,8 +36,7 @@ Device CreateDevice(const vk::Instance& instance, const vk::InstanceDispatch& dl
 
 class RendererVulkan final : public VideoCore::RendererBase {
 public:
-    explicit RendererVulkan(Core::TelemetrySession& telemtry_session,
-                            Core::Frontend::EmuWindow& emu_window,
+    explicit RendererVulkan(Core::Frontend::EmuWindow& emu_window,
                             Tegra::MaxwellDeviceMemoryManager& device_memory_, Tegra::GPU& gpu_,
                             std::unique_ptr<Core::Frontend::GraphicsContext> context_);
     ~RendererVulkan() override;
@@ -67,7 +62,6 @@ private:
     void RenderScreenshot(std::span<const Tegra::FramebufferConfig> framebuffers);
     void RenderAppletCaptureLayer(std::span<const Tegra::FramebufferConfig> framebuffers);
 
-    Core::TelemetrySession& telemetry_session;
     Tegra::MaxwellDeviceMemoryManager& device_memory;
     Tegra::GPU& gpu;
 

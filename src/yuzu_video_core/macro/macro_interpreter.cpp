@@ -4,11 +4,11 @@
 #include <array>
 #include <optional>
 
-#include "common/assert.h"
-#include "common/logging/log.h"
-#include "common/microprofile.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/macro/macro_interpreter.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/microprofile.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/macro/macro_interpreter.h"
 
 MICROPROFILE_DEFINE(MacroInterp, "GPU", "Execute macro interpreter", MP_RGB(128, 128, 192));
 

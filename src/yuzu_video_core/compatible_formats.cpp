@@ -4,9 +4,9 @@
 #include <array>
 #include <cstddef>
 
-#include "common/common_types.h"
-#include "video_core/compatible_formats.h"
-#include "video_core/surface.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/compatible_formats.h"
+#include "yuzu_video_core/surface.h"
 
 namespace VideoCore::Surface {
 namespace {

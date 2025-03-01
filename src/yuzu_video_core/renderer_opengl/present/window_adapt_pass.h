@@ -6,8 +6,8 @@
 #include <list>
 #include <span>
 
-#include "common/math_util.h"
-#include "video_core/renderer_opengl/gl_resource_manager.h"
+#include "yuzu_common/math_util.h"
+#include "yuzu_video_core/renderer_opengl/gl_resource_manager.h"
 
 namespace Layout {
 struct FramebufferLayout;

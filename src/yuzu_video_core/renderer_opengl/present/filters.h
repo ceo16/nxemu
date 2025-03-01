@@ -4,7 +4,7 @@
 #pragma once
 
 #include <memory>
-#include "video_core/renderer_opengl/present/window_adapt_pass.h"
+#include "yuzu_video_core/renderer_opengl/present/window_adapt_pass.h"
 
 namespace OpenGL {
 

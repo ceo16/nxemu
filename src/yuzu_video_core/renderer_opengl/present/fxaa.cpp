@@ -1,12 +1,12 @@
 // SPDX-FileCopyrightText: Copyright 2024 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "video_core/host_shaders/fxaa_frag.h"
-#include "video_core/host_shaders/fxaa_vert.h"
-#include "video_core/renderer_opengl/gl_shader_manager.h"
-#include "video_core/renderer_opengl/gl_shader_util.h"
-#include "video_core/renderer_opengl/present/fxaa.h"
-#include "video_core/renderer_opengl/present/util.h"
+#include "yuzu_video_core/host_shaders/fxaa_frag.h"
+#include "yuzu_video_core/host_shaders/fxaa_vert.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_manager.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_util.h"
+#include "yuzu_video_core/renderer_opengl/present/fxaa.h"
+#include "yuzu_video_core/renderer_opengl/present/util.h"
 
 namespace OpenGL {
 

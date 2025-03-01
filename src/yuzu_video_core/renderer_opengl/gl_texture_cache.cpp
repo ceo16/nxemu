@@ -8,19 +8,19 @@
 
 #include <glad/glad.h>
 
-#include "common/bit_util.h"
-#include "common/literals.h"
-#include "common/settings.h"
-#include "video_core/renderer_opengl/gl_device.h"
-#include "video_core/renderer_opengl/gl_shader_manager.h"
-#include "video_core/renderer_opengl/gl_state_tracker.h"
-#include "video_core/renderer_opengl/gl_texture_cache.h"
-#include "video_core/renderer_opengl/maxwell_to_gl.h"
-#include "video_core/renderer_opengl/util_shaders.h"
-#include "video_core/surface.h"
-#include "video_core/texture_cache/formatter.h"
-#include "video_core/texture_cache/samples_helper.h"
-#include "video_core/texture_cache/util.h"
+#include "yuzu_common/bit_util.h"
+#include "yuzu_common/literals.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_video_core/renderer_opengl/gl_device.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_manager.h"
+#include "yuzu_video_core/renderer_opengl/gl_state_tracker.h"
+#include "yuzu_video_core/renderer_opengl/gl_texture_cache.h"
+#include "yuzu_video_core/renderer_opengl/maxwell_to_gl.h"
+#include "yuzu_video_core/renderer_opengl/util_shaders.h"
+#include "yuzu_video_core/surface.h"
+#include "yuzu_video_core/texture_cache/formatter.h"
+#include "yuzu_video_core/texture_cache/samples_helper.h"
+#include "yuzu_video_core/texture_cache/util.h"
 
 namespace OpenGL {
 namespace {

@@ -3,12 +3,12 @@
 
 #pragma once
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 
-#include "common/address_space.h"
-#include "video_core/host1x/gpu_device_memory_manager.h"
-#include "video_core/host1x/syncpoint_manager.h"
-#include "video_core/memory_manager.h"
+#include "yuzu_common/address_space.h"
+#include "yuzu_video_core/host1x/gpu_device_memory_manager.h"
+#include "yuzu_video_core/host1x/syncpoint_manager.h"
+#include "yuzu_video_core/memory_manager.h"
 
 namespace Core {
 class System;

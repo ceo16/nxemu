@@ -6,9 +6,9 @@
 #include <memory>
 #include <span>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 
-#include "video_core/gpu.h"
+#include "yuzu_video_core/gpu.h"
 
 namespace Tegra::Engines::Blitter {
 

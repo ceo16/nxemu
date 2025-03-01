@@ -7,9 +7,9 @@
 
 #include <glad/glad.h>
 
-#include "common/common_types.h"
-#include "video_core/renderer_opengl/gl_resource_manager.h"
-#include "video_core/texture_cache/types.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/renderer_opengl/gl_resource_manager.h"
+#include "yuzu_video_core/texture_cache/types.h"
 
 namespace OpenGL {
 

@@ -6,21 +6,21 @@
 #include <optional>
 #include <span>
 
-#include "common/container_hash.h"
+#include "yuzu_common/container_hash.h"
 
 #include <fstream>
-#include "common/assert.h"
-#include "common/fs/fs.h"
-#include "common/fs/path_util.h"
-#include "common/microprofile.h"
-#include "common/settings.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/macro/macro.h"
-#include "video_core/macro/macro_hle.h"
-#include "video_core/macro/macro_interpreter.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/fs/fs.h"
+#include "yuzu_common/fs/path_util.h"
+#include "yuzu_common/microprofile.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/macro/macro.h"
+#include "yuzu_video_core/macro/macro_hle.h"
+#include "yuzu_video_core/macro/macro_interpreter.h"
 
 #ifdef ARCHITECTURE_x86_64
-#include "video_core/macro/macro_jit_x64.h"
+#include "yuzu_video_core/macro/macro_jit_x64.h"
 #endif
 
 MICROPROFILE_DEFINE(MacroHLE, "GPU", "Execute macro HLE", MP_RGB(128, 192, 192));

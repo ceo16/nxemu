@@ -7,10 +7,10 @@
 #include <memory>
 #include <numeric>
 
-#include "common/range_sets.inc"
-#include "video_core/buffer_cache/buffer_cache_base.h"
-#include "video_core/guest_memory.h"
-#include "video_core/host1x/gpu_device_memory_manager.h"
+#include "yuzu_common/range_sets.inc"
+#include "yuzu_video_core/buffer_cache/buffer_cache_base.h"
+#include "yuzu_video_core/guest_memory.h"
+#include "yuzu_video_core/host1x/gpu_device_memory_manager.h"
 
 namespace VideoCommon {
 

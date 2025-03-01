@@ -1,10 +1,10 @@
 // SPDX-FileCopyrightText: 2014 Citra Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/common_types.h"
-#include "common/math_util.h"
-#include "common/settings.h"
-#include "video_core/surface.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/math_util.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_video_core/surface.h"
 
 namespace VideoCore::Surface {
 

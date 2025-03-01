@@ -6,16 +6,16 @@
 #include <optional>
 #include <vector>
 
-#include "common/alignment.h"
-#include "common/assert.h"
-#include "common/common_types.h"
-#include "common/literals.h"
-#include "common/logging/log.h"
-#include "common/polyfill_ranges.h"
-#include "video_core/vulkan_common/vma.h"
-#include "video_core/vulkan_common/vulkan_device.h"
-#include "video_core/vulkan_common/vulkan_memory_allocator.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/literals.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/polyfill_ranges.h"
+#include "yuzu_video_core/vulkan_common/vma.h"
+#include "yuzu_video_core/vulkan_common/vulkan_device.h"
+#include "yuzu_video_core/vulkan_common/vulkan_memory_allocator.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace Vulkan {
 namespace {

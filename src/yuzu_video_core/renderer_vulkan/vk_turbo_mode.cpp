@@ -5,12 +5,12 @@
 #include <adrenotools/driver.h>
 #endif
 
-#include "common/literals.h"
-#include "video_core/host_shaders/vulkan_turbo_mode_comp_spv.h"
-#include "video_core/renderer_vulkan/renderer_vulkan.h"
-#include "video_core/renderer_vulkan/vk_shader_util.h"
-#include "video_core/renderer_vulkan/vk_turbo_mode.h"
-#include "video_core/vulkan_common/vulkan_device.h"
+#include "yuzu_common/literals.h"
+#include "yuzu_video_core/host_shaders/vulkan_turbo_mode_comp_spv.h"
+#include "yuzu_video_core/renderer_vulkan/renderer_vulkan.h"
+#include "yuzu_video_core/renderer_vulkan/vk_shader_util.h"
+#include "yuzu_video_core/renderer_vulkan/vk_turbo_mode.h"
+#include "yuzu_video_core/vulkan_common/vulkan_device.h"
 
 namespace Vulkan {
 

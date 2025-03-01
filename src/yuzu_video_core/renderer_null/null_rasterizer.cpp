@@ -1,11 +1,11 @@
 // SPDX-FileCopyrightText: Copyright 2022 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/alignment.h"
-#include "video_core/control/channel_state.h"
-#include "video_core/host1x/host1x.h"
-#include "video_core/memory_manager.h"
-#include "video_core/renderer_null/null_rasterizer.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_video_core/control/channel_state.h"
+#include "yuzu_video_core/host1x/host1x.h"
+#include "yuzu_video_core/memory_manager.h"
+#include "yuzu_video_core/renderer_null/null_rasterizer.h"
 
 namespace Null {
 

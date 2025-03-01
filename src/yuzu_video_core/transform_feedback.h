@@ -6,9 +6,9 @@
 #include <array>
 #include <vector>
 
-#include "common/common_types.h"
-#include "shader_recompiler/runtime_info.h"
-#include "video_core/engines/maxwell_3d.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_shader_recompiler/runtime_info.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
 
 namespace VideoCommon {
 

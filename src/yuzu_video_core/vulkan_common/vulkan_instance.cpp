@@ -6,13 +6,13 @@
 #include <span>
 #include <vector>
 
-#include "common/common_types.h"
-#include "common/dynamic_library.h"
-#include "common/logging/log.h"
-#include "common/polyfill_ranges.h"
-#include "core/frontend/emu_window.h"
-#include "video_core/vulkan_common/vulkan_instance.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/dynamic_library.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/polyfill_ranges.h"
+#include "frontend/emu_window.h"
+#include "yuzu_video_core/vulkan_common/vulkan_instance.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace Vulkan {
 namespace {

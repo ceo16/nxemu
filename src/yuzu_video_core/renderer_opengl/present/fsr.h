@@ -5,10 +5,10 @@
 
 #include <string_view>
 
-#include "common/common_types.h"
-#include "common/math_util.h"
-#include "video_core/fsr.h"
-#include "video_core/renderer_opengl/gl_resource_manager.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/math_util.h"
+#include "yuzu_video_core/fsr.h"
+#include "yuzu_video_core/renderer_opengl/gl_resource_manager.h"
 
 namespace OpenGL {
 

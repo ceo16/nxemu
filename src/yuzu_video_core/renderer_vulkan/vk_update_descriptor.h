@@ -5,7 +5,7 @@
 
 #include <array>
 
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace Vulkan {
 

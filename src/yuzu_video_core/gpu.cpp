@@ -8,31 +8,30 @@
 #include <list>
 #include <memory>
 
-#include "common/assert.h"
-#include "common/microprofile.h"
-#include "common/settings.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/microprofile.h"
+#include "yuzu_common/settings.h"
 #include "core/core.h"
 #include "core/core_timing.h"
-#include "core/frontend/emu_window.h"
-#include "core/frontend/graphics_context.h"
-#include "core/hle/service/nvdrv/nvdata.h"
-#include "core/perf_stats.h"
-#include "video_core/cdma_pusher.h"
-#include "video_core/control/channel_state.h"
-#include "video_core/control/scheduler.h"
-#include "video_core/dma_pusher.h"
-#include "video_core/engines/fermi_2d.h"
-#include "video_core/engines/kepler_compute.h"
-#include "video_core/engines/kepler_memory.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/engines/maxwell_dma.h"
-#include "video_core/gpu.h"
-#include "video_core/gpu_thread.h"
-#include "video_core/host1x/host1x.h"
-#include "video_core/host1x/syncpoint_manager.h"
-#include "video_core/memory_manager.h"
-#include "video_core/renderer_base.h"
-#include "video_core/shader_notify.h"
+#include "frontend/emu_window.h"
+#include "frontend/graphics_context.h"
+#include "yuzu_video_core/service/nvdrv/nvdata.h"
+#include "yuzu_video_core/cdma_pusher.h"
+#include "yuzu_video_core/control/channel_state.h"
+#include "yuzu_video_core/control/scheduler.h"
+#include "yuzu_video_core/dma_pusher.h"
+#include "yuzu_video_core/engines/fermi_2d.h"
+#include "yuzu_video_core/engines/kepler_compute.h"
+#include "yuzu_video_core/engines/kepler_memory.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/engines/maxwell_dma.h"
+#include "yuzu_video_core/gpu.h"
+#include "yuzu_video_core/gpu_thread.h"
+#include "yuzu_video_core/host1x/host1x.h"
+#include "yuzu_video_core/host1x/syncpoint_manager.h"
+#include "yuzu_video_core/memory_manager.h"
+#include "yuzu_video_core/renderer_base.h"
+#include "yuzu_video_core/shader_notify.h"
 
 namespace Tegra {
 
@@ -215,7 +214,7 @@ struct GPU::Impl {
     }
 
     void RendererFrameEndNotify() {
-        system.GetPerfStats().EndGameFrame();
+        UNIMPLEMENTED();
     }
 
     /// Performs any additional setup necessary in order to begin GPU emulation.

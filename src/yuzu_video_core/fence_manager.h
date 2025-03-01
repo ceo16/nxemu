@@ -13,16 +13,16 @@
 #include <thread>
 #include <queue>
 
-#include "common/common_types.h"
-#include "common/microprofile.h"
-#include "common/scope_exit.h"
-#include "common/settings.h"
-#include "common/thread.h"
-#include "video_core/delayed_destruction_ring.h"
-#include "video_core/gpu.h"
-#include "video_core/host1x/host1x.h"
-#include "video_core/host1x/syncpoint_manager.h"
-#include "video_core/rasterizer_interface.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/microprofile.h"
+#include "yuzu_common/scope_exit.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_common/thread.h"
+#include "yuzu_video_core/delayed_destruction_ring.h"
+#include "yuzu_video_core/gpu.h"
+#include "yuzu_video_core/host1x/host1x.h"
+#include "yuzu_video_core/host1x/syncpoint_manager.h"
+#include "yuzu_video_core/rasterizer_interface.h"
 
 namespace VideoCommon {
 

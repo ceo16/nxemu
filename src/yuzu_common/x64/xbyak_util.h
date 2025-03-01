@@ -5,7 +5,7 @@
 
 #include <type_traits>
 #include <xbyak/xbyak.h>
-#include "common/x64/xbyak_abi.h"
+#include "yuzu_common/x64/xbyak_abi.h"
 
 namespace Common::X64 {
 

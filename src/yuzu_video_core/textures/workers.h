@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "common/thread_worker.h"
+#include "yuzu_common/thread_worker.h"
 
 namespace Tegra::Texture {
 

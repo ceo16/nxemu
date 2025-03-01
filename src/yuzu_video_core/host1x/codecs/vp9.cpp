@@ -4,10 +4,10 @@
 #include <algorithm> // for std::copy
 #include <numeric>
 
-#include "common/assert.h"
-#include "video_core/host1x/codecs/vp9.h"
-#include "video_core/host1x/host1x.h"
-#include "video_core/memory_manager.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_video_core/host1x/codecs/vp9.h"
+#include "yuzu_video_core/host1x/host1x.h"
+#include "yuzu_video_core/memory_manager.h"
 
 namespace Tegra::Decoder {
 namespace {

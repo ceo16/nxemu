@@ -3,14 +3,14 @@
 
 #include <algorithm>
 
-#include "common/assert.h"
-#include "video_core/compatible_formats.h"
-#include "video_core/surface.h"
-#include "video_core/texture_cache/formatter.h"
-#include "video_core/texture_cache/image_info.h"
-#include "video_core/texture_cache/image_view_base.h"
-#include "video_core/texture_cache/image_view_info.h"
-#include "video_core/texture_cache/types.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_video_core/compatible_formats.h"
+#include "yuzu_video_core/surface.h"
+#include "yuzu_video_core/texture_cache/formatter.h"
+#include "yuzu_video_core/texture_cache/image_info.h"
+#include "yuzu_video_core/texture_cache/image_view_base.h"
+#include "yuzu_video_core/texture_cache/image_view_info.h"
+#include "yuzu_video_core/texture_cache/types.h"
 
 namespace VideoCommon {
 

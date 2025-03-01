@@ -2,15 +2,15 @@
 // SPDX-License-Identifier: MIT
 
 #include <bit>
-#include "video_core/cdma_pusher.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/host1x/control.h"
-#include "video_core/host1x/host1x.h"
-#include "video_core/host1x/nvdec.h"
-#include "video_core/host1x/nvdec_common.h"
-#include "video_core/host1x/sync_manager.h"
-#include "video_core/host1x/vic.h"
-#include "video_core/memory_manager.h"
+#include "yuzu_video_core/cdma_pusher.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/host1x/control.h"
+#include "yuzu_video_core/host1x/host1x.h"
+#include "yuzu_video_core/host1x/nvdec.h"
+#include "yuzu_video_core/host1x/nvdec_common.h"
+#include "yuzu_video_core/host1x/sync_manager.h"
+#include "yuzu_video_core/host1x/vic.h"
+#include "yuzu_video_core/memory_manager.h"
 
 namespace Tegra {
 CDmaPusher::CDmaPusher(Host1x::Host1x& host1x_)

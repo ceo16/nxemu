@@ -11,11 +11,11 @@
 #include <utility>
 #include <queue>
 
-#include "common/alignment.h"
-#include "common/common_types.h"
-#include "common/polyfill_thread.h"
-#include "video_core/renderer_vulkan/vk_master_semaphore.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/polyfill_thread.h"
+#include "yuzu_video_core/renderer_vulkan/vk_master_semaphore.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace VideoCommon {
 template <typename Trait>

@@ -5,8 +5,8 @@
 
 #include <memory>
 #include <vector>
-#include "common/common_types.h"
-#include "video_core/host1x/codecs/codec.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/host1x/codecs/codec.h"
 
 namespace Tegra {
 
@@ -22,13 +22,7 @@ public:
     /// Writes the method into the state, Invoke Execute() if encountered
     void ProcessMethod(u32 method, u32 argument);
 
-    /// Return most recently decoded frame
-    [[nodiscard]] std::unique_ptr<FFmpeg::Frame> GetFrame();
-
 private:
-    /// Invoke codec to decode a frame
-    void Execute();
-
     Host1x& host1x;
     NvdecCommon::NvdecRegisters state;
     std::unique_ptr<Codec> codec;

@@ -3,9 +3,9 @@
 
 #pragma once
 
-#include "common/math_util.h"
-#include "video_core/host1x/gpu_device_memory_manager.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_common/math_util.h"
+#include "yuzu_video_core/host1x/gpu_device_memory_manager.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace Layout {
 struct FramebufferLayout;

@@ -5,9 +5,9 @@
 
 #include <glad/glad.h>
 
-#include "video_core/engines/fermi_2d.h"
-#include "video_core/renderer_opengl/gl_resource_manager.h"
-#include "video_core/texture_cache/types.h"
+#include "yuzu_video_core/engines/fermi_2d.h"
+#include "yuzu_video_core/renderer_opengl/gl_resource_manager.h"
+#include "yuzu_video_core/texture_cache/types.h"
 
 namespace OpenGL {
 

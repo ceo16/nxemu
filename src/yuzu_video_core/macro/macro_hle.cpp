@@ -3,15 +3,15 @@
 
 #include <array>
 #include <vector>
-#include "common/assert.h"
-#include "common/scope_exit.h"
-#include "video_core/dirty_flags.h"
-#include "video_core/engines/draw_manager.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/macro/macro.h"
-#include "video_core/macro/macro_hle.h"
-#include "video_core/memory_manager.h"
-#include "video_core/rasterizer_interface.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/scope_exit.h"
+#include "yuzu_video_core/dirty_flags.h"
+#include "yuzu_video_core/engines/draw_manager.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/macro/macro.h"
+#include "yuzu_video_core/macro/macro_hle.h"
+#include "yuzu_video_core/memory_manager.h"
+#include "yuzu_video_core/rasterizer_interface.h"
 
 namespace Tegra {
 

@@ -3,10 +3,10 @@
 
 #pragma once
 
-#include "common/common_types.h"
-#include "common/dynamic_library.h"
-#include "core/frontend/emu_window.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/dynamic_library.h"
+#include "frontend/emu_window.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace Vulkan {
 

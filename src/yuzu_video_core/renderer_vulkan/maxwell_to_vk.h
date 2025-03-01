@@ -3,12 +3,12 @@
 
 #pragma once
 
-#include "shader_recompiler/stage.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/surface.h"
-#include "video_core/textures/texture.h"
-#include "video_core/vulkan_common/vulkan_device.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_shader_recompiler/stage.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/surface.h"
+#include "yuzu_video_core/textures/texture.h"
+#include "yuzu_video_core/vulkan_common/vulkan_device.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace Vulkan::MaxwellToVK {
 

@@ -7,11 +7,11 @@
 #include <span>
 #include <vector>
 
-#include "common/common_types.h"
-#include "common/scratch_buffer.h"
-#include "common/stream.h"
-#include "video_core/host1x/codecs/vp9_types.h"
-#include "video_core/host1x/nvdec_common.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/scratch_buffer.h"
+#include "yuzu_common/stream.h"
+#include "yuzu_video_core/host1x/codecs/vp9_types.h"
+#include "yuzu_video_core/host1x/nvdec_common.h"
 
 namespace Tegra {
 

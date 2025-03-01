@@ -6,12 +6,12 @@
 #include <cstring>
 #include <span>
 
-#include "common/alignment.h"
-#include "common/assert.h"
-#include "common/bit_util.h"
-#include "common/div_ceil.h"
-#include "video_core/gpu.h"
-#include "video_core/textures/decoders.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/bit_util.h"
+#include "yuzu_common/div_ceil.h"
+#include "yuzu_video_core/gpu.h"
+#include "yuzu_video_core/textures/decoders.h"
 
 namespace Tegra::Texture {
 namespace {

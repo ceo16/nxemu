@@ -3,13 +3,13 @@
 
 #include <cstring>
 
-#include "common/algorithm.h"
-#include "common/assert.h"
-#include "video_core/engines/engine_upload.h"
-#include "video_core/guest_memory.h"
-#include "video_core/memory_manager.h"
-#include "video_core/rasterizer_interface.h"
-#include "video_core/textures/decoders.h"
+#include "yuzu_common/algorithm.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_video_core/engines/engine_upload.h"
+#include "yuzu_video_core/guest_memory.h"
+#include "yuzu_video_core/memory_manager.h"
+#include "yuzu_video_core/rasterizer_interface.h"
+#include "yuzu_video_core/textures/decoders.h"
 
 namespace Tegra::Engines::Upload {
 

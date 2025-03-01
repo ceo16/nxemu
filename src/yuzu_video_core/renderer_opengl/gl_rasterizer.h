@@ -11,18 +11,18 @@
 
 #include <glad/glad.h>
 
-#include "common/common_types.h"
-#include "video_core/control/channel_state_cache.h"
-#include "video_core/engines/maxwell_dma.h"
-#include "video_core/rasterizer_interface.h"
-#include "video_core/renderer_opengl/blit_image.h"
-#include "video_core/renderer_opengl/gl_blit_screen.h"
-#include "video_core/renderer_opengl/gl_buffer_cache.h"
-#include "video_core/renderer_opengl/gl_device.h"
-#include "video_core/renderer_opengl/gl_fence_manager.h"
-#include "video_core/renderer_opengl/gl_query_cache.h"
-#include "video_core/renderer_opengl/gl_shader_cache.h"
-#include "video_core/renderer_opengl/gl_texture_cache.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/control/channel_state_cache.h"
+#include "yuzu_video_core/engines/maxwell_dma.h"
+#include "yuzu_video_core/rasterizer_interface.h"
+#include "yuzu_video_core/renderer_opengl/blit_image.h"
+#include "yuzu_video_core/renderer_opengl/gl_blit_screen.h"
+#include "yuzu_video_core/renderer_opengl/gl_buffer_cache.h"
+#include "yuzu_video_core/renderer_opengl/gl_device.h"
+#include "yuzu_video_core/renderer_opengl/gl_fence_manager.h"
+#include "yuzu_video_core/renderer_opengl/gl_query_cache.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_cache.h"
+#include "yuzu_video_core/renderer_opengl/gl_texture_cache.h"
 
 namespace Core::Memory {
 class Memory;

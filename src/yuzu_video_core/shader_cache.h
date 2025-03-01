@@ -11,12 +11,12 @@
 #include <utility>
 #include <vector>
 
-#include "common/common_types.h"
-#include "common/polyfill_ranges.h"
-#include "video_core/control/channel_state_cache.h"
-#include "video_core/host1x/gpu_device_memory_manager.h"
-#include "video_core/rasterizer_interface.h"
-#include "video_core/shader_environment.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/polyfill_ranges.h"
+#include "yuzu_video_core/control/channel_state_cache.h"
+#include "yuzu_video_core/host1x/gpu_device_memory_manager.h"
+#include "yuzu_video_core/rasterizer_interface.h"
+#include "yuzu_video_core/shader_environment.h"
 
 namespace Tegra {
 class MemoryManager;

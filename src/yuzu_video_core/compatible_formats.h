@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "video_core/surface.h"
+#include "yuzu_video_core/surface.h"
 
 namespace VideoCore::Surface {
 

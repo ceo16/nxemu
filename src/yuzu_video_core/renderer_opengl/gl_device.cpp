@@ -12,13 +12,13 @@
 
 #include <glad/glad.h>
 
-#include "common/literals.h"
-#include "common/logging/log.h"
-#include "common/polyfill_ranges.h"
-#include "common/settings.h"
-#include "shader_recompiler/stage.h"
-#include "video_core/renderer_opengl/gl_device.h"
-#include "video_core/renderer_opengl/gl_resource_manager.h"
+#include "yuzu_common/literals.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/polyfill_ranges.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_shader_recompiler/stage.h"
+#include "yuzu_video_core/renderer_opengl/gl_device.h"
+#include "yuzu_video_core/renderer_opengl/gl_resource_manager.h"
 
 using namespace Common::Literals;
 

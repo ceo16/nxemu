@@ -7,10 +7,10 @@
 #include <optional>
 #include <vector>
 
-#include "common/assert.h"
-#include "common/common_types.h"
-#include "video_core/query_cache/bank_base.h"
-#include "video_core/query_cache/query_base.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/query_cache/bank_base.h"
+#include "yuzu_video_core/query_cache/query_base.h"
 
 namespace VideoCommon {
 

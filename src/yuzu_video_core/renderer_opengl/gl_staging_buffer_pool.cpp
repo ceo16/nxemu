@@ -7,11 +7,11 @@
 
 #include <glad/glad.h>
 
-#include "common/alignment.h"
-#include "common/assert.h"
-#include "common/bit_util.h"
-#include "common/microprofile.h"
-#include "video_core/renderer_opengl/gl_staging_buffer_pool.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/bit_util.h"
+#include "yuzu_common/microprofile.h"
+#include "yuzu_video_core/renderer_opengl/gl_staging_buffer_pool.h"
 
 MICROPROFILE_DEFINE(OpenGL_BufferRequest, "OpenGL", "BufferRequest", MP_RGB(128, 128, 192));
 

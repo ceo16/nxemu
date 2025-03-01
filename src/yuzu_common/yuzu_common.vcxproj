@@ -58,6 +58,7 @@
     <ClInclude Include="fs\fs_types.h" />
     <ClInclude Include="fs\fs_util.h" />
     <ClInclude Include="fs\path_util.h" />
+    <ClInclude Include="hash.h" />
     <ClInclude Include="heap_tracker.h" />
     <ClInclude Include="hex_util.h" />
     <ClInclude Include="host_memory.h" />
@@ -95,6 +96,7 @@
     <ClInclude Include="settings_enums.h" />
     <ClInclude Include="settings_input.h" />
     <ClInclude Include="settings_setting.h" />
+    <ClInclude Include="slot_vector.h" />
     <ClInclude Include="spin_lock.h" />
     <ClInclude Include="steady_clock.h" />
     <ClInclude Include="stream.h" />

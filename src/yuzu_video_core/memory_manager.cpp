@@ -3,18 +3,18 @@
 
 #include <algorithm>
 
-#include "common/alignment.h"
-#include "common/assert.h"
-#include "common/logging/log.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/logging/log.h"
 #include "core/core.h"
 #include "core/hle/kernel/k_page_table.h"
 #include "core/hle/kernel/k_process.h"
-#include "video_core/guest_memory.h"
-#include "video_core/host1x/host1x.h"
-#include "video_core/invalidation_accumulator.h"
-#include "video_core/memory_manager.h"
-#include "video_core/rasterizer_interface.h"
-#include "video_core/renderer_base.h"
+#include "yuzu_video_core/guest_memory.h"
+#include "yuzu_video_core/host1x/host1x.h"
+#include "yuzu_video_core/invalidation_accumulator.h"
+#include "yuzu_video_core/memory_manager.h"
+#include "yuzu_video_core/rasterizer_interface.h"
+#include "yuzu_video_core/renderer_base.h"
 
 namespace Tegra {
 using Tegra::Memory::GuestMemoryFlags;

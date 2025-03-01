@@ -5,8 +5,8 @@
 
 #include <glad/glad.h>
 
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/surface.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/surface.h"
 
 namespace OpenGL::MaxwellToGL {
 

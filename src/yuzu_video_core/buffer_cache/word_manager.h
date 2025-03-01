@@ -9,11 +9,11 @@
 #include <span>
 #include <utility>
 
-#include "common/alignment.h"
-#include "common/common_funcs.h"
-#include "common/common_types.h"
-#include "common/div_ceil.h"
-#include "video_core/host1x/gpu_device_memory_manager.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/div_ceil.h"
+#include "yuzu_video_core/host1x/gpu_device_memory_manager.h"
 
 namespace VideoCommon {
 

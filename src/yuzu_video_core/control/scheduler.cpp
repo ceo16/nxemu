@@ -3,10 +3,10 @@
 
 #include <memory>
 
-#include "common/assert.h"
-#include "video_core/control/channel_state.h"
-#include "video_core/control/scheduler.h"
-#include "video_core/gpu.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_video_core/control/channel_state.h"
+#include "yuzu_video_core/control/scheduler.h"
+#include "yuzu_video_core/gpu.h"
 
 namespace Tegra::Control {
 Scheduler::Scheduler(GPU& gpu_) : gpu{gpu_} {}

@@ -1,9 +1,9 @@
 // SPDX-FileCopyrightText: Copyright 2020 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/assert.h"
-#include "video_core/host1x/host1x.h"
-#include "video_core/host1x/nvdec.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_video_core/host1x/host1x.h"
+#include "yuzu_video_core/host1x/nvdec.h"
 
 namespace Tegra::Host1x {
 
@@ -23,24 +23,7 @@ void Nvdec::ProcessMethod(u32 method, u32 argument) {
         codec->SetTargetCodec(static_cast<NvdecCommon::VideoCodec>(argument));
         break;
     case NVDEC_REG_INDEX(execute):
-        Execute();
-        break;
-    }
-}
-
-std::unique_ptr<FFmpeg::Frame> Nvdec::GetFrame() {
-    return codec->GetCurrentFrame();
-}
-
-void Nvdec::Execute() {
-    switch (codec->GetCurrentCodec()) {
-    case NvdecCommon::VideoCodec::H264:
-    case NvdecCommon::VideoCodec::VP8:
-    case NvdecCommon::VideoCodec::VP9:
-        codec->Decode();
-        break;
-    default:
-        UNIMPLEMENTED_MSG("Codec {}", codec->GetCurrentCodecName());
+        UNIMPLEMENTED();
         break;
     }
 }

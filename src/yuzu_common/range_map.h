@@ -6,7 +6,7 @@
 #include <map>
 #include <type_traits>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 
 namespace Common {
 

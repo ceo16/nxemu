@@ -1,10 +1,10 @@
 // SPDX-FileCopyrightText: Copyright 2020 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/logging/log.h"
-#include "core/frontend/emu_window.h"
-#include "video_core/vulkan_common/vulkan_surface.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_common/logging/log.h"
+#include "frontend/emu_window.h"
+#include "yuzu_video_core/vulkan_common/vulkan_surface.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace Vulkan {
 

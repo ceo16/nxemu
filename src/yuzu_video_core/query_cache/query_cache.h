@@ -10,20 +10,20 @@
 #include <unordered_map>
 #include <utility>
 
-#include "common/assert.h"
-#include "common/common_types.h"
-#include "common/logging/log.h"
-#include "common/scope_exit.h"
-#include "common/settings.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/gpu.h"
-#include "video_core/host1x/gpu_device_memory_manager.h"
-#include "video_core/memory_manager.h"
-#include "video_core/query_cache/bank_base.h"
-#include "video_core/query_cache/query_base.h"
-#include "video_core/query_cache/query_cache_base.h"
-#include "video_core/query_cache/query_stream.h"
-#include "video_core/query_cache/types.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/scope_exit.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/gpu.h"
+#include "yuzu_video_core/host1x/gpu_device_memory_manager.h"
+#include "yuzu_video_core/memory_manager.h"
+#include "yuzu_video_core/query_cache/bank_base.h"
+#include "yuzu_video_core/query_cache/query_base.h"
+#include "yuzu_video_core/query_cache/query_cache_base.h"
+#include "yuzu_video_core/query_cache/query_stream.h"
+#include "yuzu_video_core/query_cache/types.h"
 
 namespace VideoCommon {
 

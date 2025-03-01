@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "video_core/renderer_opengl/gl_resource_manager.h"
+#include "yuzu_video_core/renderer_opengl/gl_resource_manager.h"
 
 namespace OpenGL {
 

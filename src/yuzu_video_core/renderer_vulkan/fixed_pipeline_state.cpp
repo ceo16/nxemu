@@ -4,13 +4,13 @@
 #include <algorithm>
 #include <cstring>
 
-#include "common/bit_cast.h"
-#include "common/cityhash.h"
-#include "common/common_types.h"
-#include "common/polyfill_ranges.h"
-#include "video_core/engines/draw_manager.h"
-#include "video_core/renderer_vulkan/fixed_pipeline_state.h"
-#include "video_core/renderer_vulkan/vk_state_tracker.h"
+#include "yuzu_common/bit_cast.h"
+#include "yuzu_common/cityhash.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/polyfill_ranges.h"
+#include "yuzu_video_core/engines/draw_manager.h"
+#include "yuzu_video_core/renderer_vulkan/fixed_pipeline_state.h"
+#include "yuzu_video_core/renderer_vulkan/vk_state_tracker.h"
 
 namespace Vulkan {
 namespace {

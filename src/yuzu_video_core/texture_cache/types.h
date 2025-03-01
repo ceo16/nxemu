@@ -3,9 +3,9 @@
 
 #pragma once
 
-#include "common/common_funcs.h"
-#include "common/common_types.h"
-#include "common/slot_vector.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/slot_vector.h"
 
 namespace VideoCommon {
 

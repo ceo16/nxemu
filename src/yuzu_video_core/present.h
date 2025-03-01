@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "common/settings.h"
+#include "yuzu_common/settings.h"
 
 static inline Settings::ScalingFilter GetScalingFilter() {
     return Settings::values.scaling_filter.GetValue();

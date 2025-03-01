@@ -3,8 +3,8 @@
 
 #include <optional>
 
-#include "video_core/renderer_vulkan/vk_master_semaphore.h"
-#include "video_core/renderer_vulkan/vk_resource_pool.h"
+#include "yuzu_video_core/renderer_vulkan/vk_master_semaphore.h"
+#include "yuzu_video_core/renderer_vulkan/vk_resource_pool.h"
 
 namespace Vulkan {
 

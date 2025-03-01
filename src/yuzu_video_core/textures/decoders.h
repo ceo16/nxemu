@@ -5,8 +5,8 @@
 
 #include <span>
 
-#include "common/common_types.h"
-#include "video_core/textures/texture.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/textures/texture.h"
 
 namespace Tegra::Texture {
 

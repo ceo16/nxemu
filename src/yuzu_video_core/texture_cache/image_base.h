@@ -8,11 +8,11 @@
 #include <vector>
 #include <boost/container/small_vector.hpp>
 
-#include "common/common_funcs.h"
-#include "common/common_types.h"
-#include "video_core/texture_cache/image_info.h"
-#include "video_core/texture_cache/image_view_info.h"
-#include "video_core/texture_cache/types.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/texture_cache/image_info.h"
+#include "yuzu_video_core/texture_cache/image_view_info.h"
+#include "yuzu_video_core/texture_cache/types.h"
 
 namespace VideoCommon {
 

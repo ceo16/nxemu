@@ -5,11 +5,11 @@
 #include <array>
 #include <vector>
 
-#include "common/alignment.h"
-#include "common/assert.h"
-#include "common/polyfill_ranges.h"
-#include "shader_recompiler/shader_info.h"
-#include "video_core/transform_feedback.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/polyfill_ranges.h"
+#include "yuzu_shader_recompiler/shader_info.h"
+#include "yuzu_video_core/transform_feedback.h"
 
 namespace VideoCommon {
 

@@ -4,8 +4,8 @@
 #include <array>
 #include <cstddef>
 
-#include "common/common_types.h"
-#include "video_core/dirty_flags.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/dirty_flags.h"
 
 #define OFF(field_name) MAXWELL3D_REG_INDEX(field_name)
 #define NUM(field_name) (sizeof(::Tegra::Engines::Maxwell3D::Regs::field_name) / (sizeof(u32)))

@@ -6,11 +6,11 @@
 #include <span>
 #include <unordered_map>
 
-#include "common/assert.h"
-#include "common/bit_cast.h"
-#include "video_core/engines/sw_blitter/converter.h"
-#include "video_core/surface.h"
-#include "video_core/textures/decoders.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/bit_cast.h"
+#include "yuzu_video_core/engines/sw_blitter/converter.h"
+#include "yuzu_video_core/surface.h"
+#include "yuzu_video_core/textures/decoders.h"
 
 #ifdef _MSC_VER
 #define FORCE_INLINE __forceinline

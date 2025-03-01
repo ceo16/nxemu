@@ -11,17 +11,17 @@
 #include <type_traits>
 #include <vector>
 
-#include "common/assert.h"
-#include "common/bit_field.h"
-#include "common/common_funcs.h"
-#include "common/common_types.h"
-#include "common/math_util.h"
-#include "video_core/engines/const_buffer_info.h"
-#include "video_core/engines/engine_interface.h"
-#include "video_core/engines/engine_upload.h"
-#include "video_core/gpu.h"
-#include "video_core/macro/macro.h"
-#include "video_core/textures/texture.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/math_util.h"
+#include "yuzu_video_core/engines/const_buffer_info.h"
+#include "yuzu_video_core/engines/engine_interface.h"
+#include "yuzu_video_core/engines/engine_upload.h"
+#include "yuzu_video_core/gpu.h"
+#include "yuzu_video_core/macro/macro.h"
+#include "yuzu_video_core/textures/texture.h"
 
 namespace Core {
 class System;

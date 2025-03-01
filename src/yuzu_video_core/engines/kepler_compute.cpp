@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <bitset>
-#include "common/assert.h"
-#include "common/logging/log.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/logging/log.h"
 #include "core/core.h"
-#include "video_core/engines/kepler_compute.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/memory_manager.h"
-#include "video_core/rasterizer_interface.h"
-#include "video_core/textures/decoders.h"
+#include "yuzu_video_core/engines/kepler_compute.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/memory_manager.h"
+#include "yuzu_video_core/rasterizer_interface.h"
+#include "yuzu_video_core/textures/decoders.h"
 
 namespace Tegra::Engines {
 

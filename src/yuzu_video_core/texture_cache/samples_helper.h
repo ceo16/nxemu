@@ -5,8 +5,8 @@
 
 #include <utility>
 
-#include "common/assert.h"
-#include "video_core/textures/texture.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_video_core/textures/texture.h"
 
 namespace VideoCommon {
 

@@ -1,19 +1,19 @@
 // SPDX-FileCopyrightText: Copyright 2018 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/algorithm.h"
-#include "common/assert.h"
-#include "common/logging/log.h"
-#include "common/microprofile.h"
-#include "common/polyfill_ranges.h"
-#include "common/settings.h"
+#include "yuzu_common/algorithm.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/microprofile.h"
+#include "yuzu_common/polyfill_ranges.h"
+#include "yuzu_common/settings.h"
 #include "core/core.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/engines/maxwell_dma.h"
-#include "video_core/guest_memory.h"
-#include "video_core/memory_manager.h"
-#include "video_core/renderer_base.h"
-#include "video_core/textures/decoders.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/engines/maxwell_dma.h"
+#include "yuzu_video_core/guest_memory.h"
+#include "yuzu_video_core/memory_manager.h"
+#include "yuzu_video_core/renderer_base.h"
+#include "yuzu_video_core/textures/decoders.h"
 
 MICROPROFILE_DECLARE(GPU_DMAEngine);
 MICROPROFILE_DECLARE(GPU_DMAEngineBL);

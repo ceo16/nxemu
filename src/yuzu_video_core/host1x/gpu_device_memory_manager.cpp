@@ -1,9 +1,9 @@
 // SPDX-FileCopyrightText: 2023 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "core/device_memory_manager.inc"
-#include "video_core/host1x/gpu_device_memory_manager.h"
-#include "video_core/rasterizer_interface.h"
+#include "device_memory_manager.inc"
+#include "yuzu_video_core/host1x/gpu_device_memory_manager.h"
+#include "yuzu_video_core/rasterizer_interface.h"
 
 namespace Tegra {
 

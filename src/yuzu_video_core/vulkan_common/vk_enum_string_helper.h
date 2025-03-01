@@ -3,6 +3,6 @@
 
 #pragma once
 
-#include "video_core/vulkan_common/vulkan.h"
+#include "yuzu_video_core/vulkan_common/vulkan.h"
 
 #include <vulkan/vk_enum_string_helper.h>

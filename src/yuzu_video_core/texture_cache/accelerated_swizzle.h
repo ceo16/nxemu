@@ -5,9 +5,9 @@
 
 #include <array>
 
-#include "common/common_types.h"
-#include "video_core/texture_cache/image_info.h"
-#include "video_core/texture_cache/types.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/texture_cache/image_info.h"
+#include "yuzu_video_core/texture_cache/types.h"
 
 namespace VideoCommon::Accelerated {
 

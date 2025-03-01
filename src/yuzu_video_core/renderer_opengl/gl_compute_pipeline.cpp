@@ -3,11 +3,11 @@
 
 #include <cstring>
 
-#include "common/cityhash.h"
-#include "common/settings.h" // for enum class Settings::ShaderBackend
-#include "video_core/renderer_opengl/gl_compute_pipeline.h"
-#include "video_core/renderer_opengl/gl_shader_manager.h"
-#include "video_core/renderer_opengl/gl_shader_util.h"
+#include "yuzu_common/cityhash.h"
+#include "yuzu_common/settings.h" // for enum class Settings::ShaderBackend
+#include "yuzu_video_core/renderer_opengl/gl_compute_pipeline.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_manager.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_util.h"
 
 namespace OpenGL {
 

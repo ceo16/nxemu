@@ -15,7 +15,7 @@
 #include <boost/pool/pool_alloc.hpp>
 #include <boost/pool/poolfwd.hpp>
 
-#include "common/range_sets.h"
+#include "yuzu_common/range_sets.h"
 
 namespace Common {
 

@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "video_core/vulkan_common/vulkan.h"
+#include "yuzu_video_core/vulkan_common/vulkan.h"
 
 #define VMA_STATIC_VULKAN_FUNCTIONS 0
 #define VMA_DYNAMIC_VULKAN_FUNCTIONS 1

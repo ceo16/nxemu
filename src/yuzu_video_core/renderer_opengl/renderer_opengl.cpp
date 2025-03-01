@@ -8,22 +8,20 @@
 
 #include <glad/glad.h>
 
-#include "common/assert.h"
-#include "common/logging/log.h"
-#include "common/microprofile.h"
-#include "common/settings.h"
-#include "common/telemetry.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/microprofile.h"
+#include "yuzu_common/settings.h"
 #include "core/core_timing.h"
-#include "core/frontend/emu_window.h"
-#include "core/telemetry_session.h"
-#include "video_core/capture.h"
-#include "video_core/present.h"
-#include "video_core/renderer_opengl/gl_blit_screen.h"
-#include "video_core/renderer_opengl/gl_rasterizer.h"
-#include "video_core/renderer_opengl/gl_shader_manager.h"
-#include "video_core/renderer_opengl/gl_shader_util.h"
-#include "video_core/renderer_opengl/renderer_opengl.h"
-#include "video_core/textures/decoders.h"
+#include "frontend/emu_window.h"
+#include "yuzu_video_core/capture.h"
+#include "yuzu_video_core/present.h"
+#include "yuzu_video_core/renderer_opengl/gl_blit_screen.h"
+#include "yuzu_video_core/renderer_opengl/gl_rasterizer.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_manager.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_util.h"
+#include "yuzu_video_core/renderer_opengl/renderer_opengl.h"
+#include "yuzu_video_core/textures/decoders.h"
 
 namespace OpenGL {
 namespace {
@@ -90,11 +88,10 @@ void APIENTRY DebugHandler(GLenum source, GLenum type, GLuint id, GLenum severit
 }
 } // Anonymous namespace
 
-RendererOpenGL::RendererOpenGL(Core::TelemetrySession& telemetry_session_,
-                               Core::Frontend::EmuWindow& emu_window_,
+RendererOpenGL::RendererOpenGL(Core::Frontend::EmuWindow& emu_window_,
                                Tegra::MaxwellDeviceMemoryManager& device_memory_, Tegra::GPU& gpu_,
                                std::unique_ptr<Core::Frontend::GraphicsContext> context_)
-    : RendererBase{emu_window_, std::move(context_)}, telemetry_session{telemetry_session_},
+    : RendererBase{emu_window_, std::move(context_)},
       emu_window{emu_window_}, device_memory{device_memory_}, gpu{gpu_}, device{emu_window_},
       state_tracker{}, program_manager{device},
       rasterizer(emu_window, gpu, device_memory, device, program_manager, state_tracker) {
@@ -163,11 +160,6 @@ void RendererOpenGL::AddTelemetryFields() {
     LOG_INFO(Render_OpenGL, "GL_VERSION: {}", gl_version);
     LOG_INFO(Render_OpenGL, "GL_VENDOR: {}", gpu_vendor);
     LOG_INFO(Render_OpenGL, "GL_RENDERER: {}", gpu_model);
-
-    constexpr auto user_system = Common::Telemetry::FieldType::UserSystem;
-    telemetry_session.AddField(user_system, "GPU_Vendor", std::string(gpu_vendor));
-    telemetry_session.AddField(user_system, "GPU_Model", std::string(gpu_model));
-    telemetry_session.AddField(user_system, "GPU_OpenGL_Version", std::string(gl_version));
 }
 
 void RendererOpenGL::RenderToBuffer(std::span<const Tegra::FramebufferConfig> framebuffers,

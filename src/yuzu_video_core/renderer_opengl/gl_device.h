@@ -6,9 +6,9 @@
 #include <cstddef>
 #include <string>
 
-#include "common/common_types.h"
-#include "core/frontend/emu_window.h"
-#include "shader_recompiler/stage.h"
+#include "yuzu_common/common_types.h"
+#include "frontend/emu_window.h"
+#include "yuzu_shader_recompiler/stage.h"
 
 namespace Settings {
 enum class ShaderBackend : u32;

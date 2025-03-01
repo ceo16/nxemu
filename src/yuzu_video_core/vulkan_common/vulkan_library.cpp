@@ -3,10 +3,10 @@
 
 #include <string>
 
-#include "common/dynamic_library.h"
-#include "common/fs/path_util.h"
-#include "common/logging/log.h"
-#include "video_core/vulkan_common/vulkan_library.h"
+#include "yuzu_common/dynamic_library.h"
+#include "yuzu_common/fs/path_util.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_video_core/vulkan_common/vulkan_library.h"
 
 namespace Vulkan {
 

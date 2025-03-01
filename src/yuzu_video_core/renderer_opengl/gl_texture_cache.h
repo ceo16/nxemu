@@ -8,13 +8,13 @@
 
 #include <glad/glad.h>
 
-#include "shader_recompiler/shader_info.h"
-#include "video_core/renderer_opengl/gl_device.h"
-#include "video_core/renderer_opengl/gl_resource_manager.h"
-#include "video_core/renderer_opengl/gl_staging_buffer_pool.h"
-#include "video_core/renderer_opengl/util_shaders.h"
-#include "video_core/texture_cache/image_view_base.h"
-#include "video_core/texture_cache/texture_cache_base.h"
+#include "yuzu_shader_recompiler/shader_info.h"
+#include "yuzu_video_core/renderer_opengl/gl_device.h"
+#include "yuzu_video_core/renderer_opengl/gl_resource_manager.h"
+#include "yuzu_video_core/renderer_opengl/gl_staging_buffer_pool.h"
+#include "yuzu_video_core/renderer_opengl/util_shaders.h"
+#include "yuzu_video_core/texture_cache/image_view_base.h"
+#include "yuzu_video_core/texture_cache/texture_cache_base.h"
 
 namespace Settings {
 struct ResolutionScalingInfo;

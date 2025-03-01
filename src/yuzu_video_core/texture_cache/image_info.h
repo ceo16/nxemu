@@ -3,11 +3,11 @@
 
 #pragma once
 
-#include "video_core/engines/fermi_2d.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/engines/maxwell_dma.h"
-#include "video_core/surface.h"
-#include "video_core/texture_cache/types.h"
+#include "yuzu_video_core/engines/fermi_2d.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/engines/maxwell_dma.h"
+#include "yuzu_video_core/surface.h"
+#include "yuzu_video_core/texture_cache/types.h"
 
 namespace VideoCommon {
 

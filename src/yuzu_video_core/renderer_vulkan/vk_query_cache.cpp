@@ -11,22 +11,22 @@
 #include <utility>
 #include <vector>
 
-#include "common/bit_util.h"
-#include "common/common_types.h"
-#include "video_core/engines/draw_manager.h"
-#include "video_core/host1x/gpu_device_memory_manager.h"
-#include "video_core/query_cache/query_cache.h"
-#include "video_core/rasterizer_interface.h"
-#include "video_core/renderer_vulkan/vk_buffer_cache.h"
-#include "video_core/renderer_vulkan/vk_compute_pass.h"
-#include "video_core/renderer_vulkan/vk_query_cache.h"
-#include "video_core/renderer_vulkan/vk_resource_pool.h"
-#include "video_core/renderer_vulkan/vk_scheduler.h"
-#include "video_core/renderer_vulkan/vk_staging_buffer_pool.h"
-#include "video_core/renderer_vulkan/vk_update_descriptor.h"
-#include "video_core/vulkan_common/vulkan_device.h"
-#include "video_core/vulkan_common/vulkan_memory_allocator.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_common/bit_util.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/engines/draw_manager.h"
+#include "yuzu_video_core/host1x/gpu_device_memory_manager.h"
+#include "yuzu_video_core/query_cache/query_cache.h"
+#include "yuzu_video_core/rasterizer_interface.h"
+#include "yuzu_video_core/renderer_vulkan/vk_buffer_cache.h"
+#include "yuzu_video_core/renderer_vulkan/vk_compute_pass.h"
+#include "yuzu_video_core/renderer_vulkan/vk_query_cache.h"
+#include "yuzu_video_core/renderer_vulkan/vk_resource_pool.h"
+#include "yuzu_video_core/renderer_vulkan/vk_scheduler.h"
+#include "yuzu_video_core/renderer_vulkan/vk_staging_buffer_pool.h"
+#include "yuzu_video_core/renderer_vulkan/vk_update_descriptor.h"
+#include "yuzu_video_core/vulkan_common/vulkan_device.h"
+#include "yuzu_video_core/vulkan_common/vulkan_memory_allocator.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace Vulkan {
 

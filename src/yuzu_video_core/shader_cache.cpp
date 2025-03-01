@@ -5,17 +5,17 @@
 #include <array>
 #include <vector>
 
-#include "common/assert.h"
-#include "shader_recompiler/frontend/maxwell/control_flow.h"
-#include "shader_recompiler/object_pool.h"
-#include "video_core/control/channel_state.h"
-#include "video_core/dirty_flags.h"
-#include "video_core/engines/kepler_compute.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/host1x/gpu_device_memory_manager.h"
-#include "video_core/memory_manager.h"
-#include "video_core/shader_cache.h"
-#include "video_core/shader_environment.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_shader_recompiler/frontend/maxwell/control_flow.h"
+#include "yuzu_shader_recompiler/object_pool.h"
+#include "yuzu_video_core/control/channel_state.h"
+#include "yuzu_video_core/dirty_flags.h"
+#include "yuzu_video_core/engines/kepler_compute.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/host1x/gpu_device_memory_manager.h"
+#include "yuzu_video_core/memory_manager.h"
+#include "yuzu_video_core/shader_cache.h"
+#include "yuzu_video_core/shader_environment.h"
 
 namespace VideoCommon {
 

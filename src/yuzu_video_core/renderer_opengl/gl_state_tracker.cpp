@@ -5,11 +5,11 @@
 #include <array>
 #include <cstddef>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "core/core.h"
-#include "video_core/control/channel_state.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/renderer_opengl/gl_state_tracker.h"
+#include "yuzu_video_core/control/channel_state.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/renderer_opengl/gl_state_tracker.h"
 
 #define OFF(field_name) MAXWELL3D_REG_INDEX(field_name)
 #define NUM(field_name) (sizeof(Maxwell3D::Regs::field_name) / (sizeof(u32)))

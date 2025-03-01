@@ -5,11 +5,11 @@
 
 #include <fmt/format.h>
 
-#include "common/common_types.h"
-#include "common/logging/log.h"
-#include "video_core/renderer_vulkan/pipeline_statistics.h"
-#include "video_core/vulkan_common/vulkan_device.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_video_core/renderer_vulkan/pipeline_statistics.h"
+#include "yuzu_video_core/vulkan_common/vulkan_device.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace Vulkan {
 

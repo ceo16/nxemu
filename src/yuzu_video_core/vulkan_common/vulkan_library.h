@@ -5,8 +5,8 @@
 
 #include <memory>
 
-#include "common/dynamic_library.h"
-#include "core/frontend/graphics_context.h"
+#include "yuzu_common/dynamic_library.h"
+#include "frontend/graphics_context.h"
 
 namespace Vulkan {
 

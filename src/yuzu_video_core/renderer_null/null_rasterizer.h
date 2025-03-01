@@ -3,10 +3,10 @@
 
 #pragma once
 
-#include "common/common_types.h"
-#include "video_core/control/channel_state_cache.h"
-#include "video_core/engines/maxwell_dma.h"
-#include "video_core/rasterizer_interface.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/control/channel_state_cache.h"
+#include "yuzu_video_core/engines/maxwell_dma.h"
+#include "yuzu_video_core/rasterizer_interface.h"
 
 namespace Core {
 class System;

@@ -1,18 +1,18 @@
 // SPDX-FileCopyrightText: Copyright 2023 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/settings.h"
-#include "video_core/fsr.h"
-#include "video_core/host_shaders/ffx_a_h.h"
-#include "video_core/host_shaders/ffx_fsr1_h.h"
-#include "video_core/host_shaders/full_screen_triangle_vert.h"
-#include "video_core/host_shaders/opengl_fidelityfx_fsr_easu_frag.h"
-#include "video_core/host_shaders/opengl_fidelityfx_fsr_frag.h"
-#include "video_core/host_shaders/opengl_fidelityfx_fsr_rcas_frag.h"
-#include "video_core/renderer_opengl/gl_shader_manager.h"
-#include "video_core/renderer_opengl/gl_shader_util.h"
-#include "video_core/renderer_opengl/present/fsr.h"
-#include "video_core/renderer_opengl/present/util.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_video_core/fsr.h"
+#include "yuzu_video_core/host_shaders/ffx_a_h.h"
+#include "yuzu_video_core/host_shaders/ffx_fsr1_h.h"
+#include "yuzu_video_core/host_shaders/full_screen_triangle_vert.h"
+#include "yuzu_video_core/host_shaders/opengl_fidelityfx_fsr_easu_frag.h"
+#include "yuzu_video_core/host_shaders/opengl_fidelityfx_fsr_frag.h"
+#include "yuzu_video_core/host_shaders/opengl_fidelityfx_fsr_rcas_frag.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_manager.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_util.h"
+#include "yuzu_video_core/renderer_opengl/present/fsr.h"
+#include "yuzu_video_core/renderer_opengl/present/util.h"
 
 namespace OpenGL {
 using namespace FSR;

@@ -6,13 +6,13 @@
 #include <span>
 #include <vector>
 
-#include "common/common_types.h"
-#include "common/polyfill_ranges.h"
-#include "video_core/renderer_vulkan/vk_descriptor_pool.h"
-#include "video_core/renderer_vulkan/vk_resource_pool.h"
-#include "video_core/renderer_vulkan/vk_scheduler.h"
-#include "video_core/vulkan_common/vulkan_device.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/polyfill_ranges.h"
+#include "yuzu_video_core/renderer_vulkan/vk_descriptor_pool.h"
+#include "yuzu_video_core/renderer_vulkan/vk_resource_pool.h"
+#include "yuzu_video_core/renderer_vulkan/vk_scheduler.h"
+#include "yuzu_video_core/vulkan_common/vulkan_device.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace Vulkan {
 

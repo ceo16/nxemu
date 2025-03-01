@@ -10,9 +10,9 @@
 #include <utility>
 #include <vector>
 
-#include "common/assert.h"
-#include "common/common_types.h"
-#include "common/polyfill_ranges.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/polyfill_ranges.h"
 
 namespace Common {
 

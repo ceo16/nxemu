@@ -5,9 +5,9 @@
 #include <vector>
 #include <glad/glad.h>
 
-#include "common/logging/log.h"
-#include "common/settings.h"
-#include "video_core/renderer_opengl/gl_shader_util.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_util.h"
 
 namespace OpenGL {
 

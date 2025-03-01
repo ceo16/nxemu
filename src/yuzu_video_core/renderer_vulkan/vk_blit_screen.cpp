@@ -1,13 +1,13 @@
 // SPDX-FileCopyrightText: Copyright 2018 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "video_core/framebuffer_config.h"
-#include "video_core/present.h"
-#include "video_core/renderer_vulkan/present/filters.h"
-#include "video_core/renderer_vulkan/present/layer.h"
-#include "video_core/renderer_vulkan/vk_blit_screen.h"
-#include "video_core/renderer_vulkan/vk_present_manager.h"
-#include "video_core/renderer_vulkan/vk_scheduler.h"
+#include "yuzu_video_core/framebuffer_config.h"
+#include "yuzu_video_core/present.h"
+#include "yuzu_video_core/renderer_vulkan/present/filters.h"
+#include "yuzu_video_core/renderer_vulkan/present/layer.h"
+#include "yuzu_video_core/renderer_vulkan/vk_blit_screen.h"
+#include "yuzu_video_core/renderer_vulkan/vk_present_manager.h"
+#include "yuzu_video_core/renderer_vulkan/vk_scheduler.h"
 
 namespace Vulkan {
 

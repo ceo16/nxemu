@@ -9,10 +9,10 @@
 #include <unordered_map>
 #include <vector>
 
-#include "common/common_types.h"
-#include "common/logging/log.h"
-#include "common/settings.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 VK_DEFINE_HANDLE(VmaAllocator)
 

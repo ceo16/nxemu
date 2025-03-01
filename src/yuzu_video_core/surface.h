@@ -5,11 +5,11 @@
 
 #include <climits>
 #include <utility>
-#include "common/assert.h"
-#include "common/common_types.h"
-#include "common/logging/log.h"
-#include "video_core/gpu.h"
-#include "video_core/textures/texture.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_video_core/gpu.h"
+#include "yuzu_video_core/textures/texture.h"
 
 namespace VideoCore::Surface {
 

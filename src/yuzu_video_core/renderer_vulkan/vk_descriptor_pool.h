@@ -7,9 +7,9 @@
 #include <span>
 #include <vector>
 
-#include "shader_recompiler/shader_info.h"
-#include "video_core/renderer_vulkan/vk_resource_pool.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_shader_recompiler/shader_info.h"
+#include "yuzu_video_core/renderer_vulkan/vk_resource_pool.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace Vulkan {
 

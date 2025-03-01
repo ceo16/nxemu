@@ -1,15 +1,15 @@
 // SPDX-FileCopyrightText: Copyright 2023 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/microprofile.h"
-#include "common/settings.h"
-#include "common/thread.h"
-#include "core/frontend/emu_window.h"
-#include "video_core/renderer_vulkan/vk_present_manager.h"
-#include "video_core/renderer_vulkan/vk_scheduler.h"
-#include "video_core/renderer_vulkan/vk_swapchain.h"
-#include "video_core/vulkan_common/vulkan_device.h"
-#include "video_core/vulkan_common/vulkan_surface.h"
+#include "yuzu_common/microprofile.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_common/thread.h"
+#include "frontend/emu_window.h"
+#include "yuzu_video_core/renderer_vulkan/vk_present_manager.h"
+#include "yuzu_video_core/renderer_vulkan/vk_scheduler.h"
+#include "yuzu_video_core/renderer_vulkan/vk_swapchain.h"
+#include "yuzu_video_core/vulkan_common/vulkan_device.h"
+#include "yuzu_video_core/vulkan_common/vulkan_surface.h"
 
 namespace Vulkan {
 

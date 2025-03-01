@@ -16,14 +16,14 @@
 #include <unordered_set>
 #include <vector>
 
-#include "common/assert.h"
-#include "common/settings.h"
-#include "common/slot_vector.h"
-#include "video_core/control/channel_state_cache.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/host1x/gpu_device_memory_manager.h"
-#include "video_core/memory_manager.h"
-#include "video_core/rasterizer_interface.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_common/slot_vector.h"
+#include "yuzu_video_core/control/channel_state_cache.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/host1x/gpu_device_memory_manager.h"
+#include "yuzu_video_core/memory_manager.h"
+#include "yuzu_video_core/rasterizer_interface.h"
 
 namespace VideoCore {
 enum class QueryType {

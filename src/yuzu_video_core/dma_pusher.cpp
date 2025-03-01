@@ -1,15 +1,15 @@
 // SPDX-FileCopyrightText: Copyright 2018 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/cityhash.h"
-#include "common/microprofile.h"
-#include "common/settings.h"
+#include "yuzu_common/cityhash.h"
+#include "yuzu_common/microprofile.h"
+#include "yuzu_common/settings.h"
 #include "core/core.h"
-#include "video_core/dma_pusher.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/gpu.h"
-#include "video_core/guest_memory.h"
-#include "video_core/memory_manager.h"
+#include "yuzu_video_core/dma_pusher.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/gpu.h"
+#include "yuzu_video_core/guest_memory.h"
+#include "yuzu_video_core/memory_manager.h"
 
 namespace Tegra {
 

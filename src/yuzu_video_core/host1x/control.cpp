@@ -1,9 +1,9 @@
 // SPDX-FileCopyrightText: 2021 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "common/assert.h"
-#include "video_core/host1x/control.h"
-#include "video_core/host1x/host1x.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_video_core/host1x/control.h"
+#include "yuzu_video_core/host1x/host1x.h"
 
 namespace Tegra::Host1x {
 

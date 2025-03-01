@@ -7,7 +7,7 @@
 #include <limits>
 #include <vector>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 
 namespace Tegra::Engines {
 

@@ -1,17 +1,17 @@
 // SPDX-FileCopyrightText: Copyright 2024 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 
-#include "video_core/host_shaders/present_bicubic_frag_spv.h"
-#include "video_core/host_shaders/present_gaussian_frag_spv.h"
-#include "video_core/host_shaders/vulkan_present_frag_spv.h"
-#include "video_core/host_shaders/vulkan_present_scaleforce_fp16_frag_spv.h"
-#include "video_core/host_shaders/vulkan_present_scaleforce_fp32_frag_spv.h"
-#include "video_core/renderer_vulkan/present/filters.h"
-#include "video_core/renderer_vulkan/present/util.h"
-#include "video_core/renderer_vulkan/vk_shader_util.h"
-#include "video_core/vulkan_common/vulkan_device.h"
+#include "yuzu_video_core/host_shaders/present_bicubic_frag_spv.h"
+#include "yuzu_video_core/host_shaders/present_gaussian_frag_spv.h"
+#include "yuzu_video_core/host_shaders/vulkan_present_frag_spv.h"
+#include "yuzu_video_core/host_shaders/vulkan_present_scaleforce_fp16_frag_spv.h"
+#include "yuzu_video_core/host_shaders/vulkan_present_scaleforce_fp32_frag_spv.h"
+#include "yuzu_video_core/renderer_vulkan/present/filters.h"
+#include "yuzu_video_core/renderer_vulkan/present/util.h"
+#include "yuzu_video_core/renderer_vulkan/vk_shader_util.h"
+#include "yuzu_video_core/vulkan_common/vulkan_device.h"
 
 namespace Vulkan {
 

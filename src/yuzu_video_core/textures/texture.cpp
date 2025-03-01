@@ -3,9 +3,9 @@
 
 #include <array>
 
-#include "common/cityhash.h"
-#include "common/settings.h"
-#include "video_core/textures/texture.h"
+#include "yuzu_common/cityhash.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_video_core/textures/texture.h"
 
 using Tegra::Texture::TICEntry;
 using Tegra::Texture::TSCEntry;

@@ -11,9 +11,9 @@
 #include <unordered_set>
 #include <utility>
 
-#include "common/alignment.h"
-#include "common/common_types.h"
-#include "video_core/buffer_cache/word_manager.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/buffer_cache/word_manager.h"
 
 namespace VideoCommon {
 

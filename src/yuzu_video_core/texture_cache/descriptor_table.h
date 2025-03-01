@@ -6,10 +6,10 @@
 #include <algorithm>
 #include <vector>
 
-#include "common/common_types.h"
-#include "common/div_ceil.h"
-#include "video_core/memory_manager.h"
-#include "video_core/rasterizer_interface.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/div_ceil.h"
+#include "yuzu_video_core/memory_manager.h"
+#include "yuzu_video_core/rasterizer_interface.h"
 
 namespace VideoCommon {
 

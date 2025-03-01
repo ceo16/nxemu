@@ -1,15 +1,15 @@
 // SPDX-FileCopyrightText: Copyright 2024 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/settings.h"
-#include "video_core/framebuffer_config.h"
-#include "video_core/host_shaders/opengl_present_vert.h"
-#include "video_core/renderer_opengl/gl_device.h"
-#include "video_core/renderer_opengl/gl_shader_manager.h"
-#include "video_core/renderer_opengl/gl_shader_util.h"
-#include "video_core/renderer_opengl/present/layer.h"
-#include "video_core/renderer_opengl/present/present_uniforms.h"
-#include "video_core/renderer_opengl/present/window_adapt_pass.h"
+#include "yuzu_common/settings.h"
+#include "yuzu_video_core/framebuffer_config.h"
+#include "yuzu_video_core/host_shaders/opengl_present_vert.h"
+#include "yuzu_video_core/renderer_opengl/gl_device.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_manager.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_util.h"
+#include "yuzu_video_core/renderer_opengl/present/layer.h"
+#include "yuzu_video_core/renderer_opengl/present/present_uniforms.h"
+#include "yuzu_video_core/renderer_opengl/present/window_adapt_pass.h"
 
 namespace OpenGL {
 

@@ -5,14 +5,14 @@
 
 #include <span>
 
-#include "video_core/texture_cache/texture_cache_base.h"
+#include "yuzu_video_core/texture_cache/texture_cache_base.h"
 
-#include "shader_recompiler/shader_info.h"
-#include "video_core/renderer_vulkan/vk_compute_pass.h"
-#include "video_core/renderer_vulkan/vk_staging_buffer_pool.h"
-#include "video_core/texture_cache/image_view_base.h"
-#include "video_core/vulkan_common/vulkan_memory_allocator.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_shader_recompiler/shader_info.h"
+#include "yuzu_video_core/renderer_vulkan/vk_compute_pass.h"
+#include "yuzu_video_core/renderer_vulkan/vk_staging_buffer_pool.h"
+#include "yuzu_video_core/texture_cache/image_view_base.h"
+#include "yuzu_video_core/vulkan_common/vulkan_memory_allocator.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace Settings {
 struct ResolutionScalingInfo;

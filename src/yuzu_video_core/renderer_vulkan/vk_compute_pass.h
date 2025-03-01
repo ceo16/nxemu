@@ -7,13 +7,13 @@
 #include <span>
 #include <utility>
 
-#include "common/common_types.h"
-#include "video_core/engines/maxwell_3d.h"
-#include "video_core/renderer_vulkan/vk_descriptor_pool.h"
-#include "video_core/renderer_vulkan/vk_update_descriptor.h"
-#include "video_core/texture_cache/types.h"
-#include "video_core/vulkan_common/vulkan_memory_allocator.h"
-#include "video_core/vulkan_common/vulkan_wrapper.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/engines/maxwell_3d.h"
+#include "yuzu_video_core/renderer_vulkan/vk_descriptor_pool.h"
+#include "yuzu_video_core/renderer_vulkan/vk_update_descriptor.h"
+#include "yuzu_video_core/texture_cache/types.h"
+#include "yuzu_video_core/vulkan_common/vulkan_memory_allocator.h"
+#include "yuzu_video_core/vulkan_common/vulkan_wrapper.h"
 
 namespace VideoCommon {
 struct SwizzleParameters;

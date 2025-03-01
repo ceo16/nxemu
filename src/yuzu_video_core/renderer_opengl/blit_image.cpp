@@ -3,11 +3,11 @@
 
 #include <algorithm>
 
-#include "video_core/host_shaders/blit_color_float_frag.h"
-#include "video_core/host_shaders/full_screen_triangle_vert.h"
-#include "video_core/renderer_opengl/blit_image.h"
-#include "video_core/renderer_opengl/gl_shader_manager.h"
-#include "video_core/renderer_opengl/gl_shader_util.h"
+#include "yuzu_video_core/host_shaders/blit_color_float_frag.h"
+#include "yuzu_video_core/host_shaders/full_screen_triangle_vert.h"
+#include "yuzu_video_core/renderer_opengl/blit_image.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_manager.h"
+#include "yuzu_video_core/renderer_opengl/gl_shader_util.h"
 
 namespace OpenGL {
 

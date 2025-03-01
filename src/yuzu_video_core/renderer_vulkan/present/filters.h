@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "video_core/renderer_vulkan/present/window_adapt_pass.h"
+#include "yuzu_video_core/renderer_vulkan/present/window_adapt_pass.h"
 
 namespace Vulkan {
 

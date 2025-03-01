@@ -5,13 +5,13 @@
 #include <cmath>
 #include <vector>
 
-#include "common/scratch_buffer.h"
-#include "video_core/engines/sw_blitter/blitter.h"
-#include "video_core/engines/sw_blitter/converter.h"
-#include "video_core/guest_memory.h"
-#include "video_core/memory_manager.h"
-#include "video_core/surface.h"
-#include "video_core/textures/decoders.h"
+#include "yuzu_common/scratch_buffer.h"
+#include "yuzu_video_core/engines/sw_blitter/blitter.h"
+#include "yuzu_video_core/engines/sw_blitter/converter.h"
+#include "yuzu_video_core/guest_memory.h"
+#include "yuzu_video_core/memory_manager.h"
+#include "yuzu_video_core/surface.h"
+#include "yuzu_video_core/textures/decoders.h"
 
 namespace Tegra {
 class MemoryManager;

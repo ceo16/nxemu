@@ -5,7 +5,7 @@
 
 #include <span>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 
 namespace Tegra::Texture::BCN {
 
