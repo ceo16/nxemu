@@ -1,9 +1,9 @@
 #include "switch_rom.h"
 #include "machine/switch_system.h"
 
-bool LaunchSwitchRom(const char * romFile)
+bool LaunchSwitchRom(IRenderWindow & window, const char * romFile)
 {
-    if (!SwitchSystem::Create())
+    if (!SwitchSystem::Create(window))
     {
         return false;
     }

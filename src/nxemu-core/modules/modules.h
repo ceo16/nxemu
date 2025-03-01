@@ -16,9 +16,11 @@ public:
     Modules();
     ~Modules();
 
-    bool Initialize(ISwitchSystem & System);
+    bool Initialize(IRenderWindow & RenderWindow, ISwitchSystem & System);
     void StartEmulation(void);
     void StopEmulation(void);
+
+    IVideo * Video(void);
     ICpu * Cpu(void);
     IOperatingSystem * OperatingSystem(void);
 
@@ -37,6 +39,7 @@ private:
     std::unique_ptr<CpuModule> m_cpuModule;
     std::unique_ptr<VideoModule> m_videoModule;
     std::unique_ptr<OperatingSystemModule> m_operatingsystemModule;
+    IVideo * m_video;
     ICpu * m_cpu;
     IOperatingSystem * m_operatingsystem;
     std::string m_cpuFile;

@@ -10,7 +10,7 @@ class SwitchSystem :
 public:
     ~SwitchSystem();
 
-    static bool Create();
+    static bool Create(IRenderWindow & window);
     static void ShutDown();
     static SwitchSystem * GetInstance();
 
@@ -20,6 +20,7 @@ public:
 
     //ISwitchSystem
     IOperatingSystem & OperatingSystem();
+    IVideo & Video(void);
     ICpu & Cpu(void);
 
 private:
@@ -28,7 +29,7 @@ private:
 
     SwitchSystem();
 
-    bool Initialize();
+    bool Initialize(IRenderWindow & window);
     bool LoadNRO(const char * nroFile);
 
     static std::unique_ptr<SwitchSystem> m_instance;

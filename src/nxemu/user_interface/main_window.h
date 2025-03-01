@@ -1,9 +1,11 @@
 #pragma once
 #include "main_menu.h"
 #include "wtl.h"
+#include <nxemu-core/modules/module_base.h>
 #include <string>
 
-class MainWindow
+class MainWindow :
+    public IRenderWindow
 {
     enum
     {
@@ -29,6 +31,9 @@ public:
     WPARAM ProcessAllMessages(void) const;
     void ResetMenu();
     void ShowWindow(bool show);
+
+    //IRenderWindow
+    void * RenderSurface(void) const;
 
 private:
     MainWindow(void) = delete;

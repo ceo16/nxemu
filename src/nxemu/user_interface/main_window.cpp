@@ -134,7 +134,7 @@ LRESULT MainWindow::OnOpenGame(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCt
     {
         return 0;
     }
-    LaunchSwitchRom(fileName.c_str());
+    LaunchSwitchRom(*this, fileName.c_str());
     return 0;
 }
 
@@ -156,7 +156,7 @@ LRESULT MainWindow::OnRecetGame(WORD /*wNotifyCode*/, WORD wID, HWND /*hWndCtl*/
     Stringlist & recentFiles = uiSettings.recentFiles;
     if (fileIndex < recentFiles.size())
     {
-        LaunchSwitchRom(recentFiles[fileIndex].c_str());
+        LaunchSwitchRom(*this, recentFiles[fileIndex].c_str());
     }
     return 0;
 }
@@ -185,6 +185,11 @@ LRESULT MainWindow::GuiProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 void MainWindow::ResetMenu()
 {
     SetMenu(m_hWnd, m_menu.GetHandle());
+}
+
+void * MainWindow::RenderSurface(void) const
+{
+    return m_hWnd;
 }
 
 void MainWindow::GameNameChanged(void)

@@ -21,6 +21,11 @@ Modules::~Modules()
         m_cpuModule->DestroyCpu(m_cpu);
         m_cpu = nullptr;
     }
+    if (m_video != nullptr && m_videoModule.get() != nullptr)
+    {
+        m_videoModule->DestroyVideo(m_video);
+        m_video = nullptr;
+    }
     if (m_operatingsystem != nullptr && m_operatingsystemModule.get() != nullptr)
     {
         m_operatingsystemModule->DestroyOS(m_operatingsystem);
@@ -28,9 +33,9 @@ Modules::~Modules()
     }
 }
 
-bool Modules::Initialize(ISwitchSystem & System)
+bool Modules::Initialize(IRenderWindow & RenderWindow, ISwitchSystem & System)
 {
-    if (m_cpuModule.get() == nullptr || m_operatingsystemModule.get() == nullptr)
+    if (m_cpuModule.get() == nullptr || m_videoModule.get() == nullptr || m_operatingsystemModule.get() == nullptr)
     {
         return false;
     }
@@ -44,8 +49,17 @@ bool Modules::Initialize(ISwitchSystem & System)
     {
         return false;
     }
+    m_video = m_videoModule->CreateVideo(RenderWindow, System);
+    if (m_video == nullptr)
+    {
+        return false;
+    }
 
     if (!m_cpu->Initialize())
+    {
+        return false;
+    }
+    if (!m_video->Initialize())
     {
         return false;
     }
@@ -94,6 +108,11 @@ void Modules::CreateModules(void)
     {
         m_baseModules.push_back(m_operatingsystemModule.get());
     }
+}
+
+IVideo * Modules::Video(void)
+{
+    return m_video;
 }
 
 ICpu * Modules::Cpu(void)

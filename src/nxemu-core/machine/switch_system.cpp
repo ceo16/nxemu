@@ -7,7 +7,7 @@
 
 std::unique_ptr<SwitchSystem> SwitchSystem::m_instance;
 
-bool SwitchSystem::Create()
+bool SwitchSystem::Create(IRenderWindow & window)
 {
     ShutDown();
     m_instance.reset(new SwitchSystem());
@@ -15,7 +15,7 @@ bool SwitchSystem::Create()
     {
         return false;
     }
-    return m_instance->Initialize();
+    return m_instance->Initialize(window);
 }
 
 void SwitchSystem::ShutDown(void)
@@ -41,9 +41,9 @@ SwitchSystem::~SwitchSystem()
     StopEmulation();
 }
 
-bool SwitchSystem::Initialize()
+bool SwitchSystem::Initialize(IRenderWindow & window)
 {
-    if (!m_modules.Initialize(*this))
+    if (!m_modules.Initialize(window, *this))
     {
         return false;
     }
@@ -64,6 +64,11 @@ void SwitchSystem::StopEmulation(void)
     }
     m_emulationRunning = false;
     m_modules.StopEmulation();
+}
+
+IVideo & SwitchSystem::Video(void)
+{
+    return *m_modules.Video();
 }
 
 IOperatingSystem & SwitchSystem::OperatingSystem()

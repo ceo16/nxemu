@@ -1,3 +1,5 @@
 #pragma once
 
-bool LaunchSwitchRom(const char * romFile);
+__interface IRenderWindow;
+
+bool LaunchSwitchRom(IRenderWindow & window, const char * romFile);

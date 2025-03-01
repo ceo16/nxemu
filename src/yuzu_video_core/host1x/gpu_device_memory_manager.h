@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "core/device_memory_manager.h"
+#include "nxemu-os/core/device_memory_manager.h"
 
 namespace VideoCore {
 class RasterizerInterface;

@@ -1,6 +1,8 @@
-#include <nxemu-module-spec/video.h>
+#include "video_manager.h"
+#include <memory>
 #include <stdio.h>
 
+std::unique_ptr<VideoManager> g_videoManager;
 IModuleNotification * g_notify = nullptr;
 IModuleSettings * g_settings = nullptr;
 
@@ -67,6 +69,31 @@ Output: None
 */
 void CALL EmulationStopping()
 {
+}
+
+IVideo * CALL CreateVideo(IRenderWindow & renderWindow, ISwitchSystem & system)
+{
+    if (g_notify == nullptr)
+    {
+        return nullptr;
+    }
+    if (g_videoManager.get() != nullptr)
+    {
+        g_notify->BreakPoint(__FILE__, __LINE__);
+        return nullptr;
+    }
+    g_videoManager = std::make_unique<VideoManager>(renderWindow, system);
+    return g_videoManager.get();
+}
+
+void CALL DestroyVideo(IVideo * video)
+{
+    if (video == nullptr || g_videoManager.get() != video)
+    {
+        g_notify->BreakPoint(__FILE__, __LINE__);
+        return;
+    }
+    g_videoManager = nullptr;
 }
 
 extern "C" int __stdcall DllMain(void * /*hinst*/, unsigned long /*fdwReason*/, void * /*lpReserved*/)

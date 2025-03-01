@@ -54,12 +54,20 @@ typedef struct
     uint16_t type;    // Set to the module type, eg MODULE_TYPE_VIDEO
     char name[200];   // Name of the DLL
 } MODULE_INFO;
+
+__interface IRenderWindow
+{
+    void * RenderSurface(void) const;
+};
+
 __interface IOperatingSystem;
+__interface IVideo;
 __interface ICpu;
 
 __interface ISwitchSystem
 {
     IOperatingSystem & OperatingSystem();
+    IVideo & Video();
     ICpu & Cpu();
 };
 
