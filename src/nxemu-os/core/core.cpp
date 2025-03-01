@@ -22,7 +22,7 @@
 #include "core/hle/service/apm/apm_controller.h"
 #include "core/hle/service/filesystem/filesystem.h"
 #include "core/hle/service/services.h"
-#include <yuzu_hid_core/hid_core.h>
+#include "yuzu_hid_core/hid_core.h"
 #include "yuzu_input_common/main.h"
 
 MICROPROFILE_DEFINE(ARM_CPU0, "ARM", "CPU 0", MP_RGB(255, 64, 64));
@@ -82,6 +82,32 @@ struct System::Impl {
         Initialize(system);
     }
 
+    void Run() {
+        std::unique_lock<std::mutex> lk(suspend_guard);
+
+        kernel.SuspendEmulation(false);
+        core_timing.SyncPause(false);
+        is_paused.store(false, std::memory_order_relaxed);
+    }
+
+    bool IsPaused() const {
+        return is_paused.load(std::memory_order_relaxed);
+    }
+
+    std::unique_lock<std::mutex> StallApplication() {
+        std::unique_lock<std::mutex> lk(suspend_guard);
+        kernel.SuspendEmulation(true);
+        core_timing.SyncPause(true);
+        return lk;
+    }
+
+    void UnstallApplication() {
+        if (!IsPaused()) {
+            core_timing.SyncPause(false);
+            kernel.SuspendEmulation(false);
+        }
+    }
+
     void SetNVDECActive(bool is_nvdec_active) {
         nvdec_active = is_nvdec_active;
     }
@@ -123,6 +149,8 @@ struct System::Impl {
         is_shutting_down = shutting_down;
     }
 
+    mutable std::mutex suspend_guard;
+    std::atomic_bool is_paused{};
     std::atomic<bool> is_shutting_down{};
 
     Timing::CoreTiming core_timing;
@@ -189,9 +217,12 @@ void System::InitializeKernel()
     impl->InitializeKernel(*this);
 }
 
-void System::Initialize()
-{
+void System::Initialize() {
     impl->Initialize(*this);
+}
+
+void System::Run() {
+    impl->Run();
 }
 
 bool System::IsShuttingDown() const {
