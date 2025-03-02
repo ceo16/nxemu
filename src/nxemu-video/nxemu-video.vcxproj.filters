@@ -26,9 +26,15 @@
     <ClCompile Include="video_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="render_window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="video_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="render_window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

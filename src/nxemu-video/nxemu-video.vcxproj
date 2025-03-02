@@ -28,29 +28,41 @@
     <OutDir>$(SolutionDir)modules\$(Platform)\video\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)external\boost;$(SolutionDir)external\fmt\include;$(SolutionDir)src\3rd_party\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+    </ClCompile>
     <PreBuildEvent>
       <Command>"$(SolutionDir)src\script\update_version.cmd" "$(Configuration)" "$(Platform)" "$(SolutionDir)src\nxemu-video\version.h.in" "$(SolutionDir)src\nxemu-video\version.h"</Command>
     </PreBuildEvent>
-    <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)external\boost;$(SolutionDir)external\fmt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
+    <Link>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="version.h.in" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="nxemu-video.cpp" />
+    <ClCompile Include="render_window.cpp" />
     <ClCompile Include="video_manager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="render_window.h" />
     <ClInclude Include="video_manager.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\external\fmt.vcxproj">
       <Project>{d58bdfc6-1f1e-4c55-9296-1c2411b0fda7}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\external\sirit.vcxproj">
+      <Project>{583146af-ee19-454c-8646-b202c0eb82ba}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\yuzu_common\yuzu_common.vcxproj">
       <Project>{250224f2-2e89-410e-8bdb-875959daba2c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\yuzu_shader_recompiler\yuzu_shader_recompiler.vcxproj">
+      <Project>{70e74561-b64c-4ff8-9ea5-472bd2d98a4c}</Project>
     </ProjectReference>
     <ProjectReference Include="..\yuzu_video_core\yuzu_video_core.vcxproj">
       <Project>{0f7ce378-7060-4b23-990b-8ed758654d81}</Project>
