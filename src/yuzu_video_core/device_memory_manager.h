@@ -15,6 +15,8 @@
 #include "yuzu_common/scratch_buffer.h"
 #include "yuzu_common/virtual_buffer.h"
 
+#include <nxemu-module-spec/operating_system.h>
+
 namespace Core {
 
 constexpr size_t DEVICE_PAGEBITS = 12ULL;
@@ -40,7 +42,7 @@ class DeviceMemoryManager {
     using DeviceMethods = typename Traits::DeviceMethods;
 
 public:
-    DeviceMemoryManager(const DeviceMemory& device_memory);
+    DeviceMemoryManager(const IDeviceMemory & device_memory);
     ~DeviceMemoryManager();
 
     void BindInterface(DeviceInterface* device_inter);

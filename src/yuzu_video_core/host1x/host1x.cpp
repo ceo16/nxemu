@@ -8,9 +8,9 @@ namespace Tegra {
 
 namespace Host1x {
 
-Host1x::Host1x(Core::System& system_)
+Host1x::Host1x(IDeviceMemory & deviceMemory)
     : syncpoint_manager{},
-      memory_manager(system_.DeviceMemory()), gmmu_manager{memory_manager, 32, 0, 12},
+      memory_manager(deviceMemory), gmmu_manager{memory_manager, 32, 0, 12},
       allocator{std::make_unique<Common::FlatAllocator<u32, 0, 32>>(1 << 12)} {}
 
 Host1x::~Host1x() = default;

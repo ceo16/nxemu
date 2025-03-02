@@ -87,3 +87,7 @@ bool OSManager::LoadModule(const IModuleInfo & module, uint64_t baseAddress)
     return true;
 }
 
+IDeviceMemory & OSManager::DeviceMemory(void)
+{
+    return m_coreSystem.DeviceMemory();
+}

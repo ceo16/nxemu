@@ -10,7 +10,7 @@
 #include <utility>
 #include <vector>
 
-#include "core/device_memory_manager.h"
+#include <yuzu_video_core/device_memory_manager.h>
 
 namespace Core {
 

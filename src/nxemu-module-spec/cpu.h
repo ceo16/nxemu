@@ -53,6 +53,8 @@ __interface IArm64Executor
 
 __interface IMemory
 {
+    void RasterizerMarkRegionCached(uint64_t vaddr, uint64_t size, bool cached) = 0;
+    uint8_t * GetPointerSilent(uint64_t vaddr) = 0;
 };
 
 __interface ICpuInfo

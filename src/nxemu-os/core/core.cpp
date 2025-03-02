@@ -38,11 +38,10 @@ struct System::Impl {
         applet_manager{system}, frontend_applets{system}, switchSystem(switchSystem),
         input_subsystem{std::make_shared<InputCommon::InputSubsystem>()}
     {
+        device_memory = std::make_unique<Core::DeviceMemory>();
     }
 
     void Initialize(System& system) {
-        device_memory = std::make_unique<Core::DeviceMemory>();
-
         is_multicore = true; // Settings::values.use_multi_core.GetValue();
 
         core_timing.SetMulticore(is_multicore);

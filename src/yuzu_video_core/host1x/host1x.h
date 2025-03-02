@@ -9,6 +9,7 @@
 #include "yuzu_video_core/host1x/gpu_device_memory_manager.h"
 #include "yuzu_video_core/host1x/syncpoint_manager.h"
 #include "yuzu_video_core/memory_manager.h"
+#include <nxemu-module-spec/operating_system.h>
 
 namespace Core {
 class System;
@@ -20,7 +21,7 @@ namespace Host1x {
 
 class Host1x {
 public:
-    explicit Host1x(Core::System& system);
+    explicit Host1x(IDeviceMemory & deviceMemory);
     ~Host1x();
 
     SyncpointManager& GetSyncpointManager() {

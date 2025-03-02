@@ -145,7 +145,7 @@ public:
      *          If the address is not valid, nullptr will be returned.
      */
     u8* GetPointer(Common::ProcessAddress vaddr);
-    u8* GetPointerSilent(Common::ProcessAddress vaddr);
+    u8* GetPointerSilent(uint64_t vaddr);
 
     template <typename T>
     T* GetPointer(Common::ProcessAddress vaddr) {
@@ -477,7 +477,7 @@ public:
      * @param cached Whether or not any pages within the address range should be
      *               marked as cached or uncached.
      */
-    void RasterizerMarkRegionCached(Common::ProcessAddress vaddr, u64 size, bool cached);
+    void RasterizerMarkRegionCached(uint64_t vaddr, u64 size, bool cached);
 
     /**
      * Marks each page within the specified address range as debug or non-debug.
@@ -489,8 +489,6 @@ public:
      *              marked as debug or non-debug.
      */
     void MarkRegionDebug(Common::ProcessAddress vaddr, u64 size, bool debug);
-
-    void SetGPUDirtyManagers(std::span<Core::GPUDirtyMemoryManager> managers);
 
     bool InvalidateNCE(Common::ProcessAddress vaddr, size_t size);
 

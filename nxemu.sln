@@ -40,11 +40,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nxemu-video", "src\nxemu-vi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{29EE6611-75A5-4A1D-A994-33A5EBB4F765}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mcl", "..\nxemu-private\external\mcl.vcxproj", "{A059B52A-FB13-4060-AC89-128570938D5D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mcl", "external\mcl.vcxproj", "{A059B52A-FB13-4060-AC89-128570938D5D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fmt", "..\nxemu-private\external\fmt.vcxproj", "{D58BDFC6-1F1E-4C55-9296-1C2411B0FDA7}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fmt", "external\fmt.vcxproj", "{D58BDFC6-1F1E-4C55-9296-1C2411B0FDA7}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zydis", "..\nxemu-private\external\zydis.vcxproj", "{9DEC236B-F924-4166-A1B1-002F3BF8F0EC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zydis", "external\zydis.vcxproj", "{9DEC236B-F924-4166-A1B1-002F3BF8F0EC}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sdl", "external\sdl.vcxproj", "{C44840A5-59BC-4CA0-85C2-B51F0BA6E3BD}"
 EndProject

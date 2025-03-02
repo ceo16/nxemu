@@ -5,6 +5,7 @@
 
 #include "yuzu_common/host_memory.h"
 #include "yuzu_common/typed_address.h"
+#include <nxemu-module-spec/operating_system.h>
 
 namespace Core {
 
@@ -16,13 +17,21 @@ enum : u64 {
 };
 }; // namespace DramMemoryMap
 
-class DeviceMemory {
+class DeviceMemory :
+    public IDeviceMemory
+{
 public:
     explicit DeviceMemory();
     ~DeviceMemory();
 
     DeviceMemory& operator=(const DeviceMemory&) = delete;
     DeviceMemory(const DeviceMemory&) = delete;
+
+    //IDeviceMemory
+    const uint8_t * BackingBasePointer() const
+    {
+        return buffer.BackingBasePointer();
+    }
 
     template <typename T>
     Common::PhysicalAddress GetPhysicalAddr(const T* ptr) const {

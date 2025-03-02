@@ -1,4 +1,5 @@
 #include "video_manager.h"
+#include "yuzu_video_core/host1x/host1x.h"
 
 struct VideoManager::Impl 
 {
@@ -8,6 +9,13 @@ struct VideoManager::Impl
     {
     }
 
+    bool Initialize(void)
+    {
+        m_host1x = std::make_unique<Tegra::Host1x::Host1x>(m_system.OperatingSystem().DeviceMemory());
+        return true;
+    }
+    
+    std::unique_ptr<Tegra::Host1x::Host1x> m_host1x;
     IRenderWindow & m_window;
     ISwitchSystem & m_system;
 };
@@ -23,6 +31,6 @@ VideoManager::~VideoManager()
 
 bool VideoManager::Initialize(void)
 {
-    return true;
+    return impl->Initialize();
 }
 

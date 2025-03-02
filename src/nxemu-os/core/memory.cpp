@@ -816,7 +816,6 @@ struct Memory::Impl {
     Common::PageTable* current_page_table = nullptr;
     std::array<GPUDirtyState, Core::Hardware::NUM_CPU_CORES> rasterizer_write_areas{};
     std::array<Common::ScratchBuffer<u32>, Core::Hardware::NUM_CPU_CORES> scratch_buffers{};
-    std::span<Core::GPUDirtyMemoryManager> gpu_dirty_managers;
     std::mutex sys_core_guard;
 
     std::optional<Common::HeapTracker> heap_tracker;
@@ -885,7 +884,7 @@ u8* Memory::GetPointer(Common::ProcessAddress vaddr) {
     return impl->GetPointer(vaddr);
 }
 
-u8* Memory::GetPointerSilent(Common::ProcessAddress vaddr) {
+u8* Memory::GetPointerSilent(uint64_t vaddr) {
     return impl->GetPointerSilent(vaddr);
 }
 
@@ -986,10 +985,6 @@ bool Memory::ZeroBlock(Common::ProcessAddress dest_addr, const std::size_t size)
     return impl->ZeroBlock(dest_addr, size);
 }
 
-void Memory::SetGPUDirtyManagers(std::span<Core::GPUDirtyMemoryManager> managers) {
-    impl->gpu_dirty_managers = managers;
-}
-
 Result Memory::InvalidateDataCache(Common::ProcessAddress dest_addr, const std::size_t size) {
     return impl->InvalidateDataCache(dest_addr, size);
 }
@@ -1002,8 +997,8 @@ Result Memory::FlushDataCache(Common::ProcessAddress dest_addr, const std::size_
     return impl->FlushDataCache(dest_addr, size);
 }
 
-void Memory::RasterizerMarkRegionCached(Common::ProcessAddress vaddr, u64 size, bool cached) {
-    impl->RasterizerMarkRegionCached(GetInteger(vaddr), size, cached);
+void Memory::RasterizerMarkRegionCached(uint64_t vaddr, uint64_t size, bool cached) {
+    impl->RasterizerMarkRegionCached(vaddr, size, cached);
 }
 
 void Memory::MarkRegionDebug(Common::ProcessAddress vaddr, u64 size, bool debug) {

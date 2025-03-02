@@ -14,11 +14,11 @@
 #include "yuzu_common/scope_exit.h"
 #include "yuzu_common/settings.h"
 #include "core/device_memory.h"
-#include "core/device_memory_manager.h"
 #include "core/memory.h"
 
 #include "yuzu_video_core/host1x/gpu_device_memory_manager.h"
 #include "yuzu_video_core/rasterizer_interface.h"
+#include "yuzu_video_core/device_memory_manager.h"
 
 namespace Core {
 
@@ -164,8 +164,8 @@ namespace Core {
     };
 
     template <typename Traits>
-    DeviceMemoryManager<Traits>::DeviceMemoryManager(const DeviceMemory& device_memory_)
-        : physical_base{ reinterpret_cast<const uintptr_t>(device_memory_.buffer.BackingBasePointer()) },
+    DeviceMemoryManager<Traits>::DeviceMemoryManager(const IDeviceMemory & device_memory_)
+        : physical_base{ reinterpret_cast<const uintptr_t>(device_memory_.BackingBasePointer()) },
         device_inter{ nullptr }, compressed_physical_ptr(device_as_size >> Memory::YUZU_PAGEBITS),
         compressed_device_addr(1ULL << ((Settings::values.memory_layout_mode.GetValue() ==
             Settings::MemoryLayout::Memory_4Gb
@@ -225,7 +225,7 @@ namespace Core {
         std::scoped_lock lk(mapping_guard);
         for (size_t i = 0; i < num_pages; i++) {
             const VAddr new_vaddress = virtual_address + i * Memory::YUZU_PAGESIZE;
-            auto* ptr = process_memory->GetPointerSilent(Common::ProcessAddress(new_vaddress));
+            auto* ptr = process_memory->GetPointerSilent(new_vaddress);
             if (ptr == nullptr) [[unlikely]] {
                 compressed_physical_ptr[start_page_d + i] = 0;
                 continue;
@@ -290,7 +290,7 @@ namespace Core {
             size_t index = i - 1;
             const VAddr new_vaddress = virtual_address + index * Memory::YUZU_PAGESIZE;
             const uintptr_t new_ptr = reinterpret_cast<uintptr_t>(
-                process_memory->GetPointerSilent(Common::ProcessAddress(new_vaddress)));
+                process_memory->GetPointerSilent(new_vaddress));
             if (new_ptr + page_size == last_ptr) {
                 page_count++;
             }

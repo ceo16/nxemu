@@ -16,6 +16,7 @@ public:
     bool CreateApplicationProcess(uint64_t codeSize, const IProgramMetadata & metaData, uint64_t & baseAddress);
     void StartApplicationProcess(uint64_t baseAddress, int32_t priority, int64_t stackSize);
     bool LoadModule(const IModuleInfo & module, uint64_t baseAddress);
+    IDeviceMemory & DeviceMemory(void);
 
 private:
     OSManager() = delete;

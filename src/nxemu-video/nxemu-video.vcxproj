@@ -45,6 +45,17 @@
   <ItemGroup>
     <ClInclude Include="video_manager.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\external\fmt.vcxproj">
+      <Project>{d58bdfc6-1f1e-4c55-9296-1c2411b0fda7}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\yuzu_common\yuzu_common.vcxproj">
+      <Project>{250224f2-2e89-410e-8bdb-875959daba2c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\yuzu_video_core\yuzu_video_core.vcxproj">
+      <Project>{0f7ce378-7060-4b23-990b-8ed758654d81}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
