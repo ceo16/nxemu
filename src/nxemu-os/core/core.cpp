@@ -22,6 +22,7 @@
 #include "core/hle/service/apm/apm_controller.h"
 #include "core/hle/service/filesystem/filesystem.h"
 #include "core/hle/service/services.h"
+#include "core/perf_stats.h"
 #include "yuzu_hid_core/hid_core.h"
 #include "yuzu_input_common/main.h"
 
@@ -115,7 +116,7 @@ struct System::Impl {
         return nvdec_active;
     }
 
-    void InitializeKernel(System& system) {
+    void InitializeKernel(System& system, uint64_t titleID) {
         LOG_DEBUG(Core, "initialized OK");
 
         // Setting changes may require a full system reinitialization (e.g., disabling multicore).
@@ -136,6 +137,13 @@ struct System::Impl {
         microprofile_cpu[1] = MICROPROFILE_TOKEN(ARM_CPU1);
         microprofile_cpu[2] = MICROPROFILE_TOKEN(ARM_CPU2);
         microprofile_cpu[3] = MICROPROFILE_TOKEN(ARM_CPU3);
+
+        perf_stats = std::make_unique<PerfStats>(titleID);
+
+        // Reset counters and set time origin to current frame
+        GetAndResetPerfStats();
+        perf_stats->BeginSystemFrame();
+
         LOG_DEBUG(Core, "Initialized OK");
     }
 
@@ -146,6 +154,10 @@ struct System::Impl {
 
     void SetShuttingDown(bool shutting_down) {
         is_shutting_down = shutting_down;
+    }
+
+    PerfStatsResults GetAndResetPerfStats() {
+        return perf_stats->GetAndResetStats(core_timing.GetGlobalTimeUs());
     }
 
     mutable std::mutex suspend_guard;
@@ -184,6 +196,9 @@ struct System::Impl {
     /// Services
     std::unique_ptr<Service::Services> services;
 
+    std::unique_ptr<Core::PerfStats> perf_stats;
+    Core::SpeedLimiter speed_limiter;
+
     bool is_multicore{};
     bool is_async_gpu{};
 
@@ -211,9 +226,9 @@ const CpuManager& System::GetCpuManager() const {
     return impl->cpu_manager;
 }
 
-void System::InitializeKernel()
+void System::InitializeKernel(uint64_t titleID)
 {
-    impl->InitializeKernel(*this);
+    impl->InitializeKernel(*this, titleID);
 }
 
 void System::Initialize() {
@@ -305,6 +320,22 @@ Timing::CoreTiming& System::CoreTiming() {
 
 const Timing::CoreTiming& System::CoreTiming() const {
     return impl->core_timing;
+}
+
+Core::PerfStats& System::GetPerfStats() {
+    return *impl->perf_stats;
+}
+
+const Core::PerfStats& System::GetPerfStats() const {
+    return *impl->perf_stats;
+}
+
+Core::SpeedLimiter& System::SpeedLimiter() {
+    return impl->speed_limiter;
+}
+
+const Core::SpeedLimiter& System::SpeedLimiter() const {
+    return impl->speed_limiter;
 }
 
 u64 System::GetApplicationProcessProgramID() const {

@@ -45,7 +45,7 @@ bool OSManager::CreateApplicationProcess(uint64_t codeSize, const IProgramMetada
        return false;
     }
     m_coreSystem.Run();
-    m_coreSystem.InitializeKernel();
+    m_coreSystem.InitializeKernel(metaData.GetTitleID());
     Kernel::KernelCore & kernel = m_coreSystem.Kernel();
     m_process = Kernel::KProcess::Create(kernel);
     if (m_process == nullptr)

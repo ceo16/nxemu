@@ -148,6 +148,7 @@
       <ObjectFileName>$(IntDir)/hle/service/psc/time/time_zone.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="core\hle\service\psc\time\time_zone_service.cpp" />
+    <ClCompile Include="core\perf_stats.cpp" />
     <ClCompile Include="nxemu-os.cpp" />
     <ClCompile Include="core\core_timing.cpp" />
     <ClCompile Include="core\device_memory.cpp" />
@@ -785,6 +786,7 @@
     <ClInclude Include="core\hle\service\vi\vsync_manager.h" />
     <ClInclude Include="core\loader\loader.h" />
     <ClInclude Include="core\memory.h" />
+    <ClInclude Include="core\perf_stats.h" />
     <ClInclude Include="nxemu-os.h" />
     <ClInclude Include="os_manager.h" />
   </ItemGroup>

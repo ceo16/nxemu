@@ -155,7 +155,7 @@ public:
     System(System&&) = delete;
     System& operator=(System&&) = delete;
 
-    void InitializeKernel(void);
+    void InitializeKernel(uint64_t titleID);
 
     /**
      * Initializes the system
@@ -257,30 +257,6 @@ public:
 
     /// Gets a constant reference to the system memory instance.
     [[nodiscard]] const Core::Memory::Memory& ApplicationMemory() const;
-
-    /// Gets a mutable reference to the GPU interface
-    [[nodiscard]] Tegra::GPU& GPU();
-
-    /// Gets an immutable reference to the GPU interface.
-    [[nodiscard]] const Tegra::GPU& GPU() const;
-
-    /// Gets a mutable reference to the Host1x interface
-    [[nodiscard]] Tegra::Host1x::Host1x& Host1x();
-
-    /// Gets an immutable reference to the Host1x interface.
-    [[nodiscard]] const Tegra::Host1x::Host1x& Host1x() const;
-
-    /// Gets a mutable reference to the renderer.
-    [[nodiscard]] VideoCore::RendererBase& Renderer();
-
-    /// Gets an immutable reference to the renderer.
-    [[nodiscard]] const VideoCore::RendererBase& Renderer() const;
-
-    /// Gets a mutable reference to the audio interface
-    [[nodiscard]] AudioCore::AudioCore& AudioCore();
-
-    /// Gets an immutable reference to the audio interface.
-    [[nodiscard]] const AudioCore::AudioCore& AudioCore() const;
 
     /// Gets the global scheduler
     [[nodiscard]] Kernel::GlobalSchedulerContext& GlobalSchedulerContext();
