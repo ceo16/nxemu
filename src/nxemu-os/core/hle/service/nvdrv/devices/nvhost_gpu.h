@@ -5,13 +5,13 @@
 
 #include <memory>
 #include <vector>
-#include "common/bit_field.h"
-#include "common/common_funcs.h"
-#include "common/common_types.h"
-#include "common/swap.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/swap.h"
 #include "core/hle/service/nvdrv/devices/nvdevice.h"
-#include "core/hle/service/nvdrv/nvdata.h"
-#include "video_core/dma_pusher.h"
+#include "yuzu_video_core/service/nvdrv/nvdata.h"
+#include "yuzu_video_core/dma_pusher.h"
 
 namespace Tegra {
 namespace Control {

@@ -12,7 +12,8 @@
 #include "core/hle/service/nvdrv/core/nvmap.h"
 #include "core/hle/service/nvdrv/core/syncpoint_manager.h"
 #include "core/memory.h"
-#include "video_core/host1x/host1x.h"
+
+#include <nxemu-module-spec/video.h>
 
 namespace Service::Nvidia::NvCore {
 
@@ -22,9 +23,9 @@ Session::Session(SessionId id_, Kernel::KProcess* process_, Core::Asid asid_)
 Session::~Session() = default;
 
 struct ContainerImpl {
-    explicit ContainerImpl(Container& core, Tegra::Host1x::Host1x& host1x_)
-        : host1x{host1x_}, file{core, host1x_}, manager{host1x_}, device_file_data{} {}
-    Tegra::Host1x::Host1x& host1x;
+    explicit ContainerImpl(Container& core, IVideo & video_)
+        : video{video_}, file{core,video_}, manager{video_}, device_file_data{} {}
+    IVideo & video;
     NvMap file;
     SyncpointManager manager;
     Container::Host1xDeviceFileData device_file_data;
@@ -34,8 +35,8 @@ struct ContainerImpl {
     std::mutex session_guard;
 };
 
-Container::Container(Tegra::Host1x::Host1x& host1x_) {
-    impl = std::make_unique<ContainerImpl>(*this, host1x_);
+Container::Container(IVideo & video) {
+    impl = std::make_unique<ContainerImpl>(*this, video);
 }
 
 Container::~Container() = default;
@@ -54,9 +55,8 @@ SessionId Container::OpenSession(Kernel::KProcess* process) {
         }
     }
     size_t new_id{};
-    auto* memory_interface = &process->GetMemory();
-    auto& smmu = impl->host1x.MemoryManager();
-    auto asid = smmu.RegisterProcess(memory_interface);
+    Core::Asid asid;
+    asid.id = impl->video.RegisterProcess(&process->GetMemory());
     if (!impl->id_pool.empty()) {
         new_id = impl->id_pool.front();
         impl->id_pool.pop_front();
@@ -102,11 +102,11 @@ SessionId Container::OpenSession(Kernel::KProcess* process) {
             cur_addr = next_address;
         }
         session.has_preallocated_area = false;
-        auto start_region = region_size >= 32_MiB ? smmu.Allocate(region_size) : 0;
+        auto start_region = region_size >= 32_MiB ? impl->video.MemoryAllocate(region_size) : 0;
         if (start_region != 0) {
             session.mapper = std::make_unique<HeapMapper>(region_start, start_region, region_size,
-                                                          asid, impl->host1x);
-            smmu.TrackContinuity(start_region, region_start, region_size, asid);
+                                                          asid, impl->video);
+            impl->video.MemoryTrackContinuity(start_region, region_start, region_size, asid.id);
             session.has_preallocated_area = true;
             LOG_DEBUG(Debug, "Preallocation created!");
         }
@@ -115,23 +115,7 @@ SessionId Container::OpenSession(Kernel::KProcess* process) {
 }
 
 void Container::CloseSession(SessionId session_id) {
-    std::scoped_lock lk(impl->session_guard);
-    auto& session = impl->sessions[session_id.id];
-    if (--session.ref_count > 0) {
-        return;
-    }
-    impl->file.UnmapAllHandles(session_id);
-    auto& smmu = impl->host1x.MemoryManager();
-    if (session.has_preallocated_area) {
-        const DAddr region_start = session.mapper->GetRegionStart();
-        const size_t region_size = session.mapper->GetRegionSize();
-        session.mapper.reset();
-        smmu.Free(region_start, region_size);
-        session.has_preallocated_area = false;
-    }
-    session.is_active = false;
-    smmu.UnregisterProcess(impl->sessions[session_id.id].asid);
-    impl->id_pool.emplace_front(session_id.id);
+    UNIMPLEMENTED();
 }
 
 Session* Container::GetSession(SessionId session_id) {

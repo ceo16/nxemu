@@ -8,7 +8,7 @@
 
 #include <array>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/service/nvnflinger/buffer_slot.h"
 
 namespace Service::android::BufferQueueDefs {

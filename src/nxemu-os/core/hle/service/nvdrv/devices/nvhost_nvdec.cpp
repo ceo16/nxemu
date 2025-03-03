@@ -1,14 +1,13 @@
 // SPDX-FileCopyrightText: Copyright 2018 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "audio_core/audio_core.h"
-#include "common/assert.h"
-#include "common/logging/log.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/logging/log.h"
 #include "core/core.h"
 #include "core/hle/service/nvdrv/core/container.h"
 #include "core/hle/service/nvdrv/devices/ioctl_serialization.h"
 #include "core/hle/service/nvdrv/devices/nvhost_nvdec.h"
-#include "video_core/renderer_base.h"
+#include "yuzu_video_core/renderer_base.h"
 
 namespace Service::Nvidia::Devices {
 
@@ -69,23 +68,11 @@ NvResult nvhost_nvdec::Ioctl3(DeviceFD fd, Ioctl command, std::span<const u8> in
 }
 
 void nvhost_nvdec::OnOpen(NvCore::SessionId session_id, DeviceFD fd) {
-    LOG_INFO(Service_NVDRV, "NVDEC video stream started");
-    system.SetNVDECActive(true);
-    sessions[fd] = session_id;
+    UNIMPLEMENTED();
 }
 
 void nvhost_nvdec::OnClose(DeviceFD fd) {
-    LOG_INFO(Service_NVDRV, "NVDEC video stream ended");
-    auto& host1x_file = core.Host1xDeviceFile();
-    const auto iter = host1x_file.fd_to_id.find(fd);
-    if (iter != host1x_file.fd_to_id.end()) {
-        system.GPU().ClearCdmaInstance(iter->second);
-    }
-    system.SetNVDECActive(false);
-    auto it = sessions.find(fd);
-    if (it != sessions.end()) {
-        sessions.erase(it);
-    }
+    UNIMPLEMENTED();
 }
 
 } // namespace Service::Nvidia::Devices

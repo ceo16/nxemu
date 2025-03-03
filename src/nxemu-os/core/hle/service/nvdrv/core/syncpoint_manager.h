@@ -8,8 +8,10 @@
 #include <atomic>
 #include <mutex>
 
-#include "common/common_types.h"
-#include "core/hle/service/nvdrv/nvdata.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/service/nvdrv/nvdata.h"
+
+__interface IVideo;
 
 namespace Tegra::Host1x {
 class Host1x;
@@ -38,7 +40,7 @@ enum class ChannelType : u32 {
  */
 class SyncpointManager final {
 public:
-    explicit SyncpointManager(Tegra::Host1x::Host1x& host1x);
+    explicit SyncpointManager(IVideo& video);
     ~SyncpointManager();
 
     /**
@@ -127,8 +129,7 @@ private:
     static constexpr std::size_t SyncpointCount{192};
     std::array<SyncpointInfo, SyncpointCount> syncpoints{};
     std::mutex reservation_lock;
-
-    Tegra::Host1x::Host1x& host1x;
+    IVideo& video;
 };
 
 } // namespace Service::Nvidia::NvCore

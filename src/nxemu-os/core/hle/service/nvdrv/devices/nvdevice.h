@@ -6,9 +6,9 @@
 #include <span>
 #include <vector>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/service/nvdrv/core/container.h"
-#include "core/hle/service/nvdrv/nvdata.h"
+#include "yuzu_video_core/service/nvdrv/nvdata.h"
 
 namespace Core {
 class System;

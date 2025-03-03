@@ -12,10 +12,10 @@
 #include <unordered_map>
 #include <assert.h>
 
-#include "common/bit_field.h"
-#include "common/common_types.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/service/nvdrv/core/container.h"
-#include "core/hle/service/nvdrv/nvdata.h"
+#include "yuzu_video_core/service/nvdrv/nvdata.h"
 
 namespace Tegra {
 
@@ -115,7 +115,7 @@ public:
         bool can_unlock;   //!< If the address region is ready to be unlocked
     };
 
-    explicit NvMap(Container& core, Tegra::Host1x::Host1x& host1x);
+    explicit NvMap(Container& core, IVideo & video);
 
     /**
      * @brief Creates an unallocated handle of the given size
@@ -165,7 +165,7 @@ private:
     static constexpr u32 HandleIdIncrement{
         4}; //!< Each new handle ID is an increment of 4 from the previous
     std::atomic<u32> next_handle_id{HandleIdIncrement};
-    Tegra::Host1x::Host1x& host1x;
+    IVideo& video;
 
     void AddHandle(std::shared_ptr<Handle> handle);
 

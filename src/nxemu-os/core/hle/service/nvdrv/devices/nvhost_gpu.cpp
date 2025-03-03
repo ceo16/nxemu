@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <cstring>
-#include "common/assert.h"
-#include "common/logging/log.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/logging/log.h"
 #include "core/core.h"
 #include "core/hle/kernel/k_process.h"
 #include "core/hle/service/nvdrv/core/container.h"
@@ -13,10 +13,10 @@
 #include "core/hle/service/nvdrv/devices/nvhost_gpu.h"
 #include "core/hle/service/nvdrv/nvdrv.h"
 #include "core/memory.h"
-#include "video_core/control/channel_state.h"
-#include "video_core/engines/puller.h"
-#include "video_core/gpu.h"
-#include "video_core/host1x/host1x.h"
+#include "yuzu_video_core/control/channel_state.h"
+#include "yuzu_video_core/engines/puller.h"
+#include "yuzu_video_core/gpu.h"
+#include "yuzu_video_core/host1x/host1x.h"
 
 namespace Service::Nvidia::Devices {
 namespace {
@@ -31,8 +31,9 @@ Tegra::CommandHeader BuildFenceAction(Tegra::Engines::Puller::FenceOperation op,
 nvhost_gpu::nvhost_gpu(Core::System& system_, EventInterface& events_interface_,
                        NvCore::Container& core_)
     : nvdevice{system_}, events_interface{events_interface_}, core{core_},
-      syncpoint_manager{core_.GetSyncpointManager()}, nvmap{core.GetNvMapFile()},
-      channel_state{system.GPU().AllocateChannel()} {
+      syncpoint_manager{core_.GetSyncpointManager()}, nvmap{core.GetNvMapFile()}
+    {
+    UNIMPLEMENTED();
     channel_syncpoint = syncpoint_manager.AllocateSyncpoint(false);
     sm_exception_breakpoint_int_report_event =
         events_interface.CreateEvent("GpuChannelSMExceptionBreakpointInt");
@@ -168,26 +169,7 @@ NvResult nvhost_gpu::SetChannelPriority(IoctlChannelSetPriority& params) {
 }
 
 NvResult nvhost_gpu::AllocGPFIFOEx2(IoctlAllocGpfifoEx2& params, DeviceFD fd) {
-    LOG_WARNING(Service_NVDRV,
-                "(STUBBED) called, num_entries={:X}, flags={:X}, unk0={:X}, "
-                "unk1={:X}, unk2={:X}, unk3={:X}",
-                params.num_entries, params.flags, params.unk0, params.unk1, params.unk2,
-                params.unk3);
-
-    if (channel_state->initialized) {
-        LOG_CRITICAL(Service_NVDRV, "Already allocated!");
-        return NvResult::AlreadyAllocated;
-    }
-
-    u64 program_id{};
-    if (auto* const session = core.GetSession(sessions[fd]); session != nullptr) {
-        program_id = session->process->GetProgramId();
-    }
-
-    system.GPU().InitChannel(*channel_state, program_id);
-
-    params.fence_out = syncpoint_manager.GetSyncpointFence(channel_syncpoint);
-
+    UNIMPLEMENTED();
     return NvResult::Success;
 }
 
@@ -243,43 +225,7 @@ NvResult nvhost_gpu::SubmitGPFIFOImpl(IoctlSubmitGpfifo& params, Tegra::CommandL
     LOG_TRACE(Service_NVDRV, "called, gpfifo={:X}, num_entries={:X}, flags={:X}", params.address,
               params.num_entries, params.flags.raw);
 
-    auto& gpu = system.GPU();
-
-    std::scoped_lock lock(channel_mutex);
-
-    const auto bind_id = channel_state->bind_id;
-
-    auto& flags = params.flags;
-
-    if (flags.fence_wait.Value()) {
-        if (flags.increment_value.Value()) {
-            return NvResult::BadParameter;
-        }
-
-        if (!syncpoint_manager.IsFenceSignalled(params.fence)) {
-            gpu.PushGPUEntries(bind_id, Tegra::CommandList{BuildWaitCommandList(params.fence)});
-        }
-    }
-
-    params.fence.id = channel_syncpoint;
-
-    u32 increment{(flags.fence_increment.Value() != 0 ? 2 : 0) +
-                  (flags.increment_value.Value() != 0 ? params.fence.value : 0)};
-    params.fence.value = syncpoint_manager.IncrementSyncpointMaxExt(channel_syncpoint, increment);
-    gpu.PushGPUEntries(bind_id, std::move(entries));
-
-    if (flags.fence_increment.Value()) {
-        if (flags.suppress_wfi.Value()) {
-            gpu.PushGPUEntries(bind_id,
-                               Tegra::CommandList{BuildIncrementCommandList(params.fence)});
-        } else {
-            gpu.PushGPUEntries(bind_id,
-                               Tegra::CommandList{BuildIncrementWithWfiCommandList(params.fence)});
-        }
-    }
-
-    flags.raw = 0;
-
+    UNIMPLEMENTED();
     return NvResult::Success;
 }
 

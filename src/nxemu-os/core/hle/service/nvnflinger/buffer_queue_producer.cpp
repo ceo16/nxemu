@@ -4,8 +4,8 @@
 // Parts of this implementation were based on:
 // https://cs.android.com/android/platform/superproject/+/android-5.1.1_r38:frameworks/native/libs/gui/BufferQueueProducer.cpp
 
-#include "common/assert.h"
-#include "common/logging/log.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/logging/log.h"
 #include "core/hle/kernel/k_event.h"
 #include "core/hle/kernel/k_readable_event.h"
 #include "core/hle/kernel/kernel.h"

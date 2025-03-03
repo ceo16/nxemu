@@ -15,6 +15,7 @@
 #include "yuzu_common/scratch_buffer.h"
 #include "yuzu_common/virtual_buffer.h"
 
+#include <nxemu-module-spec/cpu.h>
 #include <nxemu-module-spec/operating_system.h>
 
 namespace Core {
@@ -24,10 +25,6 @@ constexpr size_t DEVICE_PAGESIZE = 1ULL << DEVICE_PAGEBITS;
 constexpr size_t DEVICE_PAGEMASK = DEVICE_PAGESIZE - 1ULL;
 
 class DeviceMemory;
-
-namespace Memory {
-class Memory;
-}
 
 template <typename DTraits>
 struct DeviceMemoryManagerAllocator;
@@ -112,7 +109,7 @@ public:
     void WriteBlock(DAddr address, const void* src_pointer, size_t size);
     void WriteBlockUnsafe(DAddr address, const void* src_pointer, size_t size);
 
-    Asid RegisterProcess(Memory::Memory* memory);
+    Asid RegisterProcess(IMemory * memory);
     void UnregisterProcess(Asid id);
 
     void UpdatePagesCachedCount(DAddr addr, size_t size, s32 delta);
@@ -163,7 +160,7 @@ private:
     // Process memory interfaces
 
     std::deque<size_t> id_pool;
-    std::deque<Memory::Memory*> registered_processes;
+    std::deque<IMemory*> registered_processes;
 
     // Memory protection management
 

@@ -59,6 +59,10 @@ Output: None.
 */
 void CALL EmulationStarting()
 {
+    if (g_videoManager)
+    {
+        g_videoManager->EmulationStarting();
+    }
 }
 
 /*

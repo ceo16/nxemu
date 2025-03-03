@@ -12,11 +12,11 @@
 #include <optional>
 #include <vector>
 
-#include "common/address_space.h"
-#include "common/common_funcs.h"
-#include "common/common_types.h"
-#include "common/scratch_buffer.h"
-#include "common/swap.h"
+#include "yuzu_common/address_space.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/scratch_buffer.h"
+#include "yuzu_common/swap.h"
 #include "core/hle/service/nvdrv/core/nvmap.h"
 #include "core/hle/service/nvdrv/devices/nvdevice.h"
 

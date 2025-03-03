@@ -2,13 +2,13 @@
 // SPDX-FileCopyrightText: 2022 Skyline Team and Contributors
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "common/assert.h"
+#include "yuzu_common/yuzu_assert.h"
 #include "core/hle/service/nvdrv/core/syncpoint_manager.h"
-#include "video_core/host1x/host1x.h"
+#include "yuzu_video_core/host1x/host1x.h"
 
 namespace Service::Nvidia::NvCore {
 
-SyncpointManager::SyncpointManager(Tegra::Host1x::Host1x& host1x_) : host1x{host1x_} {
+SyncpointManager::SyncpointManager(IVideo & video_) : video{video_} {
     constexpr u32 VBlank0SyncpointId{26};
     constexpr u32 VBlank1SyncpointId{27};
 
@@ -107,15 +107,8 @@ u32 SyncpointManager::ReadSyncpointMinValue(u32 id) {
 }
 
 u32 SyncpointManager::UpdateMin(u32 id) {
-    auto& syncpoint = syncpoints.at(id);
-
-    if (!syncpoint.reserved) {
-        ASSERT(false);
-        return 0;
-    }
-
-    syncpoint.counter_min = host1x.GetSyncpointManager().GetHostSyncpointValue(id);
-    return syncpoint.counter_min;
+    UNIMPLEMENTED();
+    return 0;
 }
 
 NvFence SyncpointManager::GetSyncpointFence(u32 id) {

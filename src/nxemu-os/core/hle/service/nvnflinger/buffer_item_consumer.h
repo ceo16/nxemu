@@ -9,7 +9,7 @@
 #include <chrono>
 #include <memory>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/service/nvnflinger/consumer_base.h"
 #include "core/hle/service/nvnflinger/status.h"
 

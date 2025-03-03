@@ -8,7 +8,7 @@
 
 #include <span>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 
 namespace Kernel {
 class KReadableEvent;

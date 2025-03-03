@@ -4,14 +4,15 @@
 
 #include <functional>
 
-#include "common/alignment.h"
-#include "common/assert.h"
-#include "common/logging/log.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/logging/log.h"
 #include "core/hle/service/nvdrv/core/container.h"
 #include "core/hle/service/nvdrv/core/heap_mapper.h"
 #include "core/hle/service/nvdrv/core/nvmap.h"
 #include "core/memory.h"
-#include "video_core/host1x/host1x.h"
+#include "yuzu_video_core/host1x/host1x.h"
+#include <nxemu-module-spec/video.h>
 
 using Core::Memory::YUZU_PAGESIZE;
 constexpr size_t BIG_PAGE_SIZE = YUZU_PAGESIZE * 16;
@@ -69,7 +70,7 @@ NvResult NvMap::Handle::Duplicate(bool internal_session) {
     return NvResult::Success;
 }
 
-NvMap::NvMap(Container& core_, Tegra::Host1x::Host1x& host1x_) : host1x{host1x_}, core{core_} {}
+NvMap::NvMap(Container& core_, IVideo & video_) : video{video_}, core{core_} {}
 
 void NvMap::AddHandle(std::shared_ptr<Handle> handle_description) {
     std::scoped_lock lock(handles_lock);
@@ -78,36 +79,7 @@ void NvMap::AddHandle(std::shared_ptr<Handle> handle_description) {
 }
 
 void NvMap::UnmapHandle(Handle& handle_description) {
-    // Remove pending unmap queue entry if needed
-    if (handle_description.unmap_queue_entry) {
-        unmap_queue.erase(*handle_description.unmap_queue_entry);
-        handle_description.unmap_queue_entry.reset();
-    }
-
-    // Free and unmap the handle from Host1x GMMU
-    if (handle_description.pin_virt_address) {
-        host1x.GMMU().Unmap(static_cast<GPUVAddr>(handle_description.pin_virt_address),
-                            handle_description.aligned_size);
-        host1x.Allocator().Free(handle_description.pin_virt_address,
-                                static_cast<u32>(handle_description.aligned_size));
-        handle_description.pin_virt_address = 0;
-    }
-
-    // Free and unmap the handle from the SMMU
-    const size_t map_size = handle_description.aligned_size;
-    if (!handle_description.in_heap) {
-        auto& smmu = host1x.MemoryManager();
-        size_t aligned_up = Common::AlignUp(map_size, BIG_PAGE_SIZE);
-        smmu.Unmap(handle_description.d_address, map_size);
-        smmu.Free(handle_description.d_address, static_cast<size_t>(aligned_up));
-        handle_description.d_address = 0;
-        return;
-    }
-    const VAddr vaddress = handle_description.address;
-    auto* session = core.GetSession(handle_description.session_id);
-    session->mapper->Unmap(vaddress, map_size);
-    handle_description.d_address = 0;
-    handle_description.in_heap = false;
+    UNIMPLEMENTED();
 }
 
 bool NvMap::TryRemoveHandle(const Handle& handle_description) {
@@ -165,15 +137,7 @@ DAddr NvMap::PinHandle(NvMap::Handle::Id handle, bool low_area_pin) {
 
     std::scoped_lock lock(handle_description->mutex);
     const auto map_low_area = [&] {
-        if (handle_description->pin_virt_address == 0) {
-            auto& gmmu_allocator = host1x.Allocator();
-            auto& gmmu = host1x.GMMU();
-            u32 address =
-                gmmu_allocator.Allocate(static_cast<u32>(handle_description->aligned_size));
-            gmmu.Map(static_cast<GPUVAddr>(address), handle_description->d_address,
-                     handle_description->aligned_size);
-            handle_description->pin_virt_address = address;
-        }
+        UNIMPLEMENTED();
     };
     if (!handle_description->pins) {
         // If we're in the unmap queue we can just remove ourselves and return since we're already
@@ -200,7 +164,6 @@ DAddr NvMap::PinHandle(NvMap::Handle::Id handle, bool low_area_pin) {
         using namespace std::placeholders;
         // If not then allocate some space and map it
         DAddr address{};
-        auto& smmu = host1x.MemoryManager();
         auto* session = core.GetSession(handle_description->session_id);
         const VAddr vaddress = handle_description->address;
         const size_t map_size = handle_description->aligned_size;
@@ -209,7 +172,7 @@ DAddr NvMap::PinHandle(NvMap::Handle::Id handle, bool low_area_pin) {
             handle_description->in_heap = true;
         } else {
             size_t aligned_up = Common::AlignUp(map_size, BIG_PAGE_SIZE);
-            while ((address = smmu.Allocate(aligned_up)) == 0) {
+            while ((address = video.MemoryAllocate(aligned_up)) == 0) {
                 // Free handles until the allocation succeeds
                 std::scoped_lock queueLock(unmap_queue_lock);
                 if (auto freeHandleDesc{unmap_queue.front()}) {
@@ -224,7 +187,7 @@ DAddr NvMap::PinHandle(NvMap::Handle::Id handle, bool low_area_pin) {
             }
 
             handle_description->d_address = address;
-            smmu.Map(address, vaddress, map_size, session->asid, true);
+            UNIMPLEMENTED();
             handle_description->in_heap = false;
         }
     }

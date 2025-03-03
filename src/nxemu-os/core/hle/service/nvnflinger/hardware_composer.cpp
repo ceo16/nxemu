@@ -3,7 +3,7 @@
 
 #include <boost/container/small_vector.hpp>
 
-#include "common/microprofile.h"
+#include "yuzu_common/microprofile.h"
 #include "core/hle/service/nvdrv/devices/nvdisp_disp0.h"
 #include "core/hle/service/nvnflinger/buffer_item.h"
 #include "core/hle/service/nvnflinger/buffer_item_consumer.h"

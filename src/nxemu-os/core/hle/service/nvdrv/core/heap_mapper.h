@@ -5,8 +5,8 @@
 
 #include <memory>
 
-#include "common/common_types.h"
-#include "core/device_memory_manager.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/device_memory_manager.h"
 
 namespace Tegra::Host1x {
 class Host1x;
@@ -17,7 +17,7 @@ namespace Service::Nvidia::NvCore {
 class HeapMapper {
 public:
     HeapMapper(VAddr start_vaddress, DAddr start_daddress, size_t size, Core::Asid asid,
-               Tegra::Host1x::Host1x& host1x);
+        IVideo & video);
     ~HeapMapper();
 
     bool IsInBounds(VAddr start, size_t size) const {

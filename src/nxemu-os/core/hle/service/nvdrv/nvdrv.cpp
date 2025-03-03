@@ -25,7 +25,7 @@
 #include "core/hle/service/nvdrv/nvmemp.h"
 #include "core/hle/service/nvnflinger/nvnflinger.h"
 #include "core/hle/service/server_manager.h"
-#include "video_core/gpu.h"
+#include "yuzu_video_core/gpu.h"
 
 namespace Service::Nvidia {
 
@@ -66,7 +66,7 @@ void LoopProcess(Core::System& system) {
 }
 
 Module::Module(Core::System& system)
-    : container{system.Host1x()}, service_context{system, "nvdrv"}, events_interface{*this} {
+    : container{system.GetVideo()}, service_context{system, "nvdrv"}, events_interface{*this} {
     builders["/dev/nvhost-as-gpu"] = [this, &system](DeviceFD fd) {
         auto device = std::make_shared<Devices::nvhost_as_gpu>(system, *this, container);
         return open_files.emplace(fd, std::move(device)).first;

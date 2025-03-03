@@ -1,13 +1,13 @@
 // SPDX-FileCopyrightText: Copyright 2018 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "common/assert.h"
-#include "common/logging/log.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/logging/log.h"
 #include "core/core.h"
 #include "core/hle/service/nvdrv/core/container.h"
 #include "core/hle/service/nvdrv/devices/ioctl_serialization.h"
 #include "core/hle/service/nvdrv/devices/nvhost_vic.h"
-#include "video_core/renderer_base.h"
+#include "yuzu_video_core/renderer_base.h"
 
 namespace Service::Nvidia::Devices {
 
@@ -73,12 +73,7 @@ void nvhost_vic::OnOpen(NvCore::SessionId session_id, DeviceFD fd) {
 }
 
 void nvhost_vic::OnClose(DeviceFD fd) {
-    auto& host1x_file = core.Host1xDeviceFile();
-    const auto iter = host1x_file.fd_to_id.find(fd);
-    if (iter != host1x_file.fd_to_id.end()) {
-        system.GPU().ClearCdmaInstance(iter->second);
-    }
-    sessions.erase(fd);
+    UNIMPLEMENTED();
 }
 
 } // namespace Service::Nvidia::Devices

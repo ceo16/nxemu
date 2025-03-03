@@ -3,15 +3,16 @@
 
 #include <boost/container/small_vector.hpp>
 
-#include "common/assert.h"
-#include "common/logging/log.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/logging/log.h"
 #include "core/core.h"
 #include "core/core_timing.h"
 #include "core/hle/service/nvdrv/core/container.h"
 #include "core/hle/service/nvdrv/core/nvmap.h"
 #include "core/hle/service/nvdrv/devices/nvdisp_disp0.h"
 #include "core/perf_stats.h"
-#include "video_core/gpu.h"
+#include "yuzu_video_core/gpu.h"
+#include <nxemu-module-spec/video.h>
 
 namespace Service::Nvidia::Devices {
 
@@ -57,30 +58,36 @@ void nvdisp_disp0::OnOpen(NvCore::SessionId session_id, DeviceFD fd) {}
 void nvdisp_disp0::OnClose(DeviceFD fd) {}
 
 void nvdisp_disp0::Composite(std::span<const Nvnflinger::HwcLayer> sorted_layers) {
-    std::vector<Tegra::FramebufferConfig> output_layers;
-    std::vector<Service::Nvidia::NvFence> output_fences;
+    std::vector<VideoFramebufferConfig> output_layers;
+    std::vector<VideoNvFence> output_fences;
     output_layers.reserve(sorted_layers.size());
     output_fences.reserve(sorted_layers.size());
 
     for (auto& layer : sorted_layers) {
-        output_layers.emplace_back(Tegra::FramebufferConfig{
+        output_layers.emplace_back(VideoFramebufferConfig{
             .address = nvmap.GetHandleAddress(layer.buffer_handle),
             .offset = layer.offset,
             .width = layer.width,
             .height = layer.height,
             .stride = layer.stride,
-            .pixel_format = layer.format,
-            .transform_flags = layer.transform,
-            .crop_rect = layer.crop_rect,
-            .blending = ConvertBlending(layer.blending),
+            .pixelFormat = (uint32_t)layer.format,
+            .transformFlags = (uint32_t)layer.transform,
+            .cropLeft = layer.crop_rect.left,
+            .cropTop = layer.crop_rect.top,
+            .cropRight = layer.crop_rect.right,
+            .cropBottom = layer.crop_rect.bottom,
+            .blending = (uint32_t)ConvertBlending(layer.blending),
         });
 
         for (size_t i = 0; i < layer.acquire_fence.num_fences; i++) {
-            output_fences.push_back(layer.acquire_fence.fences[i]);
+            output_fences.emplace_back(VideoNvFence{
+                .id = layer.acquire_fence.fences[i].id,
+                .value = layer.acquire_fence.fences[i].value
+            });
         }
     }
 
-    system.GPU().RequestComposite(std::move(output_layers), std::move(output_fences));
+    system.GetVideo().RequestComposite(output_layers.data(), output_layers.size(), output_fences.data(), output_fences.size());
     system.SpeedLimiter().DoSpeedLimiting(system.CoreTiming().GetGlobalTimeUs());
     system.GetPerfStats().EndSystemFrame();
     system.GetPerfStats().BeginSystemFrame();

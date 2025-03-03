@@ -7,17 +7,17 @@
 #include <cstring>
 
 #include <fmt/format.h>
-#include "common/assert.h"
-#include "common/logging/log.h"
-#include "common/scope_exit.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/logging/log.h"
+#include "yuzu_common/scope_exit.h"
 #include "core/core.h"
 #include "core/hle/kernel/k_event.h"
 #include "core/hle/service/nvdrv/core/container.h"
 #include "core/hle/service/nvdrv/core/syncpoint_manager.h"
 #include "core/hle/service/nvdrv/devices/ioctl_serialization.h"
 #include "core/hle/service/nvdrv/devices/nvhost_ctrl.h"
-#include "video_core/gpu.h"
-#include "video_core/host1x/host1x.h"
+#include "yuzu_video_core/gpu.h"
+#include "yuzu_video_core/host1x/host1x.h"
 
 namespace Service::Nvidia::Devices {
 
@@ -126,84 +126,7 @@ NvResult nvhost_ctrl::IocCtrlEventWait(IocCtrlEventWaitParams& params, bool is_a
         return NvResult::Success;
     }
 
-    auto& host1x_syncpoint_manager = system.Host1x().GetSyncpointManager();
-    const u32 target_value = params.fence.value;
-
-    auto lock = NvEventsLock();
-
-    u32 slot = [&]() {
-        if (is_allocation) {
-            params.value.raw = 0;
-            return FindFreeNvEvent(fence_id);
-        } else {
-            return params.value.raw;
-        }
-    }();
-
-    must_unmark_fail = false;
-
-    const auto check_failing = [&]() {
-        if (events[slot].fails > 2) {
-            {
-                auto lk = system.StallApplication();
-                host1x_syncpoint_manager.WaitHost(fence_id, target_value);
-                system.UnstallApplication();
-            }
-            params.value.raw = target_value;
-            return true;
-        }
-        return false;
-    };
-
-    if (slot >= MaxNvEvents) {
-        return NvResult::BadParameter;
-    }
-
-    if (params.timeout == 0) {
-        if (check_failing()) {
-            events[slot].fails = 0;
-            return NvResult::Success;
-        }
-        return NvResult::Timeout;
-    }
-
-    auto& event = events[slot];
-
-    if (!event.registered) {
-        return NvResult::BadParameter;
-    }
-
-    if (event.IsBeingUsed()) {
-        return NvResult::BadParameter;
-    }
-
-    if (check_failing()) {
-        event.fails = 0;
-        return NvResult::Success;
-    }
-
-    params.value.raw = 0;
-
-    event.status.store(EventState::Waiting, std::memory_order_release);
-    event.assigned_syncpt = fence_id;
-    event.assigned_value = target_value;
-    if (is_allocation) {
-        params.value.syncpoint_id_for_allocation.Assign(static_cast<u16>(fence_id));
-        params.value.event_allocated.Assign(1);
-    } else {
-        params.value.syncpoint_id.Assign(fence_id);
-    }
-    params.value.raw |= slot;
-
-    event.wait_handle =
-        host1x_syncpoint_manager.RegisterHostAction(fence_id, target_value, [this, slot]() {
-            auto& event_ = events[slot];
-            if (event_.status.exchange(EventState::Signalling, std::memory_order_acq_rel) ==
-                EventState::Waiting) {
-                event_.kevent->Signal();
-            }
-            event_.status.store(EventState::Signalled, std::memory_order_release);
-        });
+    UNIMPLEMENTED();
     return NvResult::Timeout;
 }
 
@@ -270,27 +193,7 @@ NvResult nvhost_ctrl::IocCtrlEventUnregisterBatch(IocCtrlEventUnregisterBatchPar
 }
 
 NvResult nvhost_ctrl::IocCtrlClearEventWait(IocCtrlEventClearParams& params) {
-    u32 event_id = params.event_id.slot;
-    LOG_DEBUG(Service_NVDRV, "called, event_id: {:X}", event_id);
-
-    if (event_id >= MaxNvEvents) {
-        return NvResult::BadParameter;
-    }
-
-    auto lock = NvEventsLock();
-
-    auto& event = events[event_id];
-    if (event.status.exchange(EventState::Cancelling, std::memory_order_acq_rel) ==
-        EventState::Waiting) {
-        auto& host1x_syncpoint_manager = system.Host1x().GetSyncpointManager();
-        host1x_syncpoint_manager.DeregisterHostAction(event.assigned_syncpt, event.wait_handle);
-        syncpoint_manager.UpdateMin(event.assigned_syncpt);
-        event.wait_handle = {};
-    }
-    event.fails++;
-    event.status.store(EventState::Cancelled, std::memory_order_release);
-    event.kevent->Clear();
-
+    UNIMPLEMENTED();
     return NvResult::Success;
 }
 

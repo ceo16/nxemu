@@ -7,7 +7,7 @@
 #include <mutex>
 #include <unordered_map>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/service/nvnflinger/binder.h"
 
 namespace Core {

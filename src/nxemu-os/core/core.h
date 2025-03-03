@@ -16,6 +16,7 @@
 #include "core/file_sys/vfs/vfs_types.h"
 
 __interface ISwitchSystem;
+__interface IVideo;
 
 namespace Core::Frontend {
 class EmuWindow;
@@ -234,6 +235,7 @@ public:
     void GatherGPUDirtyMemory(std::function<void(PAddr, size_t)>& callback);
 
     ISwitchSystem & GetSwitchSystem();
+    IVideo & GetVideo();
 
     [[nodiscard]] size_t GetCurrentHostThreadID() const;
 

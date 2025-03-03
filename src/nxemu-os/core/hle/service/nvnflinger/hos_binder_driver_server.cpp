@@ -3,7 +3,7 @@
 
 #include <mutex>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/service/nvnflinger/hos_binder_driver_server.h"
 
 namespace Service::Nvnflinger {

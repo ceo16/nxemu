@@ -5,9 +5,9 @@
 #include <bit>
 #include <cstring>
 
-#include "common/alignment.h"
-#include "common/assert.h"
-#include "common/logging/log.h"
+#include "yuzu_common/alignment.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/logging/log.h"
 #include "core/core.h"
 #include "core/hle/kernel/k_page_table.h"
 #include "core/hle/kernel/k_process.h"

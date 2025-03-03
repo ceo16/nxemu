@@ -5,8 +5,8 @@
 
 #include <memory>
 #include <vector>
-#include "common/common_types.h"
-#include "common/math_util.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/math_util.h"
 #include "core/hle/service/nvdrv/devices/nvdevice.h"
 #include "core/hle/service/nvnflinger/hwc_layer.h"
 

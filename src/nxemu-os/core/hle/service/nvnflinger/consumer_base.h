@@ -11,7 +11,7 @@
 #include <memory>
 #include <mutex>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/service/nvnflinger/buffer_queue_defs.h"
 #include "core/hle/service/nvnflinger/consumer_listener.h"
 #include "core/hle/service/nvnflinger/status.h"

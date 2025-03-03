@@ -433,6 +433,36 @@
     <Filter Include="Source Files\core\hle\service\filesystem\fsp">
       <UniqueIdentifier>{711c5e1b-89de-43aa-bdfe-221b9f132506}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\core\hle\service\nvdrv">
+      <UniqueIdentifier>{2261054a-f2e8-49d1-b6ee-d7f09b0e482c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\nvdrv\core">
+      <UniqueIdentifier>{c25d6e03-6eed-48be-a297-236fa84d723a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\nvdrv\devices">
+      <UniqueIdentifier>{7359ab96-dd02-4e35-85ba-a92b3a7877f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\nvnflinger">
+      <UniqueIdentifier>{bbfcb4c5-33e1-480a-b8d7-90d3bc8fba12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\nvnflinger\ui">
+      <UniqueIdentifier>{9e8c6626-fbaa-4b2e-ab5a-89f580df166a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\nvdrv">
+      <UniqueIdentifier>{dc72697a-05e8-4ee6-a75c-6bc8c4965ff3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\nvdrv\core">
+      <UniqueIdentifier>{318fbb3a-a1f9-40c2-a6df-60901b6442af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\nvdrv\devices">
+      <UniqueIdentifier>{21ba8e82-9092-4eac-8a17-bc7133f55f72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\nvnflinger">
+      <UniqueIdentifier>{f3c531da-9598-431a-9480-6b87d7ed2c6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\nvnflinger\ui">
+      <UniqueIdentifier>{930d0967-1c45-443b-b4b3-733c8bbc9df0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="nxemu-os.h">
@@ -1632,6 +1662,135 @@
     <ClInclude Include="core\perf_stats.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
+    <ClInclude Include="core\hle\service\nvdrv\nvdrv.h">
+      <Filter>Header Files\core\hle\service\nvdrv</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvdrv\nvdrv_interface.h">
+      <Filter>Header Files\core\hle\service\nvdrv</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvdrv\nvmemp.h">
+      <Filter>Header Files\core\hle\service\nvdrv</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvdrv\core\container.h">
+      <Filter>Header Files\core\hle\service\nvdrv\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvdrv\core\heap_mapper.h">
+      <Filter>Header Files\core\hle\service\nvdrv\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvdrv\core\nvmap.h">
+      <Filter>Header Files\core\hle\service\nvdrv\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvdrv\core\syncpoint_manager.h">
+      <Filter>Header Files\core\hle\service\nvdrv\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvdrv\devices\ioctl_serialization.h">
+      <Filter>Header Files\core\hle\service\nvdrv\devices</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvdrv\devices\nvdevice.h">
+      <Filter>Header Files\core\hle\service\nvdrv\devices</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvdrv\devices\nvdisp_disp0.h">
+      <Filter>Header Files\core\hle\service\nvdrv\devices</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvdrv\devices\nvhost_as_gpu.h">
+      <Filter>Header Files\core\hle\service\nvdrv\devices</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvdrv\devices\nvhost_ctrl.h">
+      <Filter>Header Files\core\hle\service\nvdrv\devices</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvdrv\devices\nvhost_ctrl_gpu.h">
+      <Filter>Header Files\core\hle\service\nvdrv\devices</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvdrv\devices\nvhost_gpu.h">
+      <Filter>Header Files\core\hle\service\nvdrv\devices</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvdrv\devices\nvhost_nvdec.h">
+      <Filter>Header Files\core\hle\service\nvdrv\devices</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvdrv\devices\nvhost_nvdec_common.h">
+      <Filter>Header Files\core\hle\service\nvdrv\devices</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvdrv\devices\nvhost_nvjpg.h">
+      <Filter>Header Files\core\hle\service\nvdrv\devices</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvdrv\devices\nvhost_vic.h">
+      <Filter>Header Files\core\hle\service\nvdrv\devices</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvdrv\devices\nvmap.h">
+      <Filter>Header Files\core\hle\service\nvdrv\devices</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\binder.h">
+      <Filter>Header Files\core\hle\service\nvnflinger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\buffer_item.h">
+      <Filter>Header Files\core\hle\service\nvnflinger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\buffer_item_consumer.h">
+      <Filter>Header Files\core\hle\service\nvnflinger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\buffer_queue_consumer.h">
+      <Filter>Header Files\core\hle\service\nvnflinger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\buffer_queue_core.h">
+      <Filter>Header Files\core\hle\service\nvnflinger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\buffer_queue_defs.h">
+      <Filter>Header Files\core\hle\service\nvnflinger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\buffer_queue_producer.h">
+      <Filter>Header Files\core\hle\service\nvnflinger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\buffer_slot.h">
+      <Filter>Header Files\core\hle\service\nvnflinger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\consumer_base.h">
+      <Filter>Header Files\core\hle\service\nvnflinger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\consumer_listener.h">
+      <Filter>Header Files\core\hle\service\nvnflinger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\display.h">
+      <Filter>Header Files\core\hle\service\nvnflinger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\graphic_buffer_producer.h">
+      <Filter>Header Files\core\hle\service\nvnflinger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\hardware_composer.h">
+      <Filter>Header Files\core\hle\service\nvnflinger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\hos_binder_driver.h">
+      <Filter>Header Files\core\hle\service\nvnflinger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\hos_binder_driver_server.h">
+      <Filter>Header Files\core\hle\service\nvnflinger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\hwc_layer.h">
+      <Filter>Header Files\core\hle\service\nvnflinger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\nvnflinger.h">
+      <Filter>Header Files\core\hle\service\nvnflinger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\parcel.h">
+      <Filter>Header Files\core\hle\service\nvnflinger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\producer_listener.h">
+      <Filter>Header Files\core\hle\service\nvnflinger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\status.h">
+      <Filter>Header Files\core\hle\service\nvnflinger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\surface_flinger.h">
+      <Filter>Header Files\core\hle\service\nvnflinger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\window.h">
+      <Filter>Header Files\core\hle\service\nvnflinger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\ui\fence.h">
+      <Filter>Header Files\core\hle\service\nvnflinger\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nvnflinger\ui\graphic_buffer.h">
+      <Filter>Header Files\core\hle\service\nvnflinger\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="version.h.in">
@@ -2733,6 +2892,93 @@
     </ClCompile>
     <ClCompile Include="core\perf_stats.cpp">
       <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvdrv\nvdrv.cpp">
+      <Filter>Source Files\core\hle\service\nvdrv</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvdrv\nvdrv_interface.cpp">
+      <Filter>Source Files\core\hle\service\nvdrv</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvdrv\nvmemp.cpp">
+      <Filter>Source Files\core\hle\service\nvdrv</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvdrv\core\container.cpp">
+      <Filter>Source Files\core\hle\service\nvdrv\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvdrv\core\heap_mapper.cpp">
+      <Filter>Source Files\core\hle\service\nvdrv\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvdrv\core\nvmap.cpp">
+      <Filter>Source Files\core\hle\service\nvdrv\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvdrv\core\syncpoint_manager.cpp">
+      <Filter>Source Files\core\hle\service\nvdrv\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvdrv\devices\nvdisp_disp0.cpp">
+      <Filter>Source Files\core\hle\service\nvdrv\devices</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvdrv\devices\nvhost_as_gpu.cpp">
+      <Filter>Source Files\core\hle\service\nvdrv\devices</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvdrv\devices\nvhost_ctrl.cpp">
+      <Filter>Source Files\core\hle\service\nvdrv\devices</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvdrv\devices\nvhost_ctrl_gpu.cpp">
+      <Filter>Source Files\core\hle\service\nvdrv\devices</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvdrv\devices\nvhost_gpu.cpp">
+      <Filter>Source Files\core\hle\service\nvdrv\devices</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvdrv\devices\nvhost_nvdec.cpp">
+      <Filter>Source Files\core\hle\service\nvdrv\devices</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvdrv\devices\nvhost_nvdec_common.cpp">
+      <Filter>Source Files\core\hle\service\nvdrv\devices</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvdrv\devices\nvhost_nvjpg.cpp">
+      <Filter>Source Files\core\hle\service\nvdrv\devices</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvdrv\devices\nvhost_vic.cpp">
+      <Filter>Source Files\core\hle\service\nvdrv\devices</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvdrv\devices\nvmap.cpp">
+      <Filter>Source Files\core\hle\service\nvdrv\devices</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvnflinger\buffer_item_consumer.cpp">
+      <Filter>Source Files\core\hle\service\nvnflinger</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvnflinger\buffer_queue_consumer.cpp">
+      <Filter>Source Files\core\hle\service\nvnflinger</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvnflinger\buffer_queue_core.cpp">
+      <Filter>Source Files\core\hle\service\nvnflinger</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvnflinger\buffer_queue_producer.cpp">
+      <Filter>Source Files\core\hle\service\nvnflinger</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvnflinger\consumer_base.cpp">
+      <Filter>Source Files\core\hle\service\nvnflinger</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvnflinger\graphic_buffer_producer.cpp">
+      <Filter>Source Files\core\hle\service\nvnflinger</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvnflinger\hardware_composer.cpp">
+      <Filter>Source Files\core\hle\service\nvnflinger</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvnflinger\hos_binder_driver.cpp">
+      <Filter>Source Files\core\hle\service\nvnflinger</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvnflinger\hos_binder_driver_server.cpp">
+      <Filter>Source Files\core\hle\service\nvnflinger</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvnflinger\nvnflinger.cpp">
+      <Filter>Source Files\core\hle\service\nvnflinger</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvnflinger\surface_flinger.cpp">
+      <Filter>Source Files\core\hle\service\nvnflinger</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nvnflinger\ui\graphic_buffer.cpp">
+      <Filter>Source Files\core\hle\service\nvnflinger\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

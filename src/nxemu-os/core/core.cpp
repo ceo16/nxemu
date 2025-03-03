@@ -260,6 +260,11 @@ ISwitchSystem & System::GetSwitchSystem()
     return impl->switchSystem;
 }
 
+IVideo & System::GetVideo()
+{
+    return impl->switchSystem.Video();
+}
+
 Kernel::PhysicalCore& System::CurrentPhysicalCore() {
     return impl->kernel.CurrentPhysicalCore();
 }

@@ -9,7 +9,7 @@
 #include <chrono>
 #include <memory>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/service/nvnflinger/binder.h"
 #include "core/hle/service/nvnflinger/buffer_queue_defs.h"
 #include "core/hle/service/nvnflinger/status.h"

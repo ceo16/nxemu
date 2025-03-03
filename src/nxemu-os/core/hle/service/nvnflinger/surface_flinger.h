@@ -5,7 +5,7 @@
 
 #include <vector>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/service/kernel_helpers.h"
 #include "core/hle/service/nvnflinger/hardware_composer.h"
 

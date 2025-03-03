@@ -5,7 +5,7 @@
 
 #include <memory>
 
-#include "common/scratch_buffer.h"
+#include "yuzu_common/scratch_buffer.h"
 #include "core/hle/service/nvdrv/nvdrv.h"
 #include "core/hle/service/service.h"
 

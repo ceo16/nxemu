@@ -34,6 +34,8 @@
 #include "core/hle/service/nim/nim.h"
 #include "core/hle/service/npns/npns.h"
 #include "core/hle/service/ns/ns.h"
+#include "core/hle/service/nvdrv/nvdrv.h"
+#include "core/hle/service/nvnflinger/nvnflinger.h"
 #include "core/hle/service/olsc/olsc.h"
 #include "core/hle/service/omm/omm.h"
 #include "core/hle/service/pcie/pcie.h"
@@ -61,6 +63,7 @@ Services::Services(std::shared_ptr<SM::ServiceManager>& sm, Core::System& system
     // clang-format off
     kernel.RunOnHostCoreProcess("FS",         [&] { FileSystem::LoopProcess(system); }).detach();
     kernel.RunOnHostCoreProcess("Loader",     [&] { LDR::LoopProcess(system); }).detach();
+    kernel.RunOnHostCoreProcess("nvservices", [&] { Nvidia::LoopProcess(system); }).detach();
     kernel.RunOnHostCoreProcess("vi",         [&, token] { VI::LoopProcess(system, token); }).detach();
 
     kernel.RunOnGuestCoreProcess("sm",         [&] { SM::LoopProcess(system); });
@@ -89,6 +92,7 @@ Services::Services(std::shared_ptr<SM::ServiceManager>& sm, Core::System& system
     kernel.RunOnGuestCoreProcess("mii",        [&] { Mii::LoopProcess(system); });
     kernel.RunOnGuestCoreProcess("mm",         [&] { MM::LoopProcess(system); });
     kernel.RunOnGuestCoreProcess("mnpp",       [&] { MNPP::LoopProcess(system); });
+    kernel.RunOnGuestCoreProcess("nvnflinger", [&] { Nvnflinger::LoopProcess(system); });
     kernel.RunOnGuestCoreProcess("NCM",        [&] { NCM::LoopProcess(system); });
     kernel.RunOnGuestCoreProcess("ngc",        [&] { NGC::LoopProcess(system); });
     kernel.RunOnGuestCoreProcess("nim",        [&] { NIM::LoopProcess(system); });

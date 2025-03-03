@@ -3,36 +3,31 @@
 
 #include <mutex>
 
-#include "common/range_sets.h"
-#include "common/range_sets.inc"
+#include "yuzu_common/range_sets.h"
+#include "yuzu_common/range_sets.inc"
 #include "core/hle/service/nvdrv/core/heap_mapper.h"
-#include "video_core/host1x/host1x.h"
+#include <nxemu-module-spec/video.h>
 
 namespace Service::Nvidia::NvCore {
 
 struct HeapMapper::HeapMapperInternal {
-    HeapMapperInternal(Tegra::Host1x::Host1x& host1x) : m_device_memory{host1x.MemoryManager()} {}
+    HeapMapperInternal(IVideo & video_) : video{video_} {}
     ~HeapMapperInternal() = default;
 
     Common::RangeSet<VAddr> m_temporary_set;
     Common::OverlapRangeSet<VAddr> m_mapped_ranges;
-    Tegra::MaxwellDeviceMemoryManager& m_device_memory;
+    IVideo & video;
     std::mutex m_guard;
 };
 
 HeapMapper::HeapMapper(VAddr start_vaddress, DAddr start_daddress, size_t size, Core::Asid asid,
-                       Tegra::Host1x::Host1x& host1x)
+                       IVideo & video)
     : m_vaddress{start_vaddress}, m_daddress{start_daddress}, m_size{size}, m_asid{asid} {
-    m_internal = std::make_unique<HeapMapperInternal>(host1x);
+    m_internal = std::make_unique<HeapMapperInternal>(video);
 }
 
 HeapMapper::~HeapMapper() {
-    // Unmap whatever has been mapped.
-    m_internal->m_mapped_ranges.ForEach([this](VAddr start_addr, VAddr end_addr, s32 count) {
-        const size_t sub_size = end_addr - start_addr;
-        const size_t offset = start_addr - m_vaddress;
-        m_internal->m_device_memory.Unmap(m_daddress + offset, sub_size);
-    });
+    UNIMPLEMENTED();
 }
 
 DAddr HeapMapper::Map(VAddr start, size_t size) {
@@ -51,7 +46,7 @@ DAddr HeapMapper::Map(VAddr start, size_t size) {
     m_internal->m_temporary_set.ForEach([this](VAddr start_addr, VAddr end_addr) {
         const size_t sub_size = end_addr - start_addr;
         const size_t offset = start_addr - m_vaddress;
-        m_internal->m_device_memory.Map(m_daddress + offset, m_vaddress + offset, sub_size, m_asid);
+        m_internal->video.MemoryMap(m_daddress + offset, m_vaddress + offset, sub_size, m_asid.id, false);
     });
 
     // Add the mapping range to the split map, to register the map and overlaps.
@@ -61,14 +56,7 @@ DAddr HeapMapper::Map(VAddr start, size_t size) {
 }
 
 void HeapMapper::Unmap(VAddr start, size_t size) {
-    std::scoped_lock lk(m_internal->m_guard);
-
-    // Just subtract the range and whatever is deleted, unmap it.
-    m_internal->m_mapped_ranges.Subtract(start, size, [this](VAddr start_addr, VAddr end_addr) {
-        const size_t sub_size = end_addr - start_addr;
-        const size_t offset = start_addr - m_vaddress;
-        m_internal->m_device_memory.Unmap(m_daddress + offset, sub_size);
-    });
+    UNIMPLEMENTED();
 }
 
 } // namespace Service::Nvidia::NvCore

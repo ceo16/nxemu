@@ -3,11 +3,11 @@
 
 #pragma once
 
-#include "common/math_util.h"
-#include "core/hle/service/nvdrv/nvdata.h"
-#include "core/hle/service/nvnflinger/buffer_transform_flags.h"
-#include "core/hle/service/nvnflinger/pixel_format.h"
-#include "core/hle/service/nvnflinger/ui/fence.h"
+#include "yuzu_common/math_util.h"
+#include "yuzu_video_core/service/nvdrv/nvdata.h"
+#include "yuzu_video_core/service/nvnflinger/buffer_transform_flags.h"
+#include "yuzu_video_core/service/nvnflinger/pixel_format.h"
+#include "yuzu_video_core/service/nvnflinger/ui/fence.h"
 
 namespace Service::Nvnflinger {
 

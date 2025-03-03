@@ -4,8 +4,8 @@
 #pragma once
 
 #include <vector>
-#include "common/common_types.h"
-#include "common/swap.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/swap.h"
 #include "core/hle/service/nvdrv/devices/nvdevice.h"
 
 namespace Service::Nvidia::Devices {

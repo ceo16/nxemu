@@ -219,7 +219,7 @@ namespace Core {
     template <typename Traits>
     void DeviceMemoryManager<Traits>::Map(DAddr address, VAddr virtual_address, size_t size, Asid asid,
         bool track) {
-        Core::Memory::Memory* process_memory = registered_processes[asid.id];
+        IMemory * process_memory = registered_processes[asid.id];
         size_t start_page_d = address >> Memory::YUZU_PAGEBITS;
         size_t num_pages = Common::AlignUp(size, Memory::YUZU_PAGESIZE) >> Memory::YUZU_PAGEBITS;
         std::scoped_lock lk(mapping_guard);
@@ -281,7 +281,7 @@ namespace Core {
     template <typename Traits>
     void DeviceMemoryManager<Traits>::TrackContinuityImpl(DAddr address, VAddr virtual_address,
         size_t size, Asid asid) {
-        Core::Memory::Memory* process_memory = registered_processes[asid.id];
+        IMemory * process_memory = registered_processes[asid.id];
         size_t start_page_d = address >> Memory::YUZU_PAGEBITS;
         size_t num_pages = Common::AlignUp(size, Memory::YUZU_PAGESIZE) >> Memory::YUZU_PAGEBITS;
         uintptr_t last_ptr = 0;
@@ -492,7 +492,7 @@ namespace Core {
     }
 
     template <typename Traits>
-    Asid DeviceMemoryManager<Traits>::RegisterProcess(Memory::Memory* memory_device_inter) {
+    Asid DeviceMemoryManager<Traits>::RegisterProcess(IMemory * memory_device_inter) {
         size_t new_id{};
         if (!id_pool.empty()) {
             new_id = id_pool.front();
@@ -599,7 +599,7 @@ namespace Core {
 namespace Tegra {
 
 struct MaxwellDeviceMethods {
-    static inline void MarkRegionCaching(Core::Memory::Memory* interface, VAddr address,
+    static inline void MarkRegionCaching(IMemory * interface, VAddr address,
                                          size_t size, bool caching) {
         interface->RasterizerMarkRegionCached(address, size, caching);
     }

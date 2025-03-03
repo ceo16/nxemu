@@ -6,11 +6,11 @@
 
 #include <array>
 #include <vector>
-#include "common/bit_field.h"
-#include "common/common_types.h"
+#include "yuzu_common/bit_field.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/service/nvdrv/devices/nvdevice.h"
 #include "core/hle/service/nvdrv/nvdrv.h"
-#include "video_core/host1x/syncpoint_manager.h"
+#include "yuzu_video_core/host1x/syncpoint_manager.h"
 
 namespace Service::Nvidia::NvCore {
 class Container;

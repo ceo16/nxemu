@@ -11,10 +11,10 @@
 #include <string>
 #include <unordered_map>
 
-#include "common/common_types.h"
+#include "yuzu_common/common_types.h"
 #include "core/hle/service/kernel_helpers.h"
 #include "core/hle/service/nvdrv/core/container.h"
-#include "core/hle/service/nvdrv/nvdata.h"
+#include "yuzu_video_core/service/nvdrv/nvdata.h"
 #include "core/hle/service/service.h"
 
 namespace Core {

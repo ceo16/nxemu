@@ -4,9 +4,9 @@
 #include <algorithm>
 #include <cstring>
 
-#include "common/assert.h"
-#include "common/common_types.h"
-#include "common/logging/log.h"
+#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_common/logging/log.h"
 #include "core/core.h"
 #include "core/hle/kernel/k_process.h"
 #include "core/hle/service/nvdrv/core/container.h"
@@ -14,9 +14,9 @@
 #include "core/hle/service/nvdrv/core/syncpoint_manager.h"
 #include "core/hle/service/nvdrv/devices/nvhost_nvdec_common.h"
 #include "core/memory.h"
-#include "video_core/host1x/host1x.h"
-#include "video_core/memory_manager.h"
-#include "video_core/renderer_base.h"
+#include "yuzu_video_core/host1x/host1x.h"
+#include "yuzu_video_core/memory_manager.h"
+#include "yuzu_video_core/renderer_base.h"
 
 namespace Service::Nvidia::Devices {
 
@@ -78,49 +78,7 @@ NvResult nvhost_nvdec_common::SetNVMAPfd(IoctlSetNvmapFD& params) {
 }
 
 NvResult nvhost_nvdec_common::Submit(IoctlSubmit& params, std::span<u8> data, DeviceFD fd) {
-    LOG_DEBUG(Service_NVDRV, "called NVDEC Submit, cmd_buffer_count={}", params.cmd_buffer_count);
-
-    // Instantiate param buffers
-    std::vector<CommandBuffer> command_buffers(params.cmd_buffer_count);
-    std::vector<Reloc> relocs(params.relocation_count);
-    std::vector<u32> reloc_shifts(params.relocation_count);
-    std::vector<SyncptIncr> syncpt_increments(params.syncpoint_count);
-    std::vector<u32> fence_thresholds(params.fence_count);
-
-    // Slice input into their respective buffers
-    std::size_t offset = 0;
-    offset += SliceVectors(data, command_buffers, params.cmd_buffer_count, offset);
-    offset += SliceVectors(data, relocs, params.relocation_count, offset);
-    offset += SliceVectors(data, reloc_shifts, params.relocation_count, offset);
-    offset += SliceVectors(data, syncpt_increments, params.syncpoint_count, offset);
-    offset += SliceVectors(data, fence_thresholds, params.fence_count, offset);
-
-    auto& gpu = system.GPU();
-    auto* session = core.GetSession(sessions[fd]);
-
-    if (gpu.UseNvdec()) {
-        for (std::size_t i = 0; i < syncpt_increments.size(); i++) {
-            const SyncptIncr& syncpt_incr = syncpt_increments[i];
-            fence_thresholds[i] =
-                syncpoint_manager.IncrementSyncpointMaxExt(syncpt_incr.id, syncpt_incr.increments);
-        }
-    }
-    for (const auto& cmd_buffer : command_buffers) {
-        const auto object = nvmap.GetHandle(cmd_buffer.memory_id);
-        ASSERT_OR_EXECUTE(object, return NvResult::InvalidState;);
-        Tegra::ChCommandHeaderList cmdlist(cmd_buffer.word_count);
-        session->process->GetMemory().ReadBlock(object->address + cmd_buffer.offset, cmdlist.data(),
-                                                cmdlist.size() * sizeof(u32));
-        gpu.PushCommandBuffer(core.Host1xDeviceFile().fd_to_id[fd], cmdlist);
-    }
-    // Some games expect command_buffers to be written back
-    offset = 0;
-    offset += WriteVectors(data, command_buffers, offset);
-    offset += WriteVectors(data, relocs, offset);
-    offset += WriteVectors(data, reloc_shifts, offset);
-    offset += WriteVectors(data, syncpt_increments, offset);
-    offset += WriteVectors(data, fence_thresholds, offset);
-
+    UNIMPLEMENTED();
     return NvResult::Success;
 }
 

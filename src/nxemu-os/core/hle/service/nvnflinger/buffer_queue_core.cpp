@@ -4,7 +4,7 @@
 // Parts of this implementation were based on:
 // https://cs.android.com/android/platform/superproject/+/android-5.1.1_r38:frameworks/native/libs/gui/BufferQueueCore.cpp
 
-#include "common/assert.h"
+#include "yuzu_common/yuzu_assert.h"
 
 #include "core/hle/service/nvnflinger/buffer_queue_core.h"
 

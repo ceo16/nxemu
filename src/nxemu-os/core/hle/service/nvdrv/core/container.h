@@ -8,8 +8,8 @@
 #include <memory>
 #include <unordered_map>
 
-#include "core/device_memory_manager.h"
-#include "core/hle/service/nvdrv/nvdata.h"
+#include "yuzu_video_core/device_memory_manager.h"
+#include "yuzu_video_core/service/nvdrv/nvdata.h"
 
 namespace Kernel {
 class KProcess;
@@ -51,7 +51,7 @@ struct Session {
 
 class Container {
 public:
-    explicit Container(Tegra::Host1x::Host1x& host1x);
+    explicit Container(IVideo & video);
     ~Container();
 
     SessionId OpenSession(Kernel::KProcess* process);

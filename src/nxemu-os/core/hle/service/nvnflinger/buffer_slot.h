@@ -8,8 +8,8 @@
 
 #include <memory>
 
-#include "common/common_types.h"
-#include "core/hle/service/nvnflinger/ui/fence.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/service/nvnflinger/ui/fence.h"
 
 namespace Service::android {
 

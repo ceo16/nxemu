@@ -87,8 +87,29 @@ void Conductor::VsyncThread(std::stop_token token) {
 }
 
 s64 Conductor::GetNextTicks() const {
-    UNIMPLEMENTED();
-    return 0;
+    const auto& settings = Settings::values;
+    auto speed_scale = 1.f;
+    if (settings.use_multi_core.GetValue()) {
+        if (settings.use_speed_limit.GetValue()) {
+            // Scales the speed based on speed_limit setting on MC. SC is handled by
+            // SpeedLimiter::DoSpeedLimiting.
+            speed_scale = 100.f / settings.speed_limit.GetValue();
+        } else {
+            // Run at unlocked framerate.
+            speed_scale = 0.01f;
+        }
+    }
+
+    // Adjust by speed limit determined during composition.
+    speed_scale /= m_compose_speed_scale;
+
+    /*if (m_system.GetNVDECActive() && settings.use_video_framerate.GetValue()) {
+        // Run at intended presentation rate during video playback.
+        speed_scale = 1.f;
+    }*/
+
+    const f32 effective_fps = 60.f / static_cast<f32>(m_swap_interval);
+    return static_cast<s64>(speed_scale * (1000000000.f / effective_fps));
 }
 
 } // namespace Service::VI

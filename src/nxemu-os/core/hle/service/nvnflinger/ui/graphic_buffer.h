@@ -8,9 +8,9 @@
 
 #include <memory>
 
-#include "common/common_funcs.h"
-#include "common/common_types.h"
-#include "core/hle/service/nvnflinger/pixel_format.h"
+#include "yuzu_common/common_funcs.h"
+#include "yuzu_common/common_types.h"
+#include "yuzu_video_core/service/nvnflinger/pixel_format.h"
 
 namespace Service::Nvidia::NvCore {
 class NvMap;
