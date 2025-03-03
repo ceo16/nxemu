@@ -7,6 +7,8 @@
 #include <nxemu-core/settings/identifiers.h>
 #include <nxemu-core/settings/settings.h>
 #include <nxemu-core/switch_rom.h>
+#include <nxemu-core/machine/switch_system.h>
+#include <yuzu_common/settings_input.h>
 
 MainWindow::MainWindow(const wchar_t * windowTitle) :
     m_hWnd(nullptr),
@@ -127,6 +129,36 @@ LRESULT MainWindow::OnDestroy(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*
     return 0;
 }
 
+LRESULT MainWindow::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM lParam, BOOL & bHandled)
+{
+    SwitchSystem * system = SwitchSystem::GetInstance();
+    if (system != nullptr)
+    {
+        IOperatingSystem & OperatingSystem = system->OperatingSystem();
+        int keyIndex = VKCodeToSwitchKey((uint32_t)wParam);
+        if (keyIndex != 0)
+        {
+            OperatingSystem.KeyboardKeyPress(0, keyIndex, wParam);        
+        }
+    }
+    return 0;
+}
+
+LRESULT MainWindow::OnKeyUp(UINT /*uMsg*/, WPARAM wParam, LPARAM lParam, BOOL & bHandled)
+{
+    SwitchSystem * system = SwitchSystem::GetInstance();
+    if (system != nullptr)
+    {
+        IOperatingSystem & OperatingSystem = system->OperatingSystem();
+        int keyIndex = VKCodeToSwitchKey(wParam);
+        if (keyIndex != 0)
+        {
+            OperatingSystem.KeyboardKeyRelease(0, keyIndex, wParam);
+        }
+    }
+    return 0;
+}
+
 LRESULT MainWindow::OnOpenGame(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL & /*bHandled*/)
 {
     std::string fileName = ChooseFileToOpen(m_hWnd);
@@ -203,4 +235,84 @@ void MainWindow::GameNameChanged(void)
         Caption += m_windowTitle;
         SetWindowTextW(m_hWnd, Caption.c_str());
     }
+}
+
+int MainWindow::VKCodeToSwitchKey(uint32_t vkcode)
+{
+    static const std::unordered_map<uint32_t, int> keyMappings = {
+        {'A', InputSettings::NativeKeyboard::A},
+        {'B', InputSettings::NativeKeyboard::B},
+        {'C', InputSettings::NativeKeyboard::C},
+        {'D', InputSettings::NativeKeyboard::D},
+        {'E', InputSettings::NativeKeyboard::E},
+        {'F', InputSettings::NativeKeyboard::F},
+        {'G', InputSettings::NativeKeyboard::G},
+        {'H', InputSettings::NativeKeyboard::H},
+        {'I', InputSettings::NativeKeyboard::I},
+        {'J', InputSettings::NativeKeyboard::J},
+        {'K', InputSettings::NativeKeyboard::K},
+        {'L', InputSettings::NativeKeyboard::L},
+        {'M', InputSettings::NativeKeyboard::M},
+        {'N', InputSettings::NativeKeyboard::N},
+        {'O', InputSettings::NativeKeyboard::O},
+        {'P', InputSettings::NativeKeyboard::P},
+        {'Q', InputSettings::NativeKeyboard::Q},
+        {'R', InputSettings::NativeKeyboard::R},
+        {'S', InputSettings::NativeKeyboard::S},
+        {'T', InputSettings::NativeKeyboard::T},
+        {'U', InputSettings::NativeKeyboard::U},
+        {'v', InputSettings::NativeKeyboard::V},
+        {'W', InputSettings::NativeKeyboard::W},
+        {'X', InputSettings::NativeKeyboard::X},
+        {'Y', InputSettings::NativeKeyboard::Y},
+        {'Z', InputSettings::NativeKeyboard::Z},
+        {'1', InputSettings::NativeKeyboard::N1},
+        {'2', InputSettings::NativeKeyboard::N2},
+        {'3', InputSettings::NativeKeyboard::N3},
+        {'4', InputSettings::NativeKeyboard::N4},
+        {'5', InputSettings::NativeKeyboard::N5},
+        {'6', InputSettings::NativeKeyboard::N6},
+        {'7', InputSettings::NativeKeyboard::N7},
+        {'8', InputSettings::NativeKeyboard::N8},
+        {'9', InputSettings::NativeKeyboard::N9},
+        {'0', InputSettings::NativeKeyboard::N0},
+        {VK_RETURN, InputSettings::NativeKeyboard::Return},
+        {VK_ESCAPE, InputSettings::NativeKeyboard::Escape},
+        {VK_TAB, InputSettings::NativeKeyboard::Tab},
+        {VK_SPACE, InputSettings::NativeKeyboard::Space},
+        {VK_F1, InputSettings::NativeKeyboard::F1},
+        {VK_F2, InputSettings::NativeKeyboard::F2},
+        {VK_F3, InputSettings::NativeKeyboard::F3},
+        {VK_F4, InputSettings::NativeKeyboard::F4},
+        {VK_F5, InputSettings::NativeKeyboard::F5},
+        {VK_F6, InputSettings::NativeKeyboard::F6},
+        {VK_F7, InputSettings::NativeKeyboard::F7},
+        {VK_F8, InputSettings::NativeKeyboard::F8},
+        {VK_F9, InputSettings::NativeKeyboard::F9},
+        {VK_F10, InputSettings::NativeKeyboard::F10},
+        {VK_F11, InputSettings::NativeKeyboard::F11},
+        {VK_F12, InputSettings::NativeKeyboard::F12},
+        {VK_RIGHT, InputSettings::NativeKeyboard::Right},
+        {VK_LEFT, InputSettings::NativeKeyboard::Left},
+        {VK_DOWN, InputSettings::NativeKeyboard::Down},
+        {VK_UP, InputSettings::NativeKeyboard::Up},
+        {VK_F13, InputSettings::NativeKeyboard::F13},
+        {VK_F14, InputSettings::NativeKeyboard::F14},
+        {VK_F15, InputSettings::NativeKeyboard::F15},
+        {VK_F16, InputSettings::NativeKeyboard::F16},
+        {VK_F17, InputSettings::NativeKeyboard::F17},
+        {VK_F18, InputSettings::NativeKeyboard::F18},
+        {VK_F19, InputSettings::NativeKeyboard::F19},
+        {VK_F20, InputSettings::NativeKeyboard::F20},
+        {VK_F21, InputSettings::NativeKeyboard::F21},
+        {VK_F22, InputSettings::NativeKeyboard::F22},
+        {VK_F23, InputSettings::NativeKeyboard::F23},
+        {VK_F24, InputSettings::NativeKeyboard::F24},
+    };
+
+    if (keyMappings.find(vkcode) != keyMappings.end())
+    {
+        return keyMappings.at(vkcode);
+    }
+    return 0;
 }

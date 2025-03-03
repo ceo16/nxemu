@@ -415,22 +415,22 @@ ButtonMapping GCAdapter::GetButtonMappingForDevice(const Common::ParamPackage& p
     // This list is missing ZL/ZR since those are not considered buttons.
     // We will add those afterwards
     // This list also excludes any button that can't be really mapped
-    static constexpr std::array<std::pair<Settings::NativeButton::Values, PadButton>, 14>
+    static constexpr std::array<std::pair<InputSettings::NativeButton::Values, PadButton>, 14>
         switch_to_gcadapter_button = {
-            std::pair{Settings::NativeButton::A, PadButton::ButtonA},
-            {Settings::NativeButton::B, PadButton::ButtonB},
-            {Settings::NativeButton::X, PadButton::ButtonX},
-            {Settings::NativeButton::Y, PadButton::ButtonY},
-            {Settings::NativeButton::Plus, PadButton::ButtonStart},
-            {Settings::NativeButton::DLeft, PadButton::ButtonLeft},
-            {Settings::NativeButton::DUp, PadButton::ButtonUp},
-            {Settings::NativeButton::DRight, PadButton::ButtonRight},
-            {Settings::NativeButton::DDown, PadButton::ButtonDown},
-            {Settings::NativeButton::SLLeft, PadButton::TriggerL},
-            {Settings::NativeButton::SRLeft, PadButton::TriggerR},
-            {Settings::NativeButton::SLRight, PadButton::TriggerL},
-            {Settings::NativeButton::SRRight, PadButton::TriggerR},
-            {Settings::NativeButton::R, PadButton::TriggerZ},
+            std::pair{InputSettings::NativeButton::A, PadButton::ButtonA},
+            {InputSettings::NativeButton::B, PadButton::ButtonB},
+            {InputSettings::NativeButton::X, PadButton::ButtonX},
+            {InputSettings::NativeButton::Y, PadButton::ButtonY},
+            {InputSettings::NativeButton::Plus, PadButton::ButtonStart},
+            {InputSettings::NativeButton::DLeft, PadButton::ButtonLeft},
+            {InputSettings::NativeButton::DUp, PadButton::ButtonUp},
+            {InputSettings::NativeButton::DRight, PadButton::ButtonRight},
+            {InputSettings::NativeButton::DDown, PadButton::ButtonDown},
+            {InputSettings::NativeButton::SLLeft, PadButton::TriggerL},
+            {InputSettings::NativeButton::SRLeft, PadButton::TriggerR},
+            {InputSettings::NativeButton::SLRight, PadButton::TriggerL},
+            {InputSettings::NativeButton::SRRight, PadButton::TriggerR},
+            {InputSettings::NativeButton::R, PadButton::TriggerZ},
         };
     if (!params.Has("port")) {
         return {};
@@ -446,10 +446,10 @@ ButtonMapping GCAdapter::GetButtonMappingForDevice(const Common::ParamPackage& p
     }
 
     // Add the missing bindings for ZL/ZR
-    static constexpr std::array<std::tuple<Settings::NativeButton::Values, PadButton, PadAxes>, 2>
+    static constexpr std::array<std::tuple<InputSettings::NativeButton::Values, PadButton, PadAxes>, 2>
         switch_to_gcadapter_axis = {
-            std::tuple{Settings::NativeButton::ZL, PadButton::TriggerL, PadAxes::TriggerLeft},
-            {Settings::NativeButton::ZR, PadButton::TriggerR, PadAxes::TriggerRight},
+            std::tuple{InputSettings::NativeButton::ZL, PadButton::TriggerL, PadAxes::TriggerLeft},
+            {InputSettings::NativeButton::ZR, PadButton::TriggerR, PadAxes::TriggerRight},
         };
     for (const auto& [switch_button, gcadapter_button, gcadapter_axis] : switch_to_gcadapter_axis) {
         Common::ParamPackage button_params{};
@@ -476,13 +476,13 @@ AnalogMapping GCAdapter::GetAnalogMappingForDevice(const Common::ParamPackage& p
     left_analog_params.Set("port", params.Get("port", 0));
     left_analog_params.Set("axis_x", static_cast<int>(PadAxes::StickX));
     left_analog_params.Set("axis_y", static_cast<int>(PadAxes::StickY));
-    mapping.insert_or_assign(Settings::NativeAnalog::LStick, std::move(left_analog_params));
+    mapping.insert_or_assign(InputSettings::NativeAnalog::LStick, std::move(left_analog_params));
     Common::ParamPackage right_analog_params;
     right_analog_params.Set("engine", GetEngineName());
     right_analog_params.Set("port", params.Get("port", 0));
     right_analog_params.Set("axis_x", static_cast<int>(PadAxes::SubstickX));
     right_analog_params.Set("axis_y", static_cast<int>(PadAxes::SubstickY));
-    mapping.insert_or_assign(Settings::NativeAnalog::RStick, std::move(right_analog_params));
+    mapping.insert_or_assign(InputSettings::NativeAnalog::RStick, std::move(right_analog_params));
     return mapping;
 }
 

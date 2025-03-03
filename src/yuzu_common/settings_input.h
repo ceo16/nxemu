@@ -8,7 +8,7 @@
 
 #include "yuzu_common/common_types.h"
 
-namespace Settings {
+namespace InputSettings {
 namespace NativeButton {
 enum Values : int {
     A,

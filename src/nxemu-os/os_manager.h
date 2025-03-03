@@ -17,6 +17,8 @@ public:
     void StartApplicationProcess(uint64_t baseAddress, int32_t priority, int64_t stackSize);
     bool LoadModule(const IModuleInfo & module, uint64_t baseAddress);
     IDeviceMemory & DeviceMemory(void);
+    void KeyboardKeyPress(int modifier, int keyIndex, int keyCode);
+    void KeyboardKeyRelease(int modifier, int keyIndex, int keyCode);
 
 private:
     OSManager() = delete;

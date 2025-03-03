@@ -808,8 +808,8 @@ ButtonMapping SDLDriver::GetButtonMappingForDevice(const Common::ParamPackage& p
 
     // Add the missing bindings for ZL/ZR
     static constexpr ZButtonBindings switch_to_sdl_axis{{
-        {Settings::NativeButton::ZL, SDL_CONTROLLER_AXIS_TRIGGERLEFT},
-        {Settings::NativeButton::ZR, SDL_CONTROLLER_AXIS_TRIGGERRIGHT},
+        {InputSettings::NativeButton::ZL, SDL_CONTROLLER_AXIS_TRIGGERLEFT},
+        {InputSettings::NativeButton::ZR, SDL_CONTROLLER_AXIS_TRIGGERRIGHT},
     }};
 
     // Parameters contain two joysticks return dual
@@ -843,26 +843,26 @@ ButtonBindings SDLDriver::GetDefaultButtonBinding(
     }
 
     return {
-        std::pair{Settings::NativeButton::A, SDL_CONTROLLER_BUTTON_B},
-        {Settings::NativeButton::B, SDL_CONTROLLER_BUTTON_A},
-        {Settings::NativeButton::X, SDL_CONTROLLER_BUTTON_Y},
-        {Settings::NativeButton::Y, SDL_CONTROLLER_BUTTON_X},
-        {Settings::NativeButton::LStick, SDL_CONTROLLER_BUTTON_LEFTSTICK},
-        {Settings::NativeButton::RStick, SDL_CONTROLLER_BUTTON_RIGHTSTICK},
-        {Settings::NativeButton::L, SDL_CONTROLLER_BUTTON_LEFTSHOULDER},
-        {Settings::NativeButton::R, SDL_CONTROLLER_BUTTON_RIGHTSHOULDER},
-        {Settings::NativeButton::Plus, SDL_CONTROLLER_BUTTON_START},
-        {Settings::NativeButton::Minus, SDL_CONTROLLER_BUTTON_BACK},
-        {Settings::NativeButton::DLeft, SDL_CONTROLLER_BUTTON_DPAD_LEFT},
-        {Settings::NativeButton::DUp, SDL_CONTROLLER_BUTTON_DPAD_UP},
-        {Settings::NativeButton::DRight, SDL_CONTROLLER_BUTTON_DPAD_RIGHT},
-        {Settings::NativeButton::DDown, SDL_CONTROLLER_BUTTON_DPAD_DOWN},
-        {Settings::NativeButton::SLLeft, sll_button},
-        {Settings::NativeButton::SRLeft, srl_button},
-        {Settings::NativeButton::SLRight, slr_button},
-        {Settings::NativeButton::SRRight, srr_button},
-        {Settings::NativeButton::Home, SDL_CONTROLLER_BUTTON_GUIDE},
-        {Settings::NativeButton::Screenshot, SDL_CONTROLLER_BUTTON_MISC1},
+        std::pair{InputSettings::NativeButton::A, SDL_CONTROLLER_BUTTON_B},
+        {InputSettings::NativeButton::B, SDL_CONTROLLER_BUTTON_A},
+        {InputSettings::NativeButton::X, SDL_CONTROLLER_BUTTON_Y},
+        {InputSettings::NativeButton::Y, SDL_CONTROLLER_BUTTON_X},
+        {InputSettings::NativeButton::LStick, SDL_CONTROLLER_BUTTON_LEFTSTICK},
+        {InputSettings::NativeButton::RStick, SDL_CONTROLLER_BUTTON_RIGHTSTICK},
+        {InputSettings::NativeButton::L, SDL_CONTROLLER_BUTTON_LEFTSHOULDER},
+        {InputSettings::NativeButton::R, SDL_CONTROLLER_BUTTON_RIGHTSHOULDER},
+        {InputSettings::NativeButton::Plus, SDL_CONTROLLER_BUTTON_START},
+        {InputSettings::NativeButton::Minus, SDL_CONTROLLER_BUTTON_BACK},
+        {InputSettings::NativeButton::DLeft, SDL_CONTROLLER_BUTTON_DPAD_LEFT},
+        {InputSettings::NativeButton::DUp, SDL_CONTROLLER_BUTTON_DPAD_UP},
+        {InputSettings::NativeButton::DRight, SDL_CONTROLLER_BUTTON_DPAD_RIGHT},
+        {InputSettings::NativeButton::DDown, SDL_CONTROLLER_BUTTON_DPAD_DOWN},
+        {InputSettings::NativeButton::SLLeft, sll_button},
+        {InputSettings::NativeButton::SRLeft, srl_button},
+        {InputSettings::NativeButton::SLRight, slr_button},
+        {InputSettings::NativeButton::SRRight, srr_button},
+        {InputSettings::NativeButton::Home, SDL_CONTROLLER_BUTTON_GUIDE},
+        {InputSettings::NativeButton::Screenshot, SDL_CONTROLLER_BUTTON_MISC1},
     };
 }
 
@@ -928,17 +928,17 @@ ButtonMapping SDLDriver::GetDualControllerMapping(const std::shared_ptr<SDLJoyst
     return mapping;
 }
 
-bool SDLDriver::IsButtonOnLeftSide(Settings::NativeButton::Values button) const {
+bool SDLDriver::IsButtonOnLeftSide(InputSettings::NativeButton::Values button) const {
     switch (button) {
-    case Settings::NativeButton::DDown:
-    case Settings::NativeButton::DLeft:
-    case Settings::NativeButton::DRight:
-    case Settings::NativeButton::DUp:
-    case Settings::NativeButton::L:
-    case Settings::NativeButton::LStick:
-    case Settings::NativeButton::Minus:
-    case Settings::NativeButton::Screenshot:
-    case Settings::NativeButton::ZL:
+    case InputSettings::NativeButton::DDown:
+    case InputSettings::NativeButton::DLeft:
+    case InputSettings::NativeButton::DRight:
+    case InputSettings::NativeButton::DUp:
+    case InputSettings::NativeButton::L:
+    case InputSettings::NativeButton::LStick:
+    case InputSettings::NativeButton::Minus:
+    case InputSettings::NativeButton::Screenshot:
+    case InputSettings::NativeButton::ZL:
         return true;
     default:
         return false;
@@ -968,7 +968,7 @@ AnalogMapping SDLDriver::GetAnalogMappingForDevice(const Common::ParamPackage& p
         PreSetAxis(identifier, binding_left_y.value.axis);
         const auto left_offset_x = -GetAxis(identifier, binding_left_x.value.axis);
         const auto left_offset_y = GetAxis(identifier, binding_left_y.value.axis);
-        mapping.insert_or_assign(Settings::NativeAnalog::LStick,
+        mapping.insert_or_assign(InputSettings::NativeAnalog::LStick,
                                  BuildParamPackageForAnalog(identifier, binding_left_x.value.axis,
                                                             binding_left_y.value.axis,
                                                             left_offset_x, left_offset_y));
@@ -979,7 +979,7 @@ AnalogMapping SDLDriver::GetAnalogMappingForDevice(const Common::ParamPackage& p
         PreSetAxis(identifier, binding_left_y.value.axis);
         const auto left_offset_x = -GetAxis(identifier, binding_left_x.value.axis);
         const auto left_offset_y = GetAxis(identifier, binding_left_y.value.axis);
-        mapping.insert_or_assign(Settings::NativeAnalog::LStick,
+        mapping.insert_or_assign(InputSettings::NativeAnalog::LStick,
                                  BuildParamPackageForAnalog(identifier, binding_left_x.value.axis,
                                                             binding_left_y.value.axis,
                                                             left_offset_x, left_offset_y));
@@ -994,7 +994,7 @@ AnalogMapping SDLDriver::GetAnalogMappingForDevice(const Common::ParamPackage& p
     PreSetAxis(identifier, binding_right_y.value.axis);
     const auto right_offset_x = -GetAxis(identifier, binding_right_x.value.axis);
     const auto right_offset_y = GetAxis(identifier, binding_right_y.value.axis);
-    mapping.insert_or_assign(Settings::NativeAnalog::RStick,
+    mapping.insert_or_assign(InputSettings::NativeAnalog::RStick,
                              BuildParamPackageForAnalog(identifier, binding_right_x.value.axis,
                                                         binding_right_y.value.axis, right_offset_x,
                                                         right_offset_y));
@@ -1016,18 +1016,18 @@ MotionMapping SDLDriver::GetMotionMappingForDevice(const Common::ParamPackage& p
     joystick->EnableMotion();
 
     if (joystick->HasMotion()) {
-        mapping.insert_or_assign(Settings::NativeMotion::MotionRight,
+        mapping.insert_or_assign(InputSettings::NativeMotion::MotionRight,
                                  BuildMotionParam(joystick->GetPort(), joystick->GetGUID()));
     }
     if (params.Has("guid2")) {
         joystick2->EnableMotion();
         if (joystick2->HasMotion()) {
-            mapping.insert_or_assign(Settings::NativeMotion::MotionLeft,
+            mapping.insert_or_assign(InputSettings::NativeMotion::MotionLeft,
                                      BuildMotionParam(joystick2->GetPort(), joystick2->GetGUID()));
         }
     } else {
         if (joystick->HasMotion()) {
-            mapping.insert_or_assign(Settings::NativeMotion::MotionLeft,
+            mapping.insert_or_assign(InputSettings::NativeMotion::MotionLeft,
                                      BuildMotionParam(joystick->GetPort(), joystick->GetGUID()));
         }
     }

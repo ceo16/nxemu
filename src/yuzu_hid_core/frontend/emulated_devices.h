@@ -18,26 +18,26 @@
 
 namespace Core::HID {
 using KeyboardDevices = std::array<std::unique_ptr<Common::Input::InputDevice>,
-                                   Settings::NativeKeyboard::NumKeyboardKeys>;
+                                   InputSettings::NativeKeyboard::NumKeyboardKeys>;
 using KeyboardModifierDevices = std::array<std::unique_ptr<Common::Input::InputDevice>,
-                                           Settings::NativeKeyboard::NumKeyboardMods>;
+                                           InputSettings::NativeKeyboard::NumKeyboardMods>;
 using MouseButtonDevices = std::array<std::unique_ptr<Common::Input::InputDevice>,
-                                      Settings::NativeMouseButton::NumMouseButtons>;
+                                      InputSettings::NativeMouseButton::NumMouseButtons>;
 using MouseWheelDevices = std::array<std::unique_ptr<Common::Input::InputDevice>,
-                                     Settings::NativeMouseWheel::NumMouseWheels>;
+                                     InputSettings::NativeMouseWheel::NumMouseWheels>;
 using MouseStickDevice = std::unique_ptr<Common::Input::InputDevice>;
 
 using MouseButtonParams =
-    std::array<Common::ParamPackage, Settings::NativeMouseButton::NumMouseButtons>;
+    std::array<Common::ParamPackage, InputSettings::NativeMouseButton::NumMouseButtons>;
 
 using KeyboardValues =
-    std::array<Common::Input::ButtonStatus, Settings::NativeKeyboard::NumKeyboardKeys>;
+    std::array<Common::Input::ButtonStatus, InputSettings::NativeKeyboard::NumKeyboardKeys>;
 using KeyboardModifierValues =
-    std::array<Common::Input::ButtonStatus, Settings::NativeKeyboard::NumKeyboardMods>;
+    std::array<Common::Input::ButtonStatus, InputSettings::NativeKeyboard::NumKeyboardMods>;
 using MouseButtonValues =
-    std::array<Common::Input::ButtonStatus, Settings::NativeMouseButton::NumMouseButtons>;
+    std::array<Common::Input::ButtonStatus, InputSettings::NativeMouseButton::NumMouseButtons>;
 using MouseWheelValues =
-    std::array<Common::Input::AnalogStatus, Settings::NativeMouseWheel::NumMouseWheels>;
+    std::array<Common::Input::AnalogStatus, InputSettings::NativeMouseWheel::NumMouseWheels>;
 using MouseStickValue = Common::Input::TouchStatus;
 
 struct MousePosition {

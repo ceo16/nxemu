@@ -1,6 +1,6 @@
 #pragma once
+#include <nxemu-core/modules/modules.h>
 #include <memory>
-#include "modules/modules.h"
 
 class Nro;
 

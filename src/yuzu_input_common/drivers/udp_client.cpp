@@ -396,30 +396,30 @@ std::vector<Common::ParamPackage> UDPClient::GetInputDevices() const {
 
 ButtonMapping UDPClient::GetButtonMappingForDevice(const Common::ParamPackage& params) {
     // This list excludes any button that can't be really mapped
-    static constexpr std::array<std::pair<Settings::NativeButton::Values, PadButton>, 22>
+    static constexpr std::array<std::pair<InputSettings::NativeButton::Values, PadButton>, 22>
         switch_to_dsu_button = {
-            std::pair{Settings::NativeButton::A, PadButton::Circle},
-            {Settings::NativeButton::B, PadButton::Cross},
-            {Settings::NativeButton::X, PadButton::Triangle},
-            {Settings::NativeButton::Y, PadButton::Square},
-            {Settings::NativeButton::Plus, PadButton::Options},
-            {Settings::NativeButton::Minus, PadButton::Share},
-            {Settings::NativeButton::DLeft, PadButton::Left},
-            {Settings::NativeButton::DUp, PadButton::Up},
-            {Settings::NativeButton::DRight, PadButton::Right},
-            {Settings::NativeButton::DDown, PadButton::Down},
-            {Settings::NativeButton::L, PadButton::L1},
-            {Settings::NativeButton::R, PadButton::R1},
-            {Settings::NativeButton::ZL, PadButton::L2},
-            {Settings::NativeButton::ZR, PadButton::R2},
-            {Settings::NativeButton::SLLeft, PadButton::L2},
-            {Settings::NativeButton::SRLeft, PadButton::R2},
-            {Settings::NativeButton::SLRight, PadButton::L2},
-            {Settings::NativeButton::SRRight, PadButton::R2},
-            {Settings::NativeButton::LStick, PadButton::L3},
-            {Settings::NativeButton::RStick, PadButton::R3},
-            {Settings::NativeButton::Home, PadButton::Home},
-            {Settings::NativeButton::Screenshot, PadButton::TouchHardPress},
+            std::pair{InputSettings::NativeButton::A, PadButton::Circle},
+            {InputSettings::NativeButton::B, PadButton::Cross},
+            {InputSettings::NativeButton::X, PadButton::Triangle},
+            {InputSettings::NativeButton::Y, PadButton::Square},
+            {InputSettings::NativeButton::Plus, PadButton::Options},
+            {InputSettings::NativeButton::Minus, PadButton::Share},
+            {InputSettings::NativeButton::DLeft, PadButton::Left},
+            {InputSettings::NativeButton::DUp, PadButton::Up},
+            {InputSettings::NativeButton::DRight, PadButton::Right},
+            {InputSettings::NativeButton::DDown, PadButton::Down},
+            {InputSettings::NativeButton::L, PadButton::L1},
+            {InputSettings::NativeButton::R, PadButton::R1},
+            {InputSettings::NativeButton::ZL, PadButton::L2},
+            {InputSettings::NativeButton::ZR, PadButton::R2},
+            {InputSettings::NativeButton::SLLeft, PadButton::L2},
+            {InputSettings::NativeButton::SRLeft, PadButton::R2},
+            {InputSettings::NativeButton::SLRight, PadButton::L2},
+            {InputSettings::NativeButton::SRRight, PadButton::R2},
+            {InputSettings::NativeButton::LStick, PadButton::L3},
+            {InputSettings::NativeButton::RStick, PadButton::R3},
+            {InputSettings::NativeButton::Home, PadButton::Home},
+            {InputSettings::NativeButton::Screenshot, PadButton::TouchHardPress},
         };
     if (!params.Has("guid") || !params.Has("port") || !params.Has("pad")) {
         return {};
@@ -452,7 +452,7 @@ AnalogMapping UDPClient::GetAnalogMappingForDevice(const Common::ParamPackage& p
     left_analog_params.Set("pad", params.Get("pad", 0));
     left_analog_params.Set("axis_x", static_cast<int>(PadAxes::LeftStickX));
     left_analog_params.Set("axis_y", static_cast<int>(PadAxes::LeftStickY));
-    mapping.insert_or_assign(Settings::NativeAnalog::LStick, std::move(left_analog_params));
+    mapping.insert_or_assign(InputSettings::NativeAnalog::LStick, std::move(left_analog_params));
     Common::ParamPackage right_analog_params;
     right_analog_params.Set("engine", GetEngineName());
     right_analog_params.Set("guid", params.Get("guid", ""));
@@ -460,7 +460,7 @@ AnalogMapping UDPClient::GetAnalogMappingForDevice(const Common::ParamPackage& p
     right_analog_params.Set("pad", params.Get("pad", 0));
     right_analog_params.Set("axis_x", static_cast<int>(PadAxes::RightStickX));
     right_analog_params.Set("axis_y", static_cast<int>(PadAxes::RightStickY));
-    mapping.insert_or_assign(Settings::NativeAnalog::RStick, std::move(right_analog_params));
+    mapping.insert_or_assign(InputSettings::NativeAnalog::RStick, std::move(right_analog_params));
     return mapping;
 }
 
@@ -484,8 +484,8 @@ MotionMapping UDPClient::GetMotionMappingForDevice(const Common::ParamPackage& p
     right_motion_params.Set("pad", params.Get("pad", 0));
     right_motion_params.Set("motion", 0);
 
-    mapping.insert_or_assign(Settings::NativeMotion::MotionLeft, std::move(left_motion_params));
-    mapping.insert_or_assign(Settings::NativeMotion::MotionRight, std::move(right_motion_params));
+    mapping.insert_or_assign(InputSettings::NativeMotion::MotionLeft, std::move(left_motion_params));
+    mapping.insert_or_assign(InputSettings::NativeMotion::MotionRight, std::move(right_motion_params));
     return mapping;
 }
 

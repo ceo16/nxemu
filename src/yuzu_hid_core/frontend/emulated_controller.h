@@ -28,13 +28,13 @@ struct ControllerMotionInfo {
 };
 
 using ButtonDevices =
-    std::array<std::unique_ptr<Common::Input::InputDevice>, Settings::NativeButton::NumButtons>;
+    std::array<std::unique_ptr<Common::Input::InputDevice>, InputSettings::NativeButton::NumButtons>;
 using StickDevices =
-    std::array<std::unique_ptr<Common::Input::InputDevice>, Settings::NativeAnalog::NumAnalogs>;
+    std::array<std::unique_ptr<Common::Input::InputDevice>, InputSettings::NativeAnalog::NumAnalogs>;
 using ControllerMotionDevices =
-    std::array<std::unique_ptr<Common::Input::InputDevice>, Settings::NativeMotion::NumMotions>;
+    std::array<std::unique_ptr<Common::Input::InputDevice>, InputSettings::NativeMotion::NumMotions>;
 using TriggerDevices =
-    std::array<std::unique_ptr<Common::Input::InputDevice>, Settings::NativeTrigger::NumTriggers>;
+    std::array<std::unique_ptr<Common::Input::InputDevice>, InputSettings::NativeTrigger::NumTriggers>;
 using ColorDevices =
     std::array<std::unique_ptr<Common::Input::InputDevice>, max_emulated_controllers>;
 using BatteryDevices =
@@ -47,10 +47,10 @@ using NfcDevices =
     std::array<std::unique_ptr<Common::Input::InputDevice>, max_emulated_controllers>;
 using OutputDevices = std::array<std::unique_ptr<Common::Input::OutputDevice>, output_devices_size>;
 
-using ButtonParams = std::array<Common::ParamPackage, Settings::NativeButton::NumButtons>;
-using StickParams = std::array<Common::ParamPackage, Settings::NativeAnalog::NumAnalogs>;
-using ControllerMotionParams = std::array<Common::ParamPackage, Settings::NativeMotion::NumMotions>;
-using TriggerParams = std::array<Common::ParamPackage, Settings::NativeTrigger::NumTriggers>;
+using ButtonParams = std::array<Common::ParamPackage, InputSettings::NativeButton::NumButtons>;
+using StickParams = std::array<Common::ParamPackage, InputSettings::NativeAnalog::NumAnalogs>;
+using ControllerMotionParams = std::array<Common::ParamPackage, InputSettings::NativeMotion::NumMotions>;
+using TriggerParams = std::array<Common::ParamPackage, InputSettings::NativeTrigger::NumTriggers>;
 using ColorParams = std::array<Common::ParamPackage, max_emulated_controllers>;
 using BatteryParams = std::array<Common::ParamPackage, max_emulated_controllers>;
 using CameraParams = std::array<Common::ParamPackage, max_emulated_controllers>;
@@ -58,11 +58,11 @@ using RingAnalogParams = std::array<Common::ParamPackage, max_emulated_controlle
 using NfcParams = std::array<Common::ParamPackage, max_emulated_controllers>;
 using OutputParams = std::array<Common::ParamPackage, output_devices_size>;
 
-using ButtonValues = std::array<Common::Input::ButtonStatus, Settings::NativeButton::NumButtons>;
-using SticksValues = std::array<Common::Input::StickStatus, Settings::NativeAnalog::NumAnalogs>;
+using ButtonValues = std::array<Common::Input::ButtonStatus, InputSettings::NativeButton::NumButtons>;
+using SticksValues = std::array<Common::Input::StickStatus, InputSettings::NativeAnalog::NumAnalogs>;
 using TriggerValues =
-    std::array<Common::Input::TriggerStatus, Settings::NativeTrigger::NumTriggers>;
-using ControllerMotionValues = std::array<ControllerMotionInfo, Settings::NativeMotion::NumMotions>;
+    std::array<Common::Input::TriggerStatus, InputSettings::NativeTrigger::NumTriggers>;
+using ControllerMotionValues = std::array<ControllerMotionInfo, InputSettings::NativeMotion::NumMotions>;
 using ColorValues = std::array<Common::Input::BodyColorStatus, max_emulated_controllers>;
 using BatteryValues = std::array<Common::Input::BatteryStatus, max_emulated_controllers>;
 using CameraValues = Common::Input::CameraStatus;
@@ -182,10 +182,10 @@ public:
     YUZU_NON_MOVEABLE(EmulatedController);
 
     /// Converts the controller type from settings to npad type
-    static NpadStyleIndex MapSettingsTypeToNPad(Settings::ControllerType type);
+    static NpadStyleIndex MapSettingsTypeToNPad(InputSettings::ControllerType type);
 
     /// Converts npad type to the equivalent of controller type from settings
-    static Settings::ControllerType MapNPadToSettingsType(NpadStyleIndex type);
+    static InputSettings::ControllerType MapNPadToSettingsType(NpadStyleIndex type);
 
     /// Gets the NpadIdType for this controller
     NpadIdType GetNpadIdType() const;

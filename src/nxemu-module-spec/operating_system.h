@@ -61,6 +61,8 @@ __interface IOperatingSystem
     void StartApplicationProcess(uint64_t baseAddress, int32_t priority, int64_t stackSize) = 0;
     bool LoadModule(const IModuleInfo & module, uint64_t baseAddress) = 0;
     IDeviceMemory & DeviceMemory(void) = 0;
+    void KeyboardKeyPress(int modifier, int keyIndex, int keyCode) = 0;
+    void KeyboardKeyRelease(int modifier, int keyIndex, int keyCode) = 0;
 };
 
 EXPORT IOperatingSystem * CALL CreateOperatingSystem(ISwitchSystem & System);

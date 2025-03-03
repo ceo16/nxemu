@@ -343,6 +343,11 @@ const Core::SpeedLimiter& System::SpeedLimiter() const {
     return impl->speed_limiter;
 }
 
+std::shared_ptr<InputCommon::InputSubsystem> & System::InputSubsystem()
+{
+    return impl->input_subsystem;
+}
+
 u64 System::GetApplicationProcessProgramID() const {
     return impl->kernel.ApplicationProcess()->GetProgramId();
 }

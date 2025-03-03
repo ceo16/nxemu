@@ -17,6 +17,8 @@ class MainWindow :
     {
         MESSAGE_HANDLER(WM_CREATE, OnCreate);
         MESSAGE_HANDLER(WM_DESTROY, OnDestroy);
+        MESSAGE_HANDLER(WM_KEYDOWN, OnKeyDown);
+        MESSAGE_HANDLER(WM_KEYUP, OnKeyUp);
         COMMAND_ID_HANDLER(MainMenu::ID_FILE_OPEN_GAME, OnOpenGame);
         COMMAND_ID_HANDLER(MainMenu::ID_FILE_EXIT, OnFileExit);
         COMMAND_ID_HANDLER(MainMenu::ID_OPTIONS_SETTINGS, OnSettings);
@@ -45,9 +47,13 @@ private:
     std::string ChooseFileToOpen(HWND parent);
     void GameFileChanged(void);
     void GameNameChanged(void);
+    
+    static int VKCodeToSwitchKey(uint32_t vkcode);
 
     LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL & bHandled);
     LRESULT OnDestroy(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL & bHandled);
+    LRESULT OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM lParam, BOOL & bHandled);
+    LRESULT OnKeyUp(UINT /*uMsg*/, WPARAM wParam, LPARAM lParam, BOOL & bHandled);
     LRESULT OnOpenGame(WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL & bHandled);
     LRESULT OnFileExit(WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL & bHandled);
     LRESULT OnSettings(WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL & bHandled);

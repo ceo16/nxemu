@@ -3,7 +3,7 @@
 
 #include "yuzu_common/settings_input.h"
 
-namespace Settings {
+namespace InputSettings {
 namespace NativeButton {
 const std::array<const char*, NumButtons> mapping = {{
     "button_a",       "button_b",       "button_x",      "button_y",    "button_lstick",

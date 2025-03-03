@@ -272,27 +272,27 @@ void EmulatedDevices::SetKeyboardModifier(const Common::Input::CallbackStatus& c
     }
 
     switch (index) {
-    case Settings::NativeKeyboard::LeftControl:
-    case Settings::NativeKeyboard::RightControl:
+    case InputSettings::NativeKeyboard::LeftControl:
+    case InputSettings::NativeKeyboard::RightControl:
         device_status.keyboard_moddifier_state.control.Assign(current_status.value);
         break;
-    case Settings::NativeKeyboard::LeftShift:
-    case Settings::NativeKeyboard::RightShift:
+    case InputSettings::NativeKeyboard::LeftShift:
+    case InputSettings::NativeKeyboard::RightShift:
         device_status.keyboard_moddifier_state.shift.Assign(current_status.value);
         break;
-    case Settings::NativeKeyboard::LeftAlt:
+    case InputSettings::NativeKeyboard::LeftAlt:
         device_status.keyboard_moddifier_state.left_alt.Assign(current_status.value);
         break;
-    case Settings::NativeKeyboard::RightAlt:
+    case InputSettings::NativeKeyboard::RightAlt:
         device_status.keyboard_moddifier_state.right_alt.Assign(current_status.value);
         break;
-    case Settings::NativeKeyboard::CapsLock:
+    case InputSettings::NativeKeyboard::CapsLock:
         device_status.keyboard_moddifier_state.caps_lock.Assign(current_status.value);
         break;
-    case Settings::NativeKeyboard::ScrollLock:
+    case InputSettings::NativeKeyboard::ScrollLock:
         device_status.keyboard_moddifier_state.scroll_lock.Assign(current_status.value);
         break;
-    case Settings::NativeKeyboard::NumLock:
+    case InputSettings::NativeKeyboard::NumLock:
         device_status.keyboard_moddifier_state.num_lock.Assign(current_status.value);
         break;
     }
@@ -344,19 +344,19 @@ void EmulatedDevices::SetMouseButton(const Common::Input::CallbackStatus& callba
     }
 
     switch (index) {
-    case Settings::NativeMouseButton::Left:
+    case InputSettings::NativeMouseButton::Left:
         device_status.mouse_button_state.left.Assign(current_status.value);
         break;
-    case Settings::NativeMouseButton::Right:
+    case InputSettings::NativeMouseButton::Right:
         device_status.mouse_button_state.right.Assign(current_status.value);
         break;
-    case Settings::NativeMouseButton::Middle:
+    case InputSettings::NativeMouseButton::Middle:
         device_status.mouse_button_state.middle.Assign(current_status.value);
         break;
-    case Settings::NativeMouseButton::Forward:
+    case InputSettings::NativeMouseButton::Forward:
         device_status.mouse_button_state.forward.Assign(current_status.value);
         break;
-    case Settings::NativeMouseButton::Back:
+    case InputSettings::NativeMouseButton::Back:
         device_status.mouse_button_state.back.Assign(current_status.value);
         break;
     }
@@ -383,10 +383,10 @@ void EmulatedDevices::SetMouseWheel(const Common::Input::CallbackStatus& callbac
     }
 
     switch (index) {
-    case Settings::NativeMouseWheel::X:
+    case InputSettings::NativeMouseWheel::X:
         device_status.mouse_wheel_state.x = static_cast<s32>(analog_value.value);
         break;
-    case Settings::NativeMouseWheel::Y:
+    case InputSettings::NativeMouseWheel::Y:
         device_status.mouse_wheel_state.y = static_cast<s32>(analog_value.value);
         break;
     }

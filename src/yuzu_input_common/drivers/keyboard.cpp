@@ -26,8 +26,8 @@ constexpr PadIdentifier keyboard_modifier_identifier = {
 Keyboard::Keyboard(std::string input_engine_) : InputEngine(std::move(input_engine_)) {
     // Keyboard is broken into 3 different sets:
     // key: Unfiltered intended for controllers.
-    // keyboard_key: Allows only Settings::NativeKeyboard::Keys intended for keyboard emulation.
-    // keyboard_modifier: Allows only Settings::NativeKeyboard::Modifiers intended for keyboard
+    // keyboard_key: Allows only InputSettings::NativeKeyboard::Keys intended for keyboard emulation.
+    // keyboard_modifier: Allows only InputSettings::NativeKeyboard::Modifiers intended for keyboard
     // emulation.
     PreSetController(key_identifier);
     PreSetController(keyboard_key_identifier);
@@ -43,14 +43,14 @@ void Keyboard::ReleaseKey(int key_code) {
 }
 
 void Keyboard::PressKeyboardKey(int key_index) {
-    if (key_index == Settings::NativeKeyboard::None) {
+    if (key_index == InputSettings::NativeKeyboard::None) {
         return;
     }
     SetButton(keyboard_key_identifier, key_index, true);
 }
 
 void Keyboard::ReleaseKeyboardKey(int key_index) {
-    if (key_index == Settings::NativeKeyboard::None) {
+    if (key_index == InputSettings::NativeKeyboard::None) {
         return;
     }
     SetButton(keyboard_key_identifier, key_index, false);
@@ -62,30 +62,30 @@ void Keyboard::SetKeyboardModifiers(int key_modifiers) {
         SetButton(keyboard_modifier_identifier, i, key_value);
         // Use the modifier to press the key button equivalent
         switch (i) {
-        case Settings::NativeKeyboard::LeftControl:
-            SetButton(keyboard_key_identifier, Settings::NativeKeyboard::LeftControlKey, key_value);
+        case InputSettings::NativeKeyboard::LeftControl:
+            SetButton(keyboard_key_identifier, InputSettings::NativeKeyboard::LeftControlKey, key_value);
             break;
-        case Settings::NativeKeyboard::LeftShift:
-            SetButton(keyboard_key_identifier, Settings::NativeKeyboard::LeftShiftKey, key_value);
+        case InputSettings::NativeKeyboard::LeftShift:
+            SetButton(keyboard_key_identifier, InputSettings::NativeKeyboard::LeftShiftKey, key_value);
             break;
-        case Settings::NativeKeyboard::LeftAlt:
-            SetButton(keyboard_key_identifier, Settings::NativeKeyboard::LeftAltKey, key_value);
+        case InputSettings::NativeKeyboard::LeftAlt:
+            SetButton(keyboard_key_identifier, InputSettings::NativeKeyboard::LeftAltKey, key_value);
             break;
-        case Settings::NativeKeyboard::LeftMeta:
-            SetButton(keyboard_key_identifier, Settings::NativeKeyboard::LeftMetaKey, key_value);
+        case InputSettings::NativeKeyboard::LeftMeta:
+            SetButton(keyboard_key_identifier, InputSettings::NativeKeyboard::LeftMetaKey, key_value);
             break;
-        case Settings::NativeKeyboard::RightControl:
-            SetButton(keyboard_key_identifier, Settings::NativeKeyboard::RightControlKey,
+        case InputSettings::NativeKeyboard::RightControl:
+            SetButton(keyboard_key_identifier, InputSettings::NativeKeyboard::RightControlKey,
                       key_value);
             break;
-        case Settings::NativeKeyboard::RightShift:
-            SetButton(keyboard_key_identifier, Settings::NativeKeyboard::RightShiftKey, key_value);
+        case InputSettings::NativeKeyboard::RightShift:
+            SetButton(keyboard_key_identifier, InputSettings::NativeKeyboard::RightShiftKey, key_value);
             break;
-        case Settings::NativeKeyboard::RightAlt:
-            SetButton(keyboard_key_identifier, Settings::NativeKeyboard::RightAltKey, key_value);
+        case InputSettings::NativeKeyboard::RightAlt:
+            SetButton(keyboard_key_identifier, InputSettings::NativeKeyboard::RightAltKey, key_value);
             break;
-        case Settings::NativeKeyboard::RightMeta:
-            SetButton(keyboard_key_identifier, Settings::NativeKeyboard::RightMetaKey, key_value);
+        case InputSettings::NativeKeyboard::RightMeta:
+            SetButton(keyboard_key_identifier, InputSettings::NativeKeyboard::RightMetaKey, key_value);
             break;
         default:
             // Other modifier keys should be pressed with PressKey since they stay enabled until

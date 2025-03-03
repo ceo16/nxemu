@@ -491,7 +491,7 @@ struct Values {
     SwitchableSetting<bool> enable_gamemode{linkage, true, "enable_gamemode", Category::Linux};
 
     // Controls
-    InputSetting<std::array<PlayerInput, 10>> players;
+    InputSetting<std::array<InputSettings::PlayerInput, 10>> players;
 
     Setting<bool> enable_raw_input{
         linkage, false, "enable_raw_input", Category::Controls, Specialization::Default,
@@ -543,10 +543,10 @@ struct Values {
     Setting<bool> keyboard_enabled{linkage, false, "keyboard_enabled", Category::Controls};
 
     Setting<bool> debug_pad_enabled{linkage, false, "debug_pad_enabled", Category::Controls};
-    ButtonsRaw debug_pad_buttons;
-    AnalogsRaw debug_pad_analogs;
+    InputSettings::ButtonsRaw debug_pad_buttons;
+    InputSettings::AnalogsRaw debug_pad_analogs;
 
-    TouchscreenInput touchscreen;
+    InputSettings::TouchscreenInput touchscreen;
 
     Setting<std::string> touch_device{linkage, "min_x:100,min_y:50,max_x:1800,max_y:850",
                                       "touch_device", Category::Controls};
@@ -556,7 +556,7 @@ struct Values {
 
     Setting<bool> enable_ring_controller{linkage, true, "enable_ring_controller",
                                          Category::Controls};
-    RingconRaw ringcon_analogs;
+    InputSettings::RingconRaw ringcon_analogs;
 
     Setting<bool> enable_ir_sensor{linkage, false, "enable_ir_sensor", Category::Controls};
     Setting<std::string> ir_sensor_device{linkage, "auto", "ir_sensor_device", Category::Controls};
