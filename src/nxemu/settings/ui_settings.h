@@ -1,4 +1,5 @@
 #pragma once
+#include <common/path.h>
 #include <string>
 #include <vector>
 
@@ -8,6 +9,12 @@ struct UISettings
 {
     Stringlist recentFiles;
     bool enableModuleConfiguration;
+    bool sciterUI;
+    Path languageDir;
+    std::string languageDirValue;
+    std::string languageBase;
+    std::string languageCurrent;
+    bool sciterConsole;
 };
 
 extern UISettings uiSettings;

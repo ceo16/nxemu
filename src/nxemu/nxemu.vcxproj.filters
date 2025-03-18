@@ -72,6 +72,9 @@
     <ClCompile Include="user_interface\wtl_controls\modified_combo_box.cpp">
       <Filter>Source Files\user_interface\wtl_controls</Filter>
     </ClCompile>
+    <ClCompile Include="user_interface\sciter_main_window.cpp">
+      <Filter>Source Files\user_interface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user_interface\main_window.h">
@@ -106,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="user_interface\wtl_controls\modified_combo_box.h">
       <Filter>Header Files\user_interface\wtl_controls</Filter>
+    </ClInclude>
+    <ClInclude Include="user_interface\sciter_main_window.h">
+      <Filter>Header Files\user_interface</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

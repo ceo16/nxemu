@@ -1,5 +1,6 @@
 #include "ui_settings.h"
 #include <common/json.h>
+#include <common/path.h>
 #include <nxemu-core/settings/settings.h>
 
 namespace
@@ -7,6 +8,13 @@ namespace
 struct UISettingsDefaults
 {
     static constexpr bool enableModuleConfiguration = false;
+    static constexpr bool sciterUI = false;
+    static constexpr const char * defaultLanguageDirValue = "./lang";
+    static constexpr const char * defaultLanguageBaseValue = "english";
+    static constexpr const char * defaultLanguageCurrentValue = "english";
+    static constexpr bool defaultSciterConsole = false;
+
+    static Path GetDefaultLanguageDir();
 };
 } // namespace
 
@@ -16,21 +24,50 @@ void LoadUISetting(void)
 {
     uiSettings = {};
     uiSettings.enableModuleConfiguration = UISettingsDefaults::enableModuleConfiguration;
+    uiSettings.sciterUI = UISettingsDefaults::sciterUI;
+    uiSettings.languageDir = UISettingsDefaults::GetDefaultLanguageDir();
+    uiSettings.languageDirValue = UISettingsDefaults::defaultLanguageDirValue;
+    uiSettings.languageBase = UISettingsDefaults::defaultLanguageBaseValue;
+    uiSettings.languageCurrent = UISettingsDefaults::defaultLanguageCurrentValue;
+    uiSettings.sciterConsole = UISettingsDefaults::defaultSciterConsole;
 
-    JsonValue settings = Settings::GetInstance().GetSettings("UI");
+    JsonValue jsonSettings = Settings::GetInstance().GetSettings("UI");
 
-    const JsonValue * modConfig = settings.Find("EnableModuleConfiguration");
-    if (modConfig != nullptr && modConfig->isBool())
+    const JsonValue * node = jsonSettings.Find("EnableModuleConfiguration");
+    if (node != nullptr && node->isBool())
     {
-        uiSettings.enableModuleConfiguration = modConfig->asBool();
+        uiSettings.enableModuleConfiguration = node->asBool();
     }
 
-    const JsonValue * recentFiles = settings.Find("RecentFiles");
-    if (recentFiles != nullptr && recentFiles->isArray())
+    node = jsonSettings.Find("SciterUI");
+    if (node != nullptr && node->isBool())
     {
-        for (uint32_t i = 0; i < recentFiles->size(); i++)
+        uiSettings.sciterUI = node->asBool();
+    }
+
+    node = jsonSettings.Find("LanguageDirectory");
+    if (node != nullptr && node->isString())
+    {
+        std::string dirValue = node->asString();
+        if (!dirValue.empty())
         {
-            const JsonValue & file = (*recentFiles)[i];
+            uiSettings.languageDirValue = dirValue;
+            uiSettings.languageDir = Path(uiSettings.languageDirValue, "").DirectoryNormalize(Path(Path::MODULE_DIRECTORY));
+        }
+    }
+
+    node = jsonSettings.Find("SciterConsole");
+    if (node != nullptr && node->isBool())
+    {
+        uiSettings.sciterConsole = node->asBool();
+    }
+
+    node = jsonSettings.Find("RecentFiles");
+    if (node != nullptr && node->isArray())
+    {
+        for (uint32_t i = 0; i < node->size(); i++)
+        {
+            const JsonValue & file = (*node)[i];
             if (file.isString())
             {
                 uiSettings.recentFiles.push_back(file.asString());
@@ -60,4 +97,11 @@ void SaveUISetting(void)
     Settings & settings = Settings::GetInstance();
     settings.SetSettings("UI", json);
     settings.Save();
+}
+
+Path UISettingsDefaults::GetDefaultLanguageDir()
+{
+    Path dir(Path::MODULE_DIRECTORY);
+    dir.AppendDirectory("lang");
+    return dir;
 }

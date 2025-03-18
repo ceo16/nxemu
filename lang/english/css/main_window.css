@@ -1,0 +1,102 @@
+html
+{
+  border: none;
+  background-color: #232629;
+}
+
+html[window-state="maximized"]
+{
+  border: window-frame-width solid transparent;
+}
+
+html > header
+{
+  width: *;
+  flow: horizontal;
+  background-color: threedface;
+  height: window-caption-height;
+  margin: 0;
+}
+
+html > header > window-caption
+{
+  display: block;
+  line-height: window-caption-height;
+  width: *;
+  padding: 0 1em;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 0.9em;
+  font-weight: 100;
+}
+
+html > header > window-caption span
+{
+  vertical-align: middle;
+}
+
+html > header > window-caption img
+{
+  vertical-align: middle;
+  margin-right: 0.4em;
+  width: 1.5em;
+  height: 1.5em; 
+}
+
+
+html > header > window-buttons
+{
+  display: block;
+  flow: horizontal;
+  width: max-content;
+  height: *;
+}
+
+html > header > window-buttons > window-button {
+  behavior: clickable;
+  display: block;
+  height: *;
+  width: window-button-width;
+  foreground-size: 2em 1.5em;
+  foreground-repeat: no-repeat;
+  foreground-position: 50% 50%;
+  stroke-width: 0;
+  fill: #000000;
+  transition: background-color linear 100ms;
+  padding: 0.25em;
+}
+
+html > header > window-buttons > window-button:hover
+{
+  background: rgba(0,0,0,0.25);
+}
+
+html > header > window-buttons > window-button[role="window-close"]
+{
+  foreground-image: url(icon:window-close);
+}
+
+html > header > window-buttons > window-button[role="window-close"]:hover
+{
+  background: rgb(232,17,35);
+  fill: #fff;
+}
+
+html > header > window-buttons > window-button[role="window-maximize"]
+{
+  foreground-image: url(icon:window-maximize);
+}
+
+html[window-state="maximized"]
+{
+  border-color: transparent;
+}
+
+html[window-state="maximized"] > header > window-buttons > window-button[role="window-maximize"]
+{
+  foreground-image: url(icon:window-restore);
+}
+
+html > header > window-buttons > window-button[role="window-minimize"]
+{
+  foreground-image: url(icon:window-minimize);
+}
