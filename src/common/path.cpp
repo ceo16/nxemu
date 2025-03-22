@@ -22,6 +22,12 @@ Path::Path(const Path & path)
     m_path = path.m_path;
 }
 
+Path::Path(const Path & path, const char * fileName)
+{
+    SetDriveDirectory(path.m_path.c_str());
+    SetNameExtension(fileName);
+}
+
 Path::Path(const char * path)
 {
     m_path = path ? path : "";

@@ -79,6 +79,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yuzu_video_core", "src\yuzu
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sciterui", "external\sciterui\src\sciterui\sciterui.vcxproj", "{847B64EE-2C78-48F9-912B-D700F2A5CB91}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nx_tzdb", "src\nx_tzdb\nx_tzdb.vcxproj", "{93A649B4-9E40-44A4-80A5-5EAFA3AF6024}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nx_tzdb_create_header", "src\nx_tzdb_create_header\nx_tzdb_create_header.vcxproj", "{7B9E5439-60A1-4AA6-9001-BA1D0D65D500}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -295,6 +299,22 @@ Global
 		{847B64EE-2C78-48F9-912B-D700F2A5CB91}.Release|x64.Build.0 = Release|x64
 		{847B64EE-2C78-48F9-912B-D700F2A5CB91}.Release|x86.ActiveCfg = Release|x64
 		{847B64EE-2C78-48F9-912B-D700F2A5CB91}.Release|x86.Build.0 = Release|x64
+		{93A649B4-9E40-44A4-80A5-5EAFA3AF6024}.Debug|x64.ActiveCfg = Debug|x64
+		{93A649B4-9E40-44A4-80A5-5EAFA3AF6024}.Debug|x64.Build.0 = Debug|x64
+		{93A649B4-9E40-44A4-80A5-5EAFA3AF6024}.Debug|x86.ActiveCfg = Debug|x64
+		{93A649B4-9E40-44A4-80A5-5EAFA3AF6024}.Debug|x86.Build.0 = Debug|x64
+		{93A649B4-9E40-44A4-80A5-5EAFA3AF6024}.Release|x64.ActiveCfg = Release|x64
+		{93A649B4-9E40-44A4-80A5-5EAFA3AF6024}.Release|x64.Build.0 = Release|x64
+		{93A649B4-9E40-44A4-80A5-5EAFA3AF6024}.Release|x86.ActiveCfg = Release|x64
+		{93A649B4-9E40-44A4-80A5-5EAFA3AF6024}.Release|x86.Build.0 = Release|x64
+		{7B9E5439-60A1-4AA6-9001-BA1D0D65D500}.Debug|x64.ActiveCfg = Debug|x64
+		{7B9E5439-60A1-4AA6-9001-BA1D0D65D500}.Debug|x64.Build.0 = Debug|x64
+		{7B9E5439-60A1-4AA6-9001-BA1D0D65D500}.Debug|x86.ActiveCfg = Debug|x64
+		{7B9E5439-60A1-4AA6-9001-BA1D0D65D500}.Debug|x86.Build.0 = Debug|x64
+		{7B9E5439-60A1-4AA6-9001-BA1D0D65D500}.Release|x64.ActiveCfg = Release|x64
+		{7B9E5439-60A1-4AA6-9001-BA1D0D65D500}.Release|x64.Build.0 = Release|x64
+		{7B9E5439-60A1-4AA6-9001-BA1D0D65D500}.Release|x86.ActiveCfg = Release|x64
+		{7B9E5439-60A1-4AA6-9001-BA1D0D65D500}.Release|x86.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

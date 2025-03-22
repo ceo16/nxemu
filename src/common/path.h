@@ -23,6 +23,7 @@ public:
 
     Path();
     Path(const Path & path);
+    Path(const Path & path, const char * fileName);
     Path(const char * path);
     Path(const char * path, const char * fileName);
     Path(const std::string & path);
