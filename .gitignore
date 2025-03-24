@@ -23,6 +23,7 @@ Thumbs.db
 /.vs
 /bin
 /build
+/git.properties
 /ipch
 /modules
 /src/nxemu-core/Version.h

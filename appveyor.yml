@@ -1,0 +1,23 @@
+version: 1.0.{build}
+image: Visual Studio 2022
+platform:
+- x64
+configuration:
+- Release
+
+before_build:
+- ps: >-
+    If ($env:APPVEYOR_BUILD_VERSION -Like "1.0*") {
+      $version = src/script/set_git_properties.cmd
+      appveyor UpdateBuild -Version $version
+    }
+- cmd: git submodule update --init --recursive
+build:
+  project: nxemu.sln
+  parallel: true
+  verbosity: minimal
+after_build:
+- src/script/package_zip.cmd %APPVEYOR_BUILD_VERSION%-%platform%.zip %platform%
+
+artifacts:
+- path: package/*.zip
