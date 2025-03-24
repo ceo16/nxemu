@@ -3,11 +3,11 @@
 #include "settings/ui_settings.h"
 #include <common/path.h>
 #include <common/std_string.h>
+#include <nxemu-core/machine/switch_system.h>
 #include <nxemu-core/settings/core_settings.h>
 #include <nxemu-core/settings/identifiers.h>
 #include <nxemu-core/settings/settings.h>
 #include <nxemu-core/switch_rom.h>
-#include <nxemu-core/machine/switch_system.h>
 #include <yuzu_common/settings_input.h>
 
 MainWindow::MainWindow(const wchar_t * windowTitle) :
@@ -138,7 +138,7 @@ LRESULT MainWindow::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM lParam, BOOL 
         int keyIndex = VKCodeToSwitchKey((uint32_t)wParam);
         if (keyIndex != 0)
         {
-            OperatingSystem.KeyboardKeyPress(0, keyIndex, wParam);        
+            OperatingSystem.KeyboardKeyPress(0, keyIndex, wParam);
         }
     }
     return 0;

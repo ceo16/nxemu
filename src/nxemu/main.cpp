@@ -2,12 +2,18 @@
 #include "user_interface/main_window.h"
 #include "user_interface/notification.h"
 #include "user_interface/sciter_main_window.h"
+#include <widgets/menubar.h>
 #include <common/std_string.h>
 #include <memory>
 #include <nxemu-core/app_init.h>
 #include <nxemu-core/version.h>
 #include <sciter_ui.h>
 #include <windows.h>
+
+void RegisterWidgets(ISciterUI & sciterUI)
+{
+    WidgetMenuBar::Register(sciterUI);
+}
 
 int WINAPI WinMain(_In_ HINSTANCE /*hInstance*/, _In_opt_ HINSTANCE /*hPrevInstance*/, _In_ LPSTR /*lpszArgs*/, _In_ int /*nWinMode*/)
 {
@@ -22,6 +28,7 @@ int WINAPI WinMain(_In_ HINSTANCE /*hInstance*/, _In_opt_ HINSTANCE /*hPrevInsta
         }
         if (Res)
         {
+            RegisterWidgets(*sciterUI);
             SciterMainWindow window(*sciterUI);
             window.Show();
             sciterUI->Run();
