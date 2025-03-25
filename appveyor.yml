@@ -24,6 +24,7 @@ build:
   project: nxemu.sln
   parallel: true
   verbosity: minimal
+  maximum_number_of_processors: 4
 after_build:
 - src/script/package_zip.cmd %APPVEYOR_BUILD_VERSION%-%platform%.zip %platform%
 
