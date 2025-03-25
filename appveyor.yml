@@ -10,7 +10,7 @@ cache:
 
 install:
   - if not exist VulkanSDK.exe curl -L --silent --show-error --output VulkanSDK.exe https://sdk.lunarg.com/sdk/download/1.3.268.0/windows/VulkanSDK-1.3.268.0-Installer.exe
-  - VulkanSDK.exe /S
+  - VulkanSDK.exe --accept-licenses --default-answer --confirm-command install
   - set PATH=%VULKAN_SDK%\Bin;%PATH%
   - where glslangValidator.exe
 
