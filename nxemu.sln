@@ -81,6 +81,7 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yuzu_video_core", "src\yuzu_video_core\yuzu_video_core.vcxproj", "{0F7CE378-7060-4B23-990B-8ED758654D81}"
 	ProjectSection(ProjectDependencies) = postProject
 		{70E74561-B64C-4FF8-9EA5-472BD2D98A4C} = {70E74561-B64C-4FF8-9EA5-472BD2D98A4C}
+		{BB3BA79F-451E-46D8-8CD8-5993AB932D04} = {BB3BA79F-451E-46D8-8CD8-5993AB932D04}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sciterui", "external\sciterui\src\sciterui\sciterui.vcxproj", "{847B64EE-2C78-48F9-912B-D700F2A5CB91}"
