@@ -28,7 +28,7 @@ install:
   - echo "void main() { gl_Position = vec4(0, 0, 0, 1); }" >> test.glsl
   
   # Try to run glslangValidator directly with full path
-  - "C:/VulkanSDK/1.3.268.0/Bin/glslangValidator.exe" -V test.glsl
+  - cmd: C:/VulkanSDK/1.3.268.0/Bin/glslangValidator.exe -V test.glsl
 
 
 before_build:
