@@ -5,6 +5,23 @@ platform:
 configuration:
 - Release
 
+install:
+  # Install Vulkan SDK
+  - ps: |
+      $vulkanSdkUrl = "https://sdk.lunarg.com/sdk/download/1.3.268.0/windows/VulkanSDK-1.3.268.0-Installer.exe"
+      $vulkanInstaller = "$env:TEMP\VulkanSDK-Installer.exe"
+      Invoke-WebRequest -Uri $vulkanSdkUrl -OutFile $vulkanInstaller
+      Start-Process -FilePath $vulkanInstaller -ArgumentList "/S" -Wait
+      $env:VULKAN_SDK = "C:\VulkanSDK\1.3.268.0"
+      $env:PATH = "$env:VULKAN_SDK\Bin;$env:PATH"
+      # Verify installation
+      if (Test-Path "$env:VULKAN_SDK\Bin\glslangValidator.exe") {
+        Write-Host "Vulkan SDK installed successfully"
+      } else {
+        Write-Error "Vulkan SDK installation failed"
+        exit 1
+      }
+
 before_build:
 - ps: >-
     If ($env:APPVEYOR_BUILD_VERSION -Like "1.0*") {
