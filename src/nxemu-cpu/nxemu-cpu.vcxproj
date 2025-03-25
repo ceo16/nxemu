@@ -368,13 +368,13 @@
     <None Include="frontend\A64\decoder\a64.inc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\nxemu-private\external\fmt.vcxproj">
+    <ProjectReference Include="..\..\external\fmt.vcxproj">
       <Project>{d58bdfc6-1f1e-4c55-9296-1c2411b0fda7}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\nxemu-private\external\mcl.vcxproj">
+    <ProjectReference Include="..\..\external\mcl.vcxproj">
       <Project>{a059b52a-fb13-4060-ac89-128570938d5d}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\nxemu-private\external\zydis.vcxproj">
+    <ProjectReference Include="..\..\external\zydis.vcxproj">
       <Project>{9dec236b-f924-4166-a1b1-002f3bf8f0ec}</Project>
     </ProjectReference>
     <ProjectReference Include="..\common\common.vcxproj">
