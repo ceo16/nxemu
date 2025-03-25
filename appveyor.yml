@@ -11,8 +11,25 @@ cache:
 install:
   - if not exist VulkanSDK.exe curl -L --silent --show-error --output VulkanSDK.exe https://sdk.lunarg.com/sdk/download/1.3.268.0/windows/VulkanSDK-1.3.268.0-Installer.exe
   - VulkanSDK.exe --accept-licenses --default-answer --confirm-command install
-  - set PATH=%VULKAN_SDK%\Bin;%PATH%
-  - where glslangValidator.exe
+
+  # Diagnostic commands to check installation
+  - dir "C:\VulkanSDK\1.3.268.0"
+  - dir "C:\VulkanSDK\1.3.268.0\Bin"
+  
+  # Set PATH explicitly with full path
+  - set PATH=C:\VulkanSDK\1.3.268.0\Bin;%PATH%
+  - echo %PATH%
+  
+  # Check for glslangValidator using full path
+  - if exist "C:\VulkanSDK\1.3.268.0\Bin\glslangValidator.exe" (echo glslangValidator.exe found) else (echo glslangValidator.exe NOT found)
+  
+  # Create a simple GLSL shader file for testing
+  - echo "#version 450" > test.glsl
+  - echo "void main() { gl_Position = vec4(0, 0, 0, 1); }" >> test.glsl
+  
+  # Try to run glslangValidator directly with full path
+  - "C:\VulkanSDK\1.3.268.0\Bin\glslangValidator.exe" -V test.glsl
+
 
 before_build:
 - ps: >-
