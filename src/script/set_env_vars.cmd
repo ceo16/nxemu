@@ -1,15 +1,10 @@
 @echo off
-setlocal
 
-set "PROPERTIES_FILE=%~1"
-
-if not exist "%PROPERTIES_FILE%" (
-    echo Properties file not found: %PROPERTIES_FILE%
+if not exist "%~1" (
+    echo Properties file not found: %~1
     exit /b 1
 )
 
-for /F "tokens=1* delims==" %%A in (%PROPERTIES_FILE%) do (
+for /F "tokens=1* delims== " %%A in (%~1) do (
     set "%%A=%%B"
 )
-
-endlocal
