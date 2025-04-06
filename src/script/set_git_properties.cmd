@@ -19,7 +19,7 @@ if "%VERSION_PREFIX%" == "" (
 )
 
 echo %VERSION%
-echo GIT_DESCRIBE = %VERSION% > "%base_dir%\git.properties"
+echo GIT_DESCRIBE=%VERSION%>"%base_dir%\git.properties"
 goto :EOF
 
 :process_version
