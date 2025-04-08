@@ -19,6 +19,9 @@ struct CoreSettingsDefaults
     static constexpr const char * defaultModuleOperatingSystem = "operating_system\\nxemu-os.dll";
 #endif
     static constexpr bool defaultShowConsole = false;
+    static constexpr bool defaultRomLoading = false;
+    static constexpr bool defaultEmulationRunning = false;
+    static constexpr bool defaultDisplayedFrames = false;
 
     static Path GetDefaultModuleDir();
 };
@@ -62,6 +65,10 @@ void LoadCoreSetting(void)
     settings.SetDefaultString(NXCoreSetting::ModuleVideoSelected, CoreSettingsDefaults::defaultModuleVideo);
     settings.SetDefaultString(NXCoreSetting::ModuleOsSelected, CoreSettingsDefaults::defaultModuleOperatingSystem);
     settings.SetDefaultBool(NXCoreSetting::ShowConsole, CoreSettingsDefaults::defaultShowConsole);
+
+    settings.SetDefaultBool(NXCoreSetting::RomLoading, CoreSettingsDefaults::defaultRomLoading);
+    settings.SetDefaultBool(NXCoreSetting::EmulationRunning, CoreSettingsDefaults::defaultEmulationRunning);
+    settings.SetDefaultBool(NXCoreSetting::DisplayedFrames, CoreSettingsDefaults::defaultDisplayedFrames);
 
     coreSettings.moduleCpuSelected = CoreSettingsDefaults::defaultModuleCpu;
     coreSettings.moduleVideoSelected = CoreSettingsDefaults::defaultModuleVideo;

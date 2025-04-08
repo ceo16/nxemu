@@ -29,7 +29,7 @@ int WINAPI WinMain(_In_ HINSTANCE /*hInstance*/, _In_opt_ HINSTANCE /*hPrevInsta
         if (Res)
         {
             RegisterWidgets(*sciterUI);
-            SciterMainWindow window(*sciterUI);
+            SciterMainWindow window(*sciterUI, stdstr_f("NXEmu %s", VER_FILE_VERSION_STR).c_str());
             window.Show();
             sciterUI->Run();
         }

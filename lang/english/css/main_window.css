@@ -199,3 +199,9 @@ menu li:has-child-of-type(menu):rtl
   foreground-repeat: no-repeat;
   foreground-position: top 50% left 2px;
 }
+
+#MainContents
+{
+  width: 100%%;
+  height: 100%%;
+}

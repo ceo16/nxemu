@@ -93,7 +93,14 @@ void SaveUISetting(void)
     {
         json["EnableModuleConfiguration"] = JsonValue(uiSettings.enableModuleConfiguration);
     }
-
+    if (uiSettings.sciterUI != UISettingsDefaults::sciterUI)
+    {
+        json["SciterUI"] = JsonValue(uiSettings.sciterUI);
+    }
+    if (uiSettings.languageDirValue != UISettingsDefaults::defaultLanguageDirValue)
+    {
+        json["LanguageDirectory"] = JsonValue(uiSettings.languageDirValue);
+    }
     Settings & settings = Settings::GetInstance();
     settings.SetSettings("UI", json);
     settings.Save();

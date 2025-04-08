@@ -4,6 +4,9 @@
 #include <Windows.h>
 #include <glad/glad.h>
 #include <nxemu-module-spec/video.h>
+#include <nxemu-core/settings/identifiers.h>
+
+extern IModuleSettings * g_settings;
 
 class OpenGLSharedContext : public Core::Frontend::GraphicsContext
 {
@@ -93,7 +96,8 @@ class DummyContext : public Core::Frontend::GraphicsContext
 };
 
 RenderWindow::RenderWindow(IRenderWindow & renderWindow) :
-    m_renderWindow(renderWindow)
+    m_renderWindow(renderWindow),
+    m_firstFrame(false)
 {
     NotifyClientAreaSizeChanged({ 0,0 });
     UpdateCurrentFramebufferLayout(640, 480);
@@ -106,6 +110,11 @@ RenderWindow::RenderWindow(IRenderWindow & renderWindow) :
 
 void RenderWindow::OnFrameDisplayed()
 {
+    if (!m_firstFrame)
+    {
+        m_firstFrame = true;
+        g_settings->SetBool(NXCoreSetting::DisplayedFrames, true);
+    }
 }
 
 std::unique_ptr<Core::Frontend::GraphicsContext> RenderWindow::CreateSharedContext() const

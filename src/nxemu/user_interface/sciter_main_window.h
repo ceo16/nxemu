@@ -24,7 +24,7 @@ class SciterMainWindow :
     };
 
 public:
-    SciterMainWindow(ISciterUI & SciterUI);
+    SciterMainWindow(ISciterUI & SciterUI, const char * windowTitle);
 
     void ResetMenu();
     bool Show(void);
@@ -33,6 +33,13 @@ private:
     SciterMainWindow(void) = delete;
     SciterMainWindow(const SciterMainWindow &) = delete;
     SciterMainWindow & operator=(const SciterMainWindow &) = delete;
+
+    void SetCaption(const std::string& caption);
+    void GameFileChanged(void);
+    void GameNameChanged(void);
+    void RomLoadingChanged(void);
+    void DisplayedFramesChanged(void);
+    void ShowLoadingScreen(void);
 
     void OnOpenGame(void);
     void OnFileExit(void);
@@ -52,4 +59,5 @@ private:
     ISciterWindow * m_window;
     std::shared_ptr<IMenuBar> m_menuBar;
     void * m_renderWindow;
+    std::string m_windowTitle;
 };

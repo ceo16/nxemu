@@ -226,7 +226,7 @@ void * MainWindow::RenderSurface(void) const
 
 void MainWindow::GameNameChanged(void)
 {
-    std::string gameName = Settings::GetInstance().GetString("nxcore:GameName");
+    std::string gameName = Settings::GetInstance().GetString(NXCoreSetting::GameName);
     if (gameName.length() > 0)
     {
         std::wstring Caption;
