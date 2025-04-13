@@ -16,6 +16,7 @@ class SciterMainWindow :
         ID_FILE_EXIT,
 
         // Options Menu
+        ID_OPTIONS_INPUT,
         ID_OPTIONS_SETTINGS,
 
         // Recent files
@@ -44,6 +45,7 @@ private:
     void OnOpenGame(void);
     void OnFileExit(void);
     void OnSettings(void);
+    void OnInputConfig(void);
     void OnRecetGame(uint32_t fileIndex);
 
     // IWindowDestroySink

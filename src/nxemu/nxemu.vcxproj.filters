@@ -75,6 +75,9 @@
     <ClCompile Include="user_interface\sciter_main_window.cpp">
       <Filter>Source Files\user_interface</Filter>
     </ClCompile>
+    <ClCompile Include="user_interface\settings\input_config.cpp">
+      <Filter>Source Files\user_interface\settings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user_interface\main_window.h">
@@ -112,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="user_interface\sciter_main_window.h">
       <Filter>Header Files\user_interface</Filter>
+    </ClInclude>
+    <ClInclude Include="user_interface\settings\input_config.h">
+      <Filter>Header Files\user_interface\settings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
