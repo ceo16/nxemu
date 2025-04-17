@@ -126,4 +126,3 @@ bool SwitchSystem::LoadNRO(const char * nroFile)
     operatingSystem->StartApplicationProcess(baseAddress, metaData.GetMainThreadPriority(), metaData.GetMainThreadStackSize());
     return true;
 }
-

@@ -4,7 +4,7 @@
       "ModuleDirectory-x64" : "..\\..\\..\\modules\\x64"
    },
    "UI" : {
-      "LanguageDirectory" : "..\\..\\..\\lang",
-      "EnableModuleConfiguration" : true
+      "EnableModuleConfiguration" : true,
+      "LanguageDirectory" : "..\\..\\..\\lang"
    }
 }

@@ -83,11 +83,11 @@ bool SciterMainWindow::Show(void)
     void * interfacePtr = nullptr;
     if (menuElement.IsValid() && m_sciterUI.GetElementInterface(menuElement, IID_IMENUBAR, &interfacePtr))
     {
-        m_menuBar = std::shared_ptr<IMenuBar>(reinterpret_cast<IMenuBar *>(interfacePtr), [](IMenuBar*) {});
+        m_menuBar = std::shared_ptr<IMenuBar>(reinterpret_cast<IMenuBar *>(interfacePtr), [](IMenuBar *) {});
         ResetMenu();
     }
     m_sciterUI.UpdateWindow(rootElement.GetElementHwnd(true));
-    SciterElement::RECT rect = { 20, 20, 660, 500 };
+    SciterElement::RECT rect = {20, 20, 660, 500};
     SciterElement mainContents(rootElement.GetElementByID("MainContents"));
     if (mainContents.IsValid())
     {
@@ -95,7 +95,7 @@ bool SciterMainWindow::Show(void)
     }
 
     m_renderWindow = CreateWindowExW(0, L"Static", L"", WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS,
-        rect.left, rect.top, rect.right, rect.bottom, (HWND)m_window->GetHandle(), nullptr, GetModuleHandle(nullptr), nullptr);
+                                     rect.left, rect.top, rect.right, rect.bottom, (HWND)m_window->GetHandle(), nullptr, GetModuleHandle(nullptr), nullptr);
     ShowWindow((HWND)m_renderWindow, SW_HIDE);
 
     return true;
@@ -118,7 +118,7 @@ void SciterMainWindow::SetCaption(const std::string & caption)
     SciterElement captionElement(rootElement.FindFirst("[role='window-caption'] > span"));
     if (captionElement.IsValid())
     {
-        captionElement.SetHTML((uint8_t*)caption.data(), caption.size());
+        captionElement.SetHTML((uint8_t *)caption.data(), caption.size());
     }
 }
 
@@ -129,7 +129,7 @@ void SciterMainWindow::GameFileChanged(void)
         maxRememberedFiles = 10
     };
 
-    Stringlist& recentFiles = uiSettings.recentFiles;
+    Stringlist & recentFiles = uiSettings.recentFiles;
     std::string gameFile = Settings::GetInstance().GetString(NXCoreSetting::GameFile);
     for (Stringlist::const_iterator itr = recentFiles.begin(); itr != recentFiles.end(); itr++)
     {
@@ -177,7 +177,7 @@ void SciterMainWindow::DisplayedFramesChanged(void)
     SciterElement mainContents(rootElement.GetElementByID("MainContents"));
     if (mainContents.IsValid())
     {
-        mainContents.SetHTML((uint8_t*)"", 0, SciterElement::SIH_REPLACE_CONTENT);
+        mainContents.SetHTML((uint8_t *)"", 0, SciterElement::SIH_REPLACE_CONTENT);
     }
     ShowWindow((HWND)m_renderWindow, SW_SHOW);
 }

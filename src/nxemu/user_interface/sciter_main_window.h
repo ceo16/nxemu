@@ -35,7 +35,7 @@ private:
     SciterMainWindow(const SciterMainWindow &) = delete;
     SciterMainWindow & operator=(const SciterMainWindow &) = delete;
 
-    void SetCaption(const std::string& caption);
+    void SetCaption(const std::string & caption);
     void GameFileChanged(void);
     void GameNameChanged(void);
     void RomLoadingChanged(void);

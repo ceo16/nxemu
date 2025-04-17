@@ -47,7 +47,7 @@ private:
     std::string ChooseFileToOpen(HWND parent);
     void GameFileChanged(void);
     void GameNameChanged(void);
-    
+
     static int VKCodeToSwitchKey(uint32_t vkcode);
 
     LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL & bHandled);
