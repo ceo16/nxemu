@@ -29,16 +29,21 @@ IF %ERRORLEVEL% NEQ 0 GOTO EndErr
 
 rd "%base_dir%\bin\package" /Q /S > NUL 2>&1
 md "%base_dir%\bin\package\"
+md "%base_dir%\bin\package\lang\"
 md "%base_dir%\bin\package\modules\"
 md "%base_dir%\bin\package\modules\cpu\"
 md "%base_dir%\bin\package\modules\operating_system\"
 md "%base_dir%\bin\package\modules\video\"
 )
 
+copy "%base_dir%\bin\%VSPlatform%\Release\sciter.dll" "%base_dir%\bin\package"
 copy "%base_dir%\bin\%VSPlatform%\Release\nxemu.exe" "%base_dir%\bin\package"
 copy "%base_dir%\modules\%VSPlatform%\cpu\nxemu-cpu.dll" "%base_dir%\bin\package\modules\cpu"
 copy "%base_dir%\modules\%VSPlatform%\operating_system\nxemu-os.dll" "%base_dir%\bin\package\modules\operating_system"
 copy "%base_dir%\modules\%VSPlatform%\video\nxemu-video.dll" "%base_dir%\bin\package\modules\video"
+
+:: Language
+echo "D:\Dev\nxemu-public\bin\x64\Release\resource_packer.exe" "D:\Dev\nxemu-public\lang\english" "%base_dir%\bin\package\lang\english.lang"
 
 cd %base_dir%\bin\package
 "%zip%" a -tzip -r "%base_dir%\package\%ZipFileName%" *
