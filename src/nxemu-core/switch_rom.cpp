@@ -13,8 +13,9 @@ bool LaunchSwitchRom(IRenderWindow & window, const char * romFile)
         return false;
     }
     SwitchSystem * system = SwitchSystem::GetInstance();
-    if (!system->LoadRom(romFile))
+    if (!system->Systemloader().LoadRom(romFile))
     {
+        settings.SetBool(NXCoreSetting::RomLoading, false);
         return false;
     }
     settings.SetBool(NXCoreSetting::RomLoading, false);

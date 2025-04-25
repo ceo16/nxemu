@@ -1,7 +1,9 @@
 #include "modules.h"
+#include "notification.h"
 #include "settings/core_settings.h"
 
 Modules::Modules() :
+    m_loaderModule(nullptr),
     m_cpuModule(nullptr),
     m_videoModule(nullptr),
     m_operatingsystemModule(nullptr)
@@ -35,36 +37,48 @@ Modules::~Modules()
 
 bool Modules::Initialize(IRenderWindow & RenderWindow, ISwitchSystem & System)
 {
-    if (m_cpuModule.get() == nullptr || m_videoModule.get() == nullptr || m_operatingsystemModule.get() == nullptr)
+    if (m_loaderModule.get() == nullptr || m_cpuModule.get() == nullptr || m_videoModule.get() == nullptr || m_operatingsystemModule.get() == nullptr)
     {
+        return false;
+    }
+    m_systemLoader = m_loaderModule->CreateSystemLoader(System);
+    if (m_systemLoader == nullptr)
+    {
+        g_notify->BreakPoint(__FILE__, __LINE__);
         return false;
     }
     m_cpu = m_cpuModule->CreateCpu(System);
     if (m_cpu == nullptr)
     {
+        g_notify->BreakPoint(__FILE__, __LINE__);
         return false;
     }
     m_operatingsystem = m_operatingsystemModule->CreateOS(System);
     if (m_operatingsystem == nullptr)
     {
+        g_notify->BreakPoint(__FILE__, __LINE__);
         return false;
     }
     m_video = m_videoModule->CreateVideo(RenderWindow, System);
     if (m_video == nullptr)
     {
+        g_notify->BreakPoint(__FILE__, __LINE__);
         return false;
     }
 
     if (!m_cpu->Initialize())
     {
+        g_notify->BreakPoint(__FILE__, __LINE__);
         return false;
     }
     if (!m_video->Initialize())
     {
+        g_notify->BreakPoint(__FILE__, __LINE__);
         return false;
     }
     if (!m_operatingsystem->Initialize())
     {
+        g_notify->BreakPoint(__FILE__, __LINE__);
         return false;
     }
     return true;
@@ -88,10 +102,12 @@ void Modules::StopEmulation(void)
 
 void Modules::CreateModules(void)
 {
+    m_loaderFile = coreSettings.moduleLoaderSelected;
     m_cpuFile = coreSettings.moduleCpuSelected;
     m_videoFile = coreSettings.moduleVideoSelected;
     m_operatingsystemFile = coreSettings.moduleOsSelected;
 
+    LoadModule(m_loaderFile, m_loaderModule);
     LoadModule(m_cpuFile, m_cpuModule);
     LoadModule(m_videoFile, m_videoModule);
     LoadModule(m_operatingsystemFile, m_operatingsystemModule);
@@ -108,6 +124,11 @@ void Modules::CreateModules(void)
     {
         m_baseModules.push_back(m_operatingsystemModule.get());
     }
+}
+
+ISystemloader * Modules::Systemloader(void)
+{
+    return m_systemLoader;
 }
 
 IVideo * Modules::Video(void)

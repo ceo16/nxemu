@@ -1,5 +1,6 @@
 #pragma once
 #include "cpu_module.h"
+#include "loader_module.h"
 #include "module_notification.h"
 #include "module_settings.h"
 #include "operating_system_module.h"
@@ -20,6 +21,7 @@ public:
     void StartEmulation(void);
     void StopEmulation(void);
 
+    ISystemloader * Systemloader();
     IVideo * Video(void);
     ICpu * Cpu(void);
     IOperatingSystem * OperatingSystem(void);
@@ -36,12 +38,15 @@ private:
     ModuleNotification m_moduleNotification;
     ModuleSettings m_moduleSettings;
     BaseModules m_baseModules;
+    std::unique_ptr<LoaderModule> m_loaderModule;
     std::unique_ptr<CpuModule> m_cpuModule;
     std::unique_ptr<VideoModule> m_videoModule;
     std::unique_ptr<OperatingSystemModule> m_operatingsystemModule;
+    ISystemloader * m_systemLoader;
     IVideo * m_video;
     ICpu * m_cpu;
     IOperatingSystem * m_operatingsystem;
+    std::string m_loaderFile;
     std::string m_cpuFile;
     std::string m_videoFile;
     std::string m_operatingsystemFile;

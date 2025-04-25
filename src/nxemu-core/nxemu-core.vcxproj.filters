@@ -34,12 +34,6 @@
     <Filter Include="Source Files\machine">
       <UniqueIdentifier>{4a31f0b1-504b-45a3-950d-7ebeb673e6be}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\file_format">
-      <UniqueIdentifier>{897d764c-5ac2-45d8-9491-86c6245c1992}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\file_format">
-      <UniqueIdentifier>{c262321c-3c09-4697-ae83-167d8c2c4e72}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="switch_rom.h">
@@ -72,12 +66,6 @@
     <ClInclude Include="machine\switch_system.h">
       <Filter>Header Files\machine</Filter>
     </ClInclude>
-    <ClInclude Include="file_format\nro.h">
-      <Filter>Header Files\file_format</Filter>
-    </ClInclude>
-    <ClInclude Include="file_format\nacp.h">
-      <Filter>Header Files\file_format</Filter>
-    </ClInclude>
     <ClInclude Include="modules\modules.h">
       <Filter>Header Files\modules</Filter>
     </ClInclude>
@@ -105,6 +93,9 @@
     <ClInclude Include="settings\identifiers.h">
       <Filter>Header Files\settings</Filter>
     </ClInclude>
+    <ClInclude Include="modules\loader_module.h">
+      <Filter>Header Files\modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="switch_rom.cpp">
@@ -128,12 +119,6 @@
     <ClCompile Include="machine\switch_system.cpp">
       <Filter>Source Files\machine</Filter>
     </ClCompile>
-    <ClCompile Include="file_format\nro.cpp">
-      <Filter>Source Files\file_format</Filter>
-    </ClCompile>
-    <ClCompile Include="file_format\nacp.cpp">
-      <Filter>Source Files\file_format</Filter>
-    </ClCompile>
     <ClCompile Include="modules\modules.cpp">
       <Filter>Source Files\modules</Filter>
     </ClCompile>
@@ -154,6 +139,9 @@
     </ClCompile>
     <ClCompile Include="notification.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\loader_module.cpp">
+      <Filter>Source Files\modules</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

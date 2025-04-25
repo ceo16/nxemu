@@ -6,20 +6,20 @@ class CpuModule :
     public ModuleBase
 {
 public:
-    typedef ICpu *(CALL * tyCreateCpu)(ISwitchSystem & System);
+    typedef ICpu *(CALL * tyCreateCpu)(ISwitchSystem & system);
     typedef void(CALL * tyDestroyCpu)(ICpu * Cpu);
 
     CpuModule();
     ~CpuModule() = default;
 
-    ICpu * CreateCpu(ISwitchSystem & System) const
+    ICpu * CreateCpu(ISwitchSystem & system) const
     {
-        return m_CreateCpu(System);
+        return m_createCpu(system);
     }
 
     void DestroyCpu(ICpu * Cpu) const
     {
-        m_DestroyCpu(Cpu);
+        m_destroyCpu(Cpu);
     }
 
 protected:
@@ -32,9 +32,9 @@ private:
     CpuModule(const CpuModule &) = delete;
     CpuModule & operator=(const CpuModule &) = delete;
 
-    static ICpu * CALL dummyCreateCpu(ISwitchSystem & System);
-    static void CALL dummyDestroyCpu(ICpu * Video);
+    static ICpu * CALL dummyCreateCpu(ISwitchSystem & system);
+    static void CALL dummyDestroyCpu(ICpu * cpu);
 
-    tyCreateCpu m_CreateCpu;
-    tyDestroyCpu m_DestroyCpu;
+    tyCreateCpu m_createCpu;
+    tyDestroyCpu m_destroyCpu;
 };

@@ -2,8 +2,6 @@
 #include <memory>
 #include <nxemu-core/modules/modules.h>
 
-class Nro;
-
 class SwitchSystem :
     public ISwitchSystem
 {
@@ -14,11 +12,11 @@ public:
     static void ShutDown();
     static SwitchSystem * GetInstance();
 
-    bool LoadRom(const char * romFile);
     void StartEmulation(void);
     void StopEmulation(void);
 
     //ISwitchSystem
+    ISystemloader & Systemloader();
     IOperatingSystem & OperatingSystem();
     IVideo & Video(void);
     ICpu & Cpu(void);
@@ -30,10 +28,8 @@ private:
     SwitchSystem();
 
     bool Initialize(IRenderWindow & window);
-    bool LoadNRO(const char * nroFile);
 
     static std::unique_ptr<SwitchSystem> m_instance;
     bool m_emulationRunning;
     Modules m_modules;
-    std::unique_ptr<Nro> m_nro;
 };

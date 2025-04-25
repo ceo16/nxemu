@@ -16,16 +16,18 @@
 
 enum
 {
-    MODULE_VIDEO_SPECS_VERSION = 0x0100,
-    MODULE_CPU_SPECS_VERSION = 0x0100,
-    MODULE_OPERATING_SYSTEM_SPECS_VERSION = 0x0100,
+    MODULE_LOADER_SPECS_VERSION = 0x0101,
+    MODULE_VIDEO_SPECS_VERSION = 0x0101,
+    MODULE_CPU_SPECS_VERSION = 0x0101,
+    MODULE_OPERATING_SYSTEM_SPECS_VERSION = 0x0101,
 };
 
 enum MODULE_TYPE : uint16_t
 {
-    MODULE_TYPE_VIDEO = 1,
-    MODULE_TYPE_CPU = 2,
-    MODULE_TYPE_OPERATING_SYSTEM = 3,
+    MODULE_TYPE_LOADER = 1,
+    MODULE_TYPE_VIDEO = 2,
+    MODULE_TYPE_CPU = 3,
+    MODULE_TYPE_OPERATING_SYSTEM = 4,
 };
 
 __interface IModuleNotification
@@ -63,12 +65,16 @@ __interface IRenderWindow
 __interface IOperatingSystem;
 __interface IVideo;
 __interface ICpu;
+__interface ISystemloader;
 
 __interface ISwitchSystem
 {
-    IOperatingSystem & OperatingSystem();
-    IVideo & Video();
-    ICpu & Cpu();
+    void StartEmulation() = 0;
+
+    ISystemloader & Systemloader() = 0;
+    IOperatingSystem & OperatingSystem() = 0;
+    IVideo & Video() = 0;
+    ICpu & Cpu() = 0;
 };
 
 /*

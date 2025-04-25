@@ -69,6 +69,10 @@ bool ModuleBase::Load(const char * fileName, IModuleNotification * notification,
 
 bool ModuleBase::ValidVersion(MODULE_INFO & info)
 {
+    if (info.type == MODULE_TYPE_LOADER && info.version == MODULE_LOADER_SPECS_VERSION)
+    {
+        return true;
+    }
     if (info.type == MODULE_TYPE_CPU && info.version == MODULE_CPU_SPECS_VERSION)
     {
         return true;
@@ -90,7 +94,10 @@ void ModuleBase::ModuleDone(bool callUnloadModule)
     {
         return;
     }
-    ModuleCleanup();
+    if (ModuleCleanup != nullptr)
+    {
+        ModuleCleanup();    
+    }
     if (callUnloadModule)
     {
         UnloadModule();

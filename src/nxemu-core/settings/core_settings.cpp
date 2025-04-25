@@ -10,10 +10,12 @@ struct CoreSettingsDefaults
 {
     static constexpr const char * defaultModuleDirValue = "./modules";
 #ifdef _DEBUG
+    static constexpr const char * defaultModuleLoader = "loader\\nxemu-loader_d.dll";
     static constexpr const char * defaultModuleCpu = "cpu\\nxemu-cpu_d.dll";
     static constexpr const char * defaultModuleVideo = "video\\nxemu-video_d.dll";
     static constexpr const char * defaultModuleOperatingSystem = "operating_system\\nxemu-os_d.dll";
 #else
+    static constexpr const char * defaultModuleLoader = "loader\\nxemu-loader.dll";
     static constexpr const char * defaultModuleCpu = "cpu\\nxemu-cpu.dll";
     static constexpr const char * defaultModuleVideo = "video\\nxemu-video.dll";
     static constexpr const char * defaultModuleOperatingSystem = "operating_system\\nxemu-os.dll";
@@ -26,6 +28,7 @@ struct CoreSettingsDefaults
     static Path GetDefaultModuleDir();
 };
 
+void ModuleLoaderSelectedChanged(void);
 void ModuleCpuSelectedChanged(void);
 void ModuleVideoSelectedChanged(void);
 void ModuleOsSelectedChanged(void);
@@ -61,6 +64,7 @@ void LoadCoreSetting(void)
         }
     }
 
+    settings.SetDefaultString(NXCoreSetting::ModuleLoaderSelected, CoreSettingsDefaults::defaultModuleLoader);
     settings.SetDefaultString(NXCoreSetting::ModuleCpuSelected, CoreSettingsDefaults::defaultModuleCpu);
     settings.SetDefaultString(NXCoreSetting::ModuleVideoSelected, CoreSettingsDefaults::defaultModuleVideo);
     settings.SetDefaultString(NXCoreSetting::ModuleOsSelected, CoreSettingsDefaults::defaultModuleOperatingSystem);
@@ -70,6 +74,7 @@ void LoadCoreSetting(void)
     settings.SetDefaultBool(NXCoreSetting::EmulationRunning, CoreSettingsDefaults::defaultEmulationRunning);
     settings.SetDefaultBool(NXCoreSetting::DisplayedFrames, CoreSettingsDefaults::defaultDisplayedFrames);
 
+    coreSettings.moduleLoaderSelected = CoreSettingsDefaults::defaultModuleLoader;
     coreSettings.moduleCpuSelected = CoreSettingsDefaults::defaultModuleCpu;
     coreSettings.moduleVideoSelected = CoreSettingsDefaults::defaultModuleVideo;
     coreSettings.moduleOsSelected = CoreSettingsDefaults::defaultModuleOperatingSystem;
@@ -80,36 +85,45 @@ void LoadCoreSetting(void)
     const JsonValue * modules = jsonSettings.Find("modules");
     if (modules != nullptr && modules->isObject())
     {
-        JsonValue video = (*modules)["video"];
-        if (video.isString())
+        JsonValue value = (*modules)["loader"];
+        if (value.isString())
         {
-            coreSettings.moduleVideoSelected = video.asString();
+            coreSettings.moduleLoaderSelected = value.asString();
         }
-        JsonValue cpu = (*modules)["cpu"];
-        if (cpu.isString())
+        value = (*modules)["video"];
+        if (value.isString())
         {
-            coreSettings.moduleCpuSelected = cpu.asString();
+            coreSettings.moduleVideoSelected = value.asString();
         }
-        JsonValue os = (*modules)["os"];
-        if (os.isString())
+        value = (*modules)["cpu"];
+        if (value.isString())
         {
-            coreSettings.moduleOsSelected = os.asString();
+            coreSettings.moduleCpuSelected = value.asString();
+        }
+        value = (*modules)["os"];
+        if (value.isString())
+        {
+            coreSettings.moduleOsSelected = value.asString();
         }
     }
 
+    settings.SetString(NXCoreSetting::ModuleLoaderSelected, coreSettings.moduleLoaderSelected.c_str());
     settings.SetString(NXCoreSetting::ModuleVideoSelected, coreSettings.moduleVideoSelected.c_str());
     settings.SetString(NXCoreSetting::ModuleCpuSelected, coreSettings.moduleCpuSelected.c_str());
     settings.SetString(NXCoreSetting::ModuleOsSelected, coreSettings.moduleOsSelected.c_str());
     settings.SetBool(NXCoreSetting::ShowConsole, coreSettings.showConsole);
+    settings.SetChanged(NXCoreSetting::ModuleLoaderSelected, strcmp(coreSettings.moduleLoaderSelected.c_str(), CoreSettingsDefaults::defaultModuleLoader) != 0);
     settings.SetChanged(NXCoreSetting::ModuleVideoSelected, strcmp(coreSettings.moduleVideoSelected.c_str(), CoreSettingsDefaults::defaultModuleVideo) != 0);
     settings.SetChanged(NXCoreSetting::ModuleCpuSelected, strcmp(coreSettings.moduleCpuSelected.c_str(), CoreSettingsDefaults::defaultModuleCpu) != 0);
     settings.SetChanged(NXCoreSetting::ModuleOsSelected, strcmp(coreSettings.moduleOsSelected.c_str(), CoreSettingsDefaults::defaultModuleOperatingSystem) != 0);
     settings.SetChanged(NXCoreSetting::ShowConsole, coreSettings.showConsole != CoreSettingsDefaults::defaultShowConsole);
 
+    Settings::GetInstance().RegisterCallback(NXCoreSetting::ModuleLoaderSelected, std::bind(&ModuleLoaderSelectedChanged));
     Settings::GetInstance().RegisterCallback(NXCoreSetting::ModuleCpuSelected, std::bind(&ModuleCpuSelectedChanged));
     Settings::GetInstance().RegisterCallback(NXCoreSetting::ModuleVideoSelected, std::bind(&ModuleVideoSelectedChanged));
     Settings::GetInstance().RegisterCallback(NXCoreSetting::ModuleOsSelected, std::bind(&ModuleOsSelectedChanged));
 
+    coreSettings.moduleLoaderSelected = settings.GetString(NXCoreSetting::ModuleLoaderSelected);
     coreSettings.moduleCpuSelected = settings.GetString(NXCoreSetting::ModuleCpuSelected);
     coreSettings.moduleVideoSelected = settings.GetString(NXCoreSetting::ModuleVideoSelected);
     coreSettings.moduleOsSelected = settings.GetString(NXCoreSetting::ModuleOsSelected);
@@ -118,13 +132,18 @@ void LoadCoreSetting(void)
 void SaveCoreSetting(void)
 {
     JsonValue json(JsonValueType::Object);
+    bool loaderModuleChanged = strcmp(coreSettings.moduleLoaderSelected.c_str(), CoreSettingsDefaults::defaultModuleLoader) != 0;
     bool videoModuleChanged = strcmp(coreSettings.moduleVideoSelected.c_str(), CoreSettingsDefaults::defaultModuleVideo) != 0;
     bool cpuModuleChanged = strcmp(coreSettings.moduleCpuSelected.c_str(), CoreSettingsDefaults::defaultModuleCpu) != 0;
     bool osModuleChanged = strcmp(coreSettings.moduleOsSelected.c_str(), CoreSettingsDefaults::defaultModuleOperatingSystem) != 0;
 
-    if (videoModuleChanged || cpuModuleChanged || osModuleChanged)
+    if (loaderModuleChanged || videoModuleChanged || cpuModuleChanged || osModuleChanged)
     {
         JsonValue modules(JsonValueType::Object);
+        if (loaderModuleChanged)
+        {
+            modules["loader"] = JsonValue(coreSettings.moduleLoaderSelected);
+        }
         if (videoModuleChanged)
         {
             modules["video"] = JsonValue(coreSettings.moduleVideoSelected);
@@ -152,6 +171,14 @@ void SaveCoreSetting(void)
 
 namespace
 {
+void ModuleLoaderSelectedChanged(void)
+{
+    Settings & settings = Settings::GetInstance();
+    coreSettings.moduleLoaderSelected = settings.GetString(NXCoreSetting::ModuleLoaderSelected);
+    settings.SetChanged(NXCoreSetting::ModuleLoaderSelected, strcmp(coreSettings.moduleLoaderSelected.c_str(), CoreSettingsDefaults::defaultModuleLoader) != 0);
+    SaveCoreSetting();
+}
+
 void ModuleCpuSelectedChanged(void)
 {
     Settings & settings = Settings::GetInstance();

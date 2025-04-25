@@ -12,6 +12,7 @@ OptionModulesPage::OptionModulesPage(HWND parent, const RECT & dispayRect)
         PositionWindow(dispayRect);
     }
 
+    AddModule(IDC_SYSTEM_LOADER_LIST, NXCoreSetting::ModuleLoaderSelected, MODULE_TYPE_LOADER);
     AddModule(IDC_CPU_LIST, NXCoreSetting::ModuleCpuSelected, MODULE_TYPE_CPU);
     AddModule(IDC_VIDEO_LIST, NXCoreSetting::ModuleVideoSelected, MODULE_TYPE_VIDEO);
     AddModule(IDC_OPERATINGSYSTEM_LIST, NXCoreSetting::ModuleOsSelected, MODULE_TYPE_OPERATING_SYSTEM);

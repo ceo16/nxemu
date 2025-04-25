@@ -2,31 +2,31 @@
 #include "notification.h"
 
 CpuModule::CpuModule() :
-    m_CreateCpu(dummyCreateCpu),
-    m_DestroyCpu(dummyDestroyCpu)
+    m_createCpu(dummyCreateCpu),
+    m_destroyCpu(dummyDestroyCpu)
 {
 }
 
 void CpuModule::UnloadModule(void)
 {
-    m_CreateCpu = nullptr;
-    m_DestroyCpu = nullptr;
+    m_createCpu = dummyCreateCpu;
+    m_destroyCpu = dummyDestroyCpu;
 }
 
 bool CpuModule::LoadFunctions(void)
 {
-    m_CreateCpu = (tyCreateCpu)DynamicLibraryGetProc(m_lib, "CreateCpu");
-    m_DestroyCpu = (tyDestroyCpu)DynamicLibraryGetProc(m_lib, "DestroyCpu");
+    m_createCpu = (tyCreateCpu)DynamicLibraryGetProc(m_lib, "CreateCpu");
+    m_destroyCpu = (tyDestroyCpu)DynamicLibraryGetProc(m_lib, "DestroyCpu");
 
     bool res = true;
-    if (m_CreateCpu == nullptr)
+    if (m_createCpu == nullptr)
     {
-        m_CreateCpu = dummyCreateCpu;
+        m_createCpu = dummyCreateCpu;
         res = false;
     }
-    if (m_DestroyCpu == nullptr)
+    if (m_destroyCpu == nullptr)
     {
-        m_DestroyCpu = dummyDestroyCpu;
+        m_destroyCpu = dummyDestroyCpu;
         res = false;
     }
     return res;
@@ -37,11 +37,11 @@ MODULE_TYPE CpuModule::ModuleType() const
     return MODULE_TYPE_CPU;
 }
 
-ICpu * CpuModule::dummyCreateCpu(ISwitchSystem & /*System*/)
+ICpu * CpuModule::dummyCreateCpu(ISwitchSystem & /*system*/)
 {
     return nullptr;
 }
 
-void CpuModule::dummyDestroyCpu(ICpu * /*Video*/)
+void CpuModule::dummyDestroyCpu(ICpu * /*cpu*/)
 {
 }
