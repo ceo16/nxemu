@@ -61,6 +61,9 @@ public:
     Result SetUserSystemClockContext(const Service::PSC::Time::SystemClockContext& clock_context);
     Result GetAccountSettings(Out<AccountSettings> out_account_settings);
     Result SetAccountSettings(AccountSettings account_settings);
+    Result GetEulaVersions(Out<s32> out_count,
+                           OutArray<EulaVersion, BufferAttr_HipcMapAlias> out_eula_versions);
+    Result SetEulaVersions(InArray<EulaVersion, BufferAttr_HipcMapAlias> eula_versions);
     Result GetColorSetId(Out<ColorSet> out_color_set_id);
     Result SetColorSetId(ColorSet color_set_id);
     Result GetNotificationSettings(Out<NotificationSettings> out_notification_settings);
@@ -107,6 +110,8 @@ public:
     Result SetSleepSettings(SleepSettings sleep_settings);
     Result GetWirelessLanEnableFlag(Out<bool> out_wireless_lan_enable_flag);
     Result SetWirelessLanEnableFlag(bool wireless_lan_enable_flag);
+    Result GetInitialLaunchSettings(Out<InitialLaunchSettings> out_initial_launch_settings);
+    Result SetInitialLaunchSettings(InitialLaunchSettings initial_launch_settings);
     Result GetDeviceNickName(
         OutLargeData<std::array<u8, 0x80>, BufferAttr_HipcMapAlias> out_device_name);
     Result SetDeviceNickName(
@@ -161,6 +166,7 @@ private:
 
     Core::System& m_system;
     SystemSettings m_system_settings{};
+    PrivateSettings m_private_settings{};
     DeviceSettings m_device_settings{};
     ApplnSettings m_appln_settings{};
     std::mutex m_save_needed_mutex;

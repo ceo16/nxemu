@@ -34,6 +34,11 @@ SystemSettings DefaultSystemSettings() {
         .contrast_ratio = 0.5f,
     };
 
+    settings.initial_launch_settings_packed = {
+        .flags = {0x10001},
+        .timestamp = {},
+    };
+
     settings.sleep_settings = {
         .flags = {0x3},
         .handheld_sleep_plan = HandheldSleepPlan::Sleep10Min,

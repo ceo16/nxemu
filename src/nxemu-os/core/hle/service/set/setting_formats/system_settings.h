@@ -172,7 +172,8 @@ struct SystemSettings {
 
     SystemRegionCode region_code;
 
-    INSERT_PADDING_BYTES(0x1C);
+    // Different to nn::settings::system::InitialLaunchSettings?
+    InitialLaunchSettingsPacked initial_launch_settings_packed;
 
     bool battery_percentage_flag;
     INSERT_PADDING_BYTES(0x3);
@@ -308,7 +309,7 @@ struct SystemSettings {
     // nn::settings::system::EulaVersion
     s32 eula_version_count;
     INSERT_PADDING_BYTES(0xC); // Reserved
-    INSERT_PADDING_BYTES(0x600); // std::array<EulaVersion, 32> eula_versions;
+    std::array<EulaVersion, 32> eula_versions;
     INSERT_PADDING_BYTES(0x200); // Reserved
 
     // nn::settings::system::DeviceNickName

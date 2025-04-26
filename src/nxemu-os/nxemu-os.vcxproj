@@ -29,7 +29,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\3rd_party\microprofile;$(SolutionDir)external\boost;$(SolutionDir)external\fmt\include;$(SolutionDir)external\sdl\include;$(SolutionDir)external\libusb\libusb;$(SolutionDir)external;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\3rd_party\microprofile;$(SolutionDir)src\3rd_party\nx_tzdb\include;$(SolutionDir)external\boost;$(SolutionDir)external\fmt\include;$(SolutionDir)external\sdl\include;$(SolutionDir)external\libusb\libusb;$(SolutionDir)external;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <WarningLevel>Level3</WarningLevel>
       <UseStandardPreprocessor>true</UseStandardPreprocessor>
       <PreprocessorDefinitions>NOMINMAX;BOOST_CONTEXT_STATIC_LINK;BOOST_ALL_NO_LIB;HAVE_SDL2;HAVE_LIBUSB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -63,6 +63,20 @@
     <ClCompile Include="core\file_sys\romfs_factory.cpp" />
     <ClCompile Include="core\file_sys\savedata_factory.cpp" />
     <ClCompile Include="core\file_sys\sdmc_factory.cpp" />
+    <ClCompile Include="core\file_sys\system_archive\data\font_chinese_simplified.cpp" />
+    <ClCompile Include="core\file_sys\system_archive\data\font_chinese_traditional.cpp" />
+    <ClCompile Include="core\file_sys\system_archive\data\font_extended_chinese_simplified.cpp" />
+    <ClCompile Include="core\file_sys\system_archive\data\font_korean.cpp" />
+    <ClCompile Include="core\file_sys\system_archive\data\font_nintendo_extended.cpp" />
+    <ClCompile Include="core\file_sys\system_archive\data\font_standard.cpp" />
+    <ClCompile Include="core\file_sys\system_archive\mii_model.cpp" />
+    <ClCompile Include="core\file_sys\system_archive\ng_word.cpp" />
+    <ClCompile Include="core\file_sys\system_archive\shared_font.cpp" />
+    <ClCompile Include="core\file_sys\system_archive\system_archive.cpp" />
+    <ClCompile Include="core\file_sys\system_archive\system_version.cpp" />
+    <ClCompile Include="core\file_sys\system_archive\time_zone_binary.cpp">
+      <ObjectFileName>$(IntDir)/core/file_sys/system_archive/time_zone_binary.cpp</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="core\file_sys\vfs\vfs.cpp" />
     <ClCompile Include="core\file_sys\vfs\vfs_cached.cpp" />
     <ClCompile Include="core\file_sys\vfs\vfs_concat.cpp" />
@@ -131,7 +145,9 @@
     <ClCompile Include="core\hle\service\glue\time\time_zone.cpp">
       <ObjectFileName>$(IntDir)/hle/service/glue/time/time_zone.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="core\hle\service\glue\time\time_zone_binary.cpp" />
+    <ClCompile Include="core\hle\service\glue\time\time_zone_binary.cpp">
+      <ObjectFileName>$(IntDir)/hle/service/glue/time/time_zone_binary.cpp</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="core\hle\service\glue\time\worker.cpp" />
     <ClCompile Include="core\hle\service\hid\active_vibration_device_list.cpp" />
     <ClCompile Include="core\hle\service\hid\applet_resource.cpp" />
@@ -415,7 +431,9 @@
     <ClCompile Include="core\hle\service\ro\ro_nro_utils.cpp" />
     <ClCompile Include="core\hle\service\set\factory_settings_server.cpp" />
     <ClCompile Include="core\hle\service\set\firmware_debug_settings_server.cpp" />
-    <ClCompile Include="core\hle\service\set\settings_set.cpp" />
+    <ClCompile Include="core\hle\service\set\settings.cpp">
+      <ObjectFileName>$(IntDir)/hle/service/set/settings.cpp.obj</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="core\hle\service\set\settings_server.cpp" />
     <ClCompile Include="core\hle\service\set\system_settings_server.cpp" />
     <ClCompile Include="core\hle\service\set\setting_formats\appln_settings.cpp" />
@@ -493,6 +511,18 @@
     <ClInclude Include="core\file_sys\savedata_factory.h" />
     <ClInclude Include="core\file_sys\sdmc_factory.h" />
     <ClInclude Include="core\file_sys\submission_package.h" />
+    <ClInclude Include="core\file_sys\system_archive\data\font_chinese_simplified.h" />
+    <ClInclude Include="core\file_sys\system_archive\data\font_chinese_traditional.h" />
+    <ClInclude Include="core\file_sys\system_archive\data\font_extended_chinese_simplified.h" />
+    <ClInclude Include="core\file_sys\system_archive\data\font_korean.h" />
+    <ClInclude Include="core\file_sys\system_archive\data\font_nintendo_extended.h" />
+    <ClInclude Include="core\file_sys\system_archive\data\font_standard.h" />
+    <ClInclude Include="core\file_sys\system_archive\mii_model.h" />
+    <ClInclude Include="core\file_sys\system_archive\ng_word.h" />
+    <ClInclude Include="core\file_sys\system_archive\shared_font.h" />
+    <ClInclude Include="core\file_sys\system_archive\system_archive.h" />
+    <ClInclude Include="core\file_sys\system_archive\system_version.h" />
+    <ClInclude Include="core\file_sys\system_archive\time_zone_binary.h" />
     <ClInclude Include="core\file_sys\vfs\vfs.h" />
     <ClInclude Include="core\file_sys\vfs\vfs_cached.h" />
     <ClInclude Include="core\file_sys\vfs\vfs_concat.h" />

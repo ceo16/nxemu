@@ -478,6 +478,18 @@
     <Filter Include="Header Files\core\file_sys\fsa">
       <UniqueIdentifier>{21f21c78-2a76-450d-bba6-3ccad21c0ef6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\core\file_sys\system_archive">
+      <UniqueIdentifier>{6372a903-dce8-4e1e-84e2-8fd9ce3a7849}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\file_sys\system_archive\data">
+      <UniqueIdentifier>{a970027d-d02f-4e44-9c8a-f3c2d7bfe678}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\file_sys\system_archive">
+      <UniqueIdentifier>{1dffb25c-7526-4a56-b0b4-1703782fd52d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\file_sys\system_archive\data">
+      <UniqueIdentifier>{29bc7594-1060-4024-bdb4-0d0635cd0d06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="nxemu-os.h">
@@ -1875,6 +1887,42 @@
     <ClInclude Include="core\loader\nso.h">
       <Filter>Header Files\core\loader</Filter>
     </ClInclude>
+    <ClInclude Include="core\file_sys\system_archive\mii_model.h">
+      <Filter>Header Files\core\file_sys\system_archive</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\system_archive\ng_word.h">
+      <Filter>Header Files\core\file_sys\system_archive</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\system_archive\shared_font.h">
+      <Filter>Header Files\core\file_sys\system_archive</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\system_archive\system_archive.h">
+      <Filter>Header Files\core\file_sys\system_archive</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\system_archive\system_version.h">
+      <Filter>Header Files\core\file_sys\system_archive</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\system_archive\time_zone_binary.h">
+      <Filter>Header Files\core\file_sys\system_archive</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\system_archive\data\font_chinese_simplified.h">
+      <Filter>Header Files\core\file_sys\system_archive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\system_archive\data\font_chinese_traditional.h">
+      <Filter>Header Files\core\file_sys\system_archive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\system_archive\data\font_extended_chinese_simplified.h">
+      <Filter>Header Files\core\file_sys\system_archive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\system_archive\data\font_korean.h">
+      <Filter>Header Files\core\file_sys\system_archive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\system_archive\data\font_nintendo_extended.h">
+      <Filter>Header Files\core\file_sys\system_archive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\system_archive\data\font_standard.h">
+      <Filter>Header Files\core\file_sys\system_archive\data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="version.h.in">
@@ -2644,7 +2692,7 @@
     <ClCompile Include="core\hle\service\set\settings_server.cpp">
       <Filter>Source Files\core\hle\service\set</Filter>
     </ClCompile>
-    <ClCompile Include="core\hle\service\set\settings_set.cpp">
+    <ClCompile Include="core\hle\service\set\settings.cpp">
       <Filter>Source Files\core\hle\service\set</Filter>
     </ClCompile>
     <ClCompile Include="core\hle\service\set\system_settings_server.cpp">
@@ -3141,6 +3189,42 @@
     </ClCompile>
     <ClCompile Include="core\file_sys\xts_archive.cpp">
       <Filter>Header Files\core\file_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\system_archive\system_archive.cpp">
+      <Filter>Source Files\core\file_sys\system_archive</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\system_archive\mii_model.cpp">
+      <Filter>Source Files\core\file_sys\system_archive</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\system_archive\ng_word.cpp">
+      <Filter>Source Files\core\file_sys\system_archive</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\system_archive\shared_font.cpp">
+      <Filter>Source Files\core\file_sys\system_archive</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\system_archive\system_version.cpp">
+      <Filter>Source Files\core\file_sys\system_archive</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\system_archive\time_zone_binary.cpp">
+      <Filter>Source Files\core\file_sys\system_archive</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\system_archive\data\font_chinese_simplified.cpp">
+      <Filter>Source Files\core\file_sys\system_archive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\system_archive\data\font_chinese_traditional.cpp">
+      <Filter>Source Files\core\file_sys\system_archive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\system_archive\data\font_extended_chinese_simplified.cpp">
+      <Filter>Source Files\core\file_sys\system_archive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\system_archive\data\font_korean.cpp">
+      <Filter>Source Files\core\file_sys\system_archive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\system_archive\data\font_nintendo_extended.cpp">
+      <Filter>Source Files\core\file_sys\system_archive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\system_archive\data\font_standard.cpp">
+      <Filter>Source Files\core\file_sys\system_archive\data</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

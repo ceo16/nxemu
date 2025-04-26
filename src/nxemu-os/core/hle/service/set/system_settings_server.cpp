@@ -11,9 +11,14 @@
 #include "yuzu_common/settings.h"
 #include "yuzu_common/string_util.h"
 #include "core/core.h"
+#include "core/file_sys/content_archive.h"
+#include "core/file_sys/errors.h"
 #include "core/file_sys/nca_metadata.h"
 #include "core/file_sys/registered_cache.h"
+#include "core/file_sys/romfs.h"
+#include "core/file_sys/system_archive/system_archive.h"
 #include "core/hle/service/cmif_serialization.h"
+#include "core/hle/service/filesystem/filesystem.h"
 #include "core/hle/service/ipc_helpers.h"
 #include "core/hle/service/set/settings_server.h"
 #include "core/hle/service/set/system_settings_server.h"
@@ -32,8 +37,55 @@ struct SettingsHeader {
 
 Result GetFirmwareVersionImpl(FirmwareVersionFormat& out_firmware, Core::System& system,
                               GetFirmwareVersionType type) {
-    UNIMPLEMENTED();
-    R_SUCCEED();
+    constexpr u64 FirmwareVersionSystemDataId = 0x0100000000000809;
+    auto& fsc = system.GetFileSystemController();
+
+    // Attempt to load version data from disk
+    const FileSys::RegisteredCache* bis_system{};
+    std::unique_ptr<FileSys::NCA> nca{};
+    FileSys::VirtualDir romfs{};
+
+    bis_system = fsc.GetSystemNANDContents();
+    if (bis_system) {
+        nca = bis_system->GetEntry(FirmwareVersionSystemDataId, FileSys::ContentRecordType::Data);
+    }
+    if (nca) {
+        if (auto nca_romfs = nca->GetRomFS(); nca_romfs) {
+            romfs = FileSys::ExtractRomFS(nca_romfs);
+        }
+    }
+    if (!romfs) {
+        romfs = FileSys::ExtractRomFS(
+            FileSys::SystemArchive::SynthesizeSystemArchive(FirmwareVersionSystemDataId));
+    }
+
+    const auto early_exit_failure = [](std::string_view desc, Result code) {
+        LOG_ERROR(Service_SET, "General failure while attempting to resolve firmware version ({}).",
+                  desc);
+        return code;
+    };
+
+    const auto ver_file = romfs->GetFile("file");
+    if (ver_file == nullptr) {
+        return early_exit_failure("The system version archive didn't contain the file 'file'.",
+                                  FileSys::ResultInvalidArgument);
+    }
+
+    auto data = ver_file->ReadAllBytes();
+    if (data.size() != sizeof(FirmwareVersionFormat)) {
+        return early_exit_failure("The system version file 'file' was not the correct size.",
+                                  FileSys::ResultOutOfRange);
+    }
+
+    std::memcpy(&out_firmware, data.data(), sizeof(FirmwareVersionFormat));
+
+    // If the command is GetFirmwareVersion (as opposed to GetFirmwareVersion2), hardware will
+    // zero out the REVISION_MINOR field.
+    if (type == GetFirmwareVersionType::Version1) {
+        out_firmware.revision_minor = 0;
+    }
+
+    return ResultSuccess;
 }
 
 ISystemSettingsServer::ISystemSettingsServer(Core::System& system_)
@@ -60,6 +112,8 @@ ISystemSettingsServer::ISystemSettingsServer(Core::System& system_)
         {18, C<&ISystemSettingsServer::SetAccountSettings>, "SetAccountSettings"},
         {19, nullptr, "GetAudioVolume"},
         {20, nullptr, "SetAudioVolume"},
+        {21, C<&ISystemSettingsServer::GetEulaVersions>, "GetEulaVersions"},
+        {22, C<&ISystemSettingsServer::SetEulaVersions>, "SetEulaVersions"},
         {23, C<&ISystemSettingsServer::GetColorSetId>, "GetColorSetId"},
         {24, C<&ISystemSettingsServer::SetColorSetId>, "SetColorSetId"},
         {25, nullptr, "GetConsoleInformationUploadFlag"},
@@ -110,6 +164,8 @@ ISystemSettingsServer::ISystemSettingsServer(Core::System& system_)
         {72, C<&ISystemSettingsServer::SetSleepSettings>, "SetSleepSettings"},
         {73, C<&ISystemSettingsServer::GetWirelessLanEnableFlag>, "GetWirelessLanEnableFlag"},
         {74, C<&ISystemSettingsServer::SetWirelessLanEnableFlag>, "SetWirelessLanEnableFlag"},
+        {75, C<&ISystemSettingsServer::GetInitialLaunchSettings>, "GetInitialLaunchSettings"},
+        {76, C<&ISystemSettingsServer::SetInitialLaunchSettings>, "SetInitialLaunchSettings"},
         {77, C<&ISystemSettingsServer::GetDeviceNickName>, "GetDeviceNickName"},
         {78, C<&ISystemSettingsServer::SetDeviceNickName>, "SetDeviceNickName"},
         {79, C<&ISystemSettingsServer::GetProductModel>, "GetProductModel"},
@@ -253,7 +309,16 @@ ISystemSettingsServer::ISystemSettingsServer(Core::System& system_)
 
     m_system_settings.region_code =
         static_cast<SystemRegionCode>(::Settings::values.region_index.GetValue());
-    m_system_settings.eula_version_count = 0;
+
+    // TODO: Remove this when starter applet is fully functional
+    EulaVersion eula_version{
+        .version = 0x10000,
+        .region_code = m_system_settings.region_code,
+        .clock_type = EulaVersionClockType::SteadyClock,
+        .system_clock_context = m_system_settings.user_system_clock_context,
+    };
+    m_system_settings.eula_versions[0] = eula_version;
+    m_system_settings.eula_version_count = 1;
 
     m_save_thread =
         std::jthread([this](std::stop_token stop_token) { StoreSettingsThreadFunc(stop_token); });
@@ -315,7 +380,18 @@ bool ISystemSettingsServer::LoadSettingsFile(std::filesystem::path& path, auto&&
             return false;
         }
     }
-    UNIMPLEMENTED();
+
+    if constexpr (std::is_same_v<settings_type, PrivateSettings>) {
+        file.read(reinterpret_cast<char*>(&m_private_settings), sizeof(settings_type));
+    } else if constexpr (std::is_same_v<settings_type, DeviceSettings>) {
+        file.read(reinterpret_cast<char*>(&m_device_settings), sizeof(settings_type));
+    } else if constexpr (std::is_same_v<settings_type, ApplnSettings>) {
+        file.read(reinterpret_cast<char*>(&m_appln_settings), sizeof(settings_type));
+    } else if constexpr (std::is_same_v<settings_type, SystemSettings>) {
+        file.read(reinterpret_cast<char*>(&m_system_settings), sizeof(settings_type));
+    } else {
+        UNREACHABLE();
+    }
     file.close();
 
     return true;
@@ -342,7 +418,18 @@ bool ISystemSettingsServer::StoreSettingsFile(std::filesystem::path& path, auto&
         .reserved = 0u,
     };
     file.write(reinterpret_cast<const char*>(&hdr), sizeof(hdr));
-    UNIMPLEMENTED();
+
+    if constexpr (std::is_same_v<settings_type, PrivateSettings>) {
+        file.write(reinterpret_cast<const char*>(&m_private_settings), sizeof(settings_type));
+    } else if constexpr (std::is_same_v<settings_type, DeviceSettings>) {
+        file.write(reinterpret_cast<const char*>(&m_device_settings), sizeof(settings_type));
+    } else if constexpr (std::is_same_v<settings_type, ApplnSettings>) {
+        file.write(reinterpret_cast<const char*>(&m_appln_settings), sizeof(settings_type));
+    } else if constexpr (std::is_same_v<settings_type, SystemSettings>) {
+        file.write(reinterpret_cast<const char*>(&m_system_settings), sizeof(settings_type));
+    } else {
+        UNREACHABLE();
+    }
     file.close();
 
     std::filesystem::rename(settings_tmp_file, settings_base.replace_extension("dat"));
@@ -389,14 +476,17 @@ Result ISystemSettingsServer::SetLockScreenFlag(bool lock_screen_flag) {
 
 Result ISystemSettingsServer::GetExternalSteadyClockSourceId(
     Out<Common::UUID> out_clock_source_id) {
-    UNIMPLEMENTED();
+    LOG_INFO(Service_SET, "called, clock_source_id={}",
+             m_private_settings.external_clock_source_id.FormattedString());
+
+    *out_clock_source_id = m_private_settings.external_clock_source_id;
     R_SUCCEED();
 }
 
 Result ISystemSettingsServer::SetExternalSteadyClockSourceId(const Common::UUID& clock_source_id) {
     LOG_INFO(Service_SET, "called, clock_source_id={}", clock_source_id.FormattedString());
 
-    UNIMPLEMENTED();
+    m_private_settings.external_clock_source_id = clock_source_id;
     SetSaveNeeded();
     R_SUCCEED();
 }
@@ -430,6 +520,30 @@ Result ISystemSettingsServer::SetAccountSettings(AccountSettings account_setting
     LOG_INFO(Service_SET, "called, account_settings_flags={}", account_settings.flags);
 
     m_system_settings.account_settings = account_settings;
+    SetSaveNeeded();
+    R_SUCCEED();
+}
+
+Result ISystemSettingsServer::GetEulaVersions(
+    Out<s32> out_count, OutArray<EulaVersion, BufferAttr_HipcMapAlias> out_eula_versions) {
+    LOG_INFO(Service_SET, "called, elements={}", m_system_settings.eula_version_count);
+
+    *out_count =
+        std::min(m_system_settings.eula_version_count, static_cast<s32>(out_eula_versions.size()));
+    memcpy(out_eula_versions.data(), m_system_settings.eula_versions.data(),
+           static_cast<std::size_t>(*out_count) * sizeof(EulaVersion));
+    R_SUCCEED();
+}
+
+Result ISystemSettingsServer::SetEulaVersions(
+    InArray<EulaVersion, BufferAttr_HipcMapAlias> eula_versions) {
+    LOG_INFO(Service_SET, "called, elements={}", eula_versions.size());
+
+    ASSERT(eula_versions.size() <= m_system_settings.eula_versions.size());
+
+    m_system_settings.eula_version_count = static_cast<s32>(eula_versions.size());
+    std::memcpy(m_system_settings.eula_versions.data(), eula_versions.data(),
+                eula_versions.size() * sizeof(EulaVersion));
     SetSaveNeeded();
     R_SUCCEED();
 }
@@ -880,6 +994,30 @@ Result ISystemSettingsServer::SetWirelessLanEnableFlag(bool wireless_lan_enable_
     R_SUCCEED();
 }
 
+Result ISystemSettingsServer::GetInitialLaunchSettings(
+    Out<InitialLaunchSettings> out_initial_launch_settings) {
+    LOG_INFO(Service_SET, "called, flags={}, timestamp={}",
+             m_system_settings.initial_launch_settings_packed.flags.raw,
+             m_system_settings.initial_launch_settings_packed.timestamp.time_point);
+
+    *out_initial_launch_settings = {
+        .flags = m_system_settings.initial_launch_settings_packed.flags,
+        .timestamp = m_system_settings.initial_launch_settings_packed.timestamp,
+    };
+    R_SUCCEED();
+}
+
+Result ISystemSettingsServer::SetInitialLaunchSettings(
+    InitialLaunchSettings initial_launch_settings) {
+    LOG_INFO(Service_SET, "called, flags={}, timestamp={}", initial_launch_settings.flags.raw,
+             initial_launch_settings.timestamp.time_point);
+
+    m_system_settings.initial_launch_settings_packed.flags = initial_launch_settings.flags;
+    m_system_settings.initial_launch_settings_packed.timestamp = initial_launch_settings.timestamp;
+    SetSaveNeeded();
+    R_SUCCEED();
+}
+
 Result ISystemSettingsServer::GetDeviceNickName(
     OutLargeData<std::array<u8, 0x80>, BufferAttr_HipcMapAlias> out_device_name) {
     LOG_DEBUG(Service_SET, "called");
@@ -973,13 +1111,17 @@ Result ISystemSettingsServer::SetBatteryPercentageFlag(bool battery_percentage_f
 
 Result ISystemSettingsServer::SetExternalSteadyClockInternalOffset(s64 offset) {
     LOG_DEBUG(Service_SET, "called, external_steady_clock_internal_offset={}", offset);
-    UNIMPLEMENTED();
 
+    m_private_settings.external_steady_clock_internal_offset = offset;
+    SetSaveNeeded();
     R_SUCCEED();
 }
 
 Result ISystemSettingsServer::GetExternalSteadyClockInternalOffset(Out<s64> out_offset) {
-    UNIMPLEMENTED();
+    LOG_DEBUG(Service_SET, "called, external_steady_clock_internal_offset={}",
+              m_private_settings.external_steady_clock_internal_offset);
+
+    *out_offset = m_private_settings.external_steady_clock_internal_offset;
     R_SUCCEED();
 }
 
@@ -1165,11 +1307,55 @@ Result ISystemSettingsServer::SetPanelCrcMode(s32 panel_crc_mode) {
 }
 
 void ISystemSettingsServer::SetupSettings() {
-    UNIMPLEMENTED();
+    auto system_dir =
+        Common::FS::GetYuzuPath(Common::FS::YuzuPath::NANDDir) / "system/save/8000000000000050";
+    if (!LoadSettingsFile(system_dir, []() { return DefaultSystemSettings(); })) {
+        ASSERT(false);
+    }
+
+    auto private_dir =
+        Common::FS::GetYuzuPath(Common::FS::YuzuPath::NANDDir) / "system/save/8000000000000052";
+    if (!LoadSettingsFile(private_dir, []() { return DefaultPrivateSettings(); })) {
+        ASSERT(false);
+    }
+
+    auto device_dir =
+        Common::FS::GetYuzuPath(Common::FS::YuzuPath::NANDDir) / "system/save/8000000000000053";
+    if (!LoadSettingsFile(device_dir, []() { return DefaultDeviceSettings(); })) {
+        ASSERT(false);
+    }
+
+    auto appln_dir =
+        Common::FS::GetYuzuPath(Common::FS::YuzuPath::NANDDir) / "system/save/8000000000000054";
+    if (!LoadSettingsFile(appln_dir, []() { return DefaultApplnSettings(); })) {
+        ASSERT(false);
+    }
 }
 
 void ISystemSettingsServer::StoreSettings() {
-    UNIMPLEMENTED();
+    auto system_dir =
+        Common::FS::GetYuzuPath(Common::FS::YuzuPath::NANDDir) / "system/save/8000000000000050";
+    if (!StoreSettingsFile(system_dir, m_system_settings)) {
+        LOG_ERROR(Service_SET, "Failed to store System settings");
+    }
+
+    auto private_dir =
+        Common::FS::GetYuzuPath(Common::FS::YuzuPath::NANDDir) / "system/save/8000000000000052";
+    if (!StoreSettingsFile(private_dir, m_private_settings)) {
+        LOG_ERROR(Service_SET, "Failed to store Private settings");
+    }
+
+    auto device_dir =
+        Common::FS::GetYuzuPath(Common::FS::YuzuPath::NANDDir) / "system/save/8000000000000053";
+    if (!StoreSettingsFile(device_dir, m_device_settings)) {
+        LOG_ERROR(Service_SET, "Failed to store Device settings");
+    }
+
+    auto appln_dir =
+        Common::FS::GetYuzuPath(Common::FS::YuzuPath::NANDDir) / "system/save/8000000000000054";
+    if (!StoreSettingsFile(appln_dir, m_appln_settings)) {
+        LOG_ERROR(Service_SET, "Failed to store ApplLn settings");
+    }
 }
 
 void ISystemSettingsServer::StoreSettingsThreadFunc(std::stop_token stop_token) {
