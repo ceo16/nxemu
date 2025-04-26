@@ -232,7 +232,41 @@ Result TimeManager::SetupStandardSteadyClockCore() {
 }
 
 Result TimeManager::SetupTimeZoneServiceCore() {
-    UNIMPLEMENTED();
+    Service::PSC::Time::LocationName name{};
+    auto res = m_set_sys->GetDeviceTimeZoneLocationName(&name);
+    ASSERT(res == ResultSuccess);
+
+    auto configured_zone = GetTimeZoneString(name);
+
+    if (configured_zone != name) {
+        m_set_sys->SetDeviceTimeZoneLocationName(configured_zone);
+        name = configured_zone;
+
+        std::shared_ptr<Service::PSC::Time::SystemClock> local_clock;
+        m_time_sm->GetStandardLocalSystemClock(&local_clock);
+
+        Service::PSC::Time::SystemClockContext context{};
+        local_clock->GetSystemClockContext(&context);
+        m_set_sys->SetDeviceTimeZoneLocationUpdatedTime(context.steady_time_point);
+    }
+
+    Service::PSC::Time::SteadyClockTimePoint time_point{};
+    res = m_set_sys->GetDeviceTimeZoneLocationUpdatedTime(&time_point);
+    ASSERT(res == ResultSuccess);
+
+    auto location_count = GetTimeZoneCount();
+    Service::PSC::Time::RuleVersion rule_version{};
+    GetTimeZoneVersion(rule_version);
+
+    std::span<const u8> rule_buffer{};
+    size_t rule_size{};
+    res = GetTimeZoneRule(rule_buffer, rule_size, name);
+    ASSERT(res == ResultSuccess);
+
+    res = m_time_m->SetupTimeZoneServiceCore(name, rule_version, location_count, time_point,
+                                             rule_buffer);
+    ASSERT(res == ResultSuccess);
+
     R_SUCCEED();
 }
 

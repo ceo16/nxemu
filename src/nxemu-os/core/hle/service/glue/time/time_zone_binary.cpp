@@ -2,9 +2,13 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include "core/core.h"
+#include "core/file_sys/content_archive.h"
 #include "core/file_sys/nca_metadata.h"
 #include "core/file_sys/registered_cache.h"
+#include "core/file_sys/romfs.h"
+#include "core/file_sys/system_archive/system_archive.h"
 #include "core/file_sys/vfs/vfs.h"
+#include "core/hle/service/filesystem/filesystem.h"
 #include "core/hle/service/glue/time/time_zone_binary.h"
 
 namespace Service::Glue::Time {
@@ -42,7 +46,40 @@ void ResetTimeZoneBinary() {
 }
 
 Result MountTimeZoneBinary(Core::System& system) {
-    UNIMPLEMENTED();
+    ResetTimeZoneBinary();
+
+    auto& fsc{system.GetFileSystemController()};
+    std::unique_ptr<FileSys::NCA> nca{};
+
+    auto* bis_system = fsc.GetSystemNANDContents();
+
+    R_UNLESS(bis_system, ResultUnknown);
+
+    nca = bis_system->GetEntry(TimeZoneBinaryId, FileSys::ContentRecordType::Data);
+
+    if (nca) {
+        g_time_zone_binary_romfs = FileSys::ExtractRomFS(nca->GetRomFS());
+    }
+
+    if (g_time_zone_binary_romfs) {
+        // Validate that the romfs is readable, using invalid firmware keys can cause this to get
+        // set but the files to be garbage. In that case, we want to hit the next path and
+        // synthesise them instead.
+        g_time_zone_binary_mount_result = ResultSuccess;
+        Service::PSC::Time::LocationName name{"Etc/GMT"};
+        if (!IsTimeZoneBinaryValid(name)) {
+            ResetTimeZoneBinary();
+        }
+    }
+
+    if (!g_time_zone_binary_romfs) {
+        g_time_zone_binary_romfs = FileSys::ExtractRomFS(
+            FileSys::SystemArchive::SynthesizeSystemArchive(TimeZoneBinaryId));
+    }
+
+    R_UNLESS(g_time_zone_binary_romfs, ResultUnknown);
+
+    g_time_zone_binary_mount_result = ResultSuccess;
     R_SUCCEED();
 }
 

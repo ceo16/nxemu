@@ -60,6 +60,8 @@ Services::Services(std::shared_ptr<SM::ServiceManager>& sm, Core::System& system
                    std::stop_token token) {
     auto& kernel = system.Kernel();
 
+    system.GetFileSystemController().CreateFactories(*system.GetFilesystem(), false);
+
     // clang-format off
     kernel.RunOnHostCoreProcess("FS",         [&] { FileSystem::LoopProcess(system); }).detach();
     kernel.RunOnHostCoreProcess("Loader",     [&] { LDR::LoopProcess(system); }).detach();
