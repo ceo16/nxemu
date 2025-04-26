@@ -9,7 +9,14 @@
 #include "core/core_timing.h"
 #include "core/cpu_manager.h"
 #include "core/debugger/debugger.h"
+#include "core/file_sys/bis_factory.h"
+#include "core/file_sys/fs_filesystem.h"
+#include "core/file_sys/patch_manager.h"
 #include "core/file_sys/registered_cache.h"
+#include "core/file_sys/romfs_factory.h"
+#include "core/file_sys/savedata_factory.h"
+#include "core/file_sys/vfs/vfs_concat.h"
+#include "core/file_sys/vfs/vfs_real.h"
 #include "core/gpu_dirty_memory_manager.h"
 #include "core/hle/kernel/k_memory_manager.h"
 #include "core/hle/kernel/k_process.h"
@@ -48,6 +55,10 @@ struct System::Impl {
         core_timing.SetMulticore(is_multicore);
         core_timing.Initialize([&system]() { system.RegisterHostThread(); });
 
+        // Create a default fs if one doesn't already exist.
+        if (virtual_filesystem == nullptr) {
+            virtual_filesystem = std::make_shared<FileSys::RealVfsFilesystem>();
+        }
         if (content_provider == nullptr) {
             content_provider = std::make_unique<FileSys::ContentProviderUnion>();
         }
@@ -166,6 +177,9 @@ struct System::Impl {
 
     Timing::CoreTiming core_timing;
     Kernel::KernelCore kernel;
+    /// RealVfsFilesystem instance
+    FileSys::VirtualFilesystem virtual_filesystem;
+    /// ContentProviderUnion instance
     std::unique_ptr<FileSys::ContentProviderUnion> content_provider;
     Service::FileSystem::FileSystemController fs_controller;
     std::unique_ptr<Core::DeviceMemory> device_memory;
@@ -352,6 +366,10 @@ u64 System::GetApplicationProcessProgramID() const {
     return impl->kernel.ApplicationProcess()->GetProgramId();
 }
 
+FileSys::VirtualFilesystem System::GetFilesystem() const {
+    return impl->virtual_filesystem;
+}
+
 void System::SetFrontendAppletSet(Service::AM::Frontend::FrontendAppletSet&& set) {
     impl->frontend_applets.SetFrontendAppletSet(std::move(set));
 }
@@ -394,6 +412,11 @@ Service::FileSystem::FileSystemController& System::GetFileSystemController() {
 
 const Service::FileSystem::FileSystemController& System::GetFileSystemController() const {
     return impl->fs_controller;
+}
+
+void System::RegisterContentProvider(FileSys::ContentProviderUnionSlot slot,
+                                     FileSys::ContentProvider* provider) {
+    impl->content_provider->SetSlot(slot, provider);
 }
 
 Service::APM::Controller& System::GetAPMController() {

@@ -463,6 +463,21 @@
     <Filter Include="Source Files\core\hle\service\nvnflinger\ui">
       <UniqueIdentifier>{930d0967-1c45-443b-b4b3-733c8bbc9df0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\core\memory">
+      <UniqueIdentifier>{a31785a5-920a-487c-81e9-1b69c9ab1dad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\file_sys\fssystem">
+      <UniqueIdentifier>{1b78ac9b-a4dd-46c2-88fb-05201931e633}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\memory">
+      <UniqueIdentifier>{cb4405de-b2a1-45a1-871e-52d1a82ed0e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\file_sys\fssystem">
+      <UniqueIdentifier>{9ac3bdbd-756c-45c1-afd4-f5d4b8e011a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\file_sys\fsa">
+      <UniqueIdentifier>{21f21c78-2a76-450d-bba6-3ccad21c0ef6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="nxemu-os.h">
@@ -1791,6 +1806,75 @@
     <ClInclude Include="core\hle\service\nvnflinger\ui\graphic_buffer.h">
       <Filter>Header Files\core\hle\service\nvnflinger\ui</Filter>
     </ClInclude>
+    <ClInclude Include="core\memory\cheat_engine.h">
+      <Filter>Header Files\core\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="core\memory\dmnt_cheat_types.h">
+      <Filter>Header Files\core\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\vfs\vfs.h">
+      <Filter>Header Files\core\file_sys\vfs</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\vfs\vfs_cached.h">
+      <Filter>Header Files\core\file_sys\vfs</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\vfs\vfs_concat.h">
+      <Filter>Header Files\core\file_sys\vfs</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\vfs\vfs_layered.h">
+      <Filter>Header Files\core\file_sys\vfs</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\vfs\vfs_vector.h">
+      <Filter>Header Files\core\file_sys\vfs</Filter>
+    </ClInclude>
+    <ClInclude Include="core\arm\debug.h">
+      <Filter>Header Files\core\arm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\bis_factory.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fsmitm_romfsbuild.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\partition_filesystem.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\sdmc_factory.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\xts_archive.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\vfs\vfs_offset.h">
+      <Filter>Header Files\core\file_sys\vfs</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\vfs\vfs_real.h">
+      <Filter>Header Files\core\file_sys\vfs</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\vfs\vfs_static.h">
+      <Filter>Header Files\core\file_sys\vfs</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fssystem\fs_types.h">
+      <Filter>Header Files\core\file_sys\fssystem</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fssystem\fssystem_compression_common.h">
+      <Filter>Header Files\core\file_sys\fssystem</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fssystem\fssystem_compression_configuration.h">
+      <Filter>Header Files\core\file_sys\fssystem</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fssystem\fssystem_nca_file_system_driver.h">
+      <Filter>Header Files\core\file_sys\fssystem</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fssystem\fssystem_nca_header.h">
+      <Filter>Header Files\core\file_sys\fssystem</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fsa\fs_i_filesystem.h">
+      <Filter>Header Files\core\file_sys\fsa</Filter>
+    </ClInclude>
+    <ClInclude Include="core\loader\nso.h">
+      <Filter>Header Files\core\loader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="version.h.in">
@@ -2979,6 +3063,84 @@
     </ClCompile>
     <ClCompile Include="core\hle\service\nvnflinger\ui\graphic_buffer.cpp">
       <Filter>Source Files\core\hle\service\nvnflinger\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\control_metadata.cpp">
+      <Filter>Source Files\core\file_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\patch_manager.cpp">
+      <Filter>Source Files\core\file_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\content_archive.cpp">
+      <Filter>Source Files\core\file_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\vfs\vfs.cpp">
+      <Filter>Source Files\core\file_sys\vfs</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\fssystem\fssystem_nca_header.cpp">
+      <Filter>Source Files\core\file_sys\fssystem</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\fssystem\fssystem_nca_reader.cpp">
+      <Filter>Source Files\core\file_sys\fssystem</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\ips_layer.cpp">
+      <Filter>Source Files\core\file_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\vfs\vfs_vector.cpp">
+      <Filter>Source Files\core\file_sys\vfs</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\bis_factory.cpp">
+      <Filter>Source Files\core\file_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\filesystem\save_data_controller.cpp">
+      <Filter>Source Files\core\hle\service\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\romfs.cpp">
+      <Filter>Source Files\core\file_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\filesystem\romfs_controller.cpp">
+      <Filter>Source Files\core\hle\service\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\savedata_factory.cpp">
+      <Filter>Source Files\core\file_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\sdmc_factory.cpp">
+      <Filter>Source Files\core\file_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\card_image.cpp">
+      <Filter>Source Files\core\file_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\partition_filesystem.cpp">
+      <Filter>Source Files\core\file_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="core\memory\cheat_engine.cpp">
+      <Filter>Source Files\core\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\vfs\vfs_offset.cpp">
+      <Filter>Source Files\core\file_sys\vfs</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\romfs_factory.cpp">
+      <Filter>Source Files\core\file_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\vfs\vfs_cached.cpp">
+      <Filter>Source Files\core\file_sys\vfs</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\fsmitm_romfsbuild.cpp">
+      <Filter>Source Files\core\file_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\vfs\vfs_layered.cpp">
+      <Filter>Source Files\core\file_sys\vfs</Filter>
+    </ClCompile>
+    <ClCompile Include="core\memory\dmnt_cheat_vm.cpp">
+      <Filter>Source Files\core\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\vfs\vfs_concat.cpp">
+      <Filter>Source Files\core\file_sys\vfs</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\vfs\vfs_real.cpp">
+      <Filter>Source Files\core\file_sys\vfs</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\xts_archive.cpp">
+      <Filter>Header Files\core\file_sys</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

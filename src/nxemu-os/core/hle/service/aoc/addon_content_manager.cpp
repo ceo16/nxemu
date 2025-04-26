@@ -9,8 +9,10 @@
 #include "yuzu_common/settings.h"
 #include "core/core.h"
 #include "core/file_sys/common_funcs.h"
+#include "core/file_sys/content_archive.h"
 #include "core/file_sys/control_metadata.h"
 #include "core/file_sys/nca_metadata.h"
+#include "core/file_sys/patch_manager.h"
 #include "core/file_sys/registered_cache.h"
 #include "core/hle/kernel/k_event.h"
 #include "core/hle/service/aoc/addon_content_manager.h"
@@ -27,8 +29,21 @@ static bool CheckAOCTitleIDMatchesBase(u64 title_id, u64 base) {
 }
 
 static std::vector<u64> AccumulateAOCTitleIDs(Core::System& system) {
-    UNIMPLEMENTED();
-    return {};
+    std::vector<u64> add_on_content;
+    const auto& rcu = system.GetContentProvider();
+    const auto list =
+        rcu.ListEntriesFilter(FileSys::TitleType::AOC, FileSys::ContentRecordType::Data);
+    std::transform(list.begin(), list.end(), std::back_inserter(add_on_content),
+                   [](const FileSys::ContentProviderEntry& rce) { return rce.title_id; });
+    add_on_content.erase(
+        std::remove_if(
+            add_on_content.begin(), add_on_content.end(),
+            [&rcu](u64 tid) {
+                return rcu.GetEntry(tid, FileSys::ContentRecordType::Data)->GetStatus() !=
+                       Loader::ResultStatus::Success;
+            }),
+        add_on_content.end());
+    return add_on_content;
 }
 
 IAddOnContentManager::IAddOnContentManager(Core::System& system_)
@@ -121,7 +136,20 @@ Result IAddOnContentManager::ListAddOnContent(Out<u32> out_count,
 
 Result IAddOnContentManager::GetAddOnContentBaseId(Out<u64> out_title_id,
                                                    ClientProcessId process_id) {
-    UNIMPLEMENTED();
+    LOG_DEBUG(Service_AOC, "called. process_id={}", process_id.pid);
+
+    const auto title_id = system.GetApplicationProcessProgramID();
+    const FileSys::PatchManager pm{title_id, system.GetFileSystemController(),
+                                   system.GetContentProvider()};
+
+    const auto res = pm.GetControlMetadata();
+    if (res.first == nullptr) {
+        *out_title_id = FileSys::GetAOCBaseTitleID(title_id);
+        R_SUCCEED();
+    }
+
+    *out_title_id = res.first->GetDLCBaseTitleId();
+
     R_SUCCEED();
 }
 

@@ -16,6 +16,16 @@ class System;
 }
 
 namespace FileSys {
+class BISFactory;
+class NCA;
+class RegisteredCache;
+class RegisteredCacheUnion;
+class PlaceholderCache;
+class RomFSFactory;
+class SaveDataFactory;
+class SDMCFactory;
+class XCI;
+
 enum class BisPartitionId : u32;
 enum class ContentRecordType : u8;
 enum class SaveDataSpaceId : u8;
@@ -35,6 +45,7 @@ class ServiceManager;
 namespace FileSystem {
 
 class RomFsController;
+class SaveDataController;
 
 enum class ContentStorageId : u32 {
     System,
@@ -55,8 +66,17 @@ public:
     explicit FileSystemController(Core::System& system_);
     ~FileSystemController();
 
+    Result RegisterProcess(ProcessId process_id, ProgramId program_id,
+                           std::shared_ptr<FileSys::RomFSFactory>&& factory);
+    Result OpenProcess(ProgramId* out_program_id,
+                       std::shared_ptr<SaveDataController>* out_save_data_controller,
+                       std::shared_ptr<RomFsController>* out_romfs_controller,
+                       ProcessId process_id);
     void SetPackedUpdate(ProcessId process_id, FileSys::VirtualFile update_raw);
 
+    std::shared_ptr<SaveDataController> OpenSaveDataController();
+
+    Result OpenSDMC(FileSys::VirtualDir* out_sdmc) const;
     Result OpenBISPartition(FileSys::VirtualDir* out_bis_partition,
                             FileSys::BisPartitionId id) const;
     Result OpenBISPartitionStorage(FileSys::VirtualFile* out_bis_partition_storage,
@@ -66,6 +86,20 @@ public:
     u64 GetTotalSpaceSize(FileSys::StorageId id) const;
 
     void SetGameCard(FileSys::VirtualFile file);
+    FileSys::XCI* GetGameCard() const;
+
+    FileSys::RegisteredCache* GetSystemNANDContents() const;
+    FileSys::RegisteredCache* GetUserNANDContents() const;
+    FileSys::RegisteredCache* GetSDMCContents() const;
+    FileSys::RegisteredCache* GetGameCardContents() const;
+
+    FileSys::PlaceholderCache* GetSystemNANDPlaceholder() const;
+    FileSys::PlaceholderCache* GetUserNANDPlaceholder() const;
+    FileSys::PlaceholderCache* GetSDMCPlaceholder() const;
+    FileSys::PlaceholderCache* GetGameCardPlaceholder() const;
+
+    FileSys::RegisteredCache* GetRegisteredCacheForStorage(FileSys::StorageId id) const;
+    FileSys::PlaceholderCache* GetPlaceholderCacheForStorage(FileSys::StorageId id) const;
 
     FileSys::VirtualDir GetSystemNANDContentDirectory() const;
     FileSys::VirtualDir GetUserNANDContentDirectory() const;
@@ -90,6 +124,23 @@ public:
     void Reset();
 
 private:
+    std::shared_ptr<FileSys::SaveDataFactory> CreateSaveDataFactory(ProgramId program_id);
+
+    struct Registration {
+        ProgramId program_id;
+        std::shared_ptr<FileSys::RomFSFactory> romfs_factory;
+        std::shared_ptr<FileSys::SaveDataFactory> save_data_factory;
+    };
+
+    std::mutex registration_lock;
+    std::map<ProcessId, Registration> registrations;
+
+    std::unique_ptr<FileSys::SDMCFactory> sdmc_factory;
+    std::unique_ptr<FileSys::BISFactory> bis_factory;
+
+    std::unique_ptr<FileSys::XCI> gamecard;
+    std::unique_ptr<FileSys::RegisteredCache> gamecard_registered;
+    std::unique_ptr<FileSys::PlaceholderCache> gamecard_placeholder;
 
     Core::System& system;
 };
