@@ -26,8 +26,9 @@ Thumbs.db
 /git.properties
 /ipch
 /modules
-/src/nxemu-core/Version.h
-/src/nxemu-video/Version.h
-/src/nxemu-cpu/Version.h
-/src/nxemu-os/Version.h
+/src/nxemu-core/version.h
+/src/nxemu-video/version.h
+/src/nxemu-cpu/version.h
+/src/nxemu-os/version.h
+/src/nxemu-loader/version.h
 /config/NxEmu.config
