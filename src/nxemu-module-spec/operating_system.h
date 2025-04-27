@@ -54,16 +54,19 @@ __interface IDeviceMemory
     const uint8_t * BackingBasePointer() const = 0;
 };
 
+__interface IVirtualFile{};
+
 __interface IOperatingSystem
 {
     bool Initialize(void) = 0;
     bool CreateApplicationProcess(uint64_t codeSize, const IProgramMetadata & metaData, uint64_t & baseAddress) = 0;
     void StartApplicationProcess(uint64_t baseAddress, int32_t priority, int64_t stackSize) = 0;
+    void RegisterProcessVirtualFile(uint64_t programId, /*IVirtualFile & file,*/ bool updatable) = 0;
     bool LoadModule(const IModuleInfo & module, uint64_t baseAddress) = 0;
     IDeviceMemory & DeviceMemory(void) = 0;
     void KeyboardKeyPress(int modifier, int keyIndex, int keyCode) = 0;
     void KeyboardKeyRelease(int modifier, int keyIndex, int keyCode) = 0;
 };
 
-EXPORT IOperatingSystem * CALL CreateOperatingSystem(ISwitchSystem & System);
-EXPORT void CALL DestroyOperatingSystem(IOperatingSystem * OperatingSystem);
+EXPORT IOperatingSystem * CALL CreateOperatingSystem(ISwitchSystem & system);
+EXPORT void CALL DestroyOperatingSystem(IOperatingSystem * operatingSystem);

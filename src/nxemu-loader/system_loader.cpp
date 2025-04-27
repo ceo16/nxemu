@@ -7,7 +7,8 @@
 extern IModuleSettings * g_settings;
 
 Systemloader::Systemloader(ISwitchSystem & system) :
-    m_system(system)
+    m_system(system),
+    m_TitleID(0)
 {
 }
 
@@ -72,6 +73,9 @@ bool Systemloader::LoadNRO(const char * nroFile)
     {
         return false;
     }
+
+    m_TitleID = Nacp->GetTitleId();
+    operatingSystem.RegisterProcessVirtualFile(m_TitleID, /*file,*/ false);
     g_settings->SetString(NXCoreSetting::GameName, Nacp->GetApplicationName().c_str());
     operatingSystem.StartApplicationProcess(baseAddress, metaData.GetMainThreadPriority(), metaData.GetMainThreadStackSize());
     return true;

@@ -132,6 +132,13 @@
     <ClCompile Include="core\hle\service\filesystem\fsp\fsp_ldr.cpp" />
     <ClCompile Include="core\hle\service\filesystem\fsp\fsp_pr.cpp" />
     <ClCompile Include="core\hle\service\filesystem\fsp\fsp_srv.cpp" />
+    <ClCompile Include="core\hle\service\filesystem\fsp\fs_i_directory.cpp" />
+    <ClCompile Include="core\hle\service\filesystem\fsp\fs_i_file.cpp" />
+    <ClCompile Include="core\hle\service\filesystem\fsp\fs_i_filesystem.cpp" />
+    <ClCompile Include="core\hle\service\filesystem\fsp\fs_i_multi_commit_manager.cpp" />
+    <ClCompile Include="core\hle\service\filesystem\fsp\fs_i_save_data_info_reader.cpp" />
+    <ClCompile Include="core\hle\service\filesystem\fsp\fs_i_storage.cpp" />
+    <ClCompile Include="core\hle\service\filesystem\fsp\save_data_transfer_prohibiter.cpp" />
     <ClCompile Include="core\hle\service\filesystem\romfs_controller.cpp" />
     <ClCompile Include="core\hle\service\filesystem\save_data_controller.cpp" />
     <ClCompile Include="core\hle\service\glue\time\alarm_worker.cpp" />
@@ -488,6 +495,7 @@
     <ClInclude Include="core\file_sys\errors.h" />
     <ClInclude Include="core\file_sys\fsa\fs_i_filesystem.h" />
     <ClInclude Include="core\file_sys\fsmitm_romfsbuild.h" />
+    <ClInclude Include="core\file_sys\fssrv\fssrv_sf_path.h" />
     <ClInclude Include="core\file_sys\fssystem\fssystem_compression_common.h" />
     <ClInclude Include="core\file_sys\fssystem\fssystem_compression_configuration.h" />
     <ClInclude Include="core\file_sys\fssystem\fssystem_nca_file_system_driver.h" />

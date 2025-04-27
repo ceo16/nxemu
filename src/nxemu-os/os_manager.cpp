@@ -1,7 +1,9 @@
 #include <nxemu-core/settings/identifiers.h>
 #include "core/cpu_manager.h"
+#include "core/file_sys/romfs_factory.h"
 #include "core/hle/kernel/k_process.h"
 #include "core/hle/service/am/applet_manager.h"
+#include "core/hle/service/filesystem/filesystem.h"
 #include "yuzu_common/logging/backend.h"
 #include "yuzu_common/settings.h"
 #include "yuzu_common/settings_input.h"
@@ -108,6 +110,12 @@ bool OSManager::CreateApplicationProcess(uint64_t codeSize, const IProgramMetada
 void OSManager::StartApplicationProcess(uint64_t /*baseAddress*/, int32_t priority, int64_t stackSize)
 {
     m_process->Run(priority, stackSize);
+}
+
+void OSManager::RegisterProcessVirtualFile(uint64_t programId, /*IVirtualFile & file,*/ bool updatable)
+{
+    FileSys::VirtualFile file;
+    m_coreSystem.GetFileSystemController().RegisterProcess(m_process->GetProcessId(), programId, std::make_unique<FileSys::RomFSFactory>(file, updatable, m_coreSystem.GetContentProvider(), m_coreSystem.GetFileSystemController()));
 }
 
 bool OSManager::LoadModule(const IModuleInfo & module, uint64_t baseAddress)

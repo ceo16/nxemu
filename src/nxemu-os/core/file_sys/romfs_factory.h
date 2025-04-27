@@ -36,7 +36,7 @@ enum class StorageId : u8 {
 /// File system interface to the RomFS archive
 class RomFSFactory {
 public:
-    explicit RomFSFactory(Loader::AppLoader& app_loader, ContentProvider& provider,
+    explicit RomFSFactory(FileSys::VirtualFile & file_, bool updatable_, ContentProvider & provider,
                           Service::FileSystem::FileSystemController& controller);
     ~RomFSFactory();
 

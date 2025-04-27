@@ -17,15 +17,10 @@
 
 namespace FileSys {
 
-RomFSFactory::RomFSFactory(Loader::AppLoader& app_loader, ContentProvider& provider,
+RomFSFactory::RomFSFactory(FileSys::VirtualFile & file_, bool updatable_, ContentProvider & provider,
                            Service::FileSystem::FileSystemController& controller)
-    : content_provider{provider}, filesystem_controller{controller} {
-    // Load the RomFS from the app
-    if (app_loader.ReadRomFS(file) != Loader::ResultStatus::Success) {
-        LOG_WARNING(Service_FS, "Unable to read base RomFS");
-    }
-
-    updatable = app_loader.IsRomFSUpdatable();
+    : content_provider{provider}, filesystem_controller{controller}, file(file_), updatable(updatable_) 
+{
 }
 
 RomFSFactory::~RomFSFactory() = default;

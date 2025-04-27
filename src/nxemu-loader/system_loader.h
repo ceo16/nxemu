@@ -24,4 +24,5 @@ private:
 
     ISwitchSystem & m_system;
     std::unique_ptr<Nro> m_nro;
+    uint64_t m_TitleID;
 };

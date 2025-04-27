@@ -317,6 +317,7 @@ Result FileSystemController::OpenProcess(
 
     const auto it = registrations.find(process_id);
     if (it == registrations.end()) {
+        UNIMPLEMENTED();
         return FileSys::ResultTargetNotFound;
     }
 

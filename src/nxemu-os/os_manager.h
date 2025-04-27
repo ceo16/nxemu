@@ -15,6 +15,7 @@ public:
     bool Initialize(void);
     bool CreateApplicationProcess(uint64_t codeSize, const IProgramMetadata & metaData, uint64_t & baseAddress);
     void StartApplicationProcess(uint64_t baseAddress, int32_t priority, int64_t stackSize);
+    void RegisterProcessVirtualFile(uint64_t programId, /*IVirtualFile & file,*/ bool updatable);
     bool LoadModule(const IModuleInfo & module, uint64_t baseAddress);
     IDeviceMemory & DeviceMemory(void);
     void KeyboardKeyPress(int modifier, int keyIndex, int keyCode);

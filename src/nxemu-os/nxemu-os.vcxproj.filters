@@ -490,6 +490,9 @@
     <Filter Include="Header Files\core\file_sys\system_archive\data">
       <UniqueIdentifier>{29bc7594-1060-4024-bdb4-0d0635cd0d06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\core\file_sys\fssrv">
+      <UniqueIdentifier>{b3758d60-2c75-43e0-ae2c-85b8c0f3eb1d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="nxemu-os.h">
@@ -1923,6 +1926,9 @@
     <ClInclude Include="core\file_sys\system_archive\data\font_standard.h">
       <Filter>Header Files\core\file_sys\system_archive\data</Filter>
     </ClInclude>
+    <ClInclude Include="core\file_sys\fssrv\fssrv_sf_path.h">
+      <Filter>Header Files\core\file_sys\fssrv</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="version.h.in">
@@ -3225,6 +3231,27 @@
     </ClCompile>
     <ClCompile Include="core\file_sys\system_archive\data\font_standard.cpp">
       <Filter>Source Files\core\file_sys\system_archive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\filesystem\fsp\fs_i_multi_commit_manager.cpp">
+      <Filter>Source Files\core\hle\service\filesystem\fsp</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\filesystem\fsp\save_data_transfer_prohibiter.cpp">
+      <Filter>Source Files\core\hle\service\filesystem\fsp</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\filesystem\fsp\fs_i_storage.cpp">
+      <Filter>Source Files\core\hle\service\filesystem\fsp</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\filesystem\fsp\fs_i_filesystem.cpp">
+      <Filter>Source Files\core\hle\service\filesystem\fsp</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\filesystem\fsp\fs_i_directory.cpp">
+      <Filter>Source Files\core\hle\service\filesystem\fsp</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\filesystem\fsp\fs_i_file.cpp">
+      <Filter>Source Files\core\hle\service\filesystem\fsp</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\filesystem\fsp\fs_i_save_data_info_reader.cpp">
+      <Filter>Source Files\core\hle\service\filesystem\fsp</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

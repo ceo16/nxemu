@@ -38,6 +38,11 @@ std::string NACP::GetApplicationName(Language language) const
     return std::string((const char *)&entry.ApplicationName[0], len);
 }
 
+uint64_t NACP::GetTitleId(void) const
+{
+    return m_info.PresenceGroupId;
+}
+
 const NACP::LanguageEntry & NACP::GetLanguageEntry(Language language) const
 {
     if (language != Language::Default)
