@@ -44,7 +44,6 @@ private:
 
     void Create(void);
     bool RegisterWinClass(void);
-    std::string ChooseFileToOpen(HWND parent);
     void GameFileChanged(void);
     void GameNameChanged(void);
 

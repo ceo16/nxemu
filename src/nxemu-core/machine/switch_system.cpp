@@ -52,6 +52,8 @@ bool SwitchSystem::Initialize(IRenderWindow & window)
 
 void SwitchSystem::StartEmulation(void)
 {
+    Settings & settings = Settings::GetInstance();
+    settings.SetBool(NXCoreSetting::EmulationRunning, true);
     m_emulationRunning = true;
     m_modules.StartEmulation();
 }

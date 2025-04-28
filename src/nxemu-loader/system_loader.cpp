@@ -35,14 +35,17 @@ bool Systemloader::SelectAndLoad(void * parentWindow)
 bool Systemloader::LoadRom(const char * romFile)
 {
     bool res = false;
+    g_settings->SetBool(NXCoreSetting::RomLoading, true);
     if (Nro::IsNroFile(romFile))
     {
         res = LoadNRO(romFile);
     }
 
+    g_settings->SetBool(NXCoreSetting::RomLoading, false);
     if (res)
     {
         g_settings->SetString(NXCoreSetting::GameFile, romFile);
+        m_system.StartEmulation();
     }
     return res;
 }

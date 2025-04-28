@@ -31,6 +31,7 @@
     <ClInclude Include="..\nxemu-module-spec\base.h" />
     <ClInclude Include="..\nxemu-module-spec\cpu.h" />
     <ClInclude Include="..\nxemu-module-spec\operating_system.h" />
+    <ClInclude Include="..\nxemu-module-spec\system_loader.h" />
     <ClInclude Include="..\nxemu-module-spec\video.h" />
     <ClInclude Include="app_init.h" />
     <ClInclude Include="machine\switch_system.h" />
@@ -47,7 +48,6 @@
     <ClInclude Include="settings\core_settings.h" />
     <ClInclude Include="settings\identifiers.h" />
     <ClInclude Include="settings\settings.h" />
-    <ClInclude Include="switch_rom.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="app_init.cpp" />
@@ -64,7 +64,6 @@
     <ClCompile Include="notification.cpp" />
     <ClCompile Include="settings\core_settings.cpp" />
     <ClCompile Include="settings\settings.cpp" />
-    <ClCompile Include="switch_rom.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>

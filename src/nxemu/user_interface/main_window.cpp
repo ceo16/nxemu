@@ -7,7 +7,6 @@
 #include <nxemu-core/settings/core_settings.h>
 #include <nxemu-core/settings/identifiers.h>
 #include <nxemu-core/settings/settings.h>
-#include <nxemu-core/switch_rom.h>
 #include <yuzu_common/settings_input.h>
 
 MainWindow::MainWindow(const wchar_t * windowTitle) :
@@ -21,6 +20,8 @@ MainWindow::MainWindow(const wchar_t * windowTitle) :
 
     RegisterWinClass();
     Create();
+
+    SwitchSystem::Create(*this);
 }
 
 MainWindow::~MainWindow()
@@ -47,17 +48,6 @@ bool MainWindow::RegisterWinClass(void)
     wcl.lpszMenuName = nullptr;
     wcl.lpszClassName = m_className.c_str();
     return RegisterClass(&wcl) != 0;
-}
-
-std::string MainWindow::ChooseFileToOpen(HWND hParent)
-{
-    Path fileToOpen;
-    const char * filter = "Switch Files (*.nro)\0*.nro\0All files (*.*)\0*.*\0";
-    if (fileToOpen.FileSelect(hParent, Path(Path::MODULE_DIRECTORY), filter, true))
-    {
-        return fileToOpen;
-    }
-    return "";
 }
 
 void MainWindow::GameFileChanged(void)
@@ -161,12 +151,8 @@ LRESULT MainWindow::OnKeyUp(UINT /*uMsg*/, WPARAM wParam, LPARAM lParam, BOOL & 
 
 LRESULT MainWindow::OnOpenGame(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL & /*bHandled*/)
 {
-    std::string fileName = ChooseFileToOpen(m_hWnd);
-    if (fileName.length() == 0)
-    {
-        return 0;
-    }
-    LaunchSwitchRom(*this, fileName.c_str());
+    SwitchSystem * system = SwitchSystem::GetInstance();
+    system->Systemloader().SelectAndLoad(m_hWnd);
     return 0;
 }
 
@@ -188,7 +174,8 @@ LRESULT MainWindow::OnRecetGame(WORD /*wNotifyCode*/, WORD wID, HWND /*hWndCtl*/
     Stringlist & recentFiles = uiSettings.recentFiles;
     if (fileIndex < recentFiles.size())
     {
-        LaunchSwitchRom(*this, recentFiles[fileIndex].c_str());
+        SwitchSystem * system = SwitchSystem::GetInstance();
+        system->Systemloader().LoadRom(recentFiles[fileIndex].c_str());
     }
     return 0;
 }

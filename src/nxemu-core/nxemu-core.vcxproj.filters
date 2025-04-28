@@ -36,9 +36,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="switch_rom.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="settings\settings.h">
       <Filter>Header Files\settings</Filter>
     </ClInclude>
@@ -96,11 +93,11 @@
     <ClInclude Include="modules\loader_module.h">
       <Filter>Header Files\modules</Filter>
     </ClInclude>
+    <ClInclude Include="..\nxemu-module-spec\system_loader.h">
+      <Filter>Module Spec</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="switch_rom.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="settings\settings.cpp">
       <Filter>Source Files\settings</Filter>
     </ClCompile>

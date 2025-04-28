@@ -4,9 +4,9 @@
 #include "settings/ui_settings.h"
 #include <Windows.h>
 #include <common/std_string.h>
+#include <nxemu-core/machine/switch_system.h>
 #include <nxemu-core/settings/identifiers.h>
 #include <nxemu-core/settings/settings.h>
-#include <nxemu-core/switch_rom.h>
 #include <nxemu-core/version.h>
 #include <sciter_element.h>
 #include <widgets/menubar.h>
@@ -97,7 +97,7 @@ bool SciterMainWindow::Show(void)
     m_renderWindow = CreateWindowExW(0, L"Static", L"", WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS,
                                      rect.left, rect.top, rect.right, rect.bottom, (HWND)m_window->GetHandle(), nullptr, GetModuleHandle(nullptr), nullptr);
     ShowWindow((HWND)m_renderWindow, SW_HIDE);
-
+    SwitchSystem::Create(*this);
     return true;
 }
 
@@ -184,12 +184,8 @@ void SciterMainWindow::DisplayedFramesChanged(void)
 
 void SciterMainWindow::OnOpenGame(void)
 {
-    Path fileToOpen;
-    const char * filter = "Switch Files (*.nro)\0*.nro\0All files (*.*)\0*.*\0";
-    if (fileToOpen.FileSelect((void *)m_window->GetHandle(), Path(Path::MODULE_DIRECTORY), filter, true))
-    {
-        LaunchSwitchRom(*this, fileToOpen);
-    }
+    SwitchSystem * system = SwitchSystem::GetInstance();
+    system->Systemloader().SelectAndLoad((void *)m_window->GetHandle());
 }
 
 void SciterMainWindow::OnFileExit(void)
@@ -212,7 +208,8 @@ void SciterMainWindow::OnRecetGame(uint32_t fileIndex)
     Stringlist & recentFiles = uiSettings.recentFiles;
     if (fileIndex < recentFiles.size())
     {
-        LaunchSwitchRom(*this, recentFiles[fileIndex].c_str());
+        SwitchSystem* system = SwitchSystem::GetInstance();
+        system->Systemloader().LoadRom(recentFiles[fileIndex].c_str());
     }
 }
 
