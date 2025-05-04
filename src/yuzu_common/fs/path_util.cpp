@@ -88,9 +88,7 @@ public:
         fs::path yuzu_path_config;
 
 #ifdef _WIN32
-#ifdef YUZU_ENABLE_PORTABLE
         yuzu_path = GetExeDirectory() / PORTABLE_DIR;
-#endif
         if (!IsDir(yuzu_path)) {
             yuzu_path = GetAppDataRoamingDirectory() / NXEMU_DIR;
         }
@@ -102,9 +100,7 @@ public:
         yuzu_path_cache = yuzu_path / CACHE_DIR;
         yuzu_path_config = yuzu_path / CONFIG_DIR;
 #else
-#ifdef YUZU_ENABLE_PORTABLE
         yuzu_path = GetCurrentDir() / PORTABLE_DIR;
-#endif
         if (Exists(yuzu_path) && IsDir(yuzu_path)) {
             yuzu_path_cache = yuzu_path / CACHE_DIR;
             yuzu_path_config = yuzu_path / CONFIG_DIR;

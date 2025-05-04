@@ -294,6 +294,9 @@
     <ClInclude Include="slot_vector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="lz4_compression.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="logging\backend.cpp">
@@ -393,6 +396,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="stream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lz4_compression.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

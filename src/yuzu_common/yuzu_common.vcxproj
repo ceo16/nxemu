@@ -24,7 +24,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\3rd_party\microprofile;$(SolutionDir)external\boost;$(SolutionDir)external\fmt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\3rd_party\lz4;$(SolutionDir)src\3rd_party\microprofile;$(SolutionDir)external\boost;$(SolutionDir)external\fmt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <WarningLevel>Level3</WarningLevel>
       <UseStandardPreprocessor>true</UseStandardPreprocessor>
@@ -74,6 +74,7 @@
     <ClInclude Include="logging\text_formatter.h" />
     <ClInclude Include="logging\types.h" />
     <ClInclude Include="lru_cache.h" />
+    <ClInclude Include="lz4_compression.h" />
     <ClInclude Include="make_unique_for_overwrite.h" />
     <ClInclude Include="math_util.h" />
     <ClInclude Include="microprofile.h" />
@@ -135,6 +136,7 @@
     <ClCompile Include="logging\backend.cpp" />
     <ClCompile Include="logging\filter.cpp" />
     <ClCompile Include="logging\text_formatter.cpp" />
+    <ClCompile Include="lz4_compression.cpp" />
     <ClCompile Include="microprofile.cpp" />
     <ClCompile Include="multi_level_page_table.cpp" />
     <ClCompile Include="page_table.cpp" />
