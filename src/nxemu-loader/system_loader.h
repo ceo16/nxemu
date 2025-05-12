@@ -12,6 +12,7 @@ public:
     ~Systemloader();
 
     //ISystemloader
+    bool Initialize();
     bool SelectAndLoad(void * parentWindow);
     bool LoadRom(const char * romFile);
 

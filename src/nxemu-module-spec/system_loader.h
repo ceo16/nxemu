@@ -3,6 +3,7 @@
 
 __interface ISystemloader
 {
+    bool Initialize() = 0;
     bool SelectAndLoad(void * parentWindow) = 0;
     bool LoadRom(const char * romFile) = 0;
 };

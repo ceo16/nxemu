@@ -16,6 +16,11 @@ Systemloader::~Systemloader()
 {
 }
 
+bool Systemloader::Initialize(void)
+{
+    return true;
+}
+
 bool Systemloader::SelectAndLoad(void * parentWindow)
 {
     Path fileToOpen;
@@ -62,7 +67,8 @@ bool Systemloader::LoadNRO(const char * nroFile)
     IOperatingSystem & operatingSystem = m_system.OperatingSystem();
     const IProgramMetadata & metaData = m_nro->MetaData();
     uint64_t baseAddress = 0;
-    if (!operatingSystem.CreateApplicationProcess(m_nro->CodeSize(), metaData, baseAddress))
+    uint64_t processID = 0;
+    if (!operatingSystem.CreateApplicationProcess(m_nro->CodeSize(), metaData, baseAddress, processID))
     {
         return false;
     }

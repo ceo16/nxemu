@@ -73,7 +73,7 @@ bool OSManager::Initialize(void)
     return true;
 }
 
-bool OSManager::CreateApplicationProcess(uint64_t codeSize, const IProgramMetadata & metaData, uint64_t & baseAddress)
+bool OSManager::CreateApplicationProcess(uint64_t codeSize, const IProgramMetadata & metaData, uint64_t & baseAddress, uint64_t & processID)
 {
     if (m_process != nullptr)
     {
@@ -103,6 +103,7 @@ bool OSManager::CreateApplicationProcess(uint64_t codeSize, const IProgramMetada
     params.program_id = metaData.GetTitleID();
     m_coreSystem.GetAppletManager().CreateAndInsertByFrontendAppletParameters(m_process->GetProcessId(), params);
 
+    processID = m_process->GetProcessId();
     baseAddress = GetInteger(m_process->GetEntryPoint());
     return true;
 }
@@ -112,7 +113,7 @@ void OSManager::StartApplicationProcess(uint64_t /*baseAddress*/, int32_t priori
     m_process->Run(priority, stackSize);
 }
 
-void OSManager::RegisterProcessVirtualFile(uint64_t programId, /*IVirtualFile & file,*/ bool updatable)
+void OSManager::RegisterProcessVirtualFile(uint64_t programId, bool updatable)
 {
     FileSys::VirtualFile file;
     m_coreSystem.GetFileSystemController().RegisterProcess(m_process->GetProcessId(), programId, std::make_unique<FileSys::RomFSFactory>(file, updatable, m_coreSystem.GetContentProvider(), m_coreSystem.GetFileSystemController()));

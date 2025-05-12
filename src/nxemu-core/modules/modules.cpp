@@ -66,6 +66,11 @@ bool Modules::Initialize(IRenderWindow & RenderWindow, ISwitchSystem & System)
         return false;
     }
 
+    if (!m_systemLoader->Initialize())
+    {
+        g_notify->BreakPoint(__FILE__, __LINE__);
+        return false;
+    }
     if (!m_cpu->Initialize())
     {
         g_notify->BreakPoint(__FILE__, __LINE__);
