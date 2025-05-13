@@ -69,7 +69,7 @@ static std::string GetRelativePathFromNcaID(const std::array<u8, 16>& nca_id, bo
     return fmt::format(format_str, 0, Common::HexToString(nca_id, second_hex_upper));
 }
 
-static std::string GetCNMTName(TitleType type, u64 title_id) {
+static std::string GetCNMTName(LoaderTitleType type, u64 title_id) {
     static constexpr std::array<const char*, 9> TITLE_TYPE_NAMES{
         "SystemProgram",
         "SystemData",
@@ -84,31 +84,31 @@ static std::string GetCNMTName(TitleType type, u64 title_id) {
 
     auto index = static_cast<std::size_t>(type);
     // If the index is after the jump in TitleType, subtract it out.
-    if (index >= static_cast<std::size_t>(TitleType::Application)) {
-        index -= static_cast<std::size_t>(TitleType::Application) -
-                 static_cast<std::size_t>(TitleType::FirmwarePackageB);
+    if (index >= static_cast<std::size_t>(LoaderTitleType::Application)) {
+        index -= static_cast<std::size_t>(LoaderTitleType::Application) -
+                 static_cast<std::size_t>(LoaderTitleType::FirmwarePackageB);
     }
     return fmt::format("{}_{:016x}.cnmt", TITLE_TYPE_NAMES[index], title_id);
 }
 
-ContentRecordType GetCRTypeFromNCAType(NCAContentType type) {
+LoaderContentRecordType GetCRTypeFromNCAType(NCAContentType type) {
     switch (type) {
     case NCAContentType::Program:
         // TODO(DarkLordZach): Differentiate between Program and Patch
-        return ContentRecordType::Program;
+        return LoaderContentRecordType::Program;
     case NCAContentType::Meta:
-        return ContentRecordType::Meta;
+        return LoaderContentRecordType::Meta;
     case NCAContentType::Control:
-        return ContentRecordType::Control;
+        return LoaderContentRecordType::Control;
     case NCAContentType::Data:
     case NCAContentType::PublicData:
-        return ContentRecordType::Data;
+        return LoaderContentRecordType::Data;
     case NCAContentType::Manual:
         // TODO(DarkLordZach): Peek at NCA contents to differentiate Manual and Legal.
-        return ContentRecordType::HtmlDocument;
+        return LoaderContentRecordType::HtmlDocument;
     default:
         ASSERT_MSG(false, "Invalid NCAContentType={:02X}", type);
-        return ContentRecordType{};
+        return LoaderContentRecordType{};
     }
 }
 
@@ -124,10 +124,6 @@ VirtualFile ContentProvider::GetEntryUnparsed(ContentProviderEntry entry) const 
 
 VirtualFile ContentProvider::GetEntryRaw(ContentProviderEntry entry) const {
     return GetEntryRaw(entry.title_id, entry.type);
-}
-
-std::unique_ptr<NCA> ContentProvider::GetEntry(ContentProviderEntry entry) const {
-    return GetEntry(entry.title_id, entry.type);
 }
 
 std::vector<ContentProviderEntry> ContentProvider::ListEntries() const {
@@ -344,7 +340,7 @@ VirtualFile RegisteredCache::GetFileAtID(NcaID id) const {
 }
 
 static std::optional<NcaID> CheckMapForContentRecord(const std::map<u64, CNMT>& map, u64 title_id,
-                                                     ContentRecordType type) {
+                                                     LoaderContentRecordType type) {
     const auto cmnt_iter = map.find(title_id);
     if (cmnt_iter == map.cend()) {
         return std::nullopt;
@@ -362,8 +358,8 @@ static std::optional<NcaID> CheckMapForContentRecord(const std::map<u64, CNMT>& 
 }
 
 std::optional<NcaID> RegisteredCache::GetNcaIDFromMetadata(u64 title_id,
-                                                           ContentRecordType type) const {
-    if (type == ContentRecordType::Meta && meta_id.find(title_id) != meta_id.end())
+                                                           LoaderContentRecordType type) const {
+    if (type == LoaderContentRecordType::Meta && meta_id.find(title_id) != meta_id.end())
         return meta_id.at(title_id);
 
     const auto res1 = CheckMapForContentRecord(yuzu_meta, title_id, type);
@@ -466,11 +462,11 @@ RegisteredCache::RegisteredCache(VirtualDir dir_, ContentProviderParsingFunction
 
 RegisteredCache::~RegisteredCache() = default;
 
-bool RegisteredCache::HasEntry(u64 title_id, ContentRecordType type) const {
+bool RegisteredCache::HasEntry(u64 title_id, LoaderContentRecordType type) const {
     return GetEntryRaw(title_id, type) != nullptr;
 }
 
-VirtualFile RegisteredCache::GetEntryUnparsed(u64 title_id, ContentRecordType type) const {
+VirtualFile RegisteredCache::GetEntryUnparsed(u64 title_id, LoaderContentRecordType type) const {
     const auto id = GetNcaIDFromMetadata(title_id, type);
     return id ? GetFileAtID(*id) : nullptr;
 }
@@ -489,16 +485,16 @@ std::optional<u32> RegisteredCache::GetEntryVersion(u64 title_id) const {
     return std::nullopt;
 }
 
-VirtualFile RegisteredCache::GetEntryRaw(u64 title_id, ContentRecordType type) const {
+VirtualFile RegisteredCache::GetEntryRaw(u64 title_id, LoaderContentRecordType type) const {
     const auto id = GetNcaIDFromMetadata(title_id, type);
     return id ? parser(GetFileAtID(*id), *id) : nullptr;
 }
 
-std::unique_ptr<NCA> RegisteredCache::GetEntry(u64 title_id, ContentRecordType type) const {
+IFileSysNCA * RegisteredCache::GetEntry(u64 title_id, LoaderContentRecordType type) const {
     const auto raw = GetEntryRaw(title_id, type);
     if (raw == nullptr)
         return nullptr;
-    return std::make_unique<NCA>(raw);
+    return std::make_unique<NCA>(raw).release();
 }
 
 template <typename T>
@@ -526,7 +522,7 @@ void RegisteredCache::IterateAllMetadata(
 }
 
 std::vector<ContentProviderEntry> RegisteredCache::ListEntriesFilter(
-    std::optional<TitleType> title_type, std::optional<ContentRecordType> record_type,
+    std::optional<LoaderTitleType> title_type, std::optional<LoaderContentRecordType> record_type,
     std::optional<u64> title_id) const {
     std::vector<ContentProviderEntry> out;
     IterateAllMetadata<ContentProviderEntry>(
@@ -563,7 +559,7 @@ InstallResult RegisteredCache::InstallEntry(const NSP& nsp, bool overwrite_if_ex
     return InstallResult::ErrorMetaFailed;
 }
 
-InstallResult RegisteredCache::InstallEntry(const NCA& nca, TitleType type,
+InstallResult RegisteredCache::InstallEntry(const NCA& nca, LoaderTitleType type,
                                             bool overwrite_if_exists, const VfsCopyFunction& copy) {
     const CNMTHeader header{
         .title_id = nca.GetTitleId(),
@@ -635,7 +631,7 @@ bool RegisteredCache::RemoveExistingEntry(u64 title_id) const {
     };
 
     // If an entry exists in the registered cache, remove it
-    if (HasEntry(title_id, ContentRecordType::Meta)) {
+    if (HasEntry(title_id, LoaderContentRecordType::Meta)) {
         LOG_INFO(Loader,
                  "Previously installed entry (v{}) for title_id={:016X} detected! "
                  "Attempting to remove...",
@@ -643,17 +639,17 @@ bool RegisteredCache::RemoveExistingEntry(u64 title_id) const {
 
         // Get all the ncas associated with the current CNMT and delete them
         const auto meta_old_id =
-            GetNcaIDFromMetadata(title_id, ContentRecordType::Meta).value_or(NcaID{});
+            GetNcaIDFromMetadata(title_id, LoaderContentRecordType::Meta).value_or(NcaID{});
         const auto program_id =
-            GetNcaIDFromMetadata(title_id, ContentRecordType::Program).value_or(NcaID{});
+            GetNcaIDFromMetadata(title_id, LoaderContentRecordType::Program).value_or(NcaID{});
         const auto data_id =
-            GetNcaIDFromMetadata(title_id, ContentRecordType::Data).value_or(NcaID{});
+            GetNcaIDFromMetadata(title_id, LoaderContentRecordType::Data).value_or(NcaID{});
         const auto control_id =
-            GetNcaIDFromMetadata(title_id, ContentRecordType::Control).value_or(NcaID{});
+            GetNcaIDFromMetadata(title_id, LoaderContentRecordType::Control).value_or(NcaID{});
         const auto html_id =
-            GetNcaIDFromMetadata(title_id, ContentRecordType::HtmlDocument).value_or(NcaID{});
+            GetNcaIDFromMetadata(title_id, LoaderContentRecordType::HtmlDocument).value_or(NcaID{});
         const auto legal_id =
-            GetNcaIDFromMetadata(title_id, ContentRecordType::LegalInformation).value_or(NcaID{});
+            GetNcaIDFromMetadata(title_id, LoaderContentRecordType::LegalInformation).value_or(NcaID{});
 
         const auto deleted_meta = delete_nca(meta_old_id);
         const auto deleted_program = delete_nca(program_id);
@@ -669,7 +665,7 @@ bool RegisteredCache::RemoveExistingEntry(u64 title_id) const {
     // If patch entries for any program exist in yuzu meta, remove them
     for (u8 i = 0; i < 0x10; i++) {
         const auto meta_dir = dir->CreateDirectoryRelative("yuzu_meta");
-        const auto filename = GetCNMTName(TitleType::Update, title_id + i);
+        const auto filename = GetCNMTName(LoaderTitleType::Update, title_id + i);
         if (meta_dir->GetFile(filename)) {
             removed_data |= meta_dir->DeleteFile(filename);
         }
@@ -765,7 +761,7 @@ void ContentProviderUnion::Refresh() {
     }
 }
 
-bool ContentProviderUnion::HasEntry(u64 title_id, ContentRecordType type) const {
+bool ContentProviderUnion::HasEntry(u64 title_id, LoaderContentRecordType type) const {
     for (const auto& provider : providers) {
         if (provider.second == nullptr)
             continue;
@@ -790,7 +786,7 @@ std::optional<u32> ContentProviderUnion::GetEntryVersion(u64 title_id) const {
     return std::nullopt;
 }
 
-VirtualFile ContentProviderUnion::GetEntryUnparsed(u64 title_id, ContentRecordType type) const {
+VirtualFile ContentProviderUnion::GetEntryUnparsed(u64 title_id, LoaderContentRecordType type) const {
     for (const auto& provider : providers) {
         if (provider.second == nullptr)
             continue;
@@ -803,7 +799,7 @@ VirtualFile ContentProviderUnion::GetEntryUnparsed(u64 title_id, ContentRecordTy
     return nullptr;
 }
 
-VirtualFile ContentProviderUnion::GetEntryRaw(u64 title_id, ContentRecordType type) const {
+VirtualFile ContentProviderUnion::GetEntryRaw(u64 title_id, LoaderContentRecordType type) const {
     for (const auto& provider : providers) {
         if (provider.second == nullptr)
             continue;
@@ -816,21 +812,8 @@ VirtualFile ContentProviderUnion::GetEntryRaw(u64 title_id, ContentRecordType ty
     return nullptr;
 }
 
-std::unique_ptr<NCA> ContentProviderUnion::GetEntry(u64 title_id, ContentRecordType type) const {
-    for (const auto& provider : providers) {
-        if (provider.second == nullptr)
-            continue;
-
-        auto res = provider.second->GetEntry(title_id, type);
-        if (res != nullptr)
-            return res;
-    }
-
-    return nullptr;
-}
-
 std::vector<ContentProviderEntry> ContentProviderUnion::ListEntriesFilter(
-    std::optional<TitleType> title_type, std::optional<ContentRecordType> record_type,
+    std::optional<LoaderTitleType> title_type, std::optional<LoaderContentRecordType> record_type,
     std::optional<u64> title_id) const {
     std::vector<ContentProviderEntry> out;
 
@@ -849,8 +832,8 @@ std::vector<ContentProviderEntry> ContentProviderUnion::ListEntriesFilter(
 
 std::vector<std::pair<ContentProviderUnionSlot, ContentProviderEntry>>
 ContentProviderUnion::ListEntriesFilterOrigin(std::optional<ContentProviderUnionSlot> origin,
-                                              std::optional<TitleType> title_type,
-                                              std::optional<ContentRecordType> record_type,
+                                              std::optional<LoaderTitleType> title_type,
+                                              std::optional<LoaderContentRecordType> record_type,
                                               std::optional<u64> title_id) const {
     std::vector<std::pair<ContentProviderUnionSlot, ContentProviderEntry>> out;
 
@@ -874,7 +857,7 @@ ContentProviderUnion::ListEntriesFilterOrigin(std::optional<ContentProviderUnion
 }
 
 std::optional<ContentProviderUnionSlot> ContentProviderUnion::GetSlotForEntry(
-    u64 title_id, ContentRecordType type) const {
+    u64 title_id, LoaderContentRecordType type) const {
     const auto iter =
         std::find_if(providers.begin(), providers.end(), [title_id, type](const auto& provider) {
             return provider.second != nullptr && provider.second->HasEntry(title_id, type);
@@ -889,7 +872,7 @@ std::optional<ContentProviderUnionSlot> ContentProviderUnion::GetSlotForEntry(
 
 ManualContentProvider::~ManualContentProvider() = default;
 
-void ManualContentProvider::AddEntry(TitleType title_type, ContentRecordType content_type,
+void ManualContentProvider::AddEntry(LoaderTitleType title_type, LoaderContentRecordType content_type,
                                      u64 title_id, VirtualFile file) {
     entries.insert_or_assign({title_type, content_type, title_id}, file);
 }
@@ -900,7 +883,7 @@ void ManualContentProvider::ClearAllEntries() {
 
 void ManualContentProvider::Refresh() {}
 
-bool ManualContentProvider::HasEntry(u64 title_id, ContentRecordType type) const {
+bool ManualContentProvider::HasEntry(u64 title_id, LoaderContentRecordType type) const {
     return GetEntryRaw(title_id, type) != nullptr;
 }
 
@@ -908,11 +891,11 @@ std::optional<u32> ManualContentProvider::GetEntryVersion(u64 title_id) const {
     return std::nullopt;
 }
 
-VirtualFile ManualContentProvider::GetEntryUnparsed(u64 title_id, ContentRecordType type) const {
+VirtualFile ManualContentProvider::GetEntryUnparsed(u64 title_id, LoaderContentRecordType type) const {
     return GetEntryRaw(title_id, type);
 }
 
-VirtualFile ManualContentProvider::GetEntryRaw(u64 title_id, ContentRecordType type) const {
+VirtualFile ManualContentProvider::GetEntryRaw(u64 title_id, LoaderContentRecordType type) const {
     const auto iter =
         std::find_if(entries.begin(), entries.end(), [title_id, type](const auto& entry) {
             const auto content_type = std::get<1>(entry.first);
@@ -924,15 +907,8 @@ VirtualFile ManualContentProvider::GetEntryRaw(u64 title_id, ContentRecordType t
     return iter->second;
 }
 
-std::unique_ptr<NCA> ManualContentProvider::GetEntry(u64 title_id, ContentRecordType type) const {
-    const auto res = GetEntryRaw(title_id, type);
-    if (res == nullptr)
-        return nullptr;
-    return std::make_unique<NCA>(res);
-}
-
 std::vector<ContentProviderEntry> ManualContentProvider::ListEntriesFilter(
-    std::optional<TitleType> title_type, std::optional<ContentRecordType> record_type,
+    std::optional<LoaderTitleType> title_type, std::optional<LoaderContentRecordType> record_type,
     std::optional<u64> title_id) const {
     std::vector<ContentProviderEntry> out;
 

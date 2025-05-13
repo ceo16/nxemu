@@ -59,7 +59,6 @@ __interface IOperatingSystem
     bool Initialize(void) = 0;
     bool CreateApplicationProcess(uint64_t codeSize, const IProgramMetadata & metaData, uint64_t & baseAddress, uint64_t & processID) = 0;
     void StartApplicationProcess(uint64_t baseAddress, int32_t priority, int64_t stackSize) = 0;
-    void RegisterProcessVirtualFile(uint64_t programId, bool updatable) = 0;
     bool LoadModule(const IModuleInfo & module, uint64_t baseAddress) = 0;
     IDeviceMemory & DeviceMemory(void) = 0;
     void KeyboardKeyPress(int modifier, int keyIndex, int keyCode) = 0;

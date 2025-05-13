@@ -9,11 +9,8 @@
 #include "yuzu_common/common_types.h"
 #include "core/file_sys/fs_save_data_types.h"
 #include "core/file_sys/vfs/vfs.h"
-#include "core/hle/result.h"
 
-namespace Core {
-class System;
-}
+class Systemloader;
 
 namespace FileSys {
 
@@ -26,7 +23,7 @@ using ProgramId = u64;
 /// File system interface to the SaveData archive
 class SaveDataFactory {
 public:
-    explicit SaveDataFactory(Core::System& system_, ProgramId program_id_,
+    explicit SaveDataFactory(Systemloader & loader_, ProgramId program_id_,
                              VirtualDir save_directory_);
     ~SaveDataFactory();
 
@@ -47,10 +44,35 @@ public:
     void SetAutoCreate(bool state);
 
 private:
-    Core::System& system;
+    Systemloader & loader;
     ProgramId program_id;
     VirtualDir dir;
     bool auto_create{true};
 };
 
 } // namespace FileSys
+
+class SaveDataFactoryPtr :
+    public ISaveDataFactory
+{
+public:
+    SaveDataFactoryPtr();
+    SaveDataFactoryPtr(std::shared_ptr<FileSys::SaveDataFactory> saveDataFactory);
+    SaveDataFactoryPtr(SaveDataFactoryPtr && other) noexcept;
+    ~SaveDataFactoryPtr();
+
+    SaveDataFactoryPtr & operator=(SaveDataFactoryPtr && other) noexcept;
+
+    FileSys::SaveDataFactory * operator->() const;
+    FileSys::SaveDataFactory & operator*() const;
+    operator bool() const;
+
+    // ISaveDataFactory
+    void Release() override;
+
+private:
+    SaveDataFactoryPtr(const SaveDataFactoryPtr &) = delete;
+    SaveDataFactoryPtr & operator=(const SaveDataFactoryPtr &) = delete;
+
+    std::shared_ptr<FileSys::SaveDataFactory> m_saveDataFactory;
+};

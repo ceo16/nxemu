@@ -15,7 +15,7 @@ CNMT::CNMT(VirtualFile file) {
         return;
 
     // If type is {Application, Update, AOC} has opt-header.
-    if (header.type >= TitleType::Application && header.type <= TitleType::AOC) {
+    if (header.type >= LoaderTitleType::Application && header.type <= LoaderTitleType::AOC) {
         if (file->ReadObject(&opt_header, sizeof(CNMTHeader)) != sizeof(OptionalHeader)) {
             LOG_WARNING(Loader, "Failed to read optional header.");
         }
@@ -57,7 +57,7 @@ u32 CNMT::GetTitleVersion() const {
     return header.title_version;
 }
 
-TitleType CNMT::GetType() const {
+LoaderTitleType CNMT::GetType() const {
     return header.type;
 }
 
@@ -99,7 +99,7 @@ bool CNMT::UnionRecords(const CNMT& other) {
 
 std::vector<u8> CNMT::Serialize() const {
     const bool has_opt_header =
-        header.type >= TitleType::Application && header.type <= TitleType::AOC;
+        header.type >= LoaderTitleType::Application && header.type <= LoaderTitleType::AOC;
     const auto dead_zone = header.table_offset + sizeof(CNMTHeader);
     std::vector<u8> out(
         std::max(sizeof(CNMTHeader) + (has_opt_header ? sizeof(OptionalHeader) : 0), dead_zone) +

@@ -11,9 +11,7 @@
 #include "core/file_sys/nca_metadata.h"
 #include "core/file_sys/vfs/vfs.h"
 
-namespace Core::Crypto {
-class KeyManager;
-}
+enum class LoaderContentRecordType : u8;
 
 namespace Loader {
 enum class ResultStatus : u16;
@@ -22,7 +20,5 @@ enum class ResultStatus : u16;
 namespace FileSys {
 
 class PartitionFilesystem;
-
-enum class ContentRecordType : u8;
 
 } // namespace FileSys

@@ -7,6 +7,7 @@
 #include "yuzu_common/common_types.h"
 #include "core/hle/service/cmif_types.h"
 #include "core/hle/service/service.h"
+#include "core/file_sys/fs_save_data_types.h"
 
 namespace Service::FileSystem {
 
@@ -39,8 +40,6 @@ public:
 
 private:
     void FindAllSaves(FileSys::SaveDataSpaceId space);
-    void FindNormalSaves(FileSys::SaveDataSpaceId space, const FileSys::VirtualDir& type);
-    void FindTemporaryStorageSaves(FileSys::SaveDataSpaceId space, const FileSys::VirtualDir& type);
 
     std::shared_ptr<SaveDataController> save_data_controller;
     std::vector<SaveDataInfo> info;

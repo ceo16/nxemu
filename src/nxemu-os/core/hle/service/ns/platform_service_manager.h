@@ -11,10 +11,6 @@
 
 namespace Service {
 
-namespace FileSystem {
-class FileSystemController;
-} // namespace FileSystem
-
 namespace NS {
 
 enum class FontArchives : u64 {

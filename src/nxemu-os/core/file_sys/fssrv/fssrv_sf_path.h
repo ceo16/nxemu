@@ -3,11 +3,10 @@
 
 #pragma once
 
-#include "core/file_sys/fs_directory.h"
-
 namespace FileSys::Sf {
 
 struct Path {
+    enum { EntryNameLengthMax = 0x300 };
     char str[EntryNameLengthMax + 1];
 
     static constexpr Path Encode(const char* p) {

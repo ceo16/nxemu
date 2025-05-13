@@ -10,18 +10,14 @@
 #include "yuzu_common/common_types.h"
 #include "core/file_sys/nca_metadata.h"
 #include "core/file_sys/vfs/vfs_types.h"
-#include "core/memory/dmnt_cheat_types.h"
 
 namespace Core {
 class System;
 }
 
-namespace Service::FileSystem {
-class FileSystemController;
-}
-
 namespace FileSys {
 
+class FileSystemController;
 class ContentProvider;
 class NCA;
 class NACP;
@@ -44,7 +40,7 @@ public:
     using Metadata = std::pair<std::unique_ptr<NACP>, VirtualFile>;
 
     explicit PatchManager(u64 title_id_,
-                          const Service::FileSystem::FileSystemController& fs_controller_,
+                          const FileSys::FileSystemController& fs_controller_,
                           const ContentProvider& content_provider_);
     ~PatchManager();
 
@@ -64,15 +60,11 @@ public:
     // Used to prevent expensive copies in NSO loader.
     [[nodiscard]] bool HasNSOPatch(const BuildID& build_id, std::string_view name) const;
 
-    // Creates a CheatList object with all
-    [[nodiscard]] std::vector<Core::Memory::CheatEntry> CreateCheatList(
-        const BuildID& build_id) const;
-
     // Currently tracked RomFS patches:
     // - Game Updates
     // - LayeredFS
     [[nodiscard]] VirtualFile PatchRomFS(const NCA* base_nca, VirtualFile base_romfs,
-                                         ContentRecordType type = ContentRecordType::Program,
+                                         LoaderContentRecordType type = LoaderContentRecordType::Program,
                                          VirtualFile packed_update_raw = nullptr,
                                          bool apply_layeredfs = true) const;
 
@@ -96,7 +88,7 @@ private:
                                                           const std::string& build_id) const;
 
     u64 title_id;
-    const Service::FileSystem::FileSystemController& fs_controller;
+    const FileSystemController& fs_controller;
     const ContentProvider& content_provider;
 };
 

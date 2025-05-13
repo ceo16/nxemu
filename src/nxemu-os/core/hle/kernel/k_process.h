@@ -7,7 +7,6 @@
 #include <nxemu-module-spec/operating_system.h>
 #include <nxemu-module-spec/cpu.h>
 #include "core/arm/arm_interface.h"
-#include "core/file_sys/program_metadata.h"
 #include "core/hle/kernel/code_set.h"
 #include "core/hle/kernel/k_address_arbiter.h"
 #include "core/hle/kernel/k_capabilities.h"

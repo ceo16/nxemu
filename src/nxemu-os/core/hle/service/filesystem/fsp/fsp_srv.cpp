@@ -15,17 +15,6 @@
 #include "yuzu_common/settings.h"
 #include "yuzu_common/string_util.h"
 #include "core/core.h"
-#include "core/file_sys/content_archive.h"
-#include "core/file_sys/errors.h"
-#include "core/file_sys/fs_directory.h"
-#include "core/file_sys/fs_filesystem.h"
-#include "core/file_sys/nca_metadata.h"
-#include "core/file_sys/patch_manager.h"
-#include "core/file_sys/romfs.h"
-#include "core/file_sys/romfs_factory.h"
-#include "core/file_sys/savedata_factory.h"
-#include "core/file_sys/system_archive/system_archive.h"
-#include "core/file_sys/vfs/vfs.h"
 #include "core/hle/result.h"
 #include "core/hle/service/cmif_serialization.h"
 #include "core/hle/service/filesystem/filesystem.h"
@@ -39,19 +28,19 @@
 #include "core/hle/service/filesystem/save_data_controller.h"
 #include "core/hle/service/hle_ipc.h"
 #include "core/hle/service/ipc_helpers.h"
-#include "core/loader/loader.h"
+#include "core/file_sys/errors.h"
+#include <nxemu-module-spec/system_loader.h>
 
 namespace Service::FileSystem {
 
 FSP_SRV::FSP_SRV(Core::System& system_)
-    : ServiceFramework{system_, "fsp-srv"}, fsc{system.GetFileSystemController()},
-      content_provider{system.GetContentProvider()} {
+    : ServiceFramework{system_, "fsp-srv"}, fsc{ system.GetFileSystemController() } {
     // clang-format off
     static const FunctionInfo functions[] = {
         {0, nullptr, "OpenFileSystem"},
         {1, D<&FSP_SRV::SetCurrentProcess>, "SetCurrentProcess"},
         {2, nullptr, "OpenDataFileSystemByCurrentProcess"},
-        {7, D<&FSP_SRV::OpenFileSystemWithPatch>, "OpenFileSystemWithPatch"},
+        {7, nullptr, "OpenFileSystemWithPatch"},
         {8, nullptr, "OpenFileSystemWithId"},
         {9, nullptr, "OpenDataFileSystemByApplicationId"},
         {11, nullptr, "OpenBisFileSystem"},
@@ -61,8 +50,8 @@ FSP_SRV::FSP_SRV(Core::System& system_)
         {18, D<&FSP_SRV::OpenSdCardFileSystem>, "OpenSdCardFileSystem"},
         {19, nullptr, "FormatSdCardFileSystem"},
         {21, nullptr, "DeleteSaveDataFileSystem"},
-        {22, D<&FSP_SRV::CreateSaveDataFileSystem>, "CreateSaveDataFileSystem"},
-        {23, D<&FSP_SRV::CreateSaveDataFileSystemBySystemSaveDataId>, "CreateSaveDataFileSystemBySystemSaveDataId"},
+        {22, nullptr, "CreateSaveDataFileSystem"},
+        {23, nullptr, "CreateSaveDataFileSystemBySystemSaveDataId"},
         {24, nullptr, "RegisterSaveDataFileSystemAtomicDeletion"},
         {25, nullptr, "DeleteSaveDataFileSystemBySaveDataSpaceId"},
         {26, nullptr, "FormatSdCardDryRun"},
@@ -75,23 +64,23 @@ FSP_SRV::FSP_SRV(Core::System& system_)
         {34, D<&FSP_SRV::GetCacheStorageSize>, "GetCacheStorageSize"},
         {35, nullptr, "CreateSaveDataFileSystemByHashSalt"},
         {36, nullptr, "OpenHostFileSystemWithOption"},
-        {51, D<&FSP_SRV::OpenSaveDataFileSystem>, "OpenSaveDataFileSystem"},
-        {52, D<&FSP_SRV::OpenSaveDataFileSystemBySystemSaveDataId>, "OpenSaveDataFileSystemBySystemSaveDataId"},
-        {53, D<&FSP_SRV::OpenReadOnlySaveDataFileSystem>, "OpenReadOnlySaveDataFileSystem"},
+        {51, nullptr, "OpenSaveDataFileSystem"},
+        {52, nullptr, "OpenSaveDataFileSystemBySystemSaveDataId"},
+        {53, nullptr, "OpenReadOnlySaveDataFileSystem"},
         {57, D<&FSP_SRV::ReadSaveDataFileSystemExtraDataBySaveDataSpaceId>, "ReadSaveDataFileSystemExtraDataBySaveDataSpaceId"},
         {58, D<&FSP_SRV::ReadSaveDataFileSystemExtraData>, "ReadSaveDataFileSystemExtraData"},
         {59, D<&FSP_SRV::WriteSaveDataFileSystemExtraData>, "WriteSaveDataFileSystemExtraData"},
         {60, nullptr, "OpenSaveDataInfoReader"},
-        {61, D<&FSP_SRV::OpenSaveDataInfoReaderBySaveDataSpaceId>, "OpenSaveDataInfoReaderBySaveDataSpaceId"},
-        {62, D<&FSP_SRV::OpenSaveDataInfoReaderOnlyCacheStorage>, "OpenSaveDataInfoReaderOnlyCacheStorage"},
+        {61, nullptr, "OpenSaveDataInfoReaderBySaveDataSpaceId"},
+        {62, nullptr, "OpenSaveDataInfoReaderOnlyCacheStorage"},
         {64, nullptr, "OpenSaveDataInternalStorageFileSystem"},
         {65, nullptr, "UpdateSaveDataMacForDebug"},
         {66, nullptr, "WriteSaveDataFileSystemExtraData2"},
-        {67, D<&FSP_SRV::FindSaveDataWithFilter>, "FindSaveDataWithFilter"},
+        {67, nullptr, "FindSaveDataWithFilter"},
         {68, nullptr, "OpenSaveDataInfoReaderBySaveDataFilter"},
-        {69, D<&FSP_SRV::ReadSaveDataFileSystemExtraDataBySaveDataAttribute>, "ReadSaveDataFileSystemExtraDataBySaveDataAttribute"},
-        {70, D<&FSP_SRV::WriteSaveDataFileSystemExtraDataWithMaskBySaveDataAttribute>, "WriteSaveDataFileSystemExtraDataWithMaskBySaveDataAttribute"},
-        {71, D<&FSP_SRV::ReadSaveDataFileSystemExtraDataWithMaskBySaveDataAttribute>, "ReadSaveDataFileSystemExtraDataWithMaskBySaveDataAttribute"},
+        {69, nullptr, "ReadSaveDataFileSystemExtraDataBySaveDataAttribute"},
+        {70, nullptr, "WriteSaveDataFileSystemExtraDataWithMaskBySaveDataAttribute"},
+        {71, nullptr, "ReadSaveDataFileSystemExtraDataWithMaskBySaveDataAttribute"},
         {80, nullptr, "OpenSaveDataMetaFile"},
         {81, nullptr, "OpenSaveDataTransferManager"},
         {82, nullptr, "OpenSaveDataTransferManagerVersion2"},
@@ -187,133 +176,28 @@ Result FSP_SRV::SetCurrentProcess(ClientProcessId pid) {
 
     LOG_DEBUG(Service_FS, "called. current_process_id=0x{:016X}", current_process_id);
 
-    R_RETURN(
-        fsc.OpenProcess(&program_id, &save_data_controller, &romfs_controller, current_process_id));
-}
+    SaveDataFactoryPtr saveDataFactory;
+    RomFsControllerPtr romFsController;
 
-Result FSP_SRV::OpenFileSystemWithPatch(OutInterface<IFileSystem> out_interface,
-                                        FileSystemProxyType type, u64 open_program_id) {
-    LOG_ERROR(Service_FS, "(STUBBED) called with type={}, program_id={:016X}", type,
-              open_program_id);
-
-    // FIXME: many issues with this
-    ASSERT(type == FileSystemProxyType::Manual);
-    const auto manual_romfs = romfs_controller->OpenPatchedRomFS(
-        open_program_id, FileSys::ContentRecordType::HtmlDocument);
-
-    ASSERT(manual_romfs != nullptr);
-
-    const auto extracted_romfs = FileSys::ExtractRomFS(manual_romfs);
-    ASSERT(extracted_romfs != nullptr);
-
-    *out_interface = std::make_shared<IFileSystem>(
-        system, extracted_romfs, SizeGetter::FromStorageId(fsc, FileSys::StorageId::NandUser));
-
+    if (!fsc.OpenProcess(&program_id, saveDataFactory.GetAddressForSet(), romFsController.GetAddressForSet(), current_process_id))
+    {
+        return FileSys::ResultTargetNotFound;
+    }
+    save_data_controller = std::make_shared<SaveDataController>(system, std::move(saveDataFactory));
+    romfs_controller = std::make_shared<RomFsController>(std::move(romFsController), program_id);
     R_SUCCEED();
 }
 
 Result FSP_SRV::OpenSdCardFileSystem(OutInterface<IFileSystem> out_interface) {
     LOG_DEBUG(Service_FS, "called");
 
-    FileSys::VirtualDir sdmc_dir{};
-    fsc.OpenSDMC(&sdmc_dir);
-
-    *out_interface = std::make_shared<IFileSystem>(
-        system, sdmc_dir, SizeGetter::FromStorageId(fsc, FileSys::StorageId::SdCard));
-
-    R_SUCCEED();
-}
-
-Result FSP_SRV::CreateSaveDataFileSystem(FileSys::SaveDataCreationInfo save_create_struct,
-                                         FileSys::SaveDataAttribute save_struct, u128 uid) {
-    LOG_DEBUG(Service_FS, "called save_struct = {}, uid = {:016X}{:016X}", save_struct.DebugInfo(),
-              uid[1], uid[0]);
-
-    FileSys::VirtualDir save_data_dir{};
-    R_RETURN(save_data_controller->CreateSaveData(&save_data_dir, FileSys::SaveDataSpaceId::User,
-                                                  save_struct));
-}
-
-Result FSP_SRV::CreateSaveDataFileSystemBySystemSaveDataId(
-    FileSys::SaveDataAttribute save_struct, FileSys::SaveDataCreationInfo save_create_struct) {
-    LOG_DEBUG(Service_FS, "called save_struct = {}", save_struct.DebugInfo());
-
-    FileSys::VirtualDir save_data_dir{};
-    R_RETURN(save_data_controller->CreateSaveData(&save_data_dir, FileSys::SaveDataSpaceId::System,
-                                                  save_struct));
-}
-
-Result FSP_SRV::OpenSaveDataFileSystem(OutInterface<IFileSystem> out_interface,
-                                       FileSys::SaveDataSpaceId space_id,
-                                       FileSys::SaveDataAttribute attribute) {
-    LOG_INFO(Service_FS, "called.");
-
-    FileSys::VirtualDir dir{};
-    R_TRY(save_data_controller->OpenSaveData(&dir, space_id, attribute));
-
-    FileSys::StorageId id{};
-    switch (space_id) {
-    case FileSys::SaveDataSpaceId::User:
-        id = FileSys::StorageId::NandUser;
-        break;
-    case FileSys::SaveDataSpaceId::SdSystem:
-    case FileSys::SaveDataSpaceId::SdUser:
-        id = FileSys::StorageId::SdCard;
-        break;
-    case FileSys::SaveDataSpaceId::System:
-        id = FileSys::StorageId::NandSystem;
-        break;
-    case FileSys::SaveDataSpaceId::Temporary:
-    case FileSys::SaveDataSpaceId::ProperSystem:
-    case FileSys::SaveDataSpaceId::SafeMode:
-        ASSERT(false);
+    IVirtualDirectoryPtr sdmc_dir;
+    if (!fsc.OpenSDMC(sdmc_dir.GetAddressForSet()))
+    {
+        R_RETURN(FileSys::ResultPortSdCardNoDevice);
     }
-
-    *out_interface =
-        std::make_shared<IFileSystem>(system, std::move(dir), SizeGetter::FromStorageId(fsc, id));
-
+    UNIMPLEMENTED();
     R_SUCCEED();
-}
-
-Result FSP_SRV::OpenSaveDataFileSystemBySystemSaveDataId(OutInterface<IFileSystem> out_interface,
-                                                         FileSys::SaveDataSpaceId space_id,
-                                                         FileSys::SaveDataAttribute attribute) {
-    LOG_WARNING(Service_FS, "(STUBBED) called, delegating to 51 OpenSaveDataFilesystem");
-    R_RETURN(OpenSaveDataFileSystem(out_interface, space_id, attribute));
-}
-
-Result FSP_SRV::OpenReadOnlySaveDataFileSystem(OutInterface<IFileSystem> out_interface,
-                                               FileSys::SaveDataSpaceId space_id,
-                                               FileSys::SaveDataAttribute attribute) {
-    LOG_WARNING(Service_FS, "(STUBBED) called, delegating to 51 OpenSaveDataFilesystem");
-    R_RETURN(OpenSaveDataFileSystem(out_interface, space_id, attribute));
-}
-
-Result FSP_SRV::OpenSaveDataInfoReaderBySaveDataSpaceId(
-    OutInterface<ISaveDataInfoReader> out_interface, FileSys::SaveDataSpaceId space) {
-    LOG_INFO(Service_FS, "called, space={}", space);
-
-    *out_interface = std::make_shared<ISaveDataInfoReader>(system, save_data_controller, space);
-
-    R_SUCCEED();
-}
-
-Result FSP_SRV::OpenSaveDataInfoReaderOnlyCacheStorage(
-    OutInterface<ISaveDataInfoReader> out_interface) {
-    LOG_WARNING(Service_FS, "(STUBBED) called");
-
-    *out_interface = std::make_shared<ISaveDataInfoReader>(system, save_data_controller,
-                                                           FileSys::SaveDataSpaceId::Temporary);
-
-    R_SUCCEED();
-}
-
-Result FSP_SRV::FindSaveDataWithFilter(Out<s64> out_count,
-                                       OutBuffer<BufferAttr_HipcMapAlias> out_buffer,
-                                       FileSys::SaveDataSpaceId space_id,
-                                       FileSys::SaveDataFilter filter) {
-    LOG_WARNING(Service_FS, "(STUBBED) called");
-    R_THROW(FileSys::ResultTargetNotFound);
 }
 
 Result FSP_SRV::WriteSaveDataFileSystemExtraData(InBuffer<BufferAttr_HipcMapAlias> buffer,
@@ -324,54 +208,11 @@ Result FSP_SRV::WriteSaveDataFileSystemExtraData(InBuffer<BufferAttr_HipcMapAlia
     R_SUCCEED();
 }
 
-Result FSP_SRV::WriteSaveDataFileSystemExtraDataWithMaskBySaveDataAttribute(
-    InBuffer<BufferAttr_HipcMapAlias> buffer, InBuffer<BufferAttr_HipcMapAlias> mask_buffer,
-    FileSys::SaveDataSpaceId space_id, FileSys::SaveDataAttribute attribute) {
-    LOG_WARNING(Service_FS,
-                "(STUBBED) called, space_id={}, attribute.program_id={:016X}\n"
-                "attribute.user_id={:016X}{:016X}, attribute.save_id={:016X}\n"
-                "attribute.type={}, attribute.rank={}, attribute.index={}",
-                space_id, attribute.program_id, attribute.user_id[1], attribute.user_id[0],
-                attribute.system_save_data_id, attribute.type, attribute.rank, attribute.index);
-    R_SUCCEED();
-}
-
-Result FSP_SRV::ReadSaveDataFileSystemExtraDataWithMaskBySaveDataAttribute(
-    FileSys::SaveDataSpaceId space_id, FileSys::SaveDataAttribute attribute,
-    InBuffer<BufferAttr_HipcMapAlias> mask_buffer, OutBuffer<BufferAttr_HipcMapAlias> out_buffer) {
-    // Stub this to None for now, backend needs an impl to read/write the SaveDataExtraData
-    // In an earlier version of the code, this was returned as an out argument, but this is not
-    // correct
-    [[maybe_unused]] constexpr auto flags = static_cast<u32>(FileSys::SaveDataFlags::None);
-
-    LOG_WARNING(Service_FS,
-                "(STUBBED) called, flags={}, space_id={}, attribute.program_id={:016X}\n"
-                "attribute.user_id={:016X}{:016X}, attribute.save_id={:016X}\n"
-                "attribute.type={}, attribute.rank={}, attribute.index={}",
-                flags, space_id, attribute.program_id, attribute.user_id[1], attribute.user_id[0],
-                attribute.system_save_data_id, attribute.type, attribute.rank, attribute.index);
-
-    R_SUCCEED();
-}
 
 Result FSP_SRV::ReadSaveDataFileSystemExtraData(OutBuffer<BufferAttr_HipcMapAlias> out_buffer,
                                                 u64 save_data_id) {
     // Stub, backend needs an impl to read/write the SaveDataExtraData
     LOG_WARNING(Service_FS, "(STUBBED) called, save_data_id={:016X}", save_data_id);
-    std::memset(out_buffer.data(), 0, out_buffer.size());
-    R_SUCCEED();
-}
-
-Result FSP_SRV::ReadSaveDataFileSystemExtraDataBySaveDataAttribute(
-    OutBuffer<BufferAttr_HipcMapAlias> out_buffer, FileSys::SaveDataSpaceId space_id,
-    FileSys::SaveDataAttribute attribute) {
-    // Stub, backend needs an impl to read/write the SaveDataExtraData
-    LOG_WARNING(Service_FS,
-                "(STUBBED) called, space_id={}, attribute.program_id={:016X}\n"
-                "attribute.user_id={:016X}{:016X}, attribute.save_id={:016X}\n"
-                "attribute.type={}, attribute.rank={}, attribute.index={}",
-                space_id, attribute.program_id, attribute.user_id[1], attribute.user_id[0],
-                attribute.system_save_data_id, attribute.type, attribute.rank, attribute.index);
     std::memset(out_buffer.data(), 0, out_buffer.size());
     R_SUCCEED();
 }
@@ -394,54 +235,13 @@ Result FSP_SRV::OpenSaveDataTransferProhibiter(
 }
 
 Result FSP_SRV::OpenDataStorageByCurrentProcess(OutInterface<IStorage> out_interface) {
-    LOG_DEBUG(Service_FS, "called");
-
-    if (!romfs) {
-        auto current_romfs = romfs_controller->OpenRomFSCurrentProcess();
-        if (!current_romfs) {
-            // TODO (bunnei): Find the right error code to use here
-            LOG_CRITICAL(Service_FS, "No file system interface available!");
-            R_RETURN(ResultUnknown);
-        }
-
-        romfs = current_romfs;
-    }
-
-    *out_interface = std::make_shared<IStorage>(system, romfs);
-
+    UNIMPLEMENTED();
     R_SUCCEED();
 }
 
 Result FSP_SRV::OpenDataStorageByDataId(OutInterface<IStorage> out_interface,
                                         FileSys::StorageId storage_id, u32 unknown, u64 title_id) {
-    LOG_DEBUG(Service_FS, "called with storage_id={:02X}, unknown={:08X}, title_id={:016X}",
-              storage_id, unknown, title_id);
-
-    auto data = romfs_controller->OpenRomFS(title_id, storage_id, FileSys::ContentRecordType::Data);
-
-    if (!data) {
-        const auto archive = FileSys::SystemArchive::SynthesizeSystemArchive(title_id);
-
-        if (archive != nullptr) {
-            *out_interface = std::make_shared<IStorage>(system, archive);
-            R_SUCCEED();
-        }
-
-        // TODO(DarkLordZach): Find the right error code to use here
-        LOG_ERROR(Service_FS,
-                  "Could not open data storage with title_id={:016X}, storage_id={:02X}", title_id,
-                  storage_id);
-        R_RETURN(ResultUnknown);
-    }
-
-    const FileSys::PatchManager pm{title_id, fsc, content_provider};
-
-    auto base =
-        romfs_controller->OpenBaseNca(title_id, storage_id, FileSys::ContentRecordType::Data);
-    auto storage = std::make_shared<IStorage>(
-        system, pm.PatchRomFS(base.get(), std::move(data), FileSys::ContentRecordType::Data));
-
-    *out_interface = std::move(storage);
+    UNIMPLEMENTED();
     R_SUCCEED();
 }
 
@@ -450,31 +250,20 @@ Result FSP_SRV::OpenPatchDataStorageByCurrentProcess(OutInterface<IStorage> out_
     LOG_WARNING(Service_FS, "(STUBBED) called with storage_id={:02X}, title_id={:016X}", storage_id,
                 title_id);
 
-    R_RETURN(FileSys::ResultTargetNotFound);
+    UNIMPLEMENTED();
+    R_SUCCEED();
 }
 
 Result FSP_SRV::OpenDataStorageWithProgramIndex(OutInterface<IStorage> out_interface,
                                                 u8 program_index) {
-    LOG_DEBUG(Service_FS, "called, program_index={}", program_index);
-
-    auto patched_romfs = romfs_controller->OpenPatchedRomFSWithProgramIndex(
-        program_id, program_index, FileSys::ContentRecordType::Program);
-
-    if (!patched_romfs) {
-        // TODO: Find the right error code to use here
-        LOG_ERROR(Service_FS, "Could not open storage with program_index={}", program_index);
-        R_RETURN(ResultUnknown);
-    }
-
-    *out_interface = std::make_shared<IStorage>(system, std::move(patched_romfs));
-
+    UNIMPLEMENTED();
     R_SUCCEED();
 }
 
 Result FSP_SRV::DisableAutoSaveDataCreation() {
     LOG_DEBUG(Service_FS, "called");
 
-    save_data_controller->SetAutoCreate(false);
+    UNIMPLEMENTED();
 
     R_SUCCEED();
 }

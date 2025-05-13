@@ -9,14 +9,6 @@
 #include "core/core_timing.h"
 #include "core/cpu_manager.h"
 #include "core/debugger/debugger.h"
-#include "core/file_sys/bis_factory.h"
-#include "core/file_sys/fs_filesystem.h"
-#include "core/file_sys/patch_manager.h"
-#include "core/file_sys/registered_cache.h"
-#include "core/file_sys/romfs_factory.h"
-#include "core/file_sys/savedata_factory.h"
-#include "core/file_sys/vfs/vfs_concat.h"
-#include "core/file_sys/vfs/vfs_real.h"
 #include "core/gpu_dirty_memory_manager.h"
 #include "core/hle/kernel/k_memory_manager.h"
 #include "core/hle/kernel/k_process.h"
@@ -32,6 +24,7 @@
 #include "core/perf_stats.h"
 #include "yuzu_hid_core/hid_core.h"
 #include "yuzu_input_common/main.h"
+#include <nxemu-module-spec/system_loader.h>
 
 MICROPROFILE_DEFINE(ARM_CPU0, "ARM", "CPU 0", MP_RGB(255, 64, 64));
 MICROPROFILE_DEFINE(ARM_CPU1, "ARM", "CPU 1", MP_RGB(255, 64, 64));
@@ -41,10 +34,11 @@ MICROPROFILE_DEFINE(ARM_CPU3, "ARM", "CPU 3", MP_RGB(255, 64, 64));
 namespace Core {
 
 struct System::Impl {
-    explicit Impl(System & system, ISwitchSystem & switchSystem) 
-        : kernel{system}, fs_controller{system}, hid_core{}, cpu_manager{system}, 
-        applet_manager{system}, frontend_applets{system}, switchSystem(switchSystem),
-        input_subsystem{std::make_shared<InputCommon::InputSubsystem>()}
+    explicit Impl(System & system, ISwitchSystem & switchSystem_) 
+        : kernel{system}, hid_core{}, cpu_manager{system}, 
+        applet_manager{system}, frontend_applets{system}, switchSystem(switchSystem_),
+        input_subsystem{std::make_shared<InputCommon::InputSubsystem>()},
+        fs_controller(switchSystem_.Systemloader().FileSystemController())
     {
         device_memory = std::make_unique<Core::DeviceMemory>();
     }
@@ -54,14 +48,6 @@ struct System::Impl {
 
         core_timing.SetMulticore(is_multicore);
         core_timing.Initialize([&system]() { system.RegisterHostThread(); });
-
-        // Create a default fs if one doesn't already exist.
-        if (virtual_filesystem == nullptr) {
-            virtual_filesystem = std::make_shared<FileSys::RealVfsFilesystem>();
-        }
-        if (content_provider == nullptr) {
-            content_provider = std::make_unique<FileSys::ContentProviderUnion>();
-        }
 
         // Create default implementations of applets if one is not provided.
         frontend_applets.SetDefaultAppletsIfMissing();
@@ -177,11 +163,7 @@ struct System::Impl {
 
     Timing::CoreTiming core_timing;
     Kernel::KernelCore kernel;
-    /// RealVfsFilesystem instance
-    FileSys::VirtualFilesystem virtual_filesystem;
-    /// ContentProviderUnion instance
-    std::unique_ptr<FileSys::ContentProviderUnion> content_provider;
-    Service::FileSystem::FileSystemController fs_controller;
+    IFileSystemController & fs_controller;
     std::unique_ptr<Core::DeviceMemory> device_memory;
     Core::HID::HIDCore hid_core;
     std::shared_ptr<InputCommon::InputSubsystem> input_subsystem;
@@ -279,6 +261,11 @@ IVideo & System::GetVideo()
     return impl->switchSystem.Video();
 }
 
+ISystemloader & System::GetSystemloader()
+{
+    return impl->switchSystem.Systemloader();
+}
+
 Kernel::PhysicalCore& System::CurrentPhysicalCore() {
     return impl->kernel.CurrentPhysicalCore();
 }
@@ -366,10 +353,6 @@ u64 System::GetApplicationProcessProgramID() const {
     return impl->kernel.ApplicationProcess()->GetProgramId();
 }
 
-FileSys::VirtualFilesystem System::GetFilesystem() const {
-    return impl->virtual_filesystem;
-}
-
 void System::SetFrontendAppletSet(Service::AM::Frontend::FrontendAppletSet&& set) {
     impl->frontend_applets.SetFrontendAppletSet(std::move(set));
 }
@@ -386,37 +369,8 @@ Service::AM::AppletManager& System::GetAppletManager() {
     return impl->applet_manager;
 }
 
-void System::SetContentProvider(std::unique_ptr<FileSys::ContentProviderUnion> provider) {
-    impl->content_provider = std::move(provider);
-}
-
-FileSys::ContentProvider& System::GetContentProvider() {
-    return *impl->content_provider;
-}
-
-const FileSys::ContentProvider& System::GetContentProvider() const {
-    return *impl->content_provider;
-}
-
-FileSys::ContentProviderUnion& System::GetContentProviderUnion() {
-    return *impl->content_provider;
-}
-
-const FileSys::ContentProviderUnion& System::GetContentProviderUnion() const {
-    return *impl->content_provider;
-}
-
-Service::FileSystem::FileSystemController& System::GetFileSystemController() {
+IFileSystemController & System::GetFileSystemController() {
     return impl->fs_controller;
-}
-
-const Service::FileSystem::FileSystemController& System::GetFileSystemController() const {
-    return impl->fs_controller;
-}
-
-void System::RegisterContentProvider(FileSys::ContentProviderUnionSlot slot,
-                                     FileSys::ContentProvider* provider) {
-    impl->content_provider->SetSlot(slot, provider);
 }
 
 Service::APM::Controller& System::GetAPMController() {

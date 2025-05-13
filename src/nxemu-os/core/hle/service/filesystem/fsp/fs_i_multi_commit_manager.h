@@ -3,7 +3,6 @@
 
 #pragma once
 
-#include "core/file_sys/vfs/vfs.h"
 #include "core/hle/service/service.h"
 
 namespace Service::FileSystem {
@@ -14,10 +13,7 @@ public:
     ~IMultiCommitManager() override;
 
 private:
-    Result Add(std::shared_ptr<IFileSystem> filesystem);
     Result Commit();
-
-    FileSys::VirtualFile backend;
 };
 
 } // namespace Service::FileSystem

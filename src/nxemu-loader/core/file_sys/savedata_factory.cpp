@@ -6,7 +6,6 @@
 #include "yuzu_common/common_types.h"
 #include "yuzu_common/logging/log.h"
 #include "yuzu_common/uuid.h"
-#include "core/core.h"
 #include "core/file_sys/savedata_factory.h"
 #include "core/file_sys/vfs/vfs.h"
 
@@ -53,9 +52,9 @@ std::string GetFutureSaveDataPath(SaveDataSpaceId space_id, SaveDataType type, u
 
 } // Anonymous namespace
 
-SaveDataFactory::SaveDataFactory(Core::System& system_, ProgramId program_id_,
+SaveDataFactory::SaveDataFactory(Systemloader& loader_, ProgramId program_id_,
                                  VirtualDir save_directory_)
-    : system{system_}, program_id{program_id_}, dir{std::move(save_directory_)} {
+    : loader{loader_}, program_id{program_id_}, dir{std::move(save_directory_)} {
     // Delete all temporary storages
     // On hardware, it is expected that temporary storage be empty at first use.
     dir->DeleteSubdirectoryRecursive("temp");
@@ -192,3 +191,18 @@ void SaveDataFactory::SetAutoCreate(bool state) {
 }
 
 } // namespace FileSys
+
+SaveDataFactoryPtr::SaveDataFactoryPtr(std::shared_ptr<FileSys::SaveDataFactory> saveDataFactory) :
+    m_saveDataFactory(saveDataFactory)
+{
+}
+
+SaveDataFactoryPtr::~SaveDataFactoryPtr()
+{
+}
+
+void SaveDataFactoryPtr::Release()
+{
+    delete this;
+}
+

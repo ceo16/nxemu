@@ -7,7 +7,6 @@
 #include <vector>
 #include "yuzu_common/logging/log.h"
 #include "yuzu_common/settings.h"
-#include "core/hle/api_version.h"
 #include "core/hle/service/ipc_helpers.h"
 #include "core/hle/service/server_manager.h"
 #include "core/hle/service/spl/csrng.h"
@@ -121,10 +120,7 @@ Result Module::Interface::GetConfigImpl(u64* out_config, ConfigItem config_item)
         return ResultSecureMonitorNotImplemented;
     case ConfigItem::ExosphereApiVersion:
         // Get information about the current exosphere version.
-        *out_config = (u64{HLE::ApiVersion::ATMOSPHERE_RELEASE_VERSION_MAJOR} << 56) |
-                      (u64{HLE::ApiVersion::ATMOSPHERE_RELEASE_VERSION_MINOR} << 48) |
-                      (u64{HLE::ApiVersion::ATMOSPHERE_RELEASE_VERSION_MICRO} << 40) |
-                      (static_cast<u64>(HLE::ApiVersion::GetTargetFirmware()));
+        UNIMPLEMENTED();
         return ResultSuccess;
     case ConfigItem::ExosphereNeedsReboot:
         // We are executing, so we aren't in the process of rebooting.

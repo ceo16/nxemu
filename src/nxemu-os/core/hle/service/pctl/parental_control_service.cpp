@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include "core/core.h"
-#include "core/file_sys/control_metadata.h"
 #include "core/hle/service/cmif_serialization.h"
 #include "core/hle/service/pctl/parental_control_service.h"
 #include "core/hle/service/pctl/pctl_results.h"

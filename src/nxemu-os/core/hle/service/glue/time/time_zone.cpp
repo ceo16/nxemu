@@ -69,13 +69,13 @@ Result TimeZoneService::SetDeviceLocationName(
     LOG_DEBUG(Service_Time, "called. location_name={}", location_name);
 
     R_UNLESS(m_can_write_timezone_device_location, Service::PSC::Time::ResultPermissionDenied);
-    R_UNLESS(IsTimeZoneBinaryValid(location_name), Service::PSC::Time::ResultTimeZoneNotFound);
+    R_UNLESS(IsTimeZoneBinaryValid(m_system, location_name), Service::PSC::Time::ResultTimeZoneNotFound);
 
     std::scoped_lock l{m_mutex};
 
     std::span<const u8> binary{};
     size_t binary_size{};
-    R_TRY(GetTimeZoneRule(binary, binary_size, location_name))
+    R_TRY(GetTimeZoneRule(m_system, binary, binary_size, location_name))
 
     R_TRY(m_wrapped_service->SetDeviceLocationNameWithTimeZoneRule(location_name, binary));
 
@@ -112,7 +112,7 @@ Result TimeZoneService::LoadLocationNameList(
     };
 
     std::scoped_lock l{m_mutex};
-    R_RETURN(GetTimeZoneLocationList(*out_count, out_names, out_names.size(), index));
+    R_RETURN(GetTimeZoneLocationList(m_system, *out_count, out_names, out_names.size(), index));
 }
 
 Result TimeZoneService::LoadTimeZoneRule(OutRule out_rule,
@@ -122,7 +122,7 @@ Result TimeZoneService::LoadTimeZoneRule(OutRule out_rule,
     std::scoped_lock l{m_mutex};
     std::span<const u8> binary{};
     size_t binary_size{};
-    R_TRY(GetTimeZoneRule(binary, binary_size, name))
+    R_TRY(GetTimeZoneRule(m_system, binary, binary_size, name))
     R_RETURN(m_wrapped_service->ParseTimeZoneBinary(out_rule, binary));
 }
 

@@ -11,17 +11,14 @@
 #include "yuzu_common/settings.h"
 #include "yuzu_common/string_util.h"
 #include "core/core.h"
-#include "core/file_sys/content_archive.h"
 #include "core/file_sys/errors.h"
-#include "core/file_sys/nca_metadata.h"
-#include "core/file_sys/registered_cache.h"
-#include "core/file_sys/romfs.h"
-#include "core/file_sys/system_archive/system_archive.h"
 #include "core/hle/service/cmif_serialization.h"
 #include "core/hle/service/filesystem/filesystem.h"
 #include "core/hle/service/ipc_helpers.h"
 #include "core/hle/service/set/settings_server.h"
 #include "core/hle/service/set/system_settings_server.h"
+#include "core/file_sys/filesystem_interfaces.h"
+#include <nxemu-module-spec/system_loader.h>
 
 namespace Service::Set {
 
@@ -38,53 +35,59 @@ struct SettingsHeader {
 Result GetFirmwareVersionImpl(FirmwareVersionFormat& out_firmware, Core::System& system,
                               GetFirmwareVersionType type) {
     constexpr u64 FirmwareVersionSystemDataId = 0x0100000000000809;
-    auto& fsc = system.GetFileSystemController();
+    IFileSystemController & fsc = system.GetFileSystemController();
+
+    ISystemloader & loader = system.GetSystemloader();
 
     // Attempt to load version data from disk
-    const FileSys::RegisteredCache* bis_system{};
-    std::unique_ptr<FileSys::NCA> nca{};
-    FileSys::VirtualDir romfs{};
+    IFileSysRegisteredCache * bis_system = fsc.GetSystemNANDContents();
+    FileSysNCAPtr nca;
+    IVirtualDirectoryPtr romfs;
 
-    bis_system = fsc.GetSystemNANDContents();
-    if (bis_system) {
-        nca = bis_system->GetEntry(FirmwareVersionSystemDataId, FileSys::ContentRecordType::Data);
+    if (bis_system) 
+    {
+        nca = bis_system->GetEntry(FirmwareVersionSystemDataId, LoaderContentRecordType::Data);
     }
+
     if (nca) {
+        __debugbreak();
+#ifdef tofix
         if (auto nca_romfs = nca->GetRomFS(); nca_romfs) {
             romfs = FileSys::ExtractRomFS(nca_romfs);
         }
+#endif
     }
-    if (!romfs) {
-        romfs = FileSys::ExtractRomFS(
-            FileSys::SystemArchive::SynthesizeSystemArchive(FirmwareVersionSystemDataId));
+    if (!romfs) 
+    {
+        romfs = IVirtualFilePtr(loader.SynthesizeSystemArchive(FirmwareVersionSystemDataId))->ExtractRomFS();
     }
 
     const auto early_exit_failure = [](std::string_view desc, Result code) {
         LOG_ERROR(Service_SET, "General failure while attempting to resolve firmware version ({}).",
-                  desc);
+            desc);
         return code;
-    };
+        };
 
-    const auto ver_file = romfs->GetFile("file");
-    if (ver_file == nullptr) {
-        return early_exit_failure("The system version archive didn't contain the file 'file'.",
-                                  FileSys::ResultInvalidArgument);
+    IVirtualFilePtr ver_file(romfs->GetFile("file"));
+    if (!ver_file) 
+    {
+        return early_exit_failure("The system version archive didn't contain the file 'file'.", FileSys::ResultInvalidArgument);
     }
 
-    auto data = ver_file->ReadAllBytes();
-    if (data.size() != sizeof(FirmwareVersionFormat)) {
-        return early_exit_failure("The system version file 'file' was not the correct size.",
-                                  FileSys::ResultOutOfRange);
+    std::vector<uint8_t> data = ver_file.ReadAllBytes();
+    if (data.size() != sizeof(FirmwareVersionFormat)) 
+    {
+        return early_exit_failure("The system version file 'file' was not the correct size.", FileSys::ResultOutOfRange);
     }
 
     std::memcpy(&out_firmware, data.data(), sizeof(FirmwareVersionFormat));
 
     // If the command is GetFirmwareVersion (as opposed to GetFirmwareVersion2), hardware will
     // zero out the REVISION_MINOR field.
-    if (type == GetFirmwareVersionType::Version1) {
+    if (type == GetFirmwareVersionType::Version1)
+    {
         out_firmware.revision_minor = 0;
     }
-
     return ResultSuccess;
 }
 

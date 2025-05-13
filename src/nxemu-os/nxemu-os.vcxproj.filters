@@ -25,9 +25,6 @@
     <Filter Include="Source Files\core\arm">
       <UniqueIdentifier>{30c901f0-88be-a1e4-0e80-047d0b05a5ad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\core\file_sys">
-      <UniqueIdentifier>{e5692c51-e4fe-94c7-0005-04da86054896}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\core\hle\kernel">
       <UniqueIdentifier>{2c6e3276-2119-3f6f-8a89-0ade38033635}</UniqueIdentifier>
     </Filter>
@@ -189,9 +186,6 @@
     </Filter>
     <Filter Include="Source Files\core\hle\service\set\setting_formats">
       <UniqueIdentifier>{f0c80d14-7ea2-eafe-4817-06989d0323d3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\core\file_sys\vfs">
-      <UniqueIdentifier>{5bd58cb0-4dcd-115d-b699-0b39fc0b5687}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\core">
       <UniqueIdentifier>{fc3c68a7-ed35-c489-e7a8-019fd900cf98}</UniqueIdentifier>
@@ -376,9 +370,6 @@
     <Filter Include="Header Files\core\arm\dynarmic">
       <UniqueIdentifier>{d8b68be0-50e6-1ad9-54f2-0a55d3018e61}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\core\file_sys\vfs">
-      <UniqueIdentifier>{12557e41-077b-efa7-aea8-07d1db093580}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\core\hle\kernel\init">
       <UniqueIdentifier>{0ac23067-9b76-422d-8cde-8e5f283fcb19}</UniqueIdentifier>
     </Filter>
@@ -466,32 +457,17 @@
     <Filter Include="Header Files\core\memory">
       <UniqueIdentifier>{a31785a5-920a-487c-81e9-1b69c9ab1dad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\core\file_sys\fssystem">
-      <UniqueIdentifier>{1b78ac9b-a4dd-46c2-88fb-05201931e633}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\core\memory">
       <UniqueIdentifier>{cb4405de-b2a1-45a1-871e-52d1a82ed0e7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\core\file_sys\fssystem">
-      <UniqueIdentifier>{9ac3bdbd-756c-45c1-afd4-f5d4b8e011a0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\core\file_sys\fsa">
       <UniqueIdentifier>{21f21c78-2a76-450d-bba6-3ccad21c0ef6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\core\file_sys\system_archive">
-      <UniqueIdentifier>{6372a903-dce8-4e1e-84e2-8fd9ce3a7849}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\core\file_sys\system_archive\data">
-      <UniqueIdentifier>{a970027d-d02f-4e44-9c8a-f3c2d7bfe678}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\core\file_sys\system_archive">
-      <UniqueIdentifier>{1dffb25c-7526-4a56-b0b4-1703782fd52d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\core\file_sys\system_archive\data">
-      <UniqueIdentifier>{29bc7594-1060-4024-bdb4-0d0635cd0d06}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\core\file_sys\fssrv">
       <UniqueIdentifier>{b3758d60-2c75-43e0-ae2c-85b8c0f3eb1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\file_sys">
+      <UniqueIdentifier>{cf2bcb01-61c2-4960-b4d9-626729bf6b1f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1425,12 +1401,6 @@
     <ClInclude Include="core\arm\exclusive_monitor.h">
       <Filter>Header Files\core\arm</Filter>
     </ClInclude>
-    <ClInclude Include="core\file_sys\program_metadata.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\vfs\vfs_types.h">
-      <Filter>Header Files\core\file_sys\vfs</Filter>
-    </ClInclude>
     <ClInclude Include="core\debugger\debugger.h">
       <Filter>Header Files\core\debugger</Filter>
     </ClInclude>
@@ -1439,24 +1409,6 @@
     </ClInclude>
     <ClInclude Include="core\hle\kernel\k_object_name.h">
       <Filter>Header Files\core\hle\kernel</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\control_metadata.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\fs_filesystem.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\common_funcs.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\content_archive.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\nca_metadata.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\registered_cache.h">
-      <Filter>Header Files\core\file_sys</Filter>
     </ClInclude>
     <ClInclude Include="core\constants.h">
       <Filter>Header Files\core</Filter>
@@ -1647,48 +1599,6 @@
     <ClInclude Include="core\hle\service\filesystem\fsp\save_data_transfer_prohibiter.h">
       <Filter>Header Files\core\hle\service\filesystem\fsp</Filter>
     </ClInclude>
-    <ClInclude Include="core\file_sys\fs_directory.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\errors.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\romfs_factory.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\patch_manager.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\card_image.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\fs_memory_management.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\fs_path.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\fs_path_utility.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\fs_save_data_types.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\fs_string_util.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\ips_layer.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\romfs.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\savedata_factory.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\submission_package.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
     <ClInclude Include="core\perf_stats.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
@@ -1827,62 +1737,8 @@
     <ClInclude Include="core\memory\dmnt_cheat_types.h">
       <Filter>Header Files\core\memory</Filter>
     </ClInclude>
-    <ClInclude Include="core\file_sys\vfs\vfs.h">
-      <Filter>Header Files\core\file_sys\vfs</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\vfs\vfs_cached.h">
-      <Filter>Header Files\core\file_sys\vfs</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\vfs\vfs_concat.h">
-      <Filter>Header Files\core\file_sys\vfs</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\vfs\vfs_layered.h">
-      <Filter>Header Files\core\file_sys\vfs</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\vfs\vfs_vector.h">
-      <Filter>Header Files\core\file_sys\vfs</Filter>
-    </ClInclude>
     <ClInclude Include="core\arm\debug.h">
       <Filter>Header Files\core\arm</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\bis_factory.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\fsmitm_romfsbuild.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\partition_filesystem.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\sdmc_factory.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\xts_archive.h">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\vfs\vfs_offset.h">
-      <Filter>Header Files\core\file_sys\vfs</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\vfs\vfs_real.h">
-      <Filter>Header Files\core\file_sys\vfs</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\vfs\vfs_static.h">
-      <Filter>Header Files\core\file_sys\vfs</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\fssystem\fs_types.h">
-      <Filter>Header Files\core\file_sys\fssystem</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\fssystem\fssystem_compression_common.h">
-      <Filter>Header Files\core\file_sys\fssystem</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\fssystem\fssystem_compression_configuration.h">
-      <Filter>Header Files\core\file_sys\fssystem</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\fssystem\fssystem_nca_file_system_driver.h">
-      <Filter>Header Files\core\file_sys\fssystem</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\fssystem\fssystem_nca_header.h">
-      <Filter>Header Files\core\file_sys\fssystem</Filter>
     </ClInclude>
     <ClInclude Include="core\file_sys\fsa\fs_i_filesystem.h">
       <Filter>Header Files\core\file_sys\fsa</Filter>
@@ -1890,44 +1746,41 @@
     <ClInclude Include="core\loader\nso.h">
       <Filter>Header Files\core\loader</Filter>
     </ClInclude>
-    <ClInclude Include="core\file_sys\system_archive\mii_model.h">
-      <Filter>Header Files\core\file_sys\system_archive</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\system_archive\ng_word.h">
-      <Filter>Header Files\core\file_sys\system_archive</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\system_archive\shared_font.h">
-      <Filter>Header Files\core\file_sys\system_archive</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\system_archive\system_archive.h">
-      <Filter>Header Files\core\file_sys\system_archive</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\system_archive\system_version.h">
-      <Filter>Header Files\core\file_sys\system_archive</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\system_archive\time_zone_binary.h">
-      <Filter>Header Files\core\file_sys\system_archive</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\system_archive\data\font_chinese_simplified.h">
-      <Filter>Header Files\core\file_sys\system_archive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\system_archive\data\font_chinese_traditional.h">
-      <Filter>Header Files\core\file_sys\system_archive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\system_archive\data\font_extended_chinese_simplified.h">
-      <Filter>Header Files\core\file_sys\system_archive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\system_archive\data\font_korean.h">
-      <Filter>Header Files\core\file_sys\system_archive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\system_archive\data\font_nintendo_extended.h">
-      <Filter>Header Files\core\file_sys\system_archive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="core\file_sys\system_archive\data\font_standard.h">
-      <Filter>Header Files\core\file_sys\system_archive\data</Filter>
-    </ClInclude>
     <ClInclude Include="core\file_sys\fssrv\fssrv_sf_path.h">
       <Filter>Header Files\core\file_sys\fssrv</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\errors.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fs_directory.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fs_file.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fs_filesystem.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fs_memory_management.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fs_operate_range.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fs_path.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fs_path_utility.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fs_save_data_types.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\fs_string_util.h">
+      <Filter>Header Files\core\file_sys</Filter>
+    </ClInclude>
+    <ClInclude Include="core\file_sys\filesystem_interfaces.h">
+      <Filter>Header Files\core\file_sys</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2770,12 +2623,6 @@
     <ClCompile Include="core\hle\service\vi\conductor.cpp">
       <Filter>Source Files\core\hle\service\vi</Filter>
     </ClCompile>
-    <ClCompile Include="core\file_sys\program_metadata.cpp">
-      <Filter>Source Files\core\file_sys</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\nca_metadata.cpp">
-      <Filter>Source Files\core\file_sys</Filter>
-    </ClCompile>
     <ClCompile Include="core\hle\service\ptm\psm.cpp">
       <Filter>Source Files\core\hle\service\ptm</Filter>
     </ClCompile>
@@ -3025,9 +2872,6 @@
     <ClCompile Include="core\hle\service\filesystem\fsp\fsp_srv.cpp">
       <Filter>Source Files\core\hle\service\filesystem\fsp</Filter>
     </ClCompile>
-    <ClCompile Include="core\file_sys\registered_cache.cpp">
-      <Filter>Source Files\core\file_sys</Filter>
-    </ClCompile>
     <ClCompile Include="core\perf_stats.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
@@ -3118,119 +2962,17 @@
     <ClCompile Include="core\hle\service\nvnflinger\ui\graphic_buffer.cpp">
       <Filter>Source Files\core\hle\service\nvnflinger\ui</Filter>
     </ClCompile>
-    <ClCompile Include="core\file_sys\control_metadata.cpp">
-      <Filter>Source Files\core\file_sys</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\patch_manager.cpp">
-      <Filter>Source Files\core\file_sys</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\content_archive.cpp">
-      <Filter>Source Files\core\file_sys</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\vfs\vfs.cpp">
-      <Filter>Source Files\core\file_sys\vfs</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\fssystem\fssystem_nca_header.cpp">
-      <Filter>Source Files\core\file_sys\fssystem</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\fssystem\fssystem_nca_reader.cpp">
-      <Filter>Source Files\core\file_sys\fssystem</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\ips_layer.cpp">
-      <Filter>Source Files\core\file_sys</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\vfs\vfs_vector.cpp">
-      <Filter>Source Files\core\file_sys\vfs</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\bis_factory.cpp">
-      <Filter>Source Files\core\file_sys</Filter>
-    </ClCompile>
     <ClCompile Include="core\hle\service\filesystem\save_data_controller.cpp">
       <Filter>Source Files\core\hle\service\filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\romfs.cpp">
-      <Filter>Source Files\core\file_sys</Filter>
     </ClCompile>
     <ClCompile Include="core\hle\service\filesystem\romfs_controller.cpp">
       <Filter>Source Files\core\hle\service\filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="core\file_sys\savedata_factory.cpp">
-      <Filter>Source Files\core\file_sys</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\sdmc_factory.cpp">
-      <Filter>Source Files\core\file_sys</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\card_image.cpp">
-      <Filter>Source Files\core\file_sys</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\partition_filesystem.cpp">
-      <Filter>Source Files\core\file_sys</Filter>
-    </ClCompile>
     <ClCompile Include="core\memory\cheat_engine.cpp">
       <Filter>Source Files\core\memory</Filter>
     </ClCompile>
-    <ClCompile Include="core\file_sys\vfs\vfs_offset.cpp">
-      <Filter>Source Files\core\file_sys\vfs</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\romfs_factory.cpp">
-      <Filter>Source Files\core\file_sys</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\vfs\vfs_cached.cpp">
-      <Filter>Source Files\core\file_sys\vfs</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\fsmitm_romfsbuild.cpp">
-      <Filter>Source Files\core\file_sys</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\vfs\vfs_layered.cpp">
-      <Filter>Source Files\core\file_sys\vfs</Filter>
-    </ClCompile>
     <ClCompile Include="core\memory\dmnt_cheat_vm.cpp">
       <Filter>Source Files\core\memory</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\vfs\vfs_concat.cpp">
-      <Filter>Source Files\core\file_sys\vfs</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\vfs\vfs_real.cpp">
-      <Filter>Source Files\core\file_sys\vfs</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\xts_archive.cpp">
-      <Filter>Header Files\core\file_sys</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\system_archive\system_archive.cpp">
-      <Filter>Source Files\core\file_sys\system_archive</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\system_archive\mii_model.cpp">
-      <Filter>Source Files\core\file_sys\system_archive</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\system_archive\ng_word.cpp">
-      <Filter>Source Files\core\file_sys\system_archive</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\system_archive\shared_font.cpp">
-      <Filter>Source Files\core\file_sys\system_archive</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\system_archive\system_version.cpp">
-      <Filter>Source Files\core\file_sys\system_archive</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\system_archive\time_zone_binary.cpp">
-      <Filter>Source Files\core\file_sys\system_archive</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\system_archive\data\font_chinese_simplified.cpp">
-      <Filter>Source Files\core\file_sys\system_archive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\system_archive\data\font_chinese_traditional.cpp">
-      <Filter>Source Files\core\file_sys\system_archive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\system_archive\data\font_extended_chinese_simplified.cpp">
-      <Filter>Source Files\core\file_sys\system_archive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\system_archive\data\font_korean.cpp">
-      <Filter>Source Files\core\file_sys\system_archive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\system_archive\data\font_nintendo_extended.cpp">
-      <Filter>Source Files\core\file_sys\system_archive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="core\file_sys\system_archive\data\font_standard.cpp">
-      <Filter>Source Files\core\file_sys\system_archive\data</Filter>
     </ClCompile>
     <ClCompile Include="core\hle\service\filesystem\fsp\fs_i_multi_commit_manager.cpp">
       <Filter>Source Files\core\hle\service\filesystem\fsp</Filter>
@@ -3252,6 +2994,9 @@
     </ClCompile>
     <ClCompile Include="core\hle\service\filesystem\fsp\fs_i_save_data_info_reader.cpp">
       <Filter>Source Files\core\hle\service\filesystem\fsp</Filter>
+    </ClCompile>
+    <ClCompile Include="core\file_sys\filesystem_interfaces.cpp">
+      <Filter>Source Files\core\file_sys</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

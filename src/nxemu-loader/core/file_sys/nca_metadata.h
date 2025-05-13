@@ -9,6 +9,7 @@
 #include "yuzu_common/common_types.h"
 #include "yuzu_common/swap.h"
 #include "core/file_sys/vfs/vfs_types.h"
+#include "nxemu-module-spec/system_loader.h"
 
 namespace FileSys {
 class CNMT;
@@ -16,43 +17,21 @@ class CNMT;
 struct CNMTHeader;
 struct OptionalHeader;
 
-enum class TitleType : u8 {
-    SystemProgram = 0x01,
-    SystemDataArchive = 0x02,
-    SystemUpdate = 0x03,
-    FirmwarePackageA = 0x04,
-    FirmwarePackageB = 0x05,
-    Application = 0x80,
-    Update = 0x81,
-    AOC = 0x82,
-    DeltaTitle = 0x83,
-};
-
-enum class ContentRecordType : u8 {
-    Meta = 0,
-    Program = 1,
-    Data = 2,
-    Control = 3,
-    HtmlDocument = 4,
-    LegalInformation = 5,
-    DeltaFragment = 6,
-};
-
 struct ContentRecord {
     std::array<u8, 0x20> hash;
     std::array<u8, 0x10> nca_id;
     std::array<u8, 0x6> size;
-    ContentRecordType type;
+    LoaderContentRecordType type;
     INSERT_PADDING_BYTES(1);
 };
 static_assert(sizeof(ContentRecord) == 0x38, "ContentRecord has incorrect size.");
 
-constexpr ContentRecord EMPTY_META_CONTENT_RECORD{{}, {}, {}, ContentRecordType::Meta, {}};
+constexpr ContentRecord EMPTY_META_CONTENT_RECORD{{}, {}, {}, LoaderContentRecordType::Meta, {}};
 
 struct MetaRecord {
     u64_le title_id;
     u32_le title_version;
-    TitleType type;
+    LoaderTitleType type;
     u8 install_byte;
     INSERT_PADDING_BYTES(2);
 };
@@ -67,7 +46,7 @@ static_assert(sizeof(OptionalHeader) == 0x10, "OptionalHeader has incorrect size
 struct CNMTHeader {
     u64_le title_id;
     u32_le title_version;
-    TitleType type;
+    LoaderTitleType type;
     u8 reserved;
     u16_le table_offset;
     u16_le number_content_entries;
@@ -92,7 +71,7 @@ public:
     const CNMTHeader& GetHeader() const;
     u64 GetTitleID() const;
     u32 GetTitleVersion() const;
-    TitleType GetType() const;
+    LoaderTitleType GetType() const;
 
     const std::vector<ContentRecord>& GetContentRecords() const;
     const std::vector<MetaRecord>& GetMetaRecords() const;

@@ -13,21 +13,15 @@
 #include <vector>
 
 #include "yuzu_common/common_types.h"
-#include "core/file_sys/vfs/vfs_types.h"
 
 __interface ISwitchSystem;
 __interface IVideo;
+__interface ISystemloader;
+__interface IFileSystemController;
 
 namespace Core::Frontend {
 class EmuWindow;
 } // namespace Core::Frontend
-
-namespace FileSys {
-class ContentProvider;
-class ContentProviderUnion;
-enum class ContentProviderUnionSlot;
-class VfsFilesystem;
-} // namespace FileSys
 
 namespace Kernel {
 class GlobalSchedulerContext;
@@ -130,9 +124,6 @@ class SpeedLimiter;
 class TelemetrySession;
 
 struct PerfStatsResults;
-
-FileSys::VirtualFile GetGameFileFromPath(const FileSys::VirtualFilesystem& vfs,
-                                         const std::string& path);
 
 /// Enumeration representing the return values of the System Initialize and Load process.
 enum class SystemResultStatus : u32 {
@@ -240,6 +231,7 @@ public:
 
     ISwitchSystem & GetSwitchSystem();
     IVideo & GetVideo();
+    ISystemloader & GetSystemloader();
 
     [[nodiscard]] size_t GetCurrentHostThreadID() const;
 
@@ -329,10 +321,6 @@ public:
     [[nodiscard]] Service::SM::ServiceManager& ServiceManager();
     [[nodiscard]] const Service::SM::ServiceManager& ServiceManager() const;
 
-    void SetFilesystem(FileSys::VirtualFilesystem vfs);
-
-    [[nodiscard]] FileSys::VirtualFilesystem GetFilesystem() const;
-
     void RegisterCheatList(const std::vector<Memory::CheatEntry>& list,
                            const std::array<u8, 0x20>& build_id, u64 main_region_begin,
                            u64 main_region_size);
@@ -345,21 +333,7 @@ public:
 
     [[nodiscard]] Service::AM::AppletManager& GetAppletManager();
 
-    void SetContentProvider(std::unique_ptr<FileSys::ContentProviderUnion> provider);
-
-    [[nodiscard]] FileSys::ContentProvider& GetContentProvider();
-    [[nodiscard]] const FileSys::ContentProvider& GetContentProvider() const;
-
-    [[nodiscard]] FileSys::ContentProviderUnion& GetContentProviderUnion();
-    [[nodiscard]] const FileSys::ContentProviderUnion& GetContentProviderUnion() const;
-
-    [[nodiscard]] Service::FileSystem::FileSystemController& GetFileSystemController();
-    [[nodiscard]] const Service::FileSystem::FileSystemController& GetFileSystemController() const;
-
-    void RegisterContentProvider(FileSys::ContentProviderUnionSlot slot,
-                                 FileSys::ContentProvider* provider);
-
-    void ClearContentProvider(FileSys::ContentProviderUnionSlot slot);
+    [[nodiscard]] IFileSystemController & GetFileSystemController();
 
     [[nodiscard]] Service::Glue::ARPManager& GetARPManager();
     [[nodiscard]] const Service::Glue::ARPManager& GetARPManager() const;

@@ -8,41 +8,31 @@
 #include "yuzu_common/logging/log.h"
 #include "yuzu_common/settings.h"
 #include "core/core.h"
-#include "core/file_sys/common_funcs.h"
-#include "core/file_sys/content_archive.h"
-#include "core/file_sys/control_metadata.h"
-#include "core/file_sys/nca_metadata.h"
-#include "core/file_sys/patch_manager.h"
-#include "core/file_sys/registered_cache.h"
 #include "core/hle/kernel/k_event.h"
 #include "core/hle/service/aoc/addon_content_manager.h"
 #include "core/hle/service/aoc/purchase_event_manager.h"
 #include "core/hle/service/cmif_serialization.h"
 #include "core/hle/service/ipc_helpers.h"
 #include "core/hle/service/server_manager.h"
-#include "core/loader/loader.h"
+
+#include <nxemu-module-spec/system_loader.h>
 
 namespace Service::AOC {
 
 static bool CheckAOCTitleIDMatchesBase(u64 title_id, u64 base) {
-    return FileSys::GetBaseTitleID(title_id) == base;
+    UNIMPLEMENTED();
+    return false;
 }
 
 static std::vector<u64> AccumulateAOCTitleIDs(Core::System& system) {
     std::vector<u64> add_on_content;
-    const auto& rcu = system.GetContentProvider();
-    const auto list =
-        rcu.ListEntriesFilter(FileSys::TitleType::AOC, FileSys::ContentRecordType::Data);
-    std::transform(list.begin(), list.end(), std::back_inserter(add_on_content),
-                   [](const FileSys::ContentProviderEntry& rce) { return rce.title_id; });
-    add_on_content.erase(
-        std::remove_if(
-            add_on_content.begin(), add_on_content.end(),
-            [&rcu](u64 tid) {
-                return rcu.GetEntry(tid, FileSys::ContentRecordType::Data)->GetStatus() !=
-                       Loader::ResultStatus::Success;
-            }),
-        add_on_content.end());
+    ISystemloader & loader = system.GetSystemloader();
+    uint32_t entriesCount = loader.GetContentProviderEntriesCount(true, LoaderTitleType::AOC, true, LoaderContentRecordType::Data, false, 0);
+    
+    if (entriesCount > 0)
+    {
+        UNIMPLEMENTED();
+    }
     return add_on_content;
 }
 
@@ -106,50 +96,13 @@ Result IAddOnContentManager::CountAddOnContent(Out<u32> out_count, ClientProcess
 Result IAddOnContentManager::ListAddOnContent(Out<u32> out_count,
                                               OutBuffer<BufferAttr_HipcMapAlias> out_addons,
                                               u32 offset, u32 count, ClientProcessId process_id) {
-    LOG_DEBUG(Service_AOC, "called with offset={}, count={}, process_id={}", offset, count,
-              process_id.pid);
-
-    const auto current = FileSys::GetBaseTitleID(system.GetApplicationProcessProgramID());
-
-    std::vector<u32> out;
-    const auto& disabled = Settings::values.disabled_addons[current];
-    if (std::find(disabled.begin(), disabled.end(), "DLC") == disabled.end()) {
-        for (u64 content_id : add_on_content) {
-            if (FileSys::GetBaseTitleID(content_id) != current) {
-                continue;
-            }
-
-            out.push_back(static_cast<u32>(FileSys::GetAOCID(content_id)));
-        }
-    }
-
-    // TODO(DarkLordZach): Find the correct error code.
-    R_UNLESS(out.size() >= offset, ResultUnknown);
-
-    *out_count = static_cast<u32>(std::min<size_t>(out.size() - offset, count));
-    std::rotate(out.begin(), out.begin() + offset, out.end());
-
-    std::memcpy(out_addons.data(), out.data(), *out_count * sizeof(u32));
-
+    UNIMPLEMENTED();
     R_SUCCEED();
 }
 
 Result IAddOnContentManager::GetAddOnContentBaseId(Out<u64> out_title_id,
                                                    ClientProcessId process_id) {
-    LOG_DEBUG(Service_AOC, "called. process_id={}", process_id.pid);
-
-    const auto title_id = system.GetApplicationProcessProgramID();
-    const FileSys::PatchManager pm{title_id, system.GetFileSystemController(),
-                                   system.GetContentProvider()};
-
-    const auto res = pm.GetControlMetadata();
-    if (res.first == nullptr) {
-        *out_title_id = FileSys::GetAOCBaseTitleID(title_id);
-        R_SUCCEED();
-    }
-
-    *out_title_id = res.first->GetDLCBaseTitleId();
-
+    UNIMPLEMENTED();
     R_SUCCEED();
 }
 

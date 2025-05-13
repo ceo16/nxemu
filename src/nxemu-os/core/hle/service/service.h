@@ -24,10 +24,6 @@ class ServiceThread;
 
 namespace Service {
 
-namespace FileSystem {
-class FileSystemController;
-}
-
 namespace SM {
 class ServiceManager;
 }

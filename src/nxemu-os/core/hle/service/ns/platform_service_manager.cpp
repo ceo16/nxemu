@@ -10,8 +10,6 @@
 #include "yuzu_common/logging/log.h"
 #include "yuzu_common/swap.h"
 #include "core/core.h"
-#include "core/file_sys/nca_metadata.h"
-#include "core/file_sys/registered_cache.h"
 #include "core/hle/kernel/k_shared_memory.h"
 #include "core/hle/kernel/kernel.h"
 #include "core/hle/kernel/physical_memory.h"

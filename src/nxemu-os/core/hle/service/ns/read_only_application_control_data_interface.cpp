@@ -2,8 +2,6 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include "yuzu_common/settings.h"
-#include "core/file_sys/control_metadata.h"
-#include "core/file_sys/vfs/vfs.h"
 #include "core/hle/service/cmif_serialization.h"
 #include "core/hle/service/ns/language.h"
 #include "core/hle/service/ns/ns_results.h"

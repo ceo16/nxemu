@@ -14,7 +14,6 @@
 #include "core/constants.h"
 #include "core/core.h"
 #include "core/core_timing.h"
-#include "core/file_sys/control_metadata.h"
 #include "core/hle/service/acc/acc.h"
 #include "core/hle/service/acc/acc_aa.h"
 #include "core/hle/service/acc/acc_su.h"
@@ -26,7 +25,6 @@
 #include "core/hle/service/cmif_serialization.h"
 #include "core/hle/service/glue/glue_manager.h"
 #include "core/hle/service/server_manager.h"
-#include "core/loader/loader.h"
 
 namespace Service::Account {
 

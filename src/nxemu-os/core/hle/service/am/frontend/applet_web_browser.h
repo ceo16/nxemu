@@ -7,17 +7,17 @@
 #include <optional>
 
 #include "yuzu_common/common_types.h"
-#include "core/file_sys/vfs/vfs_types.h"
 #include "core/hle/result.h"
 #include "core/hle/service/am/frontend/applet_web_browser_types.h"
 #include "core/hle/service/am/frontend/applets.h"
+#include <nxemu-module-spec/system_loader.h>
 
 namespace Core {
 class System;
 }
 
 namespace FileSys {
-enum class ContentRecordType : u8;
+enum class LoaderContentRecordType : u8;
 }
 
 namespace Service::AM::Frontend {
@@ -71,10 +71,9 @@ private:
     WebArgInputTLVMap web_arg_input_tlv_map;
 
     u64 title_id{};
-    FileSys::ContentRecordType nca_type{};
+    LoaderContentRecordType nca_type{};
     std::filesystem::path offline_cache_dir;
     std::filesystem::path offline_document;
-    FileSys::VirtualFile offline_romfs;
 
     std::string external_url;
 };

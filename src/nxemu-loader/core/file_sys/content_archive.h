@@ -13,6 +13,7 @@
 #include "yuzu_common/common_types.h"
 #include "yuzu_common/swap.h"
 #include "core/file_sys/vfs/vfs.h"
+#include <nxemu-module-spec/system_loader.h>
 
 namespace Loader {
 enum class ResultStatus : u16;
@@ -60,7 +61,10 @@ inline bool IsDirectoryLogoPartition(const VirtualDir& pfs) {
 
 // An implementation of VfsDirectory that represents a Nintendo Content Archive (NCA) container.
 // After construction, use GetStatus to determine if the file is valid and ready to be used.
-class NCA : public ReadOnlyVfsDirectory {
+class NCA : 
+    public IFileSysNCA,
+    public ReadOnlyVfsDirectory
+{
 public:
     explicit NCA(VirtualFile file, const NCA* base_nca = nullptr);
     ~NCA() override;
@@ -79,12 +83,16 @@ public:
     u8 GetKeyGeneration() const;
     bool IsUpdate() const;
 
-    VirtualFile GetRomFS() const;
+    VirtualFile RomFS() const;
     VirtualDir GetExeFS() const;
 
     VirtualFile GetBaseFile() const;
 
     VirtualDir GetLogoPartition() const;
+
+    //IFileSysNCA
+    IVirtualFile * GetRomFS() override;
+    void Release() override;
 
 private:
     std::vector<VirtualDir> dirs;

@@ -89,7 +89,7 @@ bool NCA::IsUpdate() const {
     return is_update;
 }
 
-VirtualFile NCA::GetRomFS() const {
+VirtualFile NCA::RomFS() const {
     return romfs;
 }
 
@@ -103,6 +103,16 @@ VirtualFile NCA::GetBaseFile() const {
 
 VirtualDir NCA::GetLogoPartition() const {
     return logo;
+}
+
+IVirtualFile * NCA::GetRomFS()
+{
+    return std::make_unique<VirtualFilePtr>(romfs).release();
+}
+
+void NCA::Release()
+{
+    delete this;
 }
 
 } // namespace FileSys

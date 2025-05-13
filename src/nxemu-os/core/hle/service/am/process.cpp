@@ -3,11 +3,8 @@
 
 #include "yuzu_common/scope_exit.h"
 
-#include "core/file_sys/nca_metadata.h"
-#include "core/file_sys/registered_cache.h"
 #include "core/hle/kernel/k_process.h"
 #include "core/hle/service/am/process.h"
-#include "core/loader/loader.h"
 
 namespace Service::AM {
 
