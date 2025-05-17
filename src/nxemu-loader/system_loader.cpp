@@ -120,7 +120,7 @@ bool Systemloader::Impl::LoadNRO(const char* nroFile)
     const IProgramMetadata & metaData = m_nro->MetaData();
     uint64_t baseAddress = 0;
     uint64_t processID = 0;
-    if (!operatingSystem.CreateApplicationProcess(m_nro->CodeSize(), metaData, baseAddress, processID))
+    if (!operatingSystem.CreateApplicationProcess(m_nro->CodeSize(), metaData, baseAddress, processID, false))
     {
         return false;
     }

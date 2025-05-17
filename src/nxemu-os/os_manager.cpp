@@ -72,7 +72,7 @@ bool OSManager::Initialize(void)
     return true;
 }
 
-bool OSManager::CreateApplicationProcess(uint64_t codeSize, const IProgramMetadata & metaData, uint64_t & baseAddress, uint64_t & processID)
+bool OSManager::CreateApplicationProcess(uint64_t codeSize, const IProgramMetadata & metaData, uint64_t & baseAddress, uint64_t & processID, bool is_hbl)
 {
     if (m_process != nullptr)
     {
