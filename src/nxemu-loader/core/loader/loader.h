@@ -65,80 +65,8 @@ FileType GuessFromFilename(const std::string& name);
  */
 std::string GetFileTypeString(FileType type);
 
-/// Return type for functions in Loader namespace
-enum class ResultStatus : u16 {
-    Success,
-    ErrorAlreadyLoaded,
-    ErrorNotImplemented,
-    ErrorNotInitialized,
-    ErrorBadNPDMHeader,
-    ErrorBadACIDHeader,
-    ErrorBadACIHeader,
-    ErrorBadFileAccessControl,
-    ErrorBadFileAccessHeader,
-    ErrorBadKernelCapabilityDescriptors,
-    ErrorBadPFSHeader,
-    ErrorIncorrectPFSFileSize,
-    ErrorBadNCAHeader,
-    ErrorMissingProductionKeyFile,
-    ErrorMissingHeaderKey,
-    ErrorIncorrectHeaderKey,
-    ErrorNCA2,
-    ErrorNCA0,
-    ErrorMissingTitlekey,
-    ErrorMissingTitlekek,
-    ErrorInvalidRightsID,
-    ErrorMissingKeyAreaKey,
-    ErrorIncorrectKeyAreaKey,
-    ErrorIncorrectTitlekeyOrTitlekek,
-    ErrorXCIMissingProgramNCA,
-    ErrorNCANotProgram,
-    ErrorNoExeFS,
-    ErrorBadXCIHeader,
-    ErrorXCIMissingPartition,
-    ErrorNullFile,
-    ErrorMissingNPDM,
-    Error32BitISA,
-    ErrorUnableToParseKernelMetadata,
-    ErrorNoRomFS,
-    ErrorIncorrectELFFileSize,
-    ErrorLoadingNRO,
-    ErrorLoadingNSO,
-    ErrorNoIcon,
-    ErrorNoControl,
-    ErrorBadNAXHeader,
-    ErrorIncorrectNAXFileSize,
-    ErrorNAXKeyHMACFailed,
-    ErrorNAXValidationHMACFailed,
-    ErrorNAXKeyDerivationFailed,
-    ErrorNAXInconvertibleToNCA,
-    ErrorBadNAXFilePath,
-    ErrorMissingSDSeed,
-    ErrorMissingSDKEKSource,
-    ErrorMissingAESKEKGenerationSource,
-    ErrorMissingAESKeyGenerationSource,
-    ErrorMissingSDSaveKeySource,
-    ErrorMissingSDNCAKeySource,
-    ErrorNSPMissingProgramNCA,
-    ErrorBadBKTRHeader,
-    ErrorBKTRSubsectionNotAfterRelocation,
-    ErrorBKTRSubsectionNotAtEnd,
-    ErrorBadRelocationBlock,
-    ErrorBadSubsectionBlock,
-    ErrorBadRelocationBuckets,
-    ErrorBadSubsectionBuckets,
-    ErrorMissingBKTRBaseRomFS,
-    ErrorNoPackedUpdate,
-    ErrorBadKIPHeader,
-    ErrorBLZDecompressionFailed,
-    ErrorBadINIHeader,
-    ErrorINITooManyKIPs,
-    ErrorIntegrityVerificationNotImplemented,
-    ErrorIntegrityVerificationFailed,
-};
-
-std::string GetResultStatusString(ResultStatus status);
-std::ostream& operator<<(std::ostream& os, ResultStatus status);
+std::string GetResultStatusString(LoaderResultStatus status);
+std::ostream& operator<<(std::ostream& os, LoaderResultStatus status);
 
 /// Interface for loading an application
 class AppLoader {
@@ -150,7 +78,7 @@ public:
         s32 main_thread_priority;
         u64 main_thread_stack_size;
     };
-    using LoadResult = std::pair<ResultStatus, std::optional<LoadParameters>>;
+    using LoadResult = std::pair<LoaderResultStatus, std::optional<LoadParameters>>;
 
     explicit AppLoader(FileSys::VirtualFile file_);
     virtual ~AppLoader();
@@ -175,8 +103,8 @@ public:
     /**
      * Try to verify the integrity of the file.
      */
-    virtual ResultStatus VerifyIntegrity(std::function<bool(size_t, size_t)> progress_callback) {
-        return ResultStatus::ErrorIntegrityVerificationNotImplemented;
+    virtual LoaderResultStatus VerifyIntegrity(std::function<bool(size_t, size_t)> progress_callback) {
+        return LoaderResultStatus::ErrorIntegrityVerificationNotImplemented;
     }
 
     /**
@@ -184,10 +112,10 @@ public:
      *
      * @param[out] buffer Reference to buffer to store data
      *
-     * @return ResultStatus result of function
+     * @return LoaderResultStatus result of function
      */
-    virtual ResultStatus ReadCode(std::vector<u8>& buffer) {
-        return ResultStatus::ErrorNotImplemented;
+    virtual LoaderResultStatus ReadCode(std::vector<u8>& buffer) {
+        return LoaderResultStatus::ErrorNotImplemented;
     }
 
     /**
@@ -195,10 +123,10 @@ public:
      *
      * @param[out] buffer Reference to buffer to store data
      *
-     * @return ResultStatus result of function
+     * @return LoaderResultStatus result of function
      */
-    virtual ResultStatus ReadIcon(std::vector<u8>& buffer) {
-        return ResultStatus::ErrorNotImplemented;
+    virtual LoaderResultStatus ReadIcon(std::vector<u8>& buffer) {
+        return LoaderResultStatus::ErrorNotImplemented;
     }
 
     /**
@@ -208,10 +136,10 @@ public:
      *
      * @param[out] buffer Reference to buffer to store data
      *
-     * @return ResultStatus result of function
+     * @return LoaderResultStatus result of function
      */
-    virtual ResultStatus ReadBanner(std::vector<u8>& buffer) {
-        return ResultStatus::ErrorNotImplemented;
+    virtual LoaderResultStatus ReadBanner(std::vector<u8>& buffer) {
+        return LoaderResultStatus::ErrorNotImplemented;
     }
 
     /**
@@ -221,10 +149,10 @@ public:
      *
      * @param[out] buffer Reference to buffer to store data
      *
-     * @return ResultStatus result of function
+     * @return LoaderResultStatus result of function
      */
-    virtual ResultStatus ReadLogo(std::vector<u8>& buffer) {
-        return ResultStatus::ErrorNotImplemented;
+    virtual LoaderResultStatus ReadLogo(std::vector<u8>& buffer) {
+        return LoaderResultStatus::ErrorNotImplemented;
     }
 
     /**
@@ -232,10 +160,10 @@ public:
      *
      * @param[out] out_program_id Reference to store program id into
      *
-     * @return ResultStatus result of function
+     * @return LoaderResultStatus result of function
      */
-    virtual ResultStatus ReadProgramId(u64& out_program_id) {
-        return ResultStatus::ErrorNotImplemented;
+    virtual LoaderResultStatus ReadProgramId(u64& out_program_id) {
+        return LoaderResultStatus::ErrorNotImplemented;
     }
 
     /**
@@ -243,10 +171,10 @@ public:
      *
      * @param[out] out_program_ids Reference to store program ids into
      *
-     * @return ResultStatus result of function
+     * @return LoaderResultStatus result of function
      */
-    virtual ResultStatus ReadProgramIds(std::vector<u64>& out_program_ids) {
-        return ResultStatus::ErrorNotImplemented;
+    virtual LoaderResultStatus ReadProgramIds(std::vector<u64>& out_program_ids) {
+        return LoaderResultStatus::ErrorNotImplemented;
     }
 
     /**
@@ -255,10 +183,10 @@ public:
      *
      * @param[out] out_file The directory containing the RomFS
      *
-     * @return ResultStatus result of function
+     * @return LoaderResultStatus result of function
      */
-    virtual ResultStatus ReadRomFS(FileSys::VirtualFile& out_file) {
-        return ResultStatus::ErrorNotImplemented;
+    virtual LoaderResultStatus ReadRomFS(FileSys::VirtualFile& out_file) {
+        return LoaderResultStatus::ErrorNotImplemented;
     }
 
     /**
@@ -266,10 +194,10 @@ public:
      *
      * @param[out] out_file The raw update NCA file (Program-type)
      *
-     * @return ResultStatus result of function
+     * @return LoaderResultStatus result of function
      */
-    virtual ResultStatus ReadUpdateRaw(FileSys::VirtualFile& out_file) {
-        return ResultStatus::ErrorNotImplemented;
+    virtual LoaderResultStatus ReadUpdateRaw(FileSys::VirtualFile& out_file) {
+        return LoaderResultStatus::ErrorNotImplemented;
     }
 
     /**
@@ -288,10 +216,10 @@ public:
      *
      * @param[out] title Reference to store the application title into
      *
-     * @return ResultStatus result of function
+     * @return LoaderResultStatus result of function
      */
-    virtual ResultStatus ReadTitle(std::string& title) {
-        return ResultStatus::ErrorNotImplemented;
+    virtual LoaderResultStatus ReadTitle(std::string& title) {
+        return LoaderResultStatus::ErrorNotImplemented;
     }
 
     /**
@@ -299,10 +227,10 @@ public:
      *
      * @param[out] control Reference to store the application control data into
      *
-     * @return ResultStatus result of function
+     * @return LoaderResultStatus result of function
      */
-    virtual ResultStatus ReadControlData(FileSys::NACP& control) {
-        return ResultStatus::ErrorNotImplemented;
+    virtual LoaderResultStatus ReadControlData(FileSys::NACP& control) {
+        return LoaderResultStatus::ErrorNotImplemented;
     }
 
     /**
@@ -310,16 +238,16 @@ public:
      *
      * @param[out] out_file The raw manual RomFS of the game
      *
-     * @return ResultStatus result of function
+     * @return LoaderResultStatus result of function
      */
-    virtual ResultStatus ReadManualRomFS(FileSys::VirtualFile& out_file) {
-        return ResultStatus::ErrorNotImplemented;
+    virtual LoaderResultStatus ReadManualRomFS(FileSys::VirtualFile& out_file) {
+        return LoaderResultStatus::ErrorNotImplemented;
     }
 
     using Modules = std::map<VAddr, std::string>;
 
-    virtual ResultStatus ReadNSOModules(Modules& modules) {
-        return ResultStatus::ErrorNotImplemented;
+    virtual LoaderResultStatus ReadNSOModules(Modules& modules) {
+        return LoaderResultStatus::ErrorNotImplemented;
     }
 
 protected:

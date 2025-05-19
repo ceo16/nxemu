@@ -16,22 +16,22 @@ ProgramMetadata::ProgramMetadata() = default;
 
 ProgramMetadata::~ProgramMetadata() = default;
 
-Loader::ResultStatus ProgramMetadata::Load(VirtualFile file) {
+LoaderResultStatus ProgramMetadata::Load(VirtualFile file) {
     const std::size_t total_size = file->GetSize();
     if (total_size < sizeof(Header)) {
-        return Loader::ResultStatus::ErrorBadNPDMHeader;
+        return LoaderResultStatus::ErrorBadNPDMHeader;
     }
 
     if (sizeof(Header) != file->ReadObject(&npdm_header)) {
-        return Loader::ResultStatus::ErrorBadNPDMHeader;
+        return LoaderResultStatus::ErrorBadNPDMHeader;
     }
 
     if (sizeof(AcidHeader) != file->ReadObject(&acid_header, npdm_header.acid_offset)) {
-        return Loader::ResultStatus::ErrorBadACIDHeader;
+        return LoaderResultStatus::ErrorBadACIDHeader;
     }
 
     if (sizeof(AciHeader) != file->ReadObject(&aci_header, npdm_header.aci_offset)) {
-        return Loader::ResultStatus::ErrorBadACIHeader;
+        return LoaderResultStatus::ErrorBadACIHeader;
     }
 
     // Load acid_file_access per-component instead of the entire struct, since this struct does not
@@ -40,17 +40,17 @@ Loader::ResultStatus ProgramMetadata::Load(VirtualFile file) {
     if (sizeof(FileAccessControl::version) != file->ReadBytes(&acid_file_access.version,
                                                               sizeof(FileAccessControl::version),
                                                               current_offset)) {
-        return Loader::ResultStatus::ErrorBadFileAccessControl;
+        return LoaderResultStatus::ErrorBadFileAccessControl;
     }
     if (sizeof(FileAccessControl::permissions) !=
         file->ReadBytes(&acid_file_access.permissions, sizeof(FileAccessControl::permissions),
                         current_offset += sizeof(FileAccessControl::version) + 3)) {
-        return Loader::ResultStatus::ErrorBadFileAccessControl;
+        return LoaderResultStatus::ErrorBadFileAccessControl;
     }
     if (sizeof(FileAccessControl::unknown) !=
         file->ReadBytes(&acid_file_access.unknown, sizeof(FileAccessControl::unknown),
                         current_offset + sizeof(FileAccessControl::permissions))) {
-        return Loader::ResultStatus::ErrorBadFileAccessControl;
+        return LoaderResultStatus::ErrorBadFileAccessControl;
     }
 
     // Load aci_file_access per-component instead of the entire struct, same as acid_file_access
@@ -58,45 +58,45 @@ Loader::ResultStatus ProgramMetadata::Load(VirtualFile file) {
     if (sizeof(FileAccessHeader::version) != file->ReadBytes(&aci_file_access.version,
                                                              sizeof(FileAccessHeader::version),
                                                              current_offset)) {
-        return Loader::ResultStatus::ErrorBadFileAccessHeader;
+        return LoaderResultStatus::ErrorBadFileAccessHeader;
     }
     if (sizeof(FileAccessHeader::permissions) !=
         file->ReadBytes(&aci_file_access.permissions, sizeof(FileAccessHeader::permissions),
                         current_offset += sizeof(FileAccessHeader::version) + 3)) {
-        return Loader::ResultStatus::ErrorBadFileAccessHeader;
+        return LoaderResultStatus::ErrorBadFileAccessHeader;
     }
     if (sizeof(FileAccessHeader::unk_offset) !=
         file->ReadBytes(&aci_file_access.unk_offset, sizeof(FileAccessHeader::unk_offset),
                         current_offset += sizeof(FileAccessHeader::permissions))) {
-        return Loader::ResultStatus::ErrorBadFileAccessHeader;
+        return LoaderResultStatus::ErrorBadFileAccessHeader;
     }
     if (sizeof(FileAccessHeader::unk_size) !=
         file->ReadBytes(&aci_file_access.unk_size, sizeof(FileAccessHeader::unk_size),
                         current_offset += sizeof(FileAccessHeader::unk_offset))) {
-        return Loader::ResultStatus::ErrorBadFileAccessHeader;
+        return LoaderResultStatus::ErrorBadFileAccessHeader;
     }
     if (sizeof(FileAccessHeader::unk_offset_2) !=
         file->ReadBytes(&aci_file_access.unk_offset_2, sizeof(FileAccessHeader::unk_offset_2),
                         current_offset += sizeof(FileAccessHeader::unk_size))) {
-        return Loader::ResultStatus::ErrorBadFileAccessHeader;
+        return LoaderResultStatus::ErrorBadFileAccessHeader;
     }
     if (sizeof(FileAccessHeader::unk_size_2) !=
         file->ReadBytes(&aci_file_access.unk_size_2, sizeof(FileAccessHeader::unk_size_2),
                         current_offset + sizeof(FileAccessHeader::unk_offset_2))) {
-        return Loader::ResultStatus::ErrorBadFileAccessHeader;
+        return LoaderResultStatus::ErrorBadFileAccessHeader;
     }
 
     aci_kernel_capabilities.resize(aci_header.kac_size / sizeof(u32));
     const u64 read_size = aci_header.kac_size;
     const u64 read_offset = npdm_header.aci_offset + aci_header.kac_offset;
     if (file->ReadBytes(aci_kernel_capabilities.data(), read_size, read_offset) != read_size) {
-        return Loader::ResultStatus::ErrorBadKernelCapabilityDescriptors;
+        return LoaderResultStatus::ErrorBadKernelCapabilityDescriptors;
     }
 
-    return Loader::ResultStatus::Success;
+    return LoaderResultStatus::Success;
 }
 
-Loader::ResultStatus ProgramMetadata::Reload(VirtualFile file) {
+LoaderResultStatus ProgramMetadata::Reload(VirtualFile file) {
     const u64 original_program_id = aci_header.title_id;
     SCOPE_EXIT {
         aci_header.title_id = original_program_id;

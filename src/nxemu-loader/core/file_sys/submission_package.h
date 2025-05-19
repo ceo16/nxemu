@@ -12,10 +12,7 @@
 #include "core/file_sys/vfs/vfs.h"
 
 enum class LoaderContentRecordType : u8;
-
-namespace Loader {
-enum class ResultStatus : u16;
-}
+enum class LoaderResultStatus : uint16_t;
 
 namespace FileSys {
 

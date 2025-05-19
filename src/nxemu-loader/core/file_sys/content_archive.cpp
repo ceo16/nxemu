@@ -25,28 +25,28 @@ static u8 MasterKeyIdForKeyGeneration(u8 key_generation) {
 NCA::NCA(VirtualFile file_, const NCA* base_nca)
     : file(std::move(file_)) {
     if (file == nullptr) {
-        status = Loader::ResultStatus::ErrorNullFile;
+        status = LoaderResultStatus::ErrorNullFile;
         return;
     }
     UNIMPLEMENTED();
-    status = Loader::ResultStatus::ErrorNotImplemented;
+    status = LoaderResultStatus::ErrorNotImplemented;
 }
 
 NCA::~NCA() = default;
 
-Loader::ResultStatus NCA::GetStatus() const {
+LoaderResultStatus NCA::GetStatus() const {
     return status;
 }
 
 std::vector<VirtualFile> NCA::GetFiles() const {
-    if (status != Loader::ResultStatus::Success) {
+    if (status != LoaderResultStatus::Success) {
         return {};
     }
     return files;
 }
 
 std::vector<VirtualDir> NCA::GetSubdirectories() const {
-    if (status != Loader::ResultStatus::Success) {
+    if (status != LoaderResultStatus::Success) {
         return {};
     }
     return dirs;

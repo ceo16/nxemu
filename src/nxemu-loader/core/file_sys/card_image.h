@@ -10,13 +10,7 @@
 #include "yuzu_common/swap.h"
 #include "core/file_sys/vfs/vfs.h"
 
-namespace Core::Crypto {
-class KeyManager;
-}
-
-namespace Loader {
-enum class ResultStatus : u16;
-}
+enum class LoaderResultStatus : uint16_t;
 
 namespace FileSys {
 
@@ -76,8 +70,8 @@ public:
     explicit XCI(VirtualFile file, u64 program_id = 0, size_t program_index = 0);
     ~XCI() override;
 
-    Loader::ResultStatus GetStatus() const;
-    Loader::ResultStatus GetProgramNCAStatus() const;
+    LoaderResultStatus GetStatus() const;
+    LoaderResultStatus GetProgramNCAStatus() const;
 
     u8 GetFormatVersion();
 
@@ -114,13 +108,13 @@ public:
     VirtualDir ConcatenatedPseudoDirectory();
 
 private:
-    Loader::ResultStatus TryReadHeader();
+    LoaderResultStatus TryReadHeader();
 
     VirtualFile file;
     GamecardHeader header{};
 
-    Loader::ResultStatus status;
-    Loader::ResultStatus program_nca_status;
+    LoaderResultStatus status;
+    LoaderResultStatus program_nca_status;
 
     std::vector<VirtualDir> partitions;
     std::vector<VirtualFile> partitions_raw;

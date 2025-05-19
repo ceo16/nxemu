@@ -28,11 +28,11 @@ constexpr std::array partition_names{
 };
 
 XCI::XCI(VirtualFile file_, u64 program_id, size_t program_index)
-    : file(std::move(file_)), program_nca_status{Loader::ResultStatus::ErrorXCIMissingProgramNCA},
+    : file(std::move(file_)), program_nca_status{LoaderResultStatus::ErrorXCIMissingProgramNCA},
       partitions(partition_names.size()),
       partitions_raw(partition_names.size()) {
     const auto header_status = TryReadHeader();
-    if (header_status != Loader::ResultStatus::Success) {
+    if (header_status != LoaderResultStatus::Success) {
         status = header_status;
         return;
     }
@@ -42,7 +42,7 @@ XCI::XCI(VirtualFile file_, u64 program_id, size_t program_index)
 
     update_normal_partition_end = main_hfs.GetFileOffsets()["secure"];
 
-    if (main_hfs.GetStatus() != Loader::ResultStatus::Success) {
+    if (main_hfs.GetStatus() != LoaderResultStatus::Success) {
         status = main_hfs.GetStatus();
         return;
     }
@@ -56,16 +56,16 @@ XCI::XCI(VirtualFile file_, u64 program_id, size_t program_index)
     }
 
     UNIMPLEMENTED();
-    status = Loader::ResultStatus::ErrorNotImplemented;
+    status = LoaderResultStatus::ErrorNotImplemented;
 }
 
 XCI::~XCI() = default;
 
-Loader::ResultStatus XCI::GetStatus() const {
+LoaderResultStatus XCI::GetStatus() const {
     return status;
 }
 
-Loader::ResultStatus XCI::GetProgramNCAStatus() const {
+LoaderResultStatus XCI::GetProgramNCAStatus() const {
     return program_nca_status;
 }
 
@@ -154,7 +154,7 @@ u32 XCI::GetSystemUpdateVersion() {
     for (const auto& update_file : update->GetFiles()) {
         NCA nca{update_file};
 
-        if (nca.GetStatus() != Loader::ResultStatus::Success || nca.GetSubdirectories().empty()) {
+        if (nca.GetStatus() != LoaderResultStatus::Success || nca.GetSubdirectories().empty()) {
             continue;
         }
 
@@ -213,28 +213,28 @@ VirtualDir XCI::ConcatenatedPseudoDirectory() {
     return out;
 }
 
-Loader::ResultStatus XCI::TryReadHeader() {
+LoaderResultStatus XCI::TryReadHeader() {
     constexpr size_t CardInitialDataRegionSize = 0x1000;
 
     // Define the function we'll use to determine if we read a valid header.
     const auto ReadCardHeader = [&]() {
         // Ensure we can read the entire header. If we can't, we can't read the card image.
         if (file->ReadObject(&header) != sizeof(GamecardHeader)) {
-            return Loader::ResultStatus::ErrorBadXCIHeader;
+            return LoaderResultStatus::ErrorBadXCIHeader;
         }
 
         // Ensure the header magic matches. If it doesn't, this isn't a card image header.
         if (header.magic != Common::MakeMagic('H', 'E', 'A', 'D')) {
-            return Loader::ResultStatus::ErrorBadXCIHeader;
+            return LoaderResultStatus::ErrorBadXCIHeader;
         }
 
         // We read a card image header.
-        return Loader::ResultStatus::Success;
+        return LoaderResultStatus::Success;
     };
 
     // Try to read the header directly.
-    if (ReadCardHeader() == Loader::ResultStatus::Success) {
-        return Loader::ResultStatus::Success;
+    if (ReadCardHeader() == LoaderResultStatus::Success) {
+        return LoaderResultStatus::Success;
     }
 
     // Get the size of the file.
@@ -248,7 +248,7 @@ Loader::ResultStatus XCI::TryReadHeader() {
     }
 
     // We had no header and aren't large enough to have a key area, so this can't be parsed.
-    return Loader::ResultStatus::ErrorBadXCIHeader;
+    return LoaderResultStatus::ErrorBadXCIHeader;
 }
 
 u8 XCI::GetFormatVersion() {

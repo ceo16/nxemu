@@ -23,6 +23,77 @@ enum class LoaderContentRecordType : uint8_t {
     DeltaFragment = 6,
 };
 
+enum class LoaderResultStatus : uint16_t {
+    Success,
+    ErrorAlreadyLoaded,
+    ErrorNotImplemented,
+    ErrorNotInitialized,
+    ErrorBadNPDMHeader,
+    ErrorBadACIDHeader,
+    ErrorBadACIHeader,
+    ErrorBadFileAccessControl,
+    ErrorBadFileAccessHeader,
+    ErrorBadKernelCapabilityDescriptors,
+    ErrorBadPFSHeader,
+    ErrorIncorrectPFSFileSize,
+    ErrorBadNCAHeader,
+    ErrorMissingProductionKeyFile,
+    ErrorMissingHeaderKey,
+    ErrorIncorrectHeaderKey,
+    ErrorNCA2,
+    ErrorNCA0,
+    ErrorMissingTitlekey,
+    ErrorMissingTitlekek,
+    ErrorInvalidRightsID,
+    ErrorMissingKeyAreaKey,
+    ErrorIncorrectKeyAreaKey,
+    ErrorIncorrectTitlekeyOrTitlekek,
+    ErrorXCIMissingProgramNCA,
+    ErrorNCANotProgram,
+    ErrorNoExeFS,
+    ErrorBadXCIHeader,
+    ErrorXCIMissingPartition,
+    ErrorNullFile,
+    ErrorMissingNPDM,
+    Error32BitISA,
+    ErrorUnableToParseKernelMetadata,
+    ErrorNoRomFS,
+    ErrorIncorrectELFFileSize,
+    ErrorLoadingNRO,
+    ErrorLoadingNSO,
+    ErrorNoIcon,
+    ErrorNoControl,
+    ErrorBadNAXHeader,
+    ErrorIncorrectNAXFileSize,
+    ErrorNAXKeyHMACFailed,
+    ErrorNAXValidationHMACFailed,
+    ErrorNAXKeyDerivationFailed,
+    ErrorNAXInconvertibleToNCA,
+    ErrorBadNAXFilePath,
+    ErrorMissingSDSeed,
+    ErrorMissingSDKEKSource,
+    ErrorMissingAESKEKGenerationSource,
+    ErrorMissingAESKeyGenerationSource,
+    ErrorMissingSDSaveKeySource,
+    ErrorMissingSDNCAKeySource,
+    ErrorNSPMissingProgramNCA,
+    ErrorBadBKTRHeader,
+    ErrorBKTRSubsectionNotAfterRelocation,
+    ErrorBKTRSubsectionNotAtEnd,
+    ErrorBadRelocationBlock,
+    ErrorBadSubsectionBlock,
+    ErrorBadRelocationBuckets,
+    ErrorBadSubsectionBuckets,
+    ErrorMissingBKTRBaseRomFS,
+    ErrorNoPackedUpdate,
+    ErrorBadKIPHeader,
+    ErrorBLZDecompressionFailed,
+    ErrorBadINIHeader,
+    ErrorINITooManyKIPs,
+    ErrorIntegrityVerificationNotImplemented,
+    ErrorIntegrityVerificationFailed,
+};
+
 __interface IVirtualFile;
 
 __interface IVirtualDirectory
@@ -53,6 +124,7 @@ __interface IRomFsController
 
 __interface IFileSysNCA
 {
+    LoaderResultStatus GetStatus() const = 0;
     IVirtualFile * GetRomFS() = 0;
     void Release();
 };

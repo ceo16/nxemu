@@ -12,9 +12,7 @@
 #include "yuzu_common/swap.h"
 #include "core/file_sys/vfs/vfs_types.h"
 
-namespace Loader {
-enum class ResultStatus : u16;
-}
+enum class LoaderResultStatus : uint16_t;
 
 namespace FileSys {
 
@@ -62,8 +60,8 @@ public:
     /// we do not have an NPDM file
     static ProgramMetadata GetDefault();
 
-    Loader::ResultStatus Load(VirtualFile file);
-    Loader::ResultStatus Reload(VirtualFile file);
+    LoaderResultStatus Load(VirtualFile file);
+    LoaderResultStatus Reload(VirtualFile file);
 
     /// Load from parameters instead of NPDM file, used for KIP
     void LoadManual(bool is_64_bit, ProgramAddressSpaceType address_space, s32 main_thread_prio,

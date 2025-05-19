@@ -217,8 +217,8 @@ std::optional<std::array<u8, 0x10>> PlaceholderCache::GetRightsID(const NcaID& i
 
     NCA nca{file};
 
-    if (nca.GetStatus() != Loader::ResultStatus::Success &&
-        nca.GetStatus() != Loader::ResultStatus::ErrorMissingBKTRBaseRomFS) {
+    if (nca.GetStatus() != LoaderResultStatus::Success &&
+        nca.GetStatus() != LoaderResultStatus::ErrorMissingBKTRBaseRomFS) {
         return std::nullopt;
     }
 
@@ -411,7 +411,7 @@ void RegisteredCache::ProcessFiles(const std::vector<NcaID>& ids) {
         if (file == nullptr)
             continue;
         const auto nca = std::make_shared<NCA>(parser(file, id));
-        if (nca->GetStatus() != Loader::ResultStatus::Success ||
+        if (nca->GetStatus() != LoaderResultStatus::Success ||
             nca->GetType() != NCAContentType::Meta || nca->GetSubdirectories().empty()) {
             continue;
         }

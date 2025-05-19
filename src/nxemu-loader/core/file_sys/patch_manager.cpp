@@ -178,7 +178,7 @@ VirtualFile PatchManager::PatchRomFS(const NCA* base_nca, VirtualFile base_romfs
 
     if (!update_disabled && update_raw != nullptr && base_nca != nullptr) {
         const auto new_nca = std::make_shared<NCA>(update_raw, base_nca);
-        if (new_nca->GetStatus() == Loader::ResultStatus::Success &&
+        if (new_nca->GetStatus() == LoaderResultStatus::Success &&
             new_nca->RomFS() != nullptr) {
             LOG_INFO(Loader, "    RomFS: Update ({}) applied successfully",
                      FormatTitleVersion(content_provider.GetEntryVersion(update_tid).value_or(0)));
@@ -188,7 +188,7 @@ VirtualFile PatchManager::PatchRomFS(const NCA* base_nca, VirtualFile base_romfs
         }
     } else if (!update_disabled && packed_update_raw != nullptr && base_nca != nullptr) {
         const auto new_nca = std::make_shared<NCA>(packed_update_raw, base_nca);
-        if (new_nca->GetStatus() == Loader::ResultStatus::Success &&
+        if (new_nca->GetStatus() == LoaderResultStatus::Success &&
             new_nca->RomFS() != nullptr) {
             LOG_INFO(Loader, "    RomFS: Update (PACKED) applied successfully");
             romfs = new_nca->RomFS();

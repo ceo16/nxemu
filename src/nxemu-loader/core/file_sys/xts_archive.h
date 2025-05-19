@@ -9,9 +9,7 @@
 #include "yuzu_common/swap.h"
 #include "core/file_sys/vfs/vfs.h"
 
-namespace Loader {
-enum class ResultStatus : u16;
-}
+enum class LoaderResultStatus : uint16_t;
 
 namespace FileSys {
 
@@ -28,7 +26,7 @@ public:
     explicit NAX(VirtualFile file, std::array<u8, 0x10> nca_id);
     ~NAX() override;
 
-    Loader::ResultStatus GetStatus() const;
+    LoaderResultStatus GetStatus() const;
 
     VirtualFile GetDecrypted() const;
 
@@ -45,10 +43,10 @@ public:
     VirtualDir GetParentDirectory() const override;
 
 private:
-    Loader::ResultStatus Parse(std::string_view path);
+    LoaderResultStatus Parse(std::string_view path);
 
     VirtualFile file;
-    Loader::ResultStatus status;
+    LoaderResultStatus status;
     NAXContentType type{};
 
     VirtualFile dec_file;

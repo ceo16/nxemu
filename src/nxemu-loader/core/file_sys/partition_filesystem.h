@@ -11,9 +11,7 @@
 #include "yuzu_common/swap.h"
 #include "core/file_sys/vfs/vfs.h"
 
-namespace Loader {
-enum class ResultStatus : u16;
-}
+enum class LoaderResultStatus : uint16_t;
 
 namespace FileSys {
 
@@ -26,7 +24,7 @@ public:
     explicit PartitionFilesystem(VirtualFile file);
     ~PartitionFilesystem() override;
 
-    Loader::ResultStatus GetStatus() const;
+    LoaderResultStatus GetStatus() const;
 
     std::map<std::string, u64> GetFileOffsets() const;
     std::map<std::string, u64> GetFileSizes() const;
@@ -76,7 +74,7 @@ private:
 
 #pragma pack(pop)
 
-    Loader::ResultStatus status{};
+    LoaderResultStatus status{};
 
     Header pfs_header{};
     bool is_hfs = false;

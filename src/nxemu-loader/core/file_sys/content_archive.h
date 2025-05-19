@@ -15,9 +15,7 @@
 #include "core/file_sys/vfs/vfs.h"
 #include <nxemu-module-spec/system_loader.h>
 
-namespace Loader {
-enum class ResultStatus : u16;
-}
+enum class LoaderResultStatus : uint16_t;
 
 namespace FileSys {
 
@@ -69,7 +67,7 @@ public:
     explicit NCA(VirtualFile file, const NCA* base_nca = nullptr);
     ~NCA() override;
 
-    Loader::ResultStatus GetStatus() const;
+    LoaderResultStatus GetStatus() const;
 
     std::vector<VirtualFile> GetFiles() const override;
     std::vector<VirtualDir> GetSubdirectories() const override;
@@ -103,7 +101,7 @@ private:
     VirtualDir logo = nullptr;
     VirtualFile file;
 
-    Loader::ResultStatus status{};
+    LoaderResultStatus status{};
 
     bool encrypted = false;
     bool is_update = false;

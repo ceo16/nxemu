@@ -28,7 +28,7 @@ NAX::NAX(VirtualFile file_)
                                                std::regex_constants::icase);
     std::smatch match;
     if (!std::regex_search(path, match, nax_path_regex)) {
-        status = Loader::ResultStatus::ErrorBadNAXFilePath;
+        status = LoaderResultStatus::ErrorBadNAXFilePath;
         return;
     }
 
@@ -44,12 +44,12 @@ NAX::NAX(VirtualFile file_, std::array<u8, 0x10> nca_id)
 
 NAX::~NAX() = default;
 
-Loader::ResultStatus NAX::Parse(std::string_view path) {
+LoaderResultStatus NAX::Parse(std::string_view path) {
     UNIMPLEMENTED();
-    return Loader::ResultStatus::ErrorNotImplemented;
+    return LoaderResultStatus::ErrorNotImplemented;
 }
 
-Loader::ResultStatus NAX::GetStatus() const {
+LoaderResultStatus NAX::GetStatus() const {
     return status;
 }
 
