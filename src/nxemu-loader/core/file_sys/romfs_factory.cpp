@@ -74,6 +74,12 @@ RomFSFactoryPtr::~RomFSFactoryPtr()
 {
 }
 
+IVirtualFile * RomFSFactoryPtr::OpenCurrentProcess(uint64_t currentProcessTitleId) const
+{
+    UNIMPLEMENTED();
+    return nullptr;
+}
+
 void RomFSFactoryPtr::Release()
 {
     delete this;

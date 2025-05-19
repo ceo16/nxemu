@@ -79,6 +79,7 @@ public:
     operator bool() const;
 
     // IRomFsController
+    IVirtualFile * OpenCurrentProcess(uint64_t currentProcessTitleId) const;
     void Release() override;
 
 private:

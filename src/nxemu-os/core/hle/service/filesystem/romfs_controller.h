@@ -11,6 +11,8 @@ public:
     explicit RomFsController(RomFsControllerPtr && factory_, uint64_t program_id_);
     ~RomFsController();
 
+    IVirtualFilePtr OpenRomFSCurrentProcess();
+
 private:
     const RomFsControllerPtr factory;
     const uint64_t program_id;

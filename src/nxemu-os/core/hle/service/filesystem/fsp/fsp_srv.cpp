@@ -235,6 +235,13 @@ Result FSP_SRV::OpenSaveDataTransferProhibiter(
 }
 
 Result FSP_SRV::OpenDataStorageByCurrentProcess(OutInterface<IStorage> out_interface) {
+    LOG_DEBUG(Service_FS, "called");
+
+    if (!romfs) {
+        auto current_romfs = romfs_controller->OpenRomFSCurrentProcess();
+        UNIMPLEMENTED();
+    }
+
     UNIMPLEMENTED();
     R_SUCCEED();
 }

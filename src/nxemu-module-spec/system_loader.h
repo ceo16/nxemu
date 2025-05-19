@@ -47,6 +47,7 @@ __interface ISaveDataFactory
 
 __interface IRomFsController
 {
+    IVirtualFile * OpenCurrentProcess(uint64_t currentProcessTitleId) const = 0;
     void Release();
 };
 

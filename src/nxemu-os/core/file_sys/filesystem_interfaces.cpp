@@ -69,9 +69,20 @@ IVirtualDirectoryPtr::operator bool() const
     return m_directory != nullptr;
 }
 
+IVirtualFilePtr::IVirtualFilePtr() :
+    m_file(nullptr)
+{
+}
+
 IVirtualFilePtr::IVirtualFilePtr(IVirtualFile * file) :
     m_file(file)
 {
+}
+
+IVirtualFilePtr::IVirtualFilePtr(IVirtualFilePtr && other) noexcept
+{
+    m_file = other.m_file;
+    other.m_file = nullptr;
 }
 
 IVirtualFilePtr::~IVirtualFilePtr()
@@ -81,6 +92,27 @@ IVirtualFilePtr::~IVirtualFilePtr()
         m_file->Release();
     }
     m_file = nullptr;
+}
+
+IVirtualFilePtr & IVirtualFilePtr::operator=(IVirtualFile * ptr)
+{
+    if (m_file != ptr && m_file != nullptr)
+    {
+        m_file->Release();
+    }
+    m_file = ptr;
+    return *this;
+}
+
+IVirtualFilePtr & IVirtualFilePtr::operator=(IVirtualFilePtr && other) noexcept
+{
+    if (m_file != nullptr)
+    {
+        m_file->Release();
+    }
+    m_file = other.m_file;
+    other.m_file = nullptr;
+    return *this;
 }
 
 IVirtualFile * IVirtualFilePtr::operator->() const
@@ -240,4 +272,9 @@ IRomFsController ** RomFsControllerPtr::GetAddressForSet()
         m_ptr = nullptr;
     }
     return &m_ptr;
+}
+
+IRomFsController * RomFsControllerPtr::operator->() const
+{
+    return m_ptr;
 }

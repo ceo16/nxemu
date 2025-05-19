@@ -7,6 +7,7 @@
 #include "core/hle/service/cmif_types.h"
 #include "core/hle/service/filesystem/fsp/fsp_types.h"
 #include "core/hle/service/service.h"
+#include "core/file_sys/filesystem_interfaces.h"
 
 namespace Core {
 class Reporter;
@@ -76,6 +77,7 @@ private:
     Result GetCacheStorageSize(s32 index, Out<s64> out_data_size, Out<s64> out_journal_size);
 
     IFileSystemController & fsc;
+    IVirtualFilePtr romfs;
     u64 current_process_id = 0;
     u32 access_log_program_index = 0;
     AccessLogMode access_log_mode = AccessLogMode::None;

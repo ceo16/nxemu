@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include "core/hle/service/filesystem/romfs_controller.h"
+#include <nxemu-module-spec/system_loader.h>
 
 namespace Service::FileSystem {
 
@@ -13,6 +14,10 @@ RomFsController::RomFsController(RomFsControllerPtr&& factory_, uint64_t program
 
 RomFsController::~RomFsController()
 {
+}
+
+IVirtualFilePtr RomFsController::OpenRomFSCurrentProcess() {
+    return factory->OpenCurrentProcess(program_id);
 }
 
 } // namespace Service::FileSystem
