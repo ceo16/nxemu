@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include "core/file_sys/filesystem_interfaces.h"
 #include "core/hle/service/cmif_types.h"
 #include "core/hle/service/filesystem/filesystem.h"
 #include "core/hle/service/service.h"
@@ -11,8 +12,15 @@ namespace Service::FileSystem {
 
 class IStorage final : public ServiceFramework<IStorage> {
 public:
+    explicit IStorage(Core::System& system_, IVirtualFilePtr && backend_);
 
 private:
+    IVirtualFilePtr backend;
+
+    Result Read(
+        OutBuffer<BufferAttr_HipcMapAlias | BufferAttr_HipcMapTransferAllowsNonSecure> out_bytes,
+        s64 offset, s64 length);
+    Result GetSize(Out<u64> out_size);
 };
 
 } // namespace Service::FileSystem

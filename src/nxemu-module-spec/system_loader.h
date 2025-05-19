@@ -106,8 +106,9 @@ __interface IVirtualDirectory
 __interface IVirtualFile
 {
     uint64_t GetSize() const = 0;
-    uint64_t ReadBytes(uint8_t * data, uint64_t datalen) = 0;
+    uint64_t ReadBytes(uint8_t * data, uint64_t datalen, uint64_t offset) = 0;
     IVirtualDirectory * ExtractRomFS() = 0;
+    IVirtualFile * Duplicate() = 0;
     void Release() = 0;
 };
 

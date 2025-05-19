@@ -238,11 +238,16 @@ Result FSP_SRV::OpenDataStorageByCurrentProcess(OutInterface<IStorage> out_inter
     LOG_DEBUG(Service_FS, "called");
 
     if (!romfs) {
-        auto current_romfs = romfs_controller->OpenRomFSCurrentProcess();
-        UNIMPLEMENTED();
-    }
+        IVirtualFilePtr current_romfs = std::move(romfs_controller->OpenRomFSCurrentProcess());
+        if (!current_romfs) {
+            // TODO (bunnei): Find the right error code to use here
+            LOG_CRITICAL(Service_FS, "No file system interface available!");
+            R_RETURN(ResultUnknown);
+        }
 
-    UNIMPLEMENTED();
+        romfs = std::move(current_romfs);
+    }
+    *out_interface = std::make_shared<IStorage>(system, IVirtualFilePtr(romfs->Duplicate()));
     R_SUCCEED();
 }
 

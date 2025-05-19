@@ -61,11 +61,11 @@ uint64_t VirtualFilePtr::GetSize() const
     return 0;
 }
 
-uint64_t VirtualFilePtr::ReadBytes(uint8_t * data, uint64_t datalen)
+uint64_t VirtualFilePtr::ReadBytes(uint8_t * data, uint64_t datalen, uint64_t offset)
 {
     if (m_file)
     {
-        return m_file->Read(data, datalen);
+        return m_file->Read(data, datalen, offset);
     }
     return 0;
 }
@@ -78,6 +78,11 @@ IVirtualDirectory * VirtualFilePtr::ExtractRomFS()
         return nullptr;
     }
     return std::make_unique<VirtualDirectoryPtr>(dir).release();
+}
+
+IVirtualFile * VirtualFilePtr::Duplicate()
+{
+    return std::make_unique<VirtualFilePtr>(m_file).release();
 }
 
 void VirtualFilePtr::Release()

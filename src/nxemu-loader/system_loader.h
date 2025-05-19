@@ -25,13 +25,13 @@ public:
     void RegisterContentProvider(FileSys::ContentProviderUnionSlot slot, FileSys::ContentProvider* provider);
 
     //ISystemloader
-    bool Initialize();
-    bool SelectAndLoad(void * parentWindow);
-    bool LoadRom(const char * romFile);
+    bool Initialize() override;
+    bool SelectAndLoad(void * parentWindow) override;
+    bool LoadRom(const char * romFile) override;
 
-    IFileSystemController & FileSystemController();
-    IVirtualFile * SynthesizeSystemArchive(const uint64_t title_id);
-    uint32_t GetContentProviderEntriesCount(bool useTitleType, LoaderTitleType titleType, bool useContentRecordType, LoaderContentRecordType contentRecordType, bool useTitleId, unsigned long long titleId);
+    IFileSystemController & FileSystemController() override;
+    IVirtualFile * SynthesizeSystemArchive(const uint64_t title_id) override;
+    uint32_t GetContentProviderEntriesCount(bool useTitleType, LoaderTitleType titleType, bool useContentRecordType, LoaderContentRecordType contentRecordType, bool useTitleId, unsigned long long titleId) override;
 
 private:
     Systemloader() = delete;

@@ -139,7 +139,7 @@ std::vector<uint8_t> IVirtualFilePtr::ReadAllBytes() const
     }
     std::vector<uint8_t> data;
     data.resize(dataSize);
-    dataSize = m_file->ReadBytes(data.data(), data.size());
+    dataSize = m_file->ReadBytes(data.data(), data.size(), 0);
     if (dataSize < data.size())
     {
         data.resize(dataSize);

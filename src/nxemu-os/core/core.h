@@ -33,9 +33,10 @@ class KProcess;
 class KScheduler;
 } // namespace Kernel
 
+enum class LoaderResultStatus : uint16_t;
+
 namespace Loader {
 class AppLoader;
-enum class ResultStatus : u16;
 } // namespace Loader
 
 namespace Core::Memory {
@@ -311,7 +312,7 @@ public:
     [[nodiscard]] u64 GetApplicationProcessProgramID() const;
 
     /// Gets the name of the current game
-    [[nodiscard]] Loader::ResultStatus GetGameName(std::string& out) const;
+    [[nodiscard]] LoaderResultStatus GetGameName(std::string& out) const;
 
     void SetStatus(SystemResultStatus new_status, const char* details);
 
