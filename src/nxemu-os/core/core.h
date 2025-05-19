@@ -14,6 +14,8 @@
 
 #include "yuzu_common/common_types.h"
 
+enum class StorageId : uint8_t;
+
 __interface ISwitchSystem;
 __interface IVideo;
 __interface ISystemloader;
@@ -320,6 +322,8 @@ public:
 
     [[nodiscard]] Service::SM::ServiceManager& ServiceManager();
     [[nodiscard]] const Service::SM::ServiceManager& ServiceManager() const;
+
+    void AddGlueRegistrationForProcess(Kernel::KProcess& process, uint32_t version, StorageId baseGameStorageId, StorageId updateStorageId, uint8_t* nacpData, uint32_t nacpDataLen);
 
     void RegisterCheatList(const std::vector<Memory::CheatEntry>& list,
                            const std::array<u8, 0x20>& build_id, u64 main_region_begin,

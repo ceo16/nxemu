@@ -24,7 +24,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\3rd_party\lz4;$(SolutionDir)src\3rd_party\microprofile;$(SolutionDir)external\boost;$(SolutionDir)external\fmt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\3rd_party\lz4;$(SolutionDir)src\3rd_party\microprofile;$(SolutionDir)src\3rd_party\stb;$(SolutionDir)external\boost;$(SolutionDir)external\fmt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <WarningLevel>Level3</WarningLevel>
       <UseStandardPreprocessor>true</UseStandardPreprocessor>
@@ -99,6 +99,7 @@
     <ClInclude Include="settings_setting.h" />
     <ClInclude Include="slot_vector.h" />
     <ClInclude Include="spin_lock.h" />
+    <ClInclude Include="stb.h" />
     <ClInclude Include="steady_clock.h" />
     <ClInclude Include="stream.h" />
     <ClInclude Include="string_util.h" />
@@ -145,6 +146,7 @@
     <ClCompile Include="settings_common.cpp" />
     <ClCompile Include="settings_input.cpp" />
     <ClCompile Include="spin_lock.cpp" />
+    <ClCompile Include="stb.cpp" />
     <ClCompile Include="steady_clock.cpp" />
     <ClCompile Include="stream.cpp" />
     <ClCompile Include="string_util.cpp" />

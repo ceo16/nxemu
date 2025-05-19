@@ -18,6 +18,15 @@ enum class PoolPartition : uint32_t
     SystemNonSecure = 3,
 };
 
+enum class StorageId : uint8_t {
+    None = 0,
+    Host = 1,
+    GameCard = 2,
+    NandSystem = 3,
+    NandUser = 4,
+    SdCard = 5,
+};
+
 __interface IProgramMetadata
 {
     bool Is64BitProgram() const = 0;
@@ -58,7 +67,7 @@ __interface IOperatingSystem
 {
     bool Initialize(void) = 0;
     bool CreateApplicationProcess(uint64_t codeSize, const IProgramMetadata & metaData, uint64_t & baseAddress, uint64_t & processID, bool is_hbl) = 0;
-    void StartApplicationProcess(uint64_t baseAddress, int32_t priority, int64_t stackSize) = 0;
+    void StartApplicationProcess(int32_t priority, int64_t stackSize, uint32_t version, StorageId baseGameStorageId, StorageId updateStorageId, uint8_t * nacpData, uint32_t nacpDataLen) = 0;
     bool LoadModule(const IModuleInfo & module, uint64_t baseAddress) = 0;
     IDeviceMemory & DeviceMemory(void) = 0;
     void KeyboardKeyPress(int modifier, int keyIndex, int keyCode) = 0;

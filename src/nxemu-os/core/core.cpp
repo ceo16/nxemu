@@ -20,6 +20,7 @@
 #include "core/hle/service/am/frontend/applets.h"
 #include "core/hle/service/apm/apm_controller.h"
 #include "core/hle/service/filesystem/filesystem.h"
+#include "core/hle/service/glue/glue_manager.h"
 #include "core/hle/service/services.h"
 #include "core/perf_stats.h"
 #include "yuzu_hid_core/hid_core.h"
@@ -121,6 +122,7 @@ struct System::Impl {
 
         kernel.Initialize();
         cpu_manager.Initialize();
+        arp_manager.ResetAll();
 
         service_manager = std::make_shared<Service::SM::ServiceManager>(kernel);
         services =
@@ -185,6 +187,9 @@ struct System::Impl {
 
     /// APM (Performance) services
     Service::APM::Controller apm_controller{core_timing};
+
+    /// Service State
+    Service::Glue::ARPManager arp_manager;
 
     /// Service manager
     std::shared_ptr<Service::SM::ServiceManager> service_manager;
@@ -353,6 +358,23 @@ u64 System::GetApplicationProcessProgramID() const {
     return impl->kernel.ApplicationProcess()->GetProgramId();
 }
 
+void System::AddGlueRegistrationForProcess(Kernel::KProcess & process, uint32_t version, StorageId baseGameStorageId, StorageId updateStorageId, uint8_t * nacpData, uint32_t nacpDataLen) {
+    std::vector<u8> nacp_data;
+    if (nacpDataLen > 0)
+    {
+        nacp_data.resize(nacpDataLen);
+        memcpy(nacp_data.data(), nacpData, nacpDataLen);
+    }
+
+    Service::Glue::ApplicationLaunchProperty launch{};
+    launch.title_id = process.GetProgramId();
+    launch.version = version;
+    launch.base_game_storage_id = baseGameStorageId;
+    launch.update_storage_id = updateStorageId;
+
+    impl->arp_manager.Register(launch.title_id, launch, std::move(nacp_data));
+}
+
 void System::SetFrontendAppletSet(Service::AM::Frontend::FrontendAppletSet&& set) {
     impl->frontend_applets.SetFrontendAppletSet(std::move(set));
 }
@@ -371,6 +393,14 @@ Service::AM::AppletManager& System::GetAppletManager() {
 
 IFileSystemController & System::GetFileSystemController() {
     return impl->fs_controller;
+}
+
+Service::Glue::ARPManager& System::GetARPManager() {
+    return impl->arp_manager;
+}
+
+const Service::Glue::ARPManager& System::GetARPManager() const {
+    return impl->arp_manager;
 }
 
 Service::APM::Controller& System::GetAPMController() {

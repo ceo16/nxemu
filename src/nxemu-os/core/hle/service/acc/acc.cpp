@@ -9,6 +9,7 @@
 #include "yuzu_common/fs/path_util.h"
 #include "yuzu_common/logging/log.h"
 #include "yuzu_common/polyfill_ranges.h"
+#include "yuzu_common/stb.h"
 #include "yuzu_common/string_util.h"
 #include "yuzu_common/swap.h"
 #include "core/constants.h"
@@ -42,6 +43,31 @@ static void JPGToMemory(void* context, void* data, int len) {
     jpg_image->insert(jpg_image->end(), jpg, jpg + len);
 }
 
+static void SanitizeJPEGImageSize(std::vector<u8>& image) {
+    constexpr std::size_t max_jpeg_image_size = 0x20000;
+    constexpr int profile_dimensions = 256;
+    int original_width, original_height, color_channels;
+
+    const auto plain_image =
+        stbi_load_from_memory(image.data(), static_cast<int>(image.size()), &original_width,
+                              &original_height, &color_channels, STBI_rgb);
+
+    // Resize image to match 256*256
+    if (original_width != profile_dimensions || original_height != profile_dimensions) {
+        // Use vector instead of array to avoid overflowing the stack
+        std::vector<u8> out_image(profile_dimensions * profile_dimensions * STBI_rgb);
+        stbir_resize_uint8_srgb(plain_image, original_width, original_height, 0, out_image.data(),
+                                profile_dimensions, profile_dimensions, 0, STBI_rgb, 0,
+                                STBIR_FILTER_BOX);
+        image.clear();
+        if (!stbi_write_jpg_to_func(JPGToMemory, &image, profile_dimensions, profile_dimensions,
+                                    STBI_rgb, out_image.data(), 0)) {
+            LOG_ERROR(Service_ACC, "Failed to resize the user provided image.");
+        }
+    }
+
+    image.resize(std::min(image.size(), max_jpeg_image_size));
+}
 
 class IManagerForSystemService final : public ServiceFramework<IManagerForSystemService> {
 public:
@@ -286,6 +312,8 @@ public:
         static const FunctionInfo functions[] = {
             {0, &IProfileCommon::Get, "Get"},
             {1, &IProfileCommon::GetBase, "GetBase"},
+            {10, &IProfileCommon::GetImageSize, "GetImageSize"},
+            {11, &IProfileCommon::LoadImage, "LoadImage"},
         };
 
         RegisterHandlers(functions);
@@ -332,6 +360,58 @@ protected:
         }
     }
 
+    void LoadImage(HLERequestContext& ctx) {
+        LOG_DEBUG(Service_ACC, "called");
+
+        IPC::ResponseBuilder rb{ctx, 3};
+        rb.Push(ResultSuccess);
+
+        const Common::FS::IOFile image(GetImagePath(user_id), Common::FS::FileAccessMode::Read,
+                                       Common::FS::FileType::BinaryFile);
+        if (!image.IsOpen()) {
+            LOG_WARNING(Service_ACC,
+                        "Failed to load user provided image! Falling back to built-in backup...");
+            ctx.WriteBuffer(Core::Constants::ACCOUNT_BACKUP_JPEG);
+            rb.Push(static_cast<u32>(Core::Constants::ACCOUNT_BACKUP_JPEG.size()));
+            return;
+        }
+
+        std::vector<u8> buffer(image.GetSize());
+
+        if (image.Read(buffer) != buffer.size()) {
+            LOG_ERROR(Service_ACC, "Failed to read all the bytes in the user provided image.");
+        }
+
+        SanitizeJPEGImageSize(buffer);
+
+        ctx.WriteBuffer(buffer);
+        rb.Push(static_cast<u32>(buffer.size()));
+    }
+
+    void GetImageSize(HLERequestContext& ctx) {
+        LOG_DEBUG(Service_ACC, "called");
+        IPC::ResponseBuilder rb{ctx, 3};
+        rb.Push(ResultSuccess);
+
+        const Common::FS::IOFile image(GetImagePath(user_id), Common::FS::FileAccessMode::Read,
+                                       Common::FS::FileType::BinaryFile);
+
+        if (!image.IsOpen()) {
+            LOG_WARNING(Service_ACC,
+                        "Failed to load user provided image! Falling back to built-in backup...");
+            rb.Push(static_cast<u32>(Core::Constants::ACCOUNT_BACKUP_JPEG.size()));
+            return;
+        }
+
+        std::vector<u8> buffer(image.GetSize());
+
+        if (image.Read(buffer) != buffer.size()) {
+            LOG_ERROR(Service_ACC, "Failed to read all the bytes in the user provided image.");
+        }
+
+        SanitizeJPEGImageSize(buffer);
+        rb.Push(static_cast<u32>(buffer.size()));
+    }
 
     void Store(HLERequestContext& ctx) {
         IPC::RequestParser rp{ctx};
@@ -708,11 +788,72 @@ void Module::Interface::IsUserRegistrationRequestPermitted(HLERequestContext& ct
     rb.Push(profile_manager->CanSystemRegisterUser());
 }
 
+void Module::Interface::InitializeApplicationInfo(HLERequestContext& ctx) {
+    LOG_DEBUG(Service_ACC, "called");
+    IPC::ResponseBuilder rb{ctx, 2};
+    rb.Push(InitializeApplicationInfoBase());
+}
+
+void Module::Interface::InitializeApplicationInfoRestricted(HLERequestContext& ctx) {
+    LOG_WARNING(Service_ACC, "(Partial implementation) called");
+
+    // TODO(ogniK): We require checking if the user actually owns the title and what not. As of
+    // currently, we assume the user owns the title. InitializeApplicationInfoBase SHOULD be called
+    // first then we do extra checks if the game is a digital copy.
+
+    IPC::ResponseBuilder rb{ctx, 2};
+    rb.Push(InitializeApplicationInfoBase());
+}
+
+Result Module::Interface::InitializeApplicationInfoBase() {
+    if (application_info) {
+        LOG_ERROR(Service_ACC, "Application already initialized");
+        return Account::ResultApplicationInfoAlreadyInitialized;
+    }
+
+    // TODO(ogniK): This should be changed to reflect the target process for when we have multiple
+    // processes emulated. As we don't actually have pid support we should assume we're just using
+    // our own process
+    Glue::ApplicationLaunchProperty launch_property{};
+    const auto result = system.GetARPManager().GetLaunchProperty(
+        &launch_property, system.GetApplicationProcessProgramID());
+
+    if (result != ResultSuccess) {
+        LOG_ERROR(Service_ACC, "Failed to get launch property");
+        return Account::ResultInvalidApplication;
+    }
+
+    switch (launch_property.base_game_storage_id) {
+    case StorageId::GameCard:
+        application_info.application_type = ApplicationType::GameCard;
+        break;
+    case StorageId::Host:
+    case StorageId::NandUser:
+    case StorageId::SdCard:
+    case StorageId::None: // Yuzu specific, differs from hardware
+        application_info.application_type = ApplicationType::Digital;
+        break;
+    default:
+        LOG_ERROR(Service_ACC, "Invalid game storage ID! storage_id={}",
+                  launch_property.base_game_storage_id);
+        return Account::ResultInvalidApplication;
+    }
+
+    LOG_WARNING(Service_ACC, "ApplicationInfo init required");
+    // TODO(ogniK): Actual initialization here
+    return ResultSuccess;
+}
+
 void Module::Interface::GetBaasAccountManagerForApplication(HLERequestContext& ctx) {
     LOG_DEBUG(Service_ACC, "called");
     IPC::ResponseBuilder rb{ctx, 2, 0, 1};
     rb.Push(ResultSuccess);
     rb.PushIpcInterface<IManagerForApplication>(system, profile_manager);
+}
+
+void Module::Interface::IsUserAccountSwitchLocked(HLERequestContext& ctx) {
+    LOG_DEBUG(Service_ACC, "called");
+    UNIMPLEMENTED();
 }
 
 void Module::Interface::InitializeApplicationInfoV2(HLERequestContext& ctx) {

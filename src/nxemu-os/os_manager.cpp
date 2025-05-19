@@ -107,8 +107,9 @@ bool OSManager::CreateApplicationProcess(uint64_t codeSize, const IProgramMetada
     return true;
 }
 
-void OSManager::StartApplicationProcess(uint64_t /*baseAddress*/, int32_t priority, int64_t stackSize)
+void OSManager::StartApplicationProcess(int32_t priority, int64_t stackSize, uint32_t version, StorageId baseGameStorageId, StorageId updateStorageId, uint8_t * nacpData, uint32_t nacpDataLen)
 {
+    m_coreSystem.AddGlueRegistrationForProcess(*m_process, version, baseGameStorageId, updateStorageId, nacpData, nacpDataLen);
     m_process->Run(priority, stackSize);
 }
 

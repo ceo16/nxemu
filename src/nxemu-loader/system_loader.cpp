@@ -138,7 +138,7 @@ bool Systemloader::Impl::LoadNRO(const char* nroFile)
     m_TitleID = Nacp->GetTitleId();
     m_fsController.RegisterProcess(processID, m_TitleID, std::make_unique<FileSys::RomFSFactory>(nullptr, false, *m_contentProvider, m_fsController));
     g_settings->SetString(NXCoreSetting::GameName, Nacp->GetApplicationName().c_str());
-    operatingSystem.StartApplicationProcess(baseAddress, metaData.GetMainThreadPriority(), metaData.GetMainThreadStackSize());
+    operatingSystem.StartApplicationProcess(metaData.GetMainThreadPriority(), metaData.GetMainThreadStackSize(), 0, StorageId::None, StorageId::None, nullptr, 0);
     return true;
 }
 
