@@ -94,6 +94,12 @@ enum class LoaderResultStatus : uint16_t {
     ErrorIntegrityVerificationFailed,
 };
 
+struct ContentProviderEntry
+{
+    uint64_t titleID;
+    LoaderContentRecordType type;
+};
+
 __interface IVirtualFile;
 
 __interface IVirtualDirectory
@@ -114,20 +120,20 @@ __interface IVirtualFile
 
 __interface ISaveDataFactory
 {
-    void Release();
+    void Release() = 0;
 };
 
 __interface IRomFsController
 {
     IVirtualFile * OpenCurrentProcess(uint64_t currentProcessTitleId) const = 0;
-    void Release();
+    void Release() = 0;
 };
 
 __interface IFileSysNCA
 {
     LoaderResultStatus GetStatus() const = 0;
     IVirtualFile * GetRomFS() = 0;
-    void Release();
+    void Release() = 0;
 };
 
 __interface IFileSysRegisteredCache
@@ -151,6 +157,8 @@ __interface ISystemloader
     IFileSystemController & FileSystemController() = 0;
     IVirtualFile * SynthesizeSystemArchive(const uint64_t title_id) = 0;
     uint32_t GetContentProviderEntriesCount(bool useTitleType, LoaderTitleType titleType, bool useContentRecordType, LoaderContentRecordType contentRecordType, bool useTitleId, unsigned long long titleId) = 0;
+    uint32_t GetContentProviderEntries(bool useTitleType, LoaderTitleType titleType, bool useContentRecordType, LoaderContentRecordType contentRecordType, bool useTitleId, unsigned long long titleId, ContentProviderEntry* entries, uint32_t entryCount) = 0;
+    IFileSysNCA * GetContentProviderEntry(uint64_t title_id, LoaderContentRecordType type) = 0;
 };
 
 EXPORT ISystemloader * CALL CreateSystemLoader(ISwitchSystem & system);

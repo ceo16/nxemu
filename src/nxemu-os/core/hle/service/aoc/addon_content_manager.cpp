@@ -8,6 +8,7 @@
 #include "yuzu_common/logging/log.h"
 #include "yuzu_common/settings.h"
 #include "core/core.h"
+#include "core/file_sys/filesystem_interfaces.h"
 #include "core/hle/kernel/k_event.h"
 #include "core/hle/service/aoc/addon_content_manager.h"
 #include "core/hle/service/aoc/purchase_event_manager.h"
@@ -24,14 +25,27 @@ static bool CheckAOCTitleIDMatchesBase(u64 title_id, u64 base) {
     return false;
 }
 
-static std::vector<u64> AccumulateAOCTitleIDs(Core::System& system) {
+static std::vector<u64> AccumulateAOCTitleIDs(Core::System & system) {
     std::vector<u64> add_on_content;
     ISystemloader & loader = system.GetSystemloader();
     uint32_t entriesCount = loader.GetContentProviderEntriesCount(true, LoaderTitleType::AOC, true, LoaderContentRecordType::Data, false, 0);
     
     if (entriesCount > 0)
     {
-        UNIMPLEMENTED();
+        std::vector<ContentProviderEntry> entries(entriesCount);
+        entriesCount = loader.GetContentProviderEntries(true, LoaderTitleType::AOC, true, LoaderContentRecordType::Data, false, 0, entries.data(), entriesCount);
+        entries.resize(entriesCount);
+        std::vector<u64> add_on_content;
+        std::transform(entries.begin(), entries.end(), std::back_inserter(add_on_content),
+            [](const ContentProviderEntry& rce) { return rce.titleID; });
+
+        add_on_content.erase(
+            std::remove_if(
+                add_on_content.begin(), add_on_content.end(),
+                [&loader](u64 tid) {
+                    return FileSysNCAPtr(loader.GetContentProviderEntry(tid, LoaderContentRecordType::Data))->GetStatus() != LoaderResultStatus::Success;
+                }),
+            add_on_content.end());
     }
     return add_on_content;
 }

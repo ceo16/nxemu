@@ -18,26 +18,22 @@
 #include "core/file_sys/vfs/vfs_concat.h"
 #include "core/loader/loader.h"
 
-namespace FileSys {
-
-// The size of blocks to use when vfs raw copying into nand.
-constexpr size_t VFS_RC_LARGE_COPY_BLOCK = 0x400000;
-
-std::string ContentProviderEntry::DebugInfo() const {
-    return fmt::format("title_id={:016X}, content_type={:02X}", title_id, static_cast<u8>(type));
-}
-
 bool operator<(const ContentProviderEntry& lhs, const ContentProviderEntry& rhs) {
-    return (lhs.title_id < rhs.title_id) || (lhs.title_id == rhs.title_id && lhs.type < rhs.type);
+    return (lhs.titleID < rhs.titleID) || (lhs.titleID == rhs.titleID && lhs.type < rhs.type);
 }
 
 bool operator==(const ContentProviderEntry& lhs, const ContentProviderEntry& rhs) {
-    return std::tie(lhs.title_id, lhs.type) == std::tie(rhs.title_id, rhs.type);
+    return std::tie(lhs.titleID, lhs.type) == std::tie(rhs.titleID, rhs.type);
 }
 
 bool operator!=(const ContentProviderEntry& lhs, const ContentProviderEntry& rhs) {
     return !operator==(lhs, rhs);
 }
+
+namespace FileSys {
+
+// The size of blocks to use when vfs raw copying into nand.
+constexpr size_t VFS_RC_LARGE_COPY_BLOCK = 0x400000;
 
 static bool FollowsTwoDigitDirFormat(std::string_view name) {
     static const std::regex two_digit_regex("000000[0-9A-F]{2}", std::regex_constants::ECMAScript |
@@ -115,15 +111,19 @@ LoaderContentRecordType GetCRTypeFromNCAType(NCAContentType type) {
 ContentProvider::~ContentProvider() = default;
 
 bool ContentProvider::HasEntry(ContentProviderEntry entry) const {
-    return HasEntry(entry.title_id, entry.type);
+    return HasEntry(entry.titleID, entry.type);
 }
 
 VirtualFile ContentProvider::GetEntryUnparsed(ContentProviderEntry entry) const {
-    return GetEntryUnparsed(entry.title_id, entry.type);
+    return GetEntryUnparsed(entry.titleID, entry.type);
 }
 
 VirtualFile ContentProvider::GetEntryRaw(ContentProviderEntry entry) const {
-    return GetEntryRaw(entry.title_id, entry.type);
+    return GetEntryRaw(entry.titleID, entry.type);
+}
+
+std::unique_ptr<NCA> ContentProvider::GetEntryNCA(ContentProviderEntry entry) const {
+    return GetEntryNCA(entry.titleID, entry.type);
 }
 
 std::vector<ContentProviderEntry> ContentProvider::ListEntries() const {
@@ -491,10 +491,14 @@ VirtualFile RegisteredCache::GetEntryRaw(u64 title_id, LoaderContentRecordType t
 }
 
 IFileSysNCA * RegisteredCache::GetEntry(u64 title_id, LoaderContentRecordType type) const {
+    return GetEntryNCA(title_id, type).release();
+}
+
+std::unique_ptr<NCA> RegisteredCache::GetEntryNCA(u64 title_id, LoaderContentRecordType type) const {
     const auto raw = GetEntryRaw(title_id, type);
     if (raw == nullptr)
         return nullptr;
-    return std::make_unique<NCA>(raw).release();
+    return std::make_unique<NCA>(raw);
 }
 
 template <typename T>
@@ -812,6 +816,19 @@ VirtualFile ContentProviderUnion::GetEntryRaw(u64 title_id, LoaderContentRecordT
     return nullptr;
 }
 
+std::unique_ptr<NCA> ContentProviderUnion::GetEntryNCA(u64 title_id, LoaderContentRecordType type) const {
+    for (const auto& provider : providers) {
+        if (provider.second == nullptr)
+            continue;
+
+        auto res = provider.second->GetEntryNCA(title_id, type);
+        if (res != nullptr)
+            return res;
+    }
+
+    return nullptr;
+}
+
 std::vector<ContentProviderEntry> ContentProviderUnion::ListEntriesFilter(
     std::optional<LoaderTitleType> title_type, std::optional<LoaderContentRecordType> record_type,
     std::optional<u64> title_id) const {
@@ -905,6 +922,13 @@ VirtualFile ManualContentProvider::GetEntryRaw(u64 title_id, LoaderContentRecord
     if (iter == entries.end())
         return nullptr;
     return iter->second;
+}
+
+std::unique_ptr<NCA> ManualContentProvider::GetEntryNCA(u64 title_id, LoaderContentRecordType type) const {
+    const auto res = GetEntryRaw(title_id, type);
+    if (res == nullptr)
+        return nullptr;
+    return std::make_unique<NCA>(res);
 }
 
 std::vector<ContentProviderEntry> ManualContentProvider::ListEntriesFilter(

@@ -18,7 +18,9 @@ struct Systemloader::Impl {
         m_loader(loader),
         m_system(system),
         m_fsController(loader),
-        m_TitleID(0)
+        m_provider(std::make_unique<FileSys::ManualContentProvider>()),
+        m_processID(0),
+        m_titleID(0)
     {
     }
 
@@ -31,8 +33,10 @@ struct Systemloader::Impl {
     /// ContentProviderUnion instance
     std::unique_ptr<FileSys::ContentProviderUnion> m_contentProvider;
     FileSys::FileSystemController m_fsController;
+    std::unique_ptr<FileSys::ManualContentProvider> m_provider;
     std::unique_ptr<Nro> m_nro;
-    uint64_t m_TitleID;
+    uint64_t m_processID;
+    uint64_t m_titleID;
 };
 
 Systemloader::Systemloader(ISwitchSystem & system) :
@@ -52,6 +56,7 @@ bool Systemloader::Initialize(void)
     if (impl->m_contentProvider == nullptr) {
         impl->m_contentProvider = std::make_unique<FileSys::ContentProviderUnion>();
     }
+    impl->m_contentProvider->SetSlot(FileSys::ContentProviderUnionSlot::FrontendManual, impl->m_provider.get());
     GetFileSystemController().CreateFactories(*GetFilesystem(), false);
     return true;
 }
@@ -94,6 +99,10 @@ ISwitchSystem & Systemloader::GetSystem() {
     return impl->m_system;
 }
 
+FileSys::ContentProvider & Systemloader::GetContentProvider() {
+    return *impl->m_contentProvider;
+}
+
 FileSys::VirtualFilesystem Systemloader::GetFilesystem() {
     return impl->m_virtualFilesystem;
 }
@@ -105,6 +114,16 @@ FileSys::FileSystemController & Systemloader::GetFileSystemController() {
 void Systemloader::RegisterContentProvider(FileSys::ContentProviderUnionSlot slot, FileSys::ContentProvider* provider) 
 {
     impl->m_contentProvider->SetSlot(slot, provider);
+}
+
+void Systemloader::SetProcessID(uint64_t processID)
+{
+    impl->m_processID = processID;
+}
+
+void Systemloader::SetTitleID(uint64_t titleID)
+{
+    impl->m_titleID = titleID;
 }
 
 bool Systemloader::Impl::LoadNRO(const char* nroFile)
@@ -135,8 +154,8 @@ bool Systemloader::Impl::LoadNRO(const char* nroFile)
         return false;
     }
 
-    m_TitleID = Nacp->GetTitleId();
-    m_fsController.RegisterProcess(processID, m_TitleID, std::make_unique<FileSys::RomFSFactory>(nullptr, false, *m_contentProvider, m_fsController));
+    m_titleID = Nacp->GetTitleId();
+    m_fsController.RegisterProcess(processID, m_titleID, std::make_unique<FileSys::RomFSFactory>(nullptr, false, *m_contentProvider, m_fsController));
     g_settings->SetString(NXCoreSetting::GameName, Nacp->GetApplicationName().c_str());
     operatingSystem.StartApplicationProcess(metaData.GetMainThreadPriority(), metaData.GetMainThreadStackSize(), 0, StorageId::None, StorageId::None, nullptr, 0);
     return true;
@@ -159,6 +178,28 @@ uint32_t Systemloader::GetContentProviderEntriesCount(bool useTitleType, LoaderT
     std::optional<LoaderTitleType> title = useTitleType ? std::optional<LoaderTitleType>((LoaderTitleType)titleType) : std::nullopt;
     std::optional<LoaderContentRecordType> record = useContentRecordType ? std::optional<LoaderContentRecordType>((LoaderContentRecordType)contentRecordType) : std::nullopt;
     std::optional<u64> id = useTitleId ? std::optional<u64>(titleId) : std::nullopt;
-    const std::vector<FileSys::ContentProviderEntry> list = rcu.ListEntriesFilter(title, record, id);
+    const std::vector<ContentProviderEntry> list = rcu.ListEntriesFilter(title, record, id);
     return (uint32_t)list.size();
+}
+
+uint32_t Systemloader::GetContentProviderEntries(bool useTitleType, LoaderTitleType titleType, bool useContentRecordType, LoaderContentRecordType contentRecordType, bool useTitleId, unsigned long long titleId, ContentProviderEntry * entries, uint32_t entryCount)
+{
+    if (entries == nullptr || entryCount == 0)
+    {
+        return 0;
+    }
+    const FileSys::ContentProviderUnion& rcu = *impl->m_contentProvider;
+    std::optional<LoaderTitleType> title = useTitleType ? std::optional<LoaderTitleType>((LoaderTitleType)titleType) : std::nullopt;
+    std::optional<LoaderContentRecordType> record = useContentRecordType ? std::optional<LoaderContentRecordType>((LoaderContentRecordType)contentRecordType) : std::nullopt;
+    std::optional<u64> id = useTitleId ? std::optional<u64>(titleId) : std::nullopt;
+    const std::vector<ContentProviderEntry> list = rcu.ListEntriesFilter(title, record, id);
+    entryCount = std::min((uint32_t)list.size(), entryCount);
+    memcpy(entries, list.data(), entryCount * sizeof(ContentProviderEntry));
+    return entryCount;
+}
+
+IFileSysNCA * Systemloader::GetContentProviderEntry(uint64_t title_id, LoaderContentRecordType type)
+{
+    UNIMPLEMENTED();
+    return nullptr;
 }
