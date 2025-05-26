@@ -892,19 +892,19 @@ const u8* Memory::GetPointer(Common::ProcessAddress vaddr) const {
     return impl->GetPointer(vaddr);
 }
 
-u8 Memory::Read8(const Common::ProcessAddress addr) {
+uint8_t Memory::Read8(uint64_t addr) {
     return impl->Read8(addr);
 }
 
-u16 Memory::Read16(const Common::ProcessAddress addr) {
+uint16_t Memory::Read16(uint64_t addr) {
     return impl->Read16(addr);
 }
 
-u32 Memory::Read32(const Common::ProcessAddress addr) {
+uint32_t Memory::Read32(uint64_t addr) {
     return impl->Read32(addr);
 }
 
-u64 Memory::Read64(const Common::ProcessAddress addr) {
+uint64_t Memory::Read64(uint64_t addr) {
     return impl->Read64(addr);
 }
 
@@ -924,19 +924,19 @@ void Memory::Write64(Common::ProcessAddress addr, u64 data) {
     impl->Write64(addr, data);
 }
 
-bool Memory::WriteExclusive8(Common::ProcessAddress addr, u8 data, u8 expected) {
+bool Memory::WriteExclusive8(uint64_t addr, uint8_t data, uint8_t expected) {
     return impl->WriteExclusive8(addr, data, expected);
 }
 
-bool Memory::WriteExclusive16(Common::ProcessAddress addr, u16 data, u16 expected) {
+bool Memory::WriteExclusive16(uint64_t addr, uint16_t data, uint16_t expected) {
     return impl->WriteExclusive16(addr, data, expected);
 }
 
-bool Memory::WriteExclusive32(Common::ProcessAddress addr, u32 data, u32 expected) {
+bool Memory::WriteExclusive32(uint64_t addr, uint32_t data, uint32_t expected) {
     return impl->WriteExclusive32(addr, data, expected);
 }
 
-bool Memory::WriteExclusive64(Common::ProcessAddress addr, u64 data, u64 expected) {
+bool Memory::WriteExclusive64(uint64_t addr, uint64_t data, uint64_t expected) {
     return impl->WriteExclusive64(addr, data, expected);
 }
 

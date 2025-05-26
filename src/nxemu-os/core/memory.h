@@ -175,7 +175,7 @@ public:
      *
      * @returns the read 8-bit unsigned value.
      */
-    u8 Read8(Common::ProcessAddress addr);
+    uint8_t Read8(uint64_t addr) override;
 
     /**
      * Reads a 16-bit unsigned value from the current process' address space
@@ -185,7 +185,7 @@ public:
      *
      * @returns the read 16-bit unsigned value.
      */
-    u16 Read16(Common::ProcessAddress addr);
+    uint16_t Read16(uint64_t addr) override;
 
     /**
      * Reads a 32-bit unsigned value from the current process' address space
@@ -195,7 +195,7 @@ public:
      *
      * @returns the read 32-bit unsigned value.
      */
-    u32 Read32(Common::ProcessAddress addr);
+    uint32_t Read32(uint64_t addr) override;
 
     /**
      * Reads a 64-bit unsigned value from the current process' address space
@@ -205,7 +205,7 @@ public:
      *
      * @returns the read 64-bit value.
      */
-    u64 Read64(Common::ProcessAddress addr);
+    uint64_t Read64(uint64_t addr) override;
 
     /**
      * Writes an 8-bit unsigned integer to the given virtual address in
@@ -262,7 +262,7 @@ public:
      *
      * @post The memory range [addr, sizeof(data)) contains the given data value.
      */
-    bool WriteExclusive8(Common::ProcessAddress addr, u8 data, u8 expected);
+    bool WriteExclusive8(uint64_t addr, uint8_t data, uint8_t expected) override;
 
     /**
      * Writes a 16-bit unsigned integer to the given virtual address in
@@ -275,7 +275,7 @@ public:
      *
      * @post The memory range [addr, sizeof(data)) contains the given data value.
      */
-    bool WriteExclusive16(Common::ProcessAddress addr, u16 data, u16 expected);
+    bool WriteExclusive16(uint64_t addr, uint16_t data, uint16_t expected) override;
 
     /**
      * Writes a 32-bit unsigned integer to the given virtual address in
@@ -288,7 +288,7 @@ public:
      *
      * @post The memory range [addr, sizeof(data)) contains the given data value.
      */
-    bool WriteExclusive32(Common::ProcessAddress addr, u32 data, u32 expected);
+    bool WriteExclusive32(uint64_t addr, uint32_t data, uint32_t expected) override;
 
     /**
      * Writes a 64-bit unsigned integer to the given virtual address in
@@ -301,7 +301,7 @@ public:
      *
      * @post The memory range [addr, sizeof(data)) contains the given data value.
      */
-    bool WriteExclusive64(Common::ProcessAddress addr, u64 data, u64 expected);
+    bool WriteExclusive64(uint64_t addr, uint64_t data, uint64_t expected) override;
 
     /**
      * Writes a 128-bit unsigned integer to the given virtual address in

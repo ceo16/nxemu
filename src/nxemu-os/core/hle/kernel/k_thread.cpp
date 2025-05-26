@@ -556,7 +556,7 @@ u16 KThread::GetUserDisableCount() const {
     }
 
     auto& memory = this->GetOwnerProcess()->GetMemory();
-    return memory.Read16(m_tls_address + offsetof(ThreadLocalRegion, disable_count));
+    return memory.Read16((m_tls_address + offsetof(ThreadLocalRegion, disable_count)).GetValue());
 }
 
 void KThread::SetInterruptFlag() {

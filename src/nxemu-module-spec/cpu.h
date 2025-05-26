@@ -55,6 +55,16 @@ __interface IMemory
 {
     void RasterizerMarkRegionCached(uint64_t vaddr, uint64_t size, bool cached) = 0;
     uint8_t * GetPointerSilent(uint64_t vaddr) = 0;
+
+    uint8_t Read8(uint64_t addr) = 0;
+    uint16_t Read16(uint64_t addr) = 0;
+    uint32_t Read32(uint64_t addr) = 0;
+    uint64_t Read64(uint64_t addr) = 0;
+
+    bool WriteExclusive8(uint64_t addr, uint8_t data, uint8_t expected) = 0;
+    bool WriteExclusive16(uint64_t addr, uint16_t data, uint16_t expected) = 0;
+    bool WriteExclusive32(uint64_t addr, uint32_t data, uint32_t expected) = 0;
+    bool WriteExclusive64(uint64_t addr, uint64_t data, uint64_t expected) = 0;
 };
 
 __interface ICpuInfo

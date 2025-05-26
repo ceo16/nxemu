@@ -27,4 +27,6 @@ private:
     ExclusiveMonitor() = delete;
     ExclusiveMonitor(const ExclusiveMonitor &) = delete;
     ExclusiveMonitor & operator=(const ExclusiveMonitor &) = delete;
+
+    IMemory & m_memory;
 };
