@@ -190,6 +190,11 @@
       <ObjectFileName>$(IntDir)/hle/service/psc/time/time_zone.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="core\hle\service\psc\time\time_zone_service.cpp" />
+    <ClCompile Include="core\hle\service\sockets\bsd.cpp" />
+    <ClCompile Include="core\hle\service\sockets\nsd.cpp" />
+    <ClCompile Include="core\hle\service\sockets\sfdnsres.cpp" />
+    <ClCompile Include="core\hle\service\sockets\sockets.cpp" />
+    <ClCompile Include="core\hle\service\sockets\sockets_translate.cpp" />
     <ClCompile Include="core\internal_network\network.cpp" />
     <ClCompile Include="core\internal_network\network_interface.cpp" />
     <ClCompile Include="core\internal_network\socket_proxy.cpp" />
@@ -846,6 +851,11 @@
     <ClInclude Include="core\hle\service\set\setting_formats\system_settings.h" />
     <ClInclude Include="core\hle\service\sm\sm.h" />
     <ClInclude Include="core\hle\service\sm\sm_controller.h" />
+    <ClInclude Include="core\hle\service\sockets\bsd.h" />
+    <ClInclude Include="core\hle\service\sockets\nsd.h" />
+    <ClInclude Include="core\hle\service\sockets\sfdnsres.h" />
+    <ClInclude Include="core\hle\service\sockets\sockets.h" />
+    <ClInclude Include="core\hle\service\sockets\sockets_translate.h" />
     <ClInclude Include="core\hle\service\spl\csrng.h" />
     <ClInclude Include="core\hle\service\spl\spl.h" />
     <ClInclude Include="core\hle\service\spl\spl_module.h" />

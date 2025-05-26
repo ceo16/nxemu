@@ -27,7 +27,7 @@ Result TimeZoneReadBinary(Core::System& system, uint32_t & out_read_size, std::s
 
     R_UNLESS(file_size <= out_buffer_size, Service::PSC::Time::ResultFailed);
 
-    out_read_size = vfs_file->ReadBytes(out_buffer.data(), file_size, 0);
+    out_read_size = (uint32_t)vfs_file->ReadBytes(out_buffer.data(), file_size, 0);
     R_UNLESS(out_read_size > 0, ResultUnknown);
 
     R_SUCCEED();

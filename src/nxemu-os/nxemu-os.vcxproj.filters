@@ -481,6 +481,12 @@
     <Filter Include="Header Files\core\internal_network">
       <UniqueIdentifier>{50b95f79-0690-4318-b9c2-223b4b621468}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\core\hle\service\sockets">
+      <UniqueIdentifier>{ddcafbee-247d-4ac0-9a2a-3e33bc6cffbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\sockets">
+      <UniqueIdentifier>{6fdab9f3-fa39-4f57-af33-eb36578f075b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="nxemu-os.h">
@@ -1809,6 +1815,21 @@
     <ClInclude Include="core\internal_network\sockets.h">
       <Filter>Header Files\core\internal_network</Filter>
     </ClInclude>
+    <ClInclude Include="core\hle\service\sockets\bsd.h">
+      <Filter>Header Files\core\hle\service\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\sockets\nsd.h">
+      <Filter>Header Files\core\hle\service\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\sockets\sfdnsres.h">
+      <Filter>Header Files\core\hle\service\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\sockets\sockets.h">
+      <Filter>Header Files\core\hle\service\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\sockets\sockets_translate.h">
+      <Filter>Header Files\core\hle\service\sockets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="version.h.in">
@@ -3033,6 +3054,21 @@
     </ClCompile>
     <ClCompile Include="core\internal_network\socket_proxy.cpp">
       <Filter>Source Files\core\internal_network</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\sockets\bsd.cpp">
+      <Filter>Source Files\core\hle\service\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\sockets\nsd.cpp">
+      <Filter>Source Files\core\hle\service\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\sockets\sfdnsres.cpp">
+      <Filter>Source Files\core\hle\service\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\sockets\sockets.cpp">
+      <Filter>Source Files\core\hle\service\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\sockets\sockets_translate.cpp">
+      <Filter>Source Files\core\hle\service\sockets</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
