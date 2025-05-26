@@ -17,7 +17,7 @@ RomFsController::~RomFsController()
 }
 
 IVirtualFilePtr RomFsController::OpenRomFSCurrentProcess() {
-    return factory->OpenCurrentProcess(program_id);
+    return IVirtualFilePtr(factory->OpenCurrentProcess(program_id));
 }
 
 } // namespace Service::FileSystem
