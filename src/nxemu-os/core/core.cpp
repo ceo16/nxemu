@@ -22,9 +22,11 @@
 #include "core/hle/service/filesystem/filesystem.h"
 #include "core/hle/service/glue/glue_manager.h"
 #include "core/hle/service/services.h"
+#include "core/internal_network/network.h"
 #include "core/perf_stats.h"
 #include "yuzu_hid_core/hid_core.h"
 #include "yuzu_input_common/main.h"
+#include "network/network.h"
 #include <nxemu-module-spec/system_loader.h>
 
 MICROPROFILE_DEFINE(ARM_CPU0, "ARM", "CPU 0", MP_RGB(255, 64, 64));
@@ -36,7 +38,7 @@ namespace Core {
 
 struct System::Impl {
     explicit Impl(System & system, ISwitchSystem & switchSystem_) 
-        : kernel{system}, hid_core{}, cpu_manager{system}, 
+        : kernel{system}, hid_core{}, cpu_manager{system}, room_network{},
         applet_manager{system}, frontend_applets{system}, switchSystem(switchSystem_),
         input_subsystem{std::make_shared<InputCommon::InputSubsystem>()},
         fs_controller(switchSystem_.Systemloader().FileSystemController())
@@ -168,6 +170,7 @@ struct System::Impl {
     IFileSystemController & fs_controller;
     std::unique_ptr<Core::DeviceMemory> device_memory;
     Core::HID::HIDCore hid_core;
+    Network::RoomNetwork room_network;
     std::shared_ptr<InputCommon::InputSubsystem> input_subsystem;
 
     CpuManager cpu_manager;
@@ -480,6 +483,14 @@ const Core::Debugger& System::GetDebugger() const {
     UNIMPLEMENTED();
     static Core::Debugger * ptr = nullptr;
     return *ptr;
+}
+
+Network::RoomNetwork& System::GetRoomNetwork() {
+    return impl->room_network;
+}
+
+const Network::RoomNetwork& System::GetRoomNetwork() const {
+    return impl->room_network;
 }
 
 void System::RunServer(std::unique_ptr<Service::ServerManager>&& server_manager) {

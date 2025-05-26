@@ -31,6 +31,7 @@
 #include "core/hle/service/mnpp/mnpp_app.h"
 #include "core/hle/service/ncm/ncm.h"
 #include "core/hle/service/ngc/ngc.h"
+#include "core/hle/service/nifm/nifm.h"
 #include "core/hle/service/nim/nim.h"
 #include "core/hle/service/npns/npns.h"
 #include "core/hle/service/ns/ns.h"
@@ -95,6 +96,7 @@ Services::Services(std::shared_ptr<SM::ServiceManager>& sm, Core::System& system
     kernel.RunOnGuestCoreProcess("nvnflinger", [&] { Nvnflinger::LoopProcess(system); });
     kernel.RunOnGuestCoreProcess("NCM",        [&] { NCM::LoopProcess(system); });
     kernel.RunOnGuestCoreProcess("ngc",        [&] { NGC::LoopProcess(system); });
+    kernel.RunOnGuestCoreProcess("nifm",       [&] { NIFM::LoopProcess(system); });
     kernel.RunOnGuestCoreProcess("nim",        [&] { NIM::LoopProcess(system); });
     kernel.RunOnGuestCoreProcess("npns",       [&] { NPNS::LoopProcess(system); });
     kernel.RunOnGuestCoreProcess("ns",         [&] { NS::LoopProcess(system); });

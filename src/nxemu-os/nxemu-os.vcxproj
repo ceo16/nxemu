@@ -40,7 +40,7 @@
     <Link>
       <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)\external\boost\stage\lib\libboost_context-vc143-mt-s-x64-1_87.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\external\boost\stage\lib\libboost_context-vc143-mt-sgd-x64-1_87.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalDependencies>ntdll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ntdll.lib;Iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -128,6 +128,7 @@
     <ClCompile Include="core\hle\service\hid\hid_system_server.cpp" />
     <ClCompile Include="core\hle\service\hid\irs.cpp" />
     <ClCompile Include="core\hle\service\hid\xcd.cpp" />
+    <ClCompile Include="core\hle\service\nifm\nifm.cpp" />
     <ClCompile Include="core\hle\service\nvdrv\core\container.cpp" />
     <ClCompile Include="core\hle\service\nvdrv\core\heap_mapper.cpp" />
     <ClCompile Include="core\hle\service\nvdrv\core\nvmap.cpp" />
@@ -189,6 +190,9 @@
       <ObjectFileName>$(IntDir)/hle/service/psc/time/time_zone.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="core\hle\service\psc\time\time_zone_service.cpp" />
+    <ClCompile Include="core\internal_network\network.cpp" />
+    <ClCompile Include="core\internal_network\network_interface.cpp" />
+    <ClCompile Include="core\internal_network\socket_proxy.cpp" />
     <ClCompile Include="core\memory\cheat_engine.cpp" />
     <ClCompile Include="core\memory\dmnt_cheat_vm.cpp" />
     <ClCompile Include="core\perf_stats.cpp" />
@@ -582,6 +586,7 @@
     <ClInclude Include="core\hle\service\glue\time\worker.h" />
     <ClInclude Include="core\hle\service\hle_ipc.h" />
     <ClInclude Include="core\hle\service\ipc_helpers.h" />
+    <ClInclude Include="core\hle\service\nifm\nifm.h" />
     <ClInclude Include="core\hle\service\nvdrv\core\container.h" />
     <ClInclude Include="core\hle\service\nvdrv\core\heap_mapper.h" />
     <ClInclude Include="core\hle\service\nvdrv\core\nvmap.h" />
@@ -865,6 +870,10 @@
     <ClInclude Include="core\hle\service\vi\vi_results.h" />
     <ClInclude Include="core\hle\service\vi\vi_types.h" />
     <ClInclude Include="core\hle\service\vi\vsync_manager.h" />
+    <ClInclude Include="core\internal_network\network.h" />
+    <ClInclude Include="core\internal_network\network_interface.h" />
+    <ClInclude Include="core\internal_network\sockets.h" />
+    <ClInclude Include="core\internal_network\socket_proxy.h" />
     <ClInclude Include="core\loader\loader.h" />
     <ClInclude Include="core\loader\nso.h" />
     <ClInclude Include="core\memory.h" />
@@ -875,11 +884,20 @@
     <ClInclude Include="os_manager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\external\enet.vcxproj">
+      <Project>{acee0671-79f0-43da-ab02-d3d0a52cc22a}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\external\fmt.vcxproj">
       <Project>{d58bdfc6-1f1e-4c55-9296-1c2411b0fda7}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\external\zstd.vcxproj">
+      <Project>{808d773c-086c-4e17-a195-b4af30eee86e}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\3rd_party\tz\tz.vcxproj">
       <Project>{677ca72d-e9b7-4aa5-adba-1c02ac84f8b0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\network\network.vcxproj">
+      <Project>{286ff3b0-952d-4193-94ab-c8c300bc85f0}</Project>
     </ProjectReference>
     <ProjectReference Include="..\yuzu_common\yuzu_common.vcxproj">
       <Project>{250224f2-2e89-410e-8bdb-875959daba2c}</Project>

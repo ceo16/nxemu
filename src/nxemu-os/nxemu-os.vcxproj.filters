@@ -469,6 +469,18 @@
     <Filter Include="Source Files\core\file_sys">
       <UniqueIdentifier>{cf2bcb01-61c2-4960-b4d9-626729bf6b1f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\core\hle\service\nifm">
+      <UniqueIdentifier>{021246c5-9aaf-477b-88d7-01861bcd9634}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\nifm">
+      <UniqueIdentifier>{d896ff0e-1e9b-4422-9025-f54261adf674}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\internal_network">
+      <UniqueIdentifier>{254d4db2-6d97-4632-aa01-e06ff92cc9e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\internal_network">
+      <UniqueIdentifier>{50b95f79-0690-4318-b9c2-223b4b621468}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="nxemu-os.h">
@@ -1782,6 +1794,21 @@
     <ClInclude Include="core\file_sys\filesystem_interfaces.h">
       <Filter>Header Files\core\file_sys</Filter>
     </ClInclude>
+    <ClInclude Include="core\hle\service\nifm\nifm.h">
+      <Filter>Header Files\core\hle\service\nifm</Filter>
+    </ClInclude>
+    <ClInclude Include="core\internal_network\network.h">
+      <Filter>Header Files\core\internal_network</Filter>
+    </ClInclude>
+    <ClInclude Include="core\internal_network\network_interface.h">
+      <Filter>Header Files\core\internal_network</Filter>
+    </ClInclude>
+    <ClInclude Include="core\internal_network\socket_proxy.h">
+      <Filter>Header Files\core\internal_network</Filter>
+    </ClInclude>
+    <ClInclude Include="core\internal_network\sockets.h">
+      <Filter>Header Files\core\internal_network</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="version.h.in">
@@ -2716,9 +2743,6 @@
     <ClCompile Include="core\hle\service\vi\vsync_manager.cpp">
       <Filter>Source Files\core\hle\service\vi</Filter>
     </ClCompile>
-    <ClCompile Include="core\file_sys\program_metadata.cpp">
-      <Filter>Source Files\core\file_sys</Filter>
-    </ClCompile>
     <ClCompile Include="core\arm\cpu_module.cpp">
       <Filter>Source Files\core\arm</Filter>
     </ClCompile>
@@ -2997,6 +3021,18 @@
     </ClCompile>
     <ClCompile Include="core\file_sys\filesystem_interfaces.cpp">
       <Filter>Source Files\core\file_sys</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nifm\nifm.cpp">
+      <Filter>Source Files\core\hle\service\nifm</Filter>
+    </ClCompile>
+    <ClCompile Include="core\internal_network\network.cpp">
+      <Filter>Source Files\core\internal_network</Filter>
+    </ClCompile>
+    <ClCompile Include="core\internal_network\network_interface.cpp">
+      <Filter>Source Files\core\internal_network</Filter>
+    </ClCompile>
+    <ClCompile Include="core\internal_network\socket_proxy.cpp">
+      <Filter>Source Files\core\internal_network</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

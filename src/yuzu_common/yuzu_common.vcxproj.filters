@@ -306,6 +306,9 @@
     <ClInclude Include="socket_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="zstd_compression.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="logging\backend.cpp">
@@ -411,6 +414,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="stb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zstd_compression.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

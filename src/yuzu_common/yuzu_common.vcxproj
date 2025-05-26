@@ -24,7 +24,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\3rd_party\lz4;$(SolutionDir)src\3rd_party\microprofile;$(SolutionDir)src\3rd_party\stb;$(SolutionDir)external\boost;$(SolutionDir)external\fmt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\3rd_party\lz4;$(SolutionDir)src\3rd_party\microprofile;$(SolutionDir)src\3rd_party\stb;$(SolutionDir)external\boost;$(SolutionDir)external\fmt\include;$(SolutionDir)external\zstd\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <WarningLevel>Level3</WarningLevel>
       <UseStandardPreprocessor>true</UseStandardPreprocessor>
@@ -122,6 +122,7 @@
     <ClInclude Include="x64\xbyak_abi.h" />
     <ClInclude Include="x64\xbyak_util.h" />
     <ClInclude Include="yuzu_assert.h" />
+    <ClInclude Include="zstd_compression.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="address_space.cpp" />
@@ -159,6 +160,7 @@
     <ClCompile Include="wall_clock.cpp" />
     <ClCompile Include="windows\timer_resolution.cpp" />
     <ClCompile Include="yuzu_assert.cpp" />
+    <ClCompile Include="zstd_compression.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>
