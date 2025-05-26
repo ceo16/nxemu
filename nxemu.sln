@@ -100,6 +100,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nxemu-loader", "src\nxemu-l
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "enet", "external\enet.vcxproj", "{ACEE0671-79F0-43DA-AB02-D3D0A52CC22A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zstd", "external\zstd.vcxproj", "{808D773C-086C-4E17-A195-B4AF30EEE86E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -356,6 +358,14 @@ Global
 		{ACEE0671-79F0-43DA-AB02-D3D0A52CC22A}.Release|x64.Build.0 = Release|x64
 		{ACEE0671-79F0-43DA-AB02-D3D0A52CC22A}.Release|x86.ActiveCfg = Release|x64
 		{ACEE0671-79F0-43DA-AB02-D3D0A52CC22A}.Release|x86.Build.0 = Release|x64
+		{808D773C-086C-4E17-A195-B4AF30EEE86E}.Debug|x64.ActiveCfg = Debug|x64
+		{808D773C-086C-4E17-A195-B4AF30EEE86E}.Debug|x64.Build.0 = Debug|x64
+		{808D773C-086C-4E17-A195-B4AF30EEE86E}.Debug|x86.ActiveCfg = Debug|x64
+		{808D773C-086C-4E17-A195-B4AF30EEE86E}.Debug|x86.Build.0 = Debug|x64
+		{808D773C-086C-4E17-A195-B4AF30EEE86E}.Release|x64.ActiveCfg = Release|x64
+		{808D773C-086C-4E17-A195-B4AF30EEE86E}.Release|x64.Build.0 = Release|x64
+		{808D773C-086C-4E17-A195-B4AF30EEE86E}.Release|x86.ActiveCfg = Release|x64
+		{808D773C-086C-4E17-A195-B4AF30EEE86E}.Release|x86.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -375,6 +385,7 @@ Global
 		{847B64EE-2C78-48F9-912B-D700F2A5CB91} = {29EE6611-75A5-4A1D-A994-33A5EBB4F765}
 		{61B81F77-92C0-4C94-A893-7458FBE76C0B} = {29EE6611-75A5-4A1D-A994-33A5EBB4F765}
 		{ACEE0671-79F0-43DA-AB02-D3D0A52CC22A} = {29EE6611-75A5-4A1D-A994-33A5EBB4F765}
+		{808D773C-086C-4E17-A195-B4AF30EEE86E} = {29EE6611-75A5-4A1D-A994-33A5EBB4F765}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AF860836-279D-4187-9FAF-4E2D4B9C59CF}
