@@ -16,11 +16,10 @@
 #include "core/file_sys/control_metadata.h"
 #include "core/file_sys/vfs/vfs.h"
 
-namespace Core {
-class System;
-}
+class Systemloader;
 
-namespace FileSys {
+namespace FileSys
+{
 class NACP;
 } // namespace FileSys
 
@@ -98,7 +97,7 @@ public:
      *
      * @return The status result of the operation.
      */
-    virtual LoadResult Load(Kernel::KProcess& process, Core::System& system) = 0;
+    virtual LoadResult Load(Systemloader & loader) = 0;
 
     /**
      * Try to verify the integrity of the file.
@@ -264,7 +263,7 @@ protected:
  *
  * @return the best loader for this file.
  */
-std::unique_ptr<AppLoader> GetLoader(Core::System& system, FileSys::VirtualFile file,
-                                     u64 program_id = 0, std::size_t program_index = 0);
+std::unique_ptr<AppLoader> GetLoader(Systemloader & loader, FileSys::VirtualFile file,
+                                     uint64_t program_id = 0, std::size_t program_index = 0);
 
 } // namespace Loader

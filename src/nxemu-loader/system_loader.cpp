@@ -18,8 +18,6 @@ struct Systemloader::Impl {
         m_loader(loader),
         m_system(system),
         m_fsController(loader),
-        m_provider(std::make_unique<FileSys::ManualContentProvider>()),
-        m_processID(0),
         m_titleID(0)
     {
     }
@@ -33,9 +31,7 @@ struct Systemloader::Impl {
     /// ContentProviderUnion instance
     std::unique_ptr<FileSys::ContentProviderUnion> m_contentProvider;
     FileSys::FileSystemController m_fsController;
-    std::unique_ptr<FileSys::ManualContentProvider> m_provider;
     std::unique_ptr<Nro> m_nro;
-    uint64_t m_processID;
     uint64_t m_titleID;
 };
 
@@ -56,7 +52,6 @@ bool Systemloader::Initialize(void)
     if (impl->m_contentProvider == nullptr) {
         impl->m_contentProvider = std::make_unique<FileSys::ContentProviderUnion>();
     }
-    impl->m_contentProvider->SetSlot(FileSys::ContentProviderUnionSlot::FrontendManual, impl->m_provider.get());
     GetFileSystemController().CreateFactories(*GetFilesystem(), false);
     return true;
 }
@@ -99,10 +94,6 @@ ISwitchSystem & Systemloader::GetSystem() {
     return impl->m_system;
 }
 
-FileSys::ContentProvider & Systemloader::GetContentProvider() {
-    return *impl->m_contentProvider;
-}
-
 FileSys::VirtualFilesystem Systemloader::GetFilesystem() {
     return impl->m_virtualFilesystem;
 }
@@ -114,16 +105,6 @@ FileSys::FileSystemController & Systemloader::GetFileSystemController() {
 void Systemloader::RegisterContentProvider(FileSys::ContentProviderUnionSlot slot, FileSys::ContentProvider* provider) 
 {
     impl->m_contentProvider->SetSlot(slot, provider);
-}
-
-void Systemloader::SetProcessID(uint64_t processID)
-{
-    impl->m_processID = processID;
-}
-
-void Systemloader::SetTitleID(uint64_t titleID)
-{
-    impl->m_titleID = titleID;
 }
 
 bool Systemloader::Impl::LoadNRO(const char* nroFile)
@@ -199,6 +180,12 @@ uint32_t Systemloader::GetContentProviderEntries(bool useTitleType, LoaderTitleT
 }
 
 IFileSysNCA * Systemloader::GetContentProviderEntry(uint64_t title_id, LoaderContentRecordType type)
+{
+    UNIMPLEMENTED();
+    return nullptr;
+}
+
+IFileSysNACP * Systemloader::GetPMControlMetadata(uint64_t programID)
 {
     UNIMPLEMENTED();
     return nullptr;

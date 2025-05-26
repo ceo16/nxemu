@@ -129,6 +129,13 @@ __interface IRomFsController
     void Release() = 0;
 };
 
+__interface IFileSysNACP
+{
+    uint32_t GetParentalControlFlag() const = 0;
+    bool GetRatingAge(uint8_t * buffer, uint32_t bufferSize) const = 0;
+    void Release() = 0;
+};
+
 __interface IFileSysNCA
 {
     LoaderResultStatus GetStatus() const = 0;
@@ -159,6 +166,7 @@ __interface ISystemloader
     uint32_t GetContentProviderEntriesCount(bool useTitleType, LoaderTitleType titleType, bool useContentRecordType, LoaderContentRecordType contentRecordType, bool useTitleId, unsigned long long titleId) = 0;
     uint32_t GetContentProviderEntries(bool useTitleType, LoaderTitleType titleType, bool useContentRecordType, LoaderContentRecordType contentRecordType, bool useTitleId, unsigned long long titleId, ContentProviderEntry* entries, uint32_t entryCount) = 0;
     IFileSysNCA * GetContentProviderEntry(uint64_t title_id, LoaderContentRecordType type) = 0;
+    IFileSysNACP * GetPMControlMetadata(uint64_t programID) = 0;
 };
 
 EXPORT ISystemloader * CALL CreateSystemLoader(ISwitchSystem & system);
