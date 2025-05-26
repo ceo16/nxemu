@@ -487,6 +487,12 @@
     <Filter Include="Header Files\core\hle\service\sockets">
       <UniqueIdentifier>{6fdab9f3-fa39-4f57-af33-eb36578f075b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\core\hle\service\ssl">
+      <UniqueIdentifier>{b8273c0d-11e9-43f6-bebf-3b4c00230774}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\ssl">
+      <UniqueIdentifier>{52b46367-91aa-46a5-9f71-d31127ec3761}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="nxemu-os.h">
@@ -1830,6 +1836,18 @@
     <ClInclude Include="core\hle\service\sockets\sockets_translate.h">
       <Filter>Header Files\core\hle\service\sockets</Filter>
     </ClInclude>
+    <ClInclude Include="core\hle\service\ssl\cert_store.h">
+      <Filter>Header Files\core\hle\service\ssl</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ssl\ssl.h">
+      <Filter>Header Files\core\hle\service\ssl</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ssl\ssl_backend.h">
+      <Filter>Header Files\core\hle\service\ssl</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\ssl\ssl_types.h">
+      <Filter>Header Files\core\hle\service\ssl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="version.h.in">
@@ -3069,6 +3087,15 @@
     </ClCompile>
     <ClCompile Include="core\hle\service\sockets\sockets_translate.cpp">
       <Filter>Source Files\core\hle\service\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ssl\cert_store.cpp">
+      <Filter>Source Files\core\hle\service\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ssl\ssl.cpp">
+      <Filter>Source Files\core\hle\service\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\ssl\ssl_backend_schannel.cpp">
+      <Filter>Source Files\core\hle\service\ssl</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -112,6 +112,7 @@ Services::Services(std::shared_ptr<SM::ServiceManager>& sm, Core::System& system
     kernel.RunOnGuestCoreProcess("ptm",        [&] { PTM::LoopProcess(system); });
     kernel.RunOnGuestCoreProcess("ro",         [&] { RO::LoopProcess(system); });
     kernel.RunOnGuestCoreProcess("spl",        [&] { SPL::LoopProcess(system); });
+    kernel.RunOnGuestCoreProcess("ssl",        [&] { SSL::LoopProcess(system); });
     kernel.RunOnGuestCoreProcess("usb",        [&] { USB::LoopProcess(system); });
     // clang-format on
 }

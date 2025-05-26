@@ -8,12 +8,12 @@ ExclusiveMonitor::ExclusiveMonitor(IMemory & memory, uint32_t processorCount) :
 
 uint8_t ExclusiveMonitor::ExclusiveRead8(uint32_t coreIndex, uint64_t addr)
 {
-    return ReadAndMark<uint16_t>(coreIndex, addr, [&]() -> uint32_t { return m_memory.Read8(addr); });
+    return ReadAndMark<uint8_t>(coreIndex, addr, [&]() -> uint8_t { return m_memory.Read8(addr); });
 }
 
 uint16_t ExclusiveMonitor::ExclusiveRead16(uint32_t coreIndex, uint64_t addr)
 {
-    return ReadAndMark<uint16_t>(coreIndex, addr, [&]() -> uint32_t { return m_memory.Read16(addr); });
+    return ReadAndMark<uint16_t>(coreIndex, addr, [&]() -> uint16_t { return m_memory.Read16(addr); });
 }
 
 uint32_t ExclusiveMonitor::ExclusiveRead32(uint32_t coreIndex, uint64_t addr)

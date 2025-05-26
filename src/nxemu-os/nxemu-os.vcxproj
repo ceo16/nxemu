@@ -195,6 +195,9 @@
     <ClCompile Include="core\hle\service\sockets\sfdnsres.cpp" />
     <ClCompile Include="core\hle\service\sockets\sockets.cpp" />
     <ClCompile Include="core\hle\service\sockets\sockets_translate.cpp" />
+    <ClCompile Include="core\hle\service\ssl\cert_store.cpp" />
+    <ClCompile Include="core\hle\service\ssl\ssl.cpp" />
+    <ClCompile Include="core\hle\service\ssl\ssl_backend_schannel.cpp" />
     <ClCompile Include="core\internal_network\network.cpp" />
     <ClCompile Include="core\internal_network\network_interface.cpp" />
     <ClCompile Include="core\internal_network\socket_proxy.cpp" />
@@ -861,6 +864,10 @@
     <ClInclude Include="core\hle\service\spl\spl_module.h" />
     <ClInclude Include="core\hle\service\spl\spl_results.h" />
     <ClInclude Include="core\hle\service\spl\spl_types.h" />
+    <ClInclude Include="core\hle\service\ssl\cert_store.h" />
+    <ClInclude Include="core\hle\service\ssl\ssl.h" />
+    <ClInclude Include="core\hle\service\ssl\ssl_backend.h" />
+    <ClInclude Include="core\hle\service\ssl\ssl_types.h" />
     <ClInclude Include="core\hle\service\usb\usb.h" />
     <ClInclude Include="core\hle\service\vi\application_display_service.h" />
     <ClInclude Include="core\hle\service\vi\application_root_service.h" />
