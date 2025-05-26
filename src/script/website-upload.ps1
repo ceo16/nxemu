@@ -10,12 +10,12 @@ param(
 function Show-Usage {
     Write-Host "Website Upload Script"
     Write-Host "Usage:"
-    Write-Host "  --create [ApiToken] [BuildUrl] [BuildName]"
-    Write-Host "  --files [ApiToken] [DirectoryToUpload] [BuildName]"
+    Write-Host "  create [ApiToken] [BuildUrl] [BuildName]"
+    Write-Host "  files [ApiToken] [DirectoryToUpload] [BuildName]"
     Write-Host ""
     Write-Host "Examples:"
-    Write-Host "  .\website-upload.ps1 --create `"token123`" `"https://jenkins.example.com/job/MyApp/123/`" `"MyApp-v1.2.3`" `"11a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6`""
-    Write-Host "  .\website-upload.ps1 --files `"token123`" `"C:\Build\Package`" `"MyApp-v1.2.3`""
+    Write-Host "  .\website-upload.ps1 create `"token123`" `"https://jenkins.example.com/job/MyApp/123/`" `"MyApp-v1.2.3`" `"11a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6`""
+    Write-Host "  .\website-upload.ps1 files `"token123`" `"C:\Build\Package`" `"MyApp-v1.2.3`""
 }
 
 function Create-WebsiteRelease {
@@ -229,15 +229,15 @@ if ([string]::IsNullOrEmpty($Action) -or
     exit 1
 }
 
-if ($Action -ne "--create" -and $Action -ne "--files") {
-    Write-Host "Error: Action must be either '--create' or '--files'" -ForegroundColor Red
+if ($Action -ne "create" -and $Action -ne "files") {
+    Write-Host "Error: Action must be either 'create' or 'files'" -ForegroundColor Red
     Show-Usage
     exit 1
 }
 
-if ($Action -eq "--create") {
+if ($Action -eq "create") {
     Create-WebsiteRelease -ApiToken $ApiToken -BuildUrl $BuildUrlOrDir -BuildName $BuildName -JenkinsToken $JenkinsToken
-} elseif ($Action -eq "--files") {
+} elseif ($Action -eq "files") {
     Upload-FilesToWebsite -ApiToken $ApiToken -Directory $BuildUrlOrDir -BuildName $BuildName
 } else { 
     Show-Usage
