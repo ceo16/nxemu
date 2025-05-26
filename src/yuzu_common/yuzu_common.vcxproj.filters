@@ -300,6 +300,12 @@
     <ClInclude Include="stb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="announce_multiplayer_room.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="socket_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="logging\backend.cpp">

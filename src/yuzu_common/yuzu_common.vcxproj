@@ -35,6 +35,7 @@
     <ClInclude Include="address_space.h" />
     <ClInclude Include="algorithm.h" />
     <ClInclude Include="alignment.h" />
+    <ClInclude Include="announce_multiplayer_room.h" />
     <ClInclude Include="atomic_ops.h" />
     <ClInclude Include="bit_cast.h" />
     <ClInclude Include="bit_field.h" />
@@ -98,6 +99,7 @@
     <ClInclude Include="settings_input.h" />
     <ClInclude Include="settings_setting.h" />
     <ClInclude Include="slot_vector.h" />
+    <ClInclude Include="socket_types.h" />
     <ClInclude Include="spin_lock.h" />
     <ClInclude Include="stb.h" />
     <ClInclude Include="steady_clock.h" />

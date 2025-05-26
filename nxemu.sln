@@ -102,6 +102,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "enet", "external\enet.vcxpr
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zstd", "external\zstd.vcxproj", "{808D773C-086C-4E17-A195-B4AF30EEE86E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "network", "src\network\network.vcxproj", "{286FF3B0-952D-4193-94AB-C8C300BC85F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -366,6 +368,14 @@ Global
 		{808D773C-086C-4E17-A195-B4AF30EEE86E}.Release|x64.Build.0 = Release|x64
 		{808D773C-086C-4E17-A195-B4AF30EEE86E}.Release|x86.ActiveCfg = Release|x64
 		{808D773C-086C-4E17-A195-B4AF30EEE86E}.Release|x86.Build.0 = Release|x64
+		{286FF3B0-952D-4193-94AB-C8C300BC85F0}.Debug|x64.ActiveCfg = Debug|x64
+		{286FF3B0-952D-4193-94AB-C8C300BC85F0}.Debug|x64.Build.0 = Debug|x64
+		{286FF3B0-952D-4193-94AB-C8C300BC85F0}.Debug|x86.ActiveCfg = Debug|x64
+		{286FF3B0-952D-4193-94AB-C8C300BC85F0}.Debug|x86.Build.0 = Debug|x64
+		{286FF3B0-952D-4193-94AB-C8C300BC85F0}.Release|x64.ActiveCfg = Release|x64
+		{286FF3B0-952D-4193-94AB-C8C300BC85F0}.Release|x64.Build.0 = Release|x64
+		{286FF3B0-952D-4193-94AB-C8C300BC85F0}.Release|x86.ActiveCfg = Release|x64
+		{286FF3B0-952D-4193-94AB-C8C300BC85F0}.Release|x86.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
