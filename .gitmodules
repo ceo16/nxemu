@@ -46,3 +46,6 @@
 [submodule "external/tzdb_to_nx"]
 	path = external/tzdb_to_nx
 	url = https://github.com/lat9nq/tzdb_to_nx.git
+[submodule "external/enet"]
+	path = external/enet
+	url = https://github.com/lsalzman/enet.git
