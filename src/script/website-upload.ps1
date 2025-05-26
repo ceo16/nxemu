@@ -10,8 +10,8 @@ param(
 function Show-Usage {
     Write-Host "Website Upload Script"
     Write-Host "Usage:"
-    Write-Host "  create [ApiToken] [BuildUrl] [BuildName]"
-    Write-Host "  files [ApiToken] [DirectoryToUpload] [BuildName]"
+    Write-Host "  create [ApiToken] [BuildUrl] [BuildName] [WebsiteUrl] [JenkinsKey]"
+    Write-Host "  files [ApiToken] [DirectoryToUpload] [BuildName] [WebsiteUrl]"
     Write-Host ""
     Write-Host "Examples:"
     Write-Host "  .\website-upload.ps1 create `"token123`" `"https://jenkins.example.com/job/MyApp/123/`" `"MyApp-v1.2.3`" `"11a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6`""
