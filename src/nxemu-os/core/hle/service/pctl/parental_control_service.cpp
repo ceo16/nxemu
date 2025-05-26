@@ -5,6 +5,8 @@
 #include "core/hle/service/cmif_serialization.h"
 #include "core/hle/service/pctl/parental_control_service.h"
 #include "core/hle/service/pctl/pctl_results.h"
+#include "core/file_sys/filesystem_interfaces.h"
+#include <nxemu-module-spec/system_loader.h>
 
 namespace Service::PCTL {
 
@@ -177,7 +179,26 @@ Result IParentalControlService::Initialize() {
 
     const auto program_id = system.GetApplicationProcessProgramID();
     if (program_id != 0) {
-        UNIMPLEMENTED();
+        ISystemloader & loader = system.GetSystemloader();
+        IFileSysNACPPtr metadata(loader.GetPMControlMetadata(program_id));
+        if (metadata)
+        {
+            states.tid_from_event = 0;
+            states.launch_time_valid = false;
+            states.is_suspended = false;
+            states.free_communication = false;
+            states.stereo_vision = false;
+            states.application_info = ApplicationInfo{
+                .application_id = program_id,
+                .parental_control_flag = metadata->GetParentalControlFlag(),
+                .capability = capability,
+            };
+            metadata->GetRatingAge(states.application_info.age_rating.data(), states.application_info.age_rating.size());
+
+            if (False(capability & (Capability::System | Capability::Recovery))) {
+                // TODO(ogniK): Signal application launch event
+            }
+        }
     }
 
     R_SUCCEED();
