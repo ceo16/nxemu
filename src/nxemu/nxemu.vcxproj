@@ -37,8 +37,6 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="settings\ui_settings.cpp" />
-    <ClCompile Include="user_interface\main_menu.cpp" />
-    <ClCompile Include="user_interface\main_window.cpp" />
     <ClCompile Include="user_interface\menu_item.cpp" />
     <ClCompile Include="user_interface\notification.cpp" />
     <ClCompile Include="user_interface\sciter_main_window.cpp" />
@@ -51,8 +49,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="settings\ui_settings.h" />
-    <ClInclude Include="user_interface\main_menu.h" />
-    <ClInclude Include="user_interface\main_window.h" />
     <ClInclude Include="user_interface\menu_item.h" />
     <ClInclude Include="user_interface\notification.h" />
     <ClInclude Include="user_interface\resource.h" />

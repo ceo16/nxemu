@@ -1,5 +1,4 @@
 #include "settings/ui_settings.h"
-#include "user_interface/main_window.h"
 #include "user_interface/notification.h"
 #include "user_interface/sciter_main_window.h"
 #include <common/std_string.h>
@@ -19,31 +18,21 @@ int WINAPI WinMain(_In_ HINSTANCE /*hInstance*/, _In_opt_ HINSTANCE /*hPrevInsta
 {
     bool Res = AppInit(&Notification::GetInstance());
 
-    if (uiSettings.sciterUI && Res)
+    ISciterUI * sciterUI = nullptr;
+    if (Res && !SciterUIInit(uiSettings.languageDir, uiSettings.languageBase.c_str(), uiSettings.languageCurrent.c_str(), uiSettings.sciterConsole, sciterUI))
     {
-        ISciterUI * sciterUI = nullptr;
-        if (Res && !SciterUIInit(uiSettings.languageDir, uiSettings.languageBase.c_str(), uiSettings.languageCurrent.c_str(), uiSettings.sciterConsole, sciterUI))
-        {
-            Res = false;
-        }
-        if (Res)
-        {
-            RegisterWidgets(*sciterUI);
-            SciterMainWindow window(*sciterUI, stdstr_f("NXEmu %s", VER_FILE_VERSION_STR).c_str());
-            window.Show();
-            sciterUI->Run();
-        }
-        if (sciterUI != nullptr)
-        {
-            sciterUI->Shutdown();
-        }
+        Res = false;
     }
-    else if (Res)
+    if (Res)
     {
-        std::unique_ptr<MainWindow> mainWindow = std::make_unique<MainWindow>(stdstr_f("NXEmu %s", VER_FILE_VERSION_STR).ToUTF16().c_str());
-        mainWindow->ShowWindow(true);
-        mainWindow->ProcessAllMessages();
-        mainWindow.reset(nullptr);
+        RegisterWidgets(*sciterUI);
+        SciterMainWindow window(*sciterUI, stdstr_f("NXEmu %s", VER_FILE_VERSION_STR).c_str());
+        window.Show();
+        sciterUI->Run();
+    }
+    if (sciterUI != nullptr)
+    {
+        sciterUI->Shutdown();
     }
     AppCleanup();
     Notification::CleanUp();

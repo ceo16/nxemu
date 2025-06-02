@@ -8,7 +8,6 @@ namespace
 struct UISettingsDefaults
 {
     static constexpr bool enableModuleConfiguration = false;
-    static constexpr bool sciterUI = false;
     static constexpr const char * defaultLanguageDirValue = "./lang";
     static constexpr const char * defaultLanguageBaseValue = "english";
     static constexpr const char * defaultLanguageCurrentValue = "english";
@@ -24,7 +23,6 @@ void LoadUISetting(void)
 {
     uiSettings = {};
     uiSettings.enableModuleConfiguration = UISettingsDefaults::enableModuleConfiguration;
-    uiSettings.sciterUI = UISettingsDefaults::sciterUI;
     uiSettings.languageDir = UISettingsDefaults::GetDefaultLanguageDir();
     uiSettings.languageDirValue = UISettingsDefaults::defaultLanguageDirValue;
     uiSettings.languageBase = UISettingsDefaults::defaultLanguageBaseValue;
@@ -37,12 +35,6 @@ void LoadUISetting(void)
     if (node != nullptr && node->isBool())
     {
         uiSettings.enableModuleConfiguration = node->asBool();
-    }
-
-    node = jsonSettings.Find("SciterUI");
-    if (node != nullptr && node->isBool())
-    {
-        uiSettings.sciterUI = node->asBool();
     }
 
     node = jsonSettings.Find("LanguageDirectory");
@@ -92,10 +84,6 @@ void SaveUISetting(void)
     if (uiSettings.enableModuleConfiguration != UISettingsDefaults::enableModuleConfiguration)
     {
         json["EnableModuleConfiguration"] = JsonValue(uiSettings.enableModuleConfiguration);
-    }
-    if (uiSettings.sciterUI != UISettingsDefaults::sciterUI)
-    {
-        json["SciterUI"] = JsonValue(uiSettings.sciterUI);
     }
     if (uiSettings.languageDirValue != UISettingsDefaults::defaultLanguageDirValue)
     {

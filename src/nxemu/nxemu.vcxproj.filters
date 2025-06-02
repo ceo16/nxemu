@@ -42,12 +42,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="user_interface\main_window.cpp">
-      <Filter>Source Files\user_interface</Filter>
-    </ClCompile>
-    <ClCompile Include="user_interface\main_menu.cpp">
-      <Filter>Source Files\user_interface</Filter>
-    </ClCompile>
     <ClCompile Include="user_interface\menu_item.cpp">
       <Filter>Source Files\user_interface</Filter>
     </ClCompile>
@@ -80,13 +74,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="user_interface\main_window.h">
-      <Filter>Header Files\user_interface</Filter>
-    </ClInclude>
     <ClInclude Include="user_interface\resource.h">
-      <Filter>Header Files\user_interface</Filter>
-    </ClInclude>
-    <ClInclude Include="user_interface\main_menu.h">
       <Filter>Header Files\user_interface</Filter>
     </ClInclude>
     <ClInclude Include="user_interface\menu_item.h">
