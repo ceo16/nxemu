@@ -7,7 +7,8 @@
 class SciterMainWindow :
     public IWindowDestroySink,
     public IMenuBarSink,
-    public IRenderWindow
+    public IRenderWindow,
+    public IKeySink
 {
     enum MainMenuID
     {
@@ -41,7 +42,9 @@ private:
     void RomLoadingChanged(void);
     void DisplayedFramesChanged(void);
     void ShowLoadingScreen(void);
-
+    int32_t SciterKeyToSwitchKey(SciterKeys key);
+    int32_t SciterKeyToVKCode(SciterKeys vkcode);
+        
     void OnOpenGame(void);
     void OnFileExit(void);
     void OnSettings(void);
@@ -49,13 +52,18 @@ private:
     void OnRecetGame(uint32_t fileIndex);
 
     // IWindowDestroySink
-    void OnWindowDestroy(HWINDOW hWnd);
+    void OnWindowDestroy(HWINDOW hWnd) override;
 
     // IMenuBarSink
-    void OnMenuItem(int32_t id, SCITER_ELEMENT item);
+    void OnMenuItem(int32_t id, SCITER_ELEMENT item) override;
 
     // IRenderWindow
-    void * RenderSurface(void) const;
+    void * RenderSurface(void) const override;
+
+    // IKeySink
+    bool OnKeyDown(SCITER_ELEMENT element, SCITER_ELEMENT item, SciterKeys keyCode, uint32_t keyboardState) override;
+    bool OnKeyUp(SCITER_ELEMENT element, SCITER_ELEMENT item, SciterKeys keyCode, uint32_t keyboardState) override;
+    bool OnKeyChar(SCITER_ELEMENT element, SCITER_ELEMENT item, SciterKeys keyCode, uint32_t keyboardState) override;
 
     ISciterUI & m_sciterUI;
     ISciterWindow * m_window;
