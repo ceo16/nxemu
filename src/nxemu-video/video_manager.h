@@ -13,12 +13,13 @@ public:
     void EmulationStarting();
 
     //IVideo
-    bool Initialize(void);
-    uint64_t MemoryAllocate(uint64_t size);
-    void MemoryTrackContinuity(uint64_t address, uint64_t virtualAddress, uint64_t size, uint64_t asid);
-    void MemoryMap(uint64_t address, uint64_t virtualAddress, uint64_t size, uint64_t asid, bool track);
-    void RequestComposite(VideoFramebufferConfig * layers, uint32_t layerCount, VideoNvFence * fences, uint32_t fenceCount);
-    uint64_t RegisterProcess(IMemory* memory);
+    bool Initialize(void) override;
+    uint64_t MemoryAllocate(uint64_t size) override;
+    void MemoryTrackContinuity(uint64_t address, uint64_t virtualAddress, uint64_t size, uint64_t asid) override;
+    void MemoryMap(uint64_t address, uint64_t virtualAddress, uint64_t size, uint64_t asid, bool track) override;
+    void RequestComposite(VideoFramebufferConfig * layers, uint32_t layerCount, VideoNvFence * fences, uint32_t fenceCount) override;
+    uint64_t RegisterProcess(IMemory* memory) override;
+    void UpdateFramebufferLayout(uint32_t width, uint32_t height) override;
 
 private:
     VideoManager() = delete;

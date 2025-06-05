@@ -16,10 +16,10 @@
 
 enum
 {
-    MODULE_LOADER_SPECS_VERSION = 0x0104,
-    MODULE_VIDEO_SPECS_VERSION = 0x0101,
-    MODULE_CPU_SPECS_VERSION = 0x0101,
-    MODULE_OPERATING_SYSTEM_SPECS_VERSION = 0x0103,
+    MODULE_LOADER_SPECS_VERSION = 0x0105,
+    MODULE_VIDEO_SPECS_VERSION = 0x0102,
+    MODULE_CPU_SPECS_VERSION = 0x0102,
+    MODULE_OPERATING_SYSTEM_SPECS_VERSION = 0x0104,
 };
 
 enum MODULE_TYPE : uint16_t
@@ -60,6 +60,7 @@ typedef struct
 __interface IRenderWindow
 {
     void * RenderSurface(void) const;
+    float PixelRatio(void) const;
 };
 
 __interface IOperatingSystem;

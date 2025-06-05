@@ -81,6 +81,7 @@ bool SciterMainWindow::Show(void)
     m_window->OnDestroySinkAdd(this);
     m_window->CenterWindow();
     SetCaption(m_windowTitle);
+
     SciterElement menuElement(rootElement.GetElementByID("MainMenu"));
     void * interfacePtr = nullptr;
     if (menuElement.IsValid() && m_sciterUI.GetElementInterface(menuElement, IID_IMENUBAR, &interfacePtr))
@@ -93,13 +94,23 @@ bool SciterMainWindow::Show(void)
     SciterElement mainContents(rootElement.GetElementByID("MainContents"));
     if (mainContents.IsValid())
     {
+        m_sciterUI.AttachHandler(mainContents, IID_IRESIZESINK, (IResizeSink*)this);
         rect = mainContents.GetLocation();
     }
 
+    uint32_t width = rect.right - rect.left;
+    uint32_t height = rect.bottom - rect.top;
     m_renderWindow = CreateWindowExW(0, L"Static", L"", WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS,
-                                     rect.left, rect.top, rect.right, rect.bottom, (HWND)m_window->GetHandle(), nullptr, GetModuleHandle(nullptr), nullptr);
+                                     rect.left, rect.top, width, height, (HWND)m_window->GetHandle(), nullptr, GetModuleHandle(nullptr), nullptr);
     ShowWindow((HWND)m_renderWindow, SW_HIDE);
     SwitchSystem::Create(*this);
+
+    SwitchSystem* system = SwitchSystem::GetInstance();
+    if (system != nullptr)
+    {
+        IVideo & video = system->Video();
+        video.UpdateFramebufferLayout(rect.right - rect.left, rect.bottom - rect.top);
+    }
     return true;
 }
 
@@ -401,6 +412,11 @@ void * SciterMainWindow::RenderSurface(void) const
     return m_renderWindow;
 }
 
+float SciterMainWindow::PixelRatio(void) const
+{
+    return 1.0;
+}
+
 bool SciterMainWindow::OnKeyDown(SCITER_ELEMENT element, SCITER_ELEMENT item, SciterKeys keyCode, uint32_t keyboardState)
 {
     SwitchSystem* system = SwitchSystem::GetInstance();
@@ -433,5 +449,24 @@ bool SciterMainWindow::OnKeyUp(SCITER_ELEMENT element, SCITER_ELEMENT item, Scit
 
 bool SciterMainWindow::OnKeyChar(SCITER_ELEMENT element, SCITER_ELEMENT item, SciterKeys keyCode, uint32_t keyboardState)
 {
+    return false;
+}
+
+bool SciterMainWindow::OnSizeChanged(SCITER_ELEMENT elem)
+{
+    SciterElement rootElement(m_window->GetRootElement());
+    if (elem == rootElement.GetElementByID("MainContents"))
+    {
+        SciterElement::RECT rect = SciterElement(elem).GetLocation();
+        uint32_t width = rect.right - rect.left;
+        uint32_t height = rect.bottom - rect.top;
+        MoveWindow((HWND)m_renderWindow, rect.left, rect.top, width, height, false);
+        SwitchSystem * system = SwitchSystem::GetInstance();
+        if (system != nullptr)
+        {
+            IVideo & video = system->Video();
+            video.UpdateFramebufferLayout(width, height);
+        }
+    }
     return false;
 }

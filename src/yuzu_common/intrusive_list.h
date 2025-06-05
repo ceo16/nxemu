@@ -259,13 +259,13 @@ public:
         splice_impl(pos, o.begin(), o.end());
     }
 
-    constexpr void splice(const_iterator pos, IntrusiveListImpl& o, const_iterator first) {
+    constexpr void splice(const_iterator pos, IntrusiveListImpl & /*o*/, const_iterator first) {
         const_iterator last(first);
         std::advance(last, 1);
         splice_impl(pos, first, last);
     }
 
-    constexpr void splice(const_iterator pos, IntrusiveListImpl& o, const_iterator first,
+    constexpr void splice(const_iterator pos, IntrusiveListImpl & /*o*/, const_iterator first,
                           const_iterator last) {
         splice_impl(pos, first, last);
     }

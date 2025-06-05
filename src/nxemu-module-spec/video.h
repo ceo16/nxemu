@@ -34,6 +34,7 @@ __interface IVideo
     void MemoryMap(uint64_t address, uint64_t virtualAddress, uint64_t size, uint64_t asid, bool track) = 0;
     void RequestComposite(VideoFramebufferConfig * layers, uint32_t layerCount, VideoNvFence * fences, uint32_t fenceCount) = 0;
     uint64_t RegisterProcess(IMemory * memory) = 0;
+    void UpdateFramebufferLayout(uint32_t width, uint32_t height) = 0;
 };
 
 EXPORT IVideo * CALL CreateVideo(IRenderWindow & RenderWindow, ISwitchSystem & System);

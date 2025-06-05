@@ -83,6 +83,11 @@ uint64_t VideoManager::RegisterProcess(IMemory * memory)
     return asid.id;
 }
 
+void VideoManager::UpdateFramebufferLayout(uint32_t width, uint32_t height)
+{
+    impl->m_emuWindow->UpdateCurrentFramebufferLayout(width, height);
+}
+
 uint64_t VideoManager::MemoryAllocate(uint64_t size)
 {
     return impl->m_host1x->MemoryManager().Allocate(size);

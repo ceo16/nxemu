@@ -8,7 +8,8 @@ class SciterMainWindow :
     public IWindowDestroySink,
     public IMenuBarSink,
     public IRenderWindow,
-    public IKeySink
+    public IKeySink,
+    public IResizeSink
 {
     enum MainMenuID
     {
@@ -59,11 +60,15 @@ private:
 
     // IRenderWindow
     void * RenderSurface(void) const override;
+    float PixelRatio(void) const override;
 
     // IKeySink
     bool OnKeyDown(SCITER_ELEMENT element, SCITER_ELEMENT item, SciterKeys keyCode, uint32_t keyboardState) override;
     bool OnKeyUp(SCITER_ELEMENT element, SCITER_ELEMENT item, SciterKeys keyCode, uint32_t keyboardState) override;
     bool OnKeyChar(SCITER_ELEMENT element, SCITER_ELEMENT item, SciterKeys keyCode, uint32_t keyboardState) override;
+
+    // IResizeSink
+    bool OnSizeChanged(SCITER_ELEMENT elem);
 
     ISciterUI & m_sciterUI;
     ISciterWindow * m_window;
