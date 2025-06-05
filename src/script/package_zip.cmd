@@ -45,7 +45,7 @@ copy "%base_dir%\modules\%VSPlatform%\operating_system\nxemu-os.dll" "%base_dir%
 copy "%base_dir%\modules\%VSPlatform%\video\nxemu-video.dll" "%base_dir%\bin\package\modules\video"
 
 :: Language
-echo "D:\Dev\nxemu-public\bin\x64\Release\resource_packer.exe" "D:\Dev\nxemu-public\lang\english" "%base_dir%\bin\package\lang\english.lang"
+"D:\Dev\nxemu-public\bin\x64\Release\resource_packer.exe" "D:\Dev\nxemu-public\lang\english" "%base_dir%\bin\package\lang\english.lang"
 
 cd %base_dir%\bin\package
 "%zip%" a -tzip -r "%base_dir%\package\%ZipFileName%" *
