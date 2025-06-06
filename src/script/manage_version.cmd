@@ -5,8 +5,8 @@ set "mode=%~1"
 if "%mode%"=="" (
     echo Usage: manage_version.cmd [dev^|release] [version_file_path]
     echo.
-    echo   dev     - Sets VERSION_PREFIX to "dev" (for development work^^^)
-    echo   release - Sets VERSION_PREFIX to "" and increments VERSION_MINOR (for public release^^^)
+    echo   dev     - Sets VERSION_PREFIX to "dev-" and increments VERSION_MINOR (for development work^^^)
+    echo   release - Sets VERSION_PREFIX to "" (for public release^^^)
     exit /b 1
 )
 
@@ -21,6 +21,7 @@ set versionFiles[0]="%base_dir%\src\nxemu-core\version.h.in"
 set versionFiles[1]="%base_dir%\src\nxemu-cpu\version.h.in"
 set versionFiles[2]="%base_dir%\src\nxemu-os\version.h.in"
 set versionFiles[3]="%base_dir%\src\nxemu-video\version.h.in"
+set versionFiles[4]="%base_dir%\src\nxemu-loader\version.h.in"
 
 :: Check if PowerShell script exists
 set "psScript=%~dp0manage_version_powershell.ps1"

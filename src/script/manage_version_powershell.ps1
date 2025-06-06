@@ -53,7 +53,7 @@ if ($Mode -eq "dev") {
 
     Write-Host "Setting version prefix to 'dev'..."
     # Update the VERSION_PREFIX line
-    $lines[$prefixLine] = $lines[$prefixLine] -replace '".*"', '"dev"'
+    $lines[$prefixLine] = $lines[$prefixLine] -replace '".*"', '"Dev-"'
     
     # Update the VERSION_MINOR line
     $lines[$minorLine] = $lines[$minorLine] -replace '\d+(?=\s*$)', $newMinor
