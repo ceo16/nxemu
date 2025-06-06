@@ -42,10 +42,6 @@
     <ClCompile Include="user_interface\sciter_main_window.cpp" />
     <ClCompile Include="user_interface\settings\config_setting_section.cpp" />
     <ClCompile Include="user_interface\settings\input_config.cpp" />
-    <ClCompile Include="user_interface\settings\settings_config.cpp" />
-    <ClCompile Include="user_interface\settings\settings_page.cpp" />
-    <ClCompile Include="user_interface\settings\settings_page_modules.cpp" />
-    <ClCompile Include="user_interface\wtl_controls\modified_combo_box.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="settings\ui_settings.h" />
@@ -55,10 +51,6 @@
     <ClInclude Include="user_interface\sciter_main_window.h" />
     <ClInclude Include="user_interface\settings\config_setting_section.h" />
     <ClInclude Include="user_interface\settings\input_config.h" />
-    <ClInclude Include="user_interface\settings\settings_config.h" />
-    <ClInclude Include="user_interface\settings\settings_page.h" />
-    <ClInclude Include="user_interface\settings\settings_page_modules.h" />
-    <ClInclude Include="user_interface\wtl_controls\modified_combo_box.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\external\sciterui\src\sciterui\sciterui.vcxproj">

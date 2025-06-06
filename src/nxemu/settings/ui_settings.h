@@ -8,7 +8,6 @@ typedef std::vector<std::string> Stringlist;
 struct UISettings
 {
     Stringlist recentFiles;
-    bool enableModuleConfiguration;
     Path languageDir;
     std::string languageDirValue;
     std::string languageBase;

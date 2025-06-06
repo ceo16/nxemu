@@ -1,6 +1,5 @@
 #include "sciter_main_window.h"
 #include "settings/input_config.h"
-#include "settings/settings_config.h"
 #include "settings/ui_settings.h"
 #include <Windows.h>
 #include <common/std_string.h>
@@ -52,14 +51,11 @@ void SciterMainWindow::ResetMenu()
 
     MenuBarItemList OptionsMenu;
     OptionsMenu.push_back(MenuBarItem(ID_OPTIONS_INPUT, "Configure Input..."));
-    OptionsMenu.push_back(MenuBarItem(ID_OPTIONS_SETTINGS, "Settings..."));
 
     MenuBarItemList mainTitleMenu;
     mainTitleMenu.push_back(MenuBarItem(MenuBarItem::SUB_MENU, "File", &fileMenu));
-    if (uiSettings.enableModuleConfiguration)
-    {
-        mainTitleMenu.push_back(MenuBarItem(MenuBarItem::SUB_MENU, "Options", &OptionsMenu));
-    }
+    mainTitleMenu.push_back(MenuBarItem(MenuBarItem::SUB_MENU, "Options", &OptionsMenu));
+
     m_menuBar->AddSink(this);
     m_menuBar->SetMenuContent(mainTitleMenu);
 }
@@ -366,11 +362,6 @@ void SciterMainWindow::OnFileExit(void)
     m_sciterUI.Stop();
 }
 
-void SciterMainWindow::OnSettings(void)
-{
-    SettingConfig().Display((HWND)m_window->GetHandle());
-}
-
 void SciterMainWindow::OnInputConfig(void)
 {
     InputConfig(m_sciterUI).Display((void *)m_window->GetHandle());
@@ -397,7 +388,6 @@ void SciterMainWindow::OnMenuItem(int32_t id, SCITER_ELEMENT /*item*/)
     {
     case ID_FILE_OPEN_GAME: OnOpenGame(); break;
     case ID_FILE_EXIT: OnFileExit(); break;
-    case ID_OPTIONS_SETTINGS: OnSettings(); break;
     case ID_OPTIONS_INPUT: OnInputConfig(); break;
     default:
         if (id >= ID_RECENT_FILE_START && id <= ID_RECENT_FILE_END)

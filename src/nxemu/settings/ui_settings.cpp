@@ -7,7 +7,6 @@ namespace
 {
 struct UISettingsDefaults
 {
-    static constexpr bool enableModuleConfiguration = false;
     static constexpr const char * defaultLanguageDirValue = "./lang";
     static constexpr const char * defaultLanguageBaseValue = "english";
     static constexpr const char * defaultLanguageCurrentValue = "english";
@@ -22,7 +21,6 @@ UISettings uiSettings = {};
 void LoadUISetting(void)
 {
     uiSettings = {};
-    uiSettings.enableModuleConfiguration = UISettingsDefaults::enableModuleConfiguration;
     uiSettings.languageDir = UISettingsDefaults::GetDefaultLanguageDir();
     uiSettings.languageDirValue = UISettingsDefaults::defaultLanguageDirValue;
     uiSettings.languageBase = UISettingsDefaults::defaultLanguageBaseValue;
@@ -31,13 +29,7 @@ void LoadUISetting(void)
 
     JsonValue jsonSettings = Settings::GetInstance().GetSettings("UI");
 
-    const JsonValue * node = jsonSettings.Find("EnableModuleConfiguration");
-    if (node != nullptr && node->isBool())
-    {
-        uiSettings.enableModuleConfiguration = node->asBool();
-    }
-
-    node = jsonSettings.Find("LanguageDirectory");
+    const JsonValue * node = jsonSettings.Find("LanguageDirectory");
     if (node != nullptr && node->isString())
     {
         std::string dirValue = node->asString();
@@ -81,10 +73,6 @@ void SaveUISetting(void)
         json["RecentFiles"] = std::move(recentFiles);
     }
 
-    if (uiSettings.enableModuleConfiguration != UISettingsDefaults::enableModuleConfiguration)
-    {
-        json["EnableModuleConfiguration"] = JsonValue(uiSettings.enableModuleConfiguration);
-    }
     if (uiSettings.languageDirValue != UISettingsDefaults::defaultLanguageDirValue)
     {
         json["LanguageDirectory"] = JsonValue(uiSettings.languageDirValue);

@@ -19,7 +19,6 @@ class SciterMainWindow :
 
         // Options Menu
         ID_OPTIONS_INPUT,
-        ID_OPTIONS_SETTINGS,
 
         // Recent files
         ID_RECENT_FILE_START,
@@ -48,7 +47,6 @@ private:
         
     void OnOpenGame(void);
     void OnFileExit(void);
-    void OnSettings(void);
     void OnInputConfig(void);
     void OnRecetGame(uint32_t fileIndex);
 
