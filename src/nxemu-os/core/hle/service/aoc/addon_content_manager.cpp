@@ -18,6 +18,32 @@
 
 #include <nxemu-module-spec/system_loader.h>
 
+namespace FileSys {
+
+    constexpr u64 AOC_TITLE_ID_MASK = 0x7FF;
+    constexpr u64 BASE_TITLE_ID_MASK = 0xFFFFFFFFFFFFE000;
+
+    /**
+     * Gets the base title ID from a given title ID.
+     *
+     * @param title_id The title ID.
+     * @returns The base title ID.
+     */
+    [[nodiscard]] constexpr u64 GetBaseTitleID(u64 title_id) {
+        return title_id & BASE_TITLE_ID_MASK;
+    }
+
+    /**
+     * Gets the AOC (Add-On Content) ID from a given AOC title ID.
+     *
+     * @param aoc_title_id The AOC title ID.
+     * @returns The AOC ID.
+     */
+    [[nodiscard]] constexpr u64 GetAOCID(u64 aoc_title_id) {
+        return aoc_title_id & AOC_TITLE_ID_MASK;
+    }
+}
+
 namespace Service::AOC {
 
 static bool CheckAOCTitleIDMatchesBase(u64 title_id, u64 base) {
@@ -110,7 +136,31 @@ Result IAddOnContentManager::CountAddOnContent(Out<u32> out_count, ClientProcess
 Result IAddOnContentManager::ListAddOnContent(Out<u32> out_count,
                                               OutBuffer<BufferAttr_HipcMapAlias> out_addons,
                                               u32 offset, u32 count, ClientProcessId process_id) {
-    UNIMPLEMENTED();
+    LOG_DEBUG(Service_AOC, "called with offset={}, count={}, process_id={}", offset, count,
+              process_id.pid);
+
+    const auto current = FileSys::GetBaseTitleID(system.GetApplicationProcessProgramID());
+
+    std::vector<u32> out;
+    const auto& disabled = Settings::values.disabled_addons[current];
+    if (std::find(disabled.begin(), disabled.end(), "DLC") == disabled.end()) {
+        for (u64 content_id : add_on_content) {
+            if (FileSys::GetBaseTitleID(content_id) != current) {
+                continue;
+            }
+
+            out.push_back(static_cast<u32>(FileSys::GetAOCID(content_id)));
+        }
+    }
+
+    // TODO(DarkLordZach): Find the correct error code.
+    R_UNLESS(out.size() >= offset, ResultUnknown);
+
+    *out_count = static_cast<u32>(std::min<size_t>(out.size() - offset, count));
+    std::rotate(out.begin(), out.begin() + offset, out.end());
+
+    std::memcpy(out_addons.data(), out.data(), *out_count * sizeof(u32));
+
     R_SUCCEED();
 }
 

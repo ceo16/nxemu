@@ -131,6 +131,7 @@ __interface IRomFsController
 
 __interface IFileSysNACP
 {
+    uint32_t GetSupportedLanguages() const = 0;
     uint32_t GetParentalControlFlag() const = 0;
     bool GetRatingAge(uint8_t * buffer, uint32_t bufferSize) const = 0;
     void Release() = 0;

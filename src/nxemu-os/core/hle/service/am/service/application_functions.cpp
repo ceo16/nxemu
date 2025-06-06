@@ -3,6 +3,7 @@
 
 #include "yuzu_common/settings.h"
 #include "yuzu_common/uuid.h"
+#include "core/file_sys/filesystem_interfaces.h"
 #include "core/hle/kernel/k_transfer_memory.h"
 #include "core/hle/service/am/am_results.h"
 #include "core/hle/service/am/applet.h"
@@ -13,6 +14,15 @@
 #include "core/hle/service/ns/application_manager_interface.h"
 #include "core/hle/service/ns/service_getter_interface.h"
 #include "core/hle/service/sm/sm.h"
+#include <nxemu-module-spec/system_loader.h>
+
+namespace FileSys {
+
+constexpr u64 GetUpdateTitleID(u64 base_title_id) {
+    return base_title_id | 0x800;
+}
+
+}
 
 namespace Service::AM {
 
@@ -126,7 +136,34 @@ Result IApplicationFunctions::GetDesiredLanguage(Out<u64> out_language_code) {
     // TODO(bunnei): This should be configurable
     LOG_DEBUG(Service_AM, "called");
 
-    UNIMPLEMENTED();
+    // Get supported languages from NACP, if possible
+    // Default to 0 (all languages supported)
+    u32 supported_languages = 0;
+
+    ISystemloader & loader = system.GetSystemloader();
+    IFileSysNACPPtr metadata(loader.GetPMControlMetadata(m_applet->program_id));
+    if (!metadata)
+    {
+        metadata = loader.GetPMControlMetadata(FileSys::GetUpdateTitleID(m_applet->program_id));
+    }
+
+    if (metadata) {
+        supported_languages = metadata->GetSupportedLanguages();
+    }
+
+    // Call IApplicationManagerInterface implementation.
+    auto& service_manager = system.ServiceManager();
+    auto ns_am2 = service_manager.GetService<NS::IServiceGetterInterface>("ns:am2");
+
+    std::shared_ptr<NS::IApplicationManagerInterface> app_man;
+    R_TRY(ns_am2->GetApplicationManagerInterface(&app_man));
+
+    // Get desired application language
+    NS::ApplicationLanguage desired_language{};
+    R_TRY(app_man->GetApplicationDesiredLanguage(&desired_language, supported_languages));
+
+    // Convert to settings language code.
+    R_TRY(app_man->ConvertApplicationLanguageToLanguageCode(out_language_code, desired_language));
 
     LOG_DEBUG(Service_AM, "got desired_language={:016X}", *out_language_code);
     R_SUCCEED();
