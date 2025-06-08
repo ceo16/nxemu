@@ -3,15 +3,15 @@
 
 #include <boost/container/small_vector.hpp>
 
-#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/nvdata.h"
 #include "yuzu_common/logging/log.h"
+#include "yuzu_common/yuzu_assert.h"
 #include "core/core.h"
 #include "core/core_timing.h"
 #include "core/hle/service/nvdrv/core/container.h"
 #include "core/hle/service/nvdrv/core/nvmap.h"
 #include "core/hle/service/nvdrv/devices/nvdisp_disp0.h"
 #include "core/perf_stats.h"
-#include "yuzu_video_core/gpu.h"
 #include <nxemu-module-spec/video.h>
 
 namespace Service::Nvidia::Devices {

@@ -16,8 +16,6 @@
 #include "core/hle/service/nvdrv/core/syncpoint_manager.h"
 #include "core/hle/service/nvdrv/devices/ioctl_serialization.h"
 #include "core/hle/service/nvdrv/devices/nvhost_ctrl.h"
-#include "yuzu_video_core/gpu.h"
-#include "yuzu_video_core/host1x/host1x.h"
 
 namespace Service::Nvidia::Devices {
 

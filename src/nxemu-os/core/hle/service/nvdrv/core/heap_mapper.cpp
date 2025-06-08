@@ -5,6 +5,7 @@
 
 #include "yuzu_common/range_sets.h"
 #include "yuzu_common/range_sets.inc"
+#include "yuzu_common/yuzu_assert.h"
 #include "core/hle/service/nvdrv/core/heap_mapper.h"
 #include <nxemu-module-spec/video.h>
 

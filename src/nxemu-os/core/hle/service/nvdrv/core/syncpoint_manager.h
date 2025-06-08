@@ -9,7 +9,8 @@
 #include <mutex>
 
 #include "yuzu_common/common_types.h"
-#include "yuzu_video_core/service/nvdrv/nvdata.h"
+#include "yuzu_common/fence.h"
+#include "yuzu_common/nvdata.h"
 
 __interface IVideo;
 

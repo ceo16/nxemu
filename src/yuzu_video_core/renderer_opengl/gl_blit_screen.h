@@ -7,7 +7,7 @@
 #include <memory>
 #include <span>
 
-#include "yuzu_video_core/service/nvnflinger/pixel_format.h"
+#include "yuzu_common/nvdata.h"
 #include "yuzu_video_core/host1x/gpu_device_memory_manager.h"
 #include "yuzu_video_core/renderer_opengl/gl_resource_manager.h"
 

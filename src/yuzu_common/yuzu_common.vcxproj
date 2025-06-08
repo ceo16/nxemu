@@ -51,6 +51,7 @@
     <ClInclude Include="dynamic_library.h" />
     <ClInclude Include="error.h" />
     <ClInclude Include="expected.h" />
+    <ClInclude Include="fence.h" />
     <ClInclude Include="fiber.h" />
     <ClInclude Include="free_region_manager.h" />
     <ClInclude Include="fs\file.h" />
@@ -80,6 +81,7 @@
     <ClInclude Include="math_util.h" />
     <ClInclude Include="microprofile.h" />
     <ClInclude Include="multi_level_page_table.h" />
+    <ClInclude Include="nvdata.h" />
     <ClInclude Include="overflow.h" />
     <ClInclude Include="page_table.h" />
     <ClInclude Include="param_package.h" />

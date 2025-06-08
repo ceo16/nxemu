@@ -460,7 +460,6 @@
     <ClInclude Include="core\cpu_manager.h" />
     <ClInclude Include="core\debugger\debugger.h" />
     <ClInclude Include="core\device_memory.h" />
-    <ClInclude Include="core\device_memory_manager.h" />
     <ClInclude Include="core\file_sys\errors.h" />
     <ClInclude Include="core\file_sys\filesystem_interfaces.h" />
     <ClInclude Include="core\file_sys\fsa\fs_i_filesystem.h" />

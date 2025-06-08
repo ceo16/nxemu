@@ -12,9 +12,9 @@
 #include <unordered_map>
 
 #include "yuzu_common/common_types.h"
+#include "yuzu_common/nvdata.h"
 #include "core/hle/service/kernel_helpers.h"
 #include "core/hle/service/nvdrv/core/container.h"
-#include "yuzu_video_core/service/nvdrv/nvdata.h"
 #include "core/hle/service/service.h"
 
 namespace Core {

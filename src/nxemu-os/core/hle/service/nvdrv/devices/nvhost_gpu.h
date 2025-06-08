@@ -8,9 +8,10 @@
 #include "yuzu_common/bit_field.h"
 #include "yuzu_common/common_funcs.h"
 #include "yuzu_common/common_types.h"
+#include "yuzu_common/fence.h"
+#include "yuzu_common/nvdata.h"
 #include "yuzu_common/swap.h"
 #include "core/hle/service/nvdrv/devices/nvdevice.h"
-#include "yuzu_video_core/service/nvdrv/nvdata.h"
 #include "yuzu_video_core/dma_pusher.h"
 
 namespace Tegra {
@@ -124,8 +125,6 @@ private:
     };
     static_assert(sizeof(IoctlGetErrorNotification) == 16,
                   "IoctlGetErrorNotification is incorrect size");
-
-    static_assert(sizeof(NvFence) == 8, "Fence is incorrect size");
 
     struct IoctlAllocGpfifoEx {
         u32_le num_entries{};

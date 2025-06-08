@@ -6,7 +6,14 @@
 
 #include <array>
 #include "yuzu_common/bit_field.h"
+#include "yuzu_common/common_funcs.h"
 #include "yuzu_common/common_types.h"
+
+namespace Core {
+struct Asid {
+    size_t id;
+};
+} // namespace Core
 
 namespace Service::Nvidia {
 
@@ -15,12 +22,6 @@ constexpr u32 MaxNvEvents = 64;
 using DeviceFD = s32;
 
 constexpr DeviceFD INVALID_NVDRV_FD = -1;
-
-struct NvFence {
-    s32 id;
-    u32 value;
-};
-static_assert(sizeof(NvFence) == 8, "NvFence has wrong size");
 
 enum class NvResult : u32 {
     Success = 0x0,
@@ -100,3 +101,44 @@ union Ioctl {
 };
 
 } // namespace Service::Nvidia
+
+namespace Service::android {
+
+enum class BufferTransformFlags : u32 {
+    /// No transform flags are set
+    Unset = 0x00,
+    /// Flip source image horizontally (around the vertical axis)
+    FlipH = 0x01,
+    /// Flip source image vertically (around the horizontal axis)
+    FlipV = 0x02,
+    /// Rotate source image 90 degrees clockwise
+    Rotate90 = 0x04,
+    /// Rotate source image 180 degrees
+    Rotate180 = 0x03,
+    /// Rotate source image 270 degrees clockwise
+    Rotate270 = 0x07,
+};
+DECLARE_ENUM_FLAG_OPERATORS(BufferTransformFlags);
+
+enum class PixelFormat : u32 {
+    NoFormat = 0,
+    Rgba8888 = 1,
+    Rgbx8888 = 2,
+    Rgb888 = 3,
+    Rgb565 = 4,
+    Bgra8888 = 5,
+    Rgba5551 = 6,
+    Rgba4444 = 7,
+};
+
+} // namespace Service::android
+
+namespace Tegra {
+
+enum class BlendMode {
+    Opaque,
+    Premultiplied,
+    Coverage,
+};
+
+} // namespace Tegra

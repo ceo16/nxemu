@@ -25,7 +25,6 @@
 #include "core/hle/service/nvdrv/nvmemp.h"
 #include "core/hle/service/nvnflinger/nvnflinger.h"
 #include "core/hle/service/server_manager.h"
-#include "yuzu_video_core/gpu.h"
 
 namespace Service::Nvidia {
 

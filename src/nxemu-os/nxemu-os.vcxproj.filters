@@ -522,9 +522,6 @@
     <ClInclude Include="core\gpu_dirty_memory_manager.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\device_memory_manager.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\hle\result.h">
       <Filter>Header Files\core\hle</Filter>
     </ClInclude>

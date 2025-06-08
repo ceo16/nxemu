@@ -7,7 +7,7 @@
 
 #include "yuzu_common/bit_field.h"
 #include "yuzu_common/common_types.h"
-#include "yuzu_video_core/service/nvdrv/nvdata.h"
+#include "yuzu_common/nvdata.h"
 #include "yuzu_video_core/cdma_pusher.h"
 #include "yuzu_video_core/framebuffer_config.h"
 #include "yuzu_video_core/rasterizer_download_area.h"

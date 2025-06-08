@@ -11,12 +11,11 @@
 #include <mutex>
 
 #include "yuzu_common/common_funcs.h"
-#include "yuzu_video_core/service/nvdrv/nvdata.h"
+#include "yuzu_common/nvdata.h"
 #include "core/hle/service/nvnflinger/binder.h"
 #include "core/hle/service/nvnflinger/buffer_queue_defs.h"
 #include "core/hle/service/nvnflinger/buffer_slot.h"
 #include "core/hle/service/nvnflinger/graphic_buffer_producer.h"
-#include "yuzu_video_core/service/nvnflinger/pixel_format.h"
 #include "core/hle/service/nvnflinger/status.h"
 #include "core/hle/service/nvnflinger/window.h"
 

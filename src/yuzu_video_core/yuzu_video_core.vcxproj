@@ -171,9 +171,7 @@
     <ClInclude Include="renderer_vulkan\vk_turbo_mode.h" />
     <ClInclude Include="renderer_vulkan\vk_update_descriptor.h" />
     <ClInclude Include="service\nvdrv\nvdata.h" />
-    <ClInclude Include="service\nvnflinger\buffer_transform_flags.h" />
     <ClInclude Include="service\nvnflinger\pixel_format.h" />
-    <ClInclude Include="service\nvnflinger\ui\fence.h" />
     <ClInclude Include="shader_cache.h" />
     <ClInclude Include="shader_environment.h" />
     <ClInclude Include="shader_notify.h" />

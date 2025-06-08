@@ -4,7 +4,6 @@
 
 #include "yuzu_common/yuzu_assert.h"
 #include "core/hle/service/nvdrv/core/syncpoint_manager.h"
-#include "yuzu_video_core/host1x/host1x.h"
 
 namespace Service::Nvidia::NvCore {
 

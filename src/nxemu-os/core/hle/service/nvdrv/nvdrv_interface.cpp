@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "yuzu_common/logging/log.h"
+#include "yuzu_common/nvdata.h"
 #include "yuzu_common/scope_exit.h"
 #include "yuzu_common/string_util.h"
 #include "core/core.h"
@@ -10,7 +11,6 @@
 #include "core/hle/kernel/k_process.h"
 #include "core/hle/kernel/k_readable_event.h"
 #include "core/hle/service/ipc_helpers.h"
-#include "yuzu_video_core/service/nvdrv/nvdata.h"
 #include "core/hle/service/nvdrv/nvdrv.h"
 #include "core/hle/service/nvdrv/nvdrv_interface.h"
 

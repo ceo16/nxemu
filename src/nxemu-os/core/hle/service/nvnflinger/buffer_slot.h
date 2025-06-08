@@ -9,7 +9,7 @@
 #include <memory>
 
 #include "yuzu_common/common_types.h"
-#include "yuzu_video_core/service/nvnflinger/ui/fence.h"
+#include "yuzu_common/fence.h"
 
 namespace Service::android {
 

@@ -15,9 +15,9 @@
 
 #include "core/hle/service/nvnflinger/buffer_item.h"
 #include "core/hle/service/nvnflinger/buffer_queue_defs.h"
-#include "yuzu_video_core/service/nvnflinger/pixel_format.h"
 #include "core/hle/service/nvnflinger/status.h"
 #include "core/hle/service/nvnflinger/window.h"
+#include "yuzu_common/nvdata.h"
 
 namespace Service::android {
 

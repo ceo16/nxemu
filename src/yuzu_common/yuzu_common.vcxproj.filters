@@ -309,6 +309,12 @@
     <ClInclude Include="zstd_compression.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="fence.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nvdata.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="logging\backend.cpp">

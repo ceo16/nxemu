@@ -8,8 +8,8 @@
 #include <memory>
 #include <unordered_map>
 
-#include "yuzu_video_core/device_memory_manager.h"
-#include "yuzu_video_core/service/nvdrv/nvdata.h"
+#include "yuzu_common/nvdata.h"
+#include <nxemu-module-spec/video.h>
 
 namespace Kernel {
 class KProcess;

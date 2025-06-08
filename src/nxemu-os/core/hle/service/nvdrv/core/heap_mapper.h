@@ -6,7 +6,8 @@
 #include <memory>
 
 #include "yuzu_common/common_types.h"
-#include "yuzu_video_core/device_memory_manager.h"
+#include "yuzu_common/nvdata.h"
+#include <nxemu-module-spec/video.h>
 
 namespace Tegra::Host1x {
 class Host1x;

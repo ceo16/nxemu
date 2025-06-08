@@ -10,7 +10,6 @@
 #include "yuzu_common/common_types.h"
 #include "core/hle/service/nvdrv/devices/nvdevice.h"
 #include "core/hle/service/nvdrv/nvdrv.h"
-#include "yuzu_video_core/host1x/syncpoint_manager.h"
 
 namespace Service::Nvidia::NvCore {
 class Container;
@@ -75,9 +74,6 @@ private:
 
         // Tells if an NVEvent is registered or not
         bool registered{};
-
-        // Used for waiting on a syncpoint & canceling it.
-        Tegra::Host1x::SyncpointManager::ActionHandle wait_handle{};
 
         bool IsBeingUsed() const {
             const auto current_status = status.load(std::memory_order_acquire);

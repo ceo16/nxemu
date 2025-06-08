@@ -11,7 +11,6 @@
 #include "core/hle/service/nvdrv/core/heap_mapper.h"
 #include "core/hle/service/nvdrv/core/nvmap.h"
 #include "core/memory.h"
-#include "yuzu_video_core/host1x/host1x.h"
 #include <nxemu-module-spec/video.h>
 
 using Core::Memory::YUZU_PAGESIZE;

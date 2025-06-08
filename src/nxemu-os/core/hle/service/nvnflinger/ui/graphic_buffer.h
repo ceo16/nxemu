@@ -10,7 +10,7 @@
 
 #include "yuzu_common/common_funcs.h"
 #include "yuzu_common/common_types.h"
-#include "yuzu_video_core/service/nvnflinger/pixel_format.h"
+#include "yuzu_common/nvdata.h"
 
 namespace Service::Nvidia::NvCore {
 class NvMap;

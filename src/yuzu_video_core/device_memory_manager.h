@@ -10,6 +10,7 @@
 #include <memory>
 #include <mutex>
 
+#include "yuzu_common/nvdata.h"
 #include "yuzu_common/common_types.h"
 #include "yuzu_common/range_mutex.h"
 #include "yuzu_common/scratch_buffer.h"
@@ -28,10 +29,6 @@ class DeviceMemory;
 
 template <typename DTraits>
 struct DeviceMemoryManagerAllocator;
-
-struct Asid {
-    size_t id;
-};
 
 template <typename Traits>
 class DeviceMemoryManager {

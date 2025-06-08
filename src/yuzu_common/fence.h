@@ -9,7 +9,16 @@
 #include <array>
 
 #include "yuzu_common/common_types.h"
-#include "yuzu_video_core/service/nvdrv/nvdata.h"
+#include "yuzu_common/nvdata.h"
+
+namespace Service::Nvidia {
+
+    struct NvFence {
+        s32 id;
+        u32 value;
+    };
+    static_assert(sizeof(NvFence) == 8, "NvFence has wrong size");
+}
 
 namespace Service::android {
 

@@ -121,9 +121,6 @@
     <Filter Include="Header Files\service\nvnflinger">
       <UniqueIdentifier>{73e1057b-1b2e-4152-9f70-4d2197167900}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\service\nvnflinger\ui">
-      <UniqueIdentifier>{6875d782-5f51-4c06-8183-c28e47b63b85}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\frontend">
       <UniqueIdentifier>{3ae2f9a9-6ed4-4389-bae0-2bec7f3600cc}</UniqueIdentifier>
     </Filter>
@@ -657,14 +654,8 @@
     <ClInclude Include="service\nvdrv\nvdata.h">
       <Filter>Header Files\service\nvdrv</Filter>
     </ClInclude>
-    <ClInclude Include="service\nvnflinger\buffer_transform_flags.h">
-      <Filter>Header Files\service\nvnflinger</Filter>
-    </ClInclude>
     <ClInclude Include="service\nvnflinger\pixel_format.h">
       <Filter>Header Files\service\nvnflinger</Filter>
-    </ClInclude>
-    <ClInclude Include="service\nvnflinger\ui\fence.h">
-      <Filter>Header Files\service\nvnflinger\ui</Filter>
     </ClInclude>
     <ClInclude Include="frontend\emu_window.h">
       <Filter>Header Files\frontend</Filter>

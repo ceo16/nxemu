@@ -7,8 +7,8 @@
 #include <vector>
 
 #include "yuzu_common/common_types.h"
+#include "yuzu_common/nvdata.h"
 #include "core/hle/service/nvdrv/core/container.h"
-#include "yuzu_video_core/service/nvdrv/nvdata.h"
 
 namespace Core {
 class System;

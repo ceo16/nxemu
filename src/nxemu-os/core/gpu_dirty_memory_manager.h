@@ -10,8 +10,6 @@
 #include <utility>
 #include <vector>
 
-#include <yuzu_video_core/device_memory_manager.h>
-
 namespace Core {
 
 class GPUDirtyMemoryManager {
@@ -80,6 +78,7 @@ private:
         u32 mask;
     };
 
+    constexpr static size_t DEVICE_PAGEBITS = 12ULL;
     constexpr static size_t page_bits = DEVICE_PAGEBITS - 1;
     constexpr static size_t page_size = 1ULL << page_bits;
     constexpr static size_t page_mask = page_size - 1;
