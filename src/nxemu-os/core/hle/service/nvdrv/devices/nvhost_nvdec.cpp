@@ -7,7 +7,6 @@
 #include "core/hle/service/nvdrv/core/container.h"
 #include "core/hle/service/nvdrv/devices/ioctl_serialization.h"
 #include "core/hle/service/nvdrv/devices/nvhost_nvdec.h"
-#include "yuzu_video_core/renderer_base.h"
 
 namespace Service::Nvidia::Devices {
 

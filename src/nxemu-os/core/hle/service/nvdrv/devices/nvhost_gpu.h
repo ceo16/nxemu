@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include <boost/container/small_vector.hpp>
 #include <memory>
 #include <vector>
 #include "yuzu_common/bit_field.h"
@@ -12,12 +13,54 @@
 #include "yuzu_common/nvdata.h"
 #include "yuzu_common/swap.h"
 #include "core/hle/service/nvdrv/devices/nvdevice.h"
-#include "yuzu_video_core/dma_pusher.h"
 
 namespace Tegra {
 namespace Control {
 struct ChannelState;
 }
+
+enum class SubmissionMode : u32 {
+    IncreasingOld = 0,
+    Increasing = 1,
+    NonIncreasingOld = 2,
+    NonIncreasing = 3,
+    Inline = 4,
+    IncreaseOnce = 5
+};
+
+union CommandHeader {
+    u32 argument;
+    BitField<0, 13, u32> method;
+    BitField<0, 24, u32> method_count_;
+    BitField<13, 3, u32> subchannel;
+    BitField<16, 13, u32> arg_count;
+    BitField<16, 13, u32> method_count;
+    BitField<29, 3, SubmissionMode> mode;
+};
+static_assert(std::is_standard_layout_v<CommandHeader>, "CommandHeader is not standard layout");
+static_assert(sizeof(CommandHeader) == sizeof(u32), "CommandHeader has incorrect size!");
+
+struct CommandListHeader {
+    union {
+        u64 raw;
+        BitField<0, 40, GPUVAddr> addr;
+        BitField<41, 1, u64> is_non_main;
+        BitField<42, 21, u64> size;
+    };
+};
+static_assert(sizeof(CommandListHeader) == sizeof(u64), "CommandListHeader is incorrect size");
+
+struct CommandList final {
+    CommandList() = default;
+    explicit CommandList(std::size_t size) : command_lists(size) {}
+    explicit CommandList(
+        boost::container::small_vector<CommandHeader, 512>&& prefetch_command_list_)
+        : prefetch_command_list{ std::move(prefetch_command_list_) } {
+    }
+
+    boost::container::small_vector<CommandListHeader, 512> command_lists;
+    boost::container::small_vector<CommandHeader, 512> prefetch_command_list;
+};
 } // namespace Tegra
 
 namespace Service::Nvidia {

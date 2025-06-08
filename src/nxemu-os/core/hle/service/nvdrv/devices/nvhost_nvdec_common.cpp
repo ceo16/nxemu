@@ -14,9 +14,6 @@
 #include "core/hle/service/nvdrv/core/syncpoint_manager.h"
 #include "core/hle/service/nvdrv/devices/nvhost_nvdec_common.h"
 #include "core/memory.h"
-#include "yuzu_video_core/host1x/host1x.h"
-#include "yuzu_video_core/memory_manager.h"
-#include "yuzu_video_core/renderer_base.h"
 
 namespace Service::Nvidia::Devices {
 

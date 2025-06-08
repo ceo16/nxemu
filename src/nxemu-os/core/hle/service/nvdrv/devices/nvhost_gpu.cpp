@@ -13,15 +13,70 @@
 #include "core/hle/service/nvdrv/devices/nvhost_gpu.h"
 #include "core/hle/service/nvdrv/nvdrv.h"
 #include "core/memory.h"
-#include "yuzu_video_core/control/channel_state.h"
-#include "yuzu_video_core/engines/puller.h"
-#include "yuzu_video_core/gpu.h"
-#include "yuzu_video_core/host1x/host1x.h"
+
+namespace Tegra {
+
+// Note that, traditionally, methods are treated as 4-byte addressable locations, and hence
+// their numbers are written down multiplied by 4 in Docs. Here we are not multiply by 4.
+// So the values you see in docs might be multiplied by 4.
+// Register documentation:
+// https://github.com/NVIDIA/open-gpu-doc/blob/ab27fc22db5de0d02a4cabe08e555663b62db4d4/classes/host/cla26f.h
+//
+// Register Description (approx):
+// https://github.com/NVIDIA/open-gpu-doc/blob/ab27fc22db5de0d02a4cabe08e555663b62db4d4/manuals/volta/gv100/dev_pbdma.ref.txt
+enum class BufferMethods : u32 {
+    BindObject = 0x0,
+    Illegal = 0x1,
+    Nop = 0x2,
+    SemaphoreAddressHigh = 0x4,
+    SemaphoreAddressLow = 0x5,
+    SemaphoreSequencePayload = 0x6,
+    SemaphoreOperation = 0x7,
+    NonStallInterrupt = 0x8,
+    WrcacheFlush = 0x9,
+    MemOpA = 0xA,
+    MemOpB = 0xB,
+    MemOpC = 0xC,
+    MemOpD = 0xD,
+    RefCnt = 0x14,
+    SemaphoreAcquire = 0x1A,
+    SemaphoreRelease = 0x1B,
+    SyncpointPayload = 0x1C,
+    SyncpointOperation = 0x1D,
+    WaitForIdle = 0x1E,
+    CRCCheck = 0x1F,
+    Yield = 0x20,
+    NonPullerMethods = 0x40,
+};
+
+inline CommandHeader BuildCommandHeader(BufferMethods method, u32 arg_count, SubmissionMode mode) {
+    CommandHeader result{};
+    result.method.Assign(static_cast<u32>(method));
+    result.arg_count.Assign(arg_count);
+    result.mode.Assign(mode);
+    return result;
+}
+} // namespace Tegra
+
+namespace Tegra::Engines {
+
+enum class FenceOperation : u32 {
+    Acquire = 0,
+    Increment = 1,
+};
+
+union FenceAction {
+    u32 raw;
+    BitField<0, 1, FenceOperation> op;
+    BitField<8, 24, u32> syncpoint_id;
+};
+
+} // namespace Tegra::Engines
 
 namespace Service::Nvidia::Devices {
 namespace {
-Tegra::CommandHeader BuildFenceAction(Tegra::Engines::Puller::FenceOperation op, u32 syncpoint_id) {
-    Tegra::Engines::Puller::FenceAction result{};
+Tegra::CommandHeader BuildFenceAction(Tegra::Engines::FenceOperation op, u32 syncpoint_id) {
+    Tegra::Engines::FenceAction result{};
     result.op.Assign(op);
     result.syncpoint_id.Assign(syncpoint_id);
     return {result.raw};
@@ -189,7 +244,7 @@ static boost::container::small_vector<Tegra::CommandHeader, 512> BuildWaitComman
         {fence.value},
         Tegra::BuildCommandHeader(Tegra::BufferMethods::SyncpointOperation, 1,
                                   Tegra::SubmissionMode::Increasing),
-        BuildFenceAction(Tegra::Engines::Puller::FenceOperation::Acquire, fence.id),
+        BuildFenceAction(Tegra::Engines::FenceOperation::Acquire, fence.id),
     };
 }
 
@@ -204,7 +259,7 @@ static boost::container::small_vector<Tegra::CommandHeader, 512> BuildIncrementC
         result.push_back(Tegra::BuildCommandHeader(Tegra::BufferMethods::SyncpointOperation, 1,
                                                    Tegra::SubmissionMode::Increasing));
         result.push_back(
-            BuildFenceAction(Tegra::Engines::Puller::FenceOperation::Increment, fence.id));
+            BuildFenceAction(Tegra::Engines::FenceOperation::Increment, fence.id));
     }
 
     return result;
