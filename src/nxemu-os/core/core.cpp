@@ -259,6 +259,12 @@ std::span<GPUDirtyMemoryManager> System::GetGPUDirtyMemoryManager() {
     return impl->gpu_dirty_memory_managers;
 }
 
+void System::GatherGPUDirtyMemory(ICacheInvalidator * invalidator) {
+    for (auto& manager : impl->gpu_dirty_memory_managers) {
+        manager.Gather(invalidator);
+    }
+}
+
 ISwitchSystem & System::GetSwitchSystem()
 {
     return impl->switchSystem;

@@ -15,6 +15,7 @@
 #include "yuzu_common/address_space.h"
 #include "yuzu_common/common_funcs.h"
 #include "yuzu_common/common_types.h"
+#include "yuzu_common/interface_pointer.h"
 #include "yuzu_common/scratch_buffer.h"
 #include "yuzu_common/swap.h"
 #include "core/hle/service/nvdrv/core/nvmap.h"
@@ -213,7 +214,7 @@ private:
 
         bool initialised{};
     } vm;
-    std::shared_ptr<Tegra::MemoryManager> gmmu;
+    uint32_t gmmu;
 };
 
 } // namespace Service::Nvidia::Devices

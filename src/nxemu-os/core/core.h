@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 
+#include <nxemu-module-spec/operating_system.h>
 #include "yuzu_common/common_types.h"
 
 enum class StorageId : uint8_t;
@@ -219,18 +220,12 @@ public:
      */
     [[nodiscard]] bool IsPoweredOn() const;
 
-    /// Gets a reference to the telemetry session for this emulation session.
-    [[nodiscard]] Core::TelemetrySession& TelemetrySession();
-
-    /// Gets a reference to the telemetry session for this emulation session.
-    [[nodiscard]] const Core::TelemetrySession& TelemetrySession() const;
-
     /// Prepare the core emulation for a reschedule
     void PrepareReschedule(u32 core_index);
 
     std::span<GPUDirtyMemoryManager> GetGPUDirtyMemoryManager();
 
-    void GatherGPUDirtyMemory(std::function<void(PAddr, size_t)>& callback);
+    void GatherGPUDirtyMemory(ICacheInvalidator * invalidator);
 
     ISwitchSystem & GetSwitchSystem();
     IVideo & GetVideo();

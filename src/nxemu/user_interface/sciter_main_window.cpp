@@ -407,7 +407,7 @@ float SciterMainWindow::PixelRatio(void) const
     return 1.0;
 }
 
-bool SciterMainWindow::OnKeyDown(SCITER_ELEMENT element, SCITER_ELEMENT item, SciterKeys keyCode, uint32_t keyboardState)
+bool SciterMainWindow::OnKeyDown(SCITER_ELEMENT /*element*/, SCITER_ELEMENT /*item*/, SciterKeys keyCode, uint32_t /*keyboardState*/)
 {
     SwitchSystem* system = SwitchSystem::GetInstance();
     if (system != nullptr)
@@ -422,7 +422,7 @@ bool SciterMainWindow::OnKeyDown(SCITER_ELEMENT element, SCITER_ELEMENT item, Sc
     return false;
 }
 
-bool SciterMainWindow::OnKeyUp(SCITER_ELEMENT element, SCITER_ELEMENT item, SciterKeys keyCode, uint32_t keyboardState)
+bool SciterMainWindow::OnKeyUp(SCITER_ELEMENT /*element*/, SCITER_ELEMENT /*item*/, SciterKeys keyCode, uint32_t /*keyboardState*/)
 {
     SwitchSystem* system = SwitchSystem::GetInstance();
     if (system != nullptr)
@@ -437,7 +437,7 @@ bool SciterMainWindow::OnKeyUp(SCITER_ELEMENT element, SCITER_ELEMENT item, Scit
     return false;
 }
 
-bool SciterMainWindow::OnKeyChar(SCITER_ELEMENT element, SCITER_ELEMENT item, SciterKeys keyCode, uint32_t keyboardState)
+bool SciterMainWindow::OnKeyChar(SCITER_ELEMENT /*element*/, SCITER_ELEMENT /*item*/, SciterKeys /*keyCode*/, uint32_t /*keyboardState*/)
 {
     return false;
 }

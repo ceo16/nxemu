@@ -6,9 +6,11 @@
 #include <atomic>
 #include <map>
 #include <mutex>
+#include <unordered_map>
 #include <optional>
 #include <vector>
 #include <boost/container/small_vector.hpp>
+#include <nxemu-module-spec/video.h>
 
 #include "yuzu_common/common_types.h"
 #include "yuzu_common/multi_level_page_table.h"
@@ -249,6 +251,24 @@ private:
     static std::atomic<size_t> unique_identifier_generator;
 
     Common::ScratchBuffer<u8> tmp_buffer;
+};
+
+class MemoryManagerRegistry
+{
+    typedef std::unordered_map<uint32_t, std::shared_ptr<Tegra::MemoryManager>> MemoryManagers;
+
+public:
+    MemoryManagerRegistry();
+
+    uint32_t AddMemoryManager(std::shared_ptr<Tegra::MemoryManager> & gmmu); 
+    std::shared_ptr<Tegra::MemoryManager> GetMemoryManager(uint32_t id);
+
+private:
+    MemoryManagerRegistry(const MemoryManagerRegistry&) = delete;
+    MemoryManagerRegistry& operator=(const MemoryManagerRegistry&) = delete;
+
+    std::atomic<uint32_t> m_nextMemoryManager;
+    MemoryManagers m_memoryManagers;
 };
 
 } // namespace Tegra

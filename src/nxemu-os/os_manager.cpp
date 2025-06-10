@@ -145,3 +145,8 @@ void OSManager::KeyboardKeyRelease(int modifier, int keyIndex, int keyCode)
     input_subsystem->GetKeyboard()->ReleaseKey(keyCode);
     input_subsystem->PumpEvents();
 }
+
+void OSManager::GatherGPUDirtyMemory(ICacheInvalidator * invalidator)
+{
+    m_coreSystem.GatherGPUDirtyMemory(invalidator);
+}

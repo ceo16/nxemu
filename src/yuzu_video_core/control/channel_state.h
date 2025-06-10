@@ -6,6 +6,7 @@
 #include <memory>
 
 #include "yuzu_common/common_types.h"
+#include <nxemu-module-spec/video.h>
 
 namespace Core {
 class System;
@@ -18,6 +19,7 @@ class RasterizerInterface;
 namespace Tegra {
 
 class GPU;
+class MemoryManagerRegistry;
 
 namespace Engines {
 class Puller;
@@ -67,3 +69,30 @@ struct ChannelState {
 } // namespace Control
 
 } // namespace Tegra
+
+class VideoManager;
+
+class IChannelStatePtr :
+    public IChannelState
+{
+public:
+    IChannelStatePtr(Tegra::GPU & gpu, Tegra::MemoryManagerRegistry & registry);
+    IChannelStatePtr(Tegra::GPU & gpu, Tegra::MemoryManagerRegistry & registry, std::shared_ptr<Tegra::Control::ChannelState> && channelState);
+    ~IChannelStatePtr();
+
+    // IChannelState
+    bool Initialized() const override;
+    int32_t BindId() const override;
+    void Init(uint64_t programId) override;
+    void SetMemoryManager(uint32_t id) override;
+    void Release() override;
+
+private:
+    IChannelStatePtr();
+    IChannelStatePtr(const IChannelStatePtr&) = delete;
+    IChannelStatePtr& operator=(const IChannelStatePtr&) = delete;
+
+    Tegra::GPU & m_gpu;
+    Tegra::MemoryManagerRegistry & m_registry;
+    std::shared_ptr<Tegra::Control::ChannelState> m_channelState;
+};

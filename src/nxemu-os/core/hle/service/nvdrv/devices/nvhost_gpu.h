@@ -10,14 +10,16 @@
 #include "yuzu_common/common_funcs.h"
 #include "yuzu_common/common_types.h"
 #include "yuzu_common/fence.h"
+#include "yuzu_common/interface_pointer.h"
 #include "yuzu_common/nvdata.h"
 #include "yuzu_common/swap.h"
 #include "core/hle/service/nvdrv/devices/nvdevice.h"
 
+__interface IChannelState;
+
+using IChannelStatePtr = InterfacePtr<IChannelState>;
+
 namespace Tegra {
-namespace Control {
-struct ChannelState;
-}
 
 enum class SubmissionMode : u32 {
     IncreasingOld = 0,
@@ -251,7 +253,7 @@ private:
     NvCore::Container& core;
     NvCore::SyncpointManager& syncpoint_manager;
     NvCore::NvMap& nvmap;
-    std::shared_ptr<Tegra::Control::ChannelState> channel_state;
+    IChannelStatePtr channel_state;
     std::unordered_map<DeviceFD, NvCore::SessionId> sessions;
     u32 channel_syncpoint;
     std::mutex channel_mutex;

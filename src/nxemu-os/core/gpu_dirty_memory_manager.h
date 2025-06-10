@@ -45,7 +45,7 @@ public:
                                                 std::memory_order_relaxed));
     }
 
-    void Gather(std::function<void(PAddr, size_t)>& callback) {
+    void Gather(ICacheInvalidator * invalidator) {
         {
             std::scoped_lock lk(guard);
             TransformAddress t = current.exchange(default_transform, std::memory_order_relaxed);
@@ -63,7 +63,7 @@ public:
                 mask = mask >> empty_bits;
 
                 const size_t continuous_bits = std::countr_one(mask);
-                callback((static_cast<PAddr>(transform.address) << page_bits) + offset,
+                invalidator->OnCacheInvalidation((static_cast<PAddr>(transform.address) << page_bits) + offset,
                          continuous_bits << align_bits);
                 mask = continuous_bits < align_size ? (mask >> continuous_bits) : 0;
                 offset += continuous_bits << align_bits;

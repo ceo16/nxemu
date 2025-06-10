@@ -784,4 +784,22 @@ u8* MemoryManager::GetSpan(const GPUVAddr src_addr, const std::size_t size) {
     return nullptr;
 }
 
+MemoryManagerRegistry::MemoryManagerRegistry() :
+    m_nextMemoryManager(1)
+{
+}
+
+uint32_t MemoryManagerRegistry::AddMemoryManager(std::shared_ptr<Tegra::MemoryManager> & gmmu)
+{
+    uint32_t id = m_nextMemoryManager.fetch_add(1);
+    m_memoryManagers[id] = gmmu;
+    return id;
+}
+
+std::shared_ptr<Tegra::MemoryManager> MemoryManagerRegistry::GetMemoryManager(uint32_t id)
+{
+    MemoryManagers::const_iterator it = m_memoryManagers.find(id);
+    return (it != m_memoryManagers.end()) ? it->second : nullptr;
+}
+
 } // namespace Tegra

@@ -315,6 +315,12 @@
     <ClInclude Include="nvdata.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="interface_pointer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="interface_pointer_def.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="logging\backend.cpp">

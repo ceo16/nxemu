@@ -39,3 +39,45 @@ void ChannelState::BindRasterizer(VideoCore::RasterizerInterface* rasterizer) {
 }
 
 } // namespace Tegra::Control
+
+IChannelStatePtr::IChannelStatePtr(Tegra::GPU & gpu, Tegra::MemoryManagerRegistry & registry) :
+    m_gpu(gpu),
+    m_registry(registry)
+{
+}
+
+IChannelStatePtr::IChannelStatePtr(Tegra::GPU & gpu, Tegra::MemoryManagerRegistry & registry, std::shared_ptr<Tegra::Control::ChannelState> && channelState) :
+    m_gpu(gpu),
+    m_registry(registry),
+    m_channelState(channelState)
+{
+}
+
+IChannelStatePtr::~IChannelStatePtr()
+{
+}
+
+bool IChannelStatePtr::Initialized() const
+{
+    return m_channelState->initialized;
+}
+
+int32_t IChannelStatePtr::BindId() const
+{
+    return m_channelState->bind_id;
+}
+
+void IChannelStatePtr::Init(uint64_t programId)
+{
+    m_gpu.InitChannel(*m_channelState, programId);
+}
+
+void IChannelStatePtr::SetMemoryManager(uint32_t id)
+{
+    m_channelState->memory_manager = m_registry.GetMemoryManager(id);
+}
+
+void IChannelStatePtr::Release()
+{
+    delete this;
+}

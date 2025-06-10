@@ -1,29 +1,6 @@
 #pragma once
 #include <vector>
-
-template<typename InterfaceType>
-class InterfacePtr
-{
-public:
-    InterfacePtr();
-    InterfacePtr(InterfaceType *);
-    InterfacePtr(InterfacePtr && other) noexcept;
-    ~InterfacePtr();
-
-    InterfacePtr & operator=(InterfaceType * ptr);
-    InterfacePtr & operator=(InterfacePtr && other) noexcept;
-    InterfaceType ** GetAddressForSet();
-
-    InterfaceType * operator->() const;
-    InterfaceType & operator*() const;
-    operator bool() const;
-
-protected:
-    InterfacePtr(const InterfacePtr &) = delete;
-    InterfacePtr & operator=(const InterfacePtr &) = delete;
-
-    InterfaceType * m_ptr;
-};
+#include "yuzu_common/interface_pointer.h"
 
 __interface IVirtualDirectory;
 __interface IVirtualFile;

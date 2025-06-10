@@ -11,6 +11,7 @@
 #include "yuzu_video_core/cdma_pusher.h"
 #include "yuzu_video_core/framebuffer_config.h"
 #include "yuzu_video_core/rasterizer_download_area.h"
+#include <nxemu-module-spec/operating_system.h>
 
 namespace Core {
 class System;
@@ -134,7 +135,7 @@ class MemoryManager;
 
 class GPU final {
 public:
-    explicit GPU(Tegra::Host1x::Host1x & host1x, bool is_async, bool use_nvdec);
+    explicit GPU(ISwitchSystem & system, Tegra::Host1x::Host1x & host1x, bool is_async, bool use_nvdec);
     ~GPU();
 
     /// Binds a renderer to the GPU.

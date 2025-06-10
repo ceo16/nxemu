@@ -2,8 +2,9 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <cstring>
-#include "yuzu_common/yuzu_assert.h"
+#include "yuzu_common/interface_pointer_def.h"
 #include "yuzu_common/logging/log.h"
+#include "yuzu_common/yuzu_assert.h"
 #include "core/core.h"
 #include "core/hle/kernel/k_process.h"
 #include "core/hle/service/nvdrv/core/container.h"
@@ -86,9 +87,8 @@ Tegra::CommandHeader BuildFenceAction(Tegra::Engines::FenceOperation op, u32 syn
 nvhost_gpu::nvhost_gpu(Core::System& system_, EventInterface& events_interface_,
                        NvCore::Container& core_)
     : nvdevice{system_}, events_interface{events_interface_}, core{core_},
-      syncpoint_manager{core_.GetSyncpointManager()}, nvmap{core.GetNvMapFile()}
-    {
-    UNIMPLEMENTED();
+      syncpoint_manager{core_.GetSyncpointManager()}, nvmap{core.GetNvMapFile()},
+      channel_state{system_.GetVideo().AllocateChannel()} {
     channel_syncpoint = syncpoint_manager.AllocateSyncpoint(false);
     sm_exception_breakpoint_int_report_event =
         events_interface.CreateEvent("GpuChannelSMExceptionBreakpointInt");
@@ -224,7 +224,25 @@ NvResult nvhost_gpu::SetChannelPriority(IoctlChannelSetPriority& params) {
 }
 
 NvResult nvhost_gpu::AllocGPFIFOEx2(IoctlAllocGpfifoEx2& params, DeviceFD fd) {
-    UNIMPLEMENTED();
+    LOG_WARNING(Service_NVDRV,
+                "(STUBBED) called, num_entries={:X}, flags={:X}, unk0={:X}, "
+                "unk1={:X}, unk2={:X}, unk3={:X}",
+                params.num_entries, params.flags, params.unk0, params.unk1, params.unk2,
+                params.unk3);
+
+    if (channel_state->Initialized()) {
+        LOG_CRITICAL(Service_NVDRV, "Already allocated!");
+        return NvResult::AlreadyAllocated;
+    }
+
+    u64 program_id{};
+    if (auto* const session = core.GetSession(sessions[fd]); session != nullptr) {
+        program_id = session->process->GetProgramId();
+    }
+
+    channel_state->Init(program_id);
+    params.fence_out = syncpoint_manager.GetSyncpointFence(channel_syncpoint);
+
     return NvResult::Success;
 }
 
@@ -280,7 +298,44 @@ NvResult nvhost_gpu::SubmitGPFIFOImpl(IoctlSubmitGpfifo& params, Tegra::CommandL
     LOG_TRACE(Service_NVDRV, "called, gpfifo={:X}, num_entries={:X}, flags={:X}", params.address,
               params.num_entries, params.flags.raw);
 
-    UNIMPLEMENTED();
+    IVideo & video = system.GetVideo();
+
+    std::scoped_lock lock(channel_mutex);
+
+    const auto bind_id = channel_state->BindId();
+
+    auto& flags = params.flags;
+
+    if (flags.fence_wait.Value()) {
+        if (flags.increment_value.Value()) {
+            return NvResult::BadParameter;
+        }
+
+        if (!syncpoint_manager.IsFenceSignalled(params.fence)) {
+            Tegra::CommandList entries{ BuildWaitCommandList(params.fence) };
+            video.PushGPUEntries(bind_id, (const uint64_t *)entries.command_lists.data(), (uint32_t)entries.command_lists.size(), (const uint32_t*)entries.prefetch_command_list.data(), (uint32_t)entries.prefetch_command_list.size());
+        }
+    }
+
+    params.fence.id = channel_syncpoint;
+
+    u32 increment{(flags.fence_increment.Value() != 0 ? 2 : 0) +
+                  (flags.increment_value.Value() != 0 ? params.fence.value : 0)};
+    params.fence.value = syncpoint_manager.IncrementSyncpointMaxExt(channel_syncpoint, increment);
+    video.PushGPUEntries(bind_id, (const uint64_t*)entries.command_lists.data(), (uint32_t)entries.command_lists.size(), (const uint32_t*)entries.prefetch_command_list.data(), (uint32_t)entries.prefetch_command_list.size());
+
+    if (flags.fence_increment.Value()) {
+        if (flags.suppress_wfi.Value()) {
+            Tegra::CommandList entries{ BuildIncrementCommandList(params.fence) };
+            video.PushGPUEntries(bind_id, (const uint64_t*)entries.command_lists.data(), (uint32_t)entries.command_lists.size(), (const uint32_t*)entries.prefetch_command_list.data(), (uint32_t)entries.prefetch_command_list.size());
+        } else {
+            Tegra::CommandList entries{ BuildIncrementWithWfiCommandList(params.fence) };
+            video.PushGPUEntries(bind_id, (const uint64_t*)entries.command_lists.data(), (uint32_t)entries.command_lists.size(), (const uint32_t*)entries.prefetch_command_list.data(), (uint32_t)entries.prefetch_command_list.size());
+        }
+    }
+
+    flags.raw = 0;
+
     return NvResult::Success;
 }
 
@@ -352,3 +407,5 @@ Kernel::KEvent* nvhost_gpu::QueryEvent(u32 event_id) {
 }
 
 } // namespace Service::Nvidia::Devices
+
+template class InterfacePtr<IChannelState>;

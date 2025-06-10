@@ -15,7 +15,7 @@
 #include "core/core_timing.h"
 #include "frontend/emu_window.h"
 #include "frontend/graphics_context.h"
-#include "yuzu_video_core/service/nvdrv/nvdata.h"
+#include "yuzu_common/nvdata.h"
 #include "yuzu_video_core/cdma_pusher.h"
 #include "yuzu_video_core/control/channel_state.h"
 #include "yuzu_video_core/control/scheduler.h"
@@ -35,9 +35,11 @@
 
 namespace Tegra {
 
-struct GPU::Impl {
-    explicit Impl(GPU & gpu_, Tegra::Host1x::Host1x & host1x_, bool is_async_, bool use_nvdec_)
-        : gpu{gpu_}, host1x{host1x_}, use_nvdec{use_nvdec_},
+struct GPU::Impl :
+    public ICacheInvalidator
+{
+    explicit Impl(ISwitchSystem & system, GPU & gpu_, Tegra::Host1x::Host1x & host1x_, bool is_async_, bool use_nvdec_)
+        : m_system(system), gpu{gpu_}, host1x{host1x_}, use_nvdec{use_nvdec_},
           shader_notify{std::make_unique<VideoCore::ShaderNotify>()}, is_async{is_async_},
           gpu_thread{gpu_, is_async_}, scheduler{std::make_unique<Control::Scheduler>(gpu)} {}
 
@@ -95,7 +97,8 @@ struct GPU::Impl {
 
     /// Synchronizes CPU writes with Host GPU memory.
     void InvalidateGPUCache() {
-        UNIMPLEMENTED();
+        IOperatingSystem & operatingSystem = m_system.OperatingSystem();
+        operatingSystem.GatherGPUDirtyMemory(this);
     }
 
     /// Signal the ending of command list.
@@ -350,8 +353,14 @@ struct GPU::Impl {
         return out;
     }
 
-    GPU& gpu;
-    Host1x::Host1x& host1x;
+    void OnCacheInvalidation(uint64_t address, uint32_t size)
+    {
+        rasterizer->OnCacheInvalidation(address, size);
+    }
+
+    ISwitchSystem& m_system;
+    GPU & gpu;
+    Host1x::Host1x & host1x;
 
     std::map<u32, std::unique_ptr<Tegra::CDmaPusher>> cdma_pushers;
     std::unique_ptr<VideoCore::RendererBase> renderer;
@@ -394,8 +403,8 @@ struct GPU::Impl {
     std::mutex request_swap_mutex;
 };
 
-GPU::GPU(Tegra::Host1x::Host1x & host1x, bool is_async, bool use_nvdec)
-    : impl{std::make_unique<Impl>(*this, host1x, is_async, use_nvdec)} {}
+GPU::GPU(ISwitchSystem & system, Tegra::Host1x::Host1x & host1x, bool is_async, bool use_nvdec)
+    : impl{std::make_unique<Impl>(system, *this, host1x, is_async, use_nvdec)} {}
 
 GPU::~GPU() = default;
 

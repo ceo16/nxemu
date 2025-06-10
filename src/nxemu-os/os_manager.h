@@ -19,6 +19,7 @@ public:
     IDeviceMemory & DeviceMemory(void) override;
     void KeyboardKeyPress(int modifier, int keyIndex, int keyCode) override;
     void KeyboardKeyRelease(int modifier, int keyIndex, int keyCode) override;
+    void GatherGPUDirtyMemory(ICacheInvalidator * invalidator) override;
 
 private:
     OSManager() = delete;

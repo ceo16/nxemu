@@ -65,6 +65,8 @@
     <ClInclude Include="hex_util.h" />
     <ClInclude Include="host_memory.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="interface_pointer.h" />
+    <ClInclude Include="interface_pointer_def.h" />
     <ClInclude Include="intrusive_list.h" />
     <ClInclude Include="intrusive_red_black_tree.h" />
     <ClInclude Include="literals.h" />

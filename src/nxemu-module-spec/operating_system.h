@@ -63,6 +63,11 @@ __interface IDeviceMemory
     const uint8_t * BackingBasePointer() const = 0;
 };
 
+__interface ICacheInvalidator 
+{
+    virtual void OnCacheInvalidation(uint64_t address, uint32_t size) = 0;
+};
+
 __interface IOperatingSystem
 {
     bool Initialize(void) = 0;
@@ -72,6 +77,7 @@ __interface IOperatingSystem
     IDeviceMemory & DeviceMemory(void) = 0;
     void KeyboardKeyPress(int modifier, int keyIndex, int keyCode) = 0;
     void KeyboardKeyRelease(int modifier, int keyIndex, int keyCode) = 0;
+    void GatherGPUDirtyMemory(ICacheInvalidator * invalidator) = 0;
 };
 
 EXPORT IOperatingSystem * CALL CreateOperatingSystem(ISwitchSystem & system);
