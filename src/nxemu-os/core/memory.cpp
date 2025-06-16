@@ -23,6 +23,7 @@
 #include "core/hle/kernel/k_page_table.h"
 #include "core/hle/kernel/k_process.h"
 #include "core/memory.h"
+#include <nxemu-module-spec/video.h>
 
 namespace Core::Memory {
 
@@ -800,8 +801,51 @@ struct Memory::Impl {
         UNIMPLEMENTED();
     }
 
+    struct RasterizerWriteContext {
+        Impl * impl;
+        size_t core;
+        size_t size;
+    };
+
+    static void HandleRasterizerWriteCallback(uint64_t address, void * user_data)
+    {
+        RasterizerWriteContext & context = *((RasterizerWriteContext*)user_data);
+        auto& current_area = context.impl->rasterizer_write_areas[context.core];
+        PAddr subaddress = address >> YUZU_PAGEBITS;
+        bool do_collection = current_area.last_address == subaddress;
+        if (!do_collection) [[unlikely]] {
+            do_collection = context.impl->system.GetVideo().OnCPUWrite(address, context.size);
+            if (!do_collection) {
+                return;
+            }
+            current_area.last_address = subaddress;
+        }
+        context.impl->gpu_dirty_managers[context.core].Collect(address, context.size);
+    }
+
     void HandleRasterizerWrite(VAddr v_address, size_t size) {
-        UNIMPLEMENTED();
+        const auto* p = GetPointerImpl(
+            v_address, []() {}, []() {});
+        constexpr size_t sys_core = Core::Hardware::NUM_CPU_CORES - 1;
+        const size_t core = std::min(system.GetCurrentHostThreadID(),
+                                     sys_core); // any other calls threads go to syscore.
+        
+        RasterizerWriteContext context;
+        context.impl = this;
+        context.core = core;
+        context.size = size;
+             
+        // Guard on sys_core;
+        if (core == sys_core) [[unlikely]] {
+            sys_core_guard.lock();
+        }
+        SCOPE_EXIT {
+            if (core == sys_core) [[unlikely]] {
+                sys_core_guard.unlock();
+            }
+        };
+
+        system.GetVideo().ApplyOpOnDeviceMemoryPointer(p, scratch_buffers[core].data(), scratch_buffers[core].size(), HandleRasterizerWriteCallback, &context);
     }
 
     struct GPUDirtyState {
@@ -816,6 +860,7 @@ struct Memory::Impl {
     Common::PageTable* current_page_table = nullptr;
     std::array<GPUDirtyState, Core::Hardware::NUM_CPU_CORES> rasterizer_write_areas{};
     std::array<Common::ScratchBuffer<u32>, Core::Hardware::NUM_CPU_CORES> scratch_buffers{};
+    std::span<Core::GPUDirtyMemoryManager> gpu_dirty_managers;
     std::mutex sys_core_guard;
 
     std::optional<Common::HeapTracker> heap_tracker;
@@ -983,6 +1028,10 @@ bool Memory::CopyBlock(Common::ProcessAddress dest_addr, Common::ProcessAddress 
 
 bool Memory::ZeroBlock(Common::ProcessAddress dest_addr, const std::size_t size) {
     return impl->ZeroBlock(dest_addr, size);
+}
+
+void Memory::SetGPUDirtyManagers(std::span<Core::GPUDirtyMemoryManager> managers) {
+    impl->gpu_dirty_managers = managers;
 }
 
 Result Memory::InvalidateDataCache(Common::ProcessAddress dest_addr, const std::size_t size) {

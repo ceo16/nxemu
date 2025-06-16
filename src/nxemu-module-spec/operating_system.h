@@ -70,14 +70,15 @@ __interface ICacheInvalidator
 
 __interface IOperatingSystem
 {
-    bool Initialize(void) = 0;
+    bool Initialize() = 0;
     bool CreateApplicationProcess(uint64_t codeSize, const IProgramMetadata & metaData, uint64_t & baseAddress, uint64_t & processID, bool is_hbl) = 0;
     void StartApplicationProcess(int32_t priority, int64_t stackSize, uint32_t version, StorageId baseGameStorageId, StorageId updateStorageId, uint8_t * nacpData, uint32_t nacpDataLen) = 0;
     bool LoadModule(const IModuleInfo & module, uint64_t baseAddress) = 0;
-    IDeviceMemory & DeviceMemory(void) = 0;
+    IDeviceMemory & DeviceMemory() = 0;
     void KeyboardKeyPress(int modifier, int keyIndex, int keyCode) = 0;
     void KeyboardKeyRelease(int modifier, int keyIndex, int keyCode) = 0;
     void GatherGPUDirtyMemory(ICacheInvalidator * invalidator) = 0;
+    void GameFrameEnd() = 0;
 };
 
 EXPORT IOperatingSystem * CALL CreateOperatingSystem(ISwitchSystem & system);

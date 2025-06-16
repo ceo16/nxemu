@@ -35,6 +35,8 @@ __interface IChannelState
     void Release() = 0;
 };
 
+typedef void (*DeviceMemoryOperation)(uint64_t device_address, void* user_data);
+
 __interface IVideo
 {
     bool Initialize(void) = 0;
@@ -48,6 +50,8 @@ __interface IVideo
     void UpdateFramebufferLayout(uint32_t width, uint32_t height) = 0;
     IChannelState * AllocateChannel() = 0;
     void PushGPUEntries(int32_t bindId, const uint64_t * commandList, uint32_t commandListSize, const uint32_t * prefetchCommandlist, uint32_t prefetchCommandlistSize) = 0;
+    void ApplyOpOnDeviceMemoryPointer(const uint8_t * pointer, uint32_t * scratchBuffer, size_t scratchBufferSize, DeviceMemoryOperation operation, void * userData) = 0;
+    bool OnCPUWrite(uint64_t addr, uint64_t size) = 0;
 };
 
 EXPORT IVideo * CALL CreateVideo(IRenderWindow & RenderWindow, ISwitchSystem & System);

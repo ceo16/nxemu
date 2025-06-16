@@ -322,6 +322,7 @@ Result KProcess::Initialize(const Svc::CreateProcessParameter& params, const KPa
 
     // Ensure our memory is initialized.
     m_memory.SetCurrentPageTable(*this);
+    m_memory.SetGPUDirtyManagers(m_kernel.System().GetGPUDirtyMemoryManager());
 
     // Ensure we can insert the code region.
     R_UNLESS(m_page_table.CanContain(params.code_address, params.code_num_pages * PageSize,
@@ -418,6 +419,7 @@ Result KProcess::Initialize(const Svc::CreateProcessParameter& params,
 
     // Ensure our memory is initialized.
     m_memory.SetCurrentPageTable(*this);
+    m_memory.SetGPUDirtyManagers(m_kernel.System().GetGPUDirtyMemoryManager());
 
     // Ensure we can insert the code region.
     R_UNLESS(m_page_table.CanContain(params.code_address, code_size, KMemoryState::Code),

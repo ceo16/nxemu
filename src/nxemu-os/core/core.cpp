@@ -274,6 +274,10 @@ bool System::IsPoweredOn() const {
     return impl->is_powered_on.load(std::memory_order::relaxed);
 }
 
+size_t System::GetCurrentHostThreadID() const {
+    return impl->kernel.GetCurrentHostThreadID();
+}
+
 std::span<GPUDirtyMemoryManager> System::GetGPUDirtyMemoryManager() {
     return impl->gpu_dirty_memory_managers;
 }

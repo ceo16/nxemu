@@ -210,7 +210,7 @@ struct GPU::Impl :
     }
 
     void RendererFrameEndNotify() {
-        UNIMPLEMENTED();
+        m_system.OperatingSystem().GameFrameEnd();
     }
 
     /// Performs any additional setup necessary in order to begin GPU emulation.

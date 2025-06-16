@@ -136,3 +136,20 @@ void VideoManager::MemoryMap(uint64_t address, uint64_t virtualAddress, uint64_t
 {
     impl->m_host1x->MemoryManager().Map(address, virtualAddress, size, Core::Asid{asid}, track);
 }
+
+void VideoManager::ApplyOpOnDeviceMemoryPointer(const uint8_t* pointer, uint32_t * scratchBuffer, size_t scratchBufferSize, DeviceMemoryOperation operation, void* userData)
+{
+    Common::ScratchBuffer<u32> tempBuffer;
+    tempBuffer.resize(scratchBufferSize);
+    std::memcpy(tempBuffer.data(), scratchBuffer, scratchBufferSize * sizeof(uint32_t));
+
+    impl->m_host1x->MemoryManager().ApplyOpOnPointer(pointer, tempBuffer, [operation, userData](DAddr address) {
+        operation(address, userData);
+    });
+    std::memcpy(scratchBuffer, tempBuffer.data(), tempBuffer.size() * sizeof(uint32_t));
+}
+
+bool VideoManager::OnCPUWrite(uint64_t addr, uint64_t size)
+{
+    return impl->m_gpuCore->OnCPUWrite(addr, size);
+}
