@@ -7,6 +7,7 @@
 #include "core/hle/service/am/am.h"
 #include "core/hle/service/aoc/addon_content_manager.h"
 #include "core/hle/service/apm/apm.h"
+#include "core/hle/service/audio/audio.h"
 #include "core/hle/service/bpc/bpc.h"
 #include "core/hle/service/btdrv/btdrv.h"
 #include "core/hle/service/btm/btm.h"
@@ -63,6 +64,7 @@ Services::Services(std::shared_ptr<SM::ServiceManager>& sm, Core::System& system
     auto& kernel = system.Kernel();
 
     // clang-format off
+    kernel.RunOnHostCoreProcess("audio",      [&] { Audio::LoopProcess(system); }).detach();
     kernel.RunOnHostCoreProcess("FS",         [&] { FileSystem::LoopProcess(system); }).detach();
     kernel.RunOnHostCoreProcess("Loader",     [&] { LDR::LoopProcess(system); }).detach();
     kernel.RunOnHostCoreProcess("nvservices", [&] { Nvidia::LoopProcess(system); }).detach();

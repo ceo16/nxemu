@@ -366,7 +366,7 @@ void SciterMainWindow::OnInputConfig(void)
 {
     InputConfig(m_sciterUI).Display((void *)m_window->GetHandle());
 }
-
+        
 void SciterMainWindow::OnRecetGame(uint32_t fileIndex)
 {
     Stringlist & recentFiles = uiSettings.recentFiles;

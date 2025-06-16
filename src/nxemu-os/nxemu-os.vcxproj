@@ -29,7 +29,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\3rd_party\microprofile;$(SolutionDir)src\3rd_party\nx_tzdb\include;$(SolutionDir)src\3rd_party\stb;$(SolutionDir)external\boost;$(SolutionDir)external\fmt\include;$(SolutionDir)external\sdl\include;$(SolutionDir)external\libusb\libusb;$(SolutionDir)external;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\3rd_party\microprofile;$(SolutionDir)src\3rd_party\nx_tzdb\include;$(SolutionDir)src\3rd_party\stb;$(SolutionDir)external\boost;$(SolutionDir)external\fmt\include;$(SolutionDir)external\libusb\libusb;$(SolutionDir)external\opus\include;$(SolutionDir)external\sdl\include;$(SolutionDir)external;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <WarningLevel>Level3</WarningLevel>
       <UseStandardPreprocessor>true</UseStandardPreprocessor>
       <PreprocessorDefinitions>NOMINMAX;BOOST_CONTEXT_STATIC_LINK;BOOST_ALL_NO_LIB;HAVE_SDL2;HAVE_LIBUSB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -91,6 +91,19 @@
     <ClCompile Include="core\hle\kernel\svc\svc_tick.cpp" />
     <ClCompile Include="core\hle\kernel\svc\svc_transfer_memory.cpp" />
     <ClCompile Include="core\hle\service\am\hid_registration.cpp" />
+    <ClCompile Include="core\hle\service\audio\audio.cpp" />
+    <ClCompile Include="core\hle\service\audio\audio_controller.cpp" />
+    <ClCompile Include="core\hle\service\audio\audio_device.cpp" />
+    <ClCompile Include="core\hle\service\audio\audio_in.cpp" />
+    <ClCompile Include="core\hle\service\audio\audio_in_manager.cpp" />
+    <ClCompile Include="core\hle\service\audio\audio_out.cpp" />
+    <ClCompile Include="core\hle\service\audio\audio_out_manager.cpp" />
+    <ClCompile Include="core\hle\service\audio\audio_renderer.cpp" />
+    <ClCompile Include="core\hle\service\audio\audio_renderer_manager.cpp" />
+    <ClCompile Include="core\hle\service\audio\final_output_recorder_manager.cpp" />
+    <ClCompile Include="core\hle\service\audio\final_output_recorder_manager_for_applet.cpp" />
+    <ClCompile Include="core\hle\service\audio\hardware_opus_decoder.cpp" />
+    <ClCompile Include="core\hle\service\audio\hardware_opus_decoder_manager.cpp" />
     <ClCompile Include="core\hle\service\filesystem\filesystem.cpp" />
     <ClCompile Include="core\hle\service\filesystem\fsp\fsp_ldr.cpp" />
     <ClCompile Include="core\hle\service\filesystem\fsp\fsp_pr.cpp" />
@@ -570,6 +583,20 @@
     <ClInclude Include="core\hle\kernel\k_shared_memory_info.h" />
     <ClInclude Include="core\hle\kernel\board\nintendo\nx\k_memory_layout.h" />
     <ClInclude Include="core\hle\kernel\board\nintendo\nx\k_system_control.h" />
+    <ClInclude Include="core\hle\service\audio\audio.h" />
+    <ClInclude Include="core\hle\service\audio\audio_controller.h" />
+    <ClInclude Include="core\hle\service\audio\audio_device.h" />
+    <ClInclude Include="core\hle\service\audio\audio_in.h" />
+    <ClInclude Include="core\hle\service\audio\audio_in_manager.h" />
+    <ClInclude Include="core\hle\service\audio\audio_out.h" />
+    <ClInclude Include="core\hle\service\audio\audio_out_manager.h" />
+    <ClInclude Include="core\hle\service\audio\audio_renderer.h" />
+    <ClInclude Include="core\hle\service\audio\audio_renderer_manager.h" />
+    <ClInclude Include="core\hle\service\audio\errors.h" />
+    <ClInclude Include="core\hle\service\audio\final_output_recorder_manager.h" />
+    <ClInclude Include="core\hle\service\audio\final_output_recorder_manager_for_applet.h" />
+    <ClInclude Include="core\hle\service\audio\hardware_opus_decoder.h" />
+    <ClInclude Include="core\hle\service\audio\hardware_opus_decoder_manager.h" />
     <ClInclude Include="core\hle\service\filesystem\filesystem.h" />
     <ClInclude Include="core\hle\service\filesystem\fsp\fsp_ldr.h" />
     <ClInclude Include="core\hle\service\filesystem\fsp\fsp_pr.h" />
@@ -900,11 +927,20 @@
     <ClInclude Include="os_manager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\external\cubeb.vcxproj">
+      <Project>{8d9ea734-c041-463b-9abb-2edc6f1cd04f}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\external\enet.vcxproj">
       <Project>{acee0671-79f0-43da-ab02-d3d0a52cc22a}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\external\fmt.vcxproj">
       <Project>{d58bdfc6-1f1e-4c55-9296-1c2411b0fda7}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\external\opus.vcxproj">
+      <Project>{b278162f-3ee6-4bcc-af23-8e04a164a4e6}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\external\speex.vcxproj">
+      <Project>{2b13a785-82ec-4c96-ae28-9bb738182cf5}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\external\zstd.vcxproj">
       <Project>{808d773c-086c-4e17-a195-b4af30eee86e}</Project>
@@ -914,6 +950,9 @@
     </ProjectReference>
     <ProjectReference Include="..\network\network.vcxproj">
       <Project>{286ff3b0-952d-4193-94ab-c8c300bc85f0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\yuzu_audio_core\yuzu_audio_core.vcxproj">
+      <Project>{8aeac824-7ff6-3dce-bd4f-2d1e1bbcfd0e}</Project>
     </ProjectReference>
     <ProjectReference Include="..\yuzu_common\yuzu_common.vcxproj">
       <Project>{250224f2-2e89-410e-8bdb-875959daba2c}</Project>

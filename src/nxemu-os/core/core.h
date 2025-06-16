@@ -254,6 +254,12 @@ public:
     /// Gets a constant reference to the system memory instance.
     [[nodiscard]] const Core::Memory::Memory& ApplicationMemory() const;
 
+    /// Gets a mutable reference to the audio interface
+    [[nodiscard]] AudioCore::AudioCore& AudioCore();
+
+    /// Gets an immutable reference to the audio interface.
+    [[nodiscard]] const AudioCore::AudioCore& AudioCore() const;
+
     /// Gets the global scheduler
     [[nodiscard]] Kernel::GlobalSchedulerContext& GlobalSchedulerContext();
 

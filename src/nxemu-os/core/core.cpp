@@ -4,6 +4,7 @@
 #include <array>
 #include <atomic>
 
+#include "yuzu_audio_core/audio_core.h"
 #include "yuzu_common/microprofile.h"
 #include "core/core.h"
 #include "core/core_timing.h"
@@ -90,6 +91,14 @@ struct System::Impl {
         is_paused.store(false, std::memory_order_relaxed);
     }
 
+    void Pause() {
+        std::unique_lock<std::mutex> lk(suspend_guard);
+
+        core_timing.SyncPause(true);
+        kernel.SuspendEmulation(true);
+        is_paused.store(true, std::memory_order_relaxed);
+    }
+
     bool IsPaused() const {
         return is_paused.load(std::memory_order_relaxed);
     }
@@ -125,6 +134,7 @@ struct System::Impl {
         kernel.Initialize();
         cpu_manager.Initialize();
         arp_manager.ResetAll();
+        audio_core = std::make_unique<AudioCore::AudioCore>(system);
 
         service_manager = std::make_shared<Service::SM::ServiceManager>(kernel);
         services =
@@ -169,6 +179,7 @@ struct System::Impl {
     Kernel::KernelCore kernel;
     IFileSystemController & fs_controller;
     std::unique_ptr<Core::DeviceMemory> device_memory;
+    std::unique_ptr<AudioCore::AudioCore> audio_core;
     Core::HID::HIDCore hid_core;
     Network::RoomNetwork room_network;
     std::shared_ptr<InputCommon::InputSubsystem> input_subsystem;
@@ -241,6 +252,14 @@ void System::Initialize() {
 
 void System::Run() {
     impl->Run();
+}
+
+void System::Pause() {
+    impl->Pause();
+}
+
+bool System::IsPaused() const {
+    return impl->IsPaused();
 }
 
 bool System::IsShuttingDown() const {
@@ -332,6 +351,14 @@ HID::HIDCore& System::HIDCore() {
 
 const HID::HIDCore& System::HIDCore() const {
     return impl->hid_core;
+}
+
+AudioCore::AudioCore& System::AudioCore() {
+    return *impl->audio_core;
+}
+
+const AudioCore::AudioCore& System::AudioCore() const {
+    return *impl->audio_core;
 }
 
 Timing::CoreTiming& System::CoreTiming() {

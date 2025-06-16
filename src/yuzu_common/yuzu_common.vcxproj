@@ -36,6 +36,7 @@
     <ClInclude Include="algorithm.h" />
     <ClInclude Include="alignment.h" />
     <ClInclude Include="announce_multiplayer_room.h" />
+    <ClInclude Include="atomic_helpers.h" />
     <ClInclude Include="atomic_ops.h" />
     <ClInclude Include="bit_cast.h" />
     <ClInclude Include="bit_field.h" />
@@ -53,6 +54,7 @@
     <ClInclude Include="expected.h" />
     <ClInclude Include="fence.h" />
     <ClInclude Include="fiber.h" />
+    <ClInclude Include="fixed_point.h" />
     <ClInclude Include="free_region_manager.h" />
     <ClInclude Include="fs\file.h" />
     <ClInclude Include="fs\fs.h" />
@@ -95,6 +97,8 @@
     <ClInclude Include="range_map.h" />
     <ClInclude Include="range_mutex.h" />
     <ClInclude Include="range_sets.h" />
+    <ClInclude Include="reader_writer_queue.h" />
+    <ClInclude Include="ring_buffer.h" />
     <ClInclude Include="scope_exit.h" />
     <ClInclude Include="scratch_buffer.h" />
     <ClInclude Include="settings.h" />

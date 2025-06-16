@@ -321,6 +321,18 @@
     <ClInclude Include="interface_pointer_def.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="reader_writer_queue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="atomic_helpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ring_buffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fixed_point.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="logging\backend.cpp">

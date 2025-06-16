@@ -493,6 +493,12 @@
     <Filter Include="Source Files\core\hle\service\ssl">
       <UniqueIdentifier>{52b46367-91aa-46a5-9f71-d31127ec3761}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\core\hle\service\audio">
+      <UniqueIdentifier>{e14ff71f-1537-4602-8dca-f0b82908d809}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\audio">
+      <UniqueIdentifier>{3f724b72-f963-4486-84b3-6e70f9fd5dd6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="nxemu-os.h">
@@ -1845,6 +1851,48 @@
     <ClInclude Include="core\hle\service\ssl\ssl_types.h">
       <Filter>Header Files\core\hle\service\ssl</Filter>
     </ClInclude>
+    <ClInclude Include="core\hle\service\audio\audio.h">
+      <Filter>Header Files\core\hle\service\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\audio\audio_renderer.h">
+      <Filter>Header Files\core\hle\service\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\audio\audio_controller.h">
+      <Filter>Header Files\core\hle\service\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\audio\audio_in_manager.h">
+      <Filter>Header Files\core\hle\service\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\audio\audio_out_manager.h">
+      <Filter>Header Files\core\hle\service\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\audio\audio_renderer_manager.h">
+      <Filter>Header Files\core\hle\service\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\audio\final_output_recorder_manager.h">
+      <Filter>Header Files\core\hle\service\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\audio\final_output_recorder_manager_for_applet.h">
+      <Filter>Header Files\core\hle\service\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\audio\hardware_opus_decoder_manager.h">
+      <Filter>Header Files\core\hle\service\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\audio\errors.h">
+      <Filter>Header Files\core\hle\service\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\audio\audio_device.h">
+      <Filter>Header Files\core\hle\service\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\audio\audio_in.h">
+      <Filter>Header Files\core\hle\service\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\audio\audio_out.h">
+      <Filter>Header Files\core\hle\service\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\audio\hardware_opus_decoder.h">
+      <Filter>Header Files\core\hle\service\audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="version.h.in">
@@ -3093,6 +3141,45 @@
     </ClCompile>
     <ClCompile Include="core\hle\service\ssl\ssl_backend_schannel.cpp">
       <Filter>Source Files\core\hle\service\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\audio\audio.cpp">
+      <Filter>Source Files\core\hle\service\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\audio\audio_renderer.cpp">
+      <Filter>Source Files\core\hle\service\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\audio\audio_controller.cpp">
+      <Filter>Source Files\core\hle\service\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\audio\audio_in_manager.cpp">
+      <Filter>Source Files\core\hle\service\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\audio\audio_out_manager.cpp">
+      <Filter>Source Files\core\hle\service\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\audio\audio_renderer_manager.cpp">
+      <Filter>Source Files\core\hle\service\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\audio\final_output_recorder_manager.cpp">
+      <Filter>Source Files\core\hle\service\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\audio\final_output_recorder_manager_for_applet.cpp">
+      <Filter>Source Files\core\hle\service\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\audio\hardware_opus_decoder_manager.cpp">
+      <Filter>Source Files\core\hle\service\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\audio\audio_device.cpp">
+      <Filter>Source Files\core\hle\service\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\audio\audio_in.cpp">
+      <Filter>Source Files\core\hle\service\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\audio\audio_out.cpp">
+      <Filter>Source Files\core\hle\service\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\audio\hardware_opus_decoder.cpp">
+      <Filter>Source Files\core\hle\service\audio</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
