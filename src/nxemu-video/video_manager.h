@@ -30,6 +30,7 @@ public:
     void PushGPUEntries(int32_t bindId, const uint64_t * commandList, uint32_t commandListSize, const uint32_t * prefetchCommandlist, uint32_t prefetchCommandlistSize);
     void ApplyOpOnDeviceMemoryPointer(const uint8_t* pointer, uint32_t* scratchBuffer, size_t scratchBufferSize, DeviceMemoryOperation operation, void* userData) override;
     bool OnCPUWrite(uint64_t addr, uint64_t size) override;
+    uint32_t HostSyncpointValue(uint32_t id) override;
 
 private:
     VideoManager() = delete;

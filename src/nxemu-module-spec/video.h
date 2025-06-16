@@ -52,6 +52,7 @@ __interface IVideo
     void PushGPUEntries(int32_t bindId, const uint64_t * commandList, uint32_t commandListSize, const uint32_t * prefetchCommandlist, uint32_t prefetchCommandlistSize) = 0;
     void ApplyOpOnDeviceMemoryPointer(const uint8_t * pointer, uint32_t * scratchBuffer, size_t scratchBufferSize, DeviceMemoryOperation operation, void * userData) = 0;
     bool OnCPUWrite(uint64_t addr, uint64_t size) = 0;
+    uint32_t HostSyncpointValue(uint32_t id) = 0;
 };
 
 EXPORT IVideo * CALL CreateVideo(IRenderWindow & RenderWindow, ISwitchSystem & System);

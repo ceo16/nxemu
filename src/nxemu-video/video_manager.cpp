@@ -153,3 +153,8 @@ bool VideoManager::OnCPUWrite(uint64_t addr, uint64_t size)
 {
     return impl->m_gpuCore->OnCPUWrite(addr, size);
 }
+
+uint32_t VideoManager::HostSyncpointValue(uint32_t id)
+{
+    return impl->m_host1x->GetSyncpointManager().GetHostSyncpointValue(id);
+}

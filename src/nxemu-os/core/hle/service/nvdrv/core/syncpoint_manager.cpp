@@ -4,6 +4,7 @@
 
 #include "yuzu_common/yuzu_assert.h"
 #include "core/hle/service/nvdrv/core/syncpoint_manager.h"
+#include <nxemu-module-spec/video.h>
 
 namespace Service::Nvidia::NvCore {
 
@@ -106,8 +107,15 @@ u32 SyncpointManager::ReadSyncpointMinValue(u32 id) {
 }
 
 u32 SyncpointManager::UpdateMin(u32 id) {
-    UNIMPLEMENTED();
-    return 0;
+    auto& syncpoint = syncpoints.at(id);
+
+    if (!syncpoint.reserved) {
+        ASSERT(false);
+        return 0;
+    }
+
+    syncpoint.counter_min = video.HostSyncpointValue(id);
+    return syncpoint.counter_min;
 }
 
 NvFence SyncpointManager::GetSyncpointFence(u32 id) {
