@@ -27,28 +27,28 @@ public:
     }
 
     struct RegisteredAction {
-        explicit RegisteredAction(u32 expected_value_, std::function<void()>&& action_)
-            : expected_value{expected_value_}, action{std::move(action_)} {}
+        explicit RegisteredAction(u32 expected_value_, u32 action_id_, std::function<void()>&& action_)
+            : expected_value{expected_value_}, action_id{ action_id_}, action{std::move(action_)} {}
+        u32 action_id;
         u32 expected_value;
         std::function<void()> action;
     };
-    using ActionHandle = std::list<RegisteredAction>::iterator;
 
     template <typename Func>
-    ActionHandle RegisterGuestAction(u32 syncpoint_id, u32 expected_value, Func&& action) {
+    uint32_t RegisterGuestAction(u32 syncpoint_id, u32 expected_value, Func&& action) {
         return RegisterAction(syncpoints_guest[syncpoint_id], guest_action_storage[syncpoint_id],
                               expected_value, std::move(action));
     }
 
     template <typename Func>
-    ActionHandle RegisterHostAction(u32 syncpoint_id, u32 expected_value, Func&& action) {
+    uint32_t RegisterHostAction(u32 syncpoint_id, u32 expected_value, Func&& action) {
         return RegisterAction(syncpoints_host[syncpoint_id], host_action_storage[syncpoint_id],
                               expected_value, std::move(action));
     }
 
-    void DeregisterGuestAction(u32 syncpoint_id, const ActionHandle& handle);
+    void DeregisterGuestAction(u32 syncpoint_id, uint32_t handle);
 
-    void DeregisterHostAction(u32 syncpoint_id, const ActionHandle& handle);
+    void DeregisterHostAction(u32 syncpoint_id, uint32_t handle);
 
     void IncrementGuest(u32 syncpoint_id);
 
@@ -70,11 +70,11 @@ private:
     void Increment(std::atomic<u32>& syncpoint, std::condition_variable& wait_cv,
                    std::list<RegisteredAction>& action_storage);
 
-    ActionHandle RegisterAction(std::atomic<u32>& syncpoint,
+    uint32_t RegisterAction(std::atomic<u32>& syncpoint,
                                 std::list<RegisteredAction>& action_storage, u32 expected_value,
                                 std::function<void()>&& action);
 
-    void DeregisterAction(std::list<RegisteredAction>& action_storage, const ActionHandle& handle);
+    void DeregisterAction(std::list<RegisteredAction>& action_storage, uint32_t handle);
 
     void Wait(std::atomic<u32>& syncpoint, std::condition_variable& wait_cv, u32 expected_value);
 
@@ -83,6 +83,7 @@ private:
     std::array<std::atomic<u32>, NUM_MAX_SYNCPOINTS> syncpoints_guest{};
     std::array<std::atomic<u32>, NUM_MAX_SYNCPOINTS> syncpoints_host{};
 
+    std::atomic<uint32_t> next_action_id{ 1 };
     std::array<std::list<RegisteredAction>, NUM_MAX_SYNCPOINTS> guest_action_storage;
     std::array<std::list<RegisteredAction>, NUM_MAX_SYNCPOINTS> host_action_storage;
 

@@ -158,3 +158,10 @@ uint32_t VideoManager::HostSyncpointValue(uint32_t id)
 {
     return impl->m_host1x->GetSyncpointManager().GetHostSyncpointValue(id);
 }
+
+uint32_t VideoManager::HostSyncpointRegisterAction(uint32_t fence_id, uint32_t target_value, HostActionCallback operation, uint32_t slot, void* userData)
+{
+    return impl->m_host1x->GetSyncpointManager().RegisterHostAction(fence_id, target_value, [operation, userData, slot]() {
+        operation(slot, userData);
+    });
+}

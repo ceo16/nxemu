@@ -10,7 +10,7 @@ namespace Host1x {
 
 MICROPROFILE_DEFINE(GPU_wait, "GPU", "Wait for the GPU", MP_RGB(128, 128, 192));
 
-SyncpointManager::ActionHandle SyncpointManager::RegisterAction(
+uint32_t SyncpointManager::RegisterAction(
     std::atomic<u32>& syncpoint, std::list<RegisteredAction>& action_storage, u32 expected_value,
     std::function<void()>&& action) {
     if (syncpoint.load(std::memory_order_acquire) >= expected_value) {
@@ -30,30 +30,27 @@ SyncpointManager::ActionHandle SyncpointManager::RegisterAction(
         }
         ++it;
     }
-    return action_storage.emplace(it, expected_value, std::move(action));
+    u32 action_id = next_action_id.fetch_add(1);
+    action_storage.emplace(it, expected_value, action_id, std::move(action));
+    return action_id;
 }
 
 void SyncpointManager::DeregisterAction(std::list<RegisteredAction>& action_storage,
-                                        const ActionHandle& handle) {
+                                        uint32_t handle) {
     std::unique_lock lk(guard);
-
-    // We want to ensure the iterator still exists prior to erasing it
-    // Otherwise, if an invalid iterator was passed in then it could lead to UB
-    // It is important to avoid UB in that case since the deregister isn't called from a locked
-    // context
     for (auto it = action_storage.begin(); it != action_storage.end(); it++) {
-        if (it == handle) {
+        if (it->action_id == handle) {
             action_storage.erase(it);
             return;
         }
     }
 }
 
-void SyncpointManager::DeregisterGuestAction(u32 syncpoint_id, const ActionHandle& handle) {
+void SyncpointManager::DeregisterGuestAction(u32 syncpoint_id, uint32_t handle) {
     DeregisterAction(guest_action_storage[syncpoint_id], handle);
 }
 
-void SyncpointManager::DeregisterHostAction(u32 syncpoint_id, const ActionHandle& handle) {
+void SyncpointManager::DeregisterHostAction(u32 syncpoint_id, uint32_t handle) {
     DeregisterAction(host_action_storage[syncpoint_id], handle);
 }
 

@@ -124,7 +124,76 @@ NvResult nvhost_ctrl::IocCtrlEventWait(IocCtrlEventWaitParams& params, bool is_a
         return NvResult::Success;
     }
 
-    UNIMPLEMENTED();
+    //auto& host1x_syncpoint_manager = system.Host1x().GetSyncpointManager();
+    const u32 target_value = params.fence.value;
+
+    auto lock = NvEventsLock();
+
+    u32 slot = [&]() {
+        if (is_allocation) {
+            params.value.raw = 0;
+            return FindFreeNvEvent(fence_id);
+        } else {
+            return params.value.raw;
+        }
+    }();
+
+    must_unmark_fail = false;
+
+    const auto check_failing = [&]() {
+        if (events[slot].fails > 2) {
+            {
+                auto lk = system.StallApplication();
+                __debugbreak();
+                //host1x_syncpoint_manager.WaitHost(fence_id, target_value);
+                system.UnstallApplication();
+            }
+            params.value.raw = target_value;
+            return true;
+        }
+        return false;
+    };
+
+    if (slot >= MaxNvEvents) {
+        return NvResult::BadParameter;
+    }
+
+    if (params.timeout == 0) {
+        if (check_failing()) {
+            events[slot].fails = 0;
+            return NvResult::Success;
+        }
+        return NvResult::Timeout;
+    }
+
+    auto& event = events[slot];
+
+    if (!event.registered) {
+        return NvResult::BadParameter;
+    }
+
+    if (event.IsBeingUsed()) {
+        return NvResult::BadParameter;
+    }
+
+    if (check_failing()) {
+        event.fails = 0;
+        return NvResult::Success;
+    }
+
+    params.value.raw = 0;
+
+    event.status.store(EventState::Waiting, std::memory_order_release);
+    event.assigned_syncpt = fence_id;
+    event.assigned_value = target_value;
+    if (is_allocation) {
+        params.value.syncpoint_id_for_allocation.Assign(static_cast<u16>(fence_id));
+        params.value.event_allocated.Assign(1);
+    } else {
+        params.value.syncpoint_id.Assign(fence_id);
+    }
+    params.value.raw |= slot;
+    event.wait_handle = system.GetVideo().HostSyncpointRegisterAction(fence_id, target_value, HostActionCallback, slot, this);
     return NvResult::Timeout;
 }
 
@@ -279,6 +348,17 @@ u32 nvhost_ctrl::FindFreeNvEvent(u32 syncpoint_id) {
 
     LOG_CRITICAL(Service_NVDRV, "Failed to allocate an event");
     return 0;
+}
+
+void nvhost_ctrl::HostActionCallback(uint32_t slot, void * userData)
+{
+    nvhost_ctrl & impl = *((nvhost_ctrl*)userData);
+    auto& event_ = impl.events[slot];
+    if (event_.status.exchange(EventState::Signalling, std::memory_order_acq_rel) ==
+        EventState::Waiting) {
+        event_.kevent->Signal();
+    }
+    event_.status.store(EventState::Signalled, std::memory_order_release);
 }
 
 } // namespace Service::Nvidia::Devices

@@ -270,6 +270,14 @@ void System::SetShuttingDown(bool shutting_down) {
     impl->SetShuttingDown(shutting_down);
 }
 
+std::unique_lock<std::mutex> System::StallApplication() {
+    return impl->StallApplication();
+}
+
+void System::UnstallApplication() {
+    impl->UnstallApplication();
+}
+
 bool System::IsPoweredOn() const {
     return impl->is_powered_on.load(std::memory_order::relaxed);
 }

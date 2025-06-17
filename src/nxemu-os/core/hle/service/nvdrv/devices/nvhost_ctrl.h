@@ -75,6 +75,9 @@ private:
         // Tells if an NVEvent is registered or not
         bool registered{};
 
+        // Used for waiting on a syncpoint & canceling it.
+        uint32_t wait_handle{};
+
         bool IsBeingUsed() const {
             const auto current_status = status.load(std::memory_order_acquire);
             return current_status == EventState::Waiting ||
@@ -190,6 +193,8 @@ private:
     NvResult IocCtrlClearEventWait(IocCtrlEventClearParams& params);
 
     NvResult FreeEvent(u32 slot);
+
+    static void HostActionCallback(uint32_t slot, void * userData);
 
     EventInterface& events_interface;
     NvCore::Container& core;
