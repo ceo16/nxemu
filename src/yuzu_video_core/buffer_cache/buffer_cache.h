@@ -148,14 +148,14 @@ bool BufferCache<P>::OnCPUWrite(DAddr device_addr, u64 size) {
 }
 
 template <class P>
-std::optional<VideoCore::RasterizerDownloadArea> BufferCache<P>::GetFlushArea(DAddr device_addr,
+std::optional<RasterizerDownloadArea> BufferCache<P>::GetFlushArea(DAddr device_addr,
                                                                               u64 size) {
-    std::optional<VideoCore::RasterizerDownloadArea> area{};
+    std::optional<RasterizerDownloadArea> area{};
     area.emplace();
     DAddr device_addr_start_aligned = Common::AlignDown(device_addr, Core::DEVICE_PAGESIZE);
     DAddr device_addr_end_aligned = Common::AlignUp(device_addr + size, Core::DEVICE_PAGESIZE);
-    area->start_address = device_addr_start_aligned;
-    area->end_address = device_addr_end_aligned;
+    area->startAddress = device_addr_start_aligned;
+    area->endAddress = device_addr_end_aligned;
     if (memory_tracker.IsRegionPreflushable(device_addr, size)) {
         area->preemtive = true;
         return area;

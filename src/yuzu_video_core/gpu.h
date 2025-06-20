@@ -10,8 +10,8 @@
 #include "yuzu_common/nvdata.h"
 #include "yuzu_video_core/cdma_pusher.h"
 #include "yuzu_video_core/framebuffer_config.h"
-#include "yuzu_video_core/rasterizer_download_area.h"
 #include <nxemu-module-spec/operating_system.h>
+#include <nxemu-module-spec/video.h>
 
 namespace Core {
 class System;
@@ -245,7 +245,7 @@ public:
     void SwapBuffers(const Tegra::FramebufferConfig* framebuffer);
 
     /// Notify rasterizer that any caches of the specified region should be flushed to Switch memory
-    [[nodiscard]] VideoCore::RasterizerDownloadArea OnCPURead(DAddr addr, u64 size);
+    [[nodiscard]] RasterizerDownloadArea OnCPURead(DAddr addr, u64 size);
 
     /// Notify rasterizer that any caches of the specified region should be flushed to Switch memory
     void FlushRegion(DAddr addr, u64 size);

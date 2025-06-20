@@ -52,10 +52,10 @@ bool RasterizerNull::OnCPUWrite(PAddr addr, u64 size) {
     return false;
 }
 void RasterizerNull::OnCacheInvalidation(PAddr addr, u64 size) {}
-VideoCore::RasterizerDownloadArea RasterizerNull::GetFlushArea(PAddr addr, u64 size) {
-    VideoCore::RasterizerDownloadArea new_area{
-        .start_address = Common::AlignDown(addr, Core::DEVICE_PAGESIZE),
-        .end_address = Common::AlignUp(addr + size, Core::DEVICE_PAGESIZE),
+RasterizerDownloadArea RasterizerNull::GetFlushArea(PAddr addr, u64 size) {
+    RasterizerDownloadArea new_area{
+        .startAddress = Common::AlignDown(addr, Core::DEVICE_PAGESIZE),
+        .endAddress = Common::AlignUp(addr + size, Core::DEVICE_PAGESIZE),
         .preemtive = true,
     };
     return new_area;

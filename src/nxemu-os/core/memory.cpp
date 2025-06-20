@@ -797,8 +797,33 @@ struct Memory::Impl {
         return true;
     }
 
+    struct RasterizerDownloadContext {
+        Impl * impl;
+        RasterizerDownloadArea * current_area;
+        size_t core;
+        size_t size;
+    };
+
+    static void HandleRasterizerDownloadCallback(uint64_t address, void * user_data)
+    {
+        RasterizerDownloadContext & context = *((RasterizerDownloadContext *)user_data);
+        const DAddr end_address = address + context.size;
+        if (context.current_area->startAddress <= address && end_address <= context.current_area->endAddress)
+            [[likely]] {
+            return;
+        }
+        *(context.current_area) = context.impl->system.GetVideo().OnCPURead(address, context.size);
+    }
+    
     void HandleRasterizerDownload(VAddr v_address, size_t size) {
-        UNIMPLEMENTED();
+        const auto* p = GetPointerImpl(
+            v_address, []() {}, []() {});
+        RasterizerDownloadContext context;
+        context.impl = this;
+        context.core = system.GetCurrentHostThreadID();
+        context.current_area = &rasterizer_read_areas[context.core];
+        context.size = size;
+        system.GetVideo().ApplyOpOnDeviceMemoryPointer(p, scratch_buffers[context.core].data(), scratch_buffers[context.core].size(), HandleRasterizerDownloadCallback, &context);
     }
 
     struct RasterizerWriteContext {
@@ -858,6 +883,7 @@ struct Memory::Impl {
 
     Core::System& system;
     Common::PageTable* current_page_table = nullptr;
+    std::array<RasterizerDownloadArea, Core::Hardware::NUM_CPU_CORES> rasterizer_read_areas{};
     std::array<GPUDirtyState, Core::Hardware::NUM_CPU_CORES> rasterizer_write_areas{};
     std::array<Common::ScratchBuffer<u32>, Core::Hardware::NUM_CPU_CORES> scratch_buffers{};
     std::span<Core::GPUDirtyMemoryManager> gpu_dirty_managers;

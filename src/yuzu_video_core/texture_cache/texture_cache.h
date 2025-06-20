@@ -570,21 +570,21 @@ void TextureCache<P>::DownloadMemory(DAddr cpu_addr, size_t size) {
 }
 
 template <class P>
-std::optional<VideoCore::RasterizerDownloadArea> TextureCache<P>::GetFlushArea(DAddr cpu_addr,
+std::optional<RasterizerDownloadArea> TextureCache<P>::GetFlushArea(DAddr cpu_addr,
                                                                                u64 size) {
-    std::optional<VideoCore::RasterizerDownloadArea> area{};
+    std::optional<RasterizerDownloadArea> area{};
     ForEachImageInRegion(cpu_addr, size, [&](ImageId, ImageBase& image) {
         if (False(image.flags & ImageFlagBits::GpuModified)) {
             return;
         }
         if (!area) {
             area.emplace();
-            area->start_address = cpu_addr;
-            area->end_address = cpu_addr + size;
+            area->startAddress = cpu_addr;
+            area->endAddress = cpu_addr + size;
             area->preemtive = true;
         }
-        area->start_address = std::min(area->start_address, image.cpu_addr);
-        area->end_address = std::max(area->end_address, image.cpu_addr_end);
+        area->startAddress = std::min(area->startAddress, image.cpu_addr);
+        area->endAddress = std::max(area->endAddress, image.cpu_addr_end);
         for (auto image_view_id : image.image_view_ids) {
             auto& image_view = slot_image_views[image_view_id];
             image_view.flags |= ImageViewFlagBits::PreemtiveDownload;

@@ -26,6 +26,13 @@ struct VideoNvFence
     uint32_t value;
 };
 
+struct RasterizerDownloadArea 
+{
+    uint64_t startAddress;
+    uint64_t endAddress;
+    bool preemtive;
+};
+
 __interface IChannelState
 {
     bool Initialized() const = 0;
@@ -52,6 +59,7 @@ __interface IVideo
     IChannelState * AllocateChannel() = 0;
     void PushGPUEntries(int32_t bindId, const uint64_t * commandList, uint32_t commandListSize, const uint32_t * prefetchCommandlist, uint32_t prefetchCommandlistSize) = 0;
     void ApplyOpOnDeviceMemoryPointer(const uint8_t * pointer, uint32_t * scratchBuffer, size_t scratchBufferSize, DeviceMemoryOperation operation, void * userData) = 0;
+    RasterizerDownloadArea OnCPURead(uint64_t addr, uint64_t size) = 0;
     bool OnCPUWrite(uint64_t addr, uint64_t size) = 0;
     uint32_t HostSyncpointValue(uint32_t id) = 0;
     uint32_t HostSyncpointRegisterAction(uint32_t fence_id, uint32_t target_value, HostActionCallback operation, uint32_t slot, void * userData) = 0;

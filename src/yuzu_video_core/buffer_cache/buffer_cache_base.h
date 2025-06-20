@@ -207,7 +207,7 @@ public:
 
     void DownloadMemory(DAddr device_addr, u64 size);
 
-    std::optional<VideoCore::RasterizerDownloadArea> GetFlushArea(DAddr device_addr, u64 size);
+    std::optional<RasterizerDownloadArea> GetFlushArea(DAddr device_addr, u64 size);
 
     bool InlineMemory(DAddr dest_address, size_t copy_size, std::span<const u8> inlined_buffer);
 

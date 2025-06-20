@@ -28,7 +28,8 @@ public:
     void UpdateFramebufferLayout(uint32_t width, uint32_t height) override;
     IChannelState * AllocateChannel() override;
     void PushGPUEntries(int32_t bindId, const uint64_t * commandList, uint32_t commandListSize, const uint32_t * prefetchCommandlist, uint32_t prefetchCommandlistSize);
-    void ApplyOpOnDeviceMemoryPointer(const uint8_t* pointer, uint32_t* scratchBuffer, size_t scratchBufferSize, DeviceMemoryOperation operation, void* userData) override;
+    void ApplyOpOnDeviceMemoryPointer(const uint8_t * pointer, uint32_t* scratchBuffer, size_t scratchBufferSize, DeviceMemoryOperation operation, void* userData) override;
+    RasterizerDownloadArea OnCPURead(uint64_t addr, uint64_t size) override;
     bool OnCPUWrite(uint64_t addr, uint64_t size) override;
     uint32_t HostSyncpointValue(uint32_t id) override;
     uint32_t HostSyncpointRegisterAction(uint32_t fence_id, uint32_t target_value, HostActionCallback operation, uint32_t slot, void * userData) override;

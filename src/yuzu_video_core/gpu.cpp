@@ -274,15 +274,15 @@ struct GPU::Impl :
         gpu_thread.FlushRegion(addr, size);
     }
 
-    VideoCore::RasterizerDownloadArea OnCPURead(DAddr addr, u64 size) {
+    RasterizerDownloadArea OnCPURead(DAddr addr, u64 size) {
         auto raster_area = rasterizer->GetFlushArea(addr, size);
         if (raster_area.preemtive) {
             return raster_area;
         }
         raster_area.preemtive = true;
         const u64 fence = RequestSyncOperation([this, &raster_area]() {
-            rasterizer->FlushRegion(raster_area.start_address,
-                                    raster_area.end_address - raster_area.start_address);
+            rasterizer->FlushRegion(raster_area.startAddress,
+                                    raster_area.endAddress - raster_area.startAddress);
         });
         gpu_thread.TickGPU();
         WaitForSyncOperation(fence);
@@ -564,7 +564,7 @@ void GPU::ClearCdmaInstance(u32 id) {
     impl->ClearCdmaInstance(id);
 }
 
-VideoCore::RasterizerDownloadArea GPU::OnCPURead(PAddr addr, u64 size) {
+RasterizerDownloadArea GPU::OnCPURead(PAddr addr, u64 size) {
     return impl->OnCPURead(addr, size);
 }
 

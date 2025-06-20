@@ -198,7 +198,7 @@ public:
     /// Download contents of host images to guest memory in a region
     void DownloadMemory(DAddr cpu_addr, size_t size);
 
-    std::optional<VideoCore::RasterizerDownloadArea> GetFlushArea(DAddr cpu_addr, u64 size);
+    std::optional<RasterizerDownloadArea> GetFlushArea(DAddr cpu_addr, u64 size);
 
     /// Remove images in a region
     void UnmapMemory(DAddr cpu_addr, size_t size);

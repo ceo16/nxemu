@@ -137,7 +137,7 @@ void VideoManager::MemoryMap(uint64_t address, uint64_t virtualAddress, uint64_t
     impl->m_host1x->MemoryManager().Map(address, virtualAddress, size, Core::Asid{asid}, track);
 }
 
-void VideoManager::ApplyOpOnDeviceMemoryPointer(const uint8_t* pointer, uint32_t * scratchBuffer, size_t scratchBufferSize, DeviceMemoryOperation operation, void* userData)
+void VideoManager::ApplyOpOnDeviceMemoryPointer(const uint8_t * pointer, uint32_t * scratchBuffer, size_t scratchBufferSize, DeviceMemoryOperation operation, void * userData)
 {
     Common::ScratchBuffer<u32> tempBuffer;
     tempBuffer.resize(scratchBufferSize);
@@ -147,6 +147,11 @@ void VideoManager::ApplyOpOnDeviceMemoryPointer(const uint8_t* pointer, uint32_t
         operation(address, userData);
     });
     std::memcpy(scratchBuffer, tempBuffer.data(), tempBuffer.size() * sizeof(uint32_t));
+}
+
+RasterizerDownloadArea VideoManager::OnCPURead(uint64_t addr, uint64_t size)
+{
+    return impl->m_gpuCore->OnCPURead(addr, size);
 }
 
 bool VideoManager::OnCPUWrite(uint64_t addr, uint64_t size)

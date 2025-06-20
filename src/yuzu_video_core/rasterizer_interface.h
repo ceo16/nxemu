@@ -13,7 +13,6 @@
 #include "yuzu_video_core/engines/fermi_2d.h"
 #include "yuzu_video_core/gpu.h"
 #include "yuzu_video_core/query_cache/types.h"
-#include "yuzu_video_core/rasterizer_download_area.h"
 
 namespace Tegra {
 class MemoryManager;
