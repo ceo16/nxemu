@@ -110,10 +110,6 @@ ul#menu-bar
   font-family: 'Segoe UI', Arial, sans-serif;
   font-size: 0.9em;
   font-weight: 100;
-}
-
-ul#menu-bar
-{
   behavior:menu-bar;
   flow: horizontal;
   padding: 0;
@@ -122,7 +118,7 @@ ul#menu-bar
 
 ul#menu-bar > li
 {
-  padding: 0.5em 0.5em 0.1em 0.5em;
+  padding: 0.25em 0.5em 0.1em 0.5em;
   border: 1px solid transparent;
   margin:0;
   white-space:nowrap;
@@ -147,10 +143,11 @@ menu
   flow: vertical;
   display:none;
   margin:0;
-  padding:0;
+  padding: 0.2em;
   max-width:max-content;
   background: #31363b;
   color: #eff0f1;
+  border: 1px solid #434242;
 }
 
 @media (menu-animation-supported) {
@@ -172,7 +169,7 @@ menu li
   vertical-align:middle;
   foreground-repeat: no-repeat;
   foreground-position: left 2px top 50%;
-  padding: 0.7em 1.8em 0.7em 1.3em;
+  padding: 0.2em 1.8em 0.2em 1.3em;
   margin: 0;
 }
 
@@ -198,6 +195,12 @@ menu li:has-child-of-type(menu):rtl
   foreground-image:url(stock:arrow-left);
   foreground-repeat: no-repeat;
   foreground-position: top 50% left 2px;
+}
+
+hr
+{
+  padding: 0;
+  margin: 0.2em 0;
 }
 
 #MainContents

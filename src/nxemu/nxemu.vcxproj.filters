@@ -45,13 +45,16 @@
     <ClCompile Include="user_interface\notification.cpp">
       <Filter>Source Files\user_interface</Filter>
     </ClCompile>
-    <ClCompile Include="user_interface\settings\config_setting_section.cpp">
-      <Filter>Source Files\user_interface\settings</Filter>
-    </ClCompile>
     <ClCompile Include="user_interface\sciter_main_window.cpp">
       <Filter>Source Files\user_interface</Filter>
     </ClCompile>
     <ClCompile Include="user_interface\settings\input_config.cpp">
+      <Filter>Source Files\user_interface\settings</Filter>
+    </ClCompile>
+    <ClCompile Include="user_interface\settings\system_config.cpp">
+      <Filter>Source Files\user_interface\settings</Filter>
+    </ClCompile>
+    <ClCompile Include="user_interface\settings\system_config_audio.cpp">
       <Filter>Source Files\user_interface\settings</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,13 +71,16 @@
     <ClInclude Include="user_interface\notification.h">
       <Filter>Header Files\user_interface</Filter>
     </ClInclude>
-    <ClInclude Include="user_interface\settings\config_setting_section.h">
-      <Filter>Header Files\user_interface\settings</Filter>
-    </ClInclude>
     <ClInclude Include="user_interface\sciter_main_window.h">
       <Filter>Header Files\user_interface</Filter>
     </ClInclude>
     <ClInclude Include="user_interface\settings\input_config.h">
+      <Filter>Header Files\user_interface\settings</Filter>
+    </ClInclude>
+    <ClInclude Include="user_interface\settings\system_config.h">
+      <Filter>Header Files\user_interface\settings</Filter>
+    </ClInclude>
+    <ClInclude Include="user_interface\settings\system_config_audio.h">
       <Filter>Header Files\user_interface\settings</Filter>
     </ClInclude>
   </ItemGroup>

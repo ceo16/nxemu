@@ -3,6 +3,7 @@
 #include <nxemu-core/modules/module_base.h>
 #include <sciter_ui.h>
 #include <widgets/menubar.h>
+#include "user_interface/settings/system_config.h"
 
 class SciterMainWindow :
     public IWindowDestroySink,
@@ -14,11 +15,12 @@ class SciterMainWindow :
     enum MainMenuID
     {
         // File Menu
-        ID_FILE_OPEN_GAME = 1,
+        ID_FILE_LOAD_FILE = 1,
         ID_FILE_EXIT,
 
-        // Options Menu
-        ID_OPTIONS_INPUT,
+        // Emulation Menu
+        ID_EMULATION_CONTROLLERS,
+        ID_EMULATION_CONFIGURE,
 
         // Recent files
         ID_RECENT_FILE_START,
@@ -26,7 +28,7 @@ class SciterMainWindow :
     };
 
 public:
-    SciterMainWindow(ISciterUI & SciterUI, const char * windowTitle);
+    SciterMainWindow(ISciterUI & sciterUI, const char * windowTitle);
 
     void ResetMenu();
     bool Show(void);
@@ -45,8 +47,9 @@ private:
     int32_t SciterKeyToSwitchKey(SciterKeys key);
     int32_t SciterKeyToVKCode(SciterKeys vkcode);
         
-    void OnOpenGame(void);
+    void OnOpenFile(void);
     void OnFileExit(void);
+    void OnSystemConfig(void);
     void OnInputConfig(void);
     void OnRecetGame(uint32_t fileIndex);
 
@@ -73,4 +76,5 @@ private:
     std::shared_ptr<IMenuBar> m_menuBar;
     void * m_renderWindow;
     std::string m_windowTitle;
+    SystemConfig m_systemConfig;
 };

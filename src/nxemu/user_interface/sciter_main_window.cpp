@@ -1,5 +1,6 @@
 #include "sciter_main_window.h"
 #include "settings/input_config.h"
+#include "settings/system_config.h"
 #include "settings/ui_settings.h"
 #include <Windows.h>
 #include <common/std_string.h>
@@ -11,11 +12,12 @@
 #include <widgets/menubar.h>
 #include <yuzu_common/settings_input.h>
 
-SciterMainWindow::SciterMainWindow(ISciterUI & SciterUI, const char * windowTitle) :
-    m_sciterUI(SciterUI),
+SciterMainWindow::SciterMainWindow(ISciterUI & sciterUI, const char * windowTitle) :
+    m_sciterUI(sciterUI),
     m_window(nullptr),
     m_renderWindow(nullptr),
-    m_windowTitle(windowTitle)
+    m_windowTitle(windowTitle),
+    m_systemConfig(sciterUI)
 {
     Settings & settings = Settings::GetInstance();
     settings.RegisterCallback(NXCoreSetting::GameFile, std::bind(&SciterMainWindow::GameFileChanged, this));
@@ -31,7 +33,8 @@ void SciterMainWindow::ResetMenu()
         return;
     }
     MenuBarItemList fileMenu;
-    fileMenu.push_back(MenuBarItem(ID_FILE_OPEN_GAME, "Open Game..."));
+    fileMenu.push_back(MenuBarItem(ID_FILE_LOAD_FILE, "Load File..."));
+    fileMenu.push_back(MenuBarItem(MenuBarItem::SPLITER));
 
     Stringlist & recentFiles = uiSettings.recentFiles;
     MenuBarItemList RecentGameMenu;
@@ -49,12 +52,13 @@ void SciterMainWindow::ResetMenu()
     fileMenu.push_back(MenuBarItem(MenuBarItem::SPLITER));
     fileMenu.push_back(MenuBarItem(ID_FILE_EXIT, "Exit"));
 
-    MenuBarItemList OptionsMenu;
-    OptionsMenu.push_back(MenuBarItem(ID_OPTIONS_INPUT, "Configure Input..."));
+    MenuBarItemList emulationMenu;
+    emulationMenu.push_back(MenuBarItem(ID_EMULATION_CONTROLLERS, "Controllers..."));
+    emulationMenu.push_back(MenuBarItem(ID_EMULATION_CONFIGURE, "Configure..."));
 
     MenuBarItemList mainTitleMenu;
     mainTitleMenu.push_back(MenuBarItem(MenuBarItem::SUB_MENU, "File", &fileMenu));
-    mainTitleMenu.push_back(MenuBarItem(MenuBarItem::SUB_MENU, "Options", &OptionsMenu));
+    mainTitleMenu.push_back(MenuBarItem(MenuBarItem::SUB_MENU, "Emulation", &emulationMenu));
 
     m_menuBar->AddSink(this);
     m_menuBar->SetMenuContent(mainTitleMenu);
@@ -351,7 +355,7 @@ void SciterMainWindow::DisplayedFramesChanged(void)
     ShowWindow((HWND)m_renderWindow, SW_SHOW);
 }
 
-void SciterMainWindow::OnOpenGame(void)
+void SciterMainWindow::OnOpenFile(void)
 {
     SwitchSystem * system = SwitchSystem::GetInstance();
     system->Systemloader().SelectAndLoad((void *)m_window->GetHandle());
@@ -360,6 +364,11 @@ void SciterMainWindow::OnOpenGame(void)
 void SciterMainWindow::OnFileExit(void)
 {
     m_sciterUI.Stop();
+}
+
+void SciterMainWindow::OnSystemConfig(void)
+{
+    m_systemConfig.Display((void*)m_window->GetHandle());
 }
 
 void SciterMainWindow::OnInputConfig(void)
@@ -386,9 +395,10 @@ void SciterMainWindow::OnMenuItem(int32_t id, SCITER_ELEMENT /*item*/)
 {
     switch (id)
     {
-    case ID_FILE_OPEN_GAME: OnOpenGame(); break;
+    case ID_FILE_LOAD_FILE: OnOpenFile(); break;
     case ID_FILE_EXIT: OnFileExit(); break;
-    case ID_OPTIONS_INPUT: OnInputConfig(); break;
+    case ID_EMULATION_CONTROLLERS: OnInputConfig(); break;
+    case ID_EMULATION_CONFIGURE: OnSystemConfig(); break;
     default:
         if (id >= ID_RECENT_FILE_START && id <= ID_RECENT_FILE_END)
         {

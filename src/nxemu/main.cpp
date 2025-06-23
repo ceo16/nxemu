@@ -7,11 +7,13 @@
 #include <nxemu-core/version.h>
 #include <sciter_ui.h>
 #include <widgets/menubar.h>
+#include <widgets/page_nav.h>
 #include <windows.h>
 
 void RegisterWidgets(ISciterUI & sciterUI)
 {
-    WidgetMenuBar::Register(sciterUI);
+    Register_WidgetMenuBar(sciterUI);
+    Register_WidgetPageNav(sciterUI);
 }
 
 int WINAPI WinMain(_In_ HINSTANCE /*hInstance*/, _In_opt_ HINSTANCE /*hPrevInstance*/, _In_ LPSTR /*lpszArgs*/, _In_ int /*nWinMode*/)
