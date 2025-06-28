@@ -161,6 +161,11 @@ public:
 
     JsonValue & Append(const JsonValue & value);
     JsonValue & Append(JsonValue && value);
+    void removeMember(const char * key);
+
+    bool isMember(const char * key) const;
+    bool isMember(const std::string & key) const;
+    bool isMember(const char * begin, const char * end) const;
 
     JsonValue const * Find(char const * begin) const;
     JsonValue const * Find(char const * begin, char const * end) const;

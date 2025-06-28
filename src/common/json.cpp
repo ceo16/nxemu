@@ -123,10 +123,10 @@ JsonValue::JsonValue(const std::string & value)
     m_value.String = DuplicateAndPrefixStringValue(value.data(), static_cast<unsigned>(value.length()));
 }
 
-JsonValue::JsonValue(const char * Begin, const char * end)
+JsonValue::JsonValue(const char * begin, const char * end)
 {
     InitBasic(JsonValueType::String, true);
-    m_value.String = DuplicateAndPrefixStringValue(Begin, static_cast<unsigned>(end - Begin));
+    m_value.String = DuplicateAndPrefixStringValue(begin, static_cast<unsigned>(end - begin));
 }
 
 JsonValue::JsonValue(const JsonValue & other)
@@ -414,14 +414,14 @@ JsonValue & JsonValue::operator[](uint32_t Index)
         *this = JsonValue(JsonValueType::Array);
     }
 
-    CZString Key(Index);
-    ObjectValues::iterator it = m_value.Map->lower_bound(Key);
-    if (it != m_value.Map->end() && (*it).first == Key)
+    CZString key(Index);
+    ObjectValues::iterator it = m_value.Map->lower_bound(key);
+    if (it != m_value.Map->end() && (*it).first == key)
     {
         return (*it).second;
     }
 
-    ObjectValues::value_type defaultValue(Key, NullSingleton());
+    ObjectValues::value_type defaultValue(key, NullSingleton());
     it = m_value.Map->insert(it, defaultValue);
     return (*it).second;
 }
@@ -461,9 +461,9 @@ const JsonValue & JsonValue::operator[](uint32_t index) const
     return (*it).second;
 }
 
-const JsonValue & JsonValue::operator[](const char * Key) const
+const JsonValue & JsonValue::operator[](const char * key) const
 {
-    JsonValue const * found = Find(Key, Key + strlen(Key));
+    JsonValue const * found = Find(key, key + strlen(key));
     if (!found)
     {
         return NullSingleton();
@@ -471,9 +471,9 @@ const JsonValue & JsonValue::operator[](const char * Key) const
     return *found;
 }
 
-JsonValue const & JsonValue::operator[](const std::string & Key) const
+JsonValue const & JsonValue::operator[](const std::string & key) const
 {
-    JsonValue const * found = Find(Key.data(), Key.data() + Key.length());
+    JsonValue const * found = Find(key.data(), key.data() + key.length());
     if (!found)
     {
         return NullSingleton();
@@ -495,18 +495,46 @@ JsonValue & JsonValue::Append(JsonValue && value)
     return m_value.Map->emplace(size(), std::move(value)).first->second;
 }
 
-JsonValue const * JsonValue::Find(char const * Begin) const
+void JsonValue::removeMember(const char * key)
 {
-    return Find(Begin, Begin + strlen(Begin));
+    assert(Type() == JsonValueType::Null || Type() == JsonValueType::Object);
+    if (Type() == JsonValueType::Null)
+    {
+        return;
+    }
+
+    CZString actualKey(key, unsigned(strlen(key)), CZString::NoDuplication);
+    m_value.Map->erase(actualKey);
 }
 
-JsonValue const * JsonValue::Find(char const * Begin, char const * end) const
+bool JsonValue::isMember(char const * key) const
+{
+    return isMember(key, key + strlen(key));
+}
+
+bool JsonValue::isMember(const std::string & key) const
+{
+    return isMember(key.data(), key.data() + key.length());
+}
+
+bool JsonValue::isMember(char const * begin, char const * end) const
+{
+    JsonValue const * value = Find(begin, end);
+    return nullptr != value;
+}
+
+JsonValue const * JsonValue::Find(char const * begin) const
+{
+    return Find(begin, begin + strlen(begin));
+}
+
+JsonValue const * JsonValue::Find(char const * begin, char const * end) const
 {
     if (Type() == JsonValueType::Null)
     {
         return nullptr;
     }
-    CZString actualKey(Begin, static_cast<unsigned>(end - Begin), CZString::NoDuplication);
+    CZString actualKey(begin, static_cast<unsigned>(end - begin), CZString::NoDuplication);
     ObjectValues::const_iterator it = m_value.Map->find(actualKey);
     if (it == m_value.Map->end())
     {
@@ -578,13 +606,13 @@ void JsonValue::DupMeta(const JsonValue & other)
     m_limit = other.m_limit;
 }
 
-JsonValue & JsonValue::ResolveReference(const char * Key)
+JsonValue & JsonValue::ResolveReference(const char * key)
 {
     if (Type() == JsonValueType::Null)
     {
         *this = JsonValue(JsonValueType::Object);
     }
-    CZString actualKey(Key, static_cast<unsigned>(strlen(Key)), CZString::NoDuplication);
+    CZString actualKey(key, static_cast<unsigned>(strlen(key)), CZString::NoDuplication);
     auto it = m_value.Map->lower_bound(actualKey);
     if (it != m_value.Map->end() && (*it).first == actualKey)
     {
@@ -598,13 +626,13 @@ JsonValue & JsonValue::ResolveReference(const char * Key)
 }
 
 // @param key is not null-terminated.
-JsonValue & JsonValue::ResolveReference(char const * Key, char const * end)
+JsonValue & JsonValue::ResolveReference(char const * key, char const * end)
 {
     if (Type() == JsonValueType::Null)
     {
         *this = JsonValue(JsonValueType::Object);
     }
-    CZString actualKey(Key, static_cast<unsigned>(end - Key), CZString::DuplicateOnCopy);
+    CZString actualKey(key, static_cast<unsigned>(end - key), CZString::DuplicateOnCopy);
     auto it = m_value.Map->lower_bound(actualKey);
     if (it != m_value.Map->end() && (*it).first == actualKey)
     {
