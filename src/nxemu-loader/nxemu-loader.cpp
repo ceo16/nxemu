@@ -71,6 +71,16 @@ void CALL EmulationStopping()
 {
 }
 
+/*
+Function: FlushSettings
+Purpose: Called when emulation is saving settings
+Input: None
+Output: None
+*/
+EXPORT void CALL FlushSettings()
+{
+}
+
 ISystemloader * CALL CreateSystemLoader(ISwitchSystem & System)
 {
     if (g_loaderManager.get() != nullptr)

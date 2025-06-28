@@ -7,8 +7,23 @@ class ModuleSettings :
 {
 public:
     //IModuleSettings
-    std::string GetString(const char * setting) const;
-    bool GetBool(const char * setting) const;
-    void SetString(const char * setting, const char * value);
-    void SetBool(const char * setting, bool value);
+    const char * GetString(const char * setting) const override;
+    bool GetBool(const char * setting) const override;
+    int32_t GetInt(const char * setting) const override;
+    void SetString(const char * setting, const char* value) override;
+    void SetBool(const char * setting, bool value) override;
+    void SetInt(const char * setting, int32_t value) override;
+
+    void SetDefaultBool(const char * setting, bool value) override;
+    void SetDefaultInt(const char * setting, int32_t value) override;
+    void SetDefaultString(const char * setting, const char * value) override;
+
+    const char * GetSectionSettings(const char * section) const override;
+    void SetSectionSettings(const char * section, const std::string & json) override;
+
+    void RegisterCallback(const char * setting, SettingChangeCallback callback, void * userData) override;
+    void UnregisterCallback(const char * setting, SettingChangeCallback callback, void * userData) override;
+
+private:
+    mutable std::string m_sectionSetting;
 };

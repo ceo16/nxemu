@@ -71,6 +71,16 @@ void CALL EmulationStopping()
 {
 }
 
+/*
+Function: FlushSettings
+Purpose: Called when emulation is saving settings
+Input: None
+Output: None
+*/
+EXPORT void CALL FlushSettings()
+{
+}
+
 ICpu * CALL CreateCpu(ISwitchSystem & System)
 {
     if (g_cpuManager.get() != nullptr)

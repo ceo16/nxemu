@@ -1,7 +1,9 @@
 #include "system_config.h"
 #include "system_config_audio.h"
+#include <nxemu-core/machine/switch_system.h>
 #include <sciter_ui.h>
 #include <sciter_element.h>
+#include <sciter_handler.h>
 #include <widgets/page_nav.h>
 
 SystemConfig::SystemConfig(ISciterUI & SciterUI) :
@@ -30,37 +32,58 @@ void SystemConfig::Display(void * parentWindow)
     if (root.IsValid())
     {
         SciterElement pageNav = root.GetElementByID("MainTabNav");
-        if (pageNav.IsValid())
+        std::shared_ptr<void> interfacePtr = pageNav.IsValid() ? m_sciterUI.GetElementInterface(pageNav, IID_IPAGENAV) : nullptr;
+        if (interfacePtr)
         {
-            void * interfacePtr = nullptr;
-            if (m_sciterUI.GetElementInterface(pageNav, IID_IPAGENAV, &interfacePtr))
-            {
-                m_pageNav = std::shared_ptr<IPageNav>(reinterpret_cast<IPageNav*>(interfacePtr), [](IPageNav*) {});
-                m_pageNav->AddSink(this);
-            }
+            m_pageNav = std::static_pointer_cast<IPageNav>(interfacePtr);
+            m_pageNav->AddSink(this);
         }
+
+        SciterElement okButton = root.FindFirst("button[role=\"window-ok\"]");
+        m_sciterUI.AttachHandler(okButton, IID_ICLICKSINK, (IClickSink*)this);
+
     }
 }
 
-bool SystemConfig::PageNavChangeFrom(const std::string& PageName, SCITER_ELEMENT PageNav)
+bool SystemConfig::PageNavChangeFrom(const std::string & /*pageName*/, SCITER_ELEMENT /*pageNav*/)
 {
     return true;
 }
 
-bool SystemConfig::PageNavChangeTo(const std::string& PageName, SCITER_ELEMENT PageNav)
+bool SystemConfig::PageNavChangeTo(const std::string & /*pageName*/, SCITER_ELEMENT /*pageNav*/)
 {
     return true;
 }
 
-void SystemConfig::PageNavCreatedPage(const std::string& PageName, SCITER_ELEMENT Page)
+void SystemConfig::PageNavCreatedPage(const std::string & pageName, SCITER_ELEMENT page)
 {
-    if (PageName == "Audio")
+    if (pageName == "Audio")
     {
-        m_systemConfigAudio.reset(new SystemConfigAudio(m_sciterUI, m_window->GetHandle(), Page));
+        m_systemConfigAudio.reset(new SystemConfigAudio(m_sciterUI, m_window->GetHandle(), page));
     }
 }
 
-void SystemConfig::PageNavPageChanged(const std::string& PageName, SCITER_ELEMENT PageNav)
+void SystemConfig::PageNavPageChanged(const std::string & /*pageName*/, SCITER_ELEMENT /*pageNav*/)
 {
 }
+
+bool SystemConfig::OnClick(SCITER_ELEMENT element, SCITER_ELEMENT /*source*/, uint32_t /*reason*/)
+{
+    SciterElement clickElem(element);
+    if (clickElem.GetAttribute("role") == "window-ok")
+    {
+        if (m_systemConfigAudio)
+        {
+            m_systemConfigAudio->SaveSetting();
+        }
+        SwitchSystem * system = SwitchSystem::GetInstance();
+        if (system != nullptr)
+        {
+            system->FlushSettings();
+        }
+        m_window->Destroy();
+    }
+    return false;
+}
+
 

@@ -6,12 +6,14 @@
 #include <nxemu-core/app_init.h>
 #include <nxemu-core/version.h>
 #include <sciter_ui.h>
+#include <widgets/combo_box.h>
 #include <widgets/menubar.h>
 #include <widgets/page_nav.h>
 #include <windows.h>
 
 void RegisterWidgets(ISciterUI & sciterUI)
 {
+    Register_WidgetComboBox(sciterUI);
     Register_WidgetMenuBar(sciterUI);
     Register_WidgetPageNav(sciterUI);
 }

@@ -23,6 +23,9 @@
   </ImportGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ItemDefinitionGroup>
+    <ClCompile>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+    </ClCompile>
     <PreBuildEvent>
       <Command>"$(SolutionDir)src\script\update_version.cmd" "$(Configuration)" "$(Platform)" "$(SolutionDir)src\nxemu-core\version.h.in" "$(SolutionDir)src\nxemu-core\version.h"</Command>
     </PreBuildEvent>

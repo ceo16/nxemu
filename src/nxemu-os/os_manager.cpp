@@ -10,7 +10,9 @@
 #include "yuzu_hid_core/hid_core.h"
 #include "yuzu_input_common/main.h"
 #include "yuzu_input_common/drivers/keyboard.h"
+#include "yuzu_audio_core/sink/sink_details.h"
 #include "os_manager.h"
+#include "os_settings.h"
 
 extern IModuleSettings * g_settings;
 
@@ -38,6 +40,8 @@ void OSManager::EmulationStarting()
 
 bool OSManager::Initialize(void)
 {
+    SetupOsSetting();
+
     Common::Log::Initialize();
     Common::Log::Start();
     Common::Log::SetColorConsoleBackendEnabled(g_settings->GetBool(NXCoreSetting::ShowConsole));
@@ -155,4 +159,18 @@ void OSManager::GatherGPUDirtyMemory(ICacheInvalidator * invalidator)
 void OSManager::GameFrameEnd()
 {
     m_coreSystem.GetPerfStats().EndGameFrame();
+}
+
+void OSManager::AudioGetSyncIDs(uint32_t * ids, uint32_t maxCount, uint32_t* actualCount)
+{
+    std::vector<Settings::AudioEngine> sinkIds = AudioCore::Sink::GetSinkIDs();
+    if (actualCount)
+    {
+        *actualCount = (uint32_t)sinkIds.size();
+    }
+
+    if (ids != nullptr && maxCount > 0 && sinkIds.size() > 0)
+    {
+        memcpy(ids, sinkIds.data(), std::min(maxCount, (uint32_t)sinkIds.size()) * sizeof(uint32_t));
+    }
 }

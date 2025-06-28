@@ -79,6 +79,7 @@ __interface IOperatingSystem
     void KeyboardKeyRelease(int modifier, int keyIndex, int keyCode) = 0;
     void GatherGPUDirtyMemory(ICacheInvalidator * invalidator) = 0;
     void GameFrameEnd() = 0;
+    void AudioGetSyncIDs(uint32_t * ids, uint32_t maxCount, uint32_t * actualCount) = 0;
 };
 
 EXPORT IOperatingSystem * CALL CreateOperatingSystem(ISwitchSystem & system);

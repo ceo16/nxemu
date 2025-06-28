@@ -2,6 +2,7 @@
 #include <memory>
 #include <nxemu-core/modules/module_base.h>
 #include <sciter_ui.h>
+#include <sciter_handler.h>
 #include <widgets/menubar.h>
 #include "user_interface/settings/system_config.h"
 
@@ -39,10 +40,10 @@ private:
     SciterMainWindow & operator=(const SciterMainWindow &) = delete;
 
     void SetCaption(const std::string & caption);
-    void GameFileChanged(void);
-    void GameNameChanged(void);
-    void RomLoadingChanged(void);
-    void DisplayedFramesChanged(void);
+    static void GameFileChanged(const char * setting, void * userData);
+    static void GameNameChanged(const char * setting, void * userData);
+    static void RomLoadingChanged(const char * setting, void * userData);
+    static void DisplayedFramesChanged(const char * setting, void * userData);
     void ShowLoadingScreen(void);
     int32_t SciterKeyToSwitchKey(SciterKeys key);
     int32_t SciterKeyToVKCode(SciterKeys vkcode);

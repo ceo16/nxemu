@@ -17,6 +17,7 @@ class ModuleBase
     typedef void(CALL * tyModuleCleanup)();
     typedef void(CALL * tyEmulationStarting)();
     typedef void(CALL * tyEmulationStopping)();
+    typedef void(CALL * tyFlushSettings)();
 
 public:
     ModuleBase();
@@ -26,6 +27,7 @@ public:
     ModuleBase::tyEmulationStarting EmulationStarting;
     ModuleBase::tyEmulationStopping EmulationStopping;
     ModuleBase::tyModuleCleanup ModuleCleanup;
+    ModuleBase::tyFlushSettings FlushSettings;
 
 protected:
     virtual void UnloadModule(void) = 0;

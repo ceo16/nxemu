@@ -75,6 +75,16 @@ void CALL EmulationStopping()
 {
 }
 
+/*
+Function: FlushSettings
+Purpose: Called when emulation is saving settings
+Input: None
+Output: None
+*/  
+EXPORT void CALL FlushSettings()
+{
+}
+
 IVideo * CALL CreateVideo(IRenderWindow & renderWindow, ISwitchSystem & system)
 {
     if (g_notify == nullptr)

@@ -94,6 +94,11 @@ slider {
   style-set: std-hslider;
 }
 
+ComboBox
+{
+  width: 100%%;
+}
+
 @set std-hslider < std-hslider-base {
   :root {
     background: #565a5e;
@@ -146,6 +151,7 @@ input[type="checkbox"] {
   border: 1px solid #818183;
   background: none;
   border-radius: 0.3em;
+  margin: 0 0.5em 0 0;
 }
 
 input[type="checkbox"]:checked {
@@ -169,7 +175,7 @@ input[type="checkbox"]:checked {
     <div id="ConfigContents" />
   </div>
   <div class="footer">
-    <button role="window-close">OK</button>
+    <button role="window-ok">OK</button>
     <button role="window-close">Cancel</button>
   </div>
 </body>

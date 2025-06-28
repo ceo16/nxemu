@@ -1,4 +1,5 @@
 #include "os_manager.h"
+#include "os_settings.h"
 #include <memory>
 #include <stdio.h>
 
@@ -70,6 +71,17 @@ Output: None
 */
 void CALL EmulationStopping()
 {
+}
+
+/*
+Function: FlushSettings
+Purpose: Called when emulation is saving settings
+Input: None
+Output: None
+*/
+EXPORT void CALL FlushSettings()
+{
+    SaveOsSettings();
 }
 
 IOperatingSystem * CALL CreateOperatingSystem(ISwitchSystem & System)

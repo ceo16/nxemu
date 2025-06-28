@@ -52,7 +52,7 @@ bool SwitchSystem::Initialize(IRenderWindow & window)
 
 void SwitchSystem::StartEmulation(void)
 {
-    Settings & settings = Settings::GetInstance();
+    SettingsStore & settings = SettingsStore::GetInstance();
     settings.SetBool(NXCoreSetting::EmulationRunning, true);
     m_emulationRunning = true;
     m_modules.StartEmulation();
@@ -66,6 +66,11 @@ void SwitchSystem::StopEmulation(void)
     }
     m_emulationRunning = false;
     m_modules.StopEmulation();
+}
+
+void SwitchSystem::FlushSettings(void)
+{
+    m_modules.FlushSettings();
 }
 
 IVideo & SwitchSystem::Video(void)

@@ -3,16 +3,16 @@
 #include <common/json.h>
 #include <common/path.h>
 
-std::unique_ptr<Settings> Settings::s_instance;
+std::unique_ptr<SettingsStore> SettingsStore::s_instance;
 
-Settings::Settings()
+SettingsStore::SettingsStore()
 {
     Path congFilePath(Path::MODULE_DIRECTORY, "NxEmu.config");
     congFilePath.AppendDirectory("config");
     m_configPath = (const char *)congFilePath;
 }
 
-bool Settings::Initialize()
+bool SettingsStore::Initialize()
 {
     m_details = JsonValue();
     for (size_t i = 0; i < 100; i++)
@@ -56,12 +56,12 @@ bool Settings::Initialize()
     return true;
 }
 
-const char * Settings::GetConfigFile(void) const
+const char * SettingsStore::GetConfigFile(void) const
 {
     return m_configPath.c_str();
 }
 
-void Settings::SetChanged(const char * setting, bool changed)
+void SettingsStore::SetChanged(const char * setting, bool changed)
 {
     if (setting == nullptr)
     {
@@ -70,7 +70,7 @@ void Settings::SetChanged(const char * setting, bool changed)
     m_settingsChanged[setting] = changed;
 }
 
-JsonValue Settings::GetSettings(const char * section) const
+JsonValue SettingsStore::GetSettings(const char * section) const
 {
     const JsonValue * value = m_details.Find(section);
     if (value != nullptr)
@@ -80,22 +80,29 @@ JsonValue Settings::GetSettings(const char * section) const
     return JsonValue();
 }
 
-void Settings::SetSettings(const char * section, JsonValue & json)
+void SettingsStore::SetSettings(const char * section, JsonValue & json)
 {
-    m_details[section] = json;
+    if (json.isNull())
+    {
+        m_details.removeMember(section);
+    }
+    else
+    {
+        m_details[section] = json;
+    }
 }
 
-std::string Settings::GetDefaultString(const char * setting) const
+const char * SettingsStore::GetDefaultString(const char * setting) const
 {
     SettingsMapString::const_iterator itr = m_settingsDefaultString.find(setting);
     if (itr == m_settingsDefaultString.end())
     {
         return "";
     }
-    return itr->second;
+    return itr->second.c_str();
 }
 
-bool Settings::GetDefaultBool(const char * setting) const
+bool SettingsStore::GetDefaultBool(const char * setting) const
 {
     SettingsMapBool::const_iterator itr = m_settingsDefaultBool.find(setting);
     if (itr == m_settingsDefaultBool.end())
@@ -105,17 +112,27 @@ bool Settings::GetDefaultBool(const char * setting) const
     return itr->second;
 }
 
-std::string Settings::GetString(const char * setting) const
+int32_t SettingsStore::GetDefaultInt(const char* setting) const
+{
+    SettingsMapInt::const_iterator itr = m_settingsDefaultInt.find(setting);
+    if (itr == m_settingsDefaultInt.end())
+    {
+        return false;
+    }
+    return itr->second;
+}
+
+const char * SettingsStore::GetString(const char * setting) const
 {
     SettingsMapString::const_iterator itr = m_settingsString.find(setting);
     if (itr == m_settingsString.end())
     {
         return GetDefaultString(setting);
     }
-    return itr->second;
+    return itr->second.c_str();
 }
 
-bool Settings::GetBool(const char * setting) const
+bool SettingsStore::GetBool(const char * setting) const
 {
     SettingsMapBool::const_iterator itr = m_settingsBool.find(setting);
     if (itr == m_settingsBool.end())
@@ -125,7 +142,7 @@ bool Settings::GetBool(const char * setting) const
     return itr->second;
 }
 
-bool Settings::GetChanged(const char * setting) const
+bool SettingsStore::GetChanged(const char * setting) const
 {
     SettingsMapBool::const_iterator itr = m_settingsChanged.find(setting);
     if (itr == m_settingsChanged.end())
@@ -135,7 +152,17 @@ bool Settings::GetChanged(const char * setting) const
     return itr->second;
 }
 
-void Settings::SetDefaultString(const char * setting, const char * value)
+int32_t SettingsStore::GetInt(const char* setting) const
+{
+    SettingsMapInt::const_iterator itr = m_settingsInt.find(setting);
+    if (itr == m_settingsInt.end())
+    {
+        return GetDefaultInt(setting);
+    }
+    return itr->second;
+}
+
+void SettingsStore::SetDefaultString(const char * setting, const char * value)
 {
     if (setting == nullptr || value == nullptr)
     {
@@ -144,12 +171,17 @@ void Settings::SetDefaultString(const char * setting, const char * value)
     m_settingsDefaultString[setting] = value;
 }
 
-void Settings::SetDefaultBool(const char * setting, bool value)
+void SettingsStore::SetDefaultBool(const char * setting, bool value)
 {
     m_settingsDefaultBool[setting] = value;
 }
 
-void Settings::SetString(const char * setting, const char * value)
+void SettingsStore::SetDefaultInt(const char * setting, int32_t value)
+{
+    m_settingsDefaultInt[setting] = value;
+}
+
+void SettingsStore::SetString(const char * setting, const char * value)
 {
     if (setting == nullptr || value == nullptr)
     {
@@ -165,7 +197,7 @@ void Settings::SetString(const char * setting, const char * value)
     NotifyChange(setting);
 }
 
-void Settings::SetBool(const char * setting, bool value)
+void SettingsStore::SetBool(const char * setting, bool value)
 {
     if (setting == nullptr)
     {
@@ -181,7 +213,23 @@ void Settings::SetBool(const char * setting, bool value)
     NotifyChange(setting);
 }
 
-void Settings::Save(void)
+void SettingsStore::SetInt(const char * setting, int32_t value)
+{
+    if (setting == nullptr)
+    {
+        return;
+    }
+
+    SettingsMapInt::const_iterator it = m_settingsInt.find(setting);
+    if (it != m_settingsInt.end() && it->second == value)
+    {
+        return;
+    }
+    m_settingsInt[setting] = value;
+    NotifyChange(setting);
+}
+
+void SettingsStore::Save(void)
 {
     std::string jsonStr = JsonStyledWriter().write(m_details);
     Path(m_configPath).DirectoryCreate();
@@ -193,26 +241,32 @@ void Settings::Save(void)
     configFile.Write(jsonStr.c_str(), (uint32_t)jsonStr.length());
 }
 
-void Settings::RegisterCallback(const std::string & setting, std::function<void()> callback)
+void SettingsStore::RegisterCallback(const std::string & setting, SettingChangeCallback callback, void * userData)
 {
-    m_notification[setting].emplace_back(callback);
+    if (callback == nullptr)
+    {
+        return;
+    }
+
+    CallbackInfo info = { callback, userData };
+    m_notification[setting].emplace_back(info);
 }
 
-Settings & Settings::GetInstance()
+SettingsStore & SettingsStore::GetInstance()
 {
     if (s_instance == nullptr)
     {
-        s_instance = std::make_unique<Settings>();
+        s_instance = std::make_unique<SettingsStore>();
     }
     return *s_instance;
 }
 
-void Settings::CleanUp()
+void SettingsStore::CleanUp()
 {
     s_instance.reset();
 }
 
-void Settings::NotifyChange(const char * setting)
+void SettingsStore::NotifyChange(const char * setting)
 {
     if (setting == nullptr)
     {
@@ -224,10 +278,7 @@ void Settings::NotifyChange(const char * setting)
         const NotificationCallbacks & callbacks = itr->second;
         for (NotificationCallbacks::const_iterator callItr = callbacks.begin(); callItr != callbacks.end(); callItr++)
         {
-            if (*callItr)
-            {
-                (*callItr)();
-            }
+            callItr->callback(setting, callItr->userData);
         }
     }
 }

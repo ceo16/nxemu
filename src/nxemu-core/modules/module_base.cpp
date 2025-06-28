@@ -5,7 +5,8 @@ ModuleBase::ModuleBase() :
     m_moduleInfo({0}),
     EmulationStarting(nullptr),
     EmulationStopping(nullptr),
-    ModuleCleanup(nullptr)
+    ModuleCleanup(nullptr),
+    FlushSettings(nullptr)
 {
 }
 
@@ -43,11 +44,13 @@ bool ModuleBase::Load(const char * fileName, IModuleNotification * notification,
     ModuleCleanup = (ModuleBase::tyModuleCleanup)DynamicLibraryGetProc(m_lib, "ModuleCleanup");
     EmulationStarting = (ModuleBase::tyEmulationStarting)DynamicLibraryGetProc(m_lib, "EmulationStarting");
     EmulationStopping = (ModuleBase::tyEmulationStopping)DynamicLibraryGetProc(m_lib, "EmulationStopping");
+    FlushSettings = (ModuleBase::tyFlushSettings)DynamicLibraryGetProc(m_lib, "FlushSettings");
 
     if (ModuleInitialize == nullptr ||
         ModuleCleanup == nullptr ||
         EmulationStarting == nullptr ||
-        EmulationStopping == nullptr)
+        EmulationStopping == nullptr ||
+        FlushSettings == nullptr)
     {
         return false;
     }
@@ -107,4 +110,5 @@ void ModuleBase::ModuleDone(bool callUnloadModule)
     ModuleCleanup = nullptr;
     EmulationStarting = nullptr;
     EmulationStopping = nullptr;
+    FlushSettings = nullptr;
 }

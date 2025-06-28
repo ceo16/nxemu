@@ -19,11 +19,11 @@ SciterMainWindow::SciterMainWindow(ISciterUI & sciterUI, const char * windowTitl
     m_windowTitle(windowTitle),
     m_systemConfig(sciterUI)
 {
-    Settings & settings = Settings::GetInstance();
-    settings.RegisterCallback(NXCoreSetting::GameFile, std::bind(&SciterMainWindow::GameFileChanged, this));
-    settings.RegisterCallback(NXCoreSetting::GameName, std::bind(&SciterMainWindow::GameNameChanged, this));
-    settings.RegisterCallback(NXCoreSetting::RomLoading, std::bind(&SciterMainWindow::RomLoadingChanged, this));
-    settings.RegisterCallback(NXCoreSetting::DisplayedFrames, std::bind(&SciterMainWindow::DisplayedFramesChanged, this));
+    SettingsStore & settings = SettingsStore::GetInstance();
+    settings.RegisterCallback(NXCoreSetting::GameFile, SciterMainWindow::GameFileChanged, this);
+    settings.RegisterCallback(NXCoreSetting::GameName, SciterMainWindow::GameNameChanged, this);
+    settings.RegisterCallback(NXCoreSetting::RomLoading, SciterMainWindow::RomLoadingChanged, this);
+    settings.RegisterCallback(NXCoreSetting::DisplayedFrames, SciterMainWindow::DisplayedFramesChanged, this);
 }
 
 void SciterMainWindow::ResetMenu()
@@ -83,10 +83,10 @@ bool SciterMainWindow::Show(void)
     SetCaption(m_windowTitle);
 
     SciterElement menuElement(rootElement.GetElementByID("MainMenu"));
-    void * interfacePtr = nullptr;
-    if (menuElement.IsValid() && m_sciterUI.GetElementInterface(menuElement, IID_IMENUBAR, &interfacePtr))
+    std::shared_ptr<void> interfacePtr = menuElement.IsValid() ? m_sciterUI.GetElementInterface(menuElement, IID_IMENUBAR) : nullptr;
+    if (interfacePtr)
     {
-        m_menuBar = std::shared_ptr<IMenuBar>(reinterpret_cast<IMenuBar *>(interfacePtr), [](IMenuBar *) {});
+        m_menuBar = std::static_pointer_cast<IMenuBar>(interfacePtr);
         ResetMenu();
     }
     m_sciterUI.UpdateWindow(rootElement.GetElementHwnd(true));
@@ -295,15 +295,17 @@ void SciterMainWindow::SetCaption(const std::string & caption)
     }
 }
 
-void SciterMainWindow::GameFileChanged(void)
+void SciterMainWindow::GameFileChanged(const char * /*setting*/, void * userData)
 {
+    SciterMainWindow * impl = (SciterMainWindow *)userData;
+
     enum
     {
         maxRememberedFiles = 10
     };
 
     Stringlist & recentFiles = uiSettings.recentFiles;
-    std::string gameFile = Settings::GetInstance().GetString(NXCoreSetting::GameFile);
+    std::string gameFile = SettingsStore::GetInstance().GetString(NXCoreSetting::GameFile);
     for (Stringlist::const_iterator itr = recentFiles.begin(); itr != recentFiles.end(); itr++)
     {
         if (_stricmp(gameFile.c_str(), itr->c_str()) != 0)
@@ -318,41 +320,47 @@ void SciterMainWindow::GameFileChanged(void)
     {
         recentFiles.resize(maxRememberedFiles);
     }
-    ResetMenu();
+    impl->ResetMenu();
     SaveUISetting();
 }
 
-void SciterMainWindow::GameNameChanged(void)
+void SciterMainWindow::GameNameChanged(const char * /*setting*/, void * userData)
 {
-    std::string gameName = Settings::GetInstance().GetString(NXCoreSetting::GameName);
+    SciterMainWindow * impl = (SciterMainWindow *)userData;
+
+    std::string gameName = SettingsStore::GetInstance().GetString(NXCoreSetting::GameName);
     if (gameName.length() > 0)
     {
         std::string caption;
         caption += gameName;
         caption += " | ";
-        caption += m_windowTitle;
-        SetCaption(caption);
+        caption += impl->m_windowTitle;
+        impl->SetCaption(caption);
     }
 }
 
-void SciterMainWindow::RomLoadingChanged(void)
+void SciterMainWindow::RomLoadingChanged(const char * /*setting*/, void * userData)
 {
-    bool loading = Settings::GetInstance().GetBool(NXCoreSetting::RomLoading);
+    SciterMainWindow * impl = (SciterMainWindow*)userData;
+
+    bool loading = SettingsStore::GetInstance().GetBool(NXCoreSetting::RomLoading);
     if (loading)
     {
-        ShowLoadingScreen();
+        impl->ShowLoadingScreen();
     }
 }
 
-void SciterMainWindow::DisplayedFramesChanged(void)
+void SciterMainWindow::DisplayedFramesChanged(const char * /*setting*/, void * userData)
 {
-    SciterElement rootElement(m_window->GetRootElement());
+    SciterMainWindow * impl = (SciterMainWindow*)userData;
+
+    SciterElement rootElement(impl->m_window->GetRootElement());
     SciterElement mainContents(rootElement.GetElementByID("MainContents"));
     if (mainContents.IsValid())
     {
         mainContents.SetHTML((uint8_t *)"", 0, SciterElement::SIH_REPLACE_CONTENT);
     }
-    ShowWindow((HWND)m_renderWindow, SW_SHOW);
+    ShowWindow((HWND)impl->m_renderWindow, SW_SHOW);
 }
 
 void SciterMainWindow::OnOpenFile(void)

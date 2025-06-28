@@ -1,4 +1,5 @@
 #pragma once
+#include <sciter_handler.h>
 #include <widgets/page_nav.h>
 
 __interface ISciterUI;
@@ -6,7 +7,8 @@ __interface ISciterWindow;
 class SystemConfigAudio;
 
 class SystemConfig :
-    public IPagesSink
+    public IPagesSink,
+    public IClickSink
 {
 public:
     SystemConfig(ISciterUI& SciterUI);
@@ -15,10 +17,13 @@ public:
     void Display(void* parentWindow);
 
     // IPagesSink
-    bool PageNavChangeFrom(const std::string& PageName, SCITER_ELEMENT PageNav) override;
-    bool PageNavChangeTo(const std::string& PageName, SCITER_ELEMENT PageNav) override;
-    void PageNavCreatedPage(const std::string& PageName, SCITER_ELEMENT Page) override;
-    void PageNavPageChanged(const std::string& PageName, SCITER_ELEMENT PageNav) override;
+    bool PageNavChangeFrom(const std::string & pageName, SCITER_ELEMENT pageNav) override;
+    bool PageNavChangeTo(const std::string & pageName, SCITER_ELEMENT pageNav) override;
+    void PageNavCreatedPage(const std::string & pageName, SCITER_ELEMENT page) override;
+    void PageNavPageChanged(const std::string & pageName, SCITER_ELEMENT pageNav) override;
+
+    //IClickSink
+    bool OnClick(SCITER_ELEMENT element, SCITER_ELEMENT source, uint32_t reason) override;
 
 private:
     SystemConfig() = delete;

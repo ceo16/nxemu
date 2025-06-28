@@ -20,6 +20,7 @@ public:
     bool Initialize(IRenderWindow & RenderWindow, ISwitchSystem & System);
     void StartEmulation(void);
     void StopEmulation(void);
+    void FlushSettings(void);
 
     ISystemloader * Systemloader();
     IVideo * Video(void);

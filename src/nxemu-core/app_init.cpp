@@ -9,7 +9,7 @@ extern "C" int __stdcall AllocConsole();
 bool AppInit(INotification * notification)
 {
     g_notify = notification;
-    if (!Settings::GetInstance().Initialize())
+    if (!SettingsStore::GetInstance().Initialize())
     {
         return false;
     }
@@ -35,5 +35,5 @@ bool AppInit(INotification * notification)
 void AppCleanup(void)
 {
     SwitchSystem::ShutDown();
-    Settings::CleanUp();
+    SettingsStore::CleanUp();
 }

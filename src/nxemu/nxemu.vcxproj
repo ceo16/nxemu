@@ -25,6 +25,7 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)external\sciterui\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
     </ClCompile>
     <PreBuildEvent>
       <Command>IF NOT EXIST "$(SolutionDir)config\NxEmu.config" (copy  "$(SolutionDir)config\NxEmu.config.development" "$(SolutionDir)config\NxEmu.config")

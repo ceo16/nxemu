@@ -27,7 +27,7 @@ void LoadUISetting(void)
     uiSettings.languageCurrent = UISettingsDefaults::defaultLanguageCurrentValue;
     uiSettings.sciterConsole = UISettingsDefaults::defaultSciterConsole;
 
-    JsonValue jsonSettings = Settings::GetInstance().GetSettings("UI");
+    JsonValue jsonSettings = SettingsStore::GetInstance().GetSettings("UI");
 
     const JsonValue * node = jsonSettings.Find("LanguageDirectory");
     if (node != nullptr && node->isString())
@@ -77,7 +77,7 @@ void SaveUISetting(void)
     {
         json["LanguageDirectory"] = JsonValue(uiSettings.languageDirValue);
     }
-    Settings & settings = Settings::GetInstance();
+    SettingsStore & settings = SettingsStore::GetInstance();
     settings.SetSettings("UI", json);
     settings.Save();
 }

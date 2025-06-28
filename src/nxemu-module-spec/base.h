@@ -16,10 +16,10 @@
 
 enum
 {
-    MODULE_LOADER_SPECS_VERSION = 0x0106,
-    MODULE_VIDEO_SPECS_VERSION = 0x0107,
-    MODULE_CPU_SPECS_VERSION = 0x0102,
-    MODULE_OPERATING_SYSTEM_SPECS_VERSION = 0x0106,
+    MODULE_LOADER_SPECS_VERSION = 0x0107,
+    MODULE_VIDEO_SPECS_VERSION = 0x0108,
+    MODULE_CPU_SPECS_VERSION = 0x0103,
+    MODULE_OPERATING_SYSTEM_SPECS_VERSION = 0x0107,
 };
 
 enum MODULE_TYPE : uint16_t
@@ -36,12 +36,26 @@ __interface IModuleNotification
     void BreakPoint(const char * fileName, uint32_t lineNumber) = 0;
 };
 
+typedef void (*SettingChangeCallback)(const char * setting, void * userData);
+
 __interface IModuleSettings
 {
-    std::string GetString(const char * setting) const = 0;
+    const char * GetString(const char * setting) const = 0;
     bool GetBool(const char * setting) const = 0;
+    int32_t GetInt(const char * setting) const = 0;
     void SetString(const char * setting, const char * value) = 0;
     void SetBool(const char * setting, bool value) = 0;
+    void SetInt(const char * setting, int32_t value) = 0;
+
+    void SetDefaultBool(const char * setting, bool value) = 0;
+    void SetDefaultInt(const char * setting, int value) = 0;
+    void SetDefaultString(const char * setting, const char * value) = 0;
+
+    const char * GetSectionSettings(const char * section) const = 0;
+    void SetSectionSettings(const char * section, const std::string & json) = 0;
+
+    void RegisterCallback(const char * setting, SettingChangeCallback callback, void * userData) = 0;
+    void UnregisterCallback(const char * setting, SettingChangeCallback callback, void * userData) = 0;
 };
 
 typedef struct
@@ -117,3 +131,11 @@ Input: None
 Output: None
 */
 EXPORT void CALL EmulationStopping();
+
+/*
+Function: FlushSettings
+Purpose: Called when emulation is saving settings
+Input: None
+Output: None
+*/
+EXPORT void CALL FlushSettings();

@@ -14,6 +14,7 @@ public:
 
     void StartEmulation(void);
     void StopEmulation(void);
+    void FlushSettings(void);
 
     //ISwitchSystem
     ISystemloader & Systemloader();
