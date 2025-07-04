@@ -40,6 +40,13 @@ Iter fixZerosInTheEnd(Iter begin, Iter end, unsigned int precision)
     }
     return end;
 }
+
+bool IsIntegral(double d)
+{
+    double integral_part;
+    return modf(d, &integral_part) == 0.0;
+}
+
 } // namespace
 
 JsonValue::JsonValue(JsonValueType type) :
@@ -179,6 +186,22 @@ bool JsonValue::isBool() const
 bool JsonValue::isDouble() const
 {
     return m_type == JsonValueType::Int || m_type == JsonValueType::UnsignedInt || m_type == JsonValueType::Real;
+}
+
+bool JsonValue::isInt() const
+{
+    switch (m_type) 
+    {
+    case JsonValueType::Int:
+        return m_value.Int >= MinInt && m_value.Int <= MaxInt;
+    case JsonValueType::UnsignedInt:
+        return m_value.UInt <= (uint32_t)(MaxInt);
+    case JsonValueType::Real:
+        return m_value.Real >= MinInt && m_value.Real <= MaxInt && IsIntegral(m_value.Real);
+    default:
+        break;
+    }
+    return false;
 }
 
 bool JsonValue::isString() const

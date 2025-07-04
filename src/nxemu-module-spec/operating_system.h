@@ -68,6 +68,8 @@ __interface ICacheInvalidator
     virtual void OnCacheInvalidation(uint64_t address, uint32_t size) = 0;
 };
 
+typedef void (*DeviceEnumCallback)(const char * device, void * userData);
+
 __interface IOperatingSystem
 {
     bool Initialize() = 0;
@@ -80,6 +82,7 @@ __interface IOperatingSystem
     void GatherGPUDirtyMemory(ICacheInvalidator * invalidator) = 0;
     void GameFrameEnd() = 0;
     void AudioGetSyncIDs(uint32_t * ids, uint32_t maxCount, uint32_t * actualCount) = 0;
+    void AudioGetDeviceListForSink(uint32_t sinkId, bool capture, DeviceEnumCallback callback, void * userData) = 0;
 };
 
 EXPORT IOperatingSystem * CALL CreateOperatingSystem(ISwitchSystem & system);

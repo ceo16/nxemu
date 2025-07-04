@@ -83,6 +83,9 @@
     <ClInclude Include="user_interface\settings\system_config_audio.h">
       <Filter>Header Files\user_interface\settings</Filter>
     </ClInclude>
+    <ClInclude Include="settings\ui_settings_identifiers.h">
+      <Filter>Header Files\user_interface\settings</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="user_interface\nxemu.rc">

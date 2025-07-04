@@ -174,3 +174,12 @@ void OSManager::AudioGetSyncIDs(uint32_t * ids, uint32_t maxCount, uint32_t* act
         memcpy(ids, sinkIds.data(), std::min(maxCount, (uint32_t)sinkIds.size()) * sizeof(uint32_t));
     }
 }
+
+void OSManager::AudioGetDeviceListForSink(uint32_t sinkId, bool capture, DeviceEnumCallback callback, void * userData)
+{
+    std::vector<std::string> devices = AudioCore::Sink::GetDeviceListForSink((Settings::AudioEngine)sinkId, capture);
+    for (size_t i = 0, n = devices.size(); i < n; i++)
+    {
+        callback(devices[i].c_str(), userData);
+    }
+}

@@ -124,6 +124,7 @@ public:
     bool isNull() const;
     bool isBool() const;
     bool isDouble() const;
+    bool isInt() const;
     bool isString() const;
     bool isArray() const;
     bool isObject() const;

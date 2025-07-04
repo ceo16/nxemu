@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="settings\ui_settings.h" />
+    <ClInclude Include="settings\ui_settings_identifiers.h" />
     <ClInclude Include="user_interface\menu_item.h" />
     <ClInclude Include="user_interface\notification.h" />
     <ClInclude Include="user_interface\resource.h" />
