@@ -1,5 +1,4 @@
 #include "system_config_audio.h"
-#include "settings/ui_settings_identifiers.h"
 #include <common/std_string.h>
 #include <nxemu-core/settings/settings.h>
 #include <widgets/combo_box.h>
@@ -84,12 +83,6 @@ SystemConfigAudio::SystemConfigAudio(ISciterUI & sciterUI, HWINDOW parent, Scite
     if (element)
     {
         bool checked = settings.GetBool(NXOsSetting::AudioMuted);
-        element.SetState(checked ? SciterElement::STATE_CHECKED : 0, checked ? 0 : SciterElement::STATE_CHECKED, true);
-    }
-    element = page.GetElementByID("muteBackground");
-    if (element)
-    {
-        bool checked = settings.GetBool(UiSetting::AudioMuteWhenInBackground);
         element.SetState(checked ? SciterElement::STATE_CHECKED : 0, checked ? 0 : SciterElement::STATE_CHECKED, true);
     }
     const char * audioOutputDeviceId = settings.GetString(NXOsSetting::AudioOutputDeviceId);
