@@ -11,7 +11,10 @@ class SciterMainWindow :
     public IMenuBarSink,
     public IRenderWindow,
     public IKeySink,
-    public IResizeSink
+    public IResizeSink,
+    public IClickSink,
+    public IMouseUpDownSink,
+    public IStateChangeSink
 {
     enum MainMenuID
     {
@@ -47,7 +50,9 @@ private:
     void ShowLoadingScreen(void);
     int32_t SciterKeyToSwitchKey(SciterKeys key);
     int32_t SciterKeyToVKCode(SciterKeys vkcode);
-        
+    void UpdateStatusbar();
+    void DismissvolumePopup(SCITER_ELEMENT source, int32_t x, int32_t y);
+
     void OnOpenFile(void);
     void OnFileExit(void);
     void OnSystemConfig(void);
@@ -70,7 +75,19 @@ private:
     bool OnKeyChar(SCITER_ELEMENT element, SCITER_ELEMENT item, SciterKeys keyCode, uint32_t keyboardState) override;
 
     // IResizeSink
-    bool OnSizeChanged(SCITER_ELEMENT elem);
+    bool OnSizeChanged(SCITER_ELEMENT elem) override;
+
+    // IClickSink
+    bool OnClick(SCITER_ELEMENT element, SCITER_ELEMENT source, uint32_t reason) override;
+
+    // IMouseUpDownSink
+    bool OnMouseUp(SCITER_ELEMENT element, SCITER_ELEMENT source, uint32_t x, uint32_t y) override;
+    bool OnMouseDown(SCITER_ELEMENT element, SCITER_ELEMENT source, uint32_t x, uint32_t y) override;
+
+    // IStateChangeSink
+    bool OnStateChange(SCITER_ELEMENT elem, uint32_t eventReason, void* data) override;
+
+    static void SettingChanged(const char* setting, void* userData);
 
     ISciterUI & m_sciterUI;
     ISciterWindow * m_window;
@@ -78,4 +95,5 @@ private:
     void * m_renderWindow;
     std::string m_windowTitle;
     SystemConfig m_systemConfig;
+    bool m_volumePopup;
 };

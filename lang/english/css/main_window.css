@@ -208,3 +208,34 @@ hr
   width: 100%%;
   height: 100%%;
 }
+
+#StatusBar
+{
+  background: #31363b;
+  flow: horizontal;
+  color: #eff0f1;
+  padding: 0.2em 1em;
+  border-top: 1px solid #434242;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 0.8em;
+  font-weight: 100;
+}
+
+#StatusBar #volume
+{
+  border: 1px solid transparent;
+  padding: 0.2em;
+  display: inline-block;
+}
+
+#StatusBar #volume:hover
+{
+  border: 1px solid #76797c;
+}
+
+#VolumePopup
+{
+  background: #31363b;
+  border: 1px solid #434242;
+  padding: 1em;
+}

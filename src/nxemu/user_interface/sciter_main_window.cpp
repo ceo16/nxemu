@@ -8,6 +8,7 @@
 #include <nxemu-core/settings/identifiers.h>
 #include <nxemu-core/settings/settings.h>
 #include <nxemu-core/version.h>
+#include <nxemu-os/os_settings_identifiers.h>
 #include <sciter_element.h>
 #include <widgets/menubar.h>
 #include <yuzu_common/settings_input.h>
@@ -17,13 +18,15 @@ SciterMainWindow::SciterMainWindow(ISciterUI & sciterUI, const char * windowTitl
     m_window(nullptr),
     m_renderWindow(nullptr),
     m_windowTitle(windowTitle),
-    m_systemConfig(sciterUI)
+    m_systemConfig(sciterUI),
+    m_volumePopup(false)
 {
     SettingsStore & settings = SettingsStore::GetInstance();
     settings.RegisterCallback(NXCoreSetting::GameFile, SciterMainWindow::GameFileChanged, this);
     settings.RegisterCallback(NXCoreSetting::GameName, SciterMainWindow::GameNameChanged, this);
     settings.RegisterCallback(NXCoreSetting::RomLoading, SciterMainWindow::RomLoadingChanged, this);
     settings.RegisterCallback(NXCoreSetting::DisplayedFrames, SciterMainWindow::DisplayedFramesChanged, this);
+    settings.RegisterCallback(NXOsSetting::AudioVolume, SciterMainWindow::SettingChanged, this);
 }
 
 void SciterMainWindow::ResetMenu()
@@ -111,6 +114,10 @@ bool SciterMainWindow::Show(void)
         IVideo & video = system->Video();
         video.UpdateFramebufferLayout(rect.right - rect.left, rect.bottom - rect.top);
     }
+    UpdateStatusbar();
+    m_sciterUI.AttachHandler(rootElement, IID_IMOUSEUPDOWNSINK, (IMouseUpDownSink*)this);
+    m_sciterUI.AttachHandler(rootElement.GetElementByID("volume"), IID_ICLICKSINK, (IClickSink*)this);
+    m_sciterUI.AttachHandler(rootElement.GetElementByID("audioVolume"), IID_ISTATECHANGESINK, (IStateChangeSink*)this);
     return true;
 }
 
@@ -282,6 +289,36 @@ int32_t SciterMainWindow::SciterKeyToVKCode(SciterKeys key)
         return keyMappings.at(key);
     }
     return 0;
+}
+
+void SciterMainWindow::UpdateStatusbar()
+{
+    SettingsStore & settings = SettingsStore::GetInstance();
+    SciterElement rootElement(m_window->GetRootElement());
+    SciterElement volume(rootElement.GetElementByID("volume"));
+    stdstr_f text("VOLUME: %d %%", settings.GetInt(NXOsSetting::AudioVolume));
+    volume.SetHTML((const uint8_t *)text.c_str(), text.size());
+}
+
+void SciterMainWindow::DismissvolumePopup(SCITER_ELEMENT source, int32_t x, int32_t y)
+{
+    if (!m_volumePopup)
+    {
+        return;
+    }
+    SciterElement rootElement(m_window->GetRootElement());
+    if (source == rootElement.GetElementByID("volume"))
+    {
+        return;
+    }
+    SciterElement volumePopup(rootElement.GetElementByID("VolumePopup"));
+    SciterElement::RECT rc = volumePopup.GetLocation(SciterElement::ROOT_RELATIVE | SciterElement::BORDER_BOX);
+    if (x >= rc.left && y >= rc.top && x <= rc.right && y <= rc.bottom)
+    {
+        return;
+    }
+    m_sciterUI.PopupHide(rootElement.GetElementByID("VolumePopup"));
+    m_volumePopup = false;
 }
 
 void SciterMainWindow::SetCaption(const std::string & caption)
@@ -477,4 +514,51 @@ bool SciterMainWindow::OnSizeChanged(SCITER_ELEMENT elem)
         }
     }
     return false;
+}
+
+bool SciterMainWindow::OnClick(SCITER_ELEMENT /*element*/, SCITER_ELEMENT source, uint32_t /*reason*/)
+{
+    SciterElement rootElement(m_window->GetRootElement());
+    if (source == rootElement.GetElementByID("volume"))
+    {
+        m_sciterUI.PopupShow(rootElement.GetElementByID("VolumePopup"), rootElement.GetElementByID("volume"), 8);
+        m_volumePopup = true;
+    }
+    return true;
+}
+
+bool SciterMainWindow::OnMouseUp(SCITER_ELEMENT /*element*/, SCITER_ELEMENT source, uint32_t x, uint32_t y)
+{
+    DismissvolumePopup(source, x, y);
+    return false;
+}
+
+bool SciterMainWindow::OnMouseDown(SCITER_ELEMENT /*element*/, SCITER_ELEMENT source, uint32_t x, uint32_t y)
+{
+    DismissvolumePopup(source, x, y);
+    return false;
+}
+
+bool SciterMainWindow::OnStateChange(SCITER_ELEMENT elem, uint32_t /*eventReason*/, void * /*data*/)
+{
+    SciterElement rootElement(m_window->GetRootElement());
+    if (rootElement.GetElementByID("audioVolume") == elem)
+    {
+        SciterValue value = SciterElement(elem).GetValue();
+        if (value.isInt())
+        {
+            SettingsStore& settings = SettingsStore::GetInstance();
+            settings.SetInt(NXOsSetting::AudioVolume, value.GetValueInt());
+        }
+    }
+    return false;
+}
+
+void SciterMainWindow::SettingChanged(const char * setting, void * userData)
+{
+    SciterMainWindow * impl = (SciterMainWindow*)userData;
+    if (strcmp(setting, NXOsSetting::AudioVolume) == 0)
+    {
+        impl->UpdateStatusbar();
+    }
 }
