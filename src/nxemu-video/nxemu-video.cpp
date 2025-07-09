@@ -1,4 +1,5 @@
 #include "video_manager.h"
+#include "video_settings.h"
 #include <memory>
 #include <stdio.h>
 
@@ -83,6 +84,7 @@ Output: None
 */  
 EXPORT void CALL FlushSettings()
 {
+    SaveVideoSettings();
 }
 
 IVideo * CALL CreateVideo(IRenderWindow & renderWindow, ISwitchSystem & system)

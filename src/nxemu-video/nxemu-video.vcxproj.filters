@@ -29,12 +29,21 @@
     <ClCompile Include="render_window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="video_settings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="video_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="render_window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="video_settings_identifiers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="video_settings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

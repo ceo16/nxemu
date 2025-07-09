@@ -67,7 +67,9 @@
       background: #2F2F31;
     }
     :root:focus,
-    :root:active {
+    :root:active,
+    :root:hover
+    {
       border-color: #3daee9;
     }
     :root:hover {
@@ -151,13 +153,64 @@ input[type="checkbox"] {
   border: 1px solid #818183;
   background: none;
   border-radius: 0.3em;
-  margin: 0 0.5em 0 0;
+  margin: 0 0.3em 0 0;
 }
 
 input[type="checkbox"]:checked {
    background: no-repeat 50% 50%;   
    background-image: url(stock:checkmark);
    background-size: 0.7em;
+}
+
+PageNav.page_tabs {
+  display: flex;
+}
+
+PageNav.page_tabs page {
+  background: #2b2f32;
+  border: 1px solid #55575a;
+  border-bottom: 1px solid #76787d;
+  border-radius: 2px 2px 0 0;
+  color: #eff0f1;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 0.8rem;
+  padding: 0.2rem 1.3rem 0.2rem 1.3rem;
+  margin: 0;
+  position: relative;
+  z-index: 2; 
+  margin-bottom: -1px;
+  min-width: 2rem;
+  display: inline-block;
+}
+
+PageNav.page_tabs page:hover {
+  border: 1px solid #55575a;
+  border-bottom: 1px solid #76787d;
+}
+
+PageNav.page_tabs page:visited {
+  background: #30373b;
+  border-color: #76787d;
+  border-bottom: 1px solid #30373b;
+}
+
+PageNav.page_tabs page.active {
+  background: #30373b;
+  border-color: #76787d;
+  border-bottom: 1px solid #30373b;
+}
+
+.page_content
+{
+  background: #30373b;
+  border: 1px solid #76787d;
+  width: 100%%;
+  height: 100%%;
+  flow: horizontal;
+  padding: 1em;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 0.8rem;
+  color: #eff0f1;
 }
 </style>
   </head>
@@ -170,6 +223,7 @@ input[type="checkbox"]:checked {
 <body>
   <div id="SettingsPage">
     <PageNav target="ConfigContents" id="MainTabNav">
+	  <Page contents="system_config_graphics.html" label="Graphics" Name="Graphics" />
 	  <Page contents="system_config_audio.html" label="Audio" Name="Audio" />
     </PageNav>
     <div id="ConfigContents" />

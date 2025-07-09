@@ -46,10 +46,13 @@
     <ClCompile Include="nxemu-video.cpp" />
     <ClCompile Include="render_window.cpp" />
     <ClCompile Include="video_manager.cpp" />
+    <ClCompile Include="video_settings.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="render_window.h" />
     <ClInclude Include="video_manager.h" />
+    <ClInclude Include="video_settings.h" />
+    <ClInclude Include="video_settings_identifiers.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\external\fmt.vcxproj">
@@ -57,6 +60,9 @@
     </ProjectReference>
     <ProjectReference Include="..\..\external\sirit.vcxproj">
       <Project>{583146af-ee19-454c-8646-b202c0eb82ba}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\common\common.vcxproj">
+      <Project>{ec81be93-8316-4db6-8a26-b13fb5b13848}</Project>
     </ProjectReference>
     <ProjectReference Include="..\yuzu_common\yuzu_common.vcxproj">
       <Project>{250224f2-2e89-410e-8bdb-875959daba2c}</Project>

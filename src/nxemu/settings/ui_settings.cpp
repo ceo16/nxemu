@@ -2,18 +2,53 @@
 #include <common/json.h>
 #include <common/path.h>
 #include <nxemu-core/settings/settings.h>
+#include <nxemu-core/notification.h>
 
 namespace
 {
-struct UISettingsDefaults
-{
-    static constexpr const char * defaultLanguageDirValue = "./lang";
-    static constexpr const char * defaultLanguageBaseValue = "english";
-    static constexpr const char * defaultLanguageCurrentValue = "english";
-    static constexpr bool defaultSciterConsole = false;
+    Path GetDefaultLanguageDir();
 
-    static Path GetDefaultLanguageDir();
-};
+    enum class SettingType
+    {
+        Path,
+        String,
+        Bool,
+        StringList,
+    };
+
+    class UISetting
+    {
+    public:
+        UISetting(const char * key, Path * path, std::string * value, Path defaultPath, const char * defaultValue);
+        UISetting(const char * key, std::string * value, const char * defaultValue);
+        UISetting(const char * key, bool * value, bool defaultValue);
+        UISetting(const char * key, Stringlist * value);
+
+        const char * json_key;
+        SettingType settingType;
+        union
+        {
+            Path * path;
+            std::string * string;
+            bool * boolean;
+            Stringlist * string_list;
+        } setting;
+        std::string * settingValue;
+        Path default_path;
+        const char * default_string;
+        const bool default_bool;
+    };
+
+    static UISetting settings[] = {
+        { "RecentFiles", &uiSettings.recentFiles},
+        { "LanguageDirectory", &uiSettings.languageDir, &uiSettings.languageDirValue, GetDefaultLanguageDir(), "./lang"},
+        { "LanguageBase", &uiSettings.languageBase, "english"},
+        { "LanguageCurrent", &uiSettings.languageCurrent, "english"},
+        { "SciterConsole", &uiSettings.sciterConsole, false},
+        { "PerformVulkanCheck", &uiSettings.performVulkanCheck, true},
+        { nullptr, &uiSettings.hasBrokenVulkan, false},
+    };
+
 } // namespace
 
 UISettings uiSettings = {};
@@ -21,41 +56,76 @@ UISettings uiSettings = {};
 void LoadUISetting(void)
 {
     uiSettings = {};
-    uiSettings.languageDir = UISettingsDefaults::GetDefaultLanguageDir();
-    uiSettings.languageDirValue = UISettingsDefaults::defaultLanguageDirValue;
-    uiSettings.languageBase = UISettingsDefaults::defaultLanguageBaseValue;
-    uiSettings.languageCurrent = UISettingsDefaults::defaultLanguageCurrentValue;
-    uiSettings.sciterConsole = UISettingsDefaults::defaultSciterConsole;
-
-    JsonValue jsonSettings = SettingsStore::GetInstance().GetSettings("UI");
-
-    const JsonValue * node = jsonSettings.Find("LanguageDirectory");
-    if (node != nullptr && node->isString())
+    for (const UISetting & setting : settings)
     {
-        std::string dirValue = node->asString();
-        if (!dirValue.empty())
+        switch (setting.settingType)
         {
-            uiSettings.languageDirValue = dirValue;
-            uiSettings.languageDir = Path(uiSettings.languageDirValue, "").DirectoryNormalize(Path(Path::MODULE_DIRECTORY));
+        case SettingType::Path:
+            *(setting.settingValue) = setting.default_string;
+            *(setting.setting.path) = setting.default_path;
+            break;
+        case SettingType::String:
+            *(setting.setting.string) = setting.default_string;
+            break;
+        case SettingType::Bool:
+            *(setting.setting.boolean) = setting.default_bool;
+            break;
+        case SettingType::StringList:
+            *(setting.setting.string_list) = {};
+            break;
+        default:
+            g_notify->BreakPoint(__FILE__, __LINE__);
         }
     }
 
-    node = jsonSettings.Find("SciterConsole");
-    if (node != nullptr && node->isBool())
+    JsonValue section = SettingsStore::GetInstance().GetSettings("UI");
+    for (const UISetting & setting : settings)
     {
-        uiSettings.sciterConsole = node->asBool();
-    }
-
-    node = jsonSettings.Find("RecentFiles");
-    if (node != nullptr && node->isArray())
-    {
-        for (uint32_t i = 0; i < node->size(); i++)
+        const JsonValue * node;
+        switch (setting.settingType)
         {
-            const JsonValue & file = (*node)[i];
-            if (file.isString())
+        case SettingType::Path:
+            node = setting.json_key ? section.Find(setting.json_key) : nullptr;
+            if (node != nullptr && node->isString())
             {
-                uiSettings.recentFiles.push_back(file.asString());
+                std::string dirValue = node->asString();
+                if (!dirValue.empty())
+                {
+                    *(setting.settingValue) = dirValue;
+                    *(setting.setting.path) = Path(*(setting.settingValue), "").DirectoryNormalize(Path(Path::MODULE_DIRECTORY));
+                }
             }
+            break;
+        case SettingType::String:
+            node = setting.json_key ? section.Find(setting.json_key) : nullptr;
+            if (node != nullptr && node->isString())
+            {
+                *(setting.setting.string) = node->asString();
+            }
+            break;
+        case SettingType::Bool:
+            node = setting.json_key ? section.Find(setting.json_key) : nullptr;
+            if (node != nullptr && node->isBool())
+            {
+                *(setting.setting.boolean) = node->asBool();
+            }
+            break;
+        case SettingType::StringList:
+            node = setting.json_key ? section.Find(setting.json_key) : nullptr;
+            if (node != nullptr && node->isArray())
+            {
+                for (uint32_t i = 0; i < node->size(); i++)
+                {
+                    const JsonValue & item = (*node)[i];
+                    if (item.isString())
+                    {                        
+                        setting.setting.string_list->push_back(item.asString());
+                    }
+                }
+            }
+            break;
+        default:
+            g_notify->BreakPoint(__FILE__, __LINE__);
         }
     }
 }
@@ -63,28 +133,97 @@ void LoadUISetting(void)
 void SaveUISetting(void)
 {
     JsonValue json;
-    if (!uiSettings.recentFiles.empty())
+    for (const UISetting& setting : settings)
     {
-        JsonValue recentFiles(JsonValueType::Array);
-        for (const std::string & file : uiSettings.recentFiles)
+        switch (setting.settingType)
         {
-            recentFiles.Append(JsonValue(file));
+        case SettingType::StringList:
+            if (!setting.setting.string_list->empty())
+            {
+                JsonValue recentFiles(JsonValueType::Array);
+                for (const std::string & item : *(setting.setting.string_list))
+                {
+                    recentFiles.Append(JsonValue(item));
+                }
+                json[setting.json_key] = std::move(recentFiles);
+            }
+            break;
+        case SettingType::Path:
+            if (strcmp(setting.settingValue->c_str(), setting.default_string) != 0)
+            {
+                json[setting.json_key] = JsonValue(*setting.settingValue);
+            }
+            break;
+        case SettingType::String:
+            if (strcmp(setting.setting.string->c_str(), setting.default_string) != 0)
+            {
+                json[setting.json_key] = JsonValue(*setting.setting.string);
+            }
+            break;
+        case SettingType::Bool:
+            if (*setting.setting.boolean != setting.default_bool)
+            {
+                json[setting.json_key] = JsonValue(*setting.setting.boolean);
+            }
+            break;
+        default:
+            g_notify->BreakPoint(__FILE__, __LINE__);
         }
-        json["RecentFiles"] = std::move(recentFiles);
     }
-
-    if (uiSettings.languageDirValue != UISettingsDefaults::defaultLanguageDirValue)
-    {
-        json["LanguageDirectory"] = JsonValue(uiSettings.languageDirValue);
-    }
-    SettingsStore & settings = SettingsStore::GetInstance();
-    settings.SetSettings("UI", json);
-    settings.Save();
+    
+    SettingsStore & settingstore = SettingsStore::GetInstance();
+    settingstore.SetSettings("UI", json);
+    settingstore.Save();
 }
 
-Path UISettingsDefaults::GetDefaultLanguageDir()
+namespace
 {
-    Path dir(Path::MODULE_DIRECTORY);
-    dir.AppendDirectory("lang");
-    return dir;
+    Path GetDefaultLanguageDir()
+    {
+        Path dir(Path::MODULE_DIRECTORY);
+        dir.AppendDirectory("lang");
+        return dir;
+    }
+
+    UISetting::UISetting(const char * key, Path * path, std::string * value, Path defaultPath, const char * defaultValue) :
+        json_key(key),
+        settingType(SettingType::Path),
+        settingValue(value),
+        default_path(defaultPath),
+        default_string(defaultValue),
+        default_bool(false)
+    {
+        setting.path = path;
+    }
+
+    UISetting::UISetting(const char * key, std::string * value, const char * defaultValue) :
+        json_key(key),
+        settingType(SettingType::String),
+        settingValue(nullptr),
+        default_string(defaultValue),
+        default_bool(false)
+    {
+        setting.string = value;
+    }
+
+    UISetting::UISetting(const char * key, bool * value, bool defaultValue) :
+        json_key(key),
+        settingType(SettingType::Bool),
+        settingValue(nullptr),
+        default_string(nullptr),
+        default_bool(defaultValue)
+    {
+        setting.boolean = value;
+    }
+
+    UISetting::UISetting(const char* key, Stringlist* value) :
+        json_key(key),
+        settingType(SettingType::StringList),
+        settingValue(nullptr),
+        default_string(nullptr),
+        default_bool(false)
+    {
+        setting.string_list = value;
+    }
+
 }

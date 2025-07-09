@@ -1,0 +1,113 @@
+<PageNav target="GraphicsContents" id="GraphicsTabNav" class="page_tabs">
+  <Page label="Graphics" Name="Graphics">
+    <div class="input-group">
+      <div class="group-title">API Settings</div>
+      <div class="form-row">
+        <div class="left"><label for="GraphicsAPI">API:</label></div>
+        <div class="right"><ComboBox id="GraphicsAPI" /></div>
+      </div>
+      <div class="form-row" id="ShaderBackendRow">
+        <div class="left"><label for="ShaderBackend">Shader Backend:</label></div>
+        <div class="right"><ComboBox id="ShaderBackend" /></div>
+      </div>
+      <div class="form-row" id="VulkanDevicesRow">
+        <div class="left"><label for="VulkanDevices">Device:</label></div>
+        <div class="right"><ComboBox id="VulkanDevices" /></div>
+      </div>
+    </div>
+    <div class="input-group">
+      <div class="group-title">Graphics Settings</div>
+      <div class="form-row checkbox-row">
+        <div class="checkbox"><input type="checkbox" id="UseDiskPipelineCache"><label for="UseDiskPipelineCache">Use disk pipeline cache</label></div>
+      </div>
+      <div class="form-row checkbox-row">
+        <div class="checkbox"><input type="checkbox" id="UseAsynchronousGPUEmulation"><label for="UseAsynchronousGPUEmulation">Use asynchronous GPU emulation</label></div>
+      </div>
+      <div class="form-row">
+        <div class="left"><label for="AstcDecodeMode">ASTC Decoding Method:</label></div>
+        <div class="right"><ComboBox id="AstcDecodeMode" /></div>
+      </div>
+      <div class="form-row">
+        <div class="left"><label for="VSyncMode">VSync Mode:</label></div>
+        <div class="right"><ComboBox id="VSyncMode" /></div>
+      </div>
+      <div class="form-row">
+        <div class="left"><label for="NvdecEmulation">NVDEC emulation:</label></div>
+        <div class="right"><ComboBox id="NvdecEmulation" /></div>
+      </div>
+      <div class="form-row">
+        <div class="left"><label for="FullscreenMode">Fullscreen Mode:</label></div>
+        <div class="right"><ComboBox id="FullscreenMode" /></div>
+      </div>
+      <div class="form-row">
+        <div class="left"><label for="AspectRatio">Aspect Ratio:</label></div>
+        <div class="right"><ComboBox id="AspectRatio" /></div>
+      </div>
+      <div class="form-row">
+        <div class="left"><label for="ResolutionSetup">Resolution:</label></div>
+        <div class="right"><ComboBox id="ResolutionSetup" /></div>
+      </div>
+      <div class="form-row">
+        <div class="left"><label for="ScalingFilter">Window Adapting Filter:</label></div>
+        <div class="right"><ComboBox id="ScalingFilter" /></div>
+      </div>
+      <div class="form-row">
+        <div class="left"><label for="AntiAliasing">Anti-Aliasing Method:</label></div>
+        <div class="right"><ComboBox id="AntiAliasing" /></div>
+      </div>
+      <div class="form-row slider-row">
+        <div class="left"><label for="FSPSharpness">FSP Sharpness:</label></div>
+        <div class="right"><input type="hslider" id="Volume" min="0" max="100" value="100" id="FSPSharpness" style="width: 19em" /><span id="FSPSharpnessDisplay">100%</span></div>
+      </div>
+    </div>
+  </page>
+  <Page label="Advanced" Name="Advanced">
+    <div class="input-group">
+      <div class="group-title">Advanced Graphics Settings</div>
+      <div class="form-row">
+        <div class="left"><label for="AccuracyLevel">Accuracy Level:</label></div>
+        <div class="right"><ComboBox id="AccuracyLevel" /></div>
+      </div>
+      <div class="form-row">
+        <div class="left"><label for="AnisotropicFiltering">Anisotropic Filtering:</label></div>
+        <div class="right"><ComboBox id="AnisotropicFiltering" /></div>
+      </div>
+      <div class="form-row">
+        <div class="left"><label for="ASTCRecompressionMethod">ASTC Recompression Method:</label></div>
+        <div class="right"><ComboBox id="ASTCRecompressionMethod" /></div>
+      </div>
+      <div class="form-row">
+        <div class="left"><label for="VRAMUsageMode">VRAM Usage Mode:</label></div>
+        <div class="right"><ComboBox id="VRAMUsageMode" /></div>
+      </div>
+      <div class="form-row checkbox-row">
+        <div class="checkbox"><input type="checkbox" id="EnableAsynchronousPresentation"><label for="EnableAsynchronousPresentation">Enable asynchronous presentation (Vulkan only)</label></div>
+      </div>
+      <div class="form-row checkbox-row">
+        <div class="checkbox"><input type="checkbox" id="ForceMaximumClocks"><label for="ForceMaximumClocks">Force maximum clocks (Vulkan only)</label></div>
+      </div>
+      <div class="form-row checkbox-row">
+        <div class="checkbox"><input type="checkbox" id="EnableReactiveFlushing"><label for="EnableReactiveFlushing">Enable Reactive Flushing</label></div>
+      </div>
+      <div class="form-row checkbox-row">
+        <div class="checkbox"><input type="checkbox" id="UseAsynchronousShaderBuilding"><label for="UseAsynchronousShaderBuilding">Use asynchronous shader building (Hack)</label></div>
+      </div>
+      <div class="form-row checkbox-row">
+        <div class="checkbox"><input type="checkbox" id="FastGPUTime"><label for="FastGPUTime">Fast GPU Time (Hack)</label></div>
+      </div>
+      <div class="form-row checkbox-row">
+        <div class="checkbox"><input type="checkbox" id="UseVulkanPipelineCache"><label for="UseVulkanPipelineCache">Use Vulkan pipeline cache</label></div>
+      </div>
+      <div class="form-row checkbox-row">
+        <div class="checkbox"><input type="checkbox" id="SyncToFramerateOfVideoPlayback"><label for="SyncToFramerateOfVideoPlayback">Sync to framerate of video playback</label></div>
+      </div>
+      <div class="form-row checkbox-row">
+        <div class="checkbox"><input type="checkbox" id="BarrierFeedbackLoops"><label for="BarrierFeedbackLoops">Barrier feedback loops</label></div>
+      </div>
+    </div>
+  </page>
+</PageNav>
+<div id="GraphicsContents" class="page_content" />
+
+
+

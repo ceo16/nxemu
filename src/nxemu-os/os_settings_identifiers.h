@@ -9,4 +9,4 @@ namespace NXOsSetting
     constexpr const char * AudioVolume = "nxos:AudioVolume";
     constexpr const char * AudioMuted = "nxos:AudioMuted";
 
-} // namespace NXCoreSetting
+} // namespace NXOsSetting

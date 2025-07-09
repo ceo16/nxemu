@@ -1,4 +1,5 @@
 #include "settings/ui_settings.h"
+#include "startup_checks.h"
 #include "user_interface/notification.h"
 #include "user_interface/sciter_main_window.h"
 #include <common/std_string.h>
@@ -21,6 +22,15 @@ void RegisterWidgets(ISciterUI & sciterUI)
 int WINAPI WinMain(_In_ HINSTANCE /*hInstance*/, _In_opt_ HINSTANCE /*hPrevInstance*/, _In_ LPSTR /*lpszArgs*/, _In_ int /*nWinMode*/)
 {
     bool Res = AppInit(&Notification::GetInstance());
+
+    if (uiSettings.performVulkanCheck)
+    {
+        VulkanCheckResult result = StartupVulkanChecks();
+        if (result != VULKAN_CHECK_DONE)
+        {
+            return result == EXIT_VULKAN_AVAILABLE ? 0 : 1;
+        }
+    }
 
     ISciterUI * sciterUI = nullptr;
     if (Res && !SciterUIInit(uiSettings.languageDir, uiSettings.languageBase.c_str(), uiSettings.languageCurrent.c_str(), uiSettings.sciterConsole, sciterUI))

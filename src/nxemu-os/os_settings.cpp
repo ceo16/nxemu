@@ -45,7 +45,7 @@ namespace
     };
 }
 
-void OsSettingChanged(const char * setting, void * userData)
+void OsSettingChanged(const char * setting, void * /*userData*/)
 {
     for (const OsSetting & osSetting : settings)
     {

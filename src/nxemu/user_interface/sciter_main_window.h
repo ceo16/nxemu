@@ -5,6 +5,7 @@
 #include <sciter_handler.h>
 #include <widgets/menubar.h>
 #include "user_interface/settings/system_config.h"
+#include "startup_checks.h"
 
 class SciterMainWindow :
     public IWindowDestroySink,
@@ -37,6 +38,10 @@ public:
     void ResetMenu();
     bool Show(void);
 
+    // IRenderWindow
+    void * RenderSurface(void) const override;
+    float PixelRatio(void) const override; 
+
 private:
     SciterMainWindow(void) = delete;
     SciterMainWindow(const SciterMainWindow &) = delete;
@@ -65,10 +70,6 @@ private:
     // IMenuBarSink
     void OnMenuItem(int32_t id, SCITER_ELEMENT item) override;
 
-    // IRenderWindow
-    void * RenderSurface(void) const override;
-    float PixelRatio(void) const override;
-
     // IKeySink
     bool OnKeyDown(SCITER_ELEMENT element, SCITER_ELEMENT item, SciterKeys keyCode, uint32_t keyboardState) override;
     bool OnKeyUp(SCITER_ELEMENT element, SCITER_ELEMENT item, SciterKeys keyCode, uint32_t keyboardState) override;
@@ -91,6 +92,7 @@ private:
 
     ISciterUI & m_sciterUI;
     ISciterWindow * m_window;
+    std::vector<VkDeviceRecord> m_vkDeviceRecords;
     std::shared_ptr<IMenuBar> m_menuBar;
     void * m_renderWindow;
     std::string m_windowTitle;

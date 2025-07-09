@@ -13,6 +13,8 @@ struct UISettings
     std::string languageBase;
     std::string languageCurrent;
     bool sciterConsole;
+    bool performVulkanCheck;
+    bool hasBrokenVulkan;
 };
 
 extern UISettings uiSettings;

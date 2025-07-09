@@ -18,7 +18,7 @@ SciterMainWindow::SciterMainWindow(ISciterUI & sciterUI, const char * windowTitl
     m_window(nullptr),
     m_renderWindow(nullptr),
     m_windowTitle(windowTitle),
-    m_systemConfig(sciterUI),
+    m_systemConfig(sciterUI, m_vkDeviceRecords),
     m_volumePopup(false)
 {
     SettingsStore & settings = SettingsStore::GetInstance();
@@ -118,6 +118,11 @@ bool SciterMainWindow::Show(void)
     m_sciterUI.AttachHandler(rootElement, IID_IMOUSEUPDOWNSINK, (IMouseUpDownSink*)this);
     m_sciterUI.AttachHandler(rootElement.GetElementByID("volume"), IID_ICLICKSINK, (IClickSink*)this);
     m_sciterUI.AttachHandler(rootElement.GetElementByID("audioVolume"), IID_ISTATECHANGESINK, (IStateChangeSink*)this);
+
+    if (!uiSettings.hasBrokenVulkan)
+    {
+        PopulateVulkanRecords(m_vkDeviceRecords, RenderSurface());
+    }
     return true;
 }
 

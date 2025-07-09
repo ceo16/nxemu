@@ -1,5 +1,6 @@
-#include "video_manager.h"
 #include "render_window.h"
+#include "video_manager.h"
+#include "video_settings.h"
 #include "yuzu_video_core/control/channel_state.h"
 #include "yuzu_video_core/dma_pusher.h"
 #include "yuzu_video_core/host1x/host1x.h"
@@ -47,6 +48,7 @@ void VideoManager::EmulationStarting(void)
 
 bool VideoManager::Initialize(void)
 {
+    SetupVideoSetting();
     return impl->Initialize();
 }
 
