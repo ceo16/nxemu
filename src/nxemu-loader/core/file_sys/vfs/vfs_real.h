@@ -8,7 +8,6 @@
 #include <optional>
 #include <string_view>
 #include "yuzu_common/intrusive_list.h"
-#include "core/file_sys/fs_filesystem.h"
 #include "core/file_sys/vfs/vfs.h"
 
 namespace Common::FS {
@@ -33,14 +32,14 @@ public:
     bool IsReadable() const override;
     bool IsWritable() const override;
     VfsEntryType GetEntryType(std::string_view path) const override;
-    VirtualFile OpenFile(std::string_view path, OpenMode perms = OpenMode::Read) override;
-    VirtualFile CreateFile(std::string_view path, OpenMode perms = OpenMode::ReadWrite) override;
+    VirtualFile OpenFile(std::string_view path, VirtualFileOpenMode perms = VirtualFileOpenMode::Read) override;
+    VirtualFile CreateFile(std::string_view path, VirtualFileOpenMode perms = VirtualFileOpenMode::ReadWrite) override;
     VirtualFile CopyFile(std::string_view old_path, std::string_view new_path) override;
     VirtualFile MoveFile(std::string_view old_path, std::string_view new_path) override;
     bool DeleteFile(std::string_view path) override;
-    VirtualDir OpenDirectory(std::string_view path, OpenMode perms = OpenMode::Read) override;
+    VirtualDir OpenDirectory(std::string_view path, VirtualFileOpenMode perms = VirtualFileOpenMode::Read) override;
     VirtualDir CreateDirectory(std::string_view path,
-                               OpenMode perms = OpenMode::ReadWrite) override;
+                               VirtualFileOpenMode perms = VirtualFileOpenMode::ReadWrite) override;
     VirtualDir CopyDirectory(std::string_view old_path, std::string_view new_path) override;
     VirtualDir MoveDirectory(std::string_view old_path, std::string_view new_path) override;
     bool DeleteDirectory(std::string_view path) override;
@@ -55,14 +54,14 @@ private:
 
 private:
     friend class RealVfsFile;
-    std::unique_lock<std::mutex> RefreshReference(const std::string& path, OpenMode perms,
+    std::unique_lock<std::mutex> RefreshReference(const std::string& path, VirtualFileOpenMode perms,
                                                   FileReference& reference);
     void DropReference(std::unique_ptr<FileReference>&& reference);
 
 private:
     friend class RealVfsDirectory;
     VirtualFile OpenFileFromEntry(std::string_view path, std::optional<u64> size,
-                                  OpenMode perms = OpenMode::Read);
+                                  VirtualFileOpenMode perms = VirtualFileOpenMode::Read);
 
 private:
     void EvictSingleReferenceLocked();
@@ -90,7 +89,7 @@ public:
 
 private:
     RealVfsFile(RealVfsFilesystem& base, std::unique_ptr<FileReference> reference,
-                const std::string& path, OpenMode perms = OpenMode::Read,
+                const std::string& path, VirtualFileOpenMode perms = VirtualFileOpenMode::Read,
                 std::optional<u64> size = {});
 
     RealVfsFilesystem& base;
@@ -99,7 +98,7 @@ private:
     std::string parent_path;
     std::vector<std::string> path_components;
     std::optional<u64> size;
-    OpenMode perms;
+    VirtualFileOpenMode perms;
 };
 
 // An implementation of VfsDirectory that represents a directory on the user's computer.
@@ -133,7 +132,7 @@ public:
 
 private:
     RealVfsDirectory(RealVfsFilesystem& base, const std::string& path,
-                     OpenMode perms = OpenMode::Read);
+                     VirtualFileOpenMode perms = VirtualFileOpenMode::Read);
 
     template <typename T, typename R>
     std::vector<std::shared_ptr<R>> IterateEntries() const;
@@ -142,7 +141,7 @@ private:
     std::string path;
     std::string parent_path;
     std::vector<std::string> path_components;
-    OpenMode perms;
+    VirtualFileOpenMode perms;
 };
 
 } // namespace FileSys

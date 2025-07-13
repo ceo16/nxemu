@@ -8,16 +8,6 @@
 
 namespace FileSys {
 
-enum class OpenMode : u32 {
-    Read = (1 << 0),
-    Write = (1 << 1),
-    AllowAppend = (1 << 2),
-
-    ReadWrite = (Read | Write),
-    All = (ReadWrite | AllowAppend),
-};
-DECLARE_ENUM_FLAG_OPERATORS(OpenMode)
-
 enum class OpenDirectoryMode : u64 {
     Directory = (1 << 0),
     File = (1 << 1),

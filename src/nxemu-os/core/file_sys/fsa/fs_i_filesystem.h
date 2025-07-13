@@ -3,9 +3,13 @@
 
 #pragma once
 
+#include "core/file_sys/errors.h"
+#include "core/file_sys/filesystem_interfaces.h"
+#include "core/file_sys/fs_filesystem.h"
 #include "core/file_sys/fs_path.h"
 #include "core/hle/result.h"
 #include "core/hle/service/filesystem/filesystem.h"
+#include <nxemu-module-spec/system_loader.h>
 
 namespace FileSys::Fsa {
 
@@ -21,7 +25,17 @@ enum class QueryId : u32 {
 
 class IFileSystem {
 public:
+    explicit IFileSystem(IVirtualDirectoryPtr && backend_) : backend{std::move(backend_)} {}
     virtual ~IFileSystem() {}
+
+    Result CreateFile(const Path& path, s64 size, CreateOption option) {
+        R_UNLESS(size >= 0, ResultOutOfRange);
+        R_RETURN(this->DoCreateFile(path, size, static_cast<int>(option)));
+    }
+
+    Result CreateFile(const Path& path, s64 size) {
+        R_RETURN(this->CreateFile(path, size, CreateOption::None));
+    }
 
     Result DeleteFile(const Path& path) {
         R_RETURN(this->DoDeleteFile(path));
@@ -45,6 +59,13 @@ public:
 
     Result RenameDirectory(const Path& old_path, const Path& new_path) {
         R_RETURN(this->DoRenameDirectory(old_path, new_path));
+    }
+
+    Result OpenFile(IVirtualFile ** out_file, const Path& path, VirtualFileOpenMode mode) {
+        R_UNLESS(out_file != nullptr, ResultNullptrArgument);
+        R_UNLESS(((uint32_t)mode & (uint32_t)VirtualFileOpenMode::ReadWrite) != 0, ResultInvalidOpenMode);
+        R_UNLESS(((uint32_t)mode & ~((uint32_t)VirtualFileOpenMode::All)) == 0, ResultInvalidOpenMode);
+        R_RETURN(this->DoOpenFile(out_file, path, mode));
     }
 
     Result Commit() {
@@ -88,8 +109,7 @@ public:
 
 private:
     Result DoCreateFile(const Path& path, s64 size, int flags) {
-        UNIMPLEMENTED();
-        R_SUCCEED();
+        R_RETURN(backend.CreateFile(path.GetString(), size));
     }
 
     Result DoDeleteFile(const Path& path) {
@@ -122,6 +142,10 @@ private:
         R_SUCCEED();
     }
 
+    Result DoOpenFile(IVirtualFile ** out_file, const Path& path, VirtualFileOpenMode mode) {
+        R_RETURN(backend.OpenFile(out_file, path.GetString(), mode));
+    }
+
     Result DoCommit() {
         UNIMPLEMENTED();
         R_SUCCEED();
@@ -147,6 +171,8 @@ private:
         UNIMPLEMENTED();
         R_SUCCEED();
     }
+
+    Service::FileSystem::VfsDirectoryServiceWrapper backend;
 };
 
 } // namespace FileSys::Fsa

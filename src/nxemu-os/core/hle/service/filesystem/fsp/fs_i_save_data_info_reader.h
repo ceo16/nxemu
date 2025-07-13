@@ -17,13 +17,13 @@ class ISaveDataInfoReader final : public ServiceFramework<ISaveDataInfoReader> {
 public:
     explicit ISaveDataInfoReader(Core::System& system_,
                                  std::shared_ptr<SaveDataController> save_data_controller_,
-                                 FileSys::SaveDataSpaceId space);
+                                 SaveDataSpaceId space);
     ~ISaveDataInfoReader() override;
 
     struct SaveDataInfo {
         u64_le save_id_unknown;
-        FileSys::SaveDataSpaceId space;
-        FileSys::SaveDataType type;
+        SaveDataSpaceId space;
+        SaveDataType type;
         INSERT_PADDING_BYTES(0x6);
         std::array<u8, 0x10> user_id;
         u64_le save_id;
@@ -39,7 +39,7 @@ public:
                             OutArray<SaveDataInfo, BufferAttr_HipcMapAlias> out_entries);
 
 private:
-    void FindAllSaves(FileSys::SaveDataSpaceId space);
+    void FindAllSaves(SaveDataSpaceId space);
 
     std::shared_ptr<SaveDataController> save_data_controller;
     std::vector<SaveDataInfo> info;

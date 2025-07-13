@@ -24,4 +24,5 @@ template class InterfacePtr<IVirtualFile>;
 template class InterfacePtr<IFileSysNCA>;
 template class InterfacePtr<ISaveDataFactory>;
 template class InterfacePtr<IRomFsController>;
+template class InterfacePtr<ISaveDataController>;
 template class InterfacePtr<IFileSysNACP>;

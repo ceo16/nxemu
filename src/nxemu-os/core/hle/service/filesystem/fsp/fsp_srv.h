@@ -8,6 +8,8 @@
 #include "core/hle/service/filesystem/fsp/fsp_types.h"
 #include "core/hle/service/service.h"
 #include "core/file_sys/filesystem_interfaces.h"
+#include "core/file_sys/fs_save_data_types.h"
+#include <nxemu-module-spec/system_loader.h>
 
 namespace Core {
 class Reporter;
@@ -16,6 +18,7 @@ class Reporter;
 namespace FileSys {
 class ContentProvider;
 class FileSystemBackend;
+
 } // namespace FileSys
 
 namespace Service::FileSystem {
@@ -28,6 +31,7 @@ class ISaveDataInfoReader;
 class ISaveDataTransferProhibiter;
 class IStorage;
 class IMultiCommitManager;
+
 
 enum class AccessLogVersion : u32 {
     V7_0_0 = 2,
@@ -48,14 +52,45 @@ public:
 
 private:
     Result SetCurrentProcess(ClientProcessId pid);
+    Result OpenFileSystemWithPatch(OutInterface<IFileSystem> out_interface,
+                                   FileSystemProxyType type, u64 open_program_id);
     Result OpenSdCardFileSystem(OutInterface<IFileSystem> out_interface);
+    Result CreateSaveDataFileSystem(FileSys::SaveDataCreationInfo save_create_struct,
+                                    SaveDataAttribute save_struct, u128 uid);
+    Result CreateSaveDataFileSystemBySystemSaveDataId(
+        SaveDataAttribute save_struct, FileSys::SaveDataCreationInfo save_create_struct);
+    Result OpenSaveDataFileSystem(OutInterface<IFileSystem> out_interface,
+                                  SaveDataSpaceId space_id,
+                                  SaveDataAttribute attribute);
+    Result OpenSaveDataFileSystemBySystemSaveDataId(OutInterface<IFileSystem> out_interface,
+                                                    SaveDataSpaceId space_id,
+                                                    SaveDataAttribute attribute);
+    Result OpenReadOnlySaveDataFileSystem(OutInterface<IFileSystem> out_interface,
+                                          SaveDataSpaceId space_id,
+                                          SaveDataAttribute attribute);
+    Result OpenSaveDataInfoReaderBySaveDataSpaceId(OutInterface<ISaveDataInfoReader> out_interface,
+                                                   SaveDataSpaceId space);
+    Result OpenSaveDataInfoReaderOnlyCacheStorage(OutInterface<ISaveDataInfoReader> out_interface);
+    Result FindSaveDataWithFilter(Out<s64> out_count, OutBuffer<BufferAttr_HipcMapAlias> out_buffer,
+                                  SaveDataSpaceId space_id,
+                                  FileSys::SaveDataFilter filter);
     Result WriteSaveDataFileSystemExtraData(InBuffer<BufferAttr_HipcMapAlias> buffer,
-                                            FileSys::SaveDataSpaceId space_id, u64 save_data_id);
+                                            SaveDataSpaceId space_id, u64 save_data_id);
+    Result WriteSaveDataFileSystemExtraDataWithMaskBySaveDataAttribute(
+        InBuffer<BufferAttr_HipcMapAlias> buffer, InBuffer<BufferAttr_HipcMapAlias> mask_buffer,
+        SaveDataSpaceId space_id, SaveDataAttribute attribute);
     Result ReadSaveDataFileSystemExtraData(OutBuffer<BufferAttr_HipcMapAlias> out_buffer,
                                            u64 save_data_id);
+    Result ReadSaveDataFileSystemExtraDataBySaveDataAttribute(
+        OutBuffer<BufferAttr_HipcMapAlias> out_buffer, SaveDataSpaceId space_id,
+        SaveDataAttribute attribute);
     Result ReadSaveDataFileSystemExtraDataBySaveDataSpaceId(
-        OutBuffer<BufferAttr_HipcMapAlias> out_buffer, FileSys::SaveDataSpaceId space_id,
+        OutBuffer<BufferAttr_HipcMapAlias> out_buffer, SaveDataSpaceId space_id,
         u64 save_data_id);
+    Result ReadSaveDataFileSystemExtraDataWithMaskBySaveDataAttribute(
+        SaveDataSpaceId space_id, SaveDataAttribute attribute,
+        InBuffer<BufferAttr_HipcMapAlias> mask_buffer,
+        OutBuffer<BufferAttr_HipcMapAlias> out_buffer);
     Result OpenSaveDataTransferProhibiter(OutInterface<ISaveDataTransferProhibiter> out_prohibiter,
                                           u64 id);
     Result OpenDataStorageByCurrentProcess(OutInterface<IStorage> out_interface);
@@ -72,7 +107,7 @@ private:
     Result GetProgramIndexForAccessLog(Out<AccessLogVersion> out_access_log_version,
                                        Out<u32> out_access_log_program_index);
     Result OpenMultiCommitManager(OutInterface<IMultiCommitManager> out_interface);
-    Result ExtendSaveDataFileSystem(FileSys::SaveDataSpaceId space_id, u64 save_data_id,
+    Result ExtendSaveDataFileSystem(SaveDataSpaceId space_id, u64 save_data_id,
                                     s64 available_size, s64 journal_size);
     Result GetCacheStorageSize(s32 index, Out<s64> out_data_size, Out<s64> out_journal_size);
 

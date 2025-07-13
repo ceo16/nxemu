@@ -126,7 +126,17 @@ Result IApplicationFunctions::PopLaunchParameter(Out<SharedPointer<IStorage>> ou
 Result IApplicationFunctions::EnsureSaveData(Out<u64> out_size, Common::UUID user_id) {
     LOG_INFO(Service_AM, "called, uid={}", user_id.FormattedString());
 
-    UNIMPLEMENTED();
+    ISystemloader & loader = system.GetSystemloader();
+    IVirtualDirectoryPtr save_data;
+    SaveDataAttribute attribute{};
+    attribute.program_id = m_applet->program_id;
+    static_assert(sizeof(attribute.user_id) == sizeof(user_id.uuid));
+    memcpy(&attribute.user_id, user_id.uuid.data(), sizeof(attribute.user_id));
+    attribute.type = SaveDataType::Account;
+
+    Result result;
+    result.raw = ISaveDataControllerPtr(loader.FileSystemController().OpenSaveDataController())->CreateSaveData(save_data.GetAddressForSet(), SaveDataSpaceId::User, attribute);
+    R_TRY(result);
     *out_size = 0;
     R_SUCCEED();
 }
@@ -186,7 +196,7 @@ Result IApplicationFunctions::GetDisplayVersion(Out<DisplayVersion> out_display_
     R_SUCCEED();
 }
 
-Result IApplicationFunctions::ExtendSaveData(Out<u64> out_required_size, FileSys::SaveDataType type,
+Result IApplicationFunctions::ExtendSaveData(Out<u64> out_required_size, SaveDataType type,
                                              Common::UUID user_id, u64 normal_size,
                                              u64 journal_size) {
     LOG_DEBUG(Service_AM, "called with type={} user_id={} normal={:#x} journal={:#x}",
@@ -201,7 +211,7 @@ Result IApplicationFunctions::ExtendSaveData(Out<u64> out_required_size, FileSys
 }
 
 Result IApplicationFunctions::GetSaveDataSize(Out<u64> out_normal_size, Out<u64> out_journal_size,
-                                              FileSys::SaveDataType type, Common::UUID user_id) {
+                                              SaveDataType type, Common::UUID user_id) {
     LOG_DEBUG(Service_AM, "called with type={} user_id={}", type, user_id.FormattedString());
 
     UNIMPLEMENTED();

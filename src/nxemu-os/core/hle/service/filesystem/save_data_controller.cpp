@@ -2,7 +2,9 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include "core/core.h"
+#include "core/hle/result.h"
 #include "core/hle/service/filesystem/save_data_controller.h"
+#include "core/file_sys/errors.h"
 #include "yuzu_common/yuzu_assert.h"
 #include <utility>
 
@@ -22,6 +24,16 @@ SaveDataController::SaveDataController(Core::System& system_, SaveDataFactoryPtr
 }
 
 SaveDataController::~SaveDataController() = default;
+
+Result SaveDataController::OpenSaveData(IVirtualDirectoryPtr & out_save_data, SaveDataSpaceId space, const SaveDataAttribute& attribute)
+{
+    out_save_data = factory->Open(space, attribute);
+    if (!out_save_data) 
+    {
+        return FileSys::ResultTargetNotFound;
+    }
+    return ResultSuccess;
+}
 
 void SaveDataController::SetAutoCreate(bool state) {
     UNIMPLEMENTED();

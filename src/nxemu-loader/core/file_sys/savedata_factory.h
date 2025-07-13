@@ -68,6 +68,7 @@ public:
     operator bool() const;
 
     // ISaveDataFactory
+    IVirtualDirectory * Open(SaveDataSpaceId space, const SaveDataAttribute & meta) const override;
     void Release() override;
 
 private:

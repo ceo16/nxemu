@@ -35,9 +35,12 @@ public:
     void CreateFactories(FileSys::VfsFilesystem & vfs, bool overwrite = true);
 
     //IFileSystemController
-    IFileSysRegisteredCache * GetSystemNANDContents() const;
-    bool OpenProcess(uint64_t * programId, ISaveDataFactory ** saveDataFactory, IRomFsController** romFsController, uint64_t processId);
-    bool OpenSDMC(IVirtualDirectory ** out_sdmc) const;
+    IFileSysRegisteredCache * GetSystemNANDContents() const override;
+    ISaveDataController * OpenSaveDataController() const override;
+    uint64_t GetFreeSpaceSize(StorageId id) const override;
+    uint64_t GetTotalSpaceSize(StorageId id) const override;
+    bool OpenProcess(uint64_t * programId, ISaveDataFactory ** saveDataFactory, IRomFsController ** romFsController, uint64_t processId) override;
+    bool OpenSDMC(IVirtualDirectory ** out_sdmc) const override;
 
 private:
     std::shared_ptr<FileSys::SaveDataFactory> CreateSaveDataFactory(ProgramId program_id);

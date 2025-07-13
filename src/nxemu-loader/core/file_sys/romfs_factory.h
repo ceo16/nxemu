@@ -24,15 +24,6 @@ namespace FileSys {
 class ContentProvider;
 class NCA;
 
-enum class StorageId : u8 {
-    None = 0,
-    Host = 1,
-    GameCard = 2,
-    NandSystem = 3,
-    NandUser = 4,
-    SdCard = 5,
-};
-
 /// File system interface to the RomFS archive
 class RomFSFactory {
 public:

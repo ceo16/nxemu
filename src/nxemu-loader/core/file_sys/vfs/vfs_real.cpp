@@ -32,14 +32,14 @@ namespace {
 
 constexpr size_t MaxOpenFiles = 512;
 
-constexpr FS::FileAccessMode ModeFlagsToFileAccessMode(OpenMode mode) {
+constexpr FS::FileAccessMode ModeFlagsToFileAccessMode(VirtualFileOpenMode mode) {
     switch (mode) {
-    case OpenMode::Read:
+    case VirtualFileOpenMode::Read:
         return FS::FileAccessMode::Read;
-    case OpenMode::Write:
-    case OpenMode::ReadWrite:
-    case OpenMode::AllowAppend:
-    case OpenMode::All:
+    case VirtualFileOpenMode::Write:
+    case VirtualFileOpenMode::ReadWrite:
+    case VirtualFileOpenMode::AllowAppend:
+    case VirtualFileOpenMode::All:
         return FS::FileAccessMode::ReadWrite;
     default:
         return {};
@@ -76,7 +76,7 @@ VfsEntryType RealVfsFilesystem::GetEntryType(std::string_view path_) const {
 }
 
 VirtualFile RealVfsFilesystem::OpenFileFromEntry(std::string_view path_, std::optional<u64> size,
-                                                 OpenMode perms) {
+                                                 VirtualFileOpenMode perms) {
     const auto path = FS::SanitizePath(path_, FS::DirectorySeparator::PlatformDefault);
     std::scoped_lock lk{list_lock};
 
@@ -100,11 +100,11 @@ VirtualFile RealVfsFilesystem::OpenFileFromEntry(std::string_view path_, std::op
     return file;
 }
 
-VirtualFile RealVfsFilesystem::OpenFile(std::string_view path_, OpenMode perms) {
+VirtualFile RealVfsFilesystem::OpenFile(std::string_view path_, VirtualFileOpenMode perms) {
     return OpenFileFromEntry(path_, {}, perms);
 }
 
-VirtualFile RealVfsFilesystem::CreateFile(std::string_view path_, OpenMode perms) {
+VirtualFile RealVfsFilesystem::CreateFile(std::string_view path_, VirtualFileOpenMode perms) {
     const auto path = FS::SanitizePath(path_, FS::DirectorySeparator::PlatformDefault);
     {
         std::scoped_lock lk{list_lock};
@@ -147,7 +147,7 @@ VirtualFile RealVfsFilesystem::MoveFile(std::string_view old_path_, std::string_
     if (!FS::RenameFile(old_path, new_path)) {
         return nullptr;
     }
-    return OpenFile(new_path, OpenMode::ReadWrite);
+    return OpenFile(new_path, VirtualFileOpenMode::ReadWrite);
 }
 
 bool RealVfsFilesystem::DeleteFile(std::string_view path_) {
@@ -159,12 +159,12 @@ bool RealVfsFilesystem::DeleteFile(std::string_view path_) {
     return FS::RemoveFile(path);
 }
 
-VirtualDir RealVfsFilesystem::OpenDirectory(std::string_view path_, OpenMode perms) {
+VirtualDir RealVfsFilesystem::OpenDirectory(std::string_view path_, VirtualFileOpenMode perms) {
     const auto path = FS::SanitizePath(path_, FS::DirectorySeparator::PlatformDefault);
     return std::shared_ptr<RealVfsDirectory>(new RealVfsDirectory(*this, path, perms));
 }
 
-VirtualDir RealVfsFilesystem::CreateDirectory(std::string_view path_, OpenMode perms) {
+VirtualDir RealVfsFilesystem::CreateDirectory(std::string_view path_, VirtualFileOpenMode perms) {
     const auto path = FS::SanitizePath(path_, FS::DirectorySeparator::PlatformDefault);
     if (!FS::CreateDirs(path)) {
         return nullptr;
@@ -186,7 +186,7 @@ VirtualDir RealVfsFilesystem::MoveDirectory(std::string_view old_path_,
     if (!FS::RenameDir(old_path, new_path)) {
         return nullptr;
     }
-    return OpenDirectory(new_path, OpenMode::ReadWrite);
+    return OpenDirectory(new_path, VirtualFileOpenMode::ReadWrite);
 }
 
 bool RealVfsFilesystem::DeleteDirectory(std::string_view path_) {
@@ -195,7 +195,7 @@ bool RealVfsFilesystem::DeleteDirectory(std::string_view path_) {
 }
 
 std::unique_lock<std::mutex> RealVfsFilesystem::RefreshReference(const std::string& path,
-                                                                 OpenMode perms,
+                                                                 VirtualFileOpenMode perms,
                                                                  FileReference& reference) {
     std::unique_lock lk{list_lock};
 
@@ -268,7 +268,7 @@ void RealVfsFilesystem::RemoveReferenceFromListLocked(FileReference& reference) 
 }
 
 RealVfsFile::RealVfsFile(RealVfsFilesystem& base_, std::unique_ptr<FileReference> reference_,
-                         const std::string& path_, OpenMode perms_, std::optional<u64> size_)
+                         const std::string& path_, VirtualFileOpenMode perms_, std::optional<u64> size_)
     : base(base_), reference(std::move(reference_)), path(path_),
       parent_path(FS::GetParentPath(path_)), path_components(FS::SplitPathComponentsCopy(path_)),
       size(size_), perms(perms_) {}
@@ -305,11 +305,11 @@ VirtualDir RealVfsFile::GetContainingDirectory() const {
 }
 
 bool RealVfsFile::IsWritable() const {
-    return True(perms & OpenMode::Write);
+    return ((uint32_t)perms & (uint32_t)VirtualFileOpenMode::Write) == (uint32_t)VirtualFileOpenMode::Write;
 }
 
 bool RealVfsFile::IsReadable() const {
-    return True(perms & OpenMode::Read);
+    return ((uint32_t)perms & (uint32_t)VirtualFileOpenMode::Read) == (uint32_t)VirtualFileOpenMode::Read;
 }
 
 std::size_t RealVfsFile::Read(u8* data, std::size_t length, std::size_t offset) const {
@@ -338,7 +338,7 @@ bool RealVfsFile::Rename(std::string_view name) {
 
 template <>
 std::vector<VirtualFile> RealVfsDirectory::IterateEntries<RealVfsFile, VfsFile>() const {
-    if (perms == OpenMode::AllowAppend) {
+    if (perms == VirtualFileOpenMode::AllowAppend) {
         return {};
     }
 
@@ -360,7 +360,7 @@ std::vector<VirtualFile> RealVfsDirectory::IterateEntries<RealVfsFile, VfsFile>(
 
 template <>
 std::vector<VirtualDir> RealVfsDirectory::IterateEntries<RealVfsDirectory, VfsDirectory>() const {
-    if (perms == OpenMode::AllowAppend) {
+    if (perms == VirtualFileOpenMode::AllowAppend) {
         return {};
     }
 
@@ -381,10 +381,10 @@ std::vector<VirtualDir> RealVfsDirectory::IterateEntries<RealVfsDirectory, VfsDi
 }
 
 RealVfsDirectory::RealVfsDirectory(RealVfsFilesystem& base_, const std::string& path_,
-                                   OpenMode perms_)
+                                   VirtualFileOpenMode perms_)
     : base(base_), path(FS::RemoveTrailingSlash(path_)), parent_path(FS::GetParentPath(path)),
       path_components(FS::SplitPathComponentsCopy(path)), perms(perms_) {
-    if (!FS::Exists(path) && True(perms & OpenMode::Write)) {
+    if (!FS::Exists(path) && ((uint32_t)perms & (uint32_t)VirtualFileOpenMode::Write) != 0) {
         void(FS::CreateDirs(path));
     }
 }
@@ -464,11 +464,11 @@ std::vector<VirtualDir> RealVfsDirectory::GetSubdirectories() const {
 }
 
 bool RealVfsDirectory::IsWritable() const {
-    return True(perms & OpenMode::Write);
+    return ((uint32_t)perms & (uint32_t)VirtualFileOpenMode::Write) != 0;
 }
 
 bool RealVfsDirectory::IsReadable() const {
-    return True(perms & OpenMode::Read);
+    return ((uint32_t)perms & (uint32_t)VirtualFileOpenMode::Read) != 0;
 }
 
 std::string RealVfsDirectory::GetName() const {
@@ -515,7 +515,7 @@ std::string RealVfsDirectory::GetFullPath() const {
 }
 
 std::map<std::string, VfsEntryType, std::less<>> RealVfsDirectory::GetEntries() const {
-    if (perms == OpenMode::AllowAppend) {
+    if (perms == VirtualFileOpenMode::AllowAppend) {
         return {};
     }
 

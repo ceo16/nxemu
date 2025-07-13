@@ -8,6 +8,7 @@
 #include "yuzu_common/fs/path_util.h"
 #include "yuzu_common/settings.h"
 #include "core/core.h"
+#include "core/file_sys/errors.h"
 #include "core/hle/service/filesystem/filesystem.h"
 #include "core/hle/service/filesystem/fsp/fsp_ldr.h"
 #include "core/hle/service/filesystem/fsp/fsp_pr.h"
@@ -17,6 +18,106 @@
 #include "core/hle/service/server_manager.h"
 
 namespace Service::FileSystem {
+
+static const IVirtualDirectoryPtr & GetDirectoryRelativeWrapped(const IVirtualDirectoryPtr & base, std::string_view dir_name_, IVirtualDirectoryPtr & relative_dir)
+{
+    std::string dir_name(Common::FS::SanitizePath(dir_name_));
+    if (dir_name.empty() || dir_name == "." || dir_name == "/" || dir_name == "\\")
+    {
+        return base;
+    }
+    *relative_dir.GetAddressForSet() = base->GetDirectoryRelative(dir_name.c_str());
+    return relative_dir;
+}
+
+VfsDirectoryServiceWrapper::VfsDirectoryServiceWrapper(IVirtualDirectoryPtr && backing_)
+    : backing(std::move(backing_)) {}
+
+VfsDirectoryServiceWrapper::~VfsDirectoryServiceWrapper() = default;
+
+Result VfsDirectoryServiceWrapper::CreateFile(const std::string& path_, u64 size) const 
+{
+    std::string path(Common::FS::SanitizePath(path_));
+    
+    IVirtualDirectoryPtr relativeDir;
+    const IVirtualDirectoryPtr & dir = GetDirectoryRelativeWrapped(backing, Common::FS::GetParentPath(path), relativeDir);
+    if (!dir) {
+        return FileSys::ResultPathNotFound;
+    }
+
+    FileSys::DirectoryEntryType entry_type{};
+    if (GetEntryType(&entry_type, path) == ResultSuccess) {
+        return FileSys::ResultPathAlreadyExists;
+    }
+    IVirtualFilePtr file(dir->CreateFile(Common::FS::GetFilename(path).data()));
+    if (!file) {
+        // TODO(DarkLordZach): Find a better error code for this
+        return ResultUnknown;
+    }
+    if (!file->Resize(size)) {
+        // TODO(DarkLordZach): Find a better error code for this
+        return ResultUnknown;
+    }
+    return ResultSuccess;
+}
+
+Result VfsDirectoryServiceWrapper::OpenFile(IVirtualFile** out_file,
+                                            const std::string& path_,
+                                            VirtualFileOpenMode mode) const {
+    const std::string path(Common::FS::SanitizePath(path_));
+    std::string_view npath = path;
+    while (!npath.empty() && (npath[0] == '/' || npath[0] == '\\')) {
+        npath.remove_prefix(1);
+    }
+
+    IVirtualFilePtr file(backing->GetFileRelative(npath.data()));
+    if (!file) {
+        return FileSys::ResultPathNotFound;
+    }
+
+    if (mode == VirtualFileOpenMode::AllowAppend) {
+        UNIMPLEMENTED();
+        //*out_file = std::make_shared<FileSys::OffsetVfsFile>(file, 0, file->GetSize());
+    } else {
+        *out_file = file.Detach();
+    }
+    return ResultSuccess;
+}
+
+Result VfsDirectoryServiceWrapper::GetEntryType(FileSys::DirectoryEntryType* out_entry_type, const std::string & path_) const 
+{
+    std::string path(Common::FS::SanitizePath(path_));
+
+    IVirtualDirectoryPtr relativeDir;
+    const IVirtualDirectoryPtr & dir = GetDirectoryRelativeWrapped(backing, Common::FS::GetParentPath(path), relativeDir);
+    if (!dir)
+    {
+        return FileSys::ResultPathNotFound;
+    }
+
+    std::string_view filename = Common::FS::GetFilename(path);
+    // TODO(Subv): Some games use the '/' path, find out what this means.
+    if (filename.empty()) 
+    {
+        *out_entry_type = FileSys::DirectoryEntryType::Directory;
+        return ResultSuccess;
+    }
+
+    IVirtualFilePtr file(dir->GetFile(filename.data()));
+    if (file)
+    {
+        *out_entry_type = FileSys::DirectoryEntryType::File;
+        return ResultSuccess;
+    }
+
+    IVirtualDirectoryPtr subdir(dir->GetSubdirectory(filename.data()));
+    if (subdir) {
+        *out_entry_type = FileSys::DirectoryEntryType::Directory;
+        return ResultSuccess;
+    }
+
+    return FileSys::ResultPathNotFound;
+}
 
 void LoopProcess(Core::System& system) {
     auto server_manager = std::make_unique<ServerManager>(system);

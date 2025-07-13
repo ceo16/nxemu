@@ -12,6 +12,7 @@ public:
 
     InterfacePtr & operator=(InterfaceType * ptr);
     InterfacePtr & operator=(InterfacePtr && other) noexcept;
+    InterfaceType * Detach();
     InterfaceType ** GetAddressForSet();
 
     InterfaceType * operator->() const;

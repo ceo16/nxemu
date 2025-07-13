@@ -193,7 +193,7 @@ Result IParentalControlService::Initialize() {
                 .parental_control_flag = metadata->GetParentalControlFlag(),
                 .capability = capability,
             };
-            metadata->GetRatingAge(states.application_info.age_rating.data(), states.application_info.age_rating.size());
+            metadata->GetRatingAge(states.application_info.age_rating.data(), (uint32_t)states.application_info.age_rating.size());
 
             if (False(capability & (Capability::System | Capability::Recovery))) {
                 // TODO(ogniK): Signal application launch event

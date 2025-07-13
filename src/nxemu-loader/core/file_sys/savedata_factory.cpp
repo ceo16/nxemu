@@ -64,7 +64,7 @@ SaveDataFactory::~SaveDataFactory() = default;
 
 VirtualDir SaveDataFactory::Create(SaveDataSpaceId space, const SaveDataAttribute& meta) const {
     const auto save_directory = GetFullPath(program_id, dir, space, meta.type, meta.program_id,
-                                            meta.user_id, meta.system_save_data_id);
+        u128{ meta.user_id[0], meta.user_id[1] }, meta.system_save_data_id);
 
     return dir->CreateDirectoryRelative(save_directory);
 }
@@ -72,7 +72,7 @@ VirtualDir SaveDataFactory::Create(SaveDataSpaceId space, const SaveDataAttribut
 VirtualDir SaveDataFactory::Open(SaveDataSpaceId space, const SaveDataAttribute& meta) const {
 
     const auto save_directory = GetFullPath(program_id, dir, space, meta.type, meta.program_id,
-                                            meta.user_id, meta.system_save_data_id);
+        u128{ meta.user_id[0], meta.user_id[1] }, meta.system_save_data_id);
 
     auto out = dir->GetDirectoryRelative(save_directory);
 
@@ -199,6 +199,12 @@ SaveDataFactoryPtr::SaveDataFactoryPtr(std::shared_ptr<FileSys::SaveDataFactory>
 
 SaveDataFactoryPtr::~SaveDataFactoryPtr()
 {
+}
+
+IVirtualDirectory* SaveDataFactoryPtr::Open(SaveDataSpaceId space, const SaveDataAttribute& meta) const
+{
+    UNIMPLEMENTED();
+    return nullptr;
 }
 
 void SaveDataFactoryPtr::Release()

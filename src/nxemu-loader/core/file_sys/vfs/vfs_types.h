@@ -45,8 +45,12 @@ public:
     operator bool() const;
 
     // IVirtualDirectory
-    IVirtualFile * GetFile(const char* name) const override;
-    IVirtualFile * GetFileRelative(const char* relative_path) const override;
+    IVirtualDirectory * GetDirectoryRelative(const char * path) const override;
+    IVirtualDirectory * GetSubdirectory(const char * name) const override;
+    IVirtualFile * CreateFile(const char * name) const override;
+    IVirtualFile * GetFile(const char * name) const override;
+    IVirtualFile * GetFileRelative(const char * relative_path) const override;
+    IVirtualFile * OpenFile(const char * path, VirtualFileOpenMode perms) override;
     void Release() override;
 
 private:
@@ -73,7 +77,9 @@ public:
 
     // IVirtualFile
     uint64_t GetSize() const override;
-    uint64_t ReadBytes(uint8_t* data, uint64_t datalen, uint64_t offset) override;
+    bool Resize(uint64_t size) override;
+    uint64_t ReadBytes(uint8_t * data, uint64_t datalen, uint64_t offset) override;
+    uint64_t WriteBytes(const uint8_t * data, uint64_t datalen, uint64_t offset) override;
     IVirtualDirectory * ExtractRomFS() override;
     IVirtualFile* Duplicate() override;
     void Release() override;

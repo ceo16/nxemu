@@ -57,7 +57,6 @@
     <ClInclude Include="core\file_sys\fssystem\fssystem_nca_file_system_driver.h" />
     <ClInclude Include="core\file_sys\fssystem\fssystem_nca_header.h" />
     <ClInclude Include="core\file_sys\fssystem\fs_types.h" />
-    <ClInclude Include="core\file_sys\fs_filesystem.h" />
     <ClInclude Include="core\file_sys\fs_save_data_types.h" />
     <ClInclude Include="core\file_sys\ips_layer.h" />
     <ClInclude Include="core\file_sys\nca_metadata.h" />

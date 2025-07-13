@@ -7,12 +7,14 @@ __interface IVirtualFile;
 __interface IFileSysNCA;
 __interface ISaveDataFactory;
 __interface IRomFsController;
+__interface ISaveDataController;
 __interface IFileSysNACP;
 
 using IVirtualDirectoryPtr = InterfacePtr<IVirtualDirectory>;
 using FileSysNCAPtr = InterfacePtr<IFileSysNCA>;
 using SaveDataFactoryPtr = InterfacePtr<ISaveDataFactory>;
 using RomFsControllerPtr = InterfacePtr<IRomFsController>;
+using ISaveDataControllerPtr = InterfacePtr<ISaveDataController>;
 using IFileSysNACPPtr = InterfacePtr<IFileSysNACP>;
 
 class IVirtualFilePtr : public InterfacePtr<IVirtualFile>

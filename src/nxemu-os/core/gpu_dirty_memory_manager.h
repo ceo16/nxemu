@@ -63,8 +63,7 @@ public:
                 mask = mask >> empty_bits;
 
                 const size_t continuous_bits = std::countr_one(mask);
-                invalidator->OnCacheInvalidation((static_cast<PAddr>(transform.address) << page_bits) + offset,
-                         continuous_bits << align_bits);
+                invalidator->OnCacheInvalidation((static_cast<PAddr>(transform.address) << page_bits) + offset, (uint32_t)(continuous_bits << align_bits));
                 mask = continuous_bits < align_size ? (mask >> continuous_bits) : 0;
                 offset += continuous_bits << align_bits;
             }

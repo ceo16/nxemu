@@ -55,7 +55,15 @@ InterfacePtr<InterfaceType>& InterfacePtr<InterfaceType>::operator=(InterfacePtr
 }
 
 template<typename InterfaceType>
-InterfaceType** InterfacePtr<InterfaceType>::GetAddressForSet()
+InterfaceType * InterfacePtr<InterfaceType>::Detach()
+{
+    InterfaceType * interface = m_ptr;
+    m_ptr = nullptr;
+    return interface;
+}
+
+template<typename InterfaceType>
+InterfaceType ** InterfacePtr<InterfaceType>::GetAddressForSet()
 {
     if (m_ptr)
     {
@@ -66,13 +74,13 @@ InterfaceType** InterfacePtr<InterfaceType>::GetAddressForSet()
 }
 
 template<typename InterfaceType>
-InterfaceType* InterfacePtr<InterfaceType>::operator->() const
+InterfaceType * InterfacePtr<InterfaceType>::operator->() const
 {
     return m_ptr;
 }
 
 template<typename InterfaceType>
-InterfaceType& InterfacePtr<InterfaceType>::operator*() const
+InterfaceType & InterfacePtr<InterfaceType>::operator*() const
 {
     return *m_ptr;
 }

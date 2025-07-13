@@ -7,6 +7,7 @@
 #include <fmt/format.h>
 #include "yuzu_common/common_funcs.h"
 #include "yuzu_common/common_types.h"
+#include <nxemu-module-spec/system_loader.h>
 
 namespace FileSys {
 
@@ -14,27 +15,6 @@ using SaveDataId = u64;
 using SystemSaveDataId = u64;
 using SystemBcatSaveDataId = SystemSaveDataId;
 using ProgramId = u64;
-
-enum class SaveDataSpaceId : u8 {
-    System = 0,
-    User = 1,
-    SdSystem = 2,
-    Temporary = 3,
-    SdUser = 4,
-
-    ProperSystem = 100,
-    SafeMode = 101,
-};
-
-enum class SaveDataType : u8 {
-    System = 0,
-    Account = 1,
-    Bcat = 2,
-    Device = 3,
-    Temporary = 4,
-    Cache = 5,
-    SystemBcat = 6,
-};
 
 enum class SaveDataRank : u8 {
     Primary = 0,
@@ -90,64 +70,6 @@ struct SaveDataCreationInfo {
 static_assert(std::is_trivially_copyable_v<SaveDataCreationInfo>,
               "Data type must be trivially copyable.");
 static_assert(sizeof(SaveDataCreationInfo) == 0x40, "SaveDataCreationInfo has invalid size.");
-
-struct SaveDataAttribute {
-    ProgramId program_id;
-    UserId user_id;
-    SystemSaveDataId system_save_data_id;
-    SaveDataType type;
-    SaveDataRank rank;
-    u16 index;
-    INSERT_PADDING_BYTES(0x1C);
-
-    static constexpr SaveDataAttribute Make(ProgramId program_id, SaveDataType type, UserId user_id,
-                                            SystemSaveDataId system_save_data_id, u16 index,
-                                            SaveDataRank rank) {
-        return {
-            .program_id = program_id,
-            .user_id = user_id,
-            .system_save_data_id = system_save_data_id,
-            .type = type,
-            .rank = rank,
-            .index = index,
-        };
-    }
-
-    static constexpr SaveDataAttribute Make(ProgramId program_id, SaveDataType type, UserId user_id,
-                                            SystemSaveDataId system_save_data_id, u16 index) {
-        return Make(program_id, type, user_id, system_save_data_id, index, SaveDataRank::Primary);
-    }
-
-    static constexpr SaveDataAttribute Make(ProgramId program_id, SaveDataType type, UserId user_id,
-                                            SystemSaveDataId system_save_data_id) {
-        return Make(program_id, type, user_id, system_save_data_id, 0, SaveDataRank::Primary);
-    }
-
-    std::string DebugInfo() const {
-        return fmt::format(
-            "[title_id={:016X}, user_id={:016X}{:016X}, save_id={:016X}, type={:02X}, "
-            "rank={}, index={}]",
-            program_id, user_id[1], user_id[0], system_save_data_id, static_cast<u8>(type),
-            static_cast<u8>(rank), index);
-    }
-};
-static_assert(sizeof(SaveDataAttribute) == 0x40);
-static_assert(std::is_trivially_destructible<SaveDataAttribute>::value);
-
-constexpr inline bool operator<(const SaveDataAttribute& lhs, const SaveDataAttribute& rhs) {
-    return std::tie(lhs.program_id, lhs.user_id, lhs.system_save_data_id, lhs.index, lhs.rank) <
-           std::tie(rhs.program_id, rhs.user_id, rhs.system_save_data_id, rhs.index, rhs.rank);
-}
-
-constexpr inline bool operator==(const SaveDataAttribute& lhs, const SaveDataAttribute& rhs) {
-    return std::tie(lhs.program_id, lhs.user_id, lhs.system_save_data_id, lhs.type, lhs.rank,
-                    lhs.index) == std::tie(rhs.program_id, rhs.user_id, rhs.system_save_data_id,
-                                           rhs.type, rhs.rank, rhs.index);
-}
-
-constexpr inline bool operator!=(const SaveDataAttribute& lhs, const SaveDataAttribute& rhs) {
-    return !(lhs == rhs);
-}
 
 struct SaveDataExtraData {
     SaveDataAttribute attr;
