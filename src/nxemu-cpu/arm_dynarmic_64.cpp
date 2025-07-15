@@ -22,6 +22,7 @@ IArm64Executor::HaltReason ArmDynarmic64::Execute()
     Dynarmic::HaltReason Reason = m_jit->Run(); 
     switch (Reason)
     {
+    case Dynarmic::HaltReason::UserDefined2: return IArm64Executor::HaltReason::BreakLoop;
     case Dynarmic::HaltReason::UserDefined3: return IArm64Executor::HaltReason::SupervisorCall;
     }
 
@@ -38,6 +39,7 @@ void ArmDynarmic64::HaltExecution(HaltReason hr)
 {
     switch (hr)
     {
+    case HaltReason::BreakLoop: m_jit->HaltExecution(Dynarmic::HaltReason::UserDefined2); break;
     case HaltReason::SupervisorCall: m_jit->HaltExecution(Dynarmic::HaltReason::UserDefined3); break;
     default:
         g_notify->BreakPoint(__FILE__, __LINE__);
@@ -159,16 +161,14 @@ void ArmDynarmic64::MemoryWrite128(std::uint64_t vaddr, Dynarmic::A64::Vector va
     m_CpuInfo.WriteMemory(vaddr, (const uint8_t *)&value, sizeof(value));
 }
 
-bool ArmDynarmic64::MemoryWriteExclusive8(std::uint64_t /*vaddr*/, std::uint8_t /*value*/, std::uint8_t /*expected*/)
+bool ArmDynarmic64::MemoryWriteExclusive8(std::uint64_t vaddr, std::uint8_t value, std::uint8_t /*expected*/)
 {
-    g_notify->BreakPoint(__FILE__, __LINE__);
-    return false;
+    return m_CpuInfo.WriteMemory(vaddr, (const uint8_t*)&value, sizeof(value));
 }
 
-bool ArmDynarmic64::MemoryWriteExclusive16(std::uint64_t /*vaddr*/, std::uint16_t /*value*/, std::uint16_t /*expected*/)
+bool ArmDynarmic64::MemoryWriteExclusive16(std::uint64_t vaddr, std::uint16_t value, std::uint16_t /*expected*/)
 {
-    g_notify->BreakPoint(__FILE__, __LINE__);
-    return false;
+    return m_CpuInfo.WriteMemory(vaddr, (const uint8_t*)&value, sizeof(value));
 }
 
 bool ArmDynarmic64::MemoryWriteExclusive32(std::uint64_t vaddr, std::uint32_t value, std::uint32_t /*expected*/)

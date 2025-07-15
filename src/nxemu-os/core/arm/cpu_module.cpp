@@ -85,7 +85,10 @@ HaltReason ArmCpuModule::RunThread(Kernel::KThread * thread)
         IArm64Executor::HaltReason reason = m_arm64Executor->Execute();
         switch (reason)
         {
+        case IArm64Executor::HaltReason::BreakLoop: return HaltReason::BreakLoop;
         case IArm64Executor::HaltReason::SupervisorCall: return HaltReason::SupervisorCall;
+        default:
+            UNIMPLEMENTED();
         }
     }
     UNIMPLEMENTED();
@@ -193,7 +196,14 @@ u32 ArmCpuModule::GetSvcNumber() const
 
 void ArmCpuModule::SignalInterrupt(Kernel::KThread * thread)
 {
-    UNIMPLEMENTED();
+    if (m_arm64Executor != nullptr)
+    {
+        m_arm64Executor->HaltExecution(IArm64Executor::HaltReason::BreakLoop);
+    }
+    else
+    {
+        UNIMPLEMENTED();
+    }
 }
 
 void ArmCpuModule::ClearInstructionCache()

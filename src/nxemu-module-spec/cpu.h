@@ -43,6 +43,7 @@ __interface IArm64Executor
     {
         Stopped,
         SupervisorCall,
+        BreakLoop,
     };
 
     IArm64Reg & Reg(void) = 0;
