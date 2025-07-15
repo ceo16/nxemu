@@ -176,8 +176,10 @@ NvResult nvhost_as_gpu::AllocateSpace(IoctlAllocSpace& params) {
 
     u64 size{ static_cast<u64>(params.pages) * params.page_size };
 
-    if ((params.flags & MappingFlags::Sparse) != MappingFlags::None) {
-        UNIMPLEMENTED();
+    if ((params.flags & MappingFlags::Sparse) != MappingFlags::None) 
+    {
+        IVideo & video = system.GetVideo();
+        video.MapSparse(gmmu, params.offset, size, true);
     }
 
     allocation_map[params.offset] = {
@@ -201,7 +203,48 @@ NvResult nvhost_as_gpu::FreeSpace(IoctlFreeSpace& params) {
 }
 
 NvResult nvhost_as_gpu::Remap(std::span<IoctlRemapEntry> entries) {
-    UNIMPLEMENTED();
+    LOG_DEBUG(Service_NVDRV, "called, num_entries=0x{:X}", entries.size());
+
+    if (!vm.initialised) {
+        return NvResult::BadValue;
+    }
+
+    for (const auto& entry : entries) {
+        GPUVAddr virtual_address{static_cast<u64>(entry.as_offset_big_pages)
+                                 << vm.big_page_size_bits};
+        u64 size{static_cast<u64>(entry.big_pages) << vm.big_page_size_bits};
+
+        auto alloc{allocation_map.upper_bound(virtual_address)};
+
+        if (alloc-- == allocation_map.begin() ||
+            (virtual_address - alloc->first) + size > alloc->second.size) {
+            LOG_WARNING(Service_NVDRV, "Cannot remap into an unallocated region!");
+            return NvResult::BadValue;
+        }
+
+        if (!alloc->second.sparse) {
+            LOG_WARNING(Service_NVDRV, "Cannot remap a non-sparse mapping!");
+            return NvResult::BadValue;
+        }
+
+        const bool use_big_pages = alloc->second.big_pages;
+        IVideo & video = system.GetVideo();
+        if (!entry.handle) {
+            video.MapSparse(gmmu, virtual_address, size, use_big_pages);
+        } else {
+            auto handle{nvmap.GetHandle(entry.handle)};
+            if (!handle) {
+                return NvResult::BadValue;
+            }
+
+            DAddr base = nvmap.PinHandle(entry.handle, false);
+            DAddr device_address{static_cast<DAddr>(
+                base + (static_cast<u64>(entry.handle_offset_big_pages) << vm.big_page_size_bits))};
+
+            video.Map(gmmu, virtual_address, device_address, size, entry.kind, use_big_pages);
+        }
+    }
+
     return NvResult::Success;
 }
 

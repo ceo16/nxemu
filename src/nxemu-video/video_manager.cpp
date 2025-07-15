@@ -119,9 +119,31 @@ uint32_t VideoManager::AllocAsEx(uint64_t addressSpaceBits, uint64_t splitAddres
     return impl->m_memoryManagerRegistry.AddMemoryManager(impl->m_gmmu);
 }
 
-uint64_t VideoManager::MapBufferEx(uint64_t gpuAddr, uint64_t deviceAddr, uint64_t size, uint8_t kind, bool isBigPages)
+uint64_t VideoManager::MapBufferEx(uint64_t gpuAddr, uint64_t deviceAddr, uint64_t size, uint16_t kind, bool isBigPages)
 {
     return impl->m_gmmu->Map(gpuAddr, deviceAddr, size, (Tegra::PTEKind)kind, isBigPages);
+}
+
+uint64_t VideoManager::Map(uint32_t gmmu, uint64_t gpuAddr, uint64_t deviceAddr, uint64_t size, uint16_t kind, bool isBigPages)
+{
+    std::shared_ptr<Tegra::MemoryManager> memory = impl->m_memoryManagerRegistry.GetMemoryManager(gmmu);
+    if (memory == nullptr)
+    {
+        UNIMPLEMENTED();
+        return 0;
+    }
+    return memory->Map(gpuAddr, deviceAddr, size, (Tegra::PTEKind)kind, isBigPages);
+}
+
+uint64_t VideoManager::MapSparse(uint32_t gmmu, uint64_t gpuAddr, uint64_t size, bool isBigPages)
+{
+    std::shared_ptr<Tegra::MemoryManager> memory = impl->m_memoryManagerRegistry.GetMemoryManager(gmmu);
+    if (memory == nullptr)
+    {
+        UNIMPLEMENTED();
+        return 0;
+    }
+    return memory->MapSparse(gpuAddr, size, isBigPages);
 }
 
 uint64_t VideoManager::MemoryAllocate(uint64_t size)
