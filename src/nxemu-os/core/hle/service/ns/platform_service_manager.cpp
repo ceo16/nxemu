@@ -10,11 +10,13 @@
 #include "yuzu_common/logging/log.h"
 #include "yuzu_common/swap.h"
 #include "core/core.h"
+#include "core/file_sys/filesystem_interfaces.h"
 #include "core/hle/kernel/k_shared_memory.h"
 #include "core/hle/kernel/kernel.h"
 #include "core/hle/kernel/physical_memory.h"
 #include "core/hle/service/cmif_serialization.h"
 #include "core/hle/service/ns/platform_service_manager.h"
+#include <nxemu-module-spec/system_loader.h>
 
 namespace Service::NS {
 
@@ -147,8 +149,59 @@ IPlatformServiceManager::IPlatformServiceManager(Core::System& system_, const ch
     // clang-format on
     RegisterHandlers(functions);
 
+    IFileSystemController & fsc = system.GetFileSystemController();
+    ISystemloader & loader = system.GetSystemloader();
+
     // Attempt to load shared font data from disk
+    const IFileSysRegisteredCache * nand = fsc.GetSystemNANDContents();
     std::size_t offset = 0;
+    // Rebuild shared fonts from data ncas or synthesize
+    impl->shared_font = std::make_shared<Kernel::PhysicalMemory>(SHARED_FONT_MEM_SIZE);
+
+    for (auto font : SHARED_FONTS) 
+    {
+        IVirtualFilePtr romfs;
+        FileSysNCAPtr nca(nand->GetEntry(static_cast<u64>(font.first), LoaderContentRecordType::Data));
+        if (nca) 
+        {
+            romfs = IVirtualFilePtr(nca->GetRomFS());
+        }
+
+        if (!romfs) 
+        {
+            romfs = IVirtualFilePtr(loader.SynthesizeSystemArchive(static_cast<u64>(font.first)));
+        }
+
+        if (!romfs) 
+        {
+            LOG_ERROR(Service_NS, "Failed to find or synthesize {:016X}! Skipping", font.first);
+            continue;
+        }
+
+        IVirtualDirectoryPtr extracted_romfs = romfs->ExtractRomFS();
+        if (!extracted_romfs) 
+        {
+            LOG_ERROR(Service_NS, "Failed to extract RomFS for {:016X}! Skipping", font.first);
+            continue;
+        }
+
+        IVirtualFilePtr font_fp(extracted_romfs->GetFile(font.second));
+        if (!font_fp) {
+            LOG_ERROR(Service_NS, "{:016X} has no file \"{}\"! Skipping", font.first, font.second);
+            continue;
+        }
+        std::vector<u32> font_data_u32(font_fp->GetSize() / sizeof(u32));
+        font_fp->ReadBytes((uint8_t * )font_data_u32.data(), font_fp->GetSize(), 0);
+
+        // We need to be BigEndian as u32s for the xor encryption
+        std::transform(font_data_u32.begin(), font_data_u32.end(), font_data_u32.begin(),
+                       Common::swap32);
+        // Font offset and size do not account for the header
+        const FontRegion region{static_cast<u32>(offset + 8),
+                                static_cast<u32>((font_data_u32.size() * sizeof(u32)) - 8)};
+        DecryptSharedFont(font_data_u32, *impl->shared_font, offset);
+        impl->shared_font_regions.push_back(region);
+    }
 }
 
 IPlatformServiceManager::~IPlatformServiceManager() = default;
