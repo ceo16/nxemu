@@ -499,6 +499,24 @@
     <Filter Include="Header Files\core\hle\service\audio">
       <UniqueIdentifier>{3f724b72-f963-4486-84b3-6e70f9fd5dd6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\core\hle\service\nfp">
+      <UniqueIdentifier>{524ac941-4377-4603-b80a-2f2e1b19e8eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\nfp">
+      <UniqueIdentifier>{130b8dec-f32a-4859-9c01-209755e57b54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\nfc">
+      <UniqueIdentifier>{39098e98-5b7e-43b7-ba04-c582dee29f38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\hle\service\nfc\common">
+      <UniqueIdentifier>{42054599-8ef8-419c-8df1-94031c636872}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\nfc">
+      <UniqueIdentifier>{833d65bf-1ea2-492f-9260-8d4a88ecd780}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\hle\service\nfc\common">
+      <UniqueIdentifier>{f9770dc8-cbb7-49fb-a6a2-2facf4aa44ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="nxemu-os.h">
@@ -1899,6 +1917,36 @@
     <ClInclude Include="os_settings_identifiers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="core\hle\service\nfp\nfp.h">
+      <Filter>Header Files\core\hle\service\nfp</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nfp\nfp_interface.h">
+      <Filter>Header Files\core\hle\service\nfp</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nfp\nfp_result.h">
+      <Filter>Header Files\core\hle\service\nfp</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nfp\nfp_types.h">
+      <Filter>Header Files\core\hle\service\nfp</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nfc\mifare_types.h">
+      <Filter>Header Files\core\hle\service\nfc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nfc\nfc_interface.h">
+      <Filter>Header Files\core\hle\service\nfc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nfc\nfc_result.h">
+      <Filter>Header Files\core\hle\service\nfc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nfc\nfc_types.h">
+      <Filter>Header Files\core\hle\service\nfc</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nfc\common\device.h">
+      <Filter>Header Files\core\hle\service\nfc\common</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hle\service\nfc\common\device_manager.h">
+      <Filter>Header Files\core\hle\service\nfc\common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="version.h.in">
@@ -3189,6 +3237,21 @@
     </ClCompile>
     <ClCompile Include="os_settings.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nfp\nfp.cpp">
+      <Filter>Source Files\core\hle\service\nfp</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nfp\nfp_interface.cpp">
+      <Filter>Source Files\core\hle\service\nfp</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nfc\common\device.cpp">
+      <Filter>Source Files\core\hle\service\nfc\common</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nfc\common\device_manager.cpp">
+      <Filter>Source Files\core\hle\service\nfc\common</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hle\service\nfc\nfc_interface.cpp">
+      <Filter>Source Files\core\hle\service\nfc</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
