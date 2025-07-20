@@ -53,6 +53,9 @@ public:
 private:
     void AddTelemetryFields();
 
+    void InitializeWatermark();
+    void RenderWatermark();
+    void CleanupWatermark();
     void RenderToBuffer(std::span<const Tegra::FramebufferConfig> framebuffers,
                         const Layout::FramebufferLayout& layout, void* dst);
     void RenderScreenshot(std::span<const Tegra::FramebufferConfig> framebuffers);
@@ -69,6 +72,15 @@ private:
     OGLFramebuffer screenshot_framebuffer;
     OGLFramebuffer capture_framebuffer;
     OGLRenderbuffer capture_renderbuffer;
+    GLuint watermark_texture;
+    GLuint watermark_vao;
+    GLuint watermark_vbo;
+    GLuint watermark_shader;
+    int watermark_width;
+    int watermark_height;
+    std::chrono::steady_clock::time_point watermark_start_time;
+    bool watermark_timer_started;
+    bool watermark_show;
 
     std::unique_ptr<BlitScreen> blit_screen;
     std::unique_ptr<BlitScreen> blit_applet;

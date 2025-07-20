@@ -12,6 +12,7 @@
 #include "yuzu_common/logging/log.h"
 #include "yuzu_common/microprofile.h"
 #include "yuzu_common/settings.h"
+#include "yuzu_common/stb.h"
 #include "core/core_timing.h"
 #include "frontend/emu_window.h"
 #include "yuzu_video_core/capture.h"
@@ -22,6 +23,7 @@
 #include "yuzu_video_core/renderer_opengl/gl_shader_util.h"
 #include "yuzu_video_core/renderer_opengl/renderer_opengl.h"
 #include "yuzu_video_core/textures/decoders.h"
+#include "yuzu_video_core/watermark.h"
 
 namespace OpenGL {
 namespace {
@@ -94,7 +96,10 @@ RendererOpenGL::RendererOpenGL(Core::Frontend::EmuWindow& emu_window_,
     : RendererBase{emu_window_, std::move(context_)},
       emu_window{emu_window_}, device_memory{device_memory_}, gpu{gpu_}, device{emu_window_},
       state_tracker{}, program_manager{device},
-      rasterizer(emu_window, gpu, device_memory, device, program_manager, state_tracker) {
+      rasterizer(emu_window, gpu, device_memory, device, program_manager, state_tracker),
+      watermark_texture(0), watermark_vao(0), watermark_vbo(0), watermark_shader(0), watermark_width(0), watermark_height(0),
+      watermark_timer_started(false), watermark_show(true)
+{
     if (Settings::values.renderer_debug && GLAD_GL_KHR_debug) {
         glEnable(GL_DEBUG_OUTPUT);
         glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
@@ -128,9 +133,14 @@ RendererOpenGL::RendererOpenGL(Core::Frontend::EmuWindow& emu_window_,
     glBindRenderbuffer(GL_RENDERBUFFER, capture_renderbuffer.handle);
     glRenderbufferStorage(GL_RENDERBUFFER, GL_SRGB8, VideoCore::Capture::LinearWidth,
                           VideoCore::Capture::LinearHeight);
+
+    InitializeWatermark();
 }
 
-RendererOpenGL::~RendererOpenGL() = default;
+RendererOpenGL::~RendererOpenGL()
+{
+    CleanupWatermark();
+}
 
 void RendererOpenGL::Composite(std::span<const Tegra::FramebufferConfig> framebuffers) {
     if (framebuffers.empty()) {
@@ -142,6 +152,10 @@ void RendererOpenGL::Composite(std::span<const Tegra::FramebufferConfig> framebu
 
     state_tracker.BindFramebuffer(0);
     blit_screen->DrawScreen(framebuffers, emu_window.GetFramebufferLayout(), false);
+    if (watermark_show)
+    {
+        RenderWatermark();
+    }
 
     ++m_current_frame;
 
@@ -149,6 +163,7 @@ void RendererOpenGL::Composite(std::span<const Tegra::FramebufferConfig> framebu
     rasterizer.TickFrame();
 
     context->SwapBuffers();
+
     render_window.OnFrameDisplayed();
 }
 
@@ -162,10 +177,253 @@ void RendererOpenGL::AddTelemetryFields() {
     LOG_INFO(Render_OpenGL, "GL_RENDERER: {}", gpu_model);
 }
 
+void RendererOpenGL::InitializeWatermark() 
+{
+    while (glGetError() != GL_NO_ERROR) {}
+
+    int channels;
+    unsigned char * image_data = stbi_load_from_memory(watermark_png, sizeof(watermark_png), &watermark_width, &watermark_height, &channels, 4);
+    if (!image_data) 
+    {
+        LOG_ERROR(Render_OpenGL, "Failed to load watermark image: {}", stbi_failure_reason());
+        return;
+    }
+
+    glGenTextures(1, &watermark_texture);
+    glBindTexture(GL_TEXTURE_2D, watermark_texture);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, watermark_width, watermark_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image_data);
+    stbi_image_free(image_data);
+
+    glGenVertexArrays(1, &watermark_vao);
+    glGenBuffers(1, &watermark_vbo);
+
+    glBindVertexArray(watermark_vao);
+    glBindBuffer(GL_ARRAY_BUFFER, watermark_vbo);
+
+    const size_t vertex_data_size = 6 * 4 * sizeof(float);
+    glBufferData(GL_ARRAY_BUFFER, vertex_data_size, nullptr, GL_DYNAMIC_DRAW);
+
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+
+    const std::string vertex_shader_source = R"(
+#version 330 core
+layout (location = 0) in vec2 aPos;
+layout (location = 1) in vec2 aTexCoord;
+
+out vec2 TexCoord;
+
+void main() {
+    gl_Position = vec4(aPos, 0.0, 1.0);
+    TexCoord = aTexCoord;
+}
+)";
+
+    const std::string fragment_shader_source = R"(
+#version 330 core
+in vec2 TexCoord;
+out vec4 FragColor;
+
+uniform sampler2D watermarkTexture;
+uniform float alpha;
+
+void main() {
+    vec4 texColor = texture(watermarkTexture, TexCoord);
+    FragColor = vec4(texColor.rgb, texColor.a * alpha);
+}
+)";
+
+    GLuint vertex_shader = glCreateShader(GL_VERTEX_SHADER);
+    const char* vertex_src = vertex_shader_source.c_str();
+    glShaderSource(vertex_shader, 1, &vertex_src, nullptr);
+    glCompileShader(vertex_shader);
+
+    GLint success;
+    glGetShaderiv(vertex_shader, GL_COMPILE_STATUS, &success);
+    if (!success) 
+    {
+        char info_log[512];
+        glGetShaderInfoLog(vertex_shader, 512, nullptr, info_log);
+        LOG_ERROR(Render_OpenGL, "Vertex shader compilation failed: {}", info_log);
+        return;
+    }
+
+    GLuint fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
+    const char* fragment_src = fragment_shader_source.c_str();
+    glShaderSource(fragment_shader, 1, &fragment_src, nullptr);
+    glCompileShader(fragment_shader);
+
+    glGetShaderiv(fragment_shader, GL_COMPILE_STATUS, &success);
+    if (!success) {
+        char info_log[512];
+        glGetShaderInfoLog(fragment_shader, 512, nullptr, info_log);
+        LOG_ERROR(Render_OpenGL, "Fragment shader compilation failed: {}", info_log);
+        glDeleteShader(vertex_shader);
+        return;
+    }
+
+    watermark_shader = glCreateProgram();
+    glAttachShader(watermark_shader, vertex_shader);
+    glAttachShader(watermark_shader, fragment_shader);
+    glLinkProgram(watermark_shader);
+
+    glGetProgramiv(watermark_shader, GL_LINK_STATUS, &success);
+    if (!success)
+    {
+        char info_log[512];
+        glGetProgramInfoLog(watermark_shader, 512, nullptr, info_log);
+        LOG_ERROR(Render_OpenGL, "Shader program linking failed: {}", info_log);
+        watermark_shader = 0;
+    }
+    glDeleteShader(vertex_shader);
+    glDeleteShader(fragment_shader);
+
+    glBindVertexArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void RendererOpenGL::RenderWatermark() 
+{
+    if (!watermark_texture || !watermark_shader || !watermark_vao || !watermark_vbo) 
+    {
+        return;
+    }
+
+    if (!watermark_timer_started) 
+    {
+        watermark_start_time = std::chrono::steady_clock::now();
+        watermark_timer_started = true;
+    }
+
+    std::chrono::steady_clock::time_point current_time = std::chrono::steady_clock::now();
+    long long elapsed_seconds = std::chrono::duration_cast<std::chrono::seconds>(current_time - watermark_start_time).count();
+
+    float fade_alpha;
+    const float fade_duration = 300.0f;
+    if (elapsed_seconds >= fade_duration) 
+    {
+        fade_alpha = 0.0f;
+        watermark_show = false;
+    }
+    else 
+    {
+        float progress = elapsed_seconds / fade_duration;
+        float eased = 0.5f * (1.0f + cosf(progress * 3.14159f));
+        fade_alpha = 0.8f * eased;
+    }
+
+    GLint current_program, current_vao, current_buffer, current_texture, current_active_texture;
+    glGetIntegerv(GL_CURRENT_PROGRAM, &current_program);
+    glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &current_vao);
+    glGetIntegerv(GL_ARRAY_BUFFER_BINDING, &current_buffer);
+    glGetIntegerv(GL_TEXTURE_BINDING_2D, &current_texture);
+    glGetIntegerv(GL_ACTIVE_TEXTURE, &current_active_texture);
+
+    glUseProgram(0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    glDisable(GL_DEPTH_TEST);
+    glDisable(GL_CULL_FACE);
+    glDisable(GL_STENCIL_TEST);
+    glDisable(GL_SCISSOR_TEST);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    const Layout::FramebufferLayout & layout = emu_window.GetFramebufferLayout();
+    float watermark_scale = 0.14f;
+    float aspect_ratio = (float)watermark_height / (float)watermark_width;
+    float watermark_screen_width = layout.width * watermark_scale;
+    float watermark_screen_height = watermark_screen_width * aspect_ratio;
+
+    float padding = 18.0f;
+    float x = layout.width - watermark_screen_width - padding;
+    float y = padding;
+    
+    float ndc_left = (x / layout.width) * 2.0f - 1.0f;
+    float ndc_right = ((x + watermark_screen_width) / layout.width) * 2.0f - 1.0f;
+    float ndc_bottom = (y / layout.height) * 2.0f - 1.0f;
+    float ndc_top = ((y + watermark_screen_height) / layout.height) * 2.0f - 1.0f;
+
+    float vertices[] = {
+        ndc_left,  ndc_bottom, 0.0f, 1.0f,  // Bottom-left
+        ndc_right, ndc_bottom, 1.0f, 1.0f,  // Bottom-right  
+        ndc_left,  ndc_top,    0.0f, 0.0f,  // Top-left
+
+        ndc_right, ndc_bottom, 1.0f, 1.0f,  // Bottom-right
+        ndc_right, ndc_top,    1.0f, 0.0f,  // Top-right
+        ndc_left,  ndc_top,    0.0f, 0.0f   // Top-left
+    };
+
+    glUseProgram(watermark_shader);
+    glBindVertexArray(watermark_vao);
+    glBindBuffer(GL_ARRAY_BUFFER, watermark_vbo);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, watermark_texture);
+
+    GLint tex_uniform = glGetUniformLocation(watermark_shader, "watermarkTexture");
+    GLint alpha_uniform = glGetUniformLocation(watermark_shader, "alpha");
+    if (tex_uniform != -1) 
+    {
+        glUniform1i(tex_uniform, 0);
+    }
+
+    if (alpha_uniform != -1)
+    {
+        glUniform1f(alpha_uniform, fade_alpha);
+    }
+
+    while (glGetError() != GL_NO_ERROR) {}
+
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    glUseProgram(current_program);
+    glBindVertexArray(current_vao);
+    glBindBuffer(GL_ARRAY_BUFFER, current_buffer);
+    glActiveTexture(current_active_texture);
+    glBindTexture(GL_TEXTURE_2D, current_texture);
+}
+
+void RendererOpenGL::CleanupWatermark()
+{
+    if (watermark_texture)
+    {
+        glDeleteTextures(1, &watermark_texture);
+        watermark_texture = 0;
+    }
+
+    if (watermark_shader) 
+    {
+        glDeleteProgram(watermark_shader);
+        watermark_shader = 0;
+    }
+
+    if (watermark_vao) 
+    {
+        glDeleteVertexArrays(1, &watermark_vao);
+        watermark_vao = 0;
+    }
+
+    if (watermark_vbo) 
+    {
+        glDeleteBuffers(1, &watermark_vbo);
+        watermark_vbo = 0;
+    }
+}
+
 void RendererOpenGL::RenderToBuffer(std::span<const Tegra::FramebufferConfig> framebuffers,
                                     const Layout::FramebufferLayout& layout, void* dst) {
     GLint old_read_fb;
-    GLint old_draw_fb;
+    GLint old_draw_fb;  
     glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &old_read_fb);
     glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &old_draw_fb);
 

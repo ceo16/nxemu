@@ -211,6 +211,7 @@
     <ClInclude Include="vulkan_common\vulkan_memory_allocator.h" />
     <ClInclude Include="vulkan_common\vulkan_surface.h" />
     <ClInclude Include="vulkan_common\vulkan_wrapper.h" />
+    <ClInclude Include="watermark.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="buffer_cache\buffer_cache.cpp" />
