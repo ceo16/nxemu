@@ -260,7 +260,26 @@ NvResult nvhost_ctrl::IocCtrlEventUnregisterBatch(IocCtrlEventUnregisterBatchPar
 }
 
 NvResult nvhost_ctrl::IocCtrlClearEventWait(IocCtrlEventClearParams& params) {
-    UNIMPLEMENTED();
+    u32 event_id = params.event_id.slot;
+    LOG_DEBUG(Service_NVDRV, "called, event_id: {:X}", event_id);
+
+    if (event_id >= MaxNvEvents) {
+        return NvResult::BadParameter;
+    }
+
+    auto lock = NvEventsLock();
+
+    auto& event = events[event_id];
+    if (event.status.exchange(EventState::Cancelling, std::memory_order_acq_rel) ==
+        EventState::Waiting) {
+        system.GetVideo().DeregisterHostAction(event.assigned_syncpt, event.wait_handle);
+        syncpoint_manager.UpdateMin(event.assigned_syncpt);
+        event.wait_handle = {};
+    }
+    event.fails++;
+    event.status.store(EventState::Cancelled, std::memory_order_release);
+    event.kevent->Clear();
+
     return NvResult::Success;
 }
 

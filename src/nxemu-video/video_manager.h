@@ -33,6 +33,7 @@ public:
     void ApplyOpOnDeviceMemoryPointer(const uint8_t * pointer, uint32_t* scratchBuffer, size_t scratchBufferSize, DeviceMemoryOperation operation, void* userData) override;
     RasterizerDownloadArea OnCPURead(uint64_t addr, uint64_t size) override;
     bool OnCPUWrite(uint64_t addr, uint64_t size) override;
+    void DeregisterHostAction(uint32_t syncpoint_id, uint32_t handle) override;
     uint32_t HostSyncpointValue(uint32_t id) override;
     uint32_t HostSyncpointRegisterAction(uint32_t fence_id, uint32_t target_value, HostActionCallback operation, uint32_t slot, void * userData) override;
 

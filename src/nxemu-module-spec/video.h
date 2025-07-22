@@ -63,6 +63,7 @@ __interface IVideo
     void ApplyOpOnDeviceMemoryPointer(const uint8_t * pointer, uint32_t * scratchBuffer, size_t scratchBufferSize, DeviceMemoryOperation operation, void * userData) = 0;
     RasterizerDownloadArea OnCPURead(uint64_t addr, uint64_t size) = 0;
     bool OnCPUWrite(uint64_t addr, uint64_t size) = 0;
+    void DeregisterHostAction(uint32_t syncpoint_id, uint32_t handle) = 0;
     uint32_t HostSyncpointValue(uint32_t id) = 0;
     uint32_t HostSyncpointRegisterAction(uint32_t fence_id, uint32_t target_value, HostActionCallback operation, uint32_t slot, void * userData) = 0;
 };
