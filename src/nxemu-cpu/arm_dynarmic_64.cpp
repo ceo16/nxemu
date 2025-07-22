@@ -24,6 +24,7 @@ IArm64Executor::HaltReason ArmDynarmic64::Execute()
     {
     case Dynarmic::HaltReason::UserDefined2: return IArm64Executor::HaltReason::BreakLoop;
     case Dynarmic::HaltReason::UserDefined3: return IArm64Executor::HaltReason::SupervisorCall;
+    case (Dynarmic::HaltReason::UserDefined2 | Dynarmic::HaltReason::UserDefined3): return IArm64Executor::HaltReason::SupervisorCallBreakLoop;
     }
 
     g_notify->BreakPoint(__FILE__, __LINE__);

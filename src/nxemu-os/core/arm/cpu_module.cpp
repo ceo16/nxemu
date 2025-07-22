@@ -87,6 +87,7 @@ HaltReason ArmCpuModule::RunThread(Kernel::KThread * thread)
         {
         case IArm64Executor::HaltReason::BreakLoop: return HaltReason::BreakLoop;
         case IArm64Executor::HaltReason::SupervisorCall: return HaltReason::SupervisorCall;
+        case IArm64Executor::HaltReason::SupervisorCallBreakLoop: return (HaltReason::SupervisorCall | HaltReason::BreakLoop);
         default:
             UNIMPLEMENTED();
         }
