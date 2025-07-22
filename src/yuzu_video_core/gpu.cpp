@@ -197,8 +197,13 @@ struct GPU::Impl :
     }
 
     [[nodiscard]] u64 GetTicks() const {
-        UNIMPLEMENTED();
-        return 0;
+        u64 gpu_tick = m_system.OperatingSystem().GetGPUTicks();
+
+        if (Settings::values.use_fast_gpu_time.GetValue()) {
+            gpu_tick /= 256;
+        }
+
+        return gpu_tick;
     }
 
     [[nodiscard]] bool IsAsync() const {
