@@ -151,6 +151,17 @@ uint64_t VideoManager::MemoryAllocate(uint64_t size)
     return impl->m_host1x->MemoryManager().Allocate(size);
 }
 
+void VideoManager::Unmap(uint32_t gmmu, uint64_t gpuAddr, uint64_t size)
+{
+    std::shared_ptr<Tegra::MemoryManager> memory = impl->m_memoryManagerRegistry.GetMemoryManager(gmmu);
+    if (memory == nullptr)
+    {
+        UNIMPLEMENTED();
+        return;
+    }
+    memory->Unmap(gpuAddr, size);
+}
+
 void VideoManager::MemoryTrackContinuity(uint64_t address, uint64_t virtualAddress, uint64_t size, uint64_t asid)
 {
     impl->m_host1x->MemoryManager().TrackContinuity(address, virtualAddress, size, Core::Asid{ asid });
@@ -160,6 +171,12 @@ void VideoManager::MemoryMap(uint64_t address, uint64_t virtualAddress, uint64_t
 {
     impl->m_host1x->MemoryManager().Map(address, virtualAddress, size, Core::Asid{asid}, track);
 }
+
+void VideoManager::MemoryUnmap(uint64_t address, uint64_t size)
+{
+    impl->m_host1x->MemoryManager().Unmap(address, size);
+}
+
 
 void VideoManager::ApplyOpOnDeviceMemoryPointer(const uint8_t * pointer, uint32_t * scratchBuffer, size_t scratchBufferSize, DeviceMemoryOperation operation, void * userData)
 {
@@ -199,3 +216,9 @@ uint32_t VideoManager::HostSyncpointRegisterAction(uint32_t fence_id, uint32_t t
         operation(slot, userData);
     });
 }
+
+void VideoManager::WaitHost(uint32_t syncpoint_id, uint32_t expected_value)
+{
+    impl->m_host1x->GetSyncpointManager().WaitHost(syncpoint_id, expected_value);
+}
+

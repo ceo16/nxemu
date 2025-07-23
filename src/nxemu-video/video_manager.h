@@ -23,8 +23,10 @@ public:
     uint64_t Map(uint32_t gmmu, uint64_t gpuAddr, uint64_t deviceAddr, uint64_t size, uint16_t kind, bool isBigPages) override;
     uint64_t MapSparse(uint32_t gmmu, uint64_t gpuAddr, uint64_t size, bool isBigPages) override;
     uint64_t MemoryAllocate(uint64_t size) override;
+    void Unmap(uint32_t gmmu, uint64_t gpuAddr, uint64_t size) override;
     void MemoryTrackContinuity(uint64_t address, uint64_t virtualAddress, uint64_t size, uint64_t asid) override;
     void MemoryMap(uint64_t address, uint64_t virtualAddress, uint64_t size, uint64_t asid, bool track) override;
+    void MemoryUnmap(uint64_t address, uint64_t size) override;
     void RequestComposite(VideoFramebufferConfig * layers, uint32_t layerCount, VideoNvFence * fences, uint32_t fenceCount) override;
     uint64_t RegisterProcess(IMemory* memory) override;
     void UpdateFramebufferLayout(uint32_t width, uint32_t height) override;
@@ -36,6 +38,7 @@ public:
     void DeregisterHostAction(uint32_t syncpoint_id, uint32_t handle) override;
     uint32_t HostSyncpointValue(uint32_t id) override;
     uint32_t HostSyncpointRegisterAction(uint32_t fence_id, uint32_t target_value, HostActionCallback operation, uint32_t slot, void * userData) override;
+    void WaitHost(uint32_t syncpoint_id, uint32_t expected_value) override;
 
 private:
     VideoManager() = delete;

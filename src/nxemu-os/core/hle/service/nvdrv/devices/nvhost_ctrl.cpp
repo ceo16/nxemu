@@ -124,7 +124,6 @@ NvResult nvhost_ctrl::IocCtrlEventWait(IocCtrlEventWaitParams& params, bool is_a
         return NvResult::Success;
     }
 
-    //auto& host1x_syncpoint_manager = system.Host1x().GetSyncpointManager();
     const u32 target_value = params.fence.value;
 
     auto lock = NvEventsLock();
@@ -144,8 +143,7 @@ NvResult nvhost_ctrl::IocCtrlEventWait(IocCtrlEventWaitParams& params, bool is_a
         if (events[slot].fails > 2) {
             {
                 auto lk = system.StallApplication();
-                __debugbreak();
-                //host1x_syncpoint_manager.WaitHost(fence_id, target_value);
+                system.GetVideo().WaitHost(fence_id, target_value);
                 system.UnstallApplication();
             }
             params.value.raw = target_value;

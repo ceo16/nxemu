@@ -78,7 +78,29 @@ void NvMap::AddHandle(std::shared_ptr<Handle> handle_description) {
 }
 
 void NvMap::UnmapHandle(Handle& handle_description) {
-    UNIMPLEMENTED();
+    // Remove pending unmap queue entry if needed
+    if (handle_description.unmap_queue_entry) {
+        unmap_queue.erase(*handle_description.unmap_queue_entry);
+        handle_description.unmap_queue_entry.reset();
+    }
+
+    // Free and unmap the handle from Host1x GMMU
+    if (handle_description.pin_virt_address) {
+        UNIMPLEMENTED();
+        handle_description.pin_virt_address = 0;
+    }
+
+    // Free and unmap the handle from the SMMU
+    const size_t map_size = handle_description.aligned_size;
+    if (!handle_description.in_heap) {
+        UNIMPLEMENTED();
+        return;
+    }
+    const VAddr vaddress = handle_description.address;
+    auto* session = core.GetSession(handle_description.session_id);
+    session->mapper->Unmap(vaddress, map_size);
+    handle_description.d_address = 0;
+    handle_description.in_heap = false;
 }
 
 bool NvMap::TryRemoveHandle(const Handle& handle_description) {
