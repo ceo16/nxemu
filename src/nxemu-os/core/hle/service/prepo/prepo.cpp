@@ -9,6 +9,7 @@
 #include "core/hle/service/prepo/prepo.h"
 #include "core/hle/service/server_manager.h"
 #include "core/hle/service/service.h"
+#include "core/reporter.h"
 
 namespace Service::PlayReport {
 
@@ -17,6 +18,12 @@ public:
     explicit PlayReport(const char* name, Core::System& system_) : ServiceFramework{system_, name} {
         // clang-format off
         static const FunctionInfo functions[] = {
+            {10100, &PlayReport::SaveReport<Core::Reporter::PlayReportType::Old>, "SaveReportOld"},
+            {10101, &PlayReport::SaveReportWithUser<Core::Reporter::PlayReportType::Old>, "SaveReportWithUserOld"},
+            {10102, &PlayReport::SaveReport<Core::Reporter::PlayReportType::Old2>, "SaveReportOld2"},
+            {10103, &PlayReport::SaveReportWithUser<Core::Reporter::PlayReportType::Old2>, "SaveReportWithUserOld2"},
+            {10104, &PlayReport::SaveReport<Core::Reporter::PlayReportType::New>, "SaveReport"},
+            {10105, &PlayReport::SaveReportWithUser<Core::Reporter::PlayReportType::New>, "SaveReportWithUser"},
             {10200, &PlayReport::RequestImmediateTransmission, "RequestImmediateTransmission"},
             {10300, &PlayReport::GetTransmissionStatus, "GetTransmissionStatus"},
             {10400, &PlayReport::GetSystemSessionId, "GetSystemSessionId"},
@@ -46,6 +53,48 @@ public:
     }
 
 private:
+    template <Core::Reporter::PlayReportType Type>
+    void SaveReport(HLERequestContext& ctx) {
+        IPC::RequestParser rp{ctx};
+        const auto process_id = rp.PopRaw<u64>();
+
+        const auto data1 = ctx.ReadBufferA(0);
+        const auto data2 = ctx.ReadBufferX(0);
+
+        LOG_DEBUG(Service_PREPO,
+                  "called, type={:02X}, process_id={:016X}, data1_size={:016X}, data2_size={:016X}",
+                  Type, process_id, data1.size(), data2.size());
+
+        const auto& reporter{system.GetReporter()};
+        reporter.SavePlayReport(Type, system.GetApplicationProcessProgramID(), {data1, data2},
+                                process_id);
+
+        IPC::ResponseBuilder rb{ctx, 2};
+        rb.Push(ResultSuccess);
+    }
+
+    template <Core::Reporter::PlayReportType Type>
+    void SaveReportWithUser(HLERequestContext& ctx) {
+        IPC::RequestParser rp{ctx};
+        const auto user_id = rp.PopRaw<u128>();
+        const auto process_id = rp.PopRaw<u64>();
+
+        const auto data1 = ctx.ReadBufferA(0);
+        const auto data2 = ctx.ReadBufferX(0);
+
+        LOG_DEBUG(Service_PREPO,
+                  "called, type={:02X}, user_id={:016X}{:016X}, process_id={:016X}, "
+                  "data1_size={:016X}, data2_size={:016X}",
+                  Type, user_id[1], user_id[0], process_id, data1.size(), data2.size());
+
+        const auto& reporter{system.GetReporter()};
+        reporter.SavePlayReport(Type, system.GetApplicationProcessProgramID(), {data1, data2},
+                                process_id, user_id);
+
+        IPC::ResponseBuilder rb{ctx, 2};
+        rb.Push(ResultSuccess);
+    }
+
     void RequestImmediateTransmission(HLERequestContext& ctx) {
         LOG_WARNING(Service_PREPO, "(STUBBED) called");
 

@@ -25,6 +25,7 @@
 #include "core/hle/service/services.h"
 #include "core/internal_network/network.h"
 #include "core/perf_stats.h"
+#include "core/reporter.h"
 #include "yuzu_hid_core/hid_core.h"
 #include "yuzu_input_common/main.h"
 #include "network/network.h"
@@ -42,7 +43,7 @@ struct System::Impl {
         : kernel{system}, hid_core{}, cpu_manager{system}, room_network{},
         applet_manager{system}, frontend_applets{system}, switchSystem(switchSystem_),
         input_subsystem{std::make_shared<InputCommon::InputSubsystem>()},
-        fs_controller(switchSystem_.Systemloader().FileSystemController())
+        reporter{system}, fs_controller(switchSystem_.Systemloader().FileSystemController())
     {
         device_memory = std::make_unique<Core::DeviceMemory>();
     }
@@ -191,6 +192,7 @@ struct System::Impl {
 
     bool nvdec_active{};
 
+    Reporter reporter;
     std::array<u8, 0x20> build_id{};
 
     ISwitchSystem & switchSystem;
@@ -441,6 +443,10 @@ Service::AM::AppletManager& System::GetAppletManager() {
 
 IFileSystemController & System::GetFileSystemController() {
     return impl->fs_controller;
+}
+
+const Reporter& System::GetReporter() const {
+    return impl->reporter;
 }
 
 Service::Glue::ARPManager& System::GetARPManager() {

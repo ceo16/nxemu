@@ -345,7 +345,41 @@ NvResult nvhost_as_gpu::MapBufferEx(IoctlMapBufferEx& params) {
 }
 
 NvResult nvhost_as_gpu::UnmapBuffer(IoctlUnmapBuffer& params) {
-    UNIMPLEMENTED();
+    LOG_DEBUG(Service_NVDRV, "called, offset=0x{:X}", params.offset);
+
+    std::scoped_lock lock(mutex);
+
+    if (!vm.initialised) {
+        return NvResult::BadValue;
+    }
+
+    try {
+        auto mapping{mapping_map.at(params.offset)};
+
+        if (!mapping->fixed) {
+            auto& allocator{mapping->big_page ? *vm.big_page_allocator : *vm.small_page_allocator};
+            u32 page_size_bits{mapping->big_page ? vm.big_page_size_bits : VM::PAGE_SIZE_BITS};
+
+            allocator.Free(static_cast<u32>(mapping->offset >> page_size_bits),
+                           static_cast<u32>(mapping->size >> page_size_bits));
+        }
+
+        // Sparse mappings shouldn't be fully unmapped, just returned to their sparse state
+        // Only FreeSpace can unmap them fully
+        IVideo & video = system.GetVideo();
+        if (mapping->sparse_alloc) {
+            video.MapSparse(gmmu, params.offset, mapping->size, mapping->big_page);
+        } else {
+            video.Unmap(gmmu, params.offset, mapping->size);
+        }
+
+        nvmap.UnpinHandle(mapping->handle);
+
+        mapping_map.erase(params.offset);
+    } catch (const std::out_of_range&) {
+        LOG_WARNING(Service_NVDRV, "Couldn't find region to unmap at 0x{:X}", params.offset);
+    }
+
     return NvResult::Success;
 }
 

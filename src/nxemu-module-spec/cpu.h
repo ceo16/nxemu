@@ -43,6 +43,7 @@ __interface IArm64Executor
     {
         Stopped,
         SupervisorCall,
+        SupervisorCallBreakLoop,
         BreakLoop,
     };
 

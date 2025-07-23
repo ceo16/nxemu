@@ -1947,6 +1947,9 @@
     <ClInclude Include="core\hle\service\nfc\common\device_manager.h">
       <Filter>Header Files\core\hle\service\nfc\common</Filter>
     </ClInclude>
+    <ClInclude Include="core\reporter.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="version.h.in">
@@ -3252,6 +3255,9 @@
     </ClCompile>
     <ClCompile Include="core\hle\service\nfc\nfc_interface.cpp">
       <Filter>Source Files\core\hle\service\nfc</Filter>
+    </ClCompile>
+    <ClCompile Include="core\reporter.cpp">
+      <Filter>Source Files\core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

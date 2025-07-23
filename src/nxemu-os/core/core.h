@@ -124,6 +124,7 @@ class Debugger;
 class DeviceMemory;
 class GPUDirtyMemoryManager;
 class PerfStats;
+class Reporter;
 class SpeedLimiter;
 class TelemetrySession;
 
@@ -340,6 +341,7 @@ public:
     [[nodiscard]] Service::AM::AppletManager& GetAppletManager();
 
     [[nodiscard]] IFileSystemController & GetFileSystemController();
+    [[nodiscard]] const Reporter& GetReporter() const;
 
     [[nodiscard]] Service::Glue::ARPManager& GetARPManager();
     [[nodiscard]] const Service::Glue::ARPManager& GetARPManager() const;

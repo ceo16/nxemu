@@ -28,7 +28,12 @@ HeapMapper::HeapMapper(VAddr start_vaddress, DAddr start_daddress, size_t size, 
 }
 
 HeapMapper::~HeapMapper() {
-    UNIMPLEMENTED();
+    // Unmap whatever has been mapped.
+    m_internal->m_mapped_ranges.ForEach([this](VAddr start_addr, VAddr end_addr, s32 count) {
+        const size_t sub_size = end_addr - start_addr;
+        const size_t offset = start_addr - m_vaddress;
+        m_internal->video.MemoryUnmap(m_daddress + offset, sub_size);
+    });
 }
 
 DAddr HeapMapper::Map(VAddr start, size_t size) {
@@ -57,7 +62,14 @@ DAddr HeapMapper::Map(VAddr start, size_t size) {
 }
 
 void HeapMapper::Unmap(VAddr start, size_t size) {
-    UNIMPLEMENTED();
+    std::scoped_lock lk(m_internal->m_guard);
+
+    // Just subtract the range and whatever is deleted, unmap it.
+    m_internal->m_mapped_ranges.Subtract(start, size, [this](VAddr start_addr, VAddr end_addr) {
+        const size_t sub_size = end_addr - start_addr;
+        const size_t offset = start_addr - m_vaddress;
+        m_internal->video.MemoryUnmap(m_daddress + offset, sub_size);
+    });
 }
 
 } // namespace Service::Nvidia::NvCore

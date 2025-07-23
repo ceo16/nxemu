@@ -99,6 +99,10 @@ RenderWindow::RenderWindow(IRenderWindow & renderWindow) :
     m_renderWindow(renderWindow),
     m_firstFrame(false)
 {
+#ifdef WIN32
+    window_info.type = Core::Frontend::WindowSystemType::Windows;
+#endif
+    window_info.render_surface = renderWindow.RenderSurface();
     NotifyClientAreaSizeChanged({ 0,0 });
     UpdateCurrentFramebufferLayout(640, 480);
 

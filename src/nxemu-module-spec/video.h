@@ -53,8 +53,10 @@ __interface IVideo
     uint64_t Map(uint32_t gmmu, uint64_t gpuAddr, uint64_t deviceAddr, uint64_t size, uint16_t kind, bool isBigPages) = 0;
     uint64_t MapSparse(uint32_t gmmu, uint64_t gpuAddr, uint64_t size, bool isBigPages) = 0;
     uint64_t MemoryAllocate(uint64_t size) = 0;
+    void Unmap(uint32_t gmmu, uint64_t gpuAddr, uint64_t size) = 0;
     void MemoryTrackContinuity(uint64_t address, uint64_t virtualAddress, uint64_t size, uint64_t asid) = 0;
     void MemoryMap(uint64_t address, uint64_t virtualAddress, uint64_t size, uint64_t asid, bool track) = 0;
+    void MemoryUnmap(uint64_t address, uint64_t size) = 0;
     void RequestComposite(VideoFramebufferConfig * layers, uint32_t layerCount, VideoNvFence * fences, uint32_t fenceCount) = 0;
     uint64_t RegisterProcess(IMemory * memory) = 0;
     void UpdateFramebufferLayout(uint32_t width, uint32_t height) = 0;
@@ -63,8 +65,10 @@ __interface IVideo
     void ApplyOpOnDeviceMemoryPointer(const uint8_t * pointer, uint32_t * scratchBuffer, size_t scratchBufferSize, DeviceMemoryOperation operation, void * userData) = 0;
     RasterizerDownloadArea OnCPURead(uint64_t addr, uint64_t size) = 0;
     bool OnCPUWrite(uint64_t addr, uint64_t size) = 0;
+    void DeregisterHostAction(uint32_t syncpoint_id, uint32_t handle) = 0;
     uint32_t HostSyncpointValue(uint32_t id) = 0;
     uint32_t HostSyncpointRegisterAction(uint32_t fence_id, uint32_t target_value, HostActionCallback operation, uint32_t slot, void * userData) = 0;
+    void WaitHost(uint32_t syncpoint_id, uint32_t expected_value) = 0;
 };
 
 EXPORT IVideo * CALL CreateVideo(IRenderWindow & RenderWindow, ISwitchSystem & System);

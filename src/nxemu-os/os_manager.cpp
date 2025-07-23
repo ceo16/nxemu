@@ -3,6 +3,7 @@
 #include "core/hle/kernel/k_process.h"
 #include "core/hle/service/am/applet_manager.h"
 #include "core/hle/service/filesystem/filesystem.h"
+#include "core/core_timing.h"
 #include "core/perf_stats.h"
 #include "yuzu_common/logging/backend.h"
 #include "yuzu_common/settings.h"
@@ -154,6 +155,11 @@ void OSManager::KeyboardKeyRelease(int modifier, int keyIndex, int keyCode)
 void OSManager::GatherGPUDirtyMemory(ICacheInvalidator * invalidator)
 {
     m_coreSystem.GatherGPUDirtyMemory(invalidator);
+}
+
+uint64_t OSManager::GetGPUTicks()
+{
+    return m_coreSystem.CoreTiming().GetGPUTicks();
 }
 
 void OSManager::GameFrameEnd()
